@@ -37,6 +37,13 @@
 //! visibility, and projects [`SemanticDataflowAnalysis`]. It runs strictly
 //! after `check`, changes no wire model, no AFIDL module, no ABI row, no
 //! HashV1 domain, and never enters the `SemanticIrDigest`.
+//!
+//! Phase 3D adds [`subflow`]: CALL_SUBFLOW static checking against an
+//! explicit [`SubflowIrUniverse`] of exact SemanticIrDigest targets. The
+//! [`SubflowInterface`] is derived from the target's own run parameters,
+//! workflow outputs and resource slots — a derived static view, never a
+//! durable wire object — and ports are compared structurally across
+//! documents (local `SemanticTypeId`s never compare numerically).
 
 pub mod canonical;
 pub mod check;
@@ -44,6 +51,7 @@ pub mod dataflow;
 pub mod error;
 pub mod ids;
 pub mod model;
+pub mod subflow;
 
 pub use canonical::canonical_computations;
 pub use check::CheckedIrDocument;
@@ -61,6 +69,10 @@ pub use model::{
     ParallelBranch, ParallelMode, ParallelOutputBinding, RaceBody, RaceBranch, ResourceUseBinding,
     RetryBody, RunParameterDecl, ScopeBody, SelectBody, SelectCase, SemanticIrDocument,
     SemanticVersionRef, SequenceBody, TimeoutBody, WhileBody, WorkflowOutputDecl,
+};
+pub use subflow::{
+    SubflowInterface, SubflowIrUniverse, SubflowResourcePort, SubflowTarget, SubflowValuePort,
+    derive_subflow_interface,
 };
 
 #[cfg(test)]

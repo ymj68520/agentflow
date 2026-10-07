@@ -85,6 +85,16 @@ pub mod kind {
     // by `check`; the analysis pass runs strictly after Phase 3B validation).
     pub const VALUE_NOT_AVAILABLE: &str = "value_not_available";
     pub const RESOURCE_NOT_VISIBLE: &str = "resource_not_visible";
+    // Phase 3D subflow interface checking (raised by `check_subflow_interfaces`
+    // only; runs strictly after the Phase 3C analysis).
+    pub const UNKNOWN_SUBFLOW_TARGET: &str = "unknown_subflow_target";
+    pub const SUBFLOW_TARGET_COLLISION: &str = "subflow_target_collision";
+    pub const SUBFLOW_INPUT_PORT_MISMATCH: &str = "subflow_input_port_mismatch";
+    pub const SUBFLOW_INPUT_TYPE_MISMATCH: &str = "subflow_input_type_mismatch";
+    pub const SUBFLOW_OUTPUT_PORT_MISMATCH: &str = "subflow_output_port_mismatch";
+    pub const SUBFLOW_OUTPUT_TYPE_MISMATCH: &str = "subflow_output_type_mismatch";
+    pub const SUBFLOW_RESOURCE_PORT_MISMATCH: &str = "subflow_resource_port_mismatch";
+    pub const SUBFLOW_RESOURCE_TYPE_MISMATCH: &str = "subflow_resource_type_mismatch";
 }
 
 /// Semantic IR validation, canonicalization and digest errors.
