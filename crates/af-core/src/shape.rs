@@ -38,9 +38,9 @@ pub enum Shape {
     Enum(EnumShape),
     /// An ordered sequence.
     List(Box<Shape>),
-    /// `Some(v)` encodes as `v`; `None` encodes as explicit `null`.
-    /// Nesting `option` inside `option`, or over `unit`/`null`, is rejected as
-    /// unrepresentable.
+    /// `Some(v)` encodes as the tagged object `{"some":v}`; `None` encodes
+    /// as the tagged object `{"none":null}`. Any legal AFIDL type may sit
+    /// under an option, including unit, null and nested options.
     Option(Box<Shape>),
     /// String-keyed map. Keys are NFC-normalized, must be unique after
     /// normalization, and are emitted sorted by unsigned UTF-8 bytes.
@@ -186,7 +186,10 @@ impl Shape {
                 }
                 Ok(())
             }
-            Shape::List(item) | Shape::Map(item) => item.validate(),
+            // v1 (Phase 1A ratification): options are explicit tagged objects
+            // ({"none":null} / {"some":v}), so ANY legal AFIDL type may sit
+            // under an option, including unit, null and nested options.
+            Shape::List(item) | Shape::Map(item) | Shape::Option(item) => item.validate(),
             Shape::Record(r) => {
                 let mut names: Vec<&str> = Vec::new();
                 for field in &r.fields {
@@ -229,16 +232,6 @@ impl Shape {
                 }
                 Ok(())
             }
-            Shape::Option(item) => match **item {
-                Shape::Option(_) => Err(AceError::invalid_shape(
-                    "option<option<T>> is not representable in ACE1 v1",
-                )),
-                Shape::Unit | Shape::Null => Err(AceError::invalid_shape(format!(
-                    "option<{}> is not representable: None and Some(_) would collide on null bytes",
-                    item.type_name()
-                ))),
-                _ => item.validate(),
-            },
             _ => Ok(()),
         }
     }

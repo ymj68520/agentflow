@@ -163,12 +163,36 @@ impl Parser<'_> {
                 }
                 Ok(Value::Enum(s))
             }
+            // Phase 1A ratification: options are explicit single-case tagged
+            // objects. Literal null, wrong keys, wrong member counts, and
+            // non-null "none" payloads are all rejected, never repaired.
             Shape::Option(inner) => {
-                if self.input[self.pos..].starts_with("null") {
-                    self.pos += 4;
-                    Ok(Value::Option(None))
-                } else {
-                    Ok(Value::Option(Some(Box::new(self.parse_value(inner)?))))
+                let members = self.parse_members()?;
+                if members.len() != 1 {
+                    return Err(AceError::InvalidOptionEncoding {
+                        detail: format!(
+                            "option must encode exactly one case member, got {}",
+                            members.len()
+                        ),
+                    });
+                }
+                let m = &members[0];
+                match m.key.as_str() {
+                    "none" => {
+                        if &self.input[m.value.0..m.value.1] != "null" {
+                            return Err(AceError::InvalidOptionEncoding {
+                                detail: "the 'none' case payload must be the literal null".into(),
+                            });
+                        }
+                        Ok(Value::Option(None))
+                    }
+                    "some" => {
+                        let v = self.parse_value_span(m.value, inner)?;
+                        Ok(Value::Option(Some(Box::new(v))))
+                    }
+                    other => Err(AceError::InvalidOptionEncoding {
+                        detail: format!("option case must be \"none\" or \"some\", got {other:?}"),
+                    }),
                 }
             }
             Shape::List(item_shape) => {

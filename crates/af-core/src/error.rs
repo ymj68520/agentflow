@@ -20,6 +20,7 @@ pub mod kind {
     pub const INVALID_BYTES_ENCODING: &str = "invalid_bytes_encoding";
     pub const UNKNOWN_ENUM_VALUE: &str = "unknown_enum_value";
     pub const UNKNOWN_VARIANT_CASE: &str = "unknown_variant_case";
+    pub const INVALID_OPTION_ENCODING: &str = "invalid_option_encoding";
     pub const TYPE_MISMATCH: &str = "type_mismatch";
     pub const NON_CANONICAL_ENCODING: &str = "non_canonical_encoding";
     pub const INVALID_SHAPE: &str = "invalid_shape";
@@ -58,6 +59,10 @@ pub enum AceError {
     UnknownEnumValue { value: String },
     /// A closed variant received a case outside its declared set.
     UnknownVariantCase { case: String },
+    /// An option value is not encoded as the mandatory single-case tagged
+    /// object `{"none":null}` / `{"some":<v>}` (wrong key, wrong member count,
+    /// or a non-null payload under "none").
+    InvalidOptionEncoding { detail: String },
     /// The typed value does not match the declared shape (this is how nominal
     /// distinctions such as timestamp vs duration vs int64 are enforced).
     TypeMismatch { expected: String, actual: String },
@@ -65,8 +70,7 @@ pub enum AceError {
     /// duplicate object keys, non-shortest escapes, trailing data, ...).
     /// Decoder-only: the encoder can never produce these.
     NonCanonicalEncoding { detail: String },
-    /// The shape itself is invalid (duplicate names, non-NFC names,
-    /// unrepresentable option nesting, ...).
+    /// The shape itself is invalid (duplicate names, non-NFC names, ...).
     InvalidShape { detail: String },
 }
 
@@ -98,6 +102,7 @@ impl AceError {
             AceError::InvalidBytesEncoding { .. } => kind::INVALID_BYTES_ENCODING,
             AceError::UnknownEnumValue { .. } => kind::UNKNOWN_ENUM_VALUE,
             AceError::UnknownVariantCase { .. } => kind::UNKNOWN_VARIANT_CASE,
+            AceError::InvalidOptionEncoding { .. } => kind::INVALID_OPTION_ENCODING,
             AceError::TypeMismatch { .. } => kind::TYPE_MISMATCH,
             AceError::NonCanonicalEncoding { .. } => kind::NON_CANONICAL_ENCODING,
             AceError::InvalidShape { .. } => kind::INVALID_SHAPE,
@@ -138,6 +143,9 @@ impl fmt::Display for AceError {
             }
             AceError::UnknownVariantCase { case } => {
                 write!(f, "unknown variant case {case:?} for closed variant")
+            }
+            AceError::InvalidOptionEncoding { detail } => {
+                write!(f, "invalid option encoding: {detail}")
             }
             AceError::TypeMismatch { expected, actual } => {
                 write!(f, "type mismatch: expected {expected}, got {actual}")

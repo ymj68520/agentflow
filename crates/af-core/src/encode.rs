@@ -18,7 +18,8 @@
 //!   emitted sorted by unsigned UTF-8 bytes; record fields are emitted in the
 //!   same canonical key order;
 //! - `bytes` encode as unpadded base64url;
-//! - `option<T>`: `None` is explicit `null`, `Some(v)` encodes `v`;
+//! - `option<T>`: `None` is the tagged object `{"none":null}`, `Some(v)` is
+//!   the tagged object `{"some":v}` (Phase 1A ratification);
 //! - records carry every declared field — there is no "absent field" state in
 //!   canonical bytes;
 //! - closed enums and closed variants reject unknown values/cases;
@@ -99,9 +100,17 @@ fn write_value(out: &mut String, shape: &Shape, value: &Value) -> Result<(), Ace
             }
             out.push(']');
         }
+        // Phase 1A ratification: Option is an explicit single-case tagged
+        // object, so None, Some(null), Some(unit) and Some(None) all have
+        // distinct wire representations (inner payloads share tokens only
+        // where the schema nominally disambiguates).
         (Shape::Option(item_shape), Value::Option(inner)) => match inner {
-            None => out.push_str("null"),
-            Some(v) => write_value(out, item_shape, v)?,
+            None => out.push_str("{\"none\":null}"),
+            Some(v) => {
+                out.push_str("{\"some\":");
+                write_value(out, item_shape, v)?;
+                out.push('}');
+            }
         },
         (Shape::Map(value_shape), Value::Map(entries)) => {
             // Normalize keys, reject NFC collisions, sort by unsigned UTF-8 bytes.
