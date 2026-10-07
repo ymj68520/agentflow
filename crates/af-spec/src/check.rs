@@ -61,6 +61,10 @@ impl Layout {
     }
 
     /// A self-contained `spec/conformance/spec-registry/` case layout.
+    ///
+    /// The `.afidl` modules are discovered by walking the case root, so a case
+    /// may hold several modules that import each other by exact
+    /// `SpecificationId`.
     pub fn corpus_case() -> Self {
         Layout {
             specifications: "specifications.json",
@@ -70,8 +74,8 @@ impl Layout {
             suites: "",
             coverage_summary: "",
             conformance_root: "conformance",
-            idl_files: &["registry.afidl"],
-            idl_walk_dir: "",
+            idl_files: &[],
+            idl_walk_dir: ".",
             drift_checks: false,
         }
     }
@@ -182,7 +186,17 @@ impl SpecCheck {
         report.abi_retired = rows.iter().filter(|a| a.status == "retired").count();
         report.abi_reserved = rows.iter().filter(|a| a.status == "reserved").count();
 
-        // 6. Compile AFIDL modules and cross-check against the ABI registry.
+        // 6. Compile the AFIDL module universe and cross-check it against the
+        // ABI registry.
+        //
+        // A module may import another module by exact SpecificationId, so the
+        // normative sources are compiled as a *set*: every `.afidl` file is
+        // read first, its schema family identity is parsed out of the header,
+        // duplicate families are rejected, and the set is then compiled with
+        // the import resolver - which also performs the global named-type
+        // recursion validation. No registry lookup and no "latest" resolution
+        // takes place: import targets are matched by the exact identity the
+        // importing source itself declares.
         let idl_files: Vec<String> = if self.layout.idl_files.is_empty() {
             fs::collect_afidl_files(&self.root, self.layout.idl_walk_dir)
         } else {
@@ -192,32 +206,62 @@ impl SpecCheck {
                 .map(ToString::to_string)
                 .collect()
         };
-        let mut families: BTreeMap<String, Vec<SchemaBinding>> = BTreeMap::new();
+        let mut sources: Vec<(String, String)> = Vec::with_capacity(idl_files.len());
+        let mut families: BTreeMap<String, String> = BTreeMap::new();
         for relative in &idl_files {
-            match std::fs::read_to_string(self.root.join(relative)) {
-                Ok(source) => match af_idl::compile(&source) {
-                    Ok(compiled) => {
-                        let family = compiled.specification.canonical();
-                        let bindings = abi::schema_bindings(&compiled);
-                        families.entry(family).or_default().extend(bindings);
-                        report.modules_checked += 1;
-                    }
-                    Err(error) => errors.push(SpecError::SchemaCompile {
+            let source = match std::fs::read_to_string(self.root.join(relative)) {
+                Ok(source) => source,
+                Err(error) => {
+                    errors.push(SpecError::Io {
                         path: relative.clone(),
                         detail: error.to_string(),
-                    }),
-                },
-                Err(error) => errors.push(SpecError::Io {
+                    });
+                    continue;
+                }
+            };
+            // The family identity comes from the module header, parsed by the
+            // real AFIDL grammar: spec-check never guesses an identity from a
+            // file name or a registry entry.
+            match af_idl::parse(&source) {
+                Ok(module) => {
+                    let family_id = module.schema.id.canonical();
+                    if let Some(previous) = families.insert(family_id.clone(), relative.clone()) {
+                        errors.push(SpecError::DuplicateModuleFamily {
+                            specification_id: family_id,
+                            first: previous,
+                            second: relative.clone(),
+                        });
+                    }
+                }
+                Err(error) => errors.push(SpecError::SchemaCompile {
                     path: relative.clone(),
                     detail: error.to_string(),
                 }),
             }
+            sources.push((relative.clone(), source));
+        }
+
+        let mut bindings_by_family: BTreeMap<String, Vec<SchemaBinding>> = BTreeMap::new();
+        match af_idl::compile_module_set(&sources) {
+            Ok(set) => {
+                for module in set.modules() {
+                    bindings_by_family.insert(
+                        module.specification.canonical(),
+                        abi::schema_bindings(module),
+                    );
+                }
+                report.modules_checked = set.len();
+            }
+            Err(error) => errors.push(SpecError::ModuleSetCompile {
+                detail: error.to_string(),
+            }),
         }
         if !rows.is_empty() {
-            let mut all_families: BTreeSet<String> = families.keys().cloned().collect();
+            let mut all_families: BTreeSet<String> = bindings_by_family.keys().cloned().collect();
             all_families.extend(rows.iter().map(|row| row.schema_family.clone()));
             for family in &all_families {
-                let bindings: &[SchemaBinding] = families.get(family).map_or(&[], Vec::as_slice);
+                let bindings: &[SchemaBinding] =
+                    bindings_by_family.get(family).map_or(&[], Vec::as_slice);
                 for error in abi::check_current_schema_against_abi_registry(family, bindings, rows)
                 {
                     errors.push(error);

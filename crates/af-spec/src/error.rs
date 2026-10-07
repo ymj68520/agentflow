@@ -118,6 +118,17 @@ pub enum SpecError {
         path: String,
         detail: String,
     },
+    /// Two normative AFIDL modules declare the same schema family.
+    DuplicateModuleFamily {
+        specification_id: String,
+        first: String,
+        second: String,
+    },
+    /// The module set as a whole failed to compile: an unresolved import, an
+    /// unknown imported type, or a cross-module recursive type.
+    ModuleSetCompile {
+        detail: String,
+    },
     SchemaDigestInvalid {
         detail: String,
     },
@@ -161,6 +172,8 @@ impl SpecError {
             SpecError::AbiActiveAssignmentMissing { .. } => "abi_active_assignment_missing",
             SpecError::TableDrift { .. } => "table_drift",
             SpecError::SchemaCompile { .. } => "schema_compile",
+            SpecError::DuplicateModuleFamily { .. } => "duplicate_module_family",
+            SpecError::ModuleSetCompile { .. } => "module_set_compile",
             SpecError::SchemaDigestInvalid { .. } => "schema_digest_invalid",
         }
     }
@@ -281,6 +294,18 @@ impl fmt::Display for SpecError {
             }
             SpecError::SchemaCompile { path, detail } => {
                 write!(f, "{path}: schema compilation failed: {detail}")
+            }
+            SpecError::DuplicateModuleFamily {
+                specification_id,
+                first,
+                second,
+            } => write!(
+                f,
+                "schema family {specification_id} is declared by two normative \
+                 modules: {first} and {second}"
+            ),
+            SpecError::ModuleSetCompile { detail } => {
+                write!(f, "the AFIDL module set failed to compile: {detail}")
             }
             SpecError::SchemaDigestInvalid { detail } => {
                 write!(f, "invalid schema digest: {detail}")
