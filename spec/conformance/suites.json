@@ -193,6 +193,38 @@
         "af-semantic ResourceSlot (no mutation surface)",
         "CheckedDocument construction path"
       ]
+    },
+    {
+      "description": "Cross-document types compare structurally: primitives by keyword, schema leaves by exact TypeSchemaRef (identity and digest), containers recursively; local SemanticTypeIds never compare numerically. Covers the frozen corpus cases for renumbered type tables and same-id different-type rejections.",
+      "suite_id": "SUITE-SUBFLOW-CROSS-DOCUMENT-TYPES",
+      "targets": [
+        "af-ir subflow type expansion (StructuralType)",
+        "spec/conformance/subflow-interface/"
+      ]
+    },
+    {
+      "description": "CALL_SUBFLOW resolves its target only by the exact pinned SemanticIrDigest in an explicit in-memory universe: fail closed on a missing digest, no latest fallback, no filesystem/network/deployment lookup, idempotent re-insertion of identical bytes. Covers the frozen target-resolution negatives and the digest pins.",
+      "suite_id": "SUITE-SUBFLOW-EXACT-TARGET",
+      "targets": [
+        "af-ir SubflowIrUniverse",
+        "spec/conformance/subflow-interface/negative/"
+      ]
+    },
+    {
+      "description": "The subflow interface is derived, canonical-key ordered and never durable: inputs from RunParameterId order, outputs from canonical name order, resources from every declared ResourceSlot in id order, 1-based independent namespaces, deterministic for a fixed digest. Covers the frozen interface projections and the equivalence groups.",
+      "suite_id": "SUITE-SUBFLOW-INTERFACE-DERIVATION",
+      "targets": [
+        "af-ir derive_subflow_interface",
+        "spec/conformance/subflow-interface/equivalence/"
+      ]
+    },
+    {
+      "description": "The subflow pass consumes a checked document plus its own Phase 3C analysis and runs strictly after them: Phase 3B and Phase 3C error kinds never move, and a document without CALL_SUBFLOW passes against an empty universe. Covers the frozen corpus rejected_at layering and the zero-drift proofs for both earlier corpora.",
+      "suite_id": "SUITE-SUBFLOW-INTERFACE-PASS-ORDER",
+      "targets": [
+        "af-ir CheckedIrDocument::check_subflow_interfaces",
+        "spec/conformance/subflow-interface/"
+      ]
     }
   ]
 }

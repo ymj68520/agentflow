@@ -1,6 +1,6 @@
 # Canonical Semantic IR — v1
 
-> Status: AgentFlow repository normative source for Phase 3B and Phase 3C. This document
+> Status: AgentFlow repository normative source for Phase 3B, Phase 3C and Phase 3D. This document
 > defines the Canonical Semantic IR: its document structure, the closed
 > 13-opcode `ComputationBody` set, structured ownership, value-producer
 > rules, static interface rules, canonical ordering and the
@@ -657,14 +657,161 @@ EntryResources(scope.child) = exactly ScopeBody.resources
 - Visibility is not mutable state: no resource mutation ordering, locking
   or transactions are modeled in this phase.
 
-## 15. Explicitly deferred (Phase 3D and later)
+## 15. Subflow interface derivation (Phase 3D)
 
-The following are **not** defects of this document; they are later layers
-(`DEFERRED_PHASE_3D` unless stated otherwise):
+<a id="ir-subflow-interface-derivation"></a>
+<a id="ir-subflow-interface-derived"></a>
+<a id="ir-subflow-port-ordinals"></a>
 
-- ComponentContract port validation; Subflow interface validation; the exact
-  contract-table checking against materialized contract ABIs (no temporary
-  JSON contract format exists before then);
+A CALL_SUBFLOW pins its target by an exact `SemanticIrDigest` (the contract
+table enforces `kind == subflow` and `digest.domain == semantic-ir`); the
+target Semantic IR **is** the subflow's semantic identity. Its public surface
+is therefore not copied into a new contract object — it is derived:
+
+```text
+target run_parameters    → input ports   (RunParameterId ascending)
+target workflow_outputs  → output ports  (canonical NFC-name byte order)
+target resources         → resource ports (ResourceSlotId ascending)
+```
+
+- The derived `SubflowInterface` is a plain compile-time projection. It
+  MUST NOT enter AFIDL, the ABI registry, the `SemanticIrDigest` or any
+  wire serialization; no `SemanticTypeDigest` or interface digest exists —
+  structural equality is the comparison, nothing here is hashed.
+- Each mapping is **1-based and canonical-key ordered**, so source table
+  order never matters: reordering any non-semantic table moves neither the
+  digest nor the derived interface. The three port namespaces are
+  independent: input port 1, output port 1 and resource port 1 have no
+  relation to each other.
+- Port ordinals are **derived external interface coordinates, not aliases**
+  for `RunParameterId` / `WorkflowOutput` name / `ResourceSlotId`. Target
+  names are carried as diagnostic/inspection metadata only; bindings use
+  `port_no` exclusively, and no call wire field is added.
+<a id="ir-subflow-interface-immutable"></a>
+
+- As long as the `SemanticIrDigest` is fixed, the derived interface is
+  fixed (deterministic and immutable); any change to a parameter type, an
+  output type, a resource requirement or order-relevant identity produces a
+  new digest, and a caller pinned to the old digest never follows silently.
+
+### 15.1 Input, output and resource ports
+
+<a id="ir-subflow-input-ports"></a>
+<a id="ir-subflow-output-ports"></a>
+<a id="ir-subflow-resource-ports"></a>
+
+<a id="ir-subflow-inputs-exact"></a>
+
+- Every target run parameter is a required static input: there is no
+  default, optional omission or variadic input, so the caller's
+  `CallSubflowBody.inputs` port set must exactly equal the derived input
+  port set `1..N`.
+<a id="ir-subflow-outputs-exact"></a>
+
+- Every workflow output is part of the output interface: the caller's
+  `ComputationDef.outputs` must exactly equal the derived output port set.
+  An unconsumed output stays an unused value slot — the call's own contract
+  interface never becomes partial.
+<a id="ir-subflow-resources-exact"></a>
+
+- **Every declared target `ResourceSlot` is part of the resource
+  requirement interface**, not only the ones that happen to be used: the
+  slot is the contract surface (Phase 3A), and an unused slot is an
+  authoring defect to fix before publishing, never something this layer
+  hides. The caller's `CallSubflowBody.resources` port set must exactly
+  equal `1..N`, and each bound caller slot's `requirement_type` must equal
+  the target port's `requirement_type` as an exact `TypeSchemaRef`.
+- A resource requirement is a pinned contract schema, not a value type:
+  value types and resource requirement types are never conflated.
+
+### 15.2 Exact target lookup
+
+<a id="ir-subflow-exact-target"></a>
+<a id="ir-subflow-no-fallback"></a>
+<a id="ir-subflow-no-transitive-closure"></a>
+
+- The pinned digest must resolve **exactly** in an explicit, immutable,
+  in-memory target universe (`SubflowIrUniverse`); otherwise the call is
+  rejected as `unknown_subflow_target`. There is no same-workflow-name
+  latest fallback, no filesystem, registry, network, package or deployment
+  lookup — fail closed.
+- The universe accepts only fully validated targets: Phase 3B by the
+  checked-document type, Phase 3C because insertion runs the scoped
+  dataflow analysis itself. An invalid target is uninsertable.
+- The digest is always computed **from** the target document; a caller
+  never passes a trusted digest string alongside a document. Re-inserting
+  the same canonical bytes is idempotent; the same digest over different
+  bytes is an invariant violation and is rejected, never silently
+  overwritten.
+- Interface derivation does **not** recursively validate the target's own
+  transitive subflow closure, and subflow-graph cycles (A → B → A) are not
+  judged here: dependency closure and graph acyclicity belong to the later
+  Resolver / LockGraph stage. This phase is not a partial resolver.
+
+### 15.3 Cross-document type equivalence
+
+<a id="ir-cross-document-type-equivalence"></a>
+<a id="ir-schema-leaf-exact-equality"></a>
+
+A `SemanticTypeId` is a document-local DAG coordinate: numeric equality
+across caller and target proves nothing and numeric difference proves
+nothing. Ports and bindings are therefore compared as structurally
+resolved types:
+
+```text
+primitive p        == primitive p'        iff p == p'
+schema r           == schema r'           iff r is the exact TypeSchemaRef
+list A             == list B              iff A == B
+map<string, A>     == map<string, B>      iff A == B
+option A           == option B            iff A == B
+```
+
+- A schema leaf compares the complete pin — `specification_id`,
+  `type_name` **and** `schema_digest`. Comparing the name alone is
+  forbidden; the same record name under a different specification version
+  is a different type.
+- The expansion terminates because the Phase 3A type DAG is acyclic; the
+  comparison needs no new digest and no new Hash domain.
+
+### 15.4 CALL_SUBFLOW interface checking
+
+<a id="ir-call-subflow-interface-checking"></a>
+<a id="ir-subflow-pass-order"></a>
+
+- The pass order is frozen:
+  `Phase 3B check → Phase 3C analysis → Phase 3D subflow check`. The
+  subflow pass consumes the checked document and its own analysis; it
+  never runs before them and never changes a Phase 3B/3C error kind.
+  Existing Phase 3B kinds (unknown contract, wrong contract kind,
+  duplicate ports, unknown expression/resource) stay exactly where they
+  are.
+- Per call, in ascending computation id order, the stable error kinds are:
+  `unknown_subflow_target`; `subflow_input_port_mismatch` /
+  `subflow_input_type_mismatch`; `subflow_output_port_mismatch` /
+  `subflow_output_type_mismatch`; `subflow_resource_port_mismatch` /
+  `subflow_resource_type_mismatch`. Diagnostics carry the computation,
+  the port and the expected/actual resolved types; the rendering is not
+  durable ABI.
+- A document with no CALL_SUBFLOW passes against an empty universe.
+  INVOKE keeps its Phase 3B state: no component port checking exists in
+  this phase, and no ports-only `ComponentContract` placeholder is
+  created — the real contract core (I/O, failure row, effect signature,
+  resource requirements, information flow, usage, recovery, execution
+  requirements, replay/idempotency/timeout policies) is materialized
+  once, in Phase 4, and INVOKE exact checking returns there.
+
+## 16. Explicitly deferred (Phase 4 and later)
+
+The following are **not** defects of this document; they are later layers:
+
+- the Component/Component-Contract core (Phase 4): ports over the complete
+  I / O / F / R / U / K / X dimensions plus replay, idempotency, timeout
+  and recovery policies — no ports-only shrinkage may occupy the
+  `component-contract` domain's meaning first; INVOKE exact contract
+  checking returns there;
+- the Resolver / LockGraph: subflow dependency closure, published-graph
+  acyclicity and cycle policy (Phase 3D deliberately does not judge
+  A → B → A);
 - Await mailbox/matcher runtime semantics; the typed FailureValue runtime
   ABI (handlers therefore see no protected-child outputs);
 - Effect Signature; Resource Contract meaning; resource concurrency rules;
@@ -673,7 +820,7 @@ The following are **not** defects of this document; they are later layers
   runtime dominance, liveness, storage, stack frame or SSA-phi construct
   (the control wrappers' own output slots are the merge boundaries).
 
-## 16. Conformance
+## 17. Conformance
 
 Frozen corpus: `spec/conformance/semantic-ir/` — `golden/` (per-opcode and
 nested documents with canonical `ace1_utf8`/`ace1_hex`/`semantic_ir_digest`),
@@ -694,3 +841,15 @@ diagnostic reason tokens). It is generated by the independent Python
 implementation `tools/gen-semantic-dataflow-corpus.py` and carries no digest:
 the analysis is never hashed. The same generator cross-checks all Phase 3B
 golden documents against its availability oracle.
+
+Phase 3D adds `spec/conformance/subflow-interface/` — `positive/` (targets
+plus callers that pass Phase 3B + Phase 3C and check clean against the
+explicit universe, with the target digests and the derived interface
+projections frozen), `negative/` (callers rejected only by the subflow
+check, with frozen kinds) and `equivalence/` (table order moves neither the
+digest nor the interface; local type renumbering moves neither the interface
+shape; port ordinals follow the frozen canonical key orders). It is
+generated by the independent Python implementation
+`tools/gen-subflow-interface-corpus.py`; the interface projections are
+marked NON_NORMATIVE CONFORMANCE PROJECTION — the analysis is never hashed
+and never serialized in production.

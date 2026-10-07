@@ -1043,6 +1043,99 @@ IR_RULES = [
          "cases stay frozen, and no AFIDL module, ABI row, HashV1 domain "
          "or Rule Area is added.",
          ["SUITE-SEMANTIC-DATAFLOW-WIRE-FREEZE"]),
+    # --- Phase 3D: subflow interface derivation / CALL_SUBFLOW checking ---
+    rule("AF-SEMANTIC-0096", "SEMANTIC", IR_SRC, "ir-subflow-exact-target",
+         "A CALL_SUBFLOW target resolves only by its exact pinned "
+         "SemanticIrDigest in an explicit, immutable, in-memory universe "
+         "whose keys are full DigestRefs (sha256 / semantic-ir / hex); the "
+         "digest is always computed from the target document itself.",
+         ["subflow/unknown-target-digest", "subflow/stale-target-digest",
+          "SUITE-SUBFLOW-EXACT-TARGET"]),
+    rule("AF-SEMANTIC-0097", "SEMANTIC", IR_SRC, "ir-subflow-no-fallback",
+         "A missing target digest fails closed: there is no same-name "
+         "latest fallback, no filesystem, registry, network, package or "
+         "deployment lookup anywhere in the subflow universe.",
+         ["subflow/universe-does-not-fallback-latest"]),
+    rule("AF-SEMANTIC-0098", "SEMANTIC", IR_SRC, "ir-subflow-interface-derived",
+         "The subflow interface is a derived static view of the target's "
+         "own run_parameters, workflow_outputs and resources tables: it "
+         "never enters AFIDL, the ABI registry or the SemanticIrDigest, "
+         "and no SemanticTypeDigest or interface digest exists.",
+         ["SUITE-SUBFLOW-INTERFACE-DERIVATION"]),
+    rule("AF-SEMANTIC-0099", "SEMANTIC", IR_SRC, "ir-subflow-input-ports",
+         "Input ports enumerate the target run parameters in "
+         "RunParameterId canonical order, 1-based; source table order "
+         "never matters.",
+         ["subflow/multiple-inputs-canonical-port-order"]),
+    rule("AF-SEMANTIC-0100", "SEMANTIC", IR_SRC, "ir-subflow-output-ports",
+         "Output ports enumerate the target workflow outputs in canonical "
+         "NFC-name byte order, 1-based; source table order never matters.",
+         ["subflow/multiple-outputs-canonical-port-order"]),
+    rule("AF-SEMANTIC-0101", "SEMANTIC", IR_SRC, "ir-subflow-resource-ports",
+         "Every declared target ResourceSlot is part of the resource "
+         "requirement interface (not only the currently used ones); "
+         "resource ports enumerate the slots in ResourceSlotId canonical "
+         "order, 1-based.",
+         ["subflow/resources", "resource/missing-port", "resource/extra-port"]),
+    rule("AF-SEMANTIC-0102", "SEMANTIC", IR_SRC, "ir-subflow-port-ordinals",
+         "Subflow interface port ordinals are derived external interface "
+         "coordinates, not aliases for RunParameterId, workflow-output "
+         "names or ResourceSlotId; the three port namespaces are "
+         "independent and target names are diagnostic metadata only.",
+         ["equivalence/port-order-canonical-keys"]),
+    rule("AF-SEMANTIC-0103", "SEMANTIC", IR_SRC, "ir-cross-document-type-equivalence",
+         "Cross-document types compare structurally, never by local "
+         "SemanticTypeId: primitives compare by keyword and containers "
+         "recursively, so the same structure under different local ids is "
+         "compatible and the same id with different meanings is not.",
+         ["subflow/caller-and-target-use-different-type-table-numbering",
+          "input/type-mismatch", "SUITE-SUBFLOW-CROSS-DOCUMENT-TYPES"]),
+    rule("AF-SEMANTIC-0104", "SEMANTIC", IR_SRC, "ir-schema-leaf-exact-equality",
+         "A schema leaf compares the exact complete TypeSchemaRef - "
+         "specification_id, type_name and schema_digest; the same record "
+         "name under a different specification version is a different "
+         "type.",
+         ["input/schema-digest-mismatch", "resource/schema-digest-mismatch"]),
+    rule("AF-SEMANTIC-0105", "SEMANTIC", IR_SRC, "ir-subflow-inputs-exact",
+         "CALL_SUBFLOW inputs must exactly match the target input "
+         "interface: the bound port set equals 1..N (no missing, no extra "
+         "port) and every bound expression's resolved type equals the "
+         "target port type.",
+         ["input/missing-port", "input/extra-port", "input/type-mismatch",
+          "input/nested-type-mismatch", "subflow/basic-input-output"]),
+    rule("AF-SEMANTIC-0106", "SEMANTIC", IR_SRC, "ir-subflow-outputs-exact",
+         "CALL_SUBFLOW outputs must exactly match the target output "
+         "interface: the declared port set equals 1..N and every declared "
+         "slot's resolved type equals the target port type; an unconsumed "
+         "output stays an unused slot, never a partial contract.",
+         ["output/missing-port", "output/extra-port", "output/type-mismatch",
+          "output/nested-type-mismatch"]),
+    rule("AF-SEMANTIC-0107", "SEMANTIC", IR_SRC, "ir-subflow-resources-exact",
+         "CALL_SUBFLOW resources must exactly match the target resource "
+         "interface: the bound port set equals 1..N and every bound "
+         "slot's requirement_type equals the target requirement_type as "
+         "an exact TypeSchemaRef.",
+         ["resource/type-mismatch", "subflow/resources"]),
+    rule("AF-SEMANTIC-0108", "SEMANTIC", IR_SRC, "ir-subflow-interface-immutable",
+         "A fixed SemanticIrDigest implies a fixed derived interface: "
+         "table order moves neither the digest nor the interface, local "
+         "type renumbering moves neither the interface shape, and a "
+         "changed target always means a new digest that old callers never "
+         "follow silently.",
+         ["equivalence/target-table-order", "equivalence/local-type-ids-differ",
+          "subflow/same-target-called-twice"]),
+    rule("AF-SEMANTIC-0109", "SEMANTIC", IR_SRC, "ir-subflow-pass-order",
+         "Subflow checking runs strictly after Phase 3B validation and the "
+         "Phase 3C analysis, never changes their error kinds, and a "
+         "document without CALL_SUBFLOW passes against an empty universe.",
+         ["subflow/document-with-no-call-subflow-and-empty-universe",
+          "SUITE-SUBFLOW-INTERFACE-PASS-ORDER"]),
+    rule("AF-SEMANTIC-0110", "SEMANTIC", IR_SRC, "ir-subflow-no-transitive-closure",
+         "Interface derivation does not validate the target's transitive "
+         "subflow closure, and subflow-graph cycles are not judged here: "
+         "dependency closure and graph acyclicity belong to the later "
+         "Resolver / LockGraph stage.",
+         ["SUITE-SUBFLOW-EXACT-TARGET"]),
 ]
 RULES.extend(IR_RULES)
 
@@ -1509,6 +1602,66 @@ SUITE_LIST = [
             "targets": [
                 "af-ir dataflow workflow-exit check",
                 "spec/conformance/semantic-dataflow/positive/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SUBFLOW-CROSS-DOCUMENT-TYPES",
+            "description": (
+                "Cross-document types compare structurally: primitives by "
+                "keyword, schema leaves by exact TypeSchemaRef (identity "
+                "and digest), containers recursively; local SemanticTypeIds "
+                "never compare numerically. Covers the frozen corpus cases "
+                "for renumbered type tables and same-id different-type "
+                "rejections."
+            ),
+            "targets": [
+                "af-ir subflow type expansion (StructuralType)",
+                "spec/conformance/subflow-interface/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SUBFLOW-EXACT-TARGET",
+            "description": (
+                "CALL_SUBFLOW resolves its target only by the exact pinned "
+                "SemanticIrDigest in an explicit in-memory universe: fail "
+                "closed on a missing digest, no latest fallback, no "
+                "filesystem/network/deployment lookup, idempotent "
+                "re-insertion of identical bytes. Covers the frozen "
+                "target-resolution negatives and the digest pins."
+            ),
+            "targets": [
+                "af-ir SubflowIrUniverse",
+                "spec/conformance/subflow-interface/negative/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SUBFLOW-INTERFACE-DERIVATION",
+            "description": (
+                "The subflow interface is derived, canonical-key ordered "
+                "and never durable: inputs from RunParameterId order, "
+                "outputs from canonical name order, resources from every "
+                "declared ResourceSlot in id order, 1-based independent "
+                "namespaces, deterministic for a fixed digest. Covers the "
+                "frozen interface projections and the equivalence groups."
+            ),
+            "targets": [
+                "af-ir derive_subflow_interface",
+                "spec/conformance/subflow-interface/equivalence/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SUBFLOW-INTERFACE-PASS-ORDER",
+            "description": (
+                "The subflow pass consumes a checked document plus its own "
+                "Phase 3C analysis and runs strictly after them: Phase 3B "
+                "and Phase 3C error kinds never move, and a document "
+                "without CALL_SUBFLOW passes against an empty universe. "
+                "Covers the frozen corpus rejected_at layering and the "
+                "zero-drift proofs for both earlier corpora."
+            ),
+            "targets": [
+                "af-ir CheckedIrDocument::check_subflow_interfaces",
+                "spec/conformance/subflow-interface/",
             ],
         },
 ]
