@@ -2,18 +2,27 @@
 //!
 //! Fail-closed checks over the parsed module, in order:
 //!
-//! 1. duplicate type names (no silent merging, even for identical bodies);
-//! 2. per-declaration structural rules: numbering `> 0` and unique, names
+//! 1. module header: import declarations (alias grammar is a parse-time
+//!    concern, so validation covers duplicates and self-imports);
+//! 2. duplicate type names (no silent merging, even for identical bodies);
+//! 3. per-declaration structural rules: numbering `> 0` and unique, names
 //!    unique, non-empty variants/enums;
-//! 3. alias cycle detection (alias-to-alias references through any wrapper
+//! 4. alias cycle detection (alias-to-alias references through any wrapper
 //!    position);
-//! 4. named-reference resolution — every `NamedRef` must resolve to a
-//!    declaration in the same compilation unit (this is where unknown
-//!    identifiers fail; the parser never accepts "maybe primitives");
-//! 5. recursion detection (Phase 2A scoped restriction): any direct or
+//! 5. named-reference resolution — every `NamedRef` must resolve to a
+//!    declaration in the same compilation unit and every `QualifiedNamedRef`
+//!    must use a declared import alias (this is where unknown identifiers
+//!    fail; the parser never accepts "maybe primitives" and a qualified
+//!    reference is never silently reinterpreted as a local one);
+//! 6. recursion detection (Phase 2A scoped restriction): any direct or
 //!    indirect reference cycle through record/variant/alias expansion is
 //!    rejected, because inline structural recursion cannot produce finite
 //!    ACE1 values and cyclic canonical schema hashes are out of scope.
+//!
+//! Checks 1-6 are *universe-free*: they are decidable from the module's own
+//! source. Whether an imported specification exists and really declares the
+//! referenced type is a stronger question and belongs to
+//! [`crate::resolve`], which takes an explicit `ResolvedSchemaUniverse`.
 
 use crate::ast::{Decl, Module, TypeExpr, TypeExprKind};
 use crate::error::AfidlError;
@@ -22,6 +31,8 @@ use std::collections::BTreeMap;
 
 /// Validates a parsed module. On success the module is safe to canonicalize.
 pub fn validate(module: &Module) -> Result<(), AfidlError> {
+    check_module_header(module)?;
+
     let mut index: BTreeMap<&str, &Decl> = BTreeMap::new();
     for decl in &module.declarations {
         if index.insert(decl.name(), decl).is_some() {
@@ -38,6 +49,37 @@ pub fn validate(module: &Module) -> Result<(), AfidlError> {
 
     check_alias_cycles(module)?;
     check_resolution_and_recursion(module, &index)?;
+    Ok(())
+}
+
+/// Module header rules (AF-AFIDL-0018 .. AF-AFIDL-0021).
+fn check_module_header(module: &Module) -> Result<(), AfidlError> {
+    let this = module.schema.id.canonical();
+    let mut aliases: Vec<&str> = Vec::new();
+    let mut specifications: Vec<String> = Vec::new();
+    for import in &module.imports {
+        if aliases.contains(&import.alias.as_str()) {
+            return Err(AfidlError::DuplicateImportAlias {
+                alias: import.alias.clone(),
+                span: import.span,
+            });
+        }
+        aliases.push(import.alias.as_str());
+        let id = import.id.canonical();
+        if id == this {
+            return Err(AfidlError::SelfImport {
+                id,
+                span: import.span,
+            });
+        }
+        if specifications.contains(&id) {
+            return Err(AfidlError::DuplicateImportSpecification {
+                id,
+                span: import.span,
+            });
+        }
+        specifications.push(id);
+    }
     Ok(())
 }
 
@@ -152,11 +194,23 @@ fn check_declaration(decl: &Decl) -> Result<(), AfidlError> {
 /// Collects every named reference appearing anywhere inside a type expression.
 fn collect_refs(expr: &TypeExpr, out: &mut Vec<(String, SourceSpan)>) {
     match &expr.kind {
-        TypeExprKind::Primitive(_) => {}
+        TypeExprKind::Primitive(_) | TypeExprKind::QualifiedNamedRef(_) => {}
         TypeExprKind::NamedRef(name) => out.push((name.clone(), expr.span)),
         TypeExprKind::List(inner)
         | TypeExprKind::MapString(inner)
         | TypeExprKind::Option(inner) => collect_refs(inner, out),
+    }
+}
+
+/// Collects every *qualified* reference appearing anywhere inside a type
+/// expression, paired with the source form that produced it.
+fn collect_qualified_refs<'e>(expr: &'e TypeExpr, out: &mut Vec<&'e crate::ast::QualifiedRef>) {
+    match &expr.kind {
+        TypeExprKind::QualifiedNamedRef(reference) => out.push(reference),
+        TypeExprKind::List(inner)
+        | TypeExprKind::MapString(inner)
+        | TypeExprKind::Option(inner) => collect_qualified_refs(inner, out),
+        TypeExprKind::Primitive(_) | TypeExprKind::NamedRef(_) => {}
     }
 }
 
@@ -211,10 +265,12 @@ fn check_resolution_and_recursion<'m>(
     module: &'m Module,
     index: &BTreeMap<&'m str, &'m Decl>,
 ) -> Result<(), AfidlError> {
-    // Resolution: every reference must resolve inside the compilation unit.
+    // Resolution: every reference must resolve inside the compilation unit,
+    // and every qualified reference must use a declared import alias.
     for decl in &module.declarations {
         for expr in decl.type_exprs() {
             resolve_refs(expr, index)?;
+            check_qualified_aliases(module, expr)?;
         }
     }
     // Recursion (scoped restriction): expand aliases and reject any cycle.
@@ -227,12 +283,36 @@ fn check_resolution_and_recursion<'m>(
     Ok(())
 }
 
+/// A qualified reference's alias must exist in the module header; the target
+/// type's existence is checked against the universe in [`crate::resolve`].
+fn check_qualified_aliases(module: &Module, expr: &TypeExpr) -> Result<(), AfidlError> {
+    let mut references = Vec::new();
+    collect_qualified_refs(expr, &mut references);
+    for reference in references {
+        if !module
+            .imports
+            .iter()
+            .any(|import| import.alias == reference.import_alias)
+        {
+            return Err(AfidlError::UnknownImportAlias {
+                alias: reference.import_alias.clone(),
+                span: reference.span,
+            });
+        }
+    }
+    Ok(())
+}
+
 fn resolve_refs<'m>(
     expr: &'m TypeExpr,
     index: &BTreeMap<&'m str, &'m Decl>,
 ) -> Result<(), AfidlError> {
     match &expr.kind {
-        TypeExprKind::Primitive(_) => Ok(()),
+        // Primitives need no resolution, and a qualified reference is resolved
+        // against the import table (and, in the import-aware modes, against the
+        // supplied universe): it is never silently reinterpreted as a local
+        // reference (AF-AFIDL-0023).
+        TypeExprKind::Primitive(_) | TypeExprKind::QualifiedNamedRef(_) => Ok(()),
         TypeExprKind::NamedRef(name) => {
             if index.contains_key(name.as_str()) {
                 Ok(())
@@ -256,7 +336,11 @@ fn walk_recursion<'m>(
     path: &mut Vec<&'m str>,
 ) -> Result<(), AfidlError> {
     match &expr.kind {
-        TypeExprKind::Primitive(_) => Ok(()),
+        // A qualified reference leaves the compilation unit: it is terminal
+        // for this module's local recursion walk, exactly as a primitive is.
+        // The cross-module type graph is checked by `compile_module_set`,
+        // which sees every participating module at once.
+        TypeExprKind::Primitive(_) | TypeExprKind::QualifiedNamedRef(_) => Ok(()),
         TypeExprKind::NamedRef(name) => {
             if name == start || path.contains(&name.as_str()) {
                 return Err(AfidlError::RecursiveTypeNotSupported {
