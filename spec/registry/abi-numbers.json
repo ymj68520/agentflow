@@ -1,0 +1,655 @@
+{
+  "assignments": [
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "8c0e45ac0562494b4ce3e6a37842cdde65cad1ec8a2f61e70dc39699a280834c"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "schema_family",
+      "type_name": "AbiNumberAssignment"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "8c0e45ac0562494b4ce3e6a37842cdde65cad1ec8a2f61e70dc39699a280834c"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "type_name",
+      "type_name": "AbiNumberAssignment"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "8c0e45ac0562494b4ce3e6a37842cdde65cad1ec8a2f61e70dc39699a280834c"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "number_kind",
+      "type_name": "AbiNumberAssignment"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "8c0e45ac0562494b4ce3e6a37842cdde65cad1ec8a2f61e70dc39699a280834c"
+      },
+      "number": 4,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "number",
+      "type_name": "AbiNumberAssignment"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "8c0e45ac0562494b4ce3e6a37842cdde65cad1ec8a2f61e70dc39699a280834c"
+      },
+      "number": 5,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "symbolic_name",
+      "type_name": "AbiNumberAssignment"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "8c0e45ac0562494b4ce3e6a37842cdde65cad1ec8a2f61e70dc39699a280834c"
+      },
+      "number": 6,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "status",
+      "type_name": "AbiNumberAssignment"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "8c0e45ac0562494b4ce3e6a37842cdde65cad1ec8a2f61e70dc39699a280834c"
+      },
+      "number": 7,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "first_seen_schema_digest",
+      "type_name": "AbiNumberAssignment"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "87f49f06ff0899b60bf65f7476706b7ccee8a65026dd684940f2c4c6a15277ea"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "field",
+      "type_name": "AbiNumberKind"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "87f49f06ff0899b60bf65f7476706b7ccee8a65026dd684940f2c4c6a15277ea"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "variant_case",
+      "type_name": "AbiNumberKind"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "87f49f06ff0899b60bf65f7476706b7ccee8a65026dd684940f2c4c6a15277ea"
+      },
+      "number": 3,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "enum_value",
+      "type_name": "AbiNumberKind"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "7068d098e923393e292cf3fa9708b5d9346e16fe8abd61b728051f3ad2336fe5"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "active",
+      "type_name": "AbiNumberStatus"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "7068d098e923393e292cf3fa9708b5d9346e16fe8abd61b728051f3ad2336fe5"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "reserved",
+      "type_name": "AbiNumberStatus"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "7068d098e923393e292cf3fa9708b5d9346e16fe8abd61b728051f3ad2336fe5"
+      },
+      "number": 3,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "retired",
+      "type_name": "AbiNumberStatus"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4d85e05e5ab5aee08fb696e2b4ebf50e69eb14c0c856d4bc4898cf9cfa21f93b"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "algorithm",
+      "type_name": "ArtifactFileDigest"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4d85e05e5ab5aee08fb696e2b4ebf50e69eb14c0c856d4bc4898cf9cfa21f93b"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "hex",
+      "type_name": "ArtifactFileDigest"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5a8c24604b918a20e772e87565143c6a83270bf98088a289fda4bc46111adc33"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "alg",
+      "type_name": "DigestRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5a8c24604b918a20e772e87565143c6a83270bf98088a289fda4bc46111adc33"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "domain",
+      "type_name": "DigestRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5a8c24604b918a20e772e87565143c6a83270bf98088a289fda4bc46111adc33"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "hex",
+      "type_name": "DigestRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5498e71bbe4329a1f2b0c160084a945cd744b8e5cf12d7d14f00d091e4ef93c8"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "rule_id",
+      "type_name": "NormativeRuleDescriptor"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5498e71bbe4329a1f2b0c160084a945cd744b8e5cf12d7d14f00d091e4ef93c8"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "area",
+      "type_name": "NormativeRuleDescriptor"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5498e71bbe4329a1f2b0c160084a945cd744b8e5cf12d7d14f00d091e4ef93c8"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "normative_source",
+      "type_name": "NormativeRuleDescriptor"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5498e71bbe4329a1f2b0c160084a945cd744b8e5cf12d7d14f00d091e4ef93c8"
+      },
+      "number": 4,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "source_anchor",
+      "type_name": "NormativeRuleDescriptor"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5498e71bbe4329a1f2b0c160084a945cd744b8e5cf12d7d14f00d091e4ef93c8"
+      },
+      "number": 5,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "requirement_level",
+      "type_name": "NormativeRuleDescriptor"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5498e71bbe4329a1f2b0c160084a945cd744b8e5cf12d7d14f00d091e4ef93c8"
+      },
+      "number": 6,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "short_statement",
+      "type_name": "NormativeRuleDescriptor"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5498e71bbe4329a1f2b0c160084a945cd744b8e5cf12d7d14f00d091e4ef93c8"
+      },
+      "number": 7,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "conformance_refs",
+      "type_name": "NormativeRuleDescriptor"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5498e71bbe4329a1f2b0c160084a945cd744b8e5cf12d7d14f00d091e4ef93c8"
+      },
+      "number": 8,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "intentionally_uncovered_reason",
+      "type_name": "NormativeRuleDescriptor"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "239f0abbb8ef00f1330516d3791ac6347b8e38513c85d9ee121b7d4960bbb4c3"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "must",
+      "type_name": "RequirementLevel"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "239f0abbb8ef00f1330516d3791ac6347b8e38513c85d9ee121b7d4960bbb4c3"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "must_not",
+      "type_name": "RequirementLevel"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "239f0abbb8ef00f1330516d3791ac6347b8e38513c85d9ee121b7d4960bbb4c3"
+      },
+      "number": 3,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "should",
+      "type_name": "RequirementLevel"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "239f0abbb8ef00f1330516d3791ac6347b8e38513c85d9ee121b7d4960bbb4c3"
+      },
+      "number": 4,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "should_not",
+      "type_name": "RequirementLevel"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "239f0abbb8ef00f1330516d3791ac6347b8e38513c85d9ee121b7d4960bbb4c3"
+      },
+      "number": 5,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "may",
+      "type_name": "RequirementLevel"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "afdeef15c0a24d0385fac9159b2b81126a776411ed95983a769b619307e2f841"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "logical_path",
+      "type_name": "SpecificationArtifactRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "afdeef15c0a24d0385fac9159b2b81126a776411ed95983a769b619307e2f841"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "content_digest",
+      "type_name": "SpecificationArtifactRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "1bd62de836089e1f75fd489e87010fab6cd6e6951c83d515fa38c2aab12fb293"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "encoding",
+      "type_name": "SpecificationKind"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "1bd62de836089e1f75fd489e87010fab6cd6e6951c83d515fa38c2aab12fb293"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "digest",
+      "type_name": "SpecificationKind"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "1bd62de836089e1f75fd489e87010fab6cd6e6951c83d515fa38c2aab12fb293"
+      },
+      "number": 3,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "digest_domain_registry",
+      "type_name": "SpecificationKind"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "1bd62de836089e1f75fd489e87010fab6cd6e6951c83d515fa38c2aab12fb293"
+      },
+      "number": 4,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "schema_language",
+      "type_name": "SpecificationKind"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "1bd62de836089e1f75fd489e87010fab6cd6e6951c83d515fa38c2aab12fb293"
+      },
+      "number": 5,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "schema",
+      "type_name": "SpecificationKind"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "1bd62de836089e1f75fd489e87010fab6cd6e6951c83d515fa38c2aab12fb293"
+      },
+      "number": 6,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "closed_table",
+      "type_name": "SpecificationKind"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "1bd62de836089e1f75fd489e87010fab6cd6e6951c83d515fa38c2aab12fb293"
+      },
+      "number": 7,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "registry",
+      "type_name": "SpecificationKind"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "091d836ac9107f19813b36c15e1c812779417beb4a960303e474ec981bd3e4e4"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "specification_id",
+      "type_name": "SpecificationRegistryEntry"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "091d836ac9107f19813b36c15e1c812779417beb4a960303e474ec981bd3e4e4"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "kind",
+      "type_name": "SpecificationRegistryEntry"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "091d836ac9107f19813b36c15e1c812779417beb4a960303e474ec981bd3e4e4"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "status",
+      "type_name": "SpecificationRegistryEntry"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "091d836ac9107f19813b36c15e1c812779417beb4a960303e474ec981bd3e4e4"
+      },
+      "number": 4,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "normative_source",
+      "type_name": "SpecificationRegistryEntry"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "091d836ac9107f19813b36c15e1c812779417beb4a960303e474ec981bd3e4e4"
+      },
+      "number": 5,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "schema_digest",
+      "type_name": "SpecificationRegistryEntry"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "091d836ac9107f19813b36c15e1c812779417beb4a960303e474ec981bd3e4e4"
+      },
+      "number": 6,
+      "number_kind": "field",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "description",
+      "type_name": "SpecificationRegistryEntry"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ba664592202004949b4b967c921e667c7765ecaa4e7dfb1254f72b31901ec7f3"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "draft",
+      "type_name": "SpecificationStatus"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ba664592202004949b4b967c921e667c7765ecaa4e7dfb1254f72b31901ec7f3"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "frozen",
+      "type_name": "SpecificationStatus"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ba664592202004949b4b967c921e667c7765ecaa4e7dfb1254f72b31901ec7f3"
+      },
+      "number": 3,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "deprecated",
+      "type_name": "SpecificationStatus"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ba664592202004949b4b967c921e667c7765ecaa4e7dfb1254f72b31901ec7f3"
+      },
+      "number": 4,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.spec.registry@1",
+      "status": "active",
+      "symbolic_name": "withdrawn",
+      "type_name": "SpecificationStatus"
+    }
+  ],
+  "registry_revision": 1
+}

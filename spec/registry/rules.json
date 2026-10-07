@@ -1,0 +1,585 @@
+{
+  "registry_revision": 1,
+  "rules": [
+    {
+      "area": "ACE1",
+      "conformance_refs": [],
+      "intentionally_uncovered_reason": "Architectural invariant: not falsifiable by a data-driven fixture. Enforced by the typed encode(shape, value) API surface and the Phase 1 no-reflection / no-Any self-checks (docs/implementation/phase-01-canonical-encoding.md section 5).",
+      "normative_source": "spec/encoding/ace1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-ACE1-0001",
+      "short_statement": "Encoding is schema-directed: the encoder is driven by an explicit machine type (Shape) and never reflects over arbitrary host objects.",
+      "source_anchor": "ace1-schema-directed"
+    },
+    {
+      "area": "ACE1",
+      "conformance_refs": [
+        "dec/whitespace",
+        "dec/trailing-newline",
+        "dec/trailing-bytes"
+      ],
+      "normative_source": "spec/encoding/ace1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-ACE1-0002",
+      "short_statement": "Canonical bytes are UTF-8 without BOM, contain no insignificant whitespace and have no leading or trailing data; decoders reject all of these.",
+      "source_anchor": "ace1-utf8-canonical-bytes"
+    },
+    {
+      "area": "ACE1",
+      "conformance_refs": [
+        "dec/bare-number",
+        "int32/max",
+        "float64/one-tenth",
+        "timestamp/2023-11-14"
+      ],
+      "normative_source": "spec/encoding/ace1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-ACE1-0003",
+      "short_statement": "Machine numerics are encoded as canonical decimal (or float64 hex) text inside JSON strings; JSON numbers are never the canonical authority and are rejected by the decoder.",
+      "source_anchor": "ace1-numeric-as-string"
+    },
+    {
+      "area": "ACE1",
+      "conformance_refs": [
+        "string/nfc-decomposed-input",
+        "string/nfc-hangul-decomposed-input",
+        "string/nfc-multiple-combining"
+      ],
+      "normative_source": "spec/encoding/ace1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-ACE1-0004",
+      "short_statement": "String content is NFC-normalized: canonically equivalent inputs produce identical canonical bytes, and the decoder rejects non-NFC text.",
+      "source_anchor": "ace1-string-nfc"
+    },
+    {
+      "area": "ACE1",
+      "conformance_refs": [
+        "map/nfc-key-input",
+        "map/nfc-duplicate-key"
+      ],
+      "normative_source": "spec/encoding/ace1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-ACE1-0005",
+      "short_statement": "Map keys are NFC-normalized before use.",
+      "source_anchor": "ace1-map-key-nfc"
+    },
+    {
+      "area": "ACE1",
+      "conformance_refs": [
+        "map/unsorted-input",
+        "map/sorted-input-equivalent",
+        "map/byte-order-case",
+        "map/byte-order-multibyte"
+      ],
+      "normative_source": "spec/encoding/ace1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-ACE1-0006",
+      "short_statement": "Map keys and record members are emitted in unsigned UTF-8 byte lexicographic order; input order never affects canonical bytes.",
+      "source_anchor": "ace1-map-key-ordering"
+    },
+    {
+      "area": "ACE1",
+      "conformance_refs": [
+        "map/duplicate-key",
+        "map/nfc-duplicate-key",
+        "dec/duplicate-keys"
+      ],
+      "normative_source": "spec/encoding/ace1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-ACE1-0007",
+      "short_statement": "Duplicate map keys are rejected, including keys that collide only after NFC normalization; never last-write-wins.",
+      "source_anchor": "ace1-duplicate-key-rejection"
+    },
+    {
+      "area": "ACE1",
+      "conformance_refs": [
+        "float64/one-tenth",
+        "float64/min-subnormal",
+        "float64/max-finite",
+        "dec/float-uppercase-hex",
+        "dec/float-short-hex"
+      ],
+      "normative_source": "spec/encoding/ace1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-ACE1-0008",
+      "short_statement": "float64 is encoded as exactly 16 lowercase IEEE-754 hex characters inside a JSON string (big-endian bit pattern).",
+      "source_anchor": "ace1-float64-exact"
+    },
+    {
+      "area": "ACE1",
+      "conformance_refs": [
+        "float64/nan",
+        "float64/nan-signaling",
+        "float64/positive-infinity",
+        "float64/negative-infinity",
+        "dec/float-nan",
+        "dec/float-inf"
+      ],
+      "normative_source": "spec/encoding/ace1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-ACE1-0009",
+      "short_statement": "NaN and infinities are rejected by both encoder and decoder.",
+      "source_anchor": "ace1-float64-nonfinite"
+    },
+    {
+      "area": "ACE1",
+      "conformance_refs": [
+        "float64/negative-zero-canonicalized",
+        "dec/float-negative-zero"
+      ],
+      "normative_source": "spec/encoding/ace1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-ACE1-0010",
+      "short_statement": "The float64 -0 bit pattern canonicalizes to +0; the decoder rejects the -0 pattern as non-canonical.",
+      "source_anchor": "ace1-float64-negative-zero"
+    },
+    {
+      "area": "ACE1",
+      "conformance_refs": [
+        "bytes/url-safe-alphabet",
+        "bytes/all-byte-values-low",
+        "dec/padded-base64url",
+        "dec/standard-base64-alphabet"
+      ],
+      "normative_source": "spec/encoding/ace1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-ACE1-0011",
+      "short_statement": "bytes are unpadded base64url; padding, the standard alphabet, impossible lengths and non-canonical trailing bits are rejected.",
+      "source_anchor": "ace1-bytes-base64url"
+    },
+    {
+      "area": "ACE1",
+      "conformance_refs": [
+        "timestamp/one-micro",
+        "timestamp/negative-one",
+        "duration/one-day",
+        "duration/max",
+        "nominal/timestamp-into-int64",
+        "nominal/duration-into-timestamp"
+      ],
+      "normative_source": "spec/encoding/ace1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-ACE1-0012",
+      "short_statement": "timestamp and duration are nominal int64 microsecond values encoded as canonical int64 text; cross-assignment between them and int64 is rejected.",
+      "source_anchor": "ace1-timestamp-duration-micros"
+    },
+    {
+      "area": "ACE1",
+      "conformance_refs": [
+        "option/null/none",
+        "option/null/some-null",
+        "option/unit/none",
+        "option/nested-string/some-none",
+        "nominal/null-into-option"
+      ],
+      "normative_source": "spec/encoding/ace1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-ACE1-0013",
+      "short_statement": "Option is explicitly tagged: None encodes {\"none\":null} and Some(v) encodes {\"some\":v}; the null-sugar encoding and any other member shape are rejected, and any legal type may sit under an option.",
+      "source_anchor": "ace1-option-tagging"
+    },
+    {
+      "area": "ACE1",
+      "conformance_refs": [
+        "enum/unknown-value",
+        "variant/unknown-case",
+        "dec/variant-unknown-case"
+      ],
+      "normative_source": "spec/encoding/ace1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-ACE1-0014",
+      "short_statement": "Enums and variants are closed: unknown enum values and unknown variant cases are rejected (fail-closed).",
+      "source_anchor": "ace1-closed-enum-variant"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "invalid-language-version"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0001",
+      "short_statement": "An AFIDL1 module declares afidl 1; any other language major is rejected.",
+      "source_anchor": "afidl-language-major"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "invalid-schema-id-uppercase",
+        "invalid-schema-id-major-zero",
+        "invalid-schema-id-no-major",
+        "invalid-schema-id-empty-segment"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0002",
+      "short_statement": "Schema family identity is a strict SpecificationId: lowercase kebab namespace segments and a positive major without leading zeros.",
+      "source_anchor": "afidl-specification-id-syntax"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "unknown-lowercase-primitive",
+        "primitives-coverage"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0003",
+      "short_statement": "The primitive universe is closed to the 13 registered builtin keywords; unknown lowercase identifiers in type position become named references and must resolve.",
+      "source_anchor": "afidl-primitive-universe-closed"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "field-no-zero"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0004",
+      "short_statement": "field_no is a positive u32; zero is rejected.",
+      "source_anchor": "afidl-field-numbering-positive"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "duplicate-field-no"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0005",
+      "short_statement": "field_no values are unique within their record.",
+      "source_anchor": "afidl-field-numbering-unique"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "case-no-zero"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0006",
+      "short_statement": "case_no is a positive u32; zero is rejected.",
+      "source_anchor": "afidl-case-numbering-positive"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "duplicate-case-no"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0007",
+      "short_statement": "case_no values are unique within their variant.",
+      "source_anchor": "afidl-case-numbering-unique"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "enum-no-zero"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0008",
+      "short_statement": "value_no is a positive u32; zero is rejected.",
+      "source_anchor": "afidl-value-numbering-positive"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "duplicate-enum-no"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0009",
+      "short_statement": "value_no values are unique within their enum.",
+      "source_anchor": "afidl-value-numbering-unique"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "record-reordered",
+        "enum-reordered",
+        "variant-reordered",
+        "module-order-reordered",
+        "record-multi-field-comments"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0010",
+      "short_statement": "Source formatting, comments, declaration order and member source order are non-semantic: reordering never changes canonical bytes or digests.",
+      "source_anchor": "afidl-source-order-nonsemantic"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "mut-field-no",
+        "mut-case-no",
+        "mut-enum-no",
+        "mut-field-name"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0011",
+      "short_statement": "Number and name bindings are semantic: changing a field_no, case_no, value_no or member name changes the TypeSchemaDigest.",
+      "source_anchor": "afidl-number-binding-semantic"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "unknown-type-reference"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0012",
+      "short_statement": "Every named reference must resolve to a declared type in the compilation unit; unknown references are rejected.",
+      "source_anchor": "afidl-named-ref-resolution"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "alias-cycle",
+        "alias-self-cycle"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0013",
+      "short_statement": "Alias cycles, direct or indirect, are rejected.",
+      "source_anchor": "afidl-alias-cycles"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "recursive-record",
+        "mutual-recursion",
+        "recursion-through-list"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0014",
+      "short_statement": "Direct or indirect recursive named references - through record fields, variant cases, alias expansion or any list/map/option wrapper - are rejected (Phase 2A scoped restriction).",
+      "source_anchor": "afidl-recursion-restriction"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "machine-primitives",
+        "record-multi-field"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0015",
+      "short_statement": "TypeSchemaDigest = SHA256(\"AF\\0type-schema\\0\" || ACE1(canonical TypeSchema)), computed per named type.",
+      "source_anchor": "afidl-type-schema-digest-formula"
+    },
+    {
+      "area": "DIGEST",
+      "conformance_refs": [
+        "prefix-in-payload/plan-core",
+        "empty-payload/value",
+        "ascii/plan-core"
+      ],
+      "normative_source": "spec/digest/hash-v1.md",
+      "requirement_level": "must",
+      "rule_id": "AF-DIGEST-0001",
+      "short_statement": "HashV1(domain, payload) = SHA256(\"AF\" || 0x00 || domain || 0x00 || payload); the prefix is the exact ASCII bytes AF + NUL.",
+      "source_anchor": "digest-formula-exact-prefix"
+    },
+    {
+      "area": "DIGEST",
+      "conformance_refs": [
+        "separator-in-payload/value",
+        "prefix-in-payload/plan-core"
+      ],
+      "normative_source": "spec/digest/hash-v1.md",
+      "requirement_level": "must",
+      "rule_id": "AF-DIGEST-0002",
+      "short_statement": "The two NUL separators frame the domain byte-exactly, so payloads containing AF, NUL or full preimages can never be reinterpreted.",
+      "source_anchor": "digest-domain-separator"
+    },
+    {
+      "area": "DIGEST",
+      "conformance_refs": [
+        "digest/unknown-algorithm"
+      ],
+      "normative_source": "spec/digest/hash-v1.md",
+      "requirement_level": "must",
+      "rule_id": "AF-DIGEST-0003",
+      "short_statement": "SHA-256 is the only HashV1 algorithm in v1; other algorithms are rejected.",
+      "source_anchor": "digest-sha256-only"
+    },
+    {
+      "area": "DIGEST",
+      "conformance_refs": [
+        "digest/unknown-domain",
+        "utf8/journal-event-payload"
+      ],
+      "normative_source": "spec/digest/hash-v1.md",
+      "requirement_level": "must",
+      "rule_id": "AF-DIGEST-0004",
+      "short_statement": "A DigestRef retains its domain for its whole life; digests never degrade to bare hex strings.",
+      "source_anchor": "digest-ref-domain-retained"
+    },
+    {
+      "area": "DIGEST",
+      "conformance_refs": [
+        "digest/uppercase-hex",
+        "digest/short-hex",
+        "digest/long-hex",
+        "digest/non-hex"
+      ],
+      "normative_source": "spec/digest/hash-v1.md",
+      "requirement_level": "must",
+      "rule_id": "AF-DIGEST-0005",
+      "short_statement": "DigestRef hex is exactly 64 lowercase hexadecimal characters; uppercase hex, wrong lengths and non-hex characters are rejected.",
+      "source_anchor": "digest-ref-lowercase-hex"
+    },
+    {
+      "area": "DIGEST",
+      "conformance_refs": [
+        "digest/unknown-domain"
+      ],
+      "normative_source": "spec/digest/hash-v1.md",
+      "requirement_level": "must",
+      "rule_id": "AF-DIGEST-0006",
+      "short_statement": "The HashV1 domain set is closed and centrally registered; unknown domains are rejected and adding a domain is an explicit registry addition.",
+      "source_anchor": "digest-domain-registry-closed"
+    },
+    {
+      "area": "DIGEST",
+      "conformance_refs": [
+        "SUITE-DIGEST-DOMAIN-SEPARATION"
+      ],
+      "normative_source": "spec/digest/hash-v1.md",
+      "requirement_level": "must",
+      "rule_id": "AF-DIGEST-0007",
+      "short_statement": "For a fixed payload, hashing under two different registry domains yields different digests; the invariant holds over the whole registry.",
+      "source_anchor": "digest-domain-separation"
+    },
+    {
+      "area": "REGISTRY",
+      "conformance_refs": [
+        "spec-registry/bad-rule-id",
+        "spec-registry/unknown-rule-area"
+      ],
+      "normative_source": "spec/registry/registry-spec.md",
+      "requirement_level": "must",
+      "rule_id": "AF-REGISTRY-0001",
+      "short_statement": "RuleId syntax is AF-<AREA>-<4DIGIT> with the area from the closed rule-area table and number 0001..9999; ids derived from document section numbering are forbidden.",
+      "source_anchor": "registry-rule-id-syntax"
+    },
+    {
+      "area": "REGISTRY",
+      "conformance_refs": [
+        "spec-registry/duplicate-rule-id"
+      ],
+      "normative_source": "spec/registry/registry-spec.md",
+      "requirement_level": "must",
+      "rule_id": "AF-REGISTRY-0002",
+      "short_statement": "RuleIds are unique and are never reused for a different normative meaning.",
+      "source_anchor": "registry-rule-id-unique"
+    },
+    {
+      "area": "REGISTRY",
+      "conformance_refs": [
+        "spec-registry/missing-anchor"
+      ],
+      "normative_source": "spec/registry/registry-spec.md",
+      "requirement_level": "must",
+      "rule_id": "AF-REGISTRY-0003",
+      "short_statement": "Every rule's source_anchor exists in its normative source (Markdown anchor or heading slug, or an AFIDL type name); two rules never bind the same (path, anchor) pair; line numbers are forbidden as anchors.",
+      "source_anchor": "registry-rule-anchor-exists"
+    },
+    {
+      "area": "REGISTRY",
+      "conformance_refs": [
+        "spec-registry/unknown-conformance-case"
+      ],
+      "normative_source": "spec/registry/registry-spec.md",
+      "requirement_level": "must",
+      "rule_id": "AF-REGISTRY-0004",
+      "short_statement": "Every conformance reference resolves to an existing fixture case id, file-based case id or declared suite id.",
+      "source_anchor": "registry-conformance-ref-resolves"
+    },
+    {
+      "area": "REGISTRY",
+      "conformance_refs": [
+        "spec-registry/retired-number-reuse",
+        "spec-registry/name-rebound-to-new-number"
+      ],
+      "normative_source": "spec/registry/registry-spec.md",
+      "requirement_level": "must",
+      "rule_id": "AF-REGISTRY-0005",
+      "short_statement": "A retired ABI number is never reassigned to a different symbolic meaning, and a symbolic name never moves to a different number, within its (schema_family, type_name, number_kind) scope.",
+      "source_anchor": "registry-abi-number-never-reassigned"
+    },
+    {
+      "area": "REGISTRY",
+      "conformance_refs": [
+        "spec-registry/unregistered-abi-assignment",
+        "spec-registry/active-assignment-missing",
+        "spec-registry/retired-number-in-use"
+      ],
+      "normative_source": "spec/registry/registry-spec.md",
+      "requirement_level": "must",
+      "rule_id": "AF-REGISTRY-0006",
+      "short_statement": "Every AFIDL module under spec/idl matches the ABI registry for its family: all current bindings have active rows with identical names, all active rows have schema counterparts, retired and reserved numbers are unused.",
+      "source_anchor": "registry-abi-registry-matches-schema"
+    },
+    {
+      "area": "REGISTRY",
+      "conformance_refs": [
+        "spec-registry/duplicate-abi-assignment"
+      ],
+      "normative_source": "spec/registry/registry-spec.md",
+      "requirement_level": "must",
+      "rule_id": "AF-REGISTRY-0007",
+      "short_statement": "(schema_family, type_name, number_kind, number) is unique and a symbolic name is unique within its scope; identifiers follow the AFIDL grammars and numbers are positive.",
+      "source_anchor": "registry-abi-assignment-unique"
+    },
+    {
+      "area": "REGISTRY",
+      "conformance_refs": [
+        "spec-registry/canonical-order-violation"
+      ],
+      "normative_source": "spec/registry/registry-spec.md",
+      "requirement_level": "must",
+      "rule_id": "AF-REGISTRY-0008",
+      "short_statement": "Registry JSON files are deterministically formatted (2-space indent, LF, final newline, lexicographically sorted keys) and their arrays follow the frozen canonical orders.",
+      "source_anchor": "registry-canonical-form"
+    },
+    {
+      "area": "SPEC",
+      "conformance_refs": [
+        "spec-registry/duplicate-specification-id"
+      ],
+      "normative_source": "spec/registry/registry-spec.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SPEC-0001",
+      "short_statement": "A SpecificationId is unique across the Specification Registry; duplicate entries are a registry error.",
+      "source_anchor": "spec-specification-id-unique"
+    },
+    {
+      "area": "SPEC",
+      "conformance_refs": [
+        "spec-registry/missing-source",
+        "spec-registry/content-digest-mismatch"
+      ],
+      "normative_source": "spec/registry/registry-spec.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SPEC-0002",
+      "short_statement": "Every registered normative source exists at a safe repo-relative path and its ArtifactFileDigest (plain SHA-256 of file bytes) matches; an ArtifactFileDigest is repository tooling identity and never a HashV1 DigestRef.",
+      "source_anchor": "spec-normative-source-integrity"
+    },
+    {
+      "area": "SPEC",
+      "conformance_refs": [
+        "spec-registry/frozen-source-provisional"
+      ],
+      "normative_source": "spec/registry/registry-spec.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SPEC-0003",
+      "short_statement": "A frozen specification's normative source carries no provisional status marker.",
+      "source_anchor": "spec-frozen-source-not-provisional"
+    }
+  ]
+}

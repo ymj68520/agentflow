@@ -1,0 +1,135 @@
+{
+  "registry_revision": 1,
+  "specifications": [
+    {
+      "description": "The AFIDL1 builtin machine primitive universe expressed as a parseable nominal-alias module; its 13 alias digests are frozen in the AFIDL corpus.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a9cf9903bf1ad64f66a349dc60775eae3938a92b4f6bd8e65ee63f89d9f68c95"
+        },
+        "logical_path": "spec/idl/core/machine-primitives.afidl"
+      },
+      "specification_id": "agentflow.core.machine-primitives@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed central registry of HashV1 digest domains.",
+      "kind": "digest_domain_registry",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "b8731a3591f30becde2bf22a77c129664d718fa5fc291930c8fbc1bdd26aa3c3"
+        },
+        "logical_path": "spec/tables/hash-domains.json"
+      },
+      "specification_id": "agentflow.digest.hash-domains@1",
+      "status": "frozen"
+    },
+    {
+      "description": "HashV1 digest foundation: exact formula, SHA-256 only, DigestRef and the domain separation invariant.",
+      "kind": "digest",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "2b61a9351d2ee7bb0c7b39de29c5fa6035237e00ace109f741507f996f98d755"
+        },
+        "logical_path": "spec/digest/hash-v1.md"
+      },
+      "specification_id": "agentflow.digest.hash-v1@1",
+      "status": "frozen"
+    },
+    {
+      "description": "ACE1: the deterministic, schema-directed, UTF-8 canonical encoding of AgentFlow values (strict JSON subset).",
+      "kind": "encoding",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "994fed624985e28b166e6038a714e43702c571aa77e29e8c25aa89aab829072e"
+        },
+        "logical_path": "spec/encoding/ace1-grammar.md"
+      },
+      "specification_id": "agentflow.encoding.ace1@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed normative table of the AFIDL1 builtin primitive universe.",
+      "kind": "closed_table",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "e0cd1ed7c69027dad593b0090668ad03baa97b145afe59b294d207f786ae03c5"
+        },
+        "logical_path": "spec/tables/afidl-primitives.json"
+      },
+      "specification_id": "agentflow.idl.afidl-primitives@1",
+      "status": "frozen"
+    },
+    {
+      "description": "AFIDL1: the closed schema definition language, its grammar and its identity model.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "fcfe75ba7a498ec2308aaee625bf7687d955e7681f5210bc3a2ce435666fb0aa"
+        },
+        "logical_path": "spec/idl/afidl1-grammar.md"
+      },
+      "specification_id": "agentflow.idl.afidl@1",
+      "status": "frozen"
+    },
+    {
+      "description": "The canonical TypeSchema machine representation and the TypeSchemaDigest identity formula (sections 6-7 of the AFIDL1 grammar).",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "fcfe75ba7a498ec2308aaee625bf7687d955e7681f5210bc3a2ce435666fb0aa"
+        },
+        "logical_path": "spec/idl/afidl1-grammar.md"
+      },
+      "specification_id": "agentflow.idl.type-schema@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Registry mechanics: Specification Registry, RuleId system, Stable ABI Number Registry, ConformanceCaseId and canonical registry form.",
+      "kind": "registry",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a0573197172296f89810a113fc8946acdeb3ccded5cbdff2198e1682cf69a405"
+        },
+        "logical_path": "spec/registry/registry-spec.md"
+      },
+      "specification_id": "agentflow.registry.core@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed table of RuleId areas.",
+      "kind": "closed_table",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "82386649110d4854c19de2c532c4b7ec752b007944ad00edf1bc2b7656a9cc5d"
+        },
+        "logical_path": "spec/tables/rule-areas.json"
+      },
+      "specification_id": "agentflow.registry.rule-areas@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the Specification, Rule and ABI-number registries (self-hosting bootstrap module).",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "08b5730a08d53c7383c8996a93ee203efac94ee108dcb30064fb2a5495b0b61e"
+        },
+        "logical_path": "spec/idl/specification-registry.afidl"
+      },
+      "specification_id": "agentflow.spec.registry@1",
+      "status": "frozen"
+    }
+  ]
+}

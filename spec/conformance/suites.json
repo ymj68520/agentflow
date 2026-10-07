@@ -1,0 +1,14 @@
+{
+  "kind": "agentflow.conformance.suites",
+  "suite_revision": 1,
+  "suites": [
+    {
+      "description": "Cross-domain digest separation: the same payload hashed under every frozen HashV1 domain yields pairwise-distinct digests. Covers the af-core property test over the full registry and the frozen matrix in spec/conformance/digest/domain-separation.json.",
+      "suite_id": "SUITE-DIGEST-DOMAIN-SEPARATION",
+      "targets": [
+        "af-core digest domain-separation property test",
+        "spec/conformance/digest/domain-separation.json"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "coverage_revision": 1,
+  "intentionally_uncovered": [
+    {
+      "reason": "Architectural invariant: not falsifiable by a data-driven fixture. Enforced by the typed encode(shape, value) API surface and the Phase 1 no-reflection / no-Any self-checks (docs/implementation/phase-01-canonical-encoding.md section 5).",
+      "rule_id": "AF-ACE1-0001"
+    }
+  ],
+  "missing_coverage": []
+}
