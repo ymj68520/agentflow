@@ -9,6 +9,54 @@
         "af-core digest domain-separation property test",
         "spec/conformance/digest/domain-separation.json"
       ]
+    },
+    {
+      "description": "The expression body set is closed to the fifteen Phase 3A expressions and to the workflow primitive universe. Covers the exhaustive match over ExpressionBody in the Rust checker and the closed SemanticPrimitiveType enum, whose ALL table and keyword round-trip are asserted in-tree.",
+      "suite_id": "SUITE-SEMANTIC-CLOSED-EXPRESSION-SET",
+      "targets": [
+        "af-semantic SemanticPrimitiveType::ALL and try_from_keyword",
+        "af-semantic expression body match exhaustiveness"
+      ]
+    },
+    {
+      "description": "ValueSlotId and ResourceSlotId are distinct nominal types that may carry the same number. Covers the Rust newtype separation test and the corpus case where a value slot 1 and a resource slot 1 coexist in one document.",
+      "suite_id": "SUITE-SEMANTIC-NAMESPACE-SEPARATION",
+      "targets": [
+        "af-semantic ids namespace separation test",
+        "spec/conformance/semantic-core/semantic-core-golden.json"
+      ]
+    },
+    {
+      "description": "No new HashV1 domain is introduced in Phase 3A: the domain registry table still has exactly its frozen entries and the semantic layer computes no digest of its own.",
+      "suite_id": "SUITE-SEMANTIC-NO-NEW-DOMAIN",
+      "targets": [
+        "spec/tables/hash-domains.json",
+        "af-semantic (no digest computation outside TypeSchemaDigest)"
+      ]
+    },
+    {
+      "description": "No ResourceHandle, binding snapshot or runtime object exists in the semantic layer. Covers the static absence audit over the crate's public surface and the resource slot model.",
+      "suite_id": "SUITE-SEMANTIC-NO-RUNTIME-HANDLE",
+      "targets": [
+        "af-semantic resource slot model (logical requirement only)",
+        "static self-check: no runtime object in af-semantic"
+      ]
+    },
+    {
+      "description": "Expressions are pure: no I/O, clock, randomness, environment, policy or registry query, resource access or effect. Covers the static purity audit over the closed expression body set and the absence of I/O dependencies in the crate.",
+      "suite_id": "SUITE-SEMANTIC-PURITY",
+      "targets": [
+        "af-semantic (no I/O, clock, random or env dependency)",
+        "static self-check: closed expression body set"
+      ]
+    },
+    {
+      "description": "A resource slot's definition is immutable for the document's life. Covered by the absence of any mutating operation in the resource model and by the checked document type being the only way to reach a resolved requirement.",
+      "suite_id": "SUITE-SEMANTIC-RESOURCE-IMMUTABILITY",
+      "targets": [
+        "af-semantic ResourceSlot (no mutation surface)",
+        "CheckedDocument construction path"
+      ]
     }
   ]
 }
