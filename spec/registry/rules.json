@@ -1017,6 +1017,626 @@
       "source_anchor": "semantic-no-new-hash-domain"
     },
     {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "SUITE-SEMANTIC-IR-NO-RUNTIME"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0025",
+      "short_statement": "The Semantic IR is a static model: validation, canonicalization and the document digest only. No interpreter, plan, worker, region, endpoint, credential, lease or scheduler placement exists in this layer.",
+      "source_anchor": "ir-scope-static-only"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "SUITE-SEMANTIC-IR-NO-RUNTIME"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0026",
+      "short_statement": "No opcode state machine, runtime command or journal event exists at the IR layer; runtime semantics belong to the later execution stages.",
+      "source_anchor": "ir-no-runtime-semantics"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "SUITE-SEMANTIC-IR-NO-RUNTIME"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0027",
+      "short_statement": "Runtime occurrence identity (OccurrencePath, AttemptId, InvocationId) does not exist in the IR: a loop or retry holds one static body definition, never per-occurrence copies.",
+      "source_anchor": "ir-occurrence-not-in-ir"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "SUITE-SEMANTIC-IR-AUTHORING-ONLY"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0028",
+      "short_statement": "CallComposite is authoring/compiler-only and MUST NOT appear in canonical IR; the construct is lowered before this layer.",
+      "source_anchor": "ir-call-composite-forbidden"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "SUITE-SEMANTIC-IR-AUTHORING-ONLY"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0029",
+      "short_statement": "Trigger is not a computation: it belongs to deployment binding and has no opcode and no node in the IR.",
+      "source_anchor": "ir-trigger-not-computation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "invoke/minimal",
+        "call-subflow/minimal"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0030",
+      "short_statement": "SemanticIrDocument carries the reused Phase 3A tables plus semantic_refs, contracts, run_parameters, workflow_outputs, computations and root, with the frozen field numbering.",
+      "source_anchor": "ir-document-structure"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "call-subflow/minimal",
+        "semantic-ref/invalid-syntax",
+        "semantic-ref/duplicate"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0031",
+      "short_statement": "A semantic ref pins an exact canonical SpecificationId: syntax is validated, references are unique and canonically ordered; registry knownness belongs to compiler tooling, never to af-ir.",
+      "source_anchor": "ir-semantic-refs"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "invoke/minimal",
+        "nested/sequence-invoke-await"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0032",
+      "short_statement": "The types/values/expressions/resources tables reuse agentflow.semantic.core@1 objects by identity via the AFIDL import; redeclaring copies is forbidden, and the tables must pass the Phase 3A validation.",
+      "source_anchor": "ir-reuse-core-tables"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "ordering/computations",
+        "ordering/core-tables",
+        "ordering/select-cases",
+        "ordering/parallel-branches",
+        "ordering/scope-resources",
+        "ordering/run-parameters",
+        "ordering/workflow-outputs",
+        "ordering/semantic-refs",
+        "ordering/handle-clauses",
+        "ordering/carry",
+        "ordering/parallel-output-bindings"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0033",
+      "short_statement": "Canonical ordering is frozen for every table and nested list: identity tables by id, semantic_refs by canonical SpecificationId bytes, workflow_outputs by NFC name bytes, ports and ordinals ascending.",
+      "source_anchor": "ir-canonical-order-table"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "document/root-zero",
+        "select/case-ordinal-zero",
+        "producer/duplicate-output-port"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0034",
+      "short_statement": "ComputationId, RunParameterId and ContractRefId are independent id namespaces and PortNo, BranchOrdinal and HandlerOrdinal are numbering spaces; all are u32 newtypes, values are > 0 and 0 is rejected by validation.",
+      "source_anchor": "ir-local-identities"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "producer/unbound-slot",
+        "producer/param-and-computation-same-slot",
+        "producer/two-computation-outputs",
+        "producer/iterate-item-and-output"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0035",
+      "short_statement": "Every declared value slot has exactly one producer: 0 producers is unbound_value_slot and more than one is duplicate_value_producer. Producers are run parameters, computation outputs, iterate item slots and iterate carry slots.",
+      "source_anchor": "ir-value-producer-uniqueness"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "producer/unbound-slot",
+        "SUITE-SEMANTIC-IR-DATAFLOW-OWNERSHIP-SEPARATION"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0036",
+      "short_statement": "An expression is pure derived computation and is never a value-slot producer; expression ids do not materialize slots.",
+      "source_anchor": "ir-expression-not-producer"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "run-parameter/type-mismatch",
+        "run-parameter/unknown-type",
+        "run-parameter/unknown-slot",
+        "producer/param-and-computation-same-slot"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0037",
+      "short_statement": "A run parameter produces its value slot: parameter.type must equal the slot's type and no other producer may bind the same slot.",
+      "source_anchor": "ir-run-parameter-producer"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "run-parameter/name-empty",
+        "run-parameter/name-not-nfc",
+        "run-parameter/name-duplicate"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0038",
+      "short_statement": "A run parameter name is non-empty, NFC-normalized and unique after NFC; names may be any Unicode and canonical order is by RunParameterId, never by name.",
+      "source_anchor": "ir-run-parameter-name"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "run-parameter/type-mismatch",
+        "invoke/minimal"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0039",
+      "short_statement": "RunParameterDecl is a static workflow input declaration only: no default value, admission snapshot, mutable parameter, runtime update, constraint or secret flag exists in this layer.",
+      "source_anchor": "ir-run-parameter-decl"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "workflow-output/name-duplicate",
+        "workflow-output/name-empty",
+        "workflow-output/unknown-expression"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0040",
+      "short_statement": "A workflow output is a name plus an expression; the output type is the expression's result_type and is never duplicated. Output names follow the run-parameter name rules with canonical order by NFC name bytes.",
+      "source_anchor": "ir-workflow-output"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "contract/duplicate-id",
+        "contract/invoke-uses-subflow",
+        "contract/call-subflow-uses-component"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0041",
+      "short_statement": "ContractRefKind is closed at exactly component (1) and subflow (2); entries are canonically ordered by ContractRefId and duplicate ids are rejected.",
+      "source_anchor": "ir-contract-table-closed"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "contract/component-wrong-domain"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0042",
+      "short_statement": "A component contract reference pins sha256 over the frozen component-contract domain; any other domain is rejected.",
+      "source_anchor": "ir-component-contract-domain"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "contract/subflow-wrong-domain",
+        "nested/select-retry-call-subflow"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0043",
+      "short_statement": "A subflow contract reference pins sha256 over the frozen semantic-ir domain: CALL_SUBFLOW references an exact published Semantic IR identity. No workflow-contract or subflow-contract domain exists.",
+      "source_anchor": "ir-subflow-contract-domain"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "contract/duplicate-identity"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0044",
+      "short_statement": "One exact contract identity (algorithm, domain, hex) has at most one table entry per document; digest validation covers shape and domain only - there is no Contract Store in this layer.",
+      "source_anchor": "ir-contract-identity-unique"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "producer/duplicate-output-port",
+        "output/unknown-slot"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0045",
+      "short_statement": "A computation's output ports are positive and unique, bound to declared value slots; the port's type is the slot's type and is never stored twice.",
+      "source_anchor": "ir-computation-outputs"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "document/child-missing",
+        "handle/unknown-handler",
+        "retry/child-missing"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0046",
+      "short_statement": "The ownership edge set is exactly the per-opcode child table (INVOKE/AWAIT/CALL_SUBFLOW: 0 local children; SEQUENCE: N; SELECT: N cases; PARALLEL/RACE: N branches; ITERATE/RETRY/TIMEOUT/SCOPE/COMPENSATION_SCOPE: 1; HANDLE: 1 protected child + N handlers); every child reference must resolve.",
+      "source_anchor": "ir-child-table"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "document/structural-cycle",
+        "document/multiple-structural-parents",
+        "document/unknown-root",
+        "document/unreachable-computation",
+        "document/duplicate-child-reference",
+        "document/root-zero"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0047",
+      "short_statement": "The computations form a structured ownership tree: the root exists and has no parent, every non-root computation has exactly one parent, nothing is detached, and neither cycles nor unreachable computations exist.",
+      "source_anchor": "ir-ownership-tree"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "SUITE-SEMANTIC-IR-DATAFLOW-OWNERSHIP-SEPARATION"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0048",
+      "short_statement": "Dataflow edges (expression reads a value slot) and ownership edges (a computation owns a child) are different relations handled by different validator logic; no universal Edge type exists.",
+      "source_anchor": "ir-dataflow-ownership-separation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "SUITE-SEMANTIC-IR-INTERFACE-PROJECTION"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0049",
+      "short_statement": "ComputationInterface is a read-only projection port_no -> SemanticTypeId derived from outputs and slot types; no second interface table may be stored anywhere.",
+      "source_anchor": "ir-interface-projection"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "sequence/parent-interface-mismatch",
+        "select/branch-interface-mismatch",
+        "race/branch-interface-mismatch",
+        "retry/interface-mismatch",
+        "timeout/interface-mismatch",
+        "handle/handler-interface-mismatch",
+        "handle/protected-child-interface-mismatch",
+        "scope/interface-mismatch",
+        "compensation-scope/interface-mismatch",
+        "parallel/output-type-mismatch"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0050",
+      "short_statement": "Wrapper interface equality is static: SEQUENCE equals its last child, SELECT every case, RACE every branch, RETRY/TIMEOUT/SCOPE/COMPENSATION_SCOPE the child, HANDLE the protected child plus every handler; PARALLEL is checked by its explicit output mapping and ITERATE by the carry rules.",
+      "source_anchor": "ir-wrapper-interfaces"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "invoke/minimal",
+        "await/minimal",
+        "call-subflow/minimal"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0051",
+      "short_statement": "INVOKE, AWAIT and CALL_SUBFLOW are leaves: their output interface is declared only by their own outputs; contract-level checking is deferred.",
+      "source_anchor": "ir-leaf-interfaces"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "mutation/sequence-child-order",
+        "sequence/empty"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0052",
+      "short_statement": "The SEQUENCE child list order is the semantic execution order: it is preserved verbatim and never canonically re-sorted; a sequence has at least one child and its output interface equals the last child's.",
+      "source_anchor": "ir-sequence-order"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "select/empty",
+        "select/selector-not-int64",
+        "select/case-ordinal-zero",
+        "select/duplicate-case-ordinal"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0053",
+      "short_statement": "The SELECT selector has type int64 and produces the exact case ordinal to run: no truthiness, no source-order matching, no fall-through. Ordinals are positive, unique and canonically ascending; a select has at least one case.",
+      "source_anchor": "ir-select-ordinal"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "select/branch-interface-mismatch"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0054",
+      "short_statement": "All SELECT case children share the parent's output interface: the typed merge shell is checked statically; runtime case selection is not part of this phase.",
+      "source_anchor": "ir-select-interfaces"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "parallel/empty-branches",
+        "parallel/duplicate-ordinal",
+        "parallel/all",
+        "parallel/fail-fast"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0055",
+      "short_statement": "ParallelMode is closed at all (1) and fail_fast (2); a parallel has at least one branch with positive unique ordinals in canonical ascending order.",
+      "source_anchor": "ir-parallel-structure"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "parallel/output-unknown-branch",
+        "parallel/output-unknown-child-port",
+        "parallel/output-type-mismatch",
+        "parallel/fail-fast"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0056",
+      "short_statement": "The explicit parallel output mapping is the only path from branch outputs into the parent interface: parent ports are unique across bindings, branch and child ports must exist, and the parent slot's type equals the child output slot's type.",
+      "source_anchor": "ir-parallel-output-mapping"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "parallel/max-inflight-zero",
+        "foreach/max-inflight-zero",
+        "SUITE-SEMANTIC-IR-NO-RUNTIME"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0057",
+      "short_statement": "max_inflight is a semantic concurrency bound: option<uint32> with Some(0) invalid. Worker count, tenant quota, region capacity and scheduler limits are physical concerns and MUST NOT enter the IR.",
+      "source_anchor": "ir-parallel-max-inflight"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "race/one-branch",
+        "race/duplicate-ordinal",
+        "race/branch-interface-mismatch",
+        "race/minimal"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0058",
+      "short_statement": "A race has at least two branches with positive unique ordinals and one shared output interface; v1 semantics is exactly FIRST_TERMINAL with no winner_policy knob.",
+      "source_anchor": "ir-race-structure"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "foreach/source-not-list",
+        "foreach/item-slot-wrong-type",
+        "foreach/item-slot-missing",
+        "foreach/max-inflight-zero",
+        "producer/iterate-item-and-output",
+        "iterate/foreach"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0059",
+      "short_statement": "FOREACH: the source expression has type list<T>, the item slot exists with type T and its producer is this ITERATE; max_inflight follows the parallel bound rules.",
+      "source_anchor": "ir-iterate-foreach"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "while/guard-not-bool",
+        "while/max-iterations-zero",
+        "iterate/while"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0060",
+      "short_statement": "WHILE: the guard has type bool and max_iterations > 0 - v1 has no unbounded while. The guard may reference carry slots; availability and dominance analysis is Phase 3C.",
+      "source_anchor": "ir-iterate-while"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "carry/slot-missing",
+        "carry/initial-type-mismatch",
+        "carry/body-output-missing",
+        "carry/next-type-mismatch",
+        "carry/duplicate-slot",
+        "iterate/while"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0061",
+      "short_statement": "A loop carry binding requires the slot to exist, the initial expression to exist, the body output port to exist, and slot.type == initial.result_type == body-output-slot.type; one binding per carry slot. Loops never mutate: values are new occurrences.",
+      "source_anchor": "ir-loop-carry"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "mutation/retry-delay-order",
+        "retry/child-missing",
+        "retry/minimal"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0062",
+      "short_statement": "RETRY carries an explicit finite delay schedule: maximum occurrence count is exactly 1 + len(delays); delays are durations >= 0 and their order is semantic (never sorted); no wall clock, jitter or runtime policy lookup exists.",
+      "source_anchor": "ir-retry-schedule"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "timeout/expression-not-duration",
+        "timeout/interface-mismatch",
+        "timeout/minimal"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0063",
+      "short_statement": "TIMEOUT bounds one child by a duration-valued expression; there is no TimerId, TimerState or TimerCommand. AWAIT has no built-in timeout: compose TIMEOUT(AWAIT(...)).",
+      "source_anchor": "ir-timeout-expression"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "handle/duplicate-handler-ordinal",
+        "handle/duplicate-failure-matcher",
+        "handle/two-timed-out",
+        "handle/cancelled-matcher",
+        "handle/failure",
+        "handle/timed-out"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0064",
+      "short_statement": "HandleMatch is closed at failure (exact typed TypeSchemaRef match) and timed_out (unit); there is no cancelled case. Handler ordinals are positive and unique; failure clauses are pairwise disjoint by exact schema; at most one timed_out clause exists.",
+      "source_anchor": "ir-handle-match"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "scope/unknown-resource",
+        "scope/duplicate-resource",
+        "scope/minimal"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0065",
+      "short_statement": "A scope lists the logical resources it statically owns/allows: they must exist, be unique, and are canonically ascending. Only the ownership and lexical boundaries are frozen - authority/budget attenuation, deadline and cancellation state and ResourceHandle are later, separately specified tables.",
+      "source_anchor": "ir-scope-resources"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "compensation-scope/interface-mismatch",
+        "compensation-scope/minimal",
+        "SUITE-SEMANTIC-IR-COMPENSATION-HISTORY"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0066",
+      "short_statement": "COMPENSATION_SCOPE owns one child and holds no compensation task list; compensation sources are later derived from committed effect receipts plus effect compensation contracts, and a COMPENSATION_SCOPE MUST NOT erase forward computation or effect history.",
+      "source_anchor": "ir-compensation-scope"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "invoke/minimal",
+        "ordering/computations",
+        "ordering/core-tables"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0067",
+      "short_statement": "SemanticIrDigest = HashV1(\"semantic-ir\", ACE1(CanonicalSemanticIrDocument)); the domain is the Phase 1 frozen registry entry, no new domain is introduced, and the digest is computed over the canonical form only.",
+      "source_anchor": "ir-digest-formula"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "contract/unknown-id",
+        "contract/invoke-uses-subflow",
+        "invoke/minimal",
+        "nested/sequence-invoke-await"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0068",
+      "short_statement": "INVOKE calls an exact component contract with semantic inputs and resource requirements; input and resource ports are positive and unique and their expressions/resources must exist. No TaskDefinition, Binding, Invocation, Attempt or Worker exists at this layer.",
+      "source_anchor": "ir-invoke-static"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "await/minimal",
+        "nested/sequence-invoke-await"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0069",
+      "short_statement": "AWAIT is a passive durable wait with an exact digest-pinned signal_type and a correlation expression; no mailbox, timer, webhook or approval state exists in this layer.",
+      "source_anchor": "ir-await-static"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "call-subflow/wrong-contract-kind",
+        "call-subflow/duplicate-input-port",
+        "call-subflow/duplicate-resource-port",
+        "call-subflow/unknown-expression",
+        "call-subflow/unknown-resource",
+        "call-subflow/minimal"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0070",
+      "short_statement": "CALL_SUBFLOW references a subflow-kind contract (an exact published Semantic IR digest), has zero local children and no detach/fire-and-forget: the subflow is an owned durable child boundary.",
+      "source_anchor": "ir-call-subflow"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "mutation/sequence-child-order",
+        "mutation/retry-delay-order",
+        "mutation/parallel-mode"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0071",
+      "short_statement": "Exactly two lists carry semantic order and are never canonically re-sorted: SEQUENCE children (execution order) and RETRY delays (schedule order); changing their order changes the SemanticIrDigest.",
+      "source_anchor": "ir-semantic-order-exceptions"
+    },
+    {
       "area": "SPEC",
       "conformance_refs": [
         "spec-registry/duplicate-specification-id"

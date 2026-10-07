@@ -43,6 +43,54 @@
       ]
     },
     {
+      "description": "CallComposite and Trigger never reach the canonical IR: the 13-case ComputationBody variant is closed, so an authoring construct or a deployment binding is structurally inexpressible. Covers the static absence audit over the crate source and the schema module.",
+      "suite_id": "SUITE-SEMANTIC-IR-AUTHORING-ONLY",
+      "targets": [
+        "af-ir static surface audit (no CallComposite/Trigger)",
+        "spec/idl/semantic-ir.afidl (closed 13-case variant)"
+      ]
+    },
+    {
+      "description": "AWAIT has no built-in timeout: the AwaitBody schema carries only signal_type and correlation, so timing is expressed by composing TIMEOUT(AWAIT(...)). Covers the schema shape and the static audit.",
+      "suite_id": "SUITE-SEMANTIC-IR-AWAIT-COMPOSITION",
+      "targets": [
+        "af-ir AwaitBody (no timeout field)",
+        "spec/idl/semantic-ir.afidl"
+      ]
+    },
+    {
+      "description": "COMPENSATION_SCOPE holds no compensation task list and MUST NOT erase forward computation or effect history: the IR body is a single child reference, so there is nothing to erase with. Covers the model shape and the static audit.",
+      "suite_id": "SUITE-SEMANTIC-IR-COMPENSATION-HISTORY",
+      "targets": [
+        "af-ir CompensationScopeBody (one child, no list)",
+        "af-ir static surface audit"
+      ]
+    },
+    {
+      "description": "Dataflow (expression reads a value slot) and ownership (a computation owns a child) are separate validator logics over separate edge sets: ComputationBody::children walks only child references, and expression checking stays in the semantic core. Covers the two code paths and their tests.",
+      "suite_id": "SUITE-SEMANTIC-IR-DATAFLOW-OWNERSHIP-SEPARATION",
+      "targets": [
+        "af-ir ComputationBody::children / owned_children",
+        "af-semantic expression checking (dataflow)"
+      ]
+    },
+    {
+      "description": "ComputationInterface is derived on demand from outputs and slot types; no second interface table is stored anywhere in the model or the corpus. Covers the static audit and the interface equality negatives.",
+      "suite_id": "SUITE-SEMANTIC-IR-INTERFACE-PROJECTION",
+      "targets": [
+        "af-ir CheckedIrDocument::interface",
+        "af-ir static surface audit (no interface table)"
+      ]
+    },
+    {
+      "description": "No runtime object exists in the IR crate: no opcode state machine, no runtime command, no journal event, no occurrence identity, no worker/scheduler/reducer, no resource handle, no clock, no randomness, no network, no af-spec dependency. Covers the static absence audit over the dependency set and the source surface.",
+      "suite_id": "SUITE-SEMANTIC-IR-NO-RUNTIME",
+      "targets": [
+        "af-ir static surface audit",
+        "af-ir crate dependency set"
+      ]
+    },
+    {
       "description": "ValueSlotId and ResourceSlotId are distinct nominal types that may carry the same number. Covers the Rust newtype separation test and the corpus case where a value slot 1 and a resource slot 1 coexist in one document.",
       "suite_id": "SUITE-SEMANTIC-NAMESPACE-SEPARATION",
       "targets": [

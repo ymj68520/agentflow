@@ -35,9 +35,10 @@ def derive_assignments(rel_path, status="active"):
     case of an AFIDL module, plus the per-type TypeSchemaDigest pin."""
     module = afidl.parse_afidl((ROOT / rel_path).read_text(encoding="utf-8"))
     family = f"{module['spec']['namespace']}@{module['spec']['major']}"
+    imports = afidl.import_table(module)
     rows = []
     for declaration in module["declarations"]:
-        schema = afidl.canonical_type(family, declaration)
+        schema = afidl.canonical_type(family, declaration, imports)
         _payload, digest = afidl.type_schema_digest(schema)
         kind = declaration["kind"]
         if kind == "alias":
@@ -89,6 +90,7 @@ DIGEST_SRC = "spec/digest/hash-v1.md"
 AFIDL_SRC = "spec/idl/afidl1-grammar.md"
 REG_SRC = "spec/registry/registry-spec.md"
 SEMANTIC_SRC = "spec/semantic/core-semantic-types.md"
+IR_SRC = "spec/semantic/semantic-ir.md"
 
 ARCH_UNCOVERED_REASON = (
     "Architectural invariant: not falsifiable by a data-driven fixture. "
@@ -576,6 +578,317 @@ SEMANTIC_RULES = [
 ]
 RULES.extend(SEMANTIC_RULES)
 
+IR_RULES = [
+    rule("AF-SEMANTIC-0025", "SEMANTIC", IR_SRC, "ir-scope-static-only",
+         "The Semantic IR is a static model: validation, canonicalization and "
+         "the document digest only. No interpreter, plan, worker, region, "
+         "endpoint, credential, lease or scheduler placement exists in this "
+         "layer.",
+         ["SUITE-SEMANTIC-IR-NO-RUNTIME"]),
+    rule("AF-SEMANTIC-0026", "SEMANTIC", IR_SRC, "ir-no-runtime-semantics",
+         "No opcode state machine, runtime command or journal event exists at "
+         "the IR layer; runtime semantics belong to the later execution "
+         "stages.",
+         ["SUITE-SEMANTIC-IR-NO-RUNTIME"]),
+    rule("AF-SEMANTIC-0027", "SEMANTIC", IR_SRC, "ir-occurrence-not-in-ir",
+         "Runtime occurrence identity (OccurrencePath, AttemptId, "
+         "InvocationId) does not exist in the IR: a loop or retry holds one "
+         "static body definition, never per-occurrence copies.",
+         ["SUITE-SEMANTIC-IR-NO-RUNTIME"]),
+    rule("AF-SEMANTIC-0028", "SEMANTIC", IR_SRC, "ir-call-composite-forbidden",
+         "CallComposite is authoring/compiler-only and MUST NOT appear in "
+         "canonical IR; the construct is lowered before this layer.",
+         ["SUITE-SEMANTIC-IR-AUTHORING-ONLY"]),
+    rule("AF-SEMANTIC-0029", "SEMANTIC", IR_SRC, "ir-trigger-not-computation",
+         "Trigger is not a computation: it belongs to deployment binding and "
+         "has no opcode and no node in the IR.",
+         ["SUITE-SEMANTIC-IR-AUTHORING-ONLY"]),
+    rule("AF-SEMANTIC-0030", "SEMANTIC", IR_SRC, "ir-document-structure",
+         "SemanticIrDocument carries the reused Phase 3A tables plus "
+         "semantic_refs, contracts, run_parameters, workflow_outputs, "
+         "computations and root, with the frozen field numbering.",
+         ["invoke/minimal", "call-subflow/minimal"]),
+    rule("AF-SEMANTIC-0031", "SEMANTIC", IR_SRC, "ir-semantic-refs",
+         "A semantic ref pins an exact canonical SpecificationId: syntax is "
+         "validated, references are unique and canonically ordered; registry "
+         "knownness belongs to compiler tooling, never to af-ir.",
+         ["call-subflow/minimal", "semantic-ref/invalid-syntax",
+          "semantic-ref/duplicate"]),
+    rule("AF-SEMANTIC-0032", "SEMANTIC", IR_SRC, "ir-reuse-core-tables",
+         "The types/values/expressions/resources tables reuse "
+         "agentflow.semantic.core@1 objects by identity via the AFIDL import; "
+         "redeclaring copies is forbidden, and the tables must pass the Phase "
+         "3A validation.",
+         ["invoke/minimal", "nested/sequence-invoke-await"]),
+    rule("AF-SEMANTIC-0033", "SEMANTIC", IR_SRC, "ir-canonical-order-table",
+         "Canonical ordering is frozen for every table and nested list: "
+         "identity tables by id, semantic_refs by canonical SpecificationId "
+         "bytes, workflow_outputs by NFC name bytes, ports and ordinals "
+         "ascending.",
+         ["ordering/computations", "ordering/core-tables",
+          "ordering/select-cases", "ordering/parallel-branches",
+          "ordering/scope-resources", "ordering/run-parameters",
+          "ordering/workflow-outputs", "ordering/semantic-refs",
+          "ordering/handle-clauses", "ordering/carry",
+          "ordering/parallel-output-bindings"]),
+    rule("AF-SEMANTIC-0034", "SEMANTIC", IR_SRC, "ir-local-identities",
+         "ComputationId, RunParameterId and ContractRefId are independent id "
+         "namespaces and PortNo, BranchOrdinal and HandlerOrdinal are "
+         "numbering spaces; all are u32 newtypes, values are > 0 and 0 is "
+         "rejected by validation.",
+         ["document/root-zero", "select/case-ordinal-zero",
+          "producer/duplicate-output-port"]),
+    rule("AF-SEMANTIC-0035", "SEMANTIC", IR_SRC, "ir-value-producer-uniqueness",
+         "Every declared value slot has exactly one producer: 0 producers is "
+         "unbound_value_slot and more than one is duplicate_value_producer. "
+         "Producers are run parameters, computation outputs, iterate item "
+         "slots and iterate carry slots.",
+         ["producer/unbound-slot", "producer/param-and-computation-same-slot",
+          "producer/two-computation-outputs",
+          "producer/iterate-item-and-output"]),
+    rule("AF-SEMANTIC-0036", "SEMANTIC", IR_SRC, "ir-expression-not-producer",
+         "An expression is pure derived computation and is never a value-slot "
+         "producer; expression ids do not materialize slots.",
+         ["producer/unbound-slot",
+          "SUITE-SEMANTIC-IR-DATAFLOW-OWNERSHIP-SEPARATION"]),
+    rule("AF-SEMANTIC-0037", "SEMANTIC", IR_SRC, "ir-run-parameter-producer",
+         "A run parameter produces its value slot: parameter.type must equal "
+         "the slot's type and no other producer may bind the same slot.",
+         ["run-parameter/type-mismatch", "run-parameter/unknown-type",
+          "run-parameter/unknown-slot",
+          "producer/param-and-computation-same-slot"]),
+    rule("AF-SEMANTIC-0038", "SEMANTIC", IR_SRC, "ir-run-parameter-name",
+         "A run parameter name is non-empty, NFC-normalized and unique after "
+         "NFC; names may be any Unicode and canonical order is by "
+         "RunParameterId, never by name.",
+         ["run-parameter/name-empty", "run-parameter/name-not-nfc",
+          "run-parameter/name-duplicate"]),
+    rule("AF-SEMANTIC-0039", "SEMANTIC", IR_SRC, "ir-run-parameter-decl",
+         "RunParameterDecl is a static workflow input declaration only: no "
+         "default value, admission snapshot, mutable parameter, runtime "
+         "update, constraint or secret flag exists in this layer.",
+         ["run-parameter/type-mismatch", "invoke/minimal"]),
+    rule("AF-SEMANTIC-0040", "SEMANTIC", IR_SRC, "ir-workflow-output",
+         "A workflow output is a name plus an expression; the output type is "
+         "the expression's result_type and is never duplicated. Output names "
+         "follow the run-parameter name rules with canonical order by NFC "
+         "name bytes.",
+         ["workflow-output/name-duplicate", "workflow-output/name-empty",
+          "workflow-output/unknown-expression"]),
+    rule("AF-SEMANTIC-0041", "SEMANTIC", IR_SRC, "ir-contract-table-closed",
+         "ContractRefKind is closed at exactly component (1) and subflow (2); "
+         "entries are canonically ordered by ContractRefId and duplicate ids "
+         "are rejected.",
+         ["contract/duplicate-id", "contract/invoke-uses-subflow",
+          "contract/call-subflow-uses-component"]),
+    rule("AF-SEMANTIC-0042", "SEMANTIC", IR_SRC, "ir-component-contract-domain",
+         "A component contract reference pins sha256 over the frozen "
+         "component-contract domain; any other domain is rejected.",
+         ["contract/component-wrong-domain"]),
+    rule("AF-SEMANTIC-0043", "SEMANTIC", IR_SRC, "ir-subflow-contract-domain",
+         "A subflow contract reference pins sha256 over the frozen "
+         "semantic-ir domain: CALL_SUBFLOW references an exact published "
+         "Semantic IR identity. No workflow-contract or subflow-contract "
+         "domain exists.",
+         ["contract/subflow-wrong-domain", "nested/select-retry-call-subflow"]),
+    rule("AF-SEMANTIC-0044", "SEMANTIC", IR_SRC, "ir-contract-identity-unique",
+         "One exact contract identity (algorithm, domain, hex) has at most "
+         "one table entry per document; digest validation covers shape and "
+         "domain only - there is no Contract Store in this layer.",
+         ["contract/duplicate-identity"]),
+    rule("AF-SEMANTIC-0045", "SEMANTIC", IR_SRC, "ir-computation-outputs",
+         "A computation's output ports are positive and unique, bound to "
+         "declared value slots; the port's type is the slot's type and is "
+         "never stored twice.",
+         ["producer/duplicate-output-port", "output/unknown-slot"]),
+    rule("AF-SEMANTIC-0046", "SEMANTIC", IR_SRC, "ir-child-table",
+         "The ownership edge set is exactly the per-opcode child table "
+         "(INVOKE/AWAIT/CALL_SUBFLOW: 0 local children; SEQUENCE: N; SELECT: "
+         "N cases; PARALLEL/RACE: N branches; ITERATE/RETRY/TIMEOUT/SCOPE/"
+         "COMPENSATION_SCOPE: 1; HANDLE: 1 protected child + N handlers); "
+         "every child reference must resolve.",
+         ["document/child-missing", "handle/unknown-handler",
+          "retry/child-missing"]),
+    rule("AF-SEMANTIC-0047", "SEMANTIC", IR_SRC, "ir-ownership-tree",
+         "The computations form a structured ownership tree: the root exists "
+         "and has no parent, every non-root computation has exactly one "
+         "parent, nothing is detached, and neither cycles nor unreachable "
+         "computations exist.",
+         ["document/structural-cycle", "document/multiple-structural-parents",
+          "document/unknown-root", "document/unreachable-computation",
+          "document/duplicate-child-reference", "document/root-zero"]),
+    rule("AF-SEMANTIC-0048", "SEMANTIC", IR_SRC,
+         "ir-dataflow-ownership-separation",
+         "Dataflow edges (expression reads a value slot) and ownership edges "
+         "(a computation owns a child) are different relations handled by "
+         "different validator logic; no universal Edge type exists.",
+         ["SUITE-SEMANTIC-IR-DATAFLOW-OWNERSHIP-SEPARATION"]),
+    rule("AF-SEMANTIC-0049", "SEMANTIC", IR_SRC, "ir-interface-projection",
+         "ComputationInterface is a read-only projection port_no -> "
+         "SemanticTypeId derived from outputs and slot types; no second "
+         "interface table may be stored anywhere.",
+         ["SUITE-SEMANTIC-IR-INTERFACE-PROJECTION"]),
+    rule("AF-SEMANTIC-0050", "SEMANTIC", IR_SRC, "ir-wrapper-interfaces",
+         "Wrapper interface equality is static: SEQUENCE equals its last "
+         "child, SELECT every case, RACE every branch, RETRY/TIMEOUT/SCOPE/"
+         "COMPENSATION_SCOPE the child, HANDLE the protected child plus every "
+         "handler; PARALLEL is checked by its explicit output mapping and "
+         "ITERATE by the carry rules.",
+         ["sequence/parent-interface-mismatch",
+          "select/branch-interface-mismatch", "race/branch-interface-mismatch",
+          "retry/interface-mismatch", "timeout/interface-mismatch",
+          "handle/handler-interface-mismatch",
+          "handle/protected-child-interface-mismatch",
+          "scope/interface-mismatch", "compensation-scope/interface-mismatch",
+          "parallel/output-type-mismatch"]),
+    rule("AF-SEMANTIC-0051", "SEMANTIC", IR_SRC, "ir-leaf-interfaces",
+         "INVOKE, AWAIT and CALL_SUBFLOW are leaves: their output interface "
+         "is declared only by their own outputs; contract-level checking is "
+         "deferred.",
+         ["invoke/minimal", "await/minimal", "call-subflow/minimal"]),
+    rule("AF-SEMANTIC-0052", "SEMANTIC", IR_SRC, "ir-sequence-order",
+         "The SEQUENCE child list order is the semantic execution order: it "
+         "is preserved verbatim and never canonically re-sorted; a sequence "
+         "has at least one child and its output interface equals the last "
+         "child's.",
+         ["mutation/sequence-child-order", "sequence/empty"]),
+    rule("AF-SEMANTIC-0053", "SEMANTIC", IR_SRC, "ir-select-ordinal",
+         "The SELECT selector has type int64 and produces the exact case "
+         "ordinal to run: no truthiness, no source-order matching, no "
+         "fall-through. Ordinals are positive, unique and canonically "
+         "ascending; a select has at least one case.",
+         ["select/empty", "select/selector-not-int64",
+          "select/case-ordinal-zero", "select/duplicate-case-ordinal"]),
+    rule("AF-SEMANTIC-0054", "SEMANTIC", IR_SRC, "ir-select-interfaces",
+         "All SELECT case children share the parent's output interface: the "
+         "typed merge shell is checked statically; runtime case selection is "
+         "not part of this phase.",
+         ["select/branch-interface-mismatch"]),
+    rule("AF-SEMANTIC-0055", "SEMANTIC", IR_SRC, "ir-parallel-structure",
+         "ParallelMode is closed at all (1) and fail_fast (2); a parallel has "
+         "at least one branch with positive unique ordinals in canonical "
+         "ascending order.",
+         ["parallel/empty-branches", "parallel/duplicate-ordinal",
+          "parallel/all", "parallel/fail-fast"]),
+    rule("AF-SEMANTIC-0056", "SEMANTIC", IR_SRC, "ir-parallel-output-mapping",
+         "The explicit parallel output mapping is the only path from branch "
+         "outputs into the parent interface: parent ports are unique across "
+         "bindings, branch and child ports must exist, and the parent slot's "
+         "type equals the child output slot's type.",
+         ["parallel/output-unknown-branch",
+          "parallel/output-unknown-child-port",
+          "parallel/output-type-mismatch", "parallel/fail-fast"]),
+    rule("AF-SEMANTIC-0057", "SEMANTIC", IR_SRC, "ir-parallel-max-inflight",
+         "max_inflight is a semantic concurrency bound: option<uint32> with "
+         "Some(0) invalid. Worker count, tenant quota, region capacity and "
+         "scheduler limits are physical concerns and MUST NOT enter the IR.",
+         ["parallel/max-inflight-zero", "foreach/max-inflight-zero",
+          "SUITE-SEMANTIC-IR-NO-RUNTIME"]),
+    rule("AF-SEMANTIC-0058", "SEMANTIC", IR_SRC, "ir-race-structure",
+         "A race has at least two branches with positive unique ordinals and "
+         "one shared output interface; v1 semantics is exactly FIRST_TERMINAL "
+         "with no winner_policy knob.",
+         ["race/one-branch", "race/duplicate-ordinal",
+          "race/branch-interface-mismatch", "race/minimal"]),
+    rule("AF-SEMANTIC-0059", "SEMANTIC", IR_SRC, "ir-iterate-foreach",
+         "FOREACH: the source expression has type list<T>, the item slot "
+         "exists with type T and its producer is this ITERATE; max_inflight "
+         "follows the parallel bound rules.",
+         ["foreach/source-not-list", "foreach/item-slot-wrong-type",
+          "foreach/item-slot-missing", "foreach/max-inflight-zero",
+          "producer/iterate-item-and-output", "iterate/foreach"]),
+    rule("AF-SEMANTIC-0060", "SEMANTIC", IR_SRC, "ir-iterate-while",
+         "WHILE: the guard has type bool and max_iterations > 0 - v1 has no "
+         "unbounded while. The guard may reference carry slots; availability "
+         "and dominance analysis is Phase 3C.",
+         ["while/guard-not-bool", "while/max-iterations-zero",
+          "iterate/while"]),
+    rule("AF-SEMANTIC-0061", "SEMANTIC", IR_SRC, "ir-loop-carry",
+         "A loop carry binding requires the slot to exist, the initial "
+         "expression to exist, the body output port to exist, and slot.type "
+         "== initial.result_type == body-output-slot.type; one binding per "
+         "carry slot. Loops never mutate: values are new occurrences.",
+         ["carry/slot-missing", "carry/initial-type-mismatch",
+          "carry/body-output-missing", "carry/next-type-mismatch",
+          "carry/duplicate-slot", "iterate/while"]),
+    rule("AF-SEMANTIC-0062", "SEMANTIC", IR_SRC, "ir-retry-schedule",
+         "RETRY carries an explicit finite delay schedule: maximum occurrence "
+         "count is exactly 1 + len(delays); delays are durations >= 0 and "
+         "their order is semantic (never sorted); no wall clock, jitter or "
+         "runtime policy lookup exists.",
+         ["mutation/retry-delay-order", "retry/child-missing",
+          "retry/minimal"]),
+    rule("AF-SEMANTIC-0063", "SEMANTIC", IR_SRC, "ir-timeout-expression",
+         "TIMEOUT bounds one child by a duration-valued expression; there is "
+         "no TimerId, TimerState or TimerCommand. AWAIT has no built-in "
+         "timeout: compose TIMEOUT(AWAIT(...)).",
+         ["timeout/expression-not-duration", "timeout/interface-mismatch",
+          "timeout/minimal"]),
+    rule("AF-SEMANTIC-0064", "SEMANTIC", IR_SRC, "ir-handle-match",
+         "HandleMatch is closed at failure (exact typed TypeSchemaRef match) "
+         "and timed_out (unit); there is no cancelled case. Handler ordinals "
+         "are positive and unique; failure clauses are pairwise disjoint by "
+         "exact schema; at most one timed_out clause exists.",
+         ["handle/duplicate-handler-ordinal",
+          "handle/duplicate-failure-matcher", "handle/two-timed-out",
+          "handle/cancelled-matcher", "handle/failure", "handle/timed-out"]),
+    rule("AF-SEMANTIC-0065", "SEMANTIC", IR_SRC, "ir-scope-resources",
+         "A scope lists the logical resources it statically owns/allows: they "
+         "must exist, be unique, and are canonically ascending. Only the "
+         "ownership and lexical boundaries are frozen - authority/budget "
+         "attenuation, deadline and cancellation state and ResourceHandle "
+         "are later, separately specified tables.",
+         ["scope/unknown-resource", "scope/duplicate-resource",
+          "scope/minimal"]),
+    rule("AF-SEMANTIC-0066", "SEMANTIC", IR_SRC, "ir-compensation-scope",
+         "COMPENSATION_SCOPE owns one child and holds no compensation task "
+         "list; compensation sources are later derived from committed effect "
+         "receipts plus effect compensation contracts, and a "
+         "COMPENSATION_SCOPE MUST NOT erase forward computation or effect "
+         "history.",
+         ["compensation-scope/interface-mismatch",
+          "compensation-scope/minimal",
+          "SUITE-SEMANTIC-IR-COMPENSATION-HISTORY"]),
+    rule("AF-SEMANTIC-0067", "SEMANTIC", IR_SRC, "ir-digest-formula",
+         "SemanticIrDigest = HashV1(\"semantic-ir\", "
+         "ACE1(CanonicalSemanticIrDocument)); the domain is the Phase 1 "
+         "frozen registry entry, no new domain is introduced, and the digest "
+         "is computed over the canonical form only.",
+         ["invoke/minimal", "ordering/computations", "ordering/core-tables"]),
+    rule("AF-SEMANTIC-0068", "SEMANTIC", IR_SRC, "ir-invoke-static",
+         "INVOKE calls an exact component contract with semantic inputs and "
+         "resource requirements; input and resource ports are positive and "
+         "unique and their expressions/resources must exist. No "
+         "TaskDefinition, Binding, Invocation, Attempt or Worker exists at "
+         "this layer.",
+         ["contract/unknown-id", "contract/invoke-uses-subflow",
+          "invoke/minimal", "nested/sequence-invoke-await"]),
+    rule("AF-SEMANTIC-0069", "SEMANTIC", IR_SRC, "ir-await-static",
+         "AWAIT is a passive durable wait with an exact digest-pinned "
+         "signal_type and a correlation expression; no mailbox, timer, "
+         "webhook or approval state exists in this layer.",
+         ["await/minimal", "nested/sequence-invoke-await"]),
+    rule("AF-SEMANTIC-0070", "SEMANTIC", IR_SRC, "ir-call-subflow",
+         "CALL_SUBFLOW references a subflow-kind contract (an exact "
+         "published Semantic IR digest), has zero local children and no "
+         "detach/fire-and-forget: the subflow is an owned durable child "
+         "boundary.",
+         ["call-subflow/wrong-contract-kind",
+          "call-subflow/duplicate-input-port",
+          "call-subflow/duplicate-resource-port",
+          "call-subflow/unknown-expression", "call-subflow/unknown-resource",
+          "call-subflow/minimal"]),
+    rule("AF-SEMANTIC-0071", "SEMANTIC", IR_SRC, "ir-semantic-order-exceptions",
+         "Exactly two lists carry semantic order and are never canonically "
+         "re-sorted: SEQUENCE children (execution order) and RETRY delays "
+         "(schedule order); changing their order changes the "
+         "SemanticIrDigest.",
+         ["mutation/sequence-child-order", "mutation/retry-delay-order",
+          "mutation/parallel-mode"]),
+]
+RULES.extend(IR_RULES)
+
+
 RULES.sort(key=lambda r: r["rule_id"])
 write_json("spec/registry/rules.json", {
     "registry_revision": 1,
@@ -629,6 +942,17 @@ SPECS = [
      "Normative shape of the workflow semantic core: primitive universe, "
      "semantic type DAG, digest-pinned references, value slots, pure "
      "expressions and logical resource slots."),
+    ("agentflow.semantic.ir@1", "schema",
+     "spec/idl/semantic-ir.afidl",
+     "Normative shape of the canonical Semantic IR: the closed 13-opcode "
+     "computation set, structured ownership, run parameters, workflow "
+     "outputs, the closed contract table and the SemanticIrDocument. The "
+     "first production consumer of the AFIDL1 cross-module import."),
+    ("agentflow.semantic.ir.semantics@1", "schema_language",
+     "spec/semantic/semantic-ir.md",
+     "Canonical Semantic IR semantics: static scope, ownership tree, value "
+     "producer rules, interface equality, per-opcode static schemas, "
+     "canonical ordering and the SemanticIrDigest."),
     ("agentflow.semantic.types@1", "schema_language",
      "spec/semantic/core-semantic-types.md",
      "Workflow semantic core semantics: machine vs workflow primitives, "
@@ -663,6 +987,7 @@ write_json("spec/registry/specifications.json", {
 SCHEMA_MODULES = [
     "spec/idl/specification-registry.afidl",
     "spec/idl/semantic-core.afidl",
+    "spec/idl/semantic-ir.afidl",
 ]
 
 assignments = []
@@ -698,10 +1023,7 @@ write_json("spec/registry/coverage-summary.json", {
 # suites.json — stable identities for non-fixture conformance coverage
 # ---------------------------------------------------------------------------
 
-write_json("spec/conformance/suites.json", {
-    "kind": "agentflow.conformance.suites",
-    "suite_revision": 1,
-    "suites": [
+SUITE_LIST = [
         {
             "suite_id": "SUITE-AFIDL-IMPORT-EXACT-IDENTITY",
             "description": (
@@ -825,6 +1147,88 @@ write_json("spec/conformance/suites.json", {
             ],
         },
         {
+            "suite_id": "SUITE-SEMANTIC-IR-AUTHORING-ONLY",
+            "description": (
+                "CallComposite and Trigger never reach the canonical IR: the "
+                "13-case ComputationBody variant is closed, so an authoring "
+                "construct or a deployment binding is structurally "
+                "inexpressible. Covers the static absence audit over the "
+                "crate source and the schema module."
+            ),
+            "targets": [
+                "af-ir static surface audit (no CallComposite/Trigger)",
+                "spec/idl/semantic-ir.afidl (closed 13-case variant)",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-IR-COMPENSATION-HISTORY",
+            "description": (
+                "COMPENSATION_SCOPE holds no compensation task list and MUST "
+                "NOT erase forward computation or effect history: the IR body "
+                "is a single child reference, so there is nothing to erase "
+                "with. Covers the model shape and the static audit."
+            ),
+            "targets": [
+                "af-ir CompensationScopeBody (one child, no list)",
+                "af-ir static surface audit",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-IR-AWAIT-COMPOSITION",
+            "description": (
+                "AWAIT has no built-in timeout: the AwaitBody schema carries "
+                "only signal_type and correlation, so timing is expressed by "
+                "composing TIMEOUT(AWAIT(...)). Covers the schema shape and "
+                "the static audit."
+            ),
+            "targets": [
+                "af-ir AwaitBody (no timeout field)",
+                "spec/idl/semantic-ir.afidl",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-IR-DATAFLOW-OWNERSHIP-SEPARATION",
+            "description": (
+                "Dataflow (expression reads a value slot) and ownership (a "
+                "computation owns a child) are separate validator logics over "
+                "separate edge sets: ComputationBody::children walks only "
+                "child references, and expression checking stays in the "
+                "semantic core. Covers the two code paths and their tests."
+            ),
+            "targets": [
+                "af-ir ComputationBody::children / owned_children",
+                "af-semantic expression checking (dataflow)",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-IR-INTERFACE-PROJECTION",
+            "description": (
+                "ComputationInterface is derived on demand from outputs and "
+                "slot types; no second interface table is stored anywhere in "
+                "the model or the corpus. Covers the static audit and the "
+                "interface equality negatives."
+            ),
+            "targets": [
+                "af-ir CheckedIrDocument::interface",
+                "af-ir static surface audit (no interface table)",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-IR-NO-RUNTIME",
+            "description": (
+                "No runtime object exists in the IR crate: no opcode state "
+                "machine, no runtime command, no journal event, no occurrence "
+                "identity, no worker/scheduler/reducer, no resource handle, "
+                "no clock, no randomness, no network, no af-spec dependency. "
+                "Covers the static absence audit over the dependency set and "
+                "the source surface."
+            ),
+            "targets": [
+                "af-ir static surface audit",
+                "af-ir crate dependency set",
+            ],
+        },
+        {
             "suite_id": "SUITE-SEMANTIC-RESOURCE-IMMUTABILITY",
             "description": (
                 "A resource slot's definition is immutable for the document's "
@@ -837,5 +1241,11 @@ write_json("spec/conformance/suites.json", {
                 "CheckedDocument construction path",
             ],
         },
-    ],
+]
+
+SUITE_LIST.sort(key=lambda suite: suite["suite_id"])
+write_json("spec/conformance/suites.json", {
+    "kind": "agentflow.conformance.suites",
+    "suite_revision": 1,
+    "suites": SUITE_LIST,
 })

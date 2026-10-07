@@ -1070,6 +1070,1306 @@
       "first_seen_schema_digest": {
         "alg": "sha256",
         "domain": "type-schema",
+        "hex": "7b61b4b6005f9ccd95d158db3972c32f0b41b8cb55ff88a472a2c204ac842c2e"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "signal_type",
+      "type_name": "AwaitBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "7b61b4b6005f9ccd95d158db3972c32f0b41b8cb55ff88a472a2c204ac842c2e"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "correlation",
+      "type_name": "AwaitBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "3429a2e4f762ec12805de26d7474655221c4910ddf037210429ac2380a22e7df"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "contract",
+      "type_name": "CallSubflowBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "3429a2e4f762ec12805de26d7474655221c4910ddf037210429ac2380a22e7df"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "inputs",
+      "type_name": "CallSubflowBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "3429a2e4f762ec12805de26d7474655221c4910ddf037210429ac2380a22e7df"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "resources",
+      "type_name": "CallSubflowBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "146a5276369585b2ece0d4b7be688366100c1304f43e8259f995f35bc1269711"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "child",
+      "type_name": "CompensationScopeBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ce2dc004722ff449a6db9049b214c3e62a66ef1d86fede13e17c5b1bfe1d8f80"
+      },
+      "number": 1,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "invoke",
+      "type_name": "ComputationBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ce2dc004722ff449a6db9049b214c3e62a66ef1d86fede13e17c5b1bfe1d8f80"
+      },
+      "number": 2,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "await",
+      "type_name": "ComputationBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ce2dc004722ff449a6db9049b214c3e62a66ef1d86fede13e17c5b1bfe1d8f80"
+      },
+      "number": 3,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "sequence",
+      "type_name": "ComputationBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ce2dc004722ff449a6db9049b214c3e62a66ef1d86fede13e17c5b1bfe1d8f80"
+      },
+      "number": 4,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "select",
+      "type_name": "ComputationBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ce2dc004722ff449a6db9049b214c3e62a66ef1d86fede13e17c5b1bfe1d8f80"
+      },
+      "number": 5,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "parallel",
+      "type_name": "ComputationBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ce2dc004722ff449a6db9049b214c3e62a66ef1d86fede13e17c5b1bfe1d8f80"
+      },
+      "number": 6,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "race",
+      "type_name": "ComputationBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ce2dc004722ff449a6db9049b214c3e62a66ef1d86fede13e17c5b1bfe1d8f80"
+      },
+      "number": 7,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "iterate",
+      "type_name": "ComputationBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ce2dc004722ff449a6db9049b214c3e62a66ef1d86fede13e17c5b1bfe1d8f80"
+      },
+      "number": 8,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "retry",
+      "type_name": "ComputationBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ce2dc004722ff449a6db9049b214c3e62a66ef1d86fede13e17c5b1bfe1d8f80"
+      },
+      "number": 9,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "timeout",
+      "type_name": "ComputationBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ce2dc004722ff449a6db9049b214c3e62a66ef1d86fede13e17c5b1bfe1d8f80"
+      },
+      "number": 10,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "handle",
+      "type_name": "ComputationBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ce2dc004722ff449a6db9049b214c3e62a66ef1d86fede13e17c5b1bfe1d8f80"
+      },
+      "number": 11,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "scope",
+      "type_name": "ComputationBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ce2dc004722ff449a6db9049b214c3e62a66ef1d86fede13e17c5b1bfe1d8f80"
+      },
+      "number": 12,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "compensation_scope",
+      "type_name": "ComputationBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ce2dc004722ff449a6db9049b214c3e62a66ef1d86fede13e17c5b1bfe1d8f80"
+      },
+      "number": 13,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "call_subflow",
+      "type_name": "ComputationBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "cf16ecda2ad3c7040e725768e29a6072f51c40de3d41fc2b5d5994f8b37a0c49"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "id",
+      "type_name": "ComputationDef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "cf16ecda2ad3c7040e725768e29a6072f51c40de3d41fc2b5d5994f8b37a0c49"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "outputs",
+      "type_name": "ComputationDef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "cf16ecda2ad3c7040e725768e29a6072f51c40de3d41fc2b5d5994f8b37a0c49"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "body",
+      "type_name": "ComputationDef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "bb971bd3ef8d7112a825cd5d2830ec3c7fc667955c356e3e44b71f3fb172b49f"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "port_no",
+      "type_name": "ComputationOutputBinding"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "bb971bd3ef8d7112a825cd5d2830ec3c7fc667955c356e3e44b71f3fb172b49f"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "value_slot",
+      "type_name": "ComputationOutputBinding"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "521350bdcdc04f98bd86582af4a73a828f65a2f226b9d90511dbb02f66ecdc14"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "id",
+      "type_name": "ContractRefEntry"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "521350bdcdc04f98bd86582af4a73a828f65a2f226b9d90511dbb02f66ecdc14"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "kind",
+      "type_name": "ContractRefEntry"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "521350bdcdc04f98bd86582af4a73a828f65a2f226b9d90511dbb02f66ecdc14"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "digest",
+      "type_name": "ContractRefEntry"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "b376c60b73e140654e07e4a11c1fbb9d035c5878b9b1dfd9c26041a20e50a8a4"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "component",
+      "type_name": "ContractRefKind"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "b376c60b73e140654e07e4a11c1fbb9d035c5878b9b1dfd9c26041a20e50a8a4"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "subflow",
+      "type_name": "ContractRefKind"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "6970abe3b0c6a216ed94bc5d9685ff8c2bc71dfc949d28f9e72f9788e1a9028c"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "failure_type",
+      "type_name": "FailureMatch"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "199daf9d74a9592738f2b5be970f0e67e6a0481650760e0beb440e1160b6a683"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "source",
+      "type_name": "ForeachBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "199daf9d74a9592738f2b5be970f0e67e6a0481650760e0beb440e1160b6a683"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "item_slot",
+      "type_name": "ForeachBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "199daf9d74a9592738f2b5be970f0e67e6a0481650760e0beb440e1160b6a683"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "body",
+      "type_name": "ForeachBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "199daf9d74a9592738f2b5be970f0e67e6a0481650760e0beb440e1160b6a683"
+      },
+      "number": 4,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "carry",
+      "type_name": "ForeachBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "199daf9d74a9592738f2b5be970f0e67e6a0481650760e0beb440e1160b6a683"
+      },
+      "number": 5,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "max_inflight",
+      "type_name": "ForeachBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "9d033e88a62a87691bf03aed13223c8fbafcd2d4710c7a7922491c22b5b228ab"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "child",
+      "type_name": "HandleBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "9d033e88a62a87691bf03aed13223c8fbafcd2d4710c7a7922491c22b5b228ab"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "clauses",
+      "type_name": "HandleBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f0e93c16a7c4b6202f4b43a2c3da75f1550985ed44e833605f2e9e17e8dbd3c3"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "ordinal",
+      "type_name": "HandleClause"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f0e93c16a7c4b6202f4b43a2c3da75f1550985ed44e833605f2e9e17e8dbd3c3"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "match",
+      "type_name": "HandleClause"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f0e93c16a7c4b6202f4b43a2c3da75f1550985ed44e833605f2e9e17e8dbd3c3"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "handler",
+      "type_name": "HandleClause"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "056d27607954dd334105d51e790ed2e129f76bdc0fe0d773022192a5445abaf7"
+      },
+      "number": 1,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "failure",
+      "type_name": "HandleMatch"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "056d27607954dd334105d51e790ed2e129f76bdc0fe0d773022192a5445abaf7"
+      },
+      "number": 2,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "timed_out",
+      "type_name": "HandleMatch"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "e83b68f601dd89d51012563c744ab40126e517e669d5000c51650c992568de97"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "port_no",
+      "type_name": "InputBinding"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "e83b68f601dd89d51012563c744ab40126e517e669d5000c51650c992568de97"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "expression",
+      "type_name": "InputBinding"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "90615da51a3478af75fd018d3e7a84884c4b71deb983f6bb96e43fc751b8b31e"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "contract",
+      "type_name": "InvokeBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "90615da51a3478af75fd018d3e7a84884c4b71deb983f6bb96e43fc751b8b31e"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "inputs",
+      "type_name": "InvokeBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "90615da51a3478af75fd018d3e7a84884c4b71deb983f6bb96e43fc751b8b31e"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "resources",
+      "type_name": "InvokeBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "09499b7a3fbb3e295b20645b339e8186ba8ba06a814a960a44b60e9b96506c6a"
+      },
+      "number": 1,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "foreach",
+      "type_name": "IterateBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "09499b7a3fbb3e295b20645b339e8186ba8ba06a814a960a44b60e9b96506c6a"
+      },
+      "number": 2,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "while",
+      "type_name": "IterateBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "58d75bf32b9df7164d8c9c889a31dc7930cb22ac04b8b461d7c763eb2faea6dd"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "slot",
+      "type_name": "LoopCarryBinding"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "58d75bf32b9df7164d8c9c889a31dc7930cb22ac04b8b461d7c763eb2faea6dd"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "initial",
+      "type_name": "LoopCarryBinding"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "58d75bf32b9df7164d8c9c889a31dc7930cb22ac04b8b461d7c763eb2faea6dd"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "body_output_port",
+      "type_name": "LoopCarryBinding"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4bb26a45b49886c077ab90aa18206695d6f1575f2b8c501f0e3369d46f2c2c31"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "mode",
+      "type_name": "ParallelBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4bb26a45b49886c077ab90aa18206695d6f1575f2b8c501f0e3369d46f2c2c31"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "branches",
+      "type_name": "ParallelBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4bb26a45b49886c077ab90aa18206695d6f1575f2b8c501f0e3369d46f2c2c31"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "max_inflight",
+      "type_name": "ParallelBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4bb26a45b49886c077ab90aa18206695d6f1575f2b8c501f0e3369d46f2c2c31"
+      },
+      "number": 4,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "output_bindings",
+      "type_name": "ParallelBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "8e115069fe1d1f564da9f7f57308bf94a91f062cf41d42d28ae290bbe7954273"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "ordinal",
+      "type_name": "ParallelBranch"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "8e115069fe1d1f564da9f7f57308bf94a91f062cf41d42d28ae290bbe7954273"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "child",
+      "type_name": "ParallelBranch"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "6b4a7c288be1dfb42baa57ce44a9ddd584f8c4663043b2bc072f14e7ed9fb8ee"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "all",
+      "type_name": "ParallelMode"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "6b4a7c288be1dfb42baa57ce44a9ddd584f8c4663043b2bc072f14e7ed9fb8ee"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "fail_fast",
+      "type_name": "ParallelMode"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "68bf0bcefb1fbc6f71ceb13da27b3b4fd49f125e0e12bc4aad56d2cf5bdae870"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "parent_port_no",
+      "type_name": "ParallelOutputBinding"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "68bf0bcefb1fbc6f71ceb13da27b3b4fd49f125e0e12bc4aad56d2cf5bdae870"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "branch_ordinal",
+      "type_name": "ParallelOutputBinding"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "68bf0bcefb1fbc6f71ceb13da27b3b4fd49f125e0e12bc4aad56d2cf5bdae870"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "child_port_no",
+      "type_name": "ParallelOutputBinding"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "8ffa0fd932e7de89ae8206d7ae9867c223ca94aa132273e6888cf59cc3a869aa"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "branches",
+      "type_name": "RaceBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5dd9b82f988cf39c7c1ec996617a6d609431b94c8ab49f9a5e60e7f7761c7b77"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "ordinal",
+      "type_name": "RaceBranch"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5dd9b82f988cf39c7c1ec996617a6d609431b94c8ab49f9a5e60e7f7761c7b77"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "child",
+      "type_name": "RaceBranch"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "2d60c13bfa1779c02b7336ff26f37f1c45d9670d5c7ba593403902024722bb7e"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "port_no",
+      "type_name": "ResourceUseBinding"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "2d60c13bfa1779c02b7336ff26f37f1c45d9670d5c7ba593403902024722bb7e"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "resource_slot",
+      "type_name": "ResourceUseBinding"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "d48c6a2d832f1bed1c879d7338fa55ff084460c2e07b9df3f106d15c70865857"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "child",
+      "type_name": "RetryBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "d48c6a2d832f1bed1c879d7338fa55ff084460c2e07b9df3f106d15c70865857"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "delays",
+      "type_name": "RetryBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "90b75012ba2ed0c7905bb06eede0eb77f831fdb519961b7864614b44decc5ed8"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "id",
+      "type_name": "RunParameterDecl"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "90b75012ba2ed0c7905bb06eede0eb77f831fdb519961b7864614b44decc5ed8"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "name",
+      "type_name": "RunParameterDecl"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "90b75012ba2ed0c7905bb06eede0eb77f831fdb519961b7864614b44decc5ed8"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "type",
+      "type_name": "RunParameterDecl"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "90b75012ba2ed0c7905bb06eede0eb77f831fdb519961b7864614b44decc5ed8"
+      },
+      "number": 4,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "value_slot",
+      "type_name": "RunParameterDecl"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "49cd71d2db9efb901fb8f9a397c19724a91581a78d4f6692dc3c502e1063c07f"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "child",
+      "type_name": "ScopeBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "49cd71d2db9efb901fb8f9a397c19724a91581a78d4f6692dc3c502e1063c07f"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "resources",
+      "type_name": "ScopeBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "016d72254a7a4e9a3260f23d27c73907737cb0e666f63184f416f741cba52ed8"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "selector",
+      "type_name": "SelectBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "016d72254a7a4e9a3260f23d27c73907737cb0e666f63184f416f741cba52ed8"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "cases",
+      "type_name": "SelectBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "1da8b61884c7c8809bc49f4a4057387e17a0396825ef0a4c99f49aa754e0b934"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "ordinal",
+      "type_name": "SelectCase"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "1da8b61884c7c8809bc49f4a4057387e17a0396825ef0a4c99f49aa754e0b934"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "child",
+      "type_name": "SelectCase"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f6ca985ba7cccad128ed888a0f194433e113749d7ef548b2b0bd5f63e9f8467e"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "semantic_refs",
+      "type_name": "SemanticIrDocument"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f6ca985ba7cccad128ed888a0f194433e113749d7ef548b2b0bd5f63e9f8467e"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "types",
+      "type_name": "SemanticIrDocument"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f6ca985ba7cccad128ed888a0f194433e113749d7ef548b2b0bd5f63e9f8467e"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "values",
+      "type_name": "SemanticIrDocument"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f6ca985ba7cccad128ed888a0f194433e113749d7ef548b2b0bd5f63e9f8467e"
+      },
+      "number": 4,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "expressions",
+      "type_name": "SemanticIrDocument"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f6ca985ba7cccad128ed888a0f194433e113749d7ef548b2b0bd5f63e9f8467e"
+      },
+      "number": 5,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "resources",
+      "type_name": "SemanticIrDocument"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f6ca985ba7cccad128ed888a0f194433e113749d7ef548b2b0bd5f63e9f8467e"
+      },
+      "number": 6,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "contracts",
+      "type_name": "SemanticIrDocument"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f6ca985ba7cccad128ed888a0f194433e113749d7ef548b2b0bd5f63e9f8467e"
+      },
+      "number": 7,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "run_parameters",
+      "type_name": "SemanticIrDocument"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f6ca985ba7cccad128ed888a0f194433e113749d7ef548b2b0bd5f63e9f8467e"
+      },
+      "number": 8,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "workflow_outputs",
+      "type_name": "SemanticIrDocument"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f6ca985ba7cccad128ed888a0f194433e113749d7ef548b2b0bd5f63e9f8467e"
+      },
+      "number": 9,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "computations",
+      "type_name": "SemanticIrDocument"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f6ca985ba7cccad128ed888a0f194433e113749d7ef548b2b0bd5f63e9f8467e"
+      },
+      "number": 10,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "root",
+      "type_name": "SemanticIrDocument"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "a198ac44ee52f0422ab826043f20b3a51639cd752a7ede121a366b7f14bbf0a0"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "specification_id",
+      "type_name": "SemanticVersionRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4a63e8488fd7ee83349a589a6a945e879115aff629634938898408943abe0d84"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "children",
+      "type_name": "SequenceBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5a08badcce4e35c51ddad60fd52220d8fa73eda83901fc27f0eccd817bf8da70"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "child",
+      "type_name": "TimeoutBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5a08badcce4e35c51ddad60fd52220d8fa73eda83901fc27f0eccd817bf8da70"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "timeout",
+      "type_name": "TimeoutBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "06efe0c037cb5605f6f2dfcee12442e9bd31acd206b59a20228638fde9b9c657"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "guard",
+      "type_name": "WhileBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "06efe0c037cb5605f6f2dfcee12442e9bd31acd206b59a20228638fde9b9c657"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "body",
+      "type_name": "WhileBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "06efe0c037cb5605f6f2dfcee12442e9bd31acd206b59a20228638fde9b9c657"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "carry",
+      "type_name": "WhileBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "06efe0c037cb5605f6f2dfcee12442e9bd31acd206b59a20228638fde9b9c657"
+      },
+      "number": 4,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "max_iterations",
+      "type_name": "WhileBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c0a14c327f3c95640914a20f8ed54456f56c53c4aaad0af6430261c6c551acc6"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "name",
+      "type_name": "WorkflowOutputDecl"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c0a14c327f3c95640914a20f8ed54456f56c53c4aaad0af6430261c6c551acc6"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.ir@1",
+      "status": "active",
+      "symbolic_name": "expression",
+      "type_name": "WorkflowOutputDecl"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
         "hex": "8c0e45ac0562494b4ce3e6a37842cdde65cad1ec8a2f61e70dc39699a280834c"
       },
       "number": 1,

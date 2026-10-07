@@ -132,6 +132,32 @@
       "status": "frozen"
     },
     {
+      "description": "Canonical Semantic IR semantics: static scope, ownership tree, value producer rules, interface equality, per-opcode static schemas, canonical ordering and the SemanticIrDigest.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a8e801e11fd6f4ab4a7d926d63f29d9c3d4d89e1d362d54e8a35cd08207cbf60"
+        },
+        "logical_path": "spec/semantic/semantic-ir.md"
+      },
+      "specification_id": "agentflow.semantic.ir.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the canonical Semantic IR: the closed 13-opcode computation set, structured ownership, run parameters, workflow outputs, the closed contract table and the SemanticIrDocument. The first production consumer of the AFIDL1 cross-module import.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "9fb3292a0fe90b207db037575c50ef3ca50174411b3c5a461c09c37d53f616a3"
+        },
+        "logical_path": "spec/idl/semantic-ir.afidl"
+      },
+      "specification_id": "agentflow.semantic.ir@1",
+      "status": "frozen"
+    },
+    {
       "description": "Workflow semantic core semantics: machine vs workflow primitives, type DAG rules, exact pinning, SSA value slots, expression purity and type checking, resource slot scope.",
       "kind": "schema_language",
       "normative_source": {
