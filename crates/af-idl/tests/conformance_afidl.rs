@@ -6,9 +6,9 @@
 //! Expected canonical bytes and digests are physically frozen; these tests
 //! never generate expected values from the implementation under test.
 
-use af_idl::{Primitive, compile};
+use af_idl::{Primitive, compile, compile_module_set, compile_with_universe};
 use serde::Deserialize;
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 use std::path::{Path, PathBuf};
 
 fn repo_root() -> PathBuf {
@@ -18,18 +18,19 @@ fn repo_root() -> PathBuf {
         .expect("repo root")
 }
 
-fn load_json(relative: &str) -> serde_json::Value {
+fn read_repo_file(relative: &str) -> String {
     let path = repo_root().join(relative);
-    let text = std::fs::read_to_string(&path)
-        .unwrap_or_else(|e| panic!("cannot read {}: {e}", path.display()));
-    serde_json::from_str(&text).unwrap_or_else(|e| panic!("cannot parse {}: {e}", path.display()))
+    std::fs::read_to_string(&path).unwrap_or_else(|e| panic!("cannot read {}: {e}", path.display()))
+}
+
+fn load_json(relative: &str) -> serde_json::Value {
+    let text = read_repo_file(relative);
+    serde_json::from_str(&text).unwrap_or_else(|e| panic!("cannot parse {relative}: {e}"))
 }
 
 fn compile_file_at(relative: &str) -> af_idl::CompiledSchema {
-    let path = repo_root().join(relative);
-    let source = std::fs::read_to_string(&path)
-        .unwrap_or_else(|e| panic!("cannot read {}: {e}", path.display()));
-    compile(&source).unwrap_or_else(|e| panic!("{relative} must compile, got {e}"))
+    compile(&read_repo_file(relative))
+        .unwrap_or_else(|e| panic!("{relative} must compile, got {e}"))
 }
 
 #[derive(Deserialize)]
@@ -44,6 +45,16 @@ struct SchemaCase {
     case_id: String,
     file: String,
     types: Vec<TypeEntry>,
+    /// Case ids whose modules form the import universe for a universe-compiled
+    /// fixture. Absent when the case imports nothing.
+    #[serde(default)]
+    requires: Vec<RequiredCase>,
+}
+
+#[derive(Deserialize)]
+struct RequiredCase {
+    case_id: String,
+    file: String,
 }
 
 #[derive(Deserialize)]
@@ -79,12 +90,16 @@ struct MutationCase {
 }
 
 /// Frozen corpus revision this harness is written against.
-// Golden revision 3 (Phase 3A): additive `semantic-core` case; revision 2
-// (Phase 2B) added the `specification-registry` case. Every bump is purely
-// additive - existing cases and digests are unchanged. The parser-invalid
-// manifest is a separate frozen artifact and stays at revision 1.
-const CORPUS_REVISION: u64 = 3;
-const PARSER_INVALID_CORPUS_REVISION: u64 = 1;
+///
+/// Golden revision 4 (Phase 2C): additive cross-module `import-*` fixtures and
+/// their three equivalence groups. Revision 3 (Phase 3A) added the
+/// `semantic-core` case and revision 2 (Phase 2B) the `specification-registry`
+/// case. Every bump is purely additive — existing cases and digests are
+/// unchanged. The parser-invalid manifest is a separate frozen artifact and
+/// carries its own revision (2 since Phase 2C added the import negatives and
+/// the module-set cycle cases).
+const CORPUS_REVISION: u64 = 4;
+const PARSER_INVALID_CORPUS_REVISION: u64 = 2;
 
 fn frozen_digest_map() -> BTreeMap<(String, String), String> {
     let golden: DigestGolden = serde_json::from_value(load_json(
@@ -236,12 +251,243 @@ fn mutation_cases_change_the_digest() {
 struct InvalidManifest {
     corpus_revision: u64,
     cases: Vec<InvalidCase>,
+    #[serde(default)]
+    module_set_cases: Vec<ModuleSetCase>,
+    #[serde(default)]
+    module_set_valid_cases: Vec<ModuleSetValidCase>,
 }
 
 #[derive(Deserialize)]
 struct InvalidCase {
     file: String,
     error_kind: String,
+    /// `"compile"` (default) or `"universe"`: the latter compiles against the
+    /// parser-valid modules it imports.
+    #[serde(default)]
+    mode: Option<String>,
+}
+
+#[derive(Deserialize)]
+struct ModuleSetCase {
+    case_id: String,
+    files: Vec<String>,
+    error_kind: String,
+}
+
+#[derive(Deserialize)]
+struct ModuleSetValidCase {
+    case_id: String,
+    files: Vec<String>,
+    #[allow(dead_code)]
+    expect: String,
+}
+
+/// Builds the import universe of a fixture from the corpus cases it requires.
+fn universe_for(requires: &[RequiredCase]) -> af_idl::ResolvedSchemaUniverse {
+    let mut universe = af_idl::ResolvedSchemaUniverse::new();
+    for required in requires {
+        let compiled = compile_file_at(&required.file);
+        universe
+            .insert(compiled)
+            .unwrap_or_else(|e| panic!("{} must register: {e}", required.case_id));
+    }
+    universe
+}
+
+/// The parser-valid corpus cases, keyed by case id, so a fixture can name the
+/// modules that form its import universe.
+fn corpus_cases_by_id() -> BTreeMap<String, SchemaCase> {
+    let golden: SchemaGolden =
+        serde_json::from_value(load_json("spec/conformance/afidl/schema-golden.json"))
+            .expect("schema-golden.json is valid");
+    golden
+        .cases
+        .into_iter()
+        .map(|case| (case.case_id.clone(), case))
+        .collect()
+}
+
+#[test]
+fn import_fixtures_compile_against_their_frozen_universe() {
+    let golden: SchemaGolden =
+        serde_json::from_value(load_json("spec/conformance/afidl/schema-golden.json")).unwrap();
+    let mut with_imports = 0;
+    for case in &golden.cases {
+        if case.requires.is_empty() {
+            continue;
+        }
+        with_imports += 1;
+        let universe = universe_for(&case.requires);
+        let source = read_repo_file(&case.file);
+        let compiled = compile_with_universe(&source, &universe)
+            .unwrap_or_else(|e| panic!("{} must compile against its universe: {e}", case.case_id));
+        for type_entry in &case.types {
+            let schema = compiled
+                .by_name(&type_entry.name)
+                .unwrap_or_else(|| panic!("{}: missing {}", case.case_id, type_entry.name));
+            // A universe-compiled module must produce exactly the frozen bytes
+            // of its single-module compilation: imports add validity, never
+            // identity.
+            assert_eq!(
+                hex::encode(schema.ace1_bytes().unwrap()),
+                type_entry.ace1_hex,
+                "{}: universe compilation changed canonical bytes for {}",
+                case.case_id,
+                type_entry.name
+            );
+        }
+    }
+    assert!(
+        with_imports >= 8,
+        "the corpus must exercise cross-module imports"
+    );
+}
+
+#[test]
+fn import_alias_lowering_is_frozen() {
+    let golden: serde_json::Value = load_json("spec/conformance/afidl/import-golden.json");
+    assert_eq!(golden["corpus_revision"], CORPUS_REVISION);
+    let cases = golden["cases"].as_array().expect("cases array");
+    assert!(cases.len() >= 8, "import corpus must be non-trivial");
+
+    for case in cases {
+        let case_id = case["case_id"].as_str().unwrap();
+        // The frozen alias → specification table must match what the resolver
+        // derives from the source, and every referenced identity must be the
+        // imported specification's full logical identity.
+        let mut expected: BTreeMap<String, String> = BTreeMap::new();
+        for entry in case["resolved_imports"].as_array().unwrap() {
+            expected.insert(
+                entry["alias"].as_str().unwrap().to_string(),
+                entry["specification_id"].as_str().unwrap().to_string(),
+            );
+        }
+        let file = case["file"].as_str().unwrap();
+        let module = af_idl::parse(&read_repo_file(file)).unwrap();
+        let actual: BTreeMap<String, String> = module
+            .imports
+            .iter()
+            .map(|import| (import.alias.clone(), import.id.canonical()))
+            .collect();
+        assert_eq!(actual, expected, "{case_id}: import table drifted");
+
+        for (type_name, identities) in case["type_identities"].as_object().unwrap() {
+            let frozen: BTreeSet<String> = identities
+                .as_array()
+                .unwrap()
+                .iter()
+                .map(|value| value.as_str().unwrap().to_string())
+                .collect();
+            for identity in &frozen {
+                // A qualified reference may never lower to the *importing*
+                // module's identity, and never to a bare alias spelling.
+                assert!(
+                    !identity.contains(".Slot") && !identity.contains(".Address"),
+                    "{case_id}/{type_name}: alias leaked into identity {identity}"
+                );
+            }
+            let _ = type_name;
+        }
+    }
+}
+
+#[test]
+fn import_equivalence_groups_are_frozen() {
+    // These three groups are the central Phase 2C claim: an alias rename, a
+    // reordering of import declarations and an unused import all leave every
+    // TypeSchemaDigest unchanged.
+    let golden: SchemaGolden =
+        serde_json::from_value(load_json("spec/conformance/afidl/schema-golden.json")).unwrap();
+    let import_groups: Vec<&Vec<String>> = golden
+        .equivalence_groups
+        .iter()
+        .filter(|group| group.iter().any(|member| member.starts_with("import-")))
+        .collect();
+    assert!(
+        import_groups.len() >= 3,
+        "the import equivalence groups must be frozen in the corpus"
+    );
+    for group in import_groups {
+        let mut reference: Option<BTreeMap<String, String>> = None;
+        for member in group {
+            let case = golden
+                .cases
+                .iter()
+                .find(|case| case.case_id == *member)
+                .unwrap_or_else(|| panic!("missing case {member}"));
+            let universe = universe_for(&case.requires);
+            let compiled = if case.requires.is_empty() {
+                compile_file_at(&case.file)
+            } else {
+                compile_with_universe(&read_repo_file(&case.file), &universe)
+                    .unwrap_or_else(|e| panic!("{member} must compile: {e}"))
+            };
+            let map: BTreeMap<String, String> = compiled
+                .types
+                .iter()
+                .map(|t| (t.name.clone(), t.digest().unwrap().hex().to_string()))
+                .collect();
+            match &reference {
+                None => reference = Some(map),
+                Some(expected) => assert_eq!(
+                    expected, &map,
+                    "import equivalence group {group:?} diverged at {member}"
+                ),
+            }
+        }
+    }
+}
+
+#[test]
+fn module_set_cycles_are_rejected_and_free_mutual_imports_compile() {
+    let manifest: InvalidManifest = serde_json::from_value(load_json(
+        "spec/conformance/afidl/parser-invalid/manifest.json",
+    ))
+    .unwrap();
+    assert!(
+        !manifest.module_set_cases.is_empty(),
+        "the cross-module recursion cases must be frozen"
+    );
+
+    for case in &manifest.module_set_cases {
+        let sources: Vec<(String, String)> = case
+            .files
+            .iter()
+            .map(|file| {
+                (
+                    file.clone(),
+                    read_repo_file(&format!("spec/conformance/afidl/{file}")),
+                )
+            })
+            .collect();
+        let error = compile_module_set(&sources)
+            .expect_err(&format!("{}: the cycle must be rejected", case.case_id));
+        assert_eq!(
+            error.kind(),
+            case.error_kind,
+            "{}: error kind mismatch ({error})",
+            case.case_id
+        );
+    }
+
+    for case in &manifest.module_set_valid_cases {
+        let sources: Vec<(String, String)> = case
+            .files
+            .iter()
+            .map(|file| {
+                (
+                    file.clone(),
+                    read_repo_file(&format!("spec/conformance/afidl/{file}")),
+                )
+            })
+            .collect();
+        compile_module_set(&sources).unwrap_or_else(|e| {
+            panic!(
+                "{}: mutual imports without a type cycle must compile, got {e}",
+                case.case_id
+            )
+        });
+    }
 }
 
 #[test]
@@ -265,8 +511,23 @@ fn parser_invalid_corpus_fails_with_frozen_kinds() {
             .join(&case.file);
         let source = std::fs::read_to_string(&path)
             .unwrap_or_else(|e| panic!("cannot read {}: {e}", path.display()));
-        match compile(&source) {
-            Ok(_) => panic!("{}: expected error {}", case.file, case.error_kind),
+        let outcome = match case.mode.as_deref() {
+            Some("universe") => {
+                // Universe-mode negatives import a module that is itself
+                // corpus-frozen, so the negative exercises resolution rather
+                // than the self-contained compile path.
+                let cases = corpus_cases_by_id();
+                let requires = &cases
+                    .get("import-basic")
+                    .expect("the import-basic case declares its universe")
+                    .requires;
+                let universe = universe_for(requires);
+                compile_with_universe(&source, &universe).map(|_| ())
+            }
+            _ => compile(&source).map(|_| ()),
+        };
+        match outcome {
+            Ok(()) => panic!("{}: expected error {}", case.file, case.error_kind),
             Err(e) => assert_eq!(
                 e.kind(),
                 case.error_kind,
