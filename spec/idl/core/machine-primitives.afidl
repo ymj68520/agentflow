@@ -1,5 +1,8 @@
 // AgentFlow Machine Primitives v1 — AFIDL1 source of truth (materialization).
 //
+// syntax provisional until AFIDL1 grammar materialization
+// semantic declarations authoritative only after Phase 2 rewrite
+//
 // Normative sources: docs/ §24.1 (Canonical Encoding / AFIDL v1) and §22.13
 // (Type / Failure / Resource / Usage Contract). The exact AFIDL1 grammar is
 // itself pending formal materialization (see

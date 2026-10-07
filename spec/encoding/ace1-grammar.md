@@ -1,11 +1,18 @@
-# ACE1 Exact Byte Grammar — v1 Materialization
+# ACE1 Exact Byte Grammar — v1
 
-> Status: materialized from the frozen v1 baseline (`docs/` §24.1, §22.3, §22.13).
-> This document is the machine-checkable byte grammar this repository's
-> implementations agree on. Where the frozen baseline constrains behavior, the
-> baseline wins; everything else here is the Phase 1 materialization decision
-> recorded in `docs/implementation/phase-01-open-questions.md` (OQ-1..OQ-6) and
-> subject to ratification when the normative freeze lands.
+> Status: AgentFlow ACE1 v1 repository normative source (ratified in Phase 1A;
+> derived from the frozen v1 baseline, `docs/` §24.1, §22.3, §22.13, which wins
+> over this document wherever they conflict).
+>
+> Encoding-changing modifications to this file require an explicit
+> specification compatibility/version decision and a frozen-corpus update
+> (`corpus_revision`); silent edits that change golden bytes are forbidden.
+> The frozen decisions and their provenance are recorded in the Decision
+> Register, `docs/implementation/phase-01-open-questions.md`.
+>
+> Out of scope here: the AFIDL source grammar. AFIDL syntax remains provisional
+> until its Phase 2 materialization; this file defines only the canonical byte
+> grammar of encoded values.
 >
 > This is NOT a copy of `docs/`; it is the exact grammar extracted and made
 > precise from it.
@@ -133,9 +140,16 @@ member  := canonical-string ":" canonical-value
   rejected, never last-write-wins), and are emitted in unsigned UTF-8 byte
   lexicographic order. Input entry order never affects canonical bytes.
 - **List<T>** is a JSON array in order: `[v1,v2,...]`; `[]` when empty.
-- **Option<T>**: `None` encodes as the explicit literal `null`; `Some(v)`
-  encodes as `v`. `option<option<T>>`, `option<unit>` and `option<null>` are
-  rejected as unrepresentable.
+- **Option<T>** (ratified Phase 1A): an explicit single-case tagged object.
+  `None` encodes as `{"none":null}`; `Some(v)` encodes as `{"some":v}` with
+  the payload validating against `T`. Exactly one member is allowed; the key
+  MUST be `none` or `some`; the `none` payload MUST be the literal `null`.
+  Because the case tag is explicit, ANY legal AFIDL type may sit under an
+  option — including `unit`, `null` and nested options
+  (`option<option<T>>`, `option<option<null>>`, ...). Literal `null`, empty
+  objects, unknown keys, extra members, and non-null `none` payloads are
+  rejected (a bare-JSON-number payload under `none` is rejected by the
+  generic canonical layer before the option layer).
 - **Variant**: a single-key object `{"<case>":payload}` where `<case>` is one
   of the closed case set; unknown cases are rejected.
 - **Enum**: the closed value's name as a canonical string; unknown values are
@@ -151,9 +165,15 @@ five distinct states resolved by the schema-directed typed encoder:
 - a field of shape `null` encodes the literal `null`;
 - a field of shape `unit` encodes the literal `null` (unit and null are
   distinct nominal types; the schema, not the bytes, disambiguates the
-  position — see OQ-2);
-- `Option::None` encodes the explicit literal `null` (see OQ-3);
-- `Option::Some(v)` encodes `v`.
+  position — ratified, see Decision Register OQ-2);
+- `Option::None` encodes the tagged object `{"none":null}` (ratified Phase 1A,
+  replacing the Phase 1 null-sugar encoding — see OQ-3);
+- `Option::Some(v)` encodes the tagged object `{"some":v}`; therefore
+  `Some(null)` and `Some(unit)` both yield `{"some":null}` — the Option layer
+  is explicit in bytes while the inner schema nominally disambiguates the
+  payload;
+- `Option::Some(Some(...))` nests as tagged objects
+  (`{"some":{"none":null}}`, `{"some":{"some":"x"}}`, ...).
 
 ## 10. Canonical decoder contract
 

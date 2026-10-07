@@ -145,3 +145,67 @@ python tools/gen-conformance.py                     # 可复现冻结 corpus（�
 见最终交付说明（新增：workspace 清单、`crates/af-core/` 全部源码与测试、
 `spec/` 五个规范制品 + 七个 corpus 文件、`tools/gen-conformance.py`、
 `docs/implementation/` 两份文档；未触碰 `docs/` 三份冻结文档）。
+
+---
+
+## 9. Phase 1A Addendum — ACE1 Artifact Freeze / Open Questions Ratification
+
+> 本节由 Phase 1A 追加。**Phase 1A 在 v1 artifact freeze 之前改变了 Option
+> wire encoding**；因尚未发布正式 Spec Release，记为 ACE1 v1 pre-release
+> artifact revision（corpus_revision 1 → 2），未升 Semantic Major。
+
+### 9.1 Option wire encoding 变更（OQ-3 REJECTED_AND_REPLACED）
+
+```text
+Phase 1（已废弃）:            Phase 1A（正式批准）:
+  None    → null                None    → {"none":null}
+  Some(v) → <canonical-v>       Some(v) → {"some":<canonical-v>}
+```
+
+原因：null-sugar 编码无法区分 `None`/`Some(null)`/`Some(unit)`/`Some(None)`，
+破坏 AFIDL schema-directed closed type system 的组合闭包。新编码为
+single-case tagged object：exactly one key；key 必须为 `none`/`some`；
+`none` payload 必须为字面 `null`；`some` payload 按内层 type 校验。
+
+### 9.2 删除的非法类型限制（OQ-4）
+
+删除 `Shape::validate` 中的三条人为限制：
+`option<option<T>>`、`option<unit>`、`option<null>` 现全部合法且可区分
+（`{"some":{"none":null}}` 等）。`Shape::validate` 对 Option 仅递归校验
+内层 type。
+
+### 9.3 Corpus 变更（corpus_revision 1 → 2）
+
+- Python 独立生成器同步实现新 Option 规则（仍保持独立实现，未从 Rust 取值）；
+- Golden：`126 → 136` 条（新增 10 条嵌套/边界 Option：option<string/null/unit>
+  的 None 与 Some、option<option<string>> 的 None/Some(None)/Some(Some("x"))、
+  option<option<null>> 的 Some(Some(null))），并冻结 §六 断言：
+  `encode(None) != encode(Some(null)) != …`（Rust 测试与 Python 生成器双侧断言）；
+- Negative：`67 → 76` 条（删除 1 条已失效的嵌套禁止负例，新增 9 条：`null`
+  sugar 拒绝、`none` 非 null payload、空对象、未知 key、双成员（排序/未排序）、
+  重复 key、`null`-into-option TypeMismatch、重复字段名 shape 负例）；
+- **Cross-check（§十一）**：Python expected bytes == 冻结 fixture bytes ==
+  Rust ACE1 bytes——由「独立生成器生成冻结值 + Rust conformance 只消费冻结值
+  + 生成器内嵌属性断言」三方机制保证；
+- digest 三个文件仅追加 `corpus_revision` 字段，期望值零变化（git diff 证明
+  HashV1/DigestRef 行为无无意变化）。
+
+### 9.4 OQ Register 重分类
+
+原 OQ-1..OQ-13 已全部重分类（RATIFIED / RESOLVED_FROM_FROZEN_SPEC /
+REJECTED_AND_REPLACED / DEFERRED_*），见
+`phase-01-open-questions.md`（现为 Decision Register）。`ace1-grammar.md`
+状态升级为 repository normative source；`machine-primitives.afidl` 顶部
+保留 AFIDL syntax provisional 标记（OQ-11 → Phase 2）。
+
+### 9.5 Phase 1A 验证
+
+```text
+cargo fmt --all -- --check                           ✅
+cargo clippy --all-targets --all-features -- -D warnings  ✅
+cargo test --all                                     ✅ 37 tests（16 lib + 7 digest + 4 encoding + 10 distinctions）
+python tools/gen-conformance.py                      ✅ 幂等（二次运行 working tree 不变）
+```
+
+新增结构化错误类别：`AceError::InvalidOptionEncoding`（kind
+`invalid_option_encoding`）。
