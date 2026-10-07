@@ -1,0 +1,25 @@
+{
+  "kind": "agentflow.hash-domains",
+  "version": "v1",
+  "hash_algorithm": "sha256",
+  "prefix_ascii": "AF",
+  "separator": "0x00",
+  "formula": "HashV1(domain, payload) = SHA256(prefix_ascii || 0x00 || domain || 0x00 || payload)",
+  "note": "Central registry of digest domains (docs/ §24.1: 'Opaque ID prefix 与 derived-ID domain 必须集中登记'). Domains are normative strings; do not abbreviate. This table and the DigestDomain enum in crates/af-core/src/digest.rs are checked for drift by conformance tests.",
+  "domains": [
+    { "domain": "type-schema", "status": "frozen_v1", "description": "Canonical type/schema objects" },
+    { "domain": "value", "status": "frozen_v1", "description": "Canonical semantic Values" },
+    { "domain": "provenance", "status": "frozen_v1", "description": "Provenance DAG nodes" },
+    { "domain": "artifact", "status": "frozen_v1", "description": "Immutable artifact content identities" },
+    { "domain": "semantic-ir", "status": "frozen_v1", "description": "Canonical Semantic IR" },
+    { "domain": "plan-core", "status": "frozen_v1", "description": "Executable Plan core (durable state-machine program)" },
+    { "domain": "run-manifest", "status": "frozen_v1", "description": "Immutable per-Run admission manifests" },
+    { "domain": "lock-graph", "status": "frozen_v1", "description": "Immutable resolver LockGraphs" },
+    { "domain": "journal-event-payload", "status": "frozen_v1", "description": "Canonical Journal event payloads" },
+    { "domain": "runtime-command-payload", "status": "frozen_v1", "description": "Canonical Runtime Command payloads" },
+    { "domain": "semantic-execution-state", "status": "frozen_v1", "description": "Canonical SemanticExecutionState materializations" },
+    { "domain": "component-contract", "status": "frozen_v1", "description": "Component contracts" },
+    { "domain": "resource-contract", "status": "frozen_v1", "description": "Resource contracts" },
+    { "domain": "conformance", "status": "frozen_v1", "description": "Conformance objects (golden/invariant corpus entries)" }
+  ]
+}

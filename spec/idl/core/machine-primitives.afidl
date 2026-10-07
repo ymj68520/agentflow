@@ -1,0 +1,51 @@
+// AgentFlow Machine Primitives v1 — AFIDL1 source of truth (materialization).
+//
+// Normative sources: docs/ §24.1 (Canonical Encoding / AFIDL v1) and §22.13
+// (Type / Failure / Resource / Usage Contract). The exact AFIDL1 grammar is
+// itself pending formal materialization (see
+// docs/implementation/phase-01-open-questions.md, OQ-11); this file uses the
+// minimal declarative notation below, which the Phase 1 implementation and
+// the conformance corpus agree on.
+//
+// Scope note: this is the AFIDL *machine* primitive set. The Workflow CORE
+// semantic primitive set is narrower (v1 does not make float64/uint* ordinary
+// Workflow semantic primitives); that narrowing is a later phase's concern
+// and must not be conflated with this machine foundation.
+
+package agentflow.machine.v1
+
+// Closed machine primitive set. JSON numbers are never the canonical
+// authority: every numeric primitive encodes canonically as a string.
+primitives {
+  unit        // empty product; encodes as the literal null
+  null        // explicit JSON null; distinct from unit and from a missing field
+  bool        // true | false
+
+  int32       // exact range [-2147483648, 2147483647]; canonical decimal text
+  uint32      // exact range [0, 4294967295]; canonical decimal text
+  int64       // exact range [-9223372036854775808, 9223372036854775807]
+  uint64      // exact range [0, 18446744073709551615]
+
+  decimal     // exact base-10; canonical form per spec/encoding/ace1-grammar.md §4
+  float64     // IEEE-754 binary64; 16 lowercase hex chars; no NaN/±Inf; -0 → +0
+
+  string      // Unicode NFC, UTF-8
+  bytes       // opaque; unpadded base64url
+
+  timestamp   // nominal int64 microseconds
+  duration    // nominal int64 microseconds; distinct type from timestamp
+}
+
+// Closed container kinds. Map keys are strings only; keys normalize to NFC,
+// must be unique after normalization, and sort by unsigned UTF-8 bytes.
+containers {
+  list<T>
+  map<string, T>
+  option<T>          // None encodes as explicit null; no nested option
+  record { fields }  // closed declared fields; canonical byte-sorted members
+  variant { cases }  // closed case set; single-key tagged object
+  enum { values }    // closed value set; fail closed on unknown value
+}
+
+// v1 exclusions (fail closed): no Any, no Set, no user-defined generics,
+// no open unions, no unknown-variant tolerance at the canonical boundary.
