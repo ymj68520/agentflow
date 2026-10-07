@@ -1,4 +1,5 @@
 {
+  "corpus_revision": 2,
   "kind": "agentflow.conformance.ace1-golden",
   "ace1_version": "1",
   "note": "Golden fixtures for ACE1 strings: NFC normalization, deterministic escaping, non-ASCII raw UTF-8. Decomposed-input cases must produce byte-identical output to their precomposed counterparts.",

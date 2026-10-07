@@ -1,4 +1,5 @@
 {
+  "corpus_revision": 2,
   "kind": "agentflow.conformance.hash-v1-golden",
   "hash_algorithm": "sha256",
   "formula": "SHA256(\"AF\\0\" || domain || \"\\0\" || payload)",

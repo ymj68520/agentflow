@@ -26,6 +26,7 @@ fn load_json(relative: &str) -> serde_json::Value {
 struct HashGolden {
     #[allow(dead_code)]
     kind: String,
+    corpus_revision: u64,
     cases: Vec<HashCase>,
 }
 
@@ -42,6 +43,7 @@ fn hash_v1_golden() {
     let file: HashGolden =
         serde_json::from_value(load_json("conformance/digest/hash-v1-golden.json"))
             .expect("hash-v1-golden.json is valid");
+    assert_eq!(file.corpus_revision, 2, "unexpected corpus revision");
     assert!(
         file.cases.len() >= 10,
         "golden digest corpus must be non-trivial"
@@ -81,6 +83,7 @@ fn hash_v1_golden() {
 struct DomainSeparation {
     #[allow(dead_code)]
     kind: String,
+    corpus_revision: u64,
     payload_hex: String,
     domains: Vec<DomainEntry>,
 }
@@ -96,6 +99,7 @@ fn domain_separation() {
     let fixture: DomainSeparation =
         serde_json::from_value(load_json("conformance/digest/domain-separation.json"))
             .expect("domain-separation.json is valid");
+    assert_eq!(fixture.corpus_revision, 2, "unexpected corpus revision");
     let payload = hex::decode(&fixture.payload_hex).expect("fixture payload is hex");
 
     let mut seen = HashSet::new();
@@ -201,6 +205,7 @@ fn machine_primitives_afidl_matches_implemented_set() {
 struct DigestNegativeFile {
     #[allow(dead_code)]
     kind: String,
+    corpus_revision: u64,
     cases: Vec<DigestNegativeCase>,
 }
 
@@ -218,6 +223,7 @@ fn digest_negatives() {
     let file: DigestNegativeFile =
         serde_json::from_value(load_json("conformance/digest/negative.json"))
             .expect("digest negative.json is valid");
+    assert_eq!(file.corpus_revision, 2, "unexpected corpus revision");
     assert!(file.cases.len() >= 5);
 
     for case in &file.cases {

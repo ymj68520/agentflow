@@ -1,4 +1,5 @@
 {
+  "corpus_revision": 2,
   "kind": "agentflow.conformance.ace1-golden",
   "ace1_version": "1",
   "note": "Golden fixtures for ACE1 machine primitives. Value grammar: scalars are tagged objects ({\"int32\": \"-2147483648\"}); float64 input is the exact IEEE-754 bit pattern as 16 hex chars (negative-zero pattern included to prove canonicalization); bytes input is an array of byte values. expected_ace1_utf8 / expected_bytes_hex are frozen; tests must not regenerate them.",
@@ -507,6 +508,150 @@
       },
       "expected_ace1_utf8": "\"7fe8000000000000\"",
       "expected_bytes_hex": "223766653830303030303030303030303022"
+    },
+    {
+      "case_id": "option/string/none",
+      "description": "option<string> None → tagged {\"none\":null}",
+      "shape": {
+        "option": "string"
+      },
+      "value": {
+        "none": null
+      },
+      "expected_ace1_utf8": "{\"none\":null}",
+      "expected_bytes_hex": "7b226e6f6e65223a6e756c6c7d"
+    },
+    {
+      "case_id": "option/string/some-x",
+      "description": "option<string> Some(\"x\")",
+      "shape": {
+        "option": "string"
+      },
+      "value": {
+        "some": {
+          "string": "x"
+        }
+      },
+      "expected_ace1_utf8": "{\"some\":\"x\"}",
+      "expected_bytes_hex": "7b22736f6d65223a2278227d"
+    },
+    {
+      "case_id": "option/null/none",
+      "description": "option<null> None",
+      "shape": {
+        "option": "null"
+      },
+      "value": {
+        "none": null
+      },
+      "expected_ace1_utf8": "{\"none\":null}",
+      "expected_bytes_hex": "7b226e6f6e65223a6e756c6c7d"
+    },
+    {
+      "case_id": "option/null/some-null",
+      "description": "option<null> Some(null) — bytes differ from None",
+      "shape": {
+        "option": "null"
+      },
+      "value": {
+        "some": {
+          "null": null
+        }
+      },
+      "expected_ace1_utf8": "{\"some\":null}",
+      "expected_bytes_hex": "7b22736f6d65223a6e756c6c7d"
+    },
+    {
+      "case_id": "option/unit/none",
+      "description": "option<unit> None",
+      "shape": {
+        "option": "unit"
+      },
+      "value": {
+        "none": null
+      },
+      "expected_ace1_utf8": "{\"none\":null}",
+      "expected_bytes_hex": "7b226e6f6e65223a6e756c6c7d"
+    },
+    {
+      "case_id": "option/unit/some-unit",
+      "description": "option<unit> Some(unit) — same token as Some(null), nominally distinct inner type",
+      "shape": {
+        "option": "unit"
+      },
+      "value": {
+        "some": {
+          "unit": null
+        }
+      },
+      "expected_ace1_utf8": "{\"some\":null}",
+      "expected_bytes_hex": "7b22736f6d65223a6e756c6c7d"
+    },
+    {
+      "case_id": "option/nested-string/none",
+      "description": "option<option<string>> None",
+      "shape": {
+        "option": {
+          "option": "string"
+        }
+      },
+      "value": {
+        "none": null
+      },
+      "expected_ace1_utf8": "{\"none\":null}",
+      "expected_bytes_hex": "7b226e6f6e65223a6e756c6c7d"
+    },
+    {
+      "case_id": "option/nested-string/some-none",
+      "description": "option<option<string>> Some(None)",
+      "shape": {
+        "option": {
+          "option": "string"
+        }
+      },
+      "value": {
+        "some": {
+          "none": null
+        }
+      },
+      "expected_ace1_utf8": "{\"some\":{\"none\":null}}",
+      "expected_bytes_hex": "7b22736f6d65223a7b226e6f6e65223a6e756c6c7d7d"
+    },
+    {
+      "case_id": "option/nested-string/some-some-x",
+      "description": "option<option<string>> Some(Some(\"x\"))",
+      "shape": {
+        "option": {
+          "option": "string"
+        }
+      },
+      "value": {
+        "some": {
+          "some": {
+            "string": "x"
+          }
+        }
+      },
+      "expected_ace1_utf8": "{\"some\":{\"some\":\"x\"}}",
+      "expected_bytes_hex": "7b22736f6d65223a7b22736f6d65223a2278227d7d"
+    },
+    {
+      "case_id": "option/nested-null/some-some-null",
+      "description": "option<option<null>> Some(Some(null))",
+      "shape": {
+        "option": {
+          "option": "null"
+        }
+      },
+      "value": {
+        "some": {
+          "some": {
+            "null": null
+          }
+        }
+      },
+      "expected_ace1_utf8": "{\"some\":{\"some\":null}}",
+      "expected_bytes_hex": "7b22736f6d65223a7b22736f6d65223a6e756c6c7d7d"
     },
     {
       "case_id": "bool/true",

@@ -21,6 +21,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CONF = ROOT / "spec" / "conformance"
 
+# Corpus revision: 1 = Phase 1 initial freeze (null-sugar Option encoding);
+# 2 = Phase 1A: Option re-encoded as explicit tagged objects. This records
+# that the Option wire encoding changed BEFORE the v1 artifact freeze; it is
+# a non-semantic provenance note, not a spec release version.
+CORPUS_REVISION = 2
+
 DOMAINS = [
     "type-schema", "value", "provenance", "artifact", "semantic-ir",
     "plan-core", "run-manifest", "lock-graph", "journal-event-payload",
@@ -135,9 +141,11 @@ def encode(shape, value) -> str:
     if kind == "list":
         return "[" + ",".join(encode(spec, item) for item in value["list"]) + "]"
     if kind == "option":
+        # Phase 1A: explicit single-case tagged objects.
         if value == {"none": None}:
-            return "null"
-        return encode(spec, value["some"])
+            return '{"none":null}'
+        assert set(value) == {"some"}, f"option value must be none/some, got {value}"
+        return '{"some":' + encode(spec, value["some"]) + '}'
     if kind == "map":
         entries = {}
         for entry in value["map"]:
@@ -211,6 +219,7 @@ def neg(case_id, description, shape, value, error_class, target="encoder"):
 
 
 def write_json(path: Path, payload):
+    payload = {"corpus_revision": CORPUS_REVISION, **payload}
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     count = len(payload.get("cases", payload.get("domains", [])))
@@ -295,6 +304,40 @@ for cid, bits, d in [
     ("float64/large-finite", "7fe8000000000000", "large finite float64"),
 ]:
     add(cid, d, "float64", {"float64": bits})
+
+# Option v1 (Phase 1A): explicit tagged encoding; nested options and
+# option<unit>/option<null> are legal. Cases with identical tokens across
+# different shapes are intentional: the schema nominally disambiguates.
+add("option/string/none", "option<string> None → tagged {\"none\":null}",
+    {"option": "string"}, {"none": None})
+add("option/string/some-x", "option<string> Some(\"x\")",
+    {"option": "string"}, {"some": {"string": "x"}})
+add("option/null/none", "option<null> None",
+    {"option": "null"}, {"none": None})
+add("option/null/some-null", "option<null> Some(null) — bytes differ from None",
+    {"option": "null"}, {"some": {"null": None}})
+add("option/unit/none", "option<unit> None",
+    {"option": "unit"}, {"none": None})
+add("option/unit/some-unit", "option<unit> Some(unit) — same token as Some(null), nominally distinct inner type",
+    {"option": "unit"}, {"some": {"unit": None}})
+add("option/nested-string/none", "option<option<string>> None",
+    {"option": {"option": "string"}}, {"none": None})
+add("option/nested-string/some-none", "option<option<string>> Some(None)",
+    {"option": {"option": "string"}}, {"some": {"none": None}})
+add("option/nested-string/some-some-x", "option<option<string>> Some(Some(\"x\"))",
+    {"option": {"option": "string"}}, {"some": {"some": {"string": "x"}}})
+add("option/nested-null/some-some-null", "option<option<null>> Some(Some(null))",
+    {"option": {"option": "null"}}, {"some": {"some": {"null": None}}})
+
+# Cross-check (§六): None must be byte-distinguishable from every Some form.
+_none_b = encode({"option": "string"}, {"none": None})
+_some_null_b = encode({"option": "null"}, {"some": {"null": None}})
+_some_unit_b = encode({"option": "unit"}, {"some": {"unit": None}})
+_some_none_b = encode({"option": {"option": "string"}}, {"some": {"none": None}})
+assert _none_b != _some_null_b, "None must not share bytes with Some(null)"
+assert _none_b != _some_unit_b, "None must not share bytes with Some(unit)"
+assert _none_b != _some_none_b, "None must not share bytes with Some(None)"
+assert _some_none_b == '{"some":{"none":null}}'
 
 # bool / null / unit
 add("bool/true", "bool true literal", "bool", {"bool": True})
@@ -739,8 +782,31 @@ add_dec("dec/non-nfc-string", "raw non-NFC (decomposed) string content", "string
         "\"e\u0301\"", "invalid_unicode")
 add_dec("dec/non-nfc-map-key", "raw non-NFC (decomposed) map key", MAP_I32,
         "{\"e\u0301cole\":\"1\"}", "invalid_unicode")
-add_dec("dec/option-nested-unrepresentable", "option<option<T>> is unrepresentable",
-        {"option": {"option": "int32"}}, "null", "invalid_shape")
+
+# Option v1 (Phase 1A): explicit tagged objects only; null sugar is gone.
+add_dec("dec/option-null-sugar", "bare null is no longer an Option::None encoding",
+        {"option": "string"}, "null", "non_canonical_encoding")
+add_dec("dec/option-none-int-payload",
+        "'none' payload 1 is a bare JSON number — rejected by the canonical layer",
+        {"option": "string"}, "{\"none\":1}", "non_canonical_encoding")
+add_dec("dec/option-none-string-payload", "'none' payload must be literal null",
+        {"option": "string"}, "{\"none\":\"x\"}", "invalid_option_encoding")
+add_dec("dec/option-empty-object", "option must encode exactly one case member",
+        {"option": "string"}, "{}", "invalid_option_encoding")
+add_dec("dec/option-unknown-key", "option case keys are exactly none/some",
+        {"option": "string"}, "{\"foo\":\"x\"}", "invalid_option_encoding")
+add_dec("dec/option-two-members-sorted", "two case members (even canonically sorted) are invalid",
+        {"option": "string"}, "{\"none\":null,\"some\":\"x\"}", "invalid_option_encoding")
+add_dec("dec/option-two-members-unsorted", "non-canonical member order",
+        {"option": "string"}, "{\"some\":\"x\",\"none\":null}", "non_canonical_encoding")
+add_dec("dec/option-duplicate-key", "duplicate case key",
+        {"option": "string"}, "{\"none\":null,\"none\":null}", "non_canonical_encoding")
+add_neg("nominal/null-into-option", "bare null is a distinct nominal value, not Option::None",
+        {"option": "string"}, {"null": None}, "type_mismatch")
+add_neg("shape/duplicate-field-names", "record shape with duplicate field names is invalid",
+        {"record": {"name": "Dup", "fields": [
+            {"field": "x", "type": "int32"}, {"field": "x", "type": "int32"}]}},
+        {"record": []}, "invalid_shape")
 
 write_json(CONF / "encoding" / "negative.json", {
     "kind": "agentflow.conformance.ace1-negative",

@@ -1,4 +1,5 @@
 {
+  "corpus_revision": 2,
   "kind": "agentflow.conformance.hash-v1-domain-separation",
   "hash_algorithm": "sha256",
   "payload_hex": "646f6d61696e2d73657061726174696f6e2d70726f62652d7061796c6f6164",

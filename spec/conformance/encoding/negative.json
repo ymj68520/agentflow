@@ -1,4 +1,5 @@
 {
+  "corpus_revision": 2,
   "kind": "agentflow.conformance.ace1-negative",
   "ace1_version": "1",
   "note": "Negative corpus. encoder cases fail while building/encoding the typed value; decoder cases fail while strict-decoding the raw bytes. error_class values are stable identifiers (AceError::kind / DigestError::kind). requires_decoder is false everywhere because this phase ships a strict decoder; the field remains for corpus evolution.",
@@ -538,6 +539,44 @@
       "requires_decoder": false
     },
     {
+      "case_id": "nominal/null-into-option",
+      "description": "bare null is a distinct nominal value, not Option::None",
+      "shape": {
+        "option": "string"
+      },
+      "value": {
+        "null": null
+      },
+      "error_class": "type_mismatch",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "shape/duplicate-field-names",
+      "description": "record shape with duplicate field names is invalid",
+      "shape": {
+        "record": {
+          "name": "Dup",
+          "fields": [
+            {
+              "field": "x",
+              "type": "int32"
+            },
+            {
+              "field": "x",
+              "type": "int32"
+            }
+          ]
+        }
+      },
+      "value": {
+        "record": []
+      },
+      "error_class": "invalid_shape",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
       "case_id": "dec/whitespace",
       "description": "insignificant whitespace is not canonical",
       "shape": "int32",
@@ -902,15 +941,90 @@
       "requires_decoder": false
     },
     {
-      "case_id": "dec/option-nested-unrepresentable",
-      "description": "option<option<T>> is unrepresentable",
+      "case_id": "dec/option-null-sugar",
+      "description": "bare null is no longer an Option::None encoding",
       "shape": {
-        "option": {
-          "option": "int32"
-        }
+        "option": "string"
       },
       "bytes": "null",
-      "error_class": "invalid_shape",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/option-none-int-payload",
+      "description": "'none' payload 1 is a bare JSON number — rejected by the canonical layer",
+      "shape": {
+        "option": "string"
+      },
+      "bytes": "{\"none\":1}",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/option-none-string-payload",
+      "description": "'none' payload must be literal null",
+      "shape": {
+        "option": "string"
+      },
+      "bytes": "{\"none\":\"x\"}",
+      "error_class": "invalid_option_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/option-empty-object",
+      "description": "option must encode exactly one case member",
+      "shape": {
+        "option": "string"
+      },
+      "bytes": "{}",
+      "error_class": "invalid_option_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/option-unknown-key",
+      "description": "option case keys are exactly none/some",
+      "shape": {
+        "option": "string"
+      },
+      "bytes": "{\"foo\":\"x\"}",
+      "error_class": "invalid_option_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/option-two-members-sorted",
+      "description": "two case members (even canonically sorted) are invalid",
+      "shape": {
+        "option": "string"
+      },
+      "bytes": "{\"none\":null,\"some\":\"x\"}",
+      "error_class": "invalid_option_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/option-two-members-unsorted",
+      "description": "non-canonical member order",
+      "shape": {
+        "option": "string"
+      },
+      "bytes": "{\"some\":\"x\",\"none\":null}",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/option-duplicate-key",
+      "description": "duplicate case key",
+      "shape": {
+        "option": "string"
+      },
+      "bytes": "{\"none\":null,\"none\":null}",
+      "error_class": "non_canonical_encoding",
       "target": "decoder",
       "requires_decoder": false
     }

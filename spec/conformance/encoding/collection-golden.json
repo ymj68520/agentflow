@@ -1,4 +1,5 @@
 {
+  "corpus_revision": 2,
   "kind": "agentflow.conformance.ace1-golden",
   "ace1_version": "1",
   "note": "Golden fixtures for ACE1 containers. Shape grammar: primitive names as strings; {\"enum\": {name, values}}, {\"list\": T}, {\"option\": T}, {\"map\": T}, {\"record\": {name, fields:[{field,type}]}}, {\"variant\": {name, cases:[{case,type}]}}. Record/map member order in canonical bytes is unsigned UTF-8 byte order of NFC names, independent of declaration or input order.",
@@ -509,8 +510,8 @@
           }
         ]
       },
-      "expected_ace1_utf8": "{\"value\":null}",
-      "expected_bytes_hex": "7b2276616c7565223a6e756c6c7d"
+      "expected_ace1_utf8": "{\"value\":{\"none\":null}}",
+      "expected_bytes_hex": "7b2276616c7565223a7b226e6f6e65223a6e756c6c7d7d"
     },
     {
       "case_id": "record/with-option-some",
@@ -540,8 +541,8 @@
           }
         ]
       },
-      "expected_ace1_utf8": "{\"value\":\"present\"}",
-      "expected_bytes_hex": "7b2276616c7565223a2270726573656e74227d"
+      "expected_ace1_utf8": "{\"value\":{\"some\":\"present\"}}",
+      "expected_bytes_hex": "7b2276616c7565223a7b22736f6d65223a2270726573656e74227d7d"
     },
     {
       "case_id": "record/with-null-field",
@@ -973,8 +974,8 @@
           "string": "x"
         }
       },
-      "expected_ace1_utf8": "\"x\"",
-      "expected_bytes_hex": "227822"
+      "expected_ace1_utf8": "{\"some\":\"x\"}",
+      "expected_bytes_hex": "7b22736f6d65223a2278227d"
     },
     {
       "case_id": "option/none-string",
@@ -985,8 +986,8 @@
       "value": {
         "none": null
       },
-      "expected_ace1_utf8": "null",
-      "expected_bytes_hex": "6e756c6c"
+      "expected_ace1_utf8": "{\"none\":null}",
+      "expected_bytes_hex": "7b226e6f6e65223a6e756c6c7d"
     },
     {
       "case_id": "option/int32-in-list",
@@ -1013,8 +1014,8 @@
           }
         ]
       },
-      "expected_ace1_utf8": "[\"1\",null,\"3\"]",
-      "expected_bytes_hex": "5b2231222c6e756c6c2c2233225d"
+      "expected_ace1_utf8": "[{\"some\":\"1\"},{\"none\":null},{\"some\":\"3\"}]",
+      "expected_bytes_hex": "5b7b22736f6d65223a2231227d2c7b226e6f6e65223a6e756c6c7d2c7b22736f6d65223a2233227d5d"
     },
     {
       "case_id": "option/record-some",
@@ -1054,8 +1055,8 @@
           ]
         }
       },
-      "expected_ace1_utf8": "{\"x\":\"1\",\"y\":\"2\"}",
-      "expected_bytes_hex": "7b2278223a2231222c2279223a2232227d"
+      "expected_ace1_utf8": "{\"some\":{\"x\":\"1\",\"y\":\"2\"}}",
+      "expected_bytes_hex": "7b22736f6d65223a7b2278223a2231222c2279223a2232227d7d"
     }
   ]
 }

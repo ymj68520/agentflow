@@ -192,6 +192,7 @@ fn value_from_fx(v: &Json) -> Result<Value, AceError> {
 struct GoldenFile {
     #[allow(dead_code)]
     kind: String,
+    corpus_revision: u64,
     cases: Vec<GoldenCase>,
 }
 
@@ -210,9 +211,17 @@ struct GoldenCase {
     equivalent_to: Option<String>,
 }
 
+/// Frozen corpus revision this harness is written against. Bumping the
+/// corpus requires consciously updating this constant.
+const CORPUS_REVISION: u64 = 2;
+
 fn run_golden_file(file_name: &str) {
     let file: GoldenFile = serde_json::from_value(load_json(file_name))
         .unwrap_or_else(|e| panic!("{file_name} is not a valid golden file: {e}"));
+    assert_eq!(
+        file.corpus_revision, CORPUS_REVISION,
+        "{file_name}: corpus revision mismatch (regenerate the corpus)"
+    );
     assert!(!file.cases.is_empty(), "{file_name} must not be empty");
 
     // Determinism: the whole corpus is executed twice; results must be
@@ -317,6 +326,7 @@ fn golden_collections() {
 struct NegativeFile {
     #[allow(dead_code)]
     kind: String,
+    corpus_revision: u64,
     cases: Vec<NegativeCase>,
 }
 
@@ -339,6 +349,10 @@ struct NegativeCase {
 fn negative_encoding() {
     let file: NegativeFile = serde_json::from_value(load_json("negative.json"))
         .expect("negative.json is a valid negative file");
+    assert_eq!(
+        file.corpus_revision, CORPUS_REVISION,
+        "negative.json: corpus revision mismatch (regenerate the corpus)"
+    );
     assert!(!file.cases.is_empty());
 
     let mut encoder_cases = 0usize;
