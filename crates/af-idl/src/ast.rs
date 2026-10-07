@@ -9,13 +9,38 @@ use crate::primitives::Primitive;
 use crate::span::SourceSpan;
 use crate::specification::SpecificationId;
 
-/// A parsed AFIDL1 module: language declaration, schema family identity and
-/// the declarations of the compilation unit (source order).
+/// A parsed AFIDL1 module: language declaration, schema family identity, the
+/// module header's import declarations (source order) and the declarations of
+/// the compilation unit (source order).
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Module {
     pub language_version: u32,
     pub schema: SchemaDecl,
+    /// Import declarations, exactly as written. They are a *source resolution
+    /// aid*: they never enter a canonical TypeSchema and never influence a
+    /// TypeSchemaDigest (AF-AFIDL-0023, AF-AFIDL-0024).
+    pub imports: Vec<ImportDecl>,
     pub declarations: Vec<Decl>,
+}
+
+impl Module {
+    /// The import alias → specification id table of the module header, in
+    /// source order. Duplicate aliases are preserved here; they are a
+    /// validation error (`duplicate_import_alias`).
+    pub fn import_table(&self) -> Vec<(&str, &SpecificationId)> {
+        self.imports
+            .iter()
+            .map(|import| (import.alias.as_str(), &import.id))
+            .collect()
+    }
+}
+
+/// One `import <SpecificationId> as <alias>;` declaration.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ImportDecl {
+    pub id: SpecificationId,
+    pub alias: String,
+    pub span: SourceSpan,
 }
 
 /// The single `schema <id> @<major>;` declaration of the module.
@@ -132,7 +157,20 @@ pub enum TypeExprKind {
     /// Unknown lowercase identifiers land here and fail resolution if they
     /// are not declared (no "maybe primitive" acceptance).
     NamedRef(String),
+    /// A qualified reference `<import-alias>.<TYPE-NAME>` to a type declared
+    /// in an explicitly imported module. This is a *source* form: after
+    /// resolution it becomes the ordinary full logical identity
+    /// `<SpecificationId>/<TypeName>` and the import alias disappears.
+    QualifiedNamedRef(QualifiedRef),
     List(Box<TypeExpr>),
     MapString(Box<TypeExpr>),
     Option(Box<TypeExpr>),
+}
+
+/// A source-level qualified type reference: import alias plus type name.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct QualifiedRef {
+    pub import_alias: String,
+    pub type_name: String,
+    pub span: SourceSpan,
 }

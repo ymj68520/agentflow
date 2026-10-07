@@ -30,6 +30,18 @@ pub mod kind {
     pub const UNKNOWN_TYPE_REFERENCE: &str = "unknown_type_reference";
     pub const ALIAS_CYCLE: &str = "alias_cycle";
     pub const RECURSIVE_TYPE_NOT_SUPPORTED: &str = "recursive_type_not_supported";
+    pub const INVALID_IMPORT_ALIAS: &str = "invalid_import_alias";
+    pub const DUPLICATE_IMPORT_ALIAS: &str = "duplicate_import_alias";
+    pub const DUPLICATE_IMPORT_SPECIFICATION: &str = "duplicate_import_specification";
+    pub const SELF_IMPORT: &str = "self_import";
+    pub const UNKNOWN_IMPORT_SPECIFICATION: &str = "unknown_import_specification";
+    pub const UNKNOWN_IMPORT_ALIAS: &str = "unknown_import_alias";
+    pub const UNKNOWN_IMPORTED_TYPE: &str = "unknown_imported_type";
+    pub const QUALIFIED_PRIMITIVE_REFERENCE: &str = "qualified_primitive_reference";
+    pub const IMPORT_AFTER_DECLARATION: &str = "import_after_declaration";
+    pub const UNQUALIFIED_IMPORTED_REFERENCE: &str = "unqualified_imported_reference";
+    pub const CROSS_MODULE_RECURSIVE_TYPE: &str = "cross_module_recursive_type";
+    pub const DUPLICATE_MODULE_SPECIFICATION: &str = "duplicate_module_specification";
 }
 
 /// AFIDL1 lexing, parsing and validation errors. Every error carries the
@@ -128,6 +140,66 @@ pub enum AfidlError {
         type_name: String,
         span: SourceSpan,
     },
+    /// An import alias outside `[a-z][a-z0-9_]*` or using a reserved keyword.
+    InvalidImportAlias {
+        alias: String,
+        span: SourceSpan,
+    },
+    DuplicateImportAlias {
+        alias: String,
+        span: SourceSpan,
+    },
+    DuplicateImportSpecification {
+        id: String,
+        span: SourceSpan,
+    },
+    SelfImport {
+        id: String,
+        span: SourceSpan,
+    },
+    /// The import names an exact `SpecificationId` that the explicitly
+    /// supplied schema universe does not contain.
+    UnknownImportSpecification {
+        id: String,
+        span: SourceSpan,
+    },
+    UnknownImportAlias {
+        alias: String,
+        span: SourceSpan,
+    },
+    UnknownImportedType {
+        specification: String,
+        type_name: String,
+        span: SourceSpan,
+    },
+    /// A qualified reference named a builtin primitive (`core.int64`);
+    /// primitives are spelled bare.
+    QualifiedPrimitiveReference {
+        keyword: String,
+        span: SourceSpan,
+    },
+    ImportAfterDeclaration {
+        span: SourceSpan,
+    },
+    /// A local reference matched a type that is only declared in an imported
+    /// module: external types must be qualified.
+    UnqualifiedImportedReference {
+        type_name: String,
+        specification: String,
+        alias: String,
+        span: SourceSpan,
+    },
+    /// A named-type reference cycle crossing a module boundary.
+    CrossModuleRecursiveType {
+        cycle: Vec<String>,
+        span: SourceSpan,
+    },
+    /// A module set contains two modules with the same schema family.
+    DuplicateModuleSpecification {
+        id: String,
+        label: String,
+        span: SourceSpan,
+    },
 }
 
 impl AfidlError {
@@ -155,6 +227,18 @@ impl AfidlError {
             AfidlError::UnknownTypeReference { .. } => kind::UNKNOWN_TYPE_REFERENCE,
             AfidlError::AliasCycle { .. } => kind::ALIAS_CYCLE,
             AfidlError::RecursiveTypeNotSupported { .. } => kind::RECURSIVE_TYPE_NOT_SUPPORTED,
+            AfidlError::InvalidImportAlias { .. } => kind::INVALID_IMPORT_ALIAS,
+            AfidlError::DuplicateImportAlias { .. } => kind::DUPLICATE_IMPORT_ALIAS,
+            AfidlError::DuplicateImportSpecification { .. } => kind::DUPLICATE_IMPORT_SPECIFICATION,
+            AfidlError::SelfImport { .. } => kind::SELF_IMPORT,
+            AfidlError::UnknownImportSpecification { .. } => kind::UNKNOWN_IMPORT_SPECIFICATION,
+            AfidlError::UnknownImportAlias { .. } => kind::UNKNOWN_IMPORT_ALIAS,
+            AfidlError::UnknownImportedType { .. } => kind::UNKNOWN_IMPORTED_TYPE,
+            AfidlError::QualifiedPrimitiveReference { .. } => kind::QUALIFIED_PRIMITIVE_REFERENCE,
+            AfidlError::ImportAfterDeclaration { .. } => kind::IMPORT_AFTER_DECLARATION,
+            AfidlError::UnqualifiedImportedReference { .. } => kind::UNQUALIFIED_IMPORTED_REFERENCE,
+            AfidlError::CrossModuleRecursiveType { .. } => kind::CROSS_MODULE_RECURSIVE_TYPE,
+            AfidlError::DuplicateModuleSpecification { .. } => kind::DUPLICATE_MODULE_SPECIFICATION,
         }
     }
 
@@ -181,7 +265,19 @@ impl AfidlError {
             | AfidlError::EmptyEnum { span, .. }
             | AfidlError::UnknownTypeReference { span, .. }
             | AfidlError::AliasCycle { span, .. }
-            | AfidlError::RecursiveTypeNotSupported { span, .. } => Some(*span),
+            | AfidlError::RecursiveTypeNotSupported { span, .. }
+            | AfidlError::InvalidImportAlias { span, .. }
+            | AfidlError::DuplicateImportAlias { span, .. }
+            | AfidlError::DuplicateImportSpecification { span, .. }
+            | AfidlError::SelfImport { span, .. }
+            | AfidlError::UnknownImportSpecification { span, .. }
+            | AfidlError::UnknownImportAlias { span, .. }
+            | AfidlError::UnknownImportedType { span, .. }
+            | AfidlError::QualifiedPrimitiveReference { span, .. }
+            | AfidlError::ImportAfterDeclaration { span }
+            | AfidlError::UnqualifiedImportedReference { span, .. }
+            | AfidlError::CrossModuleRecursiveType { span, .. }
+            | AfidlError::DuplicateModuleSpecification { span, .. } => Some(*span),
         }
     }
 }
@@ -320,6 +416,94 @@ impl fmt::Display for AfidlError {
                     "recursive type reference reachable from {type_name:?} at {span}; \
                      AFIDL1 core rejects direct and indirect structural recursion \
                      (Phase 2A scoped restriction)"
+                )
+            }
+            AfidlError::InvalidImportAlias { alias, span } => {
+                write!(
+                    f,
+                    "invalid import alias {alias:?} at {span}; aliases are \
+                     [a-z][a-z0-9_]* and may not be reserved keywords"
+                )
+            }
+            AfidlError::DuplicateImportAlias { alias, span } => {
+                write!(f, "duplicate import alias {alias:?} at {span}")
+            }
+            AfidlError::DuplicateImportSpecification { id, span } => {
+                write!(
+                    f,
+                    "specification {id:?} is imported twice at {span}; one module \
+                     holds at most one source alias per specification family"
+                )
+            }
+            AfidlError::SelfImport { id, span } => {
+                write!(
+                    f,
+                    "module imports its own specification {id:?} at {span}; local \
+                     types are referenced unqualified"
+                )
+            }
+            AfidlError::UnknownImportSpecification { id, span } => {
+                write!(
+                    f,
+                    "import of {id:?} at {span} cannot be resolved: the supplied \
+                     schema universe contains no module with that exact \
+                     SpecificationId"
+                )
+            }
+            AfidlError::UnknownImportAlias { alias, span } => {
+                write!(f, "unknown import alias {alias:?} at {span}")
+            }
+            AfidlError::UnknownImportedType {
+                specification,
+                type_name,
+                span,
+            } => {
+                write!(
+                    f,
+                    "imported module {specification} declares no type {type_name:?} \
+                     at {span}"
+                )
+            }
+            AfidlError::QualifiedPrimitiveReference { keyword, span } => {
+                write!(
+                    f,
+                    "qualified primitive reference at {span}; {keyword:?} is a \
+                     builtin primitive and is always spelled bare"
+                )
+            }
+            AfidlError::ImportAfterDeclaration { span } => {
+                write!(
+                    f,
+                    "import declaration at {span} appears after a type \
+                     declaration; imports belong to the module header"
+                )
+            }
+            AfidlError::UnqualifiedImportedReference {
+                type_name,
+                specification,
+                alias,
+                span,
+            } => {
+                write!(
+                    f,
+                    "unqualified reference {type_name:?} at {span} matches a type \
+                     declared in {specification}; external references must be \
+                     qualified as {alias}.{type_name}"
+                )
+            }
+            AfidlError::CrossModuleRecursiveType { cycle, span } => {
+                write!(
+                    f,
+                    "cross-module recursive type reference {} at {span}; the named-type \
+                     dependency graph must be acyclic across modules",
+                    cycle.join(" -> ")
+                )
+            }
+            AfidlError::DuplicateModuleSpecification { id, label, span } => {
+                write!(
+                    f,
+                    "schema family {id} is declared by more than one module in the \
+                     supplied module set at {span} ({label})"
                 )
             }
         }

@@ -7,8 +7,8 @@
 //! rejected fail-closed; there is no unknown-node storage.
 
 use crate::ast::{
-    AliasDecl, Decl, EnumDecl, EnumValueDecl, FieldDecl, Module, RecordDecl, SchemaDecl, TypeExpr,
-    TypeExprKind, VariantCaseDecl, VariantDecl,
+    AliasDecl, Decl, EnumDecl, EnumValueDecl, FieldDecl, ImportDecl, Module, QualifiedRef,
+    RecordDecl, SchemaDecl, TypeExpr, TypeExprKind, VariantCaseDecl, VariantDecl,
 };
 use crate::error::AfidlError;
 use crate::lexer::{Token, TokenKind, lex};
@@ -26,6 +26,37 @@ pub fn parse(source: &str) -> Result<Module, AfidlError> {
     parser.module()
 }
 
+/// Keywords an import alias must never shadow (AF-AFIDL-0018): the declaration
+/// keywords, the composite markers and the closed primitive universe. The set
+/// is frozen with the grammar — it is exactly the words that carry structural
+/// meaning in a type position.
+pub const RESERVED_IMPORT_ALIASES: &[&str] = &[
+    "afidl",
+    "schema",
+    "import",
+    "as",
+    "alias",
+    "enum",
+    "record",
+    "variant",
+    "list",
+    "map",
+    "option",
+    "unit",
+    "null",
+    "bool",
+    "int32",
+    "uint32",
+    "int64",
+    "uint64",
+    "decimal",
+    "float64",
+    "string",
+    "bytes",
+    "timestamp",
+    "duration",
+];
+
 struct Parser<'a> {
     tokens: &'a [Token],
     pos: usize,
@@ -34,6 +65,10 @@ struct Parser<'a> {
 impl Parser<'_> {
     fn peek(&self) -> Option<&Token> {
         self.tokens.get(self.pos)
+    }
+
+    fn lookup(&self, offset: usize) -> Option<&Token> {
+        self.tokens.get(self.pos + offset)
     }
 
     fn bump(&mut self) -> Token {
@@ -164,15 +199,35 @@ impl Parser<'_> {
             span: SourceSpan::merge(schema_kw, id_end),
         };
 
+        let mut imports = Vec::new();
         let mut declarations = Vec::new();
+        let mut seen_declaration = false;
         loop {
             match self.peek() {
                 None => break,
                 Some(t) if t.kind == TokenKind::LowerIdent => match t.text.as_str() {
-                    "alias" => declarations.push(Decl::Alias(self.alias_decl()?)),
-                    "enum" => declarations.push(Decl::Enum(self.enum_decl()?)),
-                    "record" => declarations.push(Decl::Record(self.record_decl()?)),
-                    "variant" => declarations.push(Decl::Variant(self.variant_decl()?)),
+                    // `import` is a header keyword: it may not appear once a
+                    // type declaration has been parsed (AF-AFIDL-0021).
+                    "import" if seen_declaration => {
+                        return Err(AfidlError::ImportAfterDeclaration { span: t.span });
+                    }
+                    "import" => imports.push(self.import_decl()?),
+                    "alias" => {
+                        seen_declaration = true;
+                        declarations.push(Decl::Alias(self.alias_decl()?));
+                    }
+                    "enum" => {
+                        seen_declaration = true;
+                        declarations.push(Decl::Enum(self.enum_decl()?));
+                    }
+                    "record" => {
+                        seen_declaration = true;
+                        declarations.push(Decl::Record(self.record_decl()?));
+                    }
+                    "variant" => {
+                        seen_declaration = true;
+                        declarations.push(Decl::Variant(self.variant_decl()?));
+                    }
                     // A module declares its schema identity exactly once.
                     "schema" => {
                         return Err(AfidlError::DuplicateSchemaDeclaration { span: t.span });
@@ -195,8 +250,49 @@ impl Parser<'_> {
         Ok(Module {
             language_version: AFIDL1_VERSION,
             schema,
+            imports,
             declarations,
         })
+    }
+
+    /// Parses `import <SPECIFICATION-ID> as <alias>;`.
+    fn import_decl(&mut self) -> Result<ImportDecl, AfidlError> {
+        let kw = self.expect_keyword("import")?;
+        let id = self.specification_id()?;
+        self.expect_keyword("as")?;
+        let alias = self.import_alias()?;
+        let end = self.expect_punct(TokenKind::Semicolon, "';' after the import declaration")?;
+        Ok(ImportDecl {
+            id,
+            alias,
+            span: SourceSpan::merge(kw, end),
+        })
+    }
+
+    /// Parses an import alias: `[a-z][a-z0-9_]*`, no hyphens and no reserved
+    /// keyword (AF-AFIDL-0018).
+    fn import_alias(&mut self) -> Result<String, AfidlError> {
+        match self.peek() {
+            Some(t) if t.kind == TokenKind::LowerIdent => {
+                let token = self.bump();
+                let mut bytes = token.text.bytes();
+                let first_ok = bytes.next().is_some_and(|b| b.is_ascii_lowercase());
+                let rest_ok =
+                    bytes.all(|b| b.is_ascii_lowercase() || b.is_ascii_digit() || b == b'_');
+                if !first_ok || !rest_ok || RESERVED_IMPORT_ALIASES.contains(&token.text.as_str()) {
+                    return Err(AfidlError::InvalidImportAlias {
+                        alias: token.text,
+                        span: token.span,
+                    });
+                }
+                Ok(token.text)
+            }
+            Some(t) => Err(AfidlError::InvalidImportAlias {
+                alias: t.text.clone(),
+                span: t.span,
+            }),
+            None => Err(self.err_parse("expected an import alias, found end of file")),
+        }
     }
 
     /// Assembles `ns-segment ("." ns-segment)* "@" major` from tokens and
@@ -430,6 +526,15 @@ impl Parser<'_> {
                 })
             }
             TokenKind::LowerIdent => match token.text.as_str() {
+                // A lowercase identifier directly followed by '.' is a
+                // qualified reference to an imported module's type. Local
+                // declarations are UpperCamelCase, so this is unambiguous.
+                _ if self
+                    .lookup(1)
+                    .is_some_and(|next| next.kind == TokenKind::Dot) =>
+                {
+                    self.qualified_ref()
+                }
                 "list" => {
                     self.bump();
                     self.expect_punct(TokenKind::LessThan, "'<' after 'list'")?;
@@ -494,6 +599,48 @@ impl Parser<'_> {
                 detail: format!("expected a type, found {:?}", token.text),
                 span: token.span,
             }),
+        }
+    }
+
+    /// Parses `<import-alias> "." <TYPE-NAME>` — the only source form that can
+    /// name a type from another module (AF-AFIDL-0019, AF-AFIDL-0020).
+    ///
+    /// A qualified reference to a builtin primitive (`core.int64`) is rejected
+    /// here rather than at resolution: primitives are always spelled bare and
+    /// no module can export them (AF-AFIDL-0022).
+    fn qualified_ref(&mut self) -> Result<TypeExpr, AfidlError> {
+        let alias = self.bump();
+        self.expect_punct(TokenKind::Dot, "'.' after the import alias")?;
+        let span = alias.span;
+        match self.peek() {
+            Some(t) if t.kind == TokenKind::UpperIdent => {
+                let name = self.bump();
+                Ok(TypeExpr {
+                    kind: TypeExprKind::QualifiedNamedRef(QualifiedRef {
+                        import_alias: alias.text,
+                        type_name: name.text,
+                        span: SourceSpan::merge(alias.span, name.span),
+                    }),
+                    span: SourceSpan::merge(alias.span, name.span),
+                })
+            }
+            Some(t)
+                if t.kind == TokenKind::LowerIdent
+                    && Primitive::from_keyword(&t.text).is_some() =>
+            {
+                Err(AfidlError::QualifiedPrimitiveReference {
+                    keyword: t.text.clone(),
+                    span: SourceSpan::merge(span, t.span),
+                })
+            }
+            Some(t) => Err(AfidlError::Parse {
+                detail: format!(
+                    "qualified references name an UpperCamelCase type, found {:?}",
+                    t.text
+                ),
+                span: t.span,
+            }),
+            None => Err(self.err_parse("qualified reference ended at end of file")),
         }
     }
 }
