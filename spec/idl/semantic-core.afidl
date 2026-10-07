@@ -1,0 +1,251 @@
+afidl 1;
+
+schema agentflow.semantic.core @1;
+
+// AgentFlow workflow semantic core — normative shape of the Phase 3A semantic
+// data ABI (spec/semantic/core-semantic-types.md).
+//
+// This module is the machine description of the objects every later layer
+// (Semantic IR, Plan, Task Contract, Run Parameters, Value Store, Reducer)
+// references. It defines ONLY the semantic data foundation:
+//
+//   - the 9-member workflow primitive universe (narrower than the 13 AFIDL
+//     machine primitives: int32/uint32/uint64/float64 are machine-only and
+//     cannot be named here at all — SemanticPrimitiveType is closed);
+//   - the document-local semantic type DAG (indexed nodes, no recursive AFIDL);
+//   - exact digest-pinned schema references;
+//   - immutable SSA value slots and primitive constants;
+//   - closed pure expressions;
+//   - logical resource requirement slots.
+//
+// Not present here, deliberately: workflow computation nodes (INVOKE, AWAIT,
+// SEQUENCE, SELECT, PARALLEL, RACE, ITERATE, RETRY, TIMEOUT, HANDLE, SCOPE,
+// COMPENSATION_SCOPE, CALL_SUBFLOW), SemanticIRDocument, executable plans,
+// journal events, runtime commands, resource handles.
+//
+// AUXILIARY PAYLOAD RECORDS. AFIDL1 has no inline record types, so each
+// composite variant payload is a named record. Their only purpose is to carry
+// a variant case's fields; they are not independent domain objects. Only
+// `EqualsBody` / `AndBody` / `OrBody` are shape-identical, and they are kept
+// distinct so every case's payload is self-describing in the schema itself.
+//
+// This module self-hosts like specification-registry.afidl: its field/case/
+// value numbering is registered as `active` rows in
+// spec/registry/abi-numbers.json, and its per-type TypeSchemaDigests are frozen
+// in the AFIDL corpus (case `semantic-core`, additive revision 3). No new
+// HashV1 domain is introduced: type identity is TypeSchemaDigest.
+
+// ---------------------------------------------------------------------------
+// Local identity namespaces
+// ---------------------------------------------------------------------------
+
+// Four independent namespaces. All four are u32 underneath and all four are
+// distinct nominal types: identical numbers in two namespaces denote unrelated
+// objects. A value of 0 is representable and is rejected by validation.
+alias SemanticTypeId = uint32;
+alias ValueSlotId = uint32;
+alias ExpressionId = uint32;
+alias ResourceSlotId = uint32;
+
+// ---------------------------------------------------------------------------
+// Workflow primitive universe
+// ---------------------------------------------------------------------------
+
+// value_no 1..9, frozen in this order. Shared-name primitives keep the AFIDL
+// machine keyword; the four machine-only primitives are absent by construction.
+enum SemanticPrimitiveType {
+  1 unit;
+  2 null;
+  3 bool;
+  4 int64;
+  5 decimal;
+  6 string;
+  7 bytes;
+  8 timestamp;
+  9 duration;
+}
+
+// The single AFIDL representation of a digest reference. Every future
+// Plan/Journal/Value object reuses it; a bare `digest: string` is forbidden.
+// Validation requires algorithm == "sha256", a domain from the frozen HashV1
+// registry (type-schema for a TypeSchemaRef) and 64 lowercase hex characters.
+record DigestRefValue {
+  1 algorithm: string;
+  2 domain: string;
+  3 hex: string;
+}
+
+// An exact pin of a named AFIDL type: identity plus the TypeSchemaDigest it was
+// authored against. Re-resolving "the latest" schema of that name is forbidden.
+record TypeSchemaRef {
+  1 specification_id: string;
+  2 type_name: string;
+  3 schema_digest: DigestRefValue;
+}
+
+// ---------------------------------------------------------------------------
+// Semantic type DAG
+// ---------------------------------------------------------------------------
+
+// One node body. `schema` is a leaf pin; list/map_string/option reference
+// another node of the same document by SemanticTypeId, which expresses
+// arbitrary finite nesting without recursive AFIDL schemas. The DAG must be
+// acyclic and every reference must resolve.
+variant SemanticTypeNodeBody {
+  1 primitive: SemanticPrimitiveType;
+  2 schema: TypeSchemaRef;
+  3 list: SemanticTypeId;
+  4 map_string: SemanticTypeId;
+  5 option: SemanticTypeId;
+}
+
+record SemanticTypeNode {
+  1 id: SemanticTypeId;
+  2 body: SemanticTypeNodeBody;
+}
+
+// ---------------------------------------------------------------------------
+// Value slots and primitive constants
+// ---------------------------------------------------------------------------
+
+// Immutable SSA binding: one id, one type, one producer (Phase 3B). There is no
+// mutation operation; loop-carried values appear as new value versions.
+record ValueSlot {
+  1 id: ValueSlotId;
+  2 type: SemanticTypeId;
+}
+
+// The only literal form. Cases map 1:1 onto SemanticPrimitiveType, so a
+// constant carries no redundant type field. Composite values are built by
+// expressions. bytes payloads are canonical unpadded base64url.
+variant PrimitiveConstant {
+  1 unit: unit;
+  2 null: null;
+  3 bool: bool;
+  4 int64: int64;
+  5 decimal: decimal;
+  6 string: string;
+  7 bytes: bytes;
+  8 timestamp: timestamp;
+  9 duration: duration;
+}
+
+// ---------------------------------------------------------------------------
+// Pure expressions
+// ---------------------------------------------------------------------------
+
+record RecordFieldExpr {
+  1 field_no: uint32;
+  2 expr_id: ExpressionId;
+}
+
+record MapEntryExpr {
+  1 key: string;
+  2 value_expr: ExpressionId;
+}
+
+record RecordConstructBody {
+  1 schema: TypeSchemaRef;
+  2 fields: list<RecordFieldExpr>;
+}
+
+record VariantConstructBody {
+  1 schema: TypeSchemaRef;
+  2 case_no: uint32;
+  3 payload_expr: ExpressionId;
+}
+
+record EnumValueBody {
+  1 schema: TypeSchemaRef;
+  2 value_no: uint32;
+}
+
+record ListConstructBody {
+  1 element_type: SemanticTypeId;
+  2 elements: list<ExpressionId>;
+}
+
+record MapConstructBody {
+  1 value_type: SemanticTypeId;
+  2 entries: list<MapEntryExpr>;
+}
+
+record OptionNoneBody {
+  1 inner_type: SemanticTypeId;
+}
+
+record OptionSomeBody {
+  1 payload_expr: ExpressionId;
+}
+
+record FieldGetBody {
+  1 record: ExpressionId;
+  2 field_no: uint32;
+}
+
+record EqualsBody {
+  1 left: ExpressionId;
+  2 right: ExpressionId;
+}
+
+record NotBody {
+  1 operand: ExpressionId;
+}
+
+record AndBody {
+  1 left: ExpressionId;
+  2 right: ExpressionId;
+}
+
+record OrBody {
+  1 left: ExpressionId;
+  2 right: ExpressionId;
+}
+
+record IfThenElseBody {
+  1 condition: ExpressionId;
+  2 then_expr: ExpressionId;
+  3 else_expr: ExpressionId;
+}
+
+// The closed Phase 3A body set. Expressions are pure and total once well
+// typed: no arithmetic, no indexing, no variant inspection, no fallible
+// operation, no effect. `if_then_else` is a value expression, never workflow
+// SELECT. and/or are binary so operands cannot be silently reordered.
+variant ExpressionBody {
+  1 constant: PrimitiveConstant;
+  2 value_slot: ValueSlotId;
+  3 record_construct: RecordConstructBody;
+  4 variant_construct: VariantConstructBody;
+  5 enum_value: EnumValueBody;
+  6 list_construct: ListConstructBody;
+  7 map_construct: MapConstructBody;
+  8 option_none: OptionNoneBody;
+  9 option_some: OptionSomeBody;
+  10 field_get: FieldGetBody;
+  11 equals: EqualsBody;
+  12 not: NotBody;
+  13 and: AndBody;
+  14 or: OrBody;
+  15 if_then_else: IfThenElseBody;
+}
+
+// The declared result_type is ABI clarity: the validator requires
+// derived_type == declared result_type and rejects divergence.
+record ExpressionDef {
+  1 id: ExpressionId;
+  2 result_type: SemanticTypeId;
+  3 body: ExpressionBody;
+}
+
+// ---------------------------------------------------------------------------
+// Logical resource slots
+// ---------------------------------------------------------------------------
+
+// A logical requirement declaration, never a live handle. Its own namespace:
+// values never travel through resource slots. requirement_type pins a resource
+// *contract* schema, hence a TypeSchemaRef rather than a SemanticTypeId.
+record ResourceSlot {
+  1 id: ResourceSlotId;
+  2 requirement_type: TypeSchemaRef;
+}
