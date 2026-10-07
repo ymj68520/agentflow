@@ -146,6 +146,100 @@ impl CompiledModuleSet {
         let (id, name) = identity.rsplit_once('/')?;
         self.modules.get(id)?.by_name(name)
     }
+
+    /// Derives the finite ACE1 `Shape` of a named type, expanding named
+    /// references across every module of the set (a qualified source reference
+    /// lowers to a full logical identity, so expansion simply follows those
+    /// identities into the declaring module).
+    ///
+    /// Termination is guaranteed by [`compile_module_set`]'s global
+    /// named-type acyclicity validation: the reference graph this walk follows
+    /// is exactly the graph that was proven acyclic.
+    ///
+    /// # Errors
+    /// [`AfidlError::UnknownTypeReference`] when `identity` (or a reference
+    /// inside its expansion) is not part of the set.
+    pub fn shape_of(&self, identity: &str) -> Result<af_core::Shape, AfidlError> {
+        let schema_type = self
+            .type_by_identity(identity)
+            .ok_or_else(|| unknown_identity(identity))?;
+        let mut memo: BTreeMap<String, af_core::Shape> = BTreeMap::new();
+        Self::body_shape(self, &schema_type.name, &schema_type.body, &mut memo)
+    }
+
+    fn body_shape(
+        set: &Self,
+        name: &str,
+        body: &crate::canonical::CanonicalBody,
+        memo: &mut BTreeMap<String, af_core::Shape>,
+    ) -> Result<af_core::Shape, AfidlError> {
+        use crate::canonical::CanonicalBody;
+        Ok(match body {
+            CanonicalBody::Alias(target) => Self::expr_shape(set, target, memo)?,
+            CanonicalBody::Enum(values) => af_core::Shape::Enum(af_core::EnumShape::new(
+                name,
+                values.iter().map(|value| value.name.clone()),
+            )),
+            CanonicalBody::Record(fields) => {
+                let mut members = Vec::with_capacity(fields.len());
+                for field in fields {
+                    members.push((
+                        field.name.clone(),
+                        Self::expr_shape(set, &field.type_expr, memo)?,
+                    ));
+                }
+                af_core::Shape::Record(af_core::RecordShape::new(name, members))
+            }
+            CanonicalBody::Variant(cases) => {
+                let mut members = Vec::with_capacity(cases.len());
+                for case in cases {
+                    members.push((
+                        case.name.clone(),
+                        Self::expr_shape(set, &case.type_expr, memo)?,
+                    ));
+                }
+                af_core::Shape::Variant(af_core::VariantShape::new(name, members))
+            }
+        })
+    }
+
+    fn expr_shape(
+        set: &Self,
+        expr: &crate::canonical::CanonicalTypeExpr,
+        memo: &mut BTreeMap<String, af_core::Shape>,
+    ) -> Result<af_core::Shape, AfidlError> {
+        use crate::canonical::CanonicalTypeExpr;
+        Ok(match expr {
+            CanonicalTypeExpr::Primitive(primitive) => primitive.shape(),
+            CanonicalTypeExpr::NamedRef(target_identity) => {
+                if let Some(shape) = memo.get(target_identity) {
+                    return Ok(shape.clone());
+                }
+                let target = set
+                    .type_by_identity(target_identity)
+                    .ok_or_else(|| unknown_identity(target_identity))?;
+                let shape = Self::body_shape(set, &target.name, &target.body, memo)?;
+                memo.insert(target_identity.clone(), shape.clone());
+                shape
+            }
+            CanonicalTypeExpr::List(inner) => {
+                af_core::Shape::List(Box::new(Self::expr_shape(set, inner, memo)?))
+            }
+            CanonicalTypeExpr::MapString(inner) => {
+                af_core::Shape::Map(Box::new(Self::expr_shape(set, inner, memo)?))
+            }
+            CanonicalTypeExpr::Option(inner) => {
+                af_core::Shape::Option(Box::new(Self::expr_shape(set, inner, memo)?))
+            }
+        })
+    }
+}
+
+fn unknown_identity(identity: &str) -> AfidlError {
+    AfidlError::UnknownTypeReference {
+        name: identity.to_string(),
+        span: SourceSpan::new(0, 0, 1, 1),
+    }
 }
 
 /// Resolves one parsed-and-validated module's imports against `universe`.
@@ -766,5 +860,57 @@ mod tests {
         let a = compile(CORE).unwrap();
         let b = crate::compile_with_universe(CORE, &universe).unwrap();
         assert_eq!(a, b);
+    }
+
+    #[test]
+    fn module_set_shapes_expand_across_modules() {
+        let set = compile_module_set(&[
+            ("core.afidl".into(), CORE.into()),
+            ("user.afidl".into(), USER.into()),
+        ])
+        .unwrap();
+        let shape = set.shape_of("agentflow.user@1/Holder").unwrap();
+        shape.validate().expect("cross-module shape is valid");
+        // Holder.reference: core.Ref expands into the core module's fields.
+        let af_core::Shape::Record(record) = &shape else {
+            panic!("record shape expected");
+        };
+        let reference = record
+            .fields
+            .iter()
+            .find(|field| field.name == "reference")
+            .map(|field| &field.shape)
+            .unwrap();
+        assert_eq!(
+            *reference,
+            set.shape_of("agentflow.core@1/Ref").unwrap(),
+            "the qualified reference must expand into the imported module's shape"
+        );
+        // A value of the cross-module type encodes against the derived shape.
+        let value = af_core::Value::Record(vec![
+            (
+                "reference".into(),
+                af_core::Value::Record(vec![("slot".into(), af_core::Value::UInt32(7))]),
+            ),
+            ("name".into(), af_core::Value::String("n".into())),
+        ]);
+        let bytes = af_core::encode(&shape, &value).unwrap();
+        assert_eq!(
+            std::str::from_utf8(&bytes).unwrap(),
+            r#"{"name":"n","reference":{"slot":"7"}}"#
+        );
+    }
+
+    #[test]
+    fn module_set_shape_rejects_foreign_identities() {
+        let set = compile_module_set(&[("core.afidl".into(), CORE.into())]).unwrap();
+        assert_eq!(
+            set.shape_of("agentflow.user@1/Holder").unwrap_err().kind(),
+            crate::error::kind::UNKNOWN_TYPE_REFERENCE
+        );
+        assert_eq!(
+            set.shape_of("agentflow.core@1/Missing").unwrap_err().kind(),
+            crate::error::kind::UNKNOWN_TYPE_REFERENCE
+        );
     }
 }
