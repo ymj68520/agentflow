@@ -1,0 +1,491 @@
+# Canonical Semantic IR — v1
+
+> Status: AgentFlow repository normative source for Phase 3B. This document
+> defines the Canonical Semantic IR: its document structure, the closed
+> 13-opcode `ComputationBody` set, structured ownership, value-producer
+> rules, static interface rules, canonical ordering and the
+> `SemanticIrDigest`. The machine schema is `spec/idl/semantic-ir.afidl`
+> (`agentflow.semantic.ir @1`), the first production consumer of the AFIDL1
+> cross-module import.
+>
+> The Semantic IR is **static**. It is not an executable plan, not a runtime
+> state, and not a journal:
+>
+> ```text
+> Canonical Semantic IR → later Resolver / Static Analysis
+>                      → Resolved / Checked IR
+>                      → Executable Plan
+> ```
+>
+> No worker, region, endpoint, credential, lease, physical implementation or
+> scheduler placement exists in this layer.
+
+## 1. Scope and boundaries
+
+<a id="ir-scope-static-only"></a>
+<a id="ir-no-runtime-semantics"></a>
+<a id="ir-occurrence-not-in-ir"></a>
+
+- The IR defines structure, validation, canonicalization and the document
+  digest only. No interpreter exists in this layer: there is no
+  `execute_sequence()`, `run_retry()`, `choose_select()`, `race_children()` or
+  `schedule_timeout()`, and none may be added here.
+- There are no opcode state machines (`SequenceState`, `RetryState`,
+  `RaceState`, `WaitState`), no runtime commands (`ScheduleTask`, `ArmWait`,
+  `ScheduleTimer`) and no journal events (`SelectCaseChosen`,
+  `RaceWinnerIteration`, `IterationGuardDecision`). Those belong to the later
+  SemanticExecutionState / Reducer / Runtime stages.
+- Runtime occurrence identity (`OccurrencePath`, `AttemptId`,
+  `InvocationId`) does not exist in the IR. Runtime creates occurrences of
+  static definitions; the IR holds only the definitions (e.g. one ITERATE has
+  exactly one body computation definition, never a per-iteration copy).
+
+## 2. Frozen boundaries
+
+This phase does not modify: the ACE1 grammar, HashV1, the AFIDL1 canonical
+TypeSchema model, AFIDL1 import semantics, `agentflow.semantic.core@1` (its 29
+`TypeSchemaDigest`s are reproduced byte-for-byte), the semantic type DAG,
+`ValueSlot`, the 15-expression closed set, or `ResourceSlot`. The frozen
+HashV1 domain registry is unchanged: this phase *begins using* the
+previously frozen `semantic-ir` and `component-contract` domains and
+introduces **no** new domain (no `semantic-ir-document`, `computation`,
+`computation-node`, `workflow-contract`, `subflow-contract`).
+
+## 3. Document structure
+
+<a id="ir-document-structure"></a>
+<a id="ir-semantic-refs"></a>
+<a id="ir-reuse-core-tables"></a>
+<a id="ir-canonical-ordering"></a>
+
+```text
+SemanticIrDocument {
+    semantic_refs    : list<SemanticVersionRef>   ; exact SpecificationId pins
+    types            : list<core.SemanticTypeNode>
+    values           : list<core.ValueSlot>
+    expressions      : list<core.ExpressionDef>
+    resources        : list<core.ResourceSlot>
+    contracts        : list<ContractRefEntry>
+    run_parameters   : list<RunParameterDecl>
+    workflow_outputs : list<WorkflowOutputDecl>
+    computations     : list<ComputationDef>
+    root             : ComputationId
+}
+```
+
+- The four tables `types`/`values`/`expressions`/`resources` reuse the
+  `agentflow.semantic.core@1` objects **by identity** (the AFIDL module
+  imports `agentflow.semantic.core@1 as core`). Redeclaring copies is
+  forbidden. The tables must satisfy the Phase 3A rules; the IR validator
+  runs the core check and fails on any core error.
+- `SemanticVersionRef.specification_id` must be a canonical `SpecificationId`
+  (syntax validated by the IR; registry *knownness* belongs to compiler/spec
+  tooling — `af-ir` never reads `specifications.json`). References are unique
+  and canonically ordered by the unsigned UTF-8 bytes of the canonical
+  SpecificationId.
+- Canonical ordering of every table and nested list is fixed; see §10.
+
+## 4. The closed 13-opcode set
+
+<a id="ir-opcode-set-closed"></a>
+<a id="ir-case-numbers-frozen"></a>
+<a id="ir-call-composite-forbidden"></a>
+<a id="ir-trigger-not-computation"></a>
+
+`ComputationBody` is a closed variant with exactly 13 cases. The `case_no`
+values are durable ABI, frozen in the Stable ABI Number Registry on first
+registration:
+
+| case_no | case | body |
+|---|---|---|
+| 1 | invoke | InvokeBody |
+| 2 | await | AwaitBody |
+| 3 | sequence | SequenceBody |
+| 4 | select | SelectBody |
+| 5 | parallel | ParallelBody |
+| 6 | race | RaceBody |
+| 7 | iterate | IterateBody |
+| 8 | retry | RetryBody |
+| 9 | timeout | TimeoutBody |
+| 10 | handle | HandleBody |
+| 11 | scope | ScopeBody |
+| 12 | compensation_scope | CompensationScopeBody |
+| 13 | call_subflow | CallSubflowBody |
+
+- No agent, model, tool, http, sql, shell, human, mcp or a2a case exists; the
+  variant is closed, so unknown case names are rejected at decoding.
+- **CallComposite is authoring/compiler-only** and MUST NOT appear in
+  canonical IR: the authoring construct is lowered before this layer.
+- **Trigger is not a computation**: triggers belong to deployment binding and
+  have no opcode and no node in the IR.
+
+## 5. Local identities and ports
+
+<a id="ir-local-identities"></a>
+<a id="ir-computation-outputs"></a>
+
+- `ComputationId`, `RunParameterId` and `ContractRefId` are three new id
+  namespaces, independent of each other and of the four Phase 3A namespaces;
+  `PortNo`, `BranchOrdinal` and `HandlerOrdinal` are numbering spaces. All
+  are u32 underneath with distinct nominal types; values are `> 0`, `0` is
+  representable and rejected by validation.
+- A computation's output ports (`ComputationOutputBinding { port_no,
+  value_slot }`) are unique within the computation and `port_no > 0`. The
+  port's type is the bound slot's type — it is never stored a second time
+  (no `port/value/type` drift is possible).
+- Input bindings (`InputBinding { port_no, expression }`) and resource use
+  bindings (`ResourceUseBinding { port_no, resource_slot }`) have unique
+  positive ports; the referenced expression/resource must exist. Full
+  component-contract input matching is a later (contract checking) stage.
+
+## 6. Value producers
+
+<a id="ir-value-producer-uniqueness"></a>
+<a id="ir-expression-not-producer"></a>
+<a id="ir-run-parameter-producer"></a>
+
+Phase 3A froze `ValueSlot` as immutable SSA with one producer; Phase 3B
+checks producers for the first time. The complete producer set is:
+
+```text
+RunParameterDecl.value_slot          run_parameter producer
+ComputationDef.outputs[].value_slot  computation_output producer
+Iterate foreach item_slot            iterate_item producer
+Iterate carry binding slot           iterate_carry producer
+```
+
+- Every declared value slot MUST have exactly one producer:
+  `0 producers → unbound_value_slot`, `>1 producers → duplicate_value_producer`.
+- An `ExpressionDef` is pure derived computation and is **never** a producer:
+  expression ids do not materialize value slots.
+
+### 6.1 Run parameters
+
+<a id="ir-run-parameter-decl"></a>
+<a id="ir-run-parameter-name"></a>
+
+- `RunParameterDecl { id, name, type, value_slot }` is a static workflow
+  input declaration; `parameter.type == value_slot.type` is required.
+- No default value, admission snapshot, mutable parameter, runtime update,
+  constraint or secret flag exists in this layer (Run Admission /
+  RunParameterSnapshot are later stages).
+- `name` is non-empty, NFC-normalized and unique after NFC normalization.
+  Names are user-facing and MAY be any Unicode; canonical order of
+  `run_parameters` is by `RunParameterId`, never by name.
+
+### 6.2 Workflow outputs
+
+<a id="ir-workflow-output"></a>
+
+- `WorkflowOutputDecl { name, expression }`; the output type is the
+  expression's `result_type` and is never duplicated on the output. `name`
+  follows the run-parameter name rules; canonical order is by the unsigned
+  UTF-8 bytes of the NFC-normalized name.
+
+## 7. Closed contract table
+
+<a id="ir-contract-table-closed"></a>
+<a id="ir-component-contract-domain"></a>
+<a id="ir-subflow-contract-domain"></a>
+<a id="ir-contract-identity-unique"></a>
+
+- `ContractRefEntry { id, kind, digest }` with `digest: core.DigestRefValue`.
+  `ContractRefKind` is closed at exactly two members: `component` (1) and
+  `subflow` (2). Policy/effect/resource/signal/worker contract kinds are not
+  designed yet and are not pre-registered.
+- `kind == component` requires `digest = sha256 / component-contract`;
+  `kind == subflow` requires `digest = sha256 / semantic-ir` — CALL_SUBFLOW
+  pins an exact published Semantic IR identity. No `workflow-contract` or
+  `subflow-contract` domain exists; if a distinct WorkflowContract object is
+  ever introduced, that is an explicit specification upgrade.
+- Entries are canonically ordered by `ContractRefId`; duplicate ids are
+  rejected, and **duplicate contract identity** is rejected: one exact
+  contract (`algorithm`, `domain`, `hex`) has at most one table entry per
+  document.
+- Validation covers digest shape, expected domain and uniqueness only. There
+  is no Contract Store in this layer: nothing is loaded by digest.
+
+## 8. Structured ownership
+
+<a id="ir-ownership-tree"></a>
+<a id="ir-child-table"></a>
+<a id="ir-child-unique-parent"></a>
+<a id="ir-root"></a>
+<a id="ir-unreachable"></a>
+<a id="ir-structural-cycle"></a>
+<a id="ir-dataflow-ownership-separation"></a>
+
+- Child references per opcode (the ownership edge set):
+
+```text
+INVOKE             0 local children
+AWAIT              0
+SEQUENCE           N children (order is semantic, preserved)
+SELECT             N cases
+PARALLEL           N branches
+RACE               N branches
+ITERATE            1 body
+RETRY              1 child
+TIMEOUT            1 child
+HANDLE             1 protected child + N handlers
+SCOPE              1 child
+COMPENSATION_SCOPE 1 child
+CALL_SUBFLOW       0 local children
+```
+
+- Hard rules: the root exists; the root has no structural parent; every
+  non-root computation has exactly one parent; every computation is reachable
+  from the root; no ownership cycle (`computation_cycle`); no detached child;
+  a child referenced by two parents is `multiple_structural_parents`; a child
+  listed twice by the same parent is `duplicate_child_reference`. Handlers
+  are owned children of HANDLE; an iterate body is the one owned child of the
+  ITERATE (occurrences are runtime, never static copies).
+- Unreachable computations are rejected (`unreachable_computation`); the
+  compiler must clean or reject dead blocks before canonical IR.
+- **Dataflow edge ≠ ownership edge**: expression→slot and computation→child
+  are different relations handled by different validator logic. There is no
+  universal `Edge` type.
+- Validation order inside the ownership phase is fixed so corpus
+  expectations are stable: root existence (`root == 0` is an id error), then
+  structural cycle (DFS from root), then root-has-parent, then
+  multiple-parents, then reachability.
+
+## 9. Static interface rules
+
+<a id="ir-interface-projection"></a>
+<a id="ir-wrapper-interfaces"></a>
+<a id="ir-leaf-interfaces"></a>
+
+- `ComputationInterface` is a read-only projection `port_no → SemanticTypeId`
+  derived from `outputs[].value_slot → ValueSlot.type`. No second interface
+  table may be stored anywhere.
+- Wrapper equality (parent interface == child interfaces):
+
+```text
+Sequence   == last child
+Select     == every case
+Race       == every branch
+Retry      == child
+Timeout    == child
+Handle     == protected child + every handler
+Scope      == child
+CompScope  == child
+Parallel   by explicit output mapping
+Iterate    by carry/output rules
+```
+
+- Leaves (`Invoke`, `Await`, `CallSubflow`) declare their own interface only;
+  contract-level checking is deferred.
+- Dominance, branch-local value leakage, availability at execution point and
+  cross-branch merge correctness are **Phase 3C**: this phase checks
+  reference existence, producer uniqueness, tree validity and type shapes,
+  and deliberately nothing more.
+
+## 10. Per-opcode static schemas
+
+### 10.1 INVOKE / CALL_SUBFLOW / AWAIT
+
+<a id="ir-invoke-static"></a>
+<a id="ir-call-subflow"></a>
+<a id="ir-await-static"></a>
+
+- INVOKE: `contract` must exist with kind `component`; inputs/resources are
+  port lists as in §5. INVOKE states only "call this exact component
+  contract with these semantic inputs/resources" — no TaskDefinition,
+  TaskBinding, Invocation, Attempt or Worker exists here.
+- CALL_SUBFLOW: `contract` must exist with kind `subflow`; zero local
+  children; no `detach`/`fire_and_forget`/`owned=false` — v1 has no detached
+  children; the subflow is an owned durable child boundary.
+- AWAIT: `signal_type` is an exact digest-pinned `TypeSchemaRef`;
+  `correlation` is an expression. AWAIT is a passive durable wait; no
+  mailbox, timer, webhook or human-approval state exists in this layer. AWAIT
+  has no built-in timeout — compose `TIMEOUT(AWAIT(...))` to keep the frozen
+  composition semantics.
+
+### 10.2 SEQUENCE / SELECT
+
+<a id="ir-sequence-order"></a>
+<a id="ir-select-ordinal"></a>
+<a id="ir-select-interfaces"></a>
+
+- SEQUENCE: at least one child; the child list order is the semantic
+  execution order and MUST be preserved (never canonically re-sorted). The
+  parent's output interface equals the last child's output interface; the
+  parent's own output slots are new SSA slots (child→parent value
+  availability/passthrough lowering is Phase 3C).
+- SELECT: the selector expression has type `int64` and produces the *exact*
+  case ordinal to run. There is no truthiness matching, no source-order
+  matching and no fall-through: the case ordinal is semantic ABI. Ordinals
+  are `> 0`, unique, canonically ascending; at least one case. All case
+  children share the parent's output interface (typed merge shell). No
+  runtime case selection is implemented in this phase.
+
+### 10.3 PARALLEL / RACE
+
+<a id="ir-parallel-structure"></a>
+<a id="ir-parallel-output-mapping"></a>
+<a id="ir-parallel-max-inflight"></a>
+<a id="ir-race-structure"></a>
+
+- `ParallelMode` is closed at `all` (1) and `fail_fast` (2).
+- PARALLEL: at least one branch; ordinals `> 0` and unique, canonically
+  ascending. `max_inflight: option<uint32>` is a **semantic** concurrency
+  bound; `Some(0)` is invalid. Worker count, tenant quota, region capacity
+  and scheduler limits are physical concerns and MUST NOT enter the IR
+  (a physical limit may later be narrower).
+- Parallel output mapping (`parent_port_no, branch_ordinal, child_port_no`):
+  parent ports unique across bindings; branch and child output port must
+  exist; the parent slot's type equals the child output slot's type.
+  Canonically ordered by `parent_port_no`.
+- RACE: at least two branches; ordinals `> 0` and unique. v1 race semantics
+  is exactly FIRST_TERMINAL: there is deliberately no `winner_policy`,
+  `first_success` or `fastest_success`. All branches and the parent share one
+  output interface; the winner is a canonical runtime terminal observation,
+  not static information.
+
+### 10.4 ITERATE
+
+<a id="ir-iterate-foreach"></a>
+<a id="ir-iterate-while"></a>
+<a id="ir-loop-carry"></a>
+
+- `IterateBody` is a closed variant with exactly `foreach` (1) and `while`
+  (2). This is a mode selector inside `ComputationBody.iterate`, not a
+  fourteenth opcode.
+- FOREACH: the source expression has type `list<T>`; the item slot exists,
+  has type `T`, and its producer is this ITERATE; the body exists;
+  `max_inflight` as in PARALLEL. The source expression identifies the
+  collection materialized for iteration; "materialize once" and ordinal
+  iteration identity are runtime semantics.
+- WHILE: the guard has type `bool`; `max_iterations > 0` — v1 has no
+  unbounded while. The guard may reference carry slots; availability and
+  dominance analysis is Phase 3C; this phase checks carry typing and producer
+  uniqueness only.
+- Loop carry (`LoopCarryBinding { slot, initial, body_output_port }`): the
+  slot exists; the initial expression exists; the body output port exists;
+  and `slot.type == initial.result_type == body-output-slot.type`. One
+  binding per carry slot (canonically ordered by slot id). Loops never
+  mutate: the runtime creates a new value occurrence per iteration.
+
+### 10.5 RETRY / TIMEOUT
+
+<a id="ir-retry-schedule"></a>
+<a id="ir-timeout-expression"></a>
+
+- RETRY retries the owned child **computation** (not a task attempt) under an
+  explicit finite delay schedule: attempt #1 runs; on failure wait
+  `delays[0]`; attempt #2; on failure wait `delays[1]`; … The maximum
+  occurrence count is exactly `1 + len(delays)`. This makes retry finite,
+  deterministic and canonical with no wall clock, no random jitter and no
+  runtime policy lookup. The delay list order is semantic and never sorted;
+  each delay is a duration `>= 0` (0 is a legal immediate retry; no fake
+  timer semantics are created for it). The child's output interface equals
+  the parent's.
+- TIMEOUT: `timeout` is a duration-valued expression; the child's output
+  interface equals the parent's. There is no `TimerId`, `TimerState` or
+  `TimerCommand` — only the semantic duration expression is stored.
+  Timer-vs-child competition is runtime semantics.
+
+### 10.6 HANDLE
+
+<a id="ir-handle-match"></a>
+
+- `HandleMatch` is closed at exactly `failure` (typed exact `TypeSchemaRef`
+  match) and `timed_out` (unit payload). There is deliberately no
+  `cancelled`: parent cancellation is not an ordinary failure handler; a
+  fixture attempting it is rejected at decoding.
+- Handler ordinals are `> 0`, unique, canonically ascending; failure clauses
+  must be pairwise disjoint by exact `TypeSchemaRef` (there is no subtyping,
+  so an exact duplicate is a conflict); at most one `timed_out` clause.
+- All handlers and the protected child expose the parent's output interface.
+  Detailed outcome semantics are deferred.
+
+### 10.7 SCOPE / COMPENSATION_SCOPE
+
+<a id="ir-scope-resources"></a>
+<a id="ir-compensation-scope"></a>
+
+- SCOPE: one owned child plus `resources: list<core.ResourceSlotId>` — the
+  logical resources the scope statically owns/allows; they must exist, be
+  unique, and are canonically ascending. This freezes the ownership boundary
+  and resource lexical boundary only: authority attenuation, budget
+  attenuation, deadline state, cancellation state and `ResourceHandle` are
+  later, separately specified tables — no placeholder Any fields are added.
+- COMPENSATION_SCOPE: one owned child. The IR holds NO compensation task
+  list; compensation sources are later derived from committed effect receipts
+  plus effect compensation contracts. A normative rule is registered now:
+  COMPENSATION_SCOPE MUST NOT erase forward computation or effect history.
+
+## 11. Canonical ordering
+
+<a id="ir-canonical-order-table"></a>
+<a id="ir-semantic-order-exceptions"></a>
+
+```text
+semantic_refs              canonical SpecificationId bytes
+types                      SemanticTypeId
+values                     ValueSlotId
+expressions                ExpressionId
+resources                  ResourceSlotId
+contracts                  ContractRefId
+run_parameters             RunParameterId
+workflow_outputs           unsigned UTF-8 bytes of the NFC name
+computations               ComputationId
+Computation.outputs        PortNo
+Invoke/CallSubflow inputs  PortNo
+Invoke/CallSubflow res.    PortNo
+Select.cases               ordinal
+Parallel.branches          ordinal
+Parallel.output_bindings   parent_port_no
+Race.branches              ordinal
+Handle.clauses             ordinal
+Foreach/While.carry        carry slot id
+Scope.resources            ResourceSlotId
+```
+
+The two **semantic-order exceptions** — never sorted: `Sequence.children`
+(execution order) and `Retry.delays` (schedule order).
+
+## 12. SemanticIrDigest
+
+<a id="ir-digest-formula"></a>
+
+```text
+SemanticIrDigest = HashV1("semantic-ir", ACE1(CanonicalSemanticIrDocument))
+                 = SHA256("AF\0" || "semantic-ir" || "\0" || canonical_bytes)
+```
+
+- The domain `semantic-ir` is the Phase 1 frozen registry entry, used from
+  this phase onward. No other domain is touched; in particular
+  `TypeSchemaDigest` continues to hash schemas under `type-schema`.
+- The digest hashes the **canonical** document, so table source order never
+  affects it, while any semantic-order change (sequence children, retry
+  delays, per-body configuration) does.
+- The ACE1 shape is derived from the normative schema module set
+  (`agentflow.semantic.ir@1` + the imported `agentflow.semantic.core@1`) by
+  cross-module expansion; the value tree mirrors the AFIDL schema
+  field-for-field.
+
+## 13. Explicitly deferred (Phase 3C and later)
+
+The following are **not** Phase 3B defects; they are later layers:
+
+- full scoped dataflow dominance; branch-local value leakage; typed branch
+  merge availability; value availability at execution points;
+- ComponentContract port validation; Subflow interface validation (the
+  contract machine models are not materialized);
+- Await mailbox/matcher runtime semantics; FailureValue runtime ABI;
+- Effect Signature; Resource Contract meaning; Scope authority/budget
+  attenuation;
+- runtime occurrence identity; journal decisions; executable plans.
+
+## 14. Conformance
+
+Frozen corpus: `spec/conformance/semantic-ir/` — `golden/` (per-opcode and
+nested documents with canonical `ace1_utf8`/`ace1_hex`/`semantic_ir_digest`),
+`negative/` (documents with expected stable error kinds, including decode-time
+rejections), and `equivalence/` (ordering-equivalence groups and semantic-order
+mutations). All values are generated by the independent Python implementation
+`tools/gen-semantic-ir-corpus.py`; tests never generate expected values at
+runtime. The AFIDL corpus carries the `semantic-ir` schema module additively
+(revision 5): all pre-existing cases, bytes and digests are unchanged.

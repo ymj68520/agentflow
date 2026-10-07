@@ -1,0 +1,353 @@
+afidl 1;
+
+schema agentflow.semantic.ir @1;
+
+import agentflow.semantic.core@1 as core;
+
+// AgentFlow canonical Semantic IR — Phase 3B structural model. This module is
+// the FIRST production consumer of the Phase 2C cross-module import: every
+// semantic-core object is reused by identity (agentflow.semantic.core@1/...),
+// never redeclared.
+//
+// The document is a STRUCTURED CONTROL TREE (ownership via ComputationId
+// child references) plus a TYPED DATAFLOW SHELL (ValueSlot producers, pure
+// expressions) plus CLOSED CONTRACT TABLES. It is static only: no journal, no
+// reducer, no execution state, no runtime command, no worker, no scheduler,
+// no effect gateway, no occurrence identity. The 13-member ComputationBody
+// case set is closed and its case numbers are frozen ABI.
+//
+// Deliberately absent: CallComposite (authoring-only, lowered before this
+// layer), Trigger (deployment binding, not a computation), detached children,
+// physical capacity (worker/region/quota), TimerId/TimerState, wait mailboxes,
+// FailureValue runtime, OccurrencePath/AttemptId/InvocationId.
+//
+// Digest: SemanticIrDigest = HashV1("semantic-ir", ACE1(CanonicalSemanticIrDocument)).
+// The semantic-ir domain is the Phase 1 frozen registry entry; no new domain
+// is introduced here.
+
+// ---------------------------------------------------------------------------
+// Local identity namespaces (independent of the four core namespaces and of
+// each other; all > 0, 0 is representable and rejected by validation)
+// ---------------------------------------------------------------------------
+
+alias ComputationId = uint32;
+alias RunParameterId = uint32;
+alias ContractRefId = uint32;
+alias PortNo = uint32;
+alias BranchOrdinal = uint32;
+alias HandlerOrdinal = uint32;
+
+// ---------------------------------------------------------------------------
+// Document header tables
+// ---------------------------------------------------------------------------
+
+// Pins a semantic/profile identity by its exact SpecificationId. Validation
+// checks syntax, uniqueness and canonical byte ordering only; registry
+// knownness belongs to compiler/spec tooling, never to af-ir.
+record SemanticVersionRef {
+  1 specification_id: string;
+}
+
+// A static workflow input declaration. The parameter PRODUCES its value slot:
+// parameter type must equal the slot type, and no other producer may bind the
+// same slot. No default value, no admission snapshot, no mutable parameter,
+// no runtime update, no constraint, no secret flag (later stages).
+record RunParameterDecl {
+  1 id: RunParameterId;
+  2 name: string;
+  3 type: core.SemanticTypeId;
+  4 value_slot: core.ValueSlotId;
+}
+
+// A workflow output: a name plus the expression that computes the value. The
+// output type is the expression's result_type — never stored twice here.
+record WorkflowOutputDecl {
+  1 name: string;
+  2 expression: core.ExpressionId;
+}
+
+// Closed contract reference kinds. Only the two kinds whose contract models
+// are frozen; policy/effect/resource/signal/worker tables are later stages.
+enum ContractRefKind {
+  1 component;
+  2 subflow;
+}
+
+// One entry of the closed contract table. The digest pins the exact published
+// contract identity: component contracts live in the component-contract
+// domain, subflow contracts pin an exact published Semantic IR (semantic-ir
+// domain). One exact contract identity has at most one table entry.
+record ContractRefEntry {
+  1 id: ContractRefId;
+  2 kind: ContractRefKind;
+  3 digest: core.DigestRefValue;
+}
+
+// ---------------------------------------------------------------------------
+// Ports and bindings
+// ---------------------------------------------------------------------------
+
+// One output port of a computation. The port's type is the bound slot's type —
+// never duplicated here. port_no > 0, unique within its computation.
+record ComputationOutputBinding {
+  1 port_no: PortNo;
+  2 value_slot: core.ValueSlotId;
+}
+
+// One semantic input of INVOKE / CALL_SUBFLOW: an input port fed by a pure
+// expression. Contract-level input matching is a later (contract checking)
+// stage.
+record InputBinding {
+  1 port_no: PortNo;
+  2 expression: core.ExpressionId;
+}
+
+// One logical resource requirement of INVOKE / CALL_SUBFLOW. The port names a
+// component-contract resource requirement; contract validation is deferred.
+record ResourceUseBinding {
+  1 port_no: PortNo;
+  2 resource_slot: core.ResourceSlotId;
+}
+
+// ---------------------------------------------------------------------------
+// Computation bodies (the closed 13)
+// ---------------------------------------------------------------------------
+
+// Call an exact component contract with semantic inputs and resource
+// requirements. Zero local children. No TaskDefinition/Binding/Invocation/
+// Attempt/Worker here: INVOKE only states "call this contract".
+record InvokeBody {
+  1 contract: ContractRefId;
+  2 inputs: list<InputBinding>;
+  3 resources: list<ResourceUseBinding>;
+}
+
+// A passive durable wait for a signal of the pinned type, correlated by a
+// pure expression. Zero local children. No built-in timeout (compose
+// TIMEOUT(AWAIT(...))); no mailbox, timer, webhook or approval state.
+record AwaitBody {
+  1 signal_type: core.TypeSchemaRef;
+  2 correlation: core.ExpressionId;
+}
+
+// Sequential composition. The child list order IS the semantic execution
+// order: it is never canonically re-sorted. At least one child. The parent's
+// output interface equals the LAST child's output interface.
+record SequenceBody {
+  1 children: list<ComputationId>;
+}
+
+// Exact-ordinal dispatch: the selector expression (type int64) produces the
+// case ordinal to run. No truthiness, no source-order matching, no
+// fall-through — the ordinal is semantic ABI. All case children share the
+// parent's output interface.
+record SelectCase {
+  1 ordinal: BranchOrdinal;
+  2 child: ComputationId;
+}
+
+record SelectBody {
+  1 selector: core.ExpressionId;
+  2 cases: list<SelectCase>;
+}
+
+// Closed v1 parallel completion mode. No physical capacity here: max_inflight
+// is a semantic concurrency bound, not a worker/tenant/region limit.
+enum ParallelMode {
+  1 all;
+  2 fail_fast;
+}
+
+record ParallelBranch {
+  1 ordinal: BranchOrdinal;
+  2 child: ComputationId;
+}
+
+// Explicit merge mapping: the parent port takes its value from one branch
+// child's output port. Types must agree; the mapping is the only place where
+// branch outputs reach the parent interface.
+record ParallelOutputBinding {
+  1 parent_port_no: PortNo;
+  2 branch_ordinal: BranchOrdinal;
+  3 child_port_no: PortNo;
+}
+
+record ParallelBody {
+  1 mode: ParallelMode;
+  2 branches: list<ParallelBranch>;
+  3 max_inflight: option<uint32>;
+  4 output_bindings: list<ParallelOutputBinding>;
+}
+
+// First-terminal race. v1 has exactly one semantics (FIRST_TERMINAL): there
+// is deliberately no winner_policy/first_success/fastest_success knob. All
+// branches (>= 2) and the parent share one output interface; the winner is a
+// runtime terminal observation, not static information.
+record RaceBranch {
+  1 ordinal: BranchOrdinal;
+  2 child: ComputationId;
+}
+
+record RaceBody {
+  1 branches: list<RaceBranch>;
+}
+
+// One loop-carried value template. SSA without mutation: `slot` is the
+// loop-local current-iteration value template, `initial` computes the first
+// iteration's value, and `body_output_port` names the body computation's
+// output port supplying the next iteration's value. The runtime creates a new
+// value occurrence per iteration; the IR never mutates the slot.
+record LoopCarryBinding {
+  1 slot: core.ValueSlotId;
+  2 initial: core.ExpressionId;
+  3 body_output_port: PortNo;
+}
+
+// Bounded map-style iteration over a materialized list. The item slot is
+// produced by this ITERATE. max_inflight is a semantic bound.
+record ForeachBody {
+  1 source: core.ExpressionId;
+  2 item_slot: core.ValueSlotId;
+  3 body: ComputationId;
+  4 carry: list<LoopCarryBinding>;
+  5 max_inflight: option<uint32>;
+}
+
+// Guarded iteration with an explicit finite iteration budget: v1 has no
+// unbounded while. The guard may read carry slots; availability/dominance
+// analysis is a later stage.
+record WhileBody {
+  1 guard: core.ExpressionId;
+  2 body: ComputationId;
+  3 carry: list<LoopCarryBinding>;
+  4 max_iterations: uint32;
+}
+
+// The two loop modes. This is a mode selector inside ComputationBody.iterate,
+// not a fourteenth kernel opcode.
+variant IterateBody {
+  1 foreach: ForeachBody;
+  2 while: WhileBody;
+}
+
+// Computation retry with an explicit finite delay schedule: attempt #1 runs,
+// on failure wait delays[0], attempt #2, on failure wait delays[1], ... The
+// maximum occurrence count is exactly 1 + len(delays). Fully finite,
+// deterministic and canonical: no wall clock, no jitter, no runtime policy
+// lookup. Delay order is semantic (never sorted). durations are >= 0 (0 is a
+// legal immediate retry). This retries the owned child computation, not a
+// task attempt.
+record RetryBody {
+  1 child: ComputationId;
+  2 delays: list<duration>;
+}
+
+// Bound one child computation by a duration-valued pure expression. No
+// TimerId/TimerState/TimerCommand: only the semantic duration expression is
+// stored. Timer-vs-child competition is runtime semantics.
+record TimeoutBody {
+  1 child: ComputationId;
+  2 timeout: core.ExpressionId;
+}
+
+record FailureMatch {
+  1 failure_type: core.TypeSchemaRef;
+}
+
+// Closed handle match set. There is deliberately no `cancelled` case: parent
+// cancellation is not an ordinary failure handler. `timed_out` carries unit.
+variant HandleMatch {
+  1 failure: FailureMatch;
+  2 timed_out: unit;
+}
+
+// One handler clause. Failure clauses must be pairwise disjoint by exact
+// TypeSchemaRef (there is no subtyping); at most one timed_out clause.
+record HandleClause {
+  1 ordinal: HandlerOrdinal;
+  2 match: HandleMatch;
+  3 handler: ComputationId;
+}
+
+// Protected child plus ordered handler clauses. All handlers and the
+// protected child expose the parent's output interface. Handlers are owned
+// children and count in the ownership tree.
+record HandleBody {
+  1 child: ComputationId;
+  2 clauses: list<HandleClause>;
+}
+
+// A structured scope: one owned child plus the logical resources the scope
+// statically owns/allows. Resources are unique and canonically ascending.
+// No authority/budget attenuation, no deadline or cancellation state, no
+// ResourceHandle: those are later, separately specified tables.
+record ScopeBody {
+  1 child: ComputationId;
+  2 resources: list<core.ResourceSlotId>;
+}
+
+// Marks the owned child as compensation-recoverable. The IR deliberately
+// holds NO compensation task list: compensation sources are later derived
+// from committed effect receipts plus effect compensation contracts. A
+// COMPENSATION_SCOPE must not erase forward computation or effect history.
+record CompensationScopeBody {
+  1 child: ComputationId;
+}
+
+// Call an exact published subflow (a Semantic IR pinned by its semantic-ir
+// digest). Zero local children and no detach/fire-and-forget: the subflow is
+// an owned durable child boundary. No local ComputationId target.
+record CallSubflowBody {
+  1 contract: ContractRefId;
+  2 inputs: list<InputBinding>;
+  3 resources: list<ResourceUseBinding>;
+}
+
+// The closed kernel opcode set: exactly these 13 cases, case numbers frozen
+// ABI. No agent/model/tool/http/sql/shell/human/mcp/a2a opcode, no
+// call_composite (authoring only), no trigger (deployment binding).
+variant ComputationBody {
+  1 invoke: InvokeBody;
+  2 await: AwaitBody;
+  3 sequence: SequenceBody;
+  4 select: SelectBody;
+  5 parallel: ParallelBody;
+  6 race: RaceBody;
+  7 iterate: IterateBody;
+  8 retry: RetryBody;
+  9 timeout: TimeoutBody;
+  10 handle: HandleBody;
+  11 scope: ScopeBody;
+  12 compensation_scope: CompensationScopeBody;
+  13 call_subflow: CallSubflowBody;
+}
+
+// One node of the structured control tree.
+record ComputationDef {
+  1 id: ComputationId;
+  2 outputs: list<ComputationOutputBinding>;
+  3 body: ComputationBody;
+}
+
+// ---------------------------------------------------------------------------
+// The document
+// ---------------------------------------------------------------------------
+
+// The canonical Semantic IR document. tables are canonically ordered by their
+// own identity (semantic_refs by canonical SpecificationId bytes, typed tables
+// by id, contracts by ContractRefId, run_parameters by RunParameterId,
+// workflow_outputs by NFC name bytes, computations by ComputationId); nested
+// lists by port/ordinal except SEQUENCE children (semantic order) and RETRY
+// delays (semantic order).
+record SemanticIrDocument {
+  1 semantic_refs: list<SemanticVersionRef>;
+  2 types: list<core.SemanticTypeNode>;
+  3 values: list<core.ValueSlot>;
+  4 expressions: list<core.ExpressionDef>;
+  5 resources: list<core.ResourceSlot>;
+  6 contracts: list<ContractRefEntry>;
+  7 run_parameters: list<RunParameterDecl>;
+  8 workflow_outputs: list<WorkflowOutputDecl>;
+  9 computations: list<ComputationDef>;
+  10 root: ComputationId;
+}
