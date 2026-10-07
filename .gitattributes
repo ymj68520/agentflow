@@ -1,0 +1,5 @@
+# Deterministic repository: text files always use LF in the working tree on
+# every platform. The registry pins SHA-256 content digests of normative
+# sources and byte-verifies canonical registry JSON, so a CRLF checkout would
+# break spec-check. Binary assets are unaffected by `text=auto`.
+* text=auto eol=lf

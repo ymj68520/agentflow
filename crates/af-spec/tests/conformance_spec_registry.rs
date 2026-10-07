@@ -84,7 +84,11 @@ fn every_corpus_case_matches_its_frozen_expectation() {
                     report.errors.iter().any(|error| error.kind() == expected),
                     "case {} expected error kind {expected:?}, got: {:?}",
                     case.case_id,
-                    report.errors.iter().map(af_spec::SpecError::kind).collect::<Vec<_>>()
+                    report
+                        .errors
+                        .iter()
+                        .map(af_spec::SpecError::kind)
+                        .collect::<Vec<_>>()
                 );
             }
             other => panic!("case {} has unknown outcome {other:?}", case.case_id),

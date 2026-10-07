@@ -419,7 +419,7 @@ def case_entry(path: Path, case_id=None):
 
 def write_json(path, payload):
     payload = {"corpus_revision": CORPUS_REVISION, **payload}
-    path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     print(f"wrote {path.relative_to(ROOT)}")
 
 

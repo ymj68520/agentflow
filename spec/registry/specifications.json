@@ -124,7 +124,7 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "08b5730a08d53c7383c8996a93ee203efac94ee108dcb30064fb2a5495b0b61e"
+          "hex": "b54a2ee9fc70d3e2222b31ff07766151a2acf16f3301817c0dff93eb0631f80f"
         },
         "logical_path": "spec/idl/specification-registry.afidl"
       },
