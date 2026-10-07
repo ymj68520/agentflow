@@ -381,16 +381,20 @@ fn the_analysis_is_derived_only_and_never_enters_the_digest() {
 
 #[test]
 fn no_deferred_phase_3d_or_runtime_placeholder_exists() {
-    // FailureValue, the Component/Subflow port ABI and parallel resource
-    // concurrency remain deferred; none of them may sneak in as a
-    // placeholder while the analysis is built.
+    // FailureValue, the ports-only ComponentContract shrinkage, a fake
+    // component interface universe and parallel resource concurrency remain
+    // deferred (Phase 4 materializes the real contract core); none of them
+    // may sneak in as a placeholder.
     let sources = crate_sources();
     for forbidden in [
         "FailureValue",
         "failure_slot",
-        "SubflowInterface",
         "ContractPort",
         "resource_shared_in_parallel",
+        "struct ComponentContract",
+        "ComponentContractUniverse",
+        "ResolutionSnapshot",
+        "LockGraph",
     ] {
         assert_absent(
             &sources,
@@ -398,4 +402,45 @@ fn no_deferred_phase_3d_or_runtime_placeholder_exists() {
             &format!("the deferred placeholder {forbidden}"),
         );
     }
+}
+
+#[test]
+fn the_subflow_analysis_stays_off_every_wire_surface() {
+    // The Phase 3D subflow model is derived-only: the interface, the
+    // universe and the structural type projection must never appear in the
+    // wire model, the canonical/digest path or the schema module.
+    let wire_surfaces = [
+        code_only(&read("crates/af-ir/src/model.rs")),
+        code_only(&read("crates/af-ir/src/canonical.rs")),
+        code_only(&read("spec/idl/semantic-ir.afidl")),
+    ];
+    for surface in &wire_surfaces {
+        for forbidden in [
+            "SubflowInterface",
+            "SubflowIrUniverse",
+            "SubflowValuePort",
+            "SubflowResourcePort",
+            "ResolvedSemanticType",
+        ] {
+            assert_absent(
+                surface,
+                forbidden,
+                &format!("the derived subflow model ({forbidden})"),
+            );
+        }
+    }
+    // The analysis types are plain Rust: no serde derive, no accidental
+    // wire ABI.
+    let subflow = code_only(&read("crates/af-ir/src/subflow.rs"));
+    for forbidden in ["Serialize", "Deserialize"] {
+        assert_absent(
+            &subflow,
+            forbidden,
+            &format!("a serde surface on the derived subflow model ({forbidden})"),
+        );
+    }
+    assert!(
+        subflow.contains("pub fn derive_subflow_interface"),
+        "the derived interface construction must exist"
+    );
 }
