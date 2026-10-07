@@ -1,0 +1,15 @@
+{
+  "areas": [
+    {
+      "area": "MINI",
+      "description": "Mini fixture area"
+    },
+    {
+      "area": "WIDGET",
+      "description": "Second fixture area, intentionally unused"
+    }
+  ],
+  "kind": "agentflow.rule-areas",
+  "note": "Mini closed area table for the spec-registry corpus.",
+  "version": "v1"
+}

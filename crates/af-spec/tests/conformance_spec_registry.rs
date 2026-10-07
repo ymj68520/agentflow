@@ -40,7 +40,7 @@ fn corpus_revision_is_frozen() {
     )
     .unwrap();
     assert_eq!(
-        manifest.corpus_revision, 1,
+        manifest.corpus_revision, 2,
         "spec-registry corpus revision drifted"
     );
 }
@@ -52,7 +52,7 @@ fn every_corpus_case_matches_its_frozen_expectation() {
             .unwrap(),
     )
     .unwrap();
-    assert!(manifest.cases.len() >= 18, "corpus shrank unexpectedly");
+    assert!(manifest.cases.len() >= 21, "corpus shrank unexpectedly");
 
     for case in &manifest.cases {
         let case_root = repo_root()

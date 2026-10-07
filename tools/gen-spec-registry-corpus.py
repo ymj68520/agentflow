@@ -15,7 +15,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONF = ROOT / "spec" / "conformance" / "spec-registry"
-CORPUS_REVISION = 1
+# Revision 2 (Phase 2C): adds the import-aware cases - a valid multi-module set
+# whose second module imports the first by exact SpecificationId, a duplicate
+# schema family, and a cross-module type cycle. Revision 1 was the Phase 2B
+# single-module corpus; existing cases are unchanged.
+CORPUS_REVISION = 2
 
 FAMILY = "agentflow.test.mini@1"
 
@@ -98,6 +102,54 @@ record Widget {
 enum Color {
     1 red;
     2 green;
+}
+"""
+
+# A second module of the same fixture registry, importing the first by its
+# exact SpecificationId. Used by the import-aware corpus cases.
+IMPORTER_AFDL = """afidl 1;
+
+schema agentflow.test.consumer @1;
+
+import agentflow.test.mini@1 as mini;
+
+record Holder {
+    1 color: mini.Color;
+}
+"""
+
+# Identical schema family declared by two modules: the module set is not a
+# function of specification identity.
+DUPLICATE_FAMILY_AFDL = """afidl 1;
+
+schema agentflow.test.mini @1;
+
+record Other {
+    1 value: string;
+}
+"""
+
+# Two modules that depend on each other's types: mutual imports with a real
+# type cycle, which the global graph must reject.
+CYCLE_A_AFDL = """afidl 1;
+
+schema agentflow.test.cycle-a @1;
+
+import agentflow.test.cycle-b@1 as b;
+
+record A {
+    1 other: b.B;
+}
+"""
+
+CYCLE_B_AFDL = """afidl 1;
+
+schema agentflow.test.cycle-b @1;
+
+import agentflow.test.cycle-a@1 as a;
+
+record B {
+    1 other: a.A;
 }
 """
 
@@ -188,9 +240,9 @@ def base_files() -> dict:
     }
 
 
-def assignment(type_name, kind, number, name, status):
+def assignment(type_name, kind, number, name, status, family=None):
     return {
-        "schema_family": FAMILY,
+        "schema_family": family or FAMILY,
         "type_name": type_name,
         "number_kind": kind,
         "number": number,
@@ -263,6 +315,21 @@ def mutate(base, which):
         specs[0]["normative_source"]["content_digest"]["hex"] = digest
     elif which == "content-digest-mismatch":
         specs[0]["normative_source"]["content_digest"]["hex"] = "0" * 63 + "1"
+    elif which == "module-set-import":
+        # Valid case: a second module imports the first by exact identity, and
+        # the ABI registry covers both families.
+        files["importer.afidl"] = IMPORTER_AFDL
+        abi_rows.extend([
+            assignment("Holder", "field", 1, "color", "active",
+                       family="agentflow.test.consumer@1"),
+        ])
+        abi_rows.sort(key=lambda a: (
+            a["schema_family"], a["type_name"], a["number_kind"], a["number"]))
+    elif which == "duplicate-module-family":
+        files["other.afidl"] = DUPLICATE_FAMILY_AFDL
+    elif which == "cross-module-recursion":
+        files["cycle-a.afidl"] = CYCLE_A_AFDL
+        files["cycle-b.afidl"] = CYCLE_B_AFDL
     elif which == "retired-number":
         # Valid case: a genuinely retired number that the schema no longer
         # uses, with everything else consistent.
@@ -278,6 +345,8 @@ CASES = [
     # (case_id, dir, outcome, expected error kind or None)
     ("spec-registry/valid-base", "valid/base", "valid", None),
     ("spec-registry/valid-retired-number", "valid/retired-number", "valid", None),
+    ("spec-registry/valid-module-set-import", "valid/module-set-import",
+     "valid", None),
     ("spec-registry/duplicate-specification-id", "invalid/duplicate-specification-id",
      "invalid", "duplicate_specification_id"),
     ("spec-registry/bad-rule-id", "invalid/bad-rule-id", "invalid", "invalid_rule_id"),
@@ -309,6 +378,10 @@ CASES = [
      "invalid", "provisional_frozen_source"),
     ("spec-registry/content-digest-mismatch", "invalid/content-digest-mismatch",
      "invalid", "content_digest_mismatch"),
+    ("spec-registry/duplicate-module-family", "invalid/duplicate-module-family",
+     "invalid", "duplicate_module_family"),
+    ("spec-registry/cross-module-recursion", "invalid/cross-module-recursion",
+     "invalid", "module_set_compile"),
 ]
 
 

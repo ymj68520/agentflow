@@ -1,0 +1,9 @@
+afidl 1;
+
+schema agentflow.test.consumer @1;
+
+import agentflow.test.mini@1 as mini;
+
+record Holder {
+    1 color: mini.Color;
+}

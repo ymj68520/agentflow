@@ -1,0 +1,7 @@
+afidl 1;
+
+schema agentflow.test.mini @1;
+
+record Other {
+    1 value: string;
+}
