@@ -1,0 +1,9 @@
+// Second import target: proves the module header carries more than one import
+// and that each alias resolves to its own specification.
+afidl 1;
+
+schema agentflow.test.second @1;
+
+record Marker {
+    1 label: string;
+}

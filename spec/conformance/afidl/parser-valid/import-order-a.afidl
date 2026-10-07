@@ -1,0 +1,11 @@
+afidl 1;
+
+schema agentflow.test.consumer @1;
+
+import agentflow.test.imported@1 as dep;
+import agentflow.test.second@1 as extra;
+
+record Ordered {
+    1 slot: dep.Slot;
+    2 marker: extra.Marker;
+}

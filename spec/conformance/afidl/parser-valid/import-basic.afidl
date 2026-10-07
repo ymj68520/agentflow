@@ -1,0 +1,11 @@
+afidl 1;
+
+schema agentflow.test.consumer @1;
+
+import agentflow.test.imported@1 as dep;
+
+record Basic {
+    1 slot: dep.Slot;
+    2 kind: dep.Kind;
+    3 where_: dep.Address;
+}

@@ -1,0 +1,12 @@
+afidl 1;
+
+schema agentflow.test.consumer @1;
+
+import agentflow.test.imported@1 as dep;
+
+record Nested {
+    1 rows: list<dep.Address>;
+    2 index: map<string,dep.Kind>;
+    3 fallback: option<dep.Slot>;
+    4 deep: list<map<string,option<dep.Address>>>;
+}

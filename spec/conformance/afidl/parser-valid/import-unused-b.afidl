@@ -1,0 +1,9 @@
+afidl 1;
+
+schema agentflow.test.consumer @1;
+
+import agentflow.test.imported@1 as dep;
+
+record Unused {
+    1 name: string;
+}

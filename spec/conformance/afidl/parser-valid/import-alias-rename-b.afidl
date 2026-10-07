@@ -1,0 +1,9 @@
+afidl 1;
+
+schema agentflow.test.consumer @1;
+
+import agentflow.test.imported@1 as semantic;
+
+record Renamed {
+    1 slot: semantic.Slot;
+}

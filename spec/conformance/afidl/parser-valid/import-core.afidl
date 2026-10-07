@@ -1,0 +1,21 @@
+// Import target module: the source of every cross-module fixture below.
+afidl 1;
+
+schema agentflow.test.imported @1;
+
+alias Slot = uint32;
+
+enum Kind {
+    1 primary;
+    2 secondary;
+}
+
+record Address {
+    1 line: string;
+    2 postal: string;
+}
+
+variant Outcome {
+    1 ok: Address;
+    2 empty: unit;
+}
