@@ -1,7 +1,7 @@
 {
   "kind": "agentflow.conformance.afidl.parser-invalid",
-  "corpus_revision": 1,
-  "note": "Each file must fail to compile; error_kind is the stable AfidlError::kind() category. The manifest is the frozen expectation; tests never derive kinds from the implementation's own error text.",
+  "corpus_revision": 2,
+  "note": "Each file must fail to compile; error_kind is the stable AfidlError::kind() category. The manifest is the frozen expectation; tests never derive kinds from the implementation's own error text. mode selects the entry point: \"compile\" (default, self-contained module) or \"universe\" (compiled against the parser-valid module named by imports). Module-set cases live in module_set_cases: every listed file is compiled together and one of them must fail with error_kind.",
   "cases": [
     { "file": "invalid-language-version.afidl", "error_kind": "invalid_language_version" },
     { "file": "invalid-schema-id-uppercase.afidl", "error_kind": "invalid_specification_id" },
@@ -35,6 +35,37 @@
     { "file": "invalid-type-name.afidl", "error_kind": "invalid_identifier" },
     { "file": "invalid-field-name.afidl", "error_kind": "invalid_identifier" },
     { "file": "empty-variant.afidl", "error_kind": "empty_variant" },
-    { "file": "empty-enum.afidl", "error_kind": "empty_enum" }
+    { "file": "empty-enum.afidl", "error_kind": "empty_enum" },
+    { "file": "invalid-import-spec-id.afidl", "error_kind": "invalid_specification_id" },
+    { "file": "duplicate-import-alias.afidl", "error_kind": "duplicate_import_alias" },
+    { "file": "duplicate-import-specification.afidl", "error_kind": "duplicate_import_specification" },
+    { "file": "self-import.afidl", "error_kind": "self_import" },
+    { "file": "reserved-import-alias.afidl", "error_kind": "invalid_import_alias" },
+    { "file": "qualified-ref-without-import.afidl", "error_kind": "unknown_import_alias" },
+    { "file": "unknown-import-alias.afidl", "error_kind": "unknown_import_alias" },
+    { "file": "qualified-primitive-ref.afidl", "error_kind": "qualified_primitive_reference" },
+    { "file": "import-after-declaration.afidl", "error_kind": "import_after_declaration" },
+    { "file": "malformed-import.afidl", "error_kind": "parse_error" },
+    { "file": "unknown-import-specification.afidl", "error_kind": "unknown_import_specification", "mode": "universe" },
+    { "file": "unknown-imported-type.afidl", "error_kind": "unknown_imported_type", "mode": "universe" }
+  ],
+  "module_set_cases": [
+    {
+      "case_id": "cross-module-direct-cycle",
+      "files": ["import-cycles/cycle-a.afidl", "import-cycles/cycle-b.afidl"],
+      "error_kind": "cross_module_recursive_type"
+    },
+    {
+      "case_id": "cross-module-indirect-cycle",
+      "files": ["import-cycles/ring-a.afidl", "import-cycles/ring-b.afidl", "import-cycles/ring-c.afidl"],
+      "error_kind": "cross_module_recursive_type"
+    }
+  ],
+  "module_set_valid_cases": [
+    {
+      "case_id": "mutual-import-without-type-cycle",
+      "files": ["import-cycles/free-a.afidl", "import-cycles/free-b.afidl"],
+      "expect": "compiles"
+    }
   ]
 }

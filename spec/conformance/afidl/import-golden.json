@@ -1,0 +1,172 @@
+{
+  "corpus_revision": 4,
+  "kind": "agentflow.conformance.afidl.import-golden",
+  "note": "Cross-module import conformance: the resolvable import table of each fixture and the full logical identities its declarations reference. Import aliases are source spelling only and never appear here; the module-set compilation of every fixture must reproduce the canonical bytes frozen in schema-golden.json.",
+  "cases": [
+    {
+      "case_id": "import-alias-rename-a",
+      "file": "spec/conformance/afidl/parser-valid/import-alias-rename-a.afidl",
+      "requires": [
+        "import-core"
+      ],
+      "resolved_imports": [
+        {
+          "alias": "core",
+          "specification_id": "agentflow.test.imported@1"
+        }
+      ],
+      "type_identities": {
+        "Renamed": [
+          "agentflow.test.imported@1/Slot"
+        ]
+      }
+    },
+    {
+      "case_id": "import-alias-rename-b",
+      "file": "spec/conformance/afidl/parser-valid/import-alias-rename-b.afidl",
+      "requires": [
+        "import-core"
+      ],
+      "resolved_imports": [
+        {
+          "alias": "semantic",
+          "specification_id": "agentflow.test.imported@1"
+        }
+      ],
+      "type_identities": {
+        "Renamed": [
+          "agentflow.test.imported@1/Slot"
+        ]
+      }
+    },
+    {
+      "case_id": "import-basic",
+      "file": "spec/conformance/afidl/parser-valid/import-basic.afidl",
+      "requires": [
+        "import-core"
+      ],
+      "resolved_imports": [
+        {
+          "alias": "dep",
+          "specification_id": "agentflow.test.imported@1"
+        }
+      ],
+      "type_identities": {
+        "Basic": [
+          "agentflow.test.imported@1/Address",
+          "agentflow.test.imported@1/Kind",
+          "agentflow.test.imported@1/Slot"
+        ]
+      }
+    },
+    {
+      "case_id": "import-multiple",
+      "file": "spec/conformance/afidl/parser-valid/import-multiple.afidl",
+      "requires": [
+        "import-core",
+        "import-second"
+      ],
+      "resolved_imports": [
+        {
+          "alias": "dep",
+          "specification_id": "agentflow.test.imported@1"
+        },
+        {
+          "alias": "extra",
+          "specification_id": "agentflow.test.second@1"
+        }
+      ],
+      "type_identities": {
+        "Multiple": [
+          "agentflow.test.imported@1/Outcome",
+          "agentflow.test.imported@1/Slot",
+          "agentflow.test.second@1/Marker"
+        ]
+      }
+    },
+    {
+      "case_id": "import-nested-container-ref",
+      "file": "spec/conformance/afidl/parser-valid/import-nested-container-ref.afidl",
+      "requires": [
+        "import-core"
+      ],
+      "resolved_imports": [
+        {
+          "alias": "dep",
+          "specification_id": "agentflow.test.imported@1"
+        }
+      ],
+      "type_identities": {
+        "Nested": [
+          "agentflow.test.imported@1/Address",
+          "agentflow.test.imported@1/Kind",
+          "agentflow.test.imported@1/Slot"
+        ]
+      }
+    },
+    {
+      "case_id": "import-order-a",
+      "file": "spec/conformance/afidl/parser-valid/import-order-a.afidl",
+      "requires": [
+        "import-core",
+        "import-second"
+      ],
+      "resolved_imports": [
+        {
+          "alias": "dep",
+          "specification_id": "agentflow.test.imported@1"
+        },
+        {
+          "alias": "extra",
+          "specification_id": "agentflow.test.second@1"
+        }
+      ],
+      "type_identities": {
+        "Ordered": [
+          "agentflow.test.imported@1/Slot",
+          "agentflow.test.second@1/Marker"
+        ]
+      }
+    },
+    {
+      "case_id": "import-order-b",
+      "file": "spec/conformance/afidl/parser-valid/import-order-b.afidl",
+      "requires": [
+        "import-core",
+        "import-second"
+      ],
+      "resolved_imports": [
+        {
+          "alias": "dep",
+          "specification_id": "agentflow.test.imported@1"
+        },
+        {
+          "alias": "extra",
+          "specification_id": "agentflow.test.second@1"
+        }
+      ],
+      "type_identities": {
+        "Ordered": [
+          "agentflow.test.imported@1/Slot",
+          "agentflow.test.second@1/Marker"
+        ]
+      }
+    },
+    {
+      "case_id": "import-unused-b",
+      "file": "spec/conformance/afidl/parser-valid/import-unused-b.afidl",
+      "requires": [
+        "import-core"
+      ],
+      "resolved_imports": [
+        {
+          "alias": "dep",
+          "specification_id": "agentflow.test.imported@1"
+        }
+      ],
+      "type_identities": {
+        "Unused": []
+      }
+    }
+  ]
+}

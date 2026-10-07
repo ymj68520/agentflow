@@ -1,5 +1,5 @@
 {
-  "corpus_revision": 3,
+  "corpus_revision": 4,
   "kind": "agentflow.conformance.afidl.type-schema-digest-golden",
   "note": "Frozen TypeSchemaDigest values (SHA256(\"AF\\0type-schema\\0\" || canonical ACE1 bytes)). Mutation cases assert that semantic changes alter the digest while the equivalence groups in schema-golden.json assert that formatting does not.",
   "cases": [
@@ -56,6 +56,90 @@
       "file": "spec/conformance/afidl/parser-valid/enum.afidl",
       "type_name": "Status",
       "digest_hex": "58b5eed8785dd79a0e794a5e546cc1fa4f24c3cace2ee2cd780ab520e1985eeb"
+    },
+    {
+      "case_id": "import-alias-rename-a",
+      "file": "spec/conformance/afidl/parser-valid/import-alias-rename-a.afidl",
+      "type_name": "Renamed",
+      "digest_hex": "66c7f74d3cb035d4d9796a4e28148cf2b781120982d95514bd4c6583f33cbc54"
+    },
+    {
+      "case_id": "import-alias-rename-b",
+      "file": "spec/conformance/afidl/parser-valid/import-alias-rename-b.afidl",
+      "type_name": "Renamed",
+      "digest_hex": "66c7f74d3cb035d4d9796a4e28148cf2b781120982d95514bd4c6583f33cbc54"
+    },
+    {
+      "case_id": "import-basic",
+      "file": "spec/conformance/afidl/parser-valid/import-basic.afidl",
+      "type_name": "Basic",
+      "digest_hex": "b3a1aa2894a0167e10c500e7076dcdf22d347aa7761ec10e1d83de541b816824"
+    },
+    {
+      "case_id": "import-core",
+      "file": "spec/conformance/afidl/parser-valid/import-core.afidl",
+      "type_name": "Address",
+      "digest_hex": "e2a0a7c00bb7174b49abb6a536483379d589f3c0144250edebb015d8fd0ce036"
+    },
+    {
+      "case_id": "import-core",
+      "file": "spec/conformance/afidl/parser-valid/import-core.afidl",
+      "type_name": "Kind",
+      "digest_hex": "cef8a1548d24c79a7d79c8c7d9e5031c9777e9ac067b48a92b6f9de0726aa531"
+    },
+    {
+      "case_id": "import-core",
+      "file": "spec/conformance/afidl/parser-valid/import-core.afidl",
+      "type_name": "Outcome",
+      "digest_hex": "19515ec9086fbb6640f8a094d2552d4c6c711f00475674d9da545e98c7cd0905"
+    },
+    {
+      "case_id": "import-core",
+      "file": "spec/conformance/afidl/parser-valid/import-core.afidl",
+      "type_name": "Slot",
+      "digest_hex": "ed7c0b05086c528173243fdd552f43705619b65fbb2661a9c6450a62294b2de1"
+    },
+    {
+      "case_id": "import-multiple",
+      "file": "spec/conformance/afidl/parser-valid/import-multiple.afidl",
+      "type_name": "Multiple",
+      "digest_hex": "66d0012c6f201cf2ce883c2d5892cb7bffa994e2c456dd7fc10ea9faba6f650f"
+    },
+    {
+      "case_id": "import-nested-container-ref",
+      "file": "spec/conformance/afidl/parser-valid/import-nested-container-ref.afidl",
+      "type_name": "Nested",
+      "digest_hex": "699c918d58426bb71606abdef6af49faa515dfe239c9d051b0797894425035c9"
+    },
+    {
+      "case_id": "import-order-a",
+      "file": "spec/conformance/afidl/parser-valid/import-order-a.afidl",
+      "type_name": "Ordered",
+      "digest_hex": "d7424377a087678fbd904e7f2cfb41ab8d349b87fa660a5cf15dbc3cf126ad92"
+    },
+    {
+      "case_id": "import-order-b",
+      "file": "spec/conformance/afidl/parser-valid/import-order-b.afidl",
+      "type_name": "Ordered",
+      "digest_hex": "d7424377a087678fbd904e7f2cfb41ab8d349b87fa660a5cf15dbc3cf126ad92"
+    },
+    {
+      "case_id": "import-second",
+      "file": "spec/conformance/afidl/parser-valid/import-second.afidl",
+      "type_name": "Marker",
+      "digest_hex": "c30c541bfa3430a3ce28663cf6cff1a7dc4f30e92bc6b79ad43ad306d1cf989d"
+    },
+    {
+      "case_id": "import-unused-a",
+      "file": "spec/conformance/afidl/parser-valid/import-unused-a.afidl",
+      "type_name": "Unused",
+      "digest_hex": "bf2e5840ae3bf86b0460e0931225c494cb882f108ac7f11cc6c748ca8b308b64"
+    },
+    {
+      "case_id": "import-unused-b",
+      "file": "spec/conformance/afidl/parser-valid/import-unused-b.afidl",
+      "type_name": "Unused",
+      "digest_hex": "bf2e5840ae3bf86b0460e0931225c494cb882f108ac7f11cc6c748ca8b308b64"
     },
     {
       "case_id": "list-record-ref",

@@ -17,16 +17,23 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONF = ROOT / "spec" / "conformance" / "afidl"
-# Revision 3 (Phase 3A): adds the `semantic-core` case for the workflow
-# semantic core schema module. Revision 2 (Phase 2B) added the self-hosting
-# registry schema module. Both bumps are purely additive: existing cases and
-# digests are unchanged.
-CORPUS_REVISION = 3
+# Revision 4 (Phase 2C): adds cross-module import cases. Revision 3 (Phase 3A)
+# added the `semantic-core` case; revision 2 (Phase 2B) added the self-hosting
+# registry schema module. Every bump is purely additive: existing cases, bytes
+# and digests are unchanged.
+CORPUS_REVISION = 4
 
 PRIMITIVES = [
     "unit", "null", "bool", "int32", "uint32", "int64", "uint64",
     "decimal", "float64", "string", "bytes", "timestamp", "duration",
 ]
+
+# Reserved import aliases: exactly the words with structural meaning in a type
+# position (spec/idl/afidl1-grammar.md section 5.1).
+RESERVED_IMPORT_ALIASES = {
+    "afidl", "schema", "import", "as", "alias", "enum", "record", "variant",
+    "list", "map", "option", *PRIMITIVES,
+}
 
 # ---------------------------------------------------------------------------
 # Independent AFIDL1 implementation (lexer + parser, valid inputs only)
@@ -118,25 +125,53 @@ class Parser:
         version = int(self.expect("Int")[1])
         if version != 1:
             raise AfidfSyntaxError(f"unsupported AFIDL language version {version}")
-        self.expect("Semicolon" if False else ';')
+        self.expect(';')
         self.expect("LowerIdent", "schema")
         spec = self.specification_id()
         self.expect(';')
+        imports = []
         declarations = []
+        seen_declaration = False
         while self.peek() is not None:
             token = self.peek()
-            if token[0] == "LowerIdent" and token[1] == "alias":
-                declarations.append(self.alias_decl())
-            elif token[0] == "LowerIdent" and token[1] == "enum":
-                declarations.append(self.enum_decl())
-            elif token[0] == "LowerIdent" and token[1] == "record":
-                declarations.append(self.record_decl())
-            elif token[0] == "LowerIdent" and token[1] == "variant":
-                declarations.append(self.variant_decl())
+            if token[0] == "LowerIdent" and token[1] == "import":
+                if seen_declaration:
+                    raise AfidfSyntaxError(
+                        f"import after a declaration at line {token[2]}: imports "
+                        "belong to the module header")
+                imports.append(self.import_decl())
+            elif token[0] == "LowerIdent" and token[1] in (
+                    "alias", "enum", "record", "variant"):
+                seen_declaration = True
+                if token[1] == "alias":
+                    declarations.append(self.alias_decl())
+                elif token[1] == "enum":
+                    declarations.append(self.enum_decl())
+                elif token[1] == "record":
+                    declarations.append(self.record_decl())
+                else:
+                    declarations.append(self.variant_decl())
             else:
                 raise AfidfSyntaxError(
                     f"expected a declaration, found {token[1]!r} at line {token[2]}")
-        return {"spec": spec, "declarations": declarations}
+        return {"spec": spec, "imports": imports, "declarations": declarations}
+
+    def import_decl(self):
+        keyword = self.expect("LowerIdent", "import")
+        import_spec = self.specification_id()
+        self.expect("LowerIdent", "as")
+        alias = self.import_alias()
+        self.expect(';')
+        return {"spec": import_spec, "alias": alias, "line": keyword[2]}
+
+    def import_alias(self):
+        token = self.peek()
+        if token is None or token[0] != "LowerIdent":
+            raise AfidfSyntaxError("expected an import alias")
+        text = self.bump()[1]
+        if '-' in text or text in RESERVED_IMPORT_ALIASES:
+            raise AfidfSyntaxError(f"invalid or reserved import alias {text!r}")
+        return text
 
     def specification_id(self):
         segments = []
@@ -237,6 +272,23 @@ class Parser:
             self.bump()
             return ("ref", text)
         if kind == "LowerIdent":
+            # `<alias>.<TypeName>` is a qualified reference; a local type name
+            # is UpperCamelCase so the two never collide.
+            if self.tokens[self.pos + 1:self.pos + 2] and \
+                    self.tokens[self.pos + 1][0] == '.':
+                self.bump()  # alias
+                self.bump()  # '.'
+                if text in PRIMITIVES:
+                    raise AfidfSyntaxError(
+                        f"qualified primitive reference {text!r}: primitives are "
+                        "spelled bare")
+                name_token = self.peek()
+                if name_token is None or name_token[0] != "UpperIdent":
+                    found = name_token[1] if name_token else "end of file"
+                    raise AfidfSyntaxError(
+                        f"qualified references name an UpperCamelCase type, found {found!r}")
+                self.bump()
+                return ("qualified_ref", {"alias": text, "name": name_token[1]})
             if text == "list":
                 self.bump(); self.expect('<')
                 inner = self.type_expr()
@@ -272,21 +324,33 @@ def parse_afidl(source):
 # Canonical TypeSchema model + ACE1 encoding (Section 6)
 # ---------------------------------------------------------------------------
 
-def canonical_type_expr(spec_display, expr):
+def canonical_type_expr(spec_display, expr, imports=None):
+    """Lowers a source type expression to the canonical form.
+
+    `imports` maps an import alias to the imported specification's canonical
+    display form. It is used *only* to resolve a qualified reference's target
+    specification identity; the alias itself never reaches the canonical
+    schema (spec/idl/afidl1-grammar.md section 5.3).
+    """
     kind, value = expr
     if kind == "primitive":
         return ("primitive", value)
     if kind == "ref":
         return ("ref", f"{spec_display}/{value}")
+    if kind == "qualified_ref":
+        alias = value["alias"]
+        if imports is None or alias not in imports:
+            raise AfidfSyntaxError(f"unknown import alias {alias!r}")
+        return ("ref", f"{imports[alias]}/{value['name']}")
     if kind in ("list", "map_string", "option"):
-        return (kind, canonical_type_expr(spec_display, value))
+        return (kind, canonical_type_expr(spec_display, value, imports))
     raise AfidfSyntaxError(f"unknown type expr kind {kind!r}")
 
 
-def canonical_type(spec_display, declaration):
+def canonical_type(spec_display, declaration, imports=None):
     kind = declaration["kind"]
     if kind == "alias":
-        body = ("alias", canonical_type_expr(spec_display, declaration["target"]))
+        body = ("alias", canonical_type_expr(spec_display, declaration["target"], imports))
     elif kind == "enum":
         values = sorted(
             ({"no": v["no"], "name": v["name"]} for v in declaration["values"]),
@@ -295,20 +359,45 @@ def canonical_type(spec_display, declaration):
     elif kind == "record":
         fields = sorted(
             ({"no": f["no"], "name": f["name"],
-              "type": canonical_type_expr(spec_display, f["type"])}
+              "type": canonical_type_expr(spec_display, f["type"], imports)}
              for f in declaration["fields"]),
             key=lambda f: f["no"])
         body = ("record", {"fields": fields})
     elif kind == "variant":
         cases = sorted(
             ({"no": c["no"], "name": c["name"],
-              "type": canonical_type_expr(spec_display, c["type"])}
+              "type": canonical_type_expr(spec_display, c["type"], imports)}
              for c in declaration["cases"]),
             key=lambda c: c["no"])
         body = ("variant", {"cases": cases})
     else:
         raise AfidfSyntaxError(f"unknown declaration kind {kind!r}")
     return {"schema": spec_display, "name": declaration["name"], "body": body}
+
+
+def import_table(module):
+    """alias -> canonical imported specification display form.
+
+    Duplicate aliases and self/duplicate-specification imports are rejected
+    here as well: the generator is an independent implementation of the same
+    frozen rules (spec/idl/afidl1-grammar.md section 5.1).
+    """
+    this = f"{module['spec']['namespace']}@{module['spec']['major']}"
+    table = {}
+    imported = set()
+    for entry in module["imports"]:
+        alias = entry["alias"]
+        spec = entry["spec"]
+        display = f"{spec['namespace']}@{spec['major']}"
+        if alias in table:
+            raise AfidfSyntaxError(f"duplicate import alias {alias!r}")
+        if display == this:
+            raise AfidfSyntaxError(f"self import of {display!r}")
+        if display in imported:
+            raise AfidfSyntaxError(f"duplicate import of specification {display!r}")
+        table[alias] = display
+        imported.add(display)
+    return table
 
 
 def nfc(s):
@@ -392,29 +481,180 @@ def type_schema_digest(schema):
 
 
 # ---------------------------------------------------------------------------
+# Module-set compilation: cross-module resolution and the global type graph
+# ---------------------------------------------------------------------------
+
+class ModuleSetError(Exception):
+    """A module-set level failure (unresolved import, cross-module cycle)."""
+
+
+def compile_module_set(sources):
+    """Compiles a set of (label, source) pairs and validates the global
+    named-type dependency graph.
+
+    Independent Python implementation of `af_idl::compile_module_set`. The
+    module *import* graph may contain cycles; only the named-type graph must be
+    acyclic (spec/idl/afidl1-grammar.md section 5.4).
+    """
+    modules = {}
+    types_by_module = {}
+    declared = {}
+    for label, source in sources:
+        module, imports, types = compile_module_from_source(source)
+        spec = f"{module['spec']['namespace']}@{module['spec']['major']}"
+        if spec in modules:
+            raise ModuleSetError(f"duplicate module specification {spec!r}")
+        modules[spec] = (label, imports, module)
+        types_by_module[spec] = types
+        declared[spec] = {t["name"] for t in types}
+
+    for spec, (label, imports, module) in modules.items():
+        for alias, target in imports.items():
+            if target not in modules:
+                raise ModuleSetError(
+                    f"{label}: unknown imported specification {target!r}")
+        for declaration in module["declarations"]:
+            for expr in _type_exprs(declaration):
+                _check_qualified(imports, declared, expr)
+
+    edges = {}
+    for spec, types in types_by_module.items():
+        for schema in types:
+            edges[f"{spec}/{schema['name']}"] = _targets(schema["body"])
+
+    _check_acyclic(edges)
+    return modules, types_by_module
+
+
+def _type_exprs(declaration):
+    kind = declaration["kind"]
+    if kind == "alias":
+        return [declaration["target"]]
+    if kind in ("record", "variant"):
+        members = declaration.get("fields") or declaration.get("cases")
+        return [m["type"] for m in members]
+    return []
+
+
+def _check_qualified(imports, declared, expr):
+    kind, value = expr
+    if kind == "qualified_ref":
+        alias = value["alias"]
+        if alias not in imports:
+            raise ModuleSetError(f"unknown import alias {alias!r}")
+        target = imports[alias]
+        if value["name"] not in declared.get(target, set()):
+            raise ModuleSetError(
+                f"{target} declares no type {value['name']!r}")
+        return
+    if kind in ("list", "map_string", "option"):
+        _check_qualified(imports, declared, value)
+
+
+def _targets(body):
+    kind, payload = body
+    if kind == "alias":
+        return _expr_targets(payload)
+    if kind == "enum":
+        return []
+    members = payload.get("fields") or payload.get("cases")
+    out = []
+    for member in members:
+        out.extend(_expr_targets(member["type"]))
+    return out
+
+
+def _expr_targets(expr):
+    kind, value = expr
+    if kind == "ref":
+        return [value]
+    if kind in ("list", "map_string", "option"):
+        return _expr_targets(value)
+    return []
+
+
+def _body_identities(body):
+    """Every full logical type identity referenced by one canonical body."""
+    kind, payload = body
+    if kind == "alias":
+        return set(_expr_targets(payload))
+    if kind == "enum":
+        return set()
+    members = payload.get("fields") or payload.get("cases")
+    out = set()
+    for member in members:
+        out.update(_expr_targets(member["type"]))
+    return out
+
+
+def _check_acyclic(edges):
+    done = set()
+
+    def walk(node, path):
+        for target in edges.get(node, []):
+            if target in path:
+                cycle = path[path.index(target):] + [target]
+                raise ModuleSetError(
+                    f"cross-module recursive type reference {' -> '.join(cycle)}")
+            if target not in edges or target in done:
+                continue
+            path.append(target)
+            walk(target, path)
+            path.pop()
+        done.add(node)
+
+    for start in edges:
+        if start not in done:
+            walk(start, [start])
+
+
+# ---------------------------------------------------------------------------
 # Corpus generation
 # ---------------------------------------------------------------------------
 
-def compile_file(path: Path):
-    module = parse_afidl(path.read_text(encoding="utf-8"))
+def compile_module_from_source(source):
+    """Parses and canonicalizes one module source, returning
+    (module, imports, canonical types as (name, schema) pairs)."""
+    module = parse_afidl(source)
     spec_display = f"{module['spec']['namespace']}@{module['spec']['major']}"
-    types = []
-    for declaration in module["declarations"]:
-        schema = canonical_type(spec_display, declaration)
+    imports = import_table(module)
+    types = [canonical_type(spec_display, declaration, imports)
+             for declaration in module["declarations"]]
+    types.sort(key=lambda t: t["name"])
+    return module, imports, types
+
+
+def compile_file(path: Path):
+    return compile_module_from_source(path.read_text(encoding="utf-8"))[2]
+
+
+def type_entries(types):
+    entries = []
+    for schema in types:
         payload, digest = type_schema_digest(schema)
-        types.append({
+        entries.append({
             "name": schema["name"],
             "ace1_utf8": payload.decode("utf-8"),
             "ace1_hex": payload.hex(),
             "digest_hex": digest,
         })
-    types.sort(key=lambda t: t["name"])
-    return types
+    return entries
 
 
-def case_entry(path: Path, case_id=None):
+def case_entry(path: Path, case_id=None, requires=None):
     rel = path.relative_to(ROOT).as_posix()
-    entry = {"case_id": case_id or path.stem, "file": rel, "types": compile_file(path)}
+    types = compile_file(path)
+    entry = {
+        "case_id": case_id or path.stem,
+        "file": rel,
+        "types": type_entries(types),
+    }
+    if requires:
+        entry["requires"] = [
+            {"case_id": target, "file": (CONF / "parser-valid" / f"{target}.afidl")
+             .relative_to(ROOT).as_posix()}
+            for target in requires
+        ]
     return entry
 
 
@@ -427,9 +667,22 @@ def write_json(path, payload):
 def main():
     valid_dir = CONF / "parser-valid"
 
+    # Cross-module fixtures: `requires` names the parser-valid cases whose
+    # modules form the import universe for a universe-compiled fixture.
+    import_requires = {
+        "import-basic": ["import-core"],
+        "import-multiple": ["import-core", "import-second"],
+        "import-nested-container-ref": ["import-core"],
+        "import-alias-rename-a": ["import-core"],
+        "import-alias-rename-b": ["import-core"],
+        "import-order-a": ["import-core", "import-second"],
+        "import-order-b": ["import-core", "import-second"],
+        "import-unused-b": ["import-core"],
+    }
+
     cases = []
     for source in sorted(valid_dir.glob("*.afidl")):
-        cases.append(case_entry(source))
+        cases.append(case_entry(source, requires=import_requires.get(source.stem)))
     # The normative builtin registry file is itself part of the corpus.
     primitives_file = ROOT / "spec" / "idl" / "core" / "machine-primitives.afidl"
     cases.append(case_entry(primitives_file, case_id="machine-primitives"))
@@ -454,6 +707,9 @@ def main():
             ["variant", "variant-reordered"],
             ["enum", "enum-reordered"],
             ["module-order", "module-order-reordered"],
+            ["import-alias-rename-a", "import-alias-rename-b"],
+            ["import-order-a", "import-order-b"],
+            ["import-unused-a", "import-unused-b"],
         ],
     }
     write_json(CONF / "schema-golden.json", schema_golden)
@@ -509,6 +765,102 @@ def main():
         "mutation_cases": mutation_cases,
     }
     write_json(CONF / "type-schema-digest-golden.json", digest_golden)
+
+    # --- cross-module import conformance -----------------------------------
+    # Every fixture with a `requires` list is compiled through the same
+    # module-set path the Rust harness uses, and the resulting canonical bytes
+    # must equal the bytes already frozen above (imports are not identity
+    # material: the universe only adds validity).
+    frozen = {(case["case_id"], t["name"]): t for case in cases for t in case["types"]}
+    import_cases = []
+    for case in cases:
+        requires = import_requires.get(case["case_id"])
+        if not requires:
+            continue
+        universe_sources = [
+            (f"{target}.afidl", (valid_dir / f"{target}.afidl").read_text(encoding="utf-8"))
+            for target in requires
+        ]
+        consumer_source = (ROOT / case["file"]).read_text(encoding="utf-8")
+        modules, types_by_module = compile_module_set(
+            [*universe_sources, (f"{case['case_id']}.afidl", consumer_source)])
+        consumer_spec = next(
+            spec for spec, (label, _imports, _module) in modules.items()
+            if label == f"{case['case_id']}.afidl")
+        recompiled = type_entries(types_by_module[consumer_spec])
+        for entry in recompiled:
+            original = frozen[(case["case_id"], entry["name"])]
+            assert entry["ace1_hex"] == original["ace1_hex"], (
+                f"{case['case_id']}/{entry['name']}: module-set compilation "
+                "diverged from single-module compilation")
+            assert entry["digest_hex"] == original["digest_hex"], (
+                f"{case['case_id']}/{entry['name']}: digest diverged")
+        # For each import, record which specification the alias actually
+        # resolved to — the frozen proof that an alias lowers to the target's
+        # full logical identity and not to its own spelling.
+        _module, imports, _types = compile_module_from_source(consumer_source)
+        import_cases.append({
+            "case_id": case["case_id"],
+            "file": case["file"],
+            "requires": requires,
+            "resolved_imports": [
+                {"alias": alias, "specification_id": spec}
+                for alias, spec in sorted(imports.items())
+            ],
+            "type_identities": {
+                schema["name"]: sorted(_body_identities(schema["body"]))
+                for schema in types_by_module[consumer_spec]
+            },
+        })
+        print(f"cross-module fixture {case['case_id']} agrees with single-module bytes")
+
+    import_golden = {
+        "kind": "agentflow.conformance.afidl.import-golden",
+        "note": (
+            "Cross-module import conformance: the resolvable import table of "
+            "each fixture and the full logical identities its declarations "
+            "reference. Import aliases are source spelling only and never "
+            "appear here; the module-set compilation of every fixture must "
+            "reproduce the canonical bytes frozen in schema-golden.json."
+        ),
+        "cases": import_cases,
+    }
+    write_json(CONF / "import-golden.json", import_golden)
+
+    # Cross-module recursion: the cycle fixtures must be rejected, and mutual
+    # imports without a type dependency must be accepted.
+    cycle_dir = CONF / "import-cycles"
+    for case_id, files in (
+        ("cross-module-direct-cycle", ["cycle-a", "cycle-b"]),
+        ("cross-module-indirect-cycle", ["ring-a", "ring-b", "ring-c"]),
+    ):
+        sources = [(f"{name}.afidl", (cycle_dir / f"{name}.afidl").read_text(encoding="utf-8"))
+                   for name in files]
+        try:
+            compile_module_set(sources)
+        except ModuleSetError as error:
+            assert "cross-module recursive type" in str(error), (
+                f"{case_id}: expected a recursion rejection, got {error}")
+            print(f"{case_id}: rejected as expected")
+        else:
+            raise AssertionError(f"{case_id}: cycle was accepted")
+    free_sources = [
+        (f"{name}.afidl", (cycle_dir / f"{name}.afidl").read_text(encoding="utf-8"))
+        for name in ("free-a", "free-b")
+    ]
+    modules, _ = compile_module_set(free_sources)
+    assert len(modules) == 2, "mutual imports without a type cycle must compile"
+    print("mutual imports without a type cycle compile")
+
+    # Unqualified references to imported types are rejected, and the local-only
+    # (universe-free) path reports the plain unresolved-reference error.
+    for fixture in ("qualified-ref-without-import", "unknown-import-alias"):
+        source = (CONF / "parser-invalid" / f"{fixture}.afidl").read_text(encoding="utf-8")
+        try:
+            parse_afidl(source)
+        except AfidfSyntaxError as error:
+            raise AssertionError(f"{fixture} must parse, got {error}") from error
+    print("qualified-reference fixtures parse and fail at validation, not at parse")
 
     # Self-check: machine-primitives.afidl must expose exactly the closed
     # primitive universe through its aliases.
