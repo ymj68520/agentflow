@@ -20,6 +20,7 @@
 //! exactly those the ideal (infinite) shape would produce, with no change to
 //! the frozen ACE1 wire grammar.
 
+use crate::ast::{Decl, Module, TypeExpr, TypeExprKind};
 use crate::primitives::Primitive;
 use crate::specification::SpecificationId;
 use af_core::{DigestDomain, DigestRef, Shape, Value, encode};
@@ -241,6 +242,154 @@ impl CompiledSchema {
         self.by_name(type_name)
             .and_then(|schema| schema.digest().ok())
     }
+
+    /// The declared local type names, in canonical (sorted) order.
+    pub fn type_names(&self) -> impl Iterator<Item = &str> {
+        self.types.iter().map(|t| t.name.as_str())
+    }
+}
+
+/// Builds the canonical schema of a *validated* module, resolving every type
+/// expression through `resolve`.
+///
+/// `resolve` is the sole extension point between the two resolution modes:
+///
+/// - the local-only path (no imports), where a `NamedRef` becomes
+///   `<this-specification-id>/<TypeName>`;
+/// - the import-aware path, where a local `NamedRef` resolves the same way and
+///   a `QualifiedNamedRef` becomes `<imported-specification-id>/<TypeName>`.
+///
+/// Both modes produce the identical wire model: the canonical encoder never
+/// sees an import alias. `resolve` may only fail in the import-aware mode.
+pub(crate) fn build_schema<F>(
+    module: &Module,
+    resolve: &F,
+) -> Result<CompiledSchema, crate::error::AfidlError>
+where
+    F: Fn(&TypeExpr) -> Result<CanonicalTypeExpr, crate::error::AfidlError>,
+{
+    let mut types: Vec<CanonicalTypeSchema> = Vec::with_capacity(module.declarations.len());
+    let identity = module.schema.id.canonical();
+    for decl in &module.declarations {
+        types.push(canonical_type(&identity, decl, resolve)?);
+    }
+    types.sort_by(|a, b| a.name.cmp(&b.name));
+    Ok(CompiledSchema {
+        specification: module.schema.id.clone(),
+        types,
+    })
+}
+
+/// Resolves a type expression using only the module's own import table.
+///
+/// This is the universe-free resolution mode: the *identity* of an imported
+/// specification is fully determined by the module's own source (an import
+/// names an exact `SpecificationId`), so canonicalization never needs a
+/// registry or a resolved universe. Whether the imported module exists and
+/// declares the referenced type is a separate, stronger question answered by
+/// [`crate::resolve`] against an explicit universe.
+pub(crate) fn resolve_from_imports(
+    module: &Module,
+    expr: &TypeExpr,
+) -> Result<CanonicalTypeExpr, crate::error::AfidlError> {
+    let this = module.schema.id.canonical();
+    resolve_expr(module, &this, expr)
+}
+
+fn resolve_expr(
+    module: &Module,
+    this: &str,
+    expr: &TypeExpr,
+) -> Result<CanonicalTypeExpr, crate::error::AfidlError> {
+    let kind = match &expr.kind {
+        TypeExprKind::Primitive(primitive) => CanonicalTypeExpr::Primitive(*primitive),
+        TypeExprKind::NamedRef(name) => CanonicalTypeExpr::NamedRef(format!("{this}/{name}")),
+        TypeExprKind::QualifiedNamedRef(reference) => {
+            let target = module
+                .imports
+                .iter()
+                .find(|import| import.alias == reference.import_alias)
+                .ok_or_else(|| crate::error::AfidlError::UnknownImportAlias {
+                    alias: reference.import_alias.clone(),
+                    span: reference.span,
+                })?;
+            CanonicalTypeExpr::NamedRef(format!(
+                "{}/{}",
+                target.id.canonical(),
+                reference.type_name
+            ))
+        }
+        TypeExprKind::List(inner) => {
+            CanonicalTypeExpr::List(Box::new(resolve_expr(module, this, inner)?))
+        }
+        TypeExprKind::MapString(inner) => {
+            CanonicalTypeExpr::MapString(Box::new(resolve_expr(module, this, inner)?))
+        }
+        TypeExprKind::Option(inner) => {
+            CanonicalTypeExpr::Option(Box::new(resolve_expr(module, this, inner)?))
+        }
+    };
+    Ok(kind)
+}
+
+/// Canonicalizes one declaration. Every type expression is lowered by
+/// `resolve`; nothing else about the declaration varies between the two
+/// resolution modes.
+fn canonical_type<F>(
+    identity: &str,
+    decl: &Decl,
+    resolve: &F,
+) -> Result<CanonicalTypeSchema, crate::error::AfidlError>
+where
+    F: Fn(&TypeExpr) -> Result<CanonicalTypeExpr, crate::error::AfidlError>,
+{
+    let name = decl.name().to_string();
+    let body = match decl {
+        Decl::Alias(alias) => CanonicalBody::Alias(resolve(&alias.target)?),
+        Decl::Enum(enum_decl) => {
+            let mut values: Vec<CanonicalEnumValue> = enum_decl
+                .values
+                .iter()
+                .map(|v| CanonicalEnumValue {
+                    no: v.no,
+                    name: v.name.clone(),
+                })
+                .collect();
+            values.sort_by_key(|v| v.no);
+            CanonicalBody::Enum(values)
+        }
+        Decl::Record(record) => {
+            let mut fields: Vec<CanonicalField> = Vec::with_capacity(record.fields.len());
+            for field in &record.fields {
+                fields.push(CanonicalField {
+                    no: field.no,
+                    name: field.name.clone(),
+                    type_expr: resolve(&field.type_expr)?,
+                });
+            }
+            fields.sort_by_key(|f| f.no);
+            CanonicalBody::Record(fields)
+        }
+        Decl::Variant(variant) => {
+            let mut cases: Vec<CanonicalCase> = Vec::with_capacity(variant.cases.len());
+            for case in &variant.cases {
+                cases.push(CanonicalCase {
+                    no: case.no,
+                    name: case.name.clone(),
+                    type_expr: resolve(&case.payload)?,
+                });
+            }
+            cases.sort_by_key(|c| c.no);
+            CanonicalBody::Variant(cases)
+        }
+    };
+    // The canonical schema carries the *module's* identity, never an import
+    // alias: imports are structurally absent from this model (AF-AFIDL-0024).
+    Ok(CanonicalTypeSchema {
+        schema: identity.to_string(),
+        name,
+        body,
+    })
 }
 
 // ---------------------------------------------------------------------------

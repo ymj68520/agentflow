@@ -9,6 +9,16 @@
 //!              → ACE1 bytes → HashV1("type-schema", ...) → TypeSchemaDigest
 //! ```
 //!
+//! Phase 2C adds cross-module reuse as an *additive source-language*
+//! capability: `import <SpecificationId> as <alias>;` plus qualified type
+//! references (`alias.TypeName`). Imports are a source resolution aid only —
+//! they never enter a canonical TypeSchema, so an alias rename, a reordering
+//! of import declarations or an unused import leaves every `TypeSchemaDigest`
+//! unchanged. A module that imports is compiled with
+//! [`compile_with_universe`] / [`compile_module_set`], which take an explicit,
+//! immutable [`ResolvedSchemaUniverse`]; there is no registry, latest-version
+//! or filesystem lookup anywhere in this crate.
+//!
 //! Layering:
 //!
 //! - [`parse`] — hand-written lexer + recursive-descent parser producing the
@@ -29,32 +39,36 @@ pub mod error;
 pub mod lexer;
 pub mod parser;
 pub mod primitives;
+pub mod resolve;
 pub mod shape;
 pub mod span;
 pub mod specification;
 pub mod validate;
 
 pub use ast::{
-    AliasDecl, Decl, EnumDecl, EnumValueDecl, FieldDecl, Module, SchemaDecl, TypeExpr,
-    TypeExprKind, VariantCaseDecl, VariantDecl,
+    AliasDecl, Decl, EnumDecl, EnumValueDecl, FieldDecl, ImportDecl, Module, QualifiedRef,
+    SchemaDecl, TypeExpr, TypeExprKind, VariantCaseDecl, VariantDecl,
 };
 pub use canonical::{
     CanonicalBody, CanonicalCase, CanonicalEnumValue, CanonicalField, CanonicalTypeExpr,
     CanonicalTypeSchema, CompiledSchema,
 };
 pub use error::AfidlError;
-pub use parser::parse;
+pub use parser::{RESERVED_IMPORT_ALIASES, parse};
 pub use primitives::{AFIDL1_VERSION, Primitive};
+pub use resolve::{
+    CompiledModuleSet, DeclaredTypeIndex, ResolvedSchemaUniverse, compile_module_set,
+};
 pub use span::SourceSpan;
 pub use specification::SpecificationId;
 pub use validate::validate;
 
 /// Parses, validates and canonicalizes an AFIDL1 source.
 ///
-/// This is the primary entry point. Deterministic: the same source (and any
-/// source differing only in comments, whitespace or declaration/member
-/// ordering with identical number bindings) yields identical canonical
-/// schemas and identical digests.
+/// This is the primary entry point for a self-contained module (no imports).
+/// Deterministic: the same source (and any source differing only in comments,
+/// whitespace or declaration/member ordering with identical number bindings)
+/// yields identical canonical schemas and identical digests.
 ///
 /// # Errors
 /// Returns a structured [`AfidlError`] for lex, parse and validation
@@ -65,90 +79,52 @@ pub fn compile(source: &str) -> Result<CompiledSchema, AfidlError> {
     Ok(canonicalize(&module))
 }
 
+/// Parses, validates and canonicalizes an AFIDL1 source against an explicit,
+/// immutable schema universe — the import-aware companion of [`compile`].
+///
+/// Beyond everything [`compile`] checks, this verifies that every import names
+/// a specification the universe contains and that every qualified reference
+/// resolves to a type that specification actually declares. Local-only
+/// modules compile identically under both entry points.
+///
+/// # Errors
+/// Returns a structured [`AfidlError`]; import-resolution failures use
+/// [`AfidlError::UnknownImportSpecification`] and
+/// [`AfidlError::UnknownImportedType`].
+pub fn compile_with_universe(
+    source: &str,
+    universe: &ResolvedSchemaUniverse,
+) -> Result<CompiledSchema, AfidlError> {
+    let module = parse(source)?;
+    if let Err(error) = validate(&module) {
+        if let Some(upgraded) = resolve::explain_unqualified_reference(
+            &module,
+            &resolve::DeclaredTypeIndex::from_universe(universe),
+            &error,
+        ) {
+            return Err(upgraded);
+        }
+        return Err(error);
+    }
+    resolve::resolve_against_universe(&module, universe)?;
+    Ok(canonicalize(&module))
+}
+
 /// Canonicalizes a *validated* module into its canonical types.
 ///
 /// Canonical member ordering is by explicit number ascending (`field_no`,
 /// `case_no`, `value_no`); the type list is sorted by local name. Source
-/// declaration order never survives canonicalization.
+/// declaration order never survives canonicalization, and neither does a
+/// module's import table: a qualified reference lowers to the imported
+/// specification's full logical identity.
+///
+/// The function is infallible for a module that passed [`validate`], which
+/// already rejects a qualified reference whose alias is not declared.
 pub fn canonicalize(module: &Module) -> CompiledSchema {
-    let mut types: Vec<CanonicalTypeSchema> = module
-        .declarations
-        .iter()
-        .map(|decl| canonical_type(module.schema.id.canonical(), decl))
-        .collect();
-    types.sort_by(|a, b| a.name.cmp(&b.name));
-    CompiledSchema {
-        specification: module.schema.id.clone(),
-        types,
-    }
-}
-
-fn canonical_type(schema_id: String, decl: &Decl) -> CanonicalTypeSchema {
-    let name = decl.name().to_string();
-    let body = match decl {
-        ast::Decl::Alias(alias) => {
-            CanonicalBody::Alias(canonical_expr(schema_id.as_str(), &alias.target))
-        }
-        ast::Decl::Enum(enum_decl) => {
-            let mut values: Vec<CanonicalEnumValue> = enum_decl
-                .values
-                .iter()
-                .map(|v| CanonicalEnumValue {
-                    no: v.no,
-                    name: v.name.clone(),
-                })
-                .collect();
-            values.sort_by_key(|v| v.no);
-            CanonicalBody::Enum(values)
-        }
-        ast::Decl::Record(record) => {
-            let mut fields: Vec<CanonicalField> = record
-                .fields
-                .iter()
-                .map(|f| CanonicalField {
-                    no: f.no,
-                    name: f.name.clone(),
-                    type_expr: canonical_expr(schema_id.as_str(), &f.type_expr),
-                })
-                .collect();
-            fields.sort_by_key(|f| f.no);
-            CanonicalBody::Record(fields)
-        }
-        ast::Decl::Variant(variant) => {
-            let mut cases: Vec<CanonicalCase> = variant
-                .cases
-                .iter()
-                .map(|c| CanonicalCase {
-                    no: c.no,
-                    name: c.name.clone(),
-                    type_expr: canonical_expr(schema_id.as_str(), &c.payload),
-                })
-                .collect();
-            cases.sort_by_key(|c| c.no);
-            CanonicalBody::Variant(cases)
-        }
-    };
-    CanonicalTypeSchema {
-        schema: schema_id,
-        name,
-        body,
-    }
-}
-
-fn canonical_expr(schema_id: &str, expr: &TypeExpr) -> CanonicalTypeExpr {
-    match &expr.kind {
-        TypeExprKind::Primitive(primitive) => CanonicalTypeExpr::Primitive(*primitive),
-        TypeExprKind::NamedRef(name) => CanonicalTypeExpr::NamedRef(format!("{schema_id}/{name}")),
-        TypeExprKind::List(inner) => {
-            CanonicalTypeExpr::List(Box::new(canonical_expr(schema_id, inner)))
-        }
-        TypeExprKind::MapString(inner) => {
-            CanonicalTypeExpr::MapString(Box::new(canonical_expr(schema_id, inner)))
-        }
-        TypeExprKind::Option(inner) => {
-            CanonicalTypeExpr::Option(Box::new(canonical_expr(schema_id, inner)))
-        }
-    }
+    canonical::build_schema(module, &|expr| {
+        canonical::resolve_from_imports(module, expr)
+    })
+    .expect("a validated module always canonicalizes")
 }
 
 #[cfg(test)]
