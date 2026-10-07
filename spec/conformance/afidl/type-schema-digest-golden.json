@@ -1,5 +1,5 @@
 {
-  "corpus_revision": 2,
+  "corpus_revision": 3,
   "kind": "agentflow.conformance.afidl.type-schema-digest-golden",
   "note": "Frozen TypeSchemaDigest values (SHA256(\"AF\\0type-schema\\0\" || canonical ACE1 bytes)). Mutation cases assert that semantic changes alter the digest while the equivalence groups in schema-golden.json assert that formatting does not.",
   "cases": [
@@ -506,6 +506,180 @@
       "file": "spec/idl/specification-registry.afidl",
       "type_name": "TypeName",
       "digest_hex": "96871f0a24d162c5a27bf8cadcc2538f37a8db7ffa22f120dd681db071cea248"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "AndBody",
+      "digest_hex": "1fabc442050ef8c8bf26de23e67b7ab72c785a5bd43a004a79c25f62595a64a2"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "DigestRefValue",
+      "digest_hex": "11fc0503b6695db4af3d9e5e3f8f8219126a4661c1116017984701d74b04127c"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "EnumValueBody",
+      "digest_hex": "b4fc9604244f02a4c9f002c4872a7d5050aad5aab16749e5a9247ddf8f49673d"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "EqualsBody",
+      "digest_hex": "c64fcb4f286c0d0b84f7d55e1fc9f9b32093812e2e9c4713fe16679467f8d0f8"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "ExpressionBody",
+      "digest_hex": "c8b499070ee32e6d346cf5413bf326423e39e63439390bd950f7a34b3e0ce1d1"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "ExpressionDef",
+      "digest_hex": "ddcecbf594568ef2b58a59162df0070374f22106f49a79e8f45e162a21c33060"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "ExpressionId",
+      "digest_hex": "fa17f599a619bdea2dd5a5fecc98006c5b0813233182f4f468b25d00898ab77f"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "FieldGetBody",
+      "digest_hex": "af62f48067c12839720a6aad030ececeb762e366a3b168b961745e3f5c2b128a"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "IfThenElseBody",
+      "digest_hex": "da30b071829ae0de4a5b9d9b63d888d2385f649b91c42342c5d6f258bc15d578"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "ListConstructBody",
+      "digest_hex": "bf832429da632907e8ef19b4591dbc0d16c74eebdeccc83598b7725f99efec1e"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "MapConstructBody",
+      "digest_hex": "8f384528a29053c4ef018296a9adc0499e25c1d2003e8aef531516d77c65450b"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "MapEntryExpr",
+      "digest_hex": "b619a48b5fb2cd1b6bada48a4fd1a7f808da353d8a305f91fc9e0d9d56336756"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "NotBody",
+      "digest_hex": "cf61f39e12f5b656cf44340822922d7bd866917101d033f6f122e02ad83b1d95"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "OptionNoneBody",
+      "digest_hex": "5b04dcbf667767cb653f0d5caab77dc141d42c000be23ba7370530b1469cc8fc"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "OptionSomeBody",
+      "digest_hex": "6dbdb8217ac61ad619468a756af1a105d1a4cd45dfcea12490047b1d5b56d964"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "OrBody",
+      "digest_hex": "ee5887fed8c182a5766ba52ab8822404a928c39d4568ff689423eb9334c649cb"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "PrimitiveConstant",
+      "digest_hex": "4304dc670aaab7c1a2522b3bdcd8b854df97660edfd100454b247b3281baf887"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "RecordConstructBody",
+      "digest_hex": "33601853b7f41d61709e544aa4c74c0c57bb5229fc424515cf4079ca69c8163e"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "RecordFieldExpr",
+      "digest_hex": "8f6bc6b80024fdb1bce3db49938a4642da112160d6f8f9d7bd82073946a4b212"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "ResourceSlot",
+      "digest_hex": "5da4cf7c5d3cccebd8ccd0cf9bdd1c1197811ab953cd898e25561863f336aa48"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "ResourceSlotId",
+      "digest_hex": "75df053dc1f67d11a5225f60b1005add5f9db19d740846676301072370570e12"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "SemanticPrimitiveType",
+      "digest_hex": "b0512c05814d627cf2c67c62da204997f6b90e9bc2d9521d22235e2d7abc86b2"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "SemanticTypeId",
+      "digest_hex": "a5010f0de6bc082e9d3308f37e2bf1acbd401071440d8bcd795d3e6007313243"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "SemanticTypeNode",
+      "digest_hex": "5384b4996a329ca28bfa3a09732e7f4ab0a12016d57d6456b6de3de0f4c57d19"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "SemanticTypeNodeBody",
+      "digest_hex": "6b7ad7213ee4be10b8c03df7c5a08fb9b4a56e25161c37e84e08a9f1640b244f"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "TypeSchemaRef",
+      "digest_hex": "e1739609320518db9f8e00714ca67e9a79fcd5735a5eb8e8dae15911f15558e4"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "ValueSlot",
+      "digest_hex": "e4e90fb374e4141bac8bcc61070846df847c7fff9f681ead5f71f3b87620151a"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "ValueSlotId",
+      "digest_hex": "8e1eaec22d6140202a493c41da3aef178a9104bc6ea9854b14654d1ace8334ec"
+    },
+    {
+      "case_id": "semantic-core",
+      "file": "spec/idl/semantic-core.afidl",
+      "type_name": "VariantConstructBody",
+      "digest_hex": "71a9af45eee9dd39afe33059ba774649262b83c7303c01037f0079a68040c0e0"
     }
   ],
   "mutation_cases": [

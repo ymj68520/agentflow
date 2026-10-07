@@ -17,10 +17,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONF = ROOT / "spec" / "conformance" / "afidl"
-# Revision 2 (Phase 2B): adds the `specification-registry` case for the
-# self-hosting registry schema module. Existing cases and digests are
-# unchanged; the revision bump marks the additive corpus extension.
-CORPUS_REVISION = 2
+# Revision 3 (Phase 3A): adds the `semantic-core` case for the workflow
+# semantic core schema module. Revision 2 (Phase 2B) added the self-hosting
+# registry schema module. Both bumps are purely additive: existing cases and
+# digests are unchanged.
+CORPUS_REVISION = 3
 
 PRIMITIVES = [
     "unit", "null", "bool", "int32", "uint32", "int64", "uint64",
@@ -435,6 +436,9 @@ def main():
     # The Phase 2B self-hosting registry schema module is part of the corpus.
     registry_file = ROOT / "spec" / "idl" / "specification-registry.afidl"
     cases.append(case_entry(registry_file, case_id="specification-registry"))
+    # The Phase 3A workflow semantic core schema module is part of the corpus.
+    semantic_file = ROOT / "spec" / "idl" / "semantic-core.afidl"
+    cases.append(case_entry(semantic_file, case_id="semantic-core"))
 
     schema_golden = {
         "kind": "agentflow.conformance.afidl.schema-golden",
@@ -536,6 +540,63 @@ def main():
         assert expected in reg_names, f"registry schema is missing {expected}"
     assert len(reg["types"]) == 20, "registry schema type count drifted"
     print("specification-registry.afidl exposes the closed registry object set")
+
+    # Self-check: the semantic core module must expose the closed Phase 3A
+    # object set and must not name any machine-only primitive.
+    sem = next(c for c in cases if c["case_id"] == "semantic-core")
+    sem_names = {t["name"] for t in sem["types"]}
+    for expected in (
+        "AndBody", "DigestRefValue", "EnumValueBody", "EqualsBody", "ExpressionBody",
+        "ExpressionDef", "ExpressionId", "FieldGetBody", "IfThenElseBody",
+        "ListConstructBody", "MapConstructBody", "MapEntryExpr", "NotBody",
+        "OptionNoneBody", "OptionSomeBody", "OrBody", "PrimitiveConstant",
+        "RecordConstructBody", "RecordFieldExpr", "ResourceSlot", "ResourceSlotId",
+        "SemanticPrimitiveType", "SemanticTypeId", "SemanticTypeNode",
+        "SemanticTypeNodeBody", "TypeSchemaRef", "ValueSlot", "ValueSlotId",
+        "VariantConstructBody",
+    ):
+        assert expected in sem_names, f"semantic core schema is missing {expected}"
+    assert len(sem["types"]) == 29, "semantic core type count drifted"
+    for machine_only in ("int32", "uint32", "uint64", "float64"):
+        assert machine_only not in sem_names, (
+            f"semantic core must not declare {machine_only}")
+    # The closed primitive enum must be exactly the 9 workflow primitives.
+    primitive_enum = next(
+        d for d in parse_afidl(
+            semantic_file.read_text(encoding="utf-8"))["declarations"]
+        if d["kind"] == "enum" and d["name"] == "SemanticPrimitiveType")
+    assert [v["name"] for v in primitive_enum["values"]] == [
+        "unit", "null", "bool", "int64", "decimal", "string", "bytes",
+        "timestamp", "duration",
+    ], "workflow primitive universe drifted"
+    # Structural primitive audit: the only primitive keywords this module may
+    # mention are the 9 workflow primitives plus uint32 for local id and
+    # numbering fields. int32/uint64/float64 must appear nowhere.
+    used = set()
+
+    def walk(expr):
+        if expr[0] == "primitive":
+            used.add(expr[1])
+        elif expr[0] in ("list", "map_string", "option"):
+            walk(expr[1])
+
+    for declaration in parse_afidl(
+            semantic_file.read_text(encoding="utf-8"))["declarations"]:
+        if declaration["kind"] == "alias":
+            walk(declaration["target"])
+        elif declaration["kind"] == "enum":
+            continue
+        else:
+            members = declaration.get("fields") or declaration.get("cases") or []
+            for member in members:
+                walk(member["type"])
+    expected_primitives = {
+        "unit", "null", "bool", "int64", "decimal", "string", "bytes",
+        "timestamp", "duration", "uint32",
+    }
+    assert used == expected_primitives, (
+        f"semantic core primitive audit failed: {sorted(used)}")
+    print("semantic-core.afidl primitive audit clean")
 
 
 if __name__ == "__main__":

@@ -79,10 +79,11 @@ struct MutationCase {
 }
 
 /// Frozen corpus revision this harness is written against.
-// Golden revision 2 (Phase 2B): additive `specification-registry` case;
-// existing cases and digests are unchanged. The parser-invalid manifest is
-// a separate frozen artifact and stays at revision 1.
-const CORPUS_REVISION: u64 = 2;
+// Golden revision 3 (Phase 3A): additive `semantic-core` case; revision 2
+// (Phase 2B) added the `specification-registry` case. Every bump is purely
+// additive - existing cases and digests are unchanged. The parser-invalid
+// manifest is a separate frozen artifact and stays at revision 1.
+const CORPUS_REVISION: u64 = 3;
 const PARSER_INVALID_CORPUS_REVISION: u64 = 1;
 
 fn frozen_digest_map() -> BTreeMap<(String, String), String> {
