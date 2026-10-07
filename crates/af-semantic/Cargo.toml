@@ -1,0 +1,21 @@
+[package]
+name = "af-semantic"
+description = "AgentFlow workflow semantic core: primitive universe, semantic type DAG, value slots, pure expressions and logical resource slots"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+af-core = { path = "../af-core" }
+af-idl = { path = "../af-idl" }
+serde = { version = "1", features = ["derive"] }
+unicode-normalization = "0.1"
+
+[dev-dependencies]
+serde_json = "1"
+hex = "0.4"
+
+[lints]
+workspace = true
