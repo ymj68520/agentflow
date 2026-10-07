@@ -137,7 +137,7 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "a8e801e11fd6f4ab4a7d926d63f29d9c3d4d89e1d362d54e8a35cd08207cbf60"
+          "hex": "a4995719b416935bc48eef7747b6d55f51f93cb2ec4142d9a699514b26100bdb"
         },
         "logical_path": "spec/semantic/semantic-ir.md"
       },

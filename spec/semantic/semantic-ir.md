@@ -1,6 +1,6 @@
 # Canonical Semantic IR — v1
 
-> Status: AgentFlow repository normative source for Phase 3B. This document
+> Status: AgentFlow repository normative source for Phase 3B and Phase 3C. This document
 > defines the Canonical Semantic IR: its document structure, the closed
 > 13-opcode `ComputationBody` set, structured ownership, value-producer
 > rules, static interface rules, canonical ordering and the
@@ -466,20 +466,214 @@ SemanticIrDigest = HashV1("semantic-ir", ACE1(CanonicalSemanticIrDocument))
   cross-module expansion; the value tree mirrors the AFIDL schema
   field-for-field.
 
-## 13. Explicitly deferred (Phase 3C and later)
+## 13. Scoped typed dataflow (Phase 3C)
 
-The following are **not** Phase 3B defects; they are later layers:
+<a id="ir-scoped-dataflow"></a>
+<a id="ir-value-availability"></a>
+<a id="ir-per-use-site"></a>
+<a id="ir-unused-expression"></a>
 
-- full scoped dataflow dominance; branch-local value leakage; typed branch
-  merge availability; value availability at execution points;
-- ComponentContract port validation; Subflow interface validation (the
-  contract machine models are not materialized);
-- Await mailbox/matcher runtime semantics; FailureValue runtime ABI;
-- Effect Signature; Resource Contract meaning; Scope authority/budget
-  attenuation;
-- runtime occurrence identity; journal decisions; executable plans.
+Phase 3B guarantees that every declared value slot exists and has exactly one
+producer. Existence is **not** availability:
 
-## 14. Conformance
+```text
+A value slot may be read at a use site only if its producer dominates
+that use site in the structured ownership tree.
+```
+
+- The rule is enforced by a deterministic walk over the ownership tree with
+  one opcode-specific availability transfer function per control form. No
+  general CFG dominator algorithm exists here: the 13-opcode control
+  structures are already a structured tree, so a producer dominates a use
+  exactly when the structured transfer places the produced slot into that
+  use site's environment.
+- Availability is checked **per use site**, never cached per expression. The
+  same `ExpressionDef` MAY be legal at a use site inside its owning branch
+  and illegal at a use site outside it; the outside use is rejected.
+- Expressions carry no scope, owner, region or parent field: whether an
+  expression is legal depends only on where its id is used.
+- An expression that is referenced by **no** use site creates no use and
+  never fails availability: an expression definition is not an execution.
+- The stable error kind is `value_not_available`; the diagnostic detail
+  carries the value slot, the use site, the producer and an internal reason
+  token (`before_producer`, `cross_branch`, `outside_owner_boundary`,
+  `iterate_local_outside`, `parent_output_not_yet_available`). Reasons are
+  diagnostics, not ABI; the kind is the contract.
+
+### 13.1 Environments
+
+<a id="ir-run-parameter-availability"></a>
+<a id="ir-output-boundary"></a>
+<a id="ir-export-boundary"></a>
+
+```text
+EntryValues(root) = every RunParameterDecl.value_slot
+Exports(C)        = exactly C.outputs[].value_slot
+```
+
+- Run parameters are immutable workflow inputs: they are available from the
+  root entry, in every descendant computation, under every control branch,
+  for the whole run.
+- A computation's outputs become available only after that computation's
+  structured completion boundary. In particular: an output MUST NOT be used
+  at its own computation's entry, and a parent output MUST NOT be used
+  inside the parent's own subtree.
+- `Exports(C)` contains only the computation's **own** outputs. Descendant
+  outputs, branch locals, iterate item/carry slots and loop-body outputs
+  never cross an owner boundary implicitly: values leave a subtree only
+  through the subtree root's declared outputs.
+
+### 13.2 Per-opcode availability transfer
+
+<a id="ir-sequence-dominance"></a>
+<a id="ir-branch-isolation"></a>
+
+```text
+SEQUENCE  EntryValues(child_i) = E + Exports(child_1..child_{i-1})
+          (list order is the only multi-child dataflow order)
+SELECT    EntryValues(case_i)   = E        (every case independently)
+PARALLEL  EntryValues(branch_i) = E        (every branch independently)
+RACE      EntryValues(branch_i) = E        (every branch independently)
+RETRY / TIMEOUT / SCOPE / COMPENSATION_SCOPE
+          EntryValues(child)    = E
+HANDLE    EntryValues(protected) = EntryValues(handler_i) = E
+INVOKE / CALL_SUBFLOW / AWAIT
+          inputs / correlation evaluate at the computation entry, over E
+TIMEOUT   the timeout duration evaluates at the timeout entry, over E
+FOREACH   source and every carry initial evaluate pre-loop, over E
+          body over E + {item_slot} + {carry slots}
+WHILE     carry initials over E; guard and body over E + {carry slots}
+```
+
+<a id="ir-sequence-future"></a>
+
+- SEQUENCE is the one multi-child control form whose child order is
+  dataflow: a later direct sibling reads an earlier direct sibling's export.
+  A child MUST NOT read a later sibling's export (use-before-producer), a
+  grandchild's raw output MUST NOT reach its parent's later sibling (only
+  the wrapper's own export may), and case/branch/clause ordinals are
+  identity keys, never execution order: SELECT cases, PARALLEL branches,
+  RACE branches and HANDLE clauses are mutually isolated, and a raw
+  child/case/branch/handler output consumed after the wrapper is rejected —
+  only the wrapper's own outputs are visible outside.
+<a id="ir-select-isolation"></a>
+<a id="ir-parallel-isolation"></a>
+<a id="ir-race-isolation"></a>
+
+- A HANDLE handler MUST NOT read the protected child's outputs: the handler
+  runs precisely when the protected child may have failed or timed out, so
+  its success outputs cannot be assumed. No `FailureValue` or failure-slot
+  placeholder exists in this phase.
+<a id="ir-handle-isolation"></a>
+
+- A WHILE guard evaluates at the loop header: it sees the carry slots but
+  never a body computation output; a body output reaches the next iteration
+  only through its `LoopCarryBinding`.
+- Carry initials all evaluate from the same pre-loop environment: no initial
+  may read a carry slot or the item slot, so the canonical carry order (by
+  slot id) never becomes an evaluation order.
+
+### 13.3 Iterate loop-local values
+
+<a id="ir-iterate-local-values"></a>
+
+<a id="ir-iterate-source-pre-loop"></a>
+<a id="ir-carry-initial-pre-loop"></a>
+<a id="ir-foreach-body-environment"></a>
+<a id="ir-while-environment"></a>
+
+- A foreach `item_slot`, every carry slot and every loop-body output is
+  iteration-internal: none of them MAY be read outside their iterate
+  computation. Outside an ITERATE only `Iterate.outputs` are visible.
+
+<a id="ir-iterate-local-escape"></a>
+
+### 13.4 Workflow output boundary
+
+<a id="ir-workflow-output-boundary"></a>
+
+```text
+WorkflowExitValues = RunParameterSlots + Exports(root)
+```
+
+- Every workflow-output expression is evaluated after the root computation's
+  terminal boundary and MUST read only `WorkflowExitValues`. A raw
+  root-descendant output (however deep in the root's interior it was used)
+  is rejected; run parameters remain legal because their lifetime covers
+  the whole run.
+
+### 13.5 The analysis artifact and the Phase 3C freeze
+
+<a id="ir-analysis-derived"></a>
+<a id="ir-wire-freeze"></a>
+
+- The analysis is **derived-only**: `SemanticDataflowAnalysis`
+  (`EntryValues`, `EntryResources`, expression value-slot dependency
+  closures, producer locations, `WorkflowExitValues`) is a plain
+  compile-time projection. It is never ACE1-encoded, never enters the
+  `SemanticIrDigest` (which still hashes the canonical document only), and
+  is absent from AFIDL, the ABI registry and the wire model.
+- Phase 3C freeze: `spec/idl/semantic-ir.afidl` stays byte-identical (36
+  TypeSchemaDigests), the 13 `ComputationBody` case numbers stay frozen, no
+  AFIDL module, no ABI row, no HashV1 domain and no Rule Area is added.
+  The analysis runs strictly **after** Phase 3B validation, so every Phase
+  3B error kind is unchanged; the analysis adds only `value_not_available`
+  and `resource_not_visible`.
+- The expression dependency closure reuses the Phase 3A expression edge set;
+  no second cycle semantics exists.
+
+## 14. Resource lexical visibility (Phase 3C)
+
+<a id="ir-resource-visibility"></a>
+<a id="ir-resource-attenuation"></a>
+<a id="ir-resource-restore"></a>
+<a id="ir-resource-use-sites"></a>
+<a id="ir-resource-no-concurrency"></a>
+
+```text
+EntryResources(root) = every declared ResourceSlotId
+EntryResources(child) = EntryResources(parent)          (every opcode but SCOPE)
+EntryResources(scope.child) = exactly ScopeBody.resources
+```
+
+- A SCOPE is an attenuation boundary: its listed resource set MUST be a
+  subset of the inherited environment, and its child sees exactly the listed
+  set — never the union. A nested scope cannot reintroduce a resource the
+  outer scope omitted.
+<a id="ir-resource-no-widen"></a>
+
+- Narrowing ends at the scope boundary: a sibling after a SCOPE (in a
+  SEQUENCE or anywhere else) continues with the parent's resource
+  environment.
+- The resource use sites are `InvokeBody.resources` and
+  `CallSubflowBody.resources`: each used slot MUST be lexically visible at
+  the computation's entry environment (`resource_not_visible` otherwise).
+  Resource slot existence is Phase 3B (`unknown_resource_slot`); visibility
+  is Phase 3C.
+- Lexical visibility is shared, not owned: two PARALLEL/RACE branches MAY
+  use the same visible resource slot, and whether concurrent use is safe
+  belongs to the later Resource Contract / effect / scheduler layers. No
+  `resource_shared_in_parallel` error exists and none may be derived here.
+- Visibility is not mutable state: no resource mutation ordering, locking
+  or transactions are modeled in this phase.
+
+## 15. Explicitly deferred (Phase 3D and later)
+
+The following are **not** defects of this document; they are later layers
+(`DEFERRED_PHASE_3D` unless stated otherwise):
+
+- ComponentContract port validation; Subflow interface validation; the exact
+  contract-table checking against materialized contract ABIs (no temporary
+  JSON contract format exists before then);
+- Await mailbox/matcher runtime semantics; the typed FailureValue runtime
+  ABI (handlers therefore see no protected-child outputs);
+- Effect Signature; Resource Contract meaning; resource concurrency rules;
+  Scope authority/budget attenuation beyond the lexical subset rule;
+- runtime occurrence identity; journal decisions; executable plans; any
+  runtime dominance, liveness, storage, stack frame or SSA-phi construct
+  (the control wrappers' own output slots are the merge boundaries).
+
+## 16. Conformance
 
 Frozen corpus: `spec/conformance/semantic-ir/` — `golden/` (per-opcode and
 nested documents with canonical `ace1_utf8`/`ace1_hex`/`semantic_ir_digest`),
@@ -489,3 +683,14 @@ mutations). All values are generated by the independent Python implementation
 `tools/gen-semantic-ir-corpus.py`; tests never generate expected values at
 runtime. The AFIDL corpus carries the `semantic-ir` schema module additively
 (revision 5): all pre-existing cases, bytes and digests are unchanged.
+
+Phase 3C adds `spec/conformance/semantic-dataflow/` — `positive/` (documents
+that pass Phase 3B **and** the availability analysis, with frozen
+`EntryValues`/`EntryResources`/`WorkflowExitValues` projections, the
+per-use-site expression reuse fixture and the unused-expression fixture) and
+`negative/` (documents that pass Phase 3B and are rejected only by the
+analysis, with frozen `value_not_available`/`resource_not_visible` kinds and
+diagnostic reason tokens). It is generated by the independent Python
+implementation `tools/gen-semantic-dataflow-corpus.py` and carries no digest:
+the analysis is never hashed. The same generator cross-checks all Phase 3B
+golden documents against its availability oracle.

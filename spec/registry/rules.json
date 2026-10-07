@@ -1637,6 +1637,310 @@
       "source_anchor": "ir-semantic-order-exceptions"
     },
     {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "sequence/self-output-used-as-input",
+        "sequence/future-sibling-output",
+        "sequence/parent-output-used-by-child",
+        "SUITE-SEMANTIC-DATAFLOW-AVAILABILITY"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0072",
+      "short_statement": "A value slot may be read at a use site only if its single producer dominates that use site in the structured ownership tree: slot existence (Phase 3B) is not availability, and the analysis adds value_not_available without touching any Phase 3B error kind.",
+      "source_anchor": "ir-value-availability"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "value/run-parameter-deep-in-nested",
+        "workflow-output/run-parameter"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0073",
+      "short_statement": "Run parameters are available from the root entry, in every descendant computation under every control branch, for the whole run: they are the immutable workflow inputs.",
+      "source_anchor": "ir-run-parameter-availability"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "sequence/self-output-used-as-input",
+        "sequence/parent-output-used-by-child",
+        "timeout/duration-uses-child-output",
+        "while/guard-uses-body-output"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0074",
+      "short_statement": "A computation's outputs become available only after that computation's structured completion boundary: an output MUST NOT be used at its own entry, a parent output MUST NOT be used inside its own subtree, and a timeout duration is evaluated at the timeout entry.",
+      "source_anchor": "ir-output-boundary"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "sequence/grandchild-output-leaks-to-later-sibling",
+        "select/raw-case-output-used-after-select",
+        "parallel/raw-branch-output-used-after-parallel",
+        "race/raw-loser-or-winner-output-used-after-race",
+        "retry/raw-child-output-used-after-retry",
+        "timeout/raw-child-output-used-after-timeout",
+        "scope/raw-child-output-used-after-scope",
+        "comp-scope/raw-child-output-used-after-comp-scope",
+        "handle/raw-handler-output-used-after-handle",
+        "sequence/nested-export-via-own-output"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0075",
+      "short_statement": "Only a computation's own declared outputs cross its ownership boundary: a raw child, grandchild, case, branch, handler or loop-body output consumed outside its owner is rejected as outside_owner_boundary.",
+      "source_anchor": "ir-export-boundary"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "sequence/previous-sibling-output",
+        "sequence/nested-export-via-own-output"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0076",
+      "short_statement": "SEQUENCE is the only multi-child control form whose child order is dataflow: each child's entry environment is the sequence entry plus every earlier direct sibling's own exports, cumulatively.",
+      "source_anchor": "ir-sequence-dominance"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "sequence/future-sibling-output",
+        "sequence/self-output-used-as-input"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0077",
+      "short_statement": "A SEQUENCE child MUST NOT read a later sibling's export: future reference is use-before-producer and is rejected.",
+      "source_anchor": "ir-sequence-future"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "select/case-cross-reference",
+        "select/selector-uses-case-output"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0078",
+      "short_statement": "SELECT cases are mutually isolated and start from the select's entry environment: the selector evaluates before any case, case ordinals are identity keys (never execution order), and one case MUST NOT read another case's output.",
+      "source_anchor": "ir-select-isolation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "parallel/cross-branch-value"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0079",
+      "short_statement": "PARALLEL branches are mutually isolated: every branch starts from the parallel's entry environment and no branch may consume another branch's output, in any completion mode.",
+      "source_anchor": "ir-parallel-isolation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "race/cross-branch-value",
+        "race/raw-loser-or-winner-output-used-after-race"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0080",
+      "short_statement": "RACE branches are mutually isolated: FIRST_TERMINAL gives no stable branch order, so no branch may consume another branch's output and no raw branch output (winner or loser) escapes the race.",
+      "source_anchor": "ir-race-isolation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "handle/handler-uses-protected-child-output",
+        "handle/handler-cross-reference"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0081",
+      "short_statement": "HANDLE clauses are mutually isolated and see exactly the handle's entry environment: a handler MUST NOT read the protected child's outputs (it runs precisely when those outputs may not exist) and no FailureValue or failure-slot placeholder is created.",
+      "source_anchor": "ir-handle-isolation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "foreach/source-uses-item-slot",
+        "foreach/source-uses-carry-slot"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0082",
+      "short_statement": "A foreach source is a pre-loop snapshot expression: it evaluates once from the iterate's entry environment and MUST NOT reference the item slot, a carry slot or a body output.",
+      "source_anchor": "ir-iterate-source-pre-loop"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "foreach/carry-initial-uses-item-slot",
+        "foreach/carry-initial-uses-carry-slot",
+        "while/carry-initial-uses-carry-slot"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0083",
+      "short_statement": "Every loop-carry initial evaluates from the same pre-loop environment: no initial may read the item slot or any carry slot, so the canonical carry order (by slot id) never becomes an evaluation order.",
+      "source_anchor": "ir-carry-initial-pre-loop"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "foreach/source-and-body-item",
+        "foreach/body-carry"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0084",
+      "short_statement": "A foreach body sees the iterate's entry environment plus the item slot and every carry slot.",
+      "source_anchor": "ir-foreach-body-environment"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "while/guard-carry",
+        "while/body-carry",
+        "while/guard-uses-body-output"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0085",
+      "short_statement": "A while guard and body see the iterate's entry environment plus every carry slot; the guard evaluates at the loop header and never reads a body computation output directly.",
+      "source_anchor": "ir-while-environment"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "foreach/item-escapes-loop",
+        "foreach/carry-escapes-loop",
+        "foreach/body-output-escapes-loop",
+        "while/carry-escapes-loop",
+        "while/body-output-escapes-loop",
+        "workflow-output/iterate-local"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0086",
+      "short_statement": "Loop-local values cannot escape their iterate: a foreach item slot, a carry slot and a loop-body output MUST NOT be read outside the iterate computation; outside it only Iterate.outputs are visible.",
+      "source_anchor": "ir-iterate-local-escape"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "workflow-output/raw-root-descendant-output",
+        "workflow-output/select-case-output",
+        "workflow-output/root-output"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0087",
+      "short_statement": "Only the root computation's own outputs and the immutable run parameters are visible to workflow-output expressions: WorkflowExitValues = RunParameterSlots + Exports(root); a raw root-descendant output is rejected.",
+      "source_anchor": "ir-workflow-output-boundary"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "expression/reuse-per-use-site",
+        "expression/inside-use-valid"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0088",
+      "short_statement": "Expression availability is checked per use site and never cached per expression: the same ExpressionDef may be legal inside its owning branch and illegal at a use site outside it.",
+      "source_anchor": "ir-per-use-site"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "expression/unused-branch-local-reference"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0089",
+      "short_statement": "An expression referenced by no use site creates no execution and never fails availability: an expression definition is not an execution.",
+      "source_anchor": "ir-unused-expression"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "resource/scope-child-uses-listed",
+        "resource/scope-child-uses-omitted"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0090",
+      "short_statement": "A SCOPE narrows resource visibility: its listed set MUST be a subset of the inherited environment and its child sees exactly the listed set (never the union); an omitted resource is resource_not_visible inside the scope.",
+      "source_anchor": "ir-resource-attenuation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "resource/nested-scope-narrows",
+        "resource/nested-scope-reintroduces"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0091",
+      "short_statement": "A nested SCOPE cannot widen resources: it cannot reintroduce a resource its parent scope omitted.",
+      "source_anchor": "ir-resource-no-widen"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "resource/root-invoke-uses-resource",
+        "resource/call-subflow-uses-invisible"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0092",
+      "short_statement": "InvokeBody.resources and CallSubflowBody.resources are the resource use sites: every used slot MUST be lexically visible at the computation's entry environment.",
+      "source_anchor": "ir-resource-use-sites"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "resource/scope-exit-restores-sibling",
+        "resource/parallel-branches-share-visible"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0093",
+      "short_statement": "EntryResources(root) is every declared resource slot; every opcode but SCOPE inherits its parent's environment unchanged, narrowing ends at the scope boundary, and visibility is shared not owned: parallel branches may use the same visible resource and no resource_shared_in_parallel error exists.",
+      "source_anchor": "ir-resource-visibility"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "SUITE-SEMANTIC-DATAFLOW-DERIVED-ONLY",
+        "SUITE-SEMANTIC-DATAFLOW-PASS-ORDERING"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0094",
+      "short_statement": "The Phase 3C analysis is derived-only: SemanticDataflowAnalysis is never ACE1-encoded, never hashed into the SemanticIrDigest, and absent from AFIDL, the ABI registry and the wire model; it runs strictly after Phase 3B validation so old error kinds never move.",
+      "source_anchor": "ir-analysis-derived"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "SUITE-SEMANTIC-DATAFLOW-WIRE-FREEZE"
+      ],
+      "normative_source": "spec/semantic/semantic-ir.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0095",
+      "short_statement": "Phase 3C freezes the durable surfaces: semantic-ir.afidl stays byte-identical (36 TypeSchemaDigests), the 13 ComputationBody cases stay frozen, and no AFIDL module, ABI row, HashV1 domain or Rule Area is added.",
+      "source_anchor": "ir-wire-freeze"
+    },
+    {
       "area": "SPEC",
       "conformance_refs": [
         "spec-registry/duplicate-specification-id"

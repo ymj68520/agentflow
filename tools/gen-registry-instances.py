@@ -885,6 +885,164 @@ IR_RULES = [
          "SemanticIrDigest.",
          ["mutation/sequence-child-order", "mutation/retry-delay-order",
           "mutation/parallel-mode"]),
+    # --- Phase 3C: scoped typed dataflow / dominance / availability -------
+    rule("AF-SEMANTIC-0072", "SEMANTIC", IR_SRC, "ir-value-availability",
+         "A value slot may be read at a use site only if its single producer "
+         "dominates that use site in the structured ownership tree: slot "
+         "existence (Phase 3B) is not availability, and the analysis adds "
+         "value_not_available without touching any Phase 3B error kind.",
+         ["sequence/self-output-used-as-input", "sequence/future-sibling-output",
+          "sequence/parent-output-used-by-child",
+          "SUITE-SEMANTIC-DATAFLOW-AVAILABILITY"]),
+    rule("AF-SEMANTIC-0073", "SEMANTIC", IR_SRC, "ir-run-parameter-availability",
+         "Run parameters are available from the root entry, in every "
+         "descendant computation under every control branch, for the whole "
+         "run: they are the immutable workflow inputs.",
+         ["value/run-parameter-deep-in-nested", "workflow-output/run-parameter"]),
+    rule("AF-SEMANTIC-0074", "SEMANTIC", IR_SRC, "ir-output-boundary",
+         "A computation's outputs become available only after that "
+         "computation's structured completion boundary: an output MUST NOT "
+         "be used at its own entry, a parent output MUST NOT be used inside "
+         "its own subtree, and a timeout duration is evaluated at the "
+         "timeout entry.",
+         ["sequence/self-output-used-as-input",
+          "sequence/parent-output-used-by-child",
+          "timeout/duration-uses-child-output", "while/guard-uses-body-output"]),
+    rule("AF-SEMANTIC-0075", "SEMANTIC", IR_SRC, "ir-export-boundary",
+         "Only a computation's own declared outputs cross its ownership "
+         "boundary: a raw child, grandchild, case, branch, handler or "
+         "loop-body output consumed outside its owner is rejected as "
+         "outside_owner_boundary.",
+         ["sequence/grandchild-output-leaks-to-later-sibling",
+          "select/raw-case-output-used-after-select",
+          "parallel/raw-branch-output-used-after-parallel",
+          "race/raw-loser-or-winner-output-used-after-race",
+          "retry/raw-child-output-used-after-retry",
+          "timeout/raw-child-output-used-after-timeout",
+          "scope/raw-child-output-used-after-scope",
+          "comp-scope/raw-child-output-used-after-comp-scope",
+          "handle/raw-handler-output-used-after-handle",
+          "sequence/nested-export-via-own-output"]),
+    rule("AF-SEMANTIC-0076", "SEMANTIC", IR_SRC, "ir-sequence-dominance",
+         "SEQUENCE is the only multi-child control form whose child order is "
+         "dataflow: each child's entry environment is the sequence entry "
+         "plus every earlier direct sibling's own exports, cumulatively.",
+         ["sequence/previous-sibling-output",
+          "sequence/nested-export-via-own-output"]),
+    rule("AF-SEMANTIC-0077", "SEMANTIC", IR_SRC, "ir-sequence-future",
+         "A SEQUENCE child MUST NOT read a later sibling's export: future "
+         "reference is use-before-producer and is rejected.",
+         ["sequence/future-sibling-output", "sequence/self-output-used-as-input"]),
+    rule("AF-SEMANTIC-0078", "SEMANTIC", IR_SRC, "ir-select-isolation",
+         "SELECT cases are mutually isolated and start from the select's "
+         "entry environment: the selector evaluates before any case, case "
+         "ordinals are identity keys (never execution order), and one case "
+         "MUST NOT read another case's output.",
+         ["select/case-cross-reference", "select/selector-uses-case-output"]),
+    rule("AF-SEMANTIC-0079", "SEMANTIC", IR_SRC, "ir-parallel-isolation",
+         "PARALLEL branches are mutually isolated: every branch starts from "
+         "the parallel's entry environment and no branch may consume another "
+         "branch's output, in any completion mode.",
+         ["parallel/cross-branch-value"]),
+    rule("AF-SEMANTIC-0080", "SEMANTIC", IR_SRC, "ir-race-isolation",
+         "RACE branches are mutually isolated: FIRST_TERMINAL gives no "
+         "stable branch order, so no branch may consume another branch's "
+         "output and no raw branch output (winner or loser) escapes the "
+         "race.",
+         ["race/cross-branch-value",
+          "race/raw-loser-or-winner-output-used-after-race"]),
+    rule("AF-SEMANTIC-0081", "SEMANTIC", IR_SRC, "ir-handle-isolation",
+         "HANDLE clauses are mutually isolated and see exactly the handle's "
+         "entry environment: a handler MUST NOT read the protected child's "
+         "outputs (it runs precisely when those outputs may not exist) and "
+         "no FailureValue or failure-slot placeholder is created.",
+         ["handle/handler-uses-protected-child-output",
+          "handle/handler-cross-reference"]),
+    rule("AF-SEMANTIC-0082", "SEMANTIC", IR_SRC, "ir-iterate-source-pre-loop",
+         "A foreach source is a pre-loop snapshot expression: it evaluates "
+         "once from the iterate's entry environment and MUST NOT reference "
+         "the item slot, a carry slot or a body output.",
+         ["foreach/source-uses-item-slot", "foreach/source-uses-carry-slot"]),
+    rule("AF-SEMANTIC-0083", "SEMANTIC", IR_SRC, "ir-carry-initial-pre-loop",
+         "Every loop-carry initial evaluates from the same pre-loop "
+         "environment: no initial may read the item slot or any carry slot, "
+         "so the canonical carry order (by slot id) never becomes an "
+         "evaluation order.",
+         ["foreach/carry-initial-uses-item-slot",
+          "foreach/carry-initial-uses-carry-slot",
+          "while/carry-initial-uses-carry-slot"]),
+    rule("AF-SEMANTIC-0084", "SEMANTIC", IR_SRC, "ir-foreach-body-environment",
+         "A foreach body sees the iterate's entry environment plus the item "
+         "slot and every carry slot.",
+         ["foreach/source-and-body-item", "foreach/body-carry"]),
+    rule("AF-SEMANTIC-0085", "SEMANTIC", IR_SRC, "ir-while-environment",
+         "A while guard and body see the iterate's entry environment plus "
+         "every carry slot; the guard evaluates at the loop header and "
+         "never reads a body computation output directly.",
+         ["while/guard-carry", "while/body-carry", "while/guard-uses-body-output"]),
+    rule("AF-SEMANTIC-0086", "SEMANTIC", IR_SRC, "ir-iterate-local-escape",
+         "Loop-local values cannot escape their iterate: a foreach item "
+         "slot, a carry slot and a loop-body output MUST NOT be read "
+         "outside the iterate computation; outside it only "
+         "Iterate.outputs are visible.",
+         ["foreach/item-escapes-loop", "foreach/carry-escapes-loop",
+          "foreach/body-output-escapes-loop", "while/carry-escapes-loop",
+          "while/body-output-escapes-loop", "workflow-output/iterate-local"]),
+    rule("AF-SEMANTIC-0087", "SEMANTIC", IR_SRC, "ir-workflow-output-boundary",
+         "Only the root computation's own outputs and the immutable run "
+         "parameters are visible to workflow-output expressions: "
+         "WorkflowExitValues = RunParameterSlots + Exports(root); a raw "
+         "root-descendant output is rejected.",
+         ["workflow-output/raw-root-descendant-output",
+          "workflow-output/select-case-output", "workflow-output/root-output"]),
+    rule("AF-SEMANTIC-0088", "SEMANTIC", IR_SRC, "ir-per-use-site",
+         "Expression availability is checked per use site and never cached "
+         "per expression: the same ExpressionDef may be legal inside its "
+         "owning branch and illegal at a use site outside it.",
+         ["expression/reuse-per-use-site", "expression/inside-use-valid"]),
+    rule("AF-SEMANTIC-0089", "SEMANTIC", IR_SRC, "ir-unused-expression",
+         "An expression referenced by no use site creates no execution and "
+         "never fails availability: an expression definition is not an "
+         "execution.",
+         ["expression/unused-branch-local-reference"]),
+    rule("AF-SEMANTIC-0090", "SEMANTIC", IR_SRC, "ir-resource-attenuation",
+         "A SCOPE narrows resource visibility: its listed set MUST be a "
+         "subset of the inherited environment and its child sees exactly "
+         "the listed set (never the union); an omitted resource is "
+         "resource_not_visible inside the scope.",
+         ["resource/scope-child-uses-listed", "resource/scope-child-uses-omitted"]),
+    rule("AF-SEMANTIC-0091", "SEMANTIC", IR_SRC, "ir-resource-no-widen",
+         "A nested SCOPE cannot widen resources: it cannot reintroduce a "
+         "resource its parent scope omitted.",
+         ["resource/nested-scope-narrows", "resource/nested-scope-reintroduces"]),
+    rule("AF-SEMANTIC-0092", "SEMANTIC", IR_SRC, "ir-resource-use-sites",
+         "InvokeBody.resources and CallSubflowBody.resources are the "
+         "resource use sites: every used slot MUST be lexically visible at "
+         "the computation's entry environment.",
+         ["resource/root-invoke-uses-resource",
+          "resource/call-subflow-uses-invisible"]),
+    rule("AF-SEMANTIC-0093", "SEMANTIC", IR_SRC, "ir-resource-visibility",
+         "EntryResources(root) is every declared resource slot; every "
+         "opcode but SCOPE inherits its parent's environment unchanged, "
+         "narrowing ends at the scope boundary, and visibility is shared "
+         "not owned: parallel branches may use the same visible resource "
+         "and no resource_shared_in_parallel error exists.",
+         ["resource/scope-exit-restores-sibling",
+          "resource/parallel-branches-share-visible"]),
+    rule("AF-SEMANTIC-0094", "SEMANTIC", IR_SRC, "ir-analysis-derived",
+         "The Phase 3C analysis is derived-only: SemanticDataflowAnalysis "
+         "is never ACE1-encoded, never hashed into the SemanticIrDigest, "
+         "and absent from AFIDL, the ABI registry and the wire model; it "
+         "runs strictly after Phase 3B validation so old error kinds never "
+         "move.",
+         ["SUITE-SEMANTIC-DATAFLOW-DERIVED-ONLY",
+          "SUITE-SEMANTIC-DATAFLOW-PASS-ORDERING"]),
+    rule("AF-SEMANTIC-0095", "SEMANTIC", IR_SRC, "ir-wire-freeze",
+         "Phase 3C freezes the durable surfaces: semantic-ir.afidl stays "
+         "byte-identical (36 TypeSchemaDigests), the 13 ComputationBody "
+         "cases stay frozen, and no AFIDL module, ABI row, HashV1 domain "
+         "or Rule Area is added.",
+         ["SUITE-SEMANTIC-DATAFLOW-WIRE-FREEZE"]),
 ]
 RULES.extend(IR_RULES)
 
@@ -1239,6 +1397,118 @@ SUITE_LIST = [
             "targets": [
                 "af-semantic ResourceSlot (no mutation surface)",
                 "CheckedDocument construction path",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-DATAFLOW-AVAILABILITY",
+            "description": (
+                "Value availability is per use site and dominance is the "
+                "structured transfer: a producer dominates a use exactly "
+                "when the opcode-specific environment places the produced "
+                "slot into that use site's EntryValues. Covers the frozen "
+                "positive/negative dataflow corpus and the per-use-site "
+                "expression reuse fixture."
+            ),
+            "targets": [
+                "af-ir CheckedIrDocument::analyze_dataflow",
+                "spec/conformance/semantic-dataflow/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-DATAFLOW-BRANCH-ISOLATION",
+            "description": (
+                "SELECT cases, PARALLEL branches, RACE branches and HANDLE "
+                "clauses are mutually isolated: ordinals are identity keys, "
+                "never execution order, and a raw child output never "
+                "escapes its wrapper. Covers the branch-isolation negative "
+                "corpus."
+            ),
+            "targets": [
+                "af-ir dataflow visit (branch transfer functions)",
+                "spec/conformance/semantic-dataflow/negative/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-DATAFLOW-DERIVED-ONLY",
+            "description": (
+                "The analysis artifact is derived-only: it is a plain Rust "
+                "projection, never ACE1-encoded, never hashed into the "
+                "SemanticIrDigest, and absent from AFIDL, the ABI registry "
+                "and the wire model. Covers the static audit of the "
+                "canonical path and the golden digest invariance run."
+            ),
+            "targets": [
+                "af-ir SemanticDataflowAnalysis (no serde-wire surface)",
+                "af-ir canonical.rs (no analysis reference)",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-DATAFLOW-ITERATE-LOCALS",
+            "description": (
+                "Loop-local values never escape their iterate: the foreach "
+                "source and carry initials evaluate from the pre-loop "
+                "environment, the body sees item and carry slots, the "
+                "while guard never reads a body output, and item/carry/"
+                "body-output slots are invisible outside the loop. Covers "
+                "the iterate negative corpus."
+            ),
+            "targets": [
+                "af-ir dataflow visit (loop transfer functions)",
+                "spec/conformance/semantic-dataflow/negative/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-DATAFLOW-PASS-ORDERING",
+            "description": (
+                "The analysis runs strictly after Phase 3B validation: "
+                "every Phase 3B negative keeps its exact expected error "
+                "kind, and every Phase 3C negative passes Phase 3B and is "
+                "rejected only by the analysis. Covers both frozen "
+                "negative corpora and their rejected_at markers."
+            ),
+            "targets": [
+                "spec/conformance/semantic-ir/negative/ (kinds unchanged)",
+                "spec/conformance/semantic-dataflow/negative/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-DATAFLOW-RESOURCE-VISIBILITY",
+            "description": (
+                "Resource lexical visibility: the root sees every declared "
+                "slot, SCOPE attenuates to exactly its listed subset, "
+                "narrowing ends at the scope boundary, and invoke/"
+                "call_subflow uses require lexical visibility. Covers the "
+                "resource positive and negative corpus."
+            ),
+            "targets": [
+                "af-ir dataflow visit (resource environments)",
+                "spec/conformance/semantic-dataflow/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-DATAFLOW-WIRE-FREEZE",
+            "description": (
+                "Phase 3C froze every durable surface: semantic-ir.afidl "
+                "byte-identical at its Phase 3B registry digest, exactly "
+                "four AFIDL modules, 232 ABI rows (100 semantic IR), 14 "
+                "HashV1 domains, and the 13 ComputationBody cases "
+                "unchanged. Covers the static surface audit."
+            ),
+            "targets": [
+                "af-ir static surface audit (wire freeze)",
+                "spec/registry/specifications.json content_digest pin",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-DATAFLOW-WORKFLOW-EXIT",
+            "description": (
+                "Workflow outputs read only run parameters and the root's "
+                "own outputs: WorkflowExitValues = RunParameterSlots + "
+                "Exports(root), frozen per positive case."
+            ),
+            "targets": [
+                "af-ir dataflow workflow-exit check",
+                "spec/conformance/semantic-dataflow/positive/",
             ],
         },
 ]

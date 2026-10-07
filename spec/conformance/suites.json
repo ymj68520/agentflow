@@ -43,6 +43,70 @@
       ]
     },
     {
+      "description": "Value availability is per use site and dominance is the structured transfer: a producer dominates a use exactly when the opcode-specific environment places the produced slot into that use site's EntryValues. Covers the frozen positive/negative dataflow corpus and the per-use-site expression reuse fixture.",
+      "suite_id": "SUITE-SEMANTIC-DATAFLOW-AVAILABILITY",
+      "targets": [
+        "af-ir CheckedIrDocument::analyze_dataflow",
+        "spec/conformance/semantic-dataflow/"
+      ]
+    },
+    {
+      "description": "SELECT cases, PARALLEL branches, RACE branches and HANDLE clauses are mutually isolated: ordinals are identity keys, never execution order, and a raw child output never escapes its wrapper. Covers the branch-isolation negative corpus.",
+      "suite_id": "SUITE-SEMANTIC-DATAFLOW-BRANCH-ISOLATION",
+      "targets": [
+        "af-ir dataflow visit (branch transfer functions)",
+        "spec/conformance/semantic-dataflow/negative/"
+      ]
+    },
+    {
+      "description": "The analysis artifact is derived-only: it is a plain Rust projection, never ACE1-encoded, never hashed into the SemanticIrDigest, and absent from AFIDL, the ABI registry and the wire model. Covers the static audit of the canonical path and the golden digest invariance run.",
+      "suite_id": "SUITE-SEMANTIC-DATAFLOW-DERIVED-ONLY",
+      "targets": [
+        "af-ir SemanticDataflowAnalysis (no serde-wire surface)",
+        "af-ir canonical.rs (no analysis reference)"
+      ]
+    },
+    {
+      "description": "Loop-local values never escape their iterate: the foreach source and carry initials evaluate from the pre-loop environment, the body sees item and carry slots, the while guard never reads a body output, and item/carry/body-output slots are invisible outside the loop. Covers the iterate negative corpus.",
+      "suite_id": "SUITE-SEMANTIC-DATAFLOW-ITERATE-LOCALS",
+      "targets": [
+        "af-ir dataflow visit (loop transfer functions)",
+        "spec/conformance/semantic-dataflow/negative/"
+      ]
+    },
+    {
+      "description": "The analysis runs strictly after Phase 3B validation: every Phase 3B negative keeps its exact expected error kind, and every Phase 3C negative passes Phase 3B and is rejected only by the analysis. Covers both frozen negative corpora and their rejected_at markers.",
+      "suite_id": "SUITE-SEMANTIC-DATAFLOW-PASS-ORDERING",
+      "targets": [
+        "spec/conformance/semantic-ir/negative/ (kinds unchanged)",
+        "spec/conformance/semantic-dataflow/negative/"
+      ]
+    },
+    {
+      "description": "Resource lexical visibility: the root sees every declared slot, SCOPE attenuates to exactly its listed subset, narrowing ends at the scope boundary, and invoke/call_subflow uses require lexical visibility. Covers the resource positive and negative corpus.",
+      "suite_id": "SUITE-SEMANTIC-DATAFLOW-RESOURCE-VISIBILITY",
+      "targets": [
+        "af-ir dataflow visit (resource environments)",
+        "spec/conformance/semantic-dataflow/"
+      ]
+    },
+    {
+      "description": "Phase 3C froze every durable surface: semantic-ir.afidl byte-identical at its Phase 3B registry digest, exactly four AFIDL modules, 232 ABI rows (100 semantic IR), 14 HashV1 domains, and the 13 ComputationBody cases unchanged. Covers the static surface audit.",
+      "suite_id": "SUITE-SEMANTIC-DATAFLOW-WIRE-FREEZE",
+      "targets": [
+        "af-ir static surface audit (wire freeze)",
+        "spec/registry/specifications.json content_digest pin"
+      ]
+    },
+    {
+      "description": "Workflow outputs read only run parameters and the root's own outputs: WorkflowExitValues = RunParameterSlots + Exports(root), frozen per positive case.",
+      "suite_id": "SUITE-SEMANTIC-DATAFLOW-WORKFLOW-EXIT",
+      "targets": [
+        "af-ir dataflow workflow-exit check",
+        "spec/conformance/semantic-dataflow/positive/"
+      ]
+    },
+    {
       "description": "CallComposite and Trigger never reach the canonical IR: the 13-case ComputationBody variant is closed, so an authoring construct or a deployment binding is structurally inexpressible. Covers the static absence audit over the crate source and the schema module.",
       "suite_id": "SUITE-SEMANTIC-IR-AUTHORING-ONLY",
       "targets": [
