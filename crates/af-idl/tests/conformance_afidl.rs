@@ -91,14 +91,14 @@ struct MutationCase {
 
 /// Frozen corpus revision this harness is written against.
 ///
-/// Golden revision 4 (Phase 2C): additive cross-module `import-*` fixtures and
-/// their three equivalence groups. Revision 3 (Phase 3A) added the
-/// `semantic-core` case and revision 2 (Phase 2B) the `specification-registry`
+/// Golden revision 5 (Phase 3B): additive `semantic-ir` schema case. Revision
+/// 4 (Phase 2C) added the cross-module `import-*` fixtures; revision 3
+/// (Phase 3A) the `semantic-core` case and revision 2 (Phase 2B) the `specification-registry`
 /// case. Every bump is purely additive — existing cases and digests are
 /// unchanged. The parser-invalid manifest is a separate frozen artifact and
 /// carries its own revision (2 since Phase 2C added the import negatives and
 /// the module-set cycle cases).
-const CORPUS_REVISION: u64 = 4;
+const CORPUS_REVISION: u64 = 5;
 const PARSER_INVALID_CORPUS_REVISION: u64 = 2;
 
 fn frozen_digest_map() -> BTreeMap<(String, String), String> {

@@ -1,5 +1,5 @@
 {
-  "corpus_revision": 4,
+  "corpus_revision": 5,
   "kind": "agentflow.conformance.afidl.import-golden",
   "note": "Cross-module import conformance: the resolvable import table of each fixture and the full logical identities its declarations reference. Import aliases are source spelling only and never appear here; the module-set compilation of every fixture must reproduce the canonical bytes frozen in schema-golden.json.",
   "cases": [

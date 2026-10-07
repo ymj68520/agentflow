@@ -17,11 +17,21 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONF = ROOT / "spec" / "conformance" / "afidl"
-# Revision 4 (Phase 2C): adds cross-module import cases. Revision 3 (Phase 3A)
+# Revision 5 (Phase 3B): adds the `semantic-ir` case for the canonical
+# Semantic IR schema module (the first production cross-module importer).
+# Revision 4 (Phase 2C) added cross-module import cases; revision 3 (Phase 3A)
 # added the `semantic-core` case; revision 2 (Phase 2B) added the self-hosting
 # registry schema module. Every bump is purely additive: existing cases, bytes
 # and digests are unchanged.
-CORPUS_REVISION = 4
+CORPUS_REVISION = 5
+
+# The frozen 13-opcode case table (spec/semantic/semantic-ir.md section 4).
+OPCODE_TABLE = [
+    (1, "invoke"), (2, "await"), (3, "sequence"), (4, "select"),
+    (5, "parallel"), (6, "race"), (7, "iterate"), (8, "retry"),
+    (9, "timeout"), (10, "handle"), (11, "scope"),
+    (12, "compensation_scope"), (13, "call_subflow"),
+]
 
 PRIMITIVES = [
     "unit", "null", "bool", "int32", "uint32", "int64", "uint64",
@@ -692,6 +702,9 @@ def main():
     # The Phase 3A workflow semantic core schema module is part of the corpus.
     semantic_file = ROOT / "spec" / "idl" / "semantic-core.afidl"
     cases.append(case_entry(semantic_file, case_id="semantic-core"))
+    # The Phase 3B canonical Semantic IR schema module is part of the corpus.
+    ir_file = ROOT / "spec" / "idl" / "semantic-ir.afidl"
+    cases.append(case_entry(ir_file, case_id="semantic-ir"))
 
     schema_golden = {
         "kind": "agentflow.conformance.afidl.schema-golden",
@@ -950,6 +963,44 @@ def main():
         f"semantic core primitive audit failed: {sorted(used)}")
     print("semantic-core.afidl primitive audit clean")
 
+    # Self-check: the semantic IR module must expose the frozen 13-opcode
+    # table, no forbidden opcode, the core import, and only machine primitives
+    # that are ids/numbering (uint32), strings or durations.
+    ir = next(c for c in cases if c["case_id"] == "semantic-ir")
+    ir_names = {t["name"] for t in ir["types"]}
+    for expected in (
+        "AwaitBody", "CallSubflowBody", "ComputationBody", "ComputationDef",
+        "CompensationScopeBody", "ContractRefEntry", "ContractRefKind",
+        "FailureMatch", "ForeachBody", "HandleBody", "HandleClause",
+        "HandleMatch", "InputBinding", "InvokeBody", "IterateBody",
+        "LoopCarryBinding", "ParallelBody", "ParallelBranch", "ParallelMode",
+        "ParallelOutputBinding", "RaceBody", "RaceBranch", "ResourceUseBinding",
+        "RetryBody", "ScopeBody", "SelectBody", "SelectCase",
+        "SemanticIrDocument", "SemanticVersionRef", "SequenceBody",
+        "TimeoutBody", "WhileBody", "WorkflowOutputDecl", "RunParameterDecl",
+        "ComputationOutputBinding",
+    ):
+        assert expected in ir_names, f"semantic IR schema is missing {expected}"
+    ir_module = parse_afidl(ir_file.read_text(encoding="utf-8"))
+    body_variant = next(d for d in ir_module["declarations"]
+                        if d["kind"] == "variant" and d["name"] == "ComputationBody")
+    assert [(c["no"], c["name"]) for c in body_variant["cases"]] == OPCODE_TABLE, (
+        "the frozen 13-opcode table drifted")
+    forbidden_opcodes = {"agent", "model", "tool", "http", "sql", "shell",
+                         "human", "mcp", "a2a", "trigger", "call_composite",
+                         "cancelled"}
+    assert not ({name for _, name in OPCODE_TABLE} & forbidden_opcodes)
+    assert ir_module["imports"] == [{
+        "spec": {"namespace": "agentflow.semantic.core", "major": 1},
+        "alias": "core", "line": ir_module["imports"][0]["line"],
+    }], "the semantic IR module must import exactly agentflow.semantic.core@1 as core"
+    document_record = next(d for d in ir_module["declarations"]
+                           if d["kind"] == "record" and d["name"] == "SemanticIrDocument")
+    assert [f["no"] for f in document_record["fields"]] == list(range(1, 11)), (
+        "the document field numbering drifted")
+    print("semantic-ir.afidl opcode table and structure frozen")
+
 
 if __name__ == "__main__":
     main()
+

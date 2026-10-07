@@ -1,5 +1,5 @@
 {
-  "corpus_revision": 4,
+  "corpus_revision": 5,
   "kind": "agentflow.conformance.afidl.type-schema-digest-golden",
   "note": "Frozen TypeSchemaDigest values (SHA256(\"AF\\0type-schema\\0\" || canonical ACE1 bytes)). Mutation cases assert that semantic changes alter the digest while the equivalence groups in schema-golden.json assert that formatting does not.",
   "cases": [
@@ -764,6 +764,252 @@
       "file": "spec/idl/semantic-core.afidl",
       "type_name": "VariantConstructBody",
       "digest_hex": "71a9af45eee9dd39afe33059ba774649262b83c7303c01037f0079a68040c0e0"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "AwaitBody",
+      "digest_hex": "7b61b4b6005f9ccd95d158db3972c32f0b41b8cb55ff88a472a2c204ac842c2e"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "BranchOrdinal",
+      "digest_hex": "8aad418451129b6f2ed6f7bd56d19af8e9d18b02e6f581df8dfe1d452b7ea91d"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "CallSubflowBody",
+      "digest_hex": "3429a2e4f762ec12805de26d7474655221c4910ddf037210429ac2380a22e7df"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "CompensationScopeBody",
+      "digest_hex": "146a5276369585b2ece0d4b7be688366100c1304f43e8259f995f35bc1269711"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "ComputationBody",
+      "digest_hex": "ce2dc004722ff449a6db9049b214c3e62a66ef1d86fede13e17c5b1bfe1d8f80"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "ComputationDef",
+      "digest_hex": "cf16ecda2ad3c7040e725768e29a6072f51c40de3d41fc2b5d5994f8b37a0c49"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "ComputationId",
+      "digest_hex": "2dd2bfc5468256e1b7fe9ac281cfda002a2c444b729e65ba3fe45a405b6e9405"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "ComputationOutputBinding",
+      "digest_hex": "bb971bd3ef8d7112a825cd5d2830ec3c7fc667955c356e3e44b71f3fb172b49f"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "ContractRefEntry",
+      "digest_hex": "521350bdcdc04f98bd86582af4a73a828f65a2f226b9d90511dbb02f66ecdc14"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "ContractRefId",
+      "digest_hex": "780f78b0fbe8180f34a3b7ec0078e09f7987556ecf8b3f1b9211ec38bc4e1691"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "ContractRefKind",
+      "digest_hex": "b376c60b73e140654e07e4a11c1fbb9d035c5878b9b1dfd9c26041a20e50a8a4"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "FailureMatch",
+      "digest_hex": "6970abe3b0c6a216ed94bc5d9685ff8c2bc71dfc949d28f9e72f9788e1a9028c"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "ForeachBody",
+      "digest_hex": "199daf9d74a9592738f2b5be970f0e67e6a0481650760e0beb440e1160b6a683"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "HandleBody",
+      "digest_hex": "9d033e88a62a87691bf03aed13223c8fbafcd2d4710c7a7922491c22b5b228ab"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "HandleClause",
+      "digest_hex": "f0e93c16a7c4b6202f4b43a2c3da75f1550985ed44e833605f2e9e17e8dbd3c3"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "HandleMatch",
+      "digest_hex": "056d27607954dd334105d51e790ed2e129f76bdc0fe0d773022192a5445abaf7"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "HandlerOrdinal",
+      "digest_hex": "7c1965f58ed6a5b0e16ce3b462de8ad67351efdd3aea77dfc04f3a353fa936de"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "InputBinding",
+      "digest_hex": "e83b68f601dd89d51012563c744ab40126e517e669d5000c51650c992568de97"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "InvokeBody",
+      "digest_hex": "90615da51a3478af75fd018d3e7a84884c4b71deb983f6bb96e43fc751b8b31e"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "IterateBody",
+      "digest_hex": "09499b7a3fbb3e295b20645b339e8186ba8ba06a814a960a44b60e9b96506c6a"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "LoopCarryBinding",
+      "digest_hex": "58d75bf32b9df7164d8c9c889a31dc7930cb22ac04b8b461d7c763eb2faea6dd"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "ParallelBody",
+      "digest_hex": "4bb26a45b49886c077ab90aa18206695d6f1575f2b8c501f0e3369d46f2c2c31"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "ParallelBranch",
+      "digest_hex": "8e115069fe1d1f564da9f7f57308bf94a91f062cf41d42d28ae290bbe7954273"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "ParallelMode",
+      "digest_hex": "6b4a7c288be1dfb42baa57ce44a9ddd584f8c4663043b2bc072f14e7ed9fb8ee"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "ParallelOutputBinding",
+      "digest_hex": "68bf0bcefb1fbc6f71ceb13da27b3b4fd49f125e0e12bc4aad56d2cf5bdae870"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "PortNo",
+      "digest_hex": "9d798138dbc84d6bef0ee2c12f14dded33fee797bcbefe22e9b2b1dffd2bfb3e"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "RaceBody",
+      "digest_hex": "8ffa0fd932e7de89ae8206d7ae9867c223ca94aa132273e6888cf59cc3a869aa"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "RaceBranch",
+      "digest_hex": "5dd9b82f988cf39c7c1ec996617a6d609431b94c8ab49f9a5e60e7f7761c7b77"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "ResourceUseBinding",
+      "digest_hex": "2d60c13bfa1779c02b7336ff26f37f1c45d9670d5c7ba593403902024722bb7e"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "RetryBody",
+      "digest_hex": "d48c6a2d832f1bed1c879d7338fa55ff084460c2e07b9df3f106d15c70865857"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "RunParameterDecl",
+      "digest_hex": "90b75012ba2ed0c7905bb06eede0eb77f831fdb519961b7864614b44decc5ed8"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "RunParameterId",
+      "digest_hex": "b610e9a420408ecc54c57d614bc8315c393c072534afd1001a3bfad2efd3ec6c"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "ScopeBody",
+      "digest_hex": "49cd71d2db9efb901fb8f9a397c19724a91581a78d4f6692dc3c502e1063c07f"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "SelectBody",
+      "digest_hex": "016d72254a7a4e9a3260f23d27c73907737cb0e666f63184f416f741cba52ed8"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "SelectCase",
+      "digest_hex": "1da8b61884c7c8809bc49f4a4057387e17a0396825ef0a4c99f49aa754e0b934"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "SemanticIrDocument",
+      "digest_hex": "f6ca985ba7cccad128ed888a0f194433e113749d7ef548b2b0bd5f63e9f8467e"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "SemanticVersionRef",
+      "digest_hex": "a198ac44ee52f0422ab826043f20b3a51639cd752a7ede121a366b7f14bbf0a0"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "SequenceBody",
+      "digest_hex": "4a63e8488fd7ee83349a589a6a945e879115aff629634938898408943abe0d84"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "TimeoutBody",
+      "digest_hex": "5a08badcce4e35c51ddad60fd52220d8fa73eda83901fc27f0eccd817bf8da70"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "WhileBody",
+      "digest_hex": "06efe0c037cb5605f6f2dfcee12442e9bd31acd206b59a20228638fde9b9c657"
+    },
+    {
+      "case_id": "semantic-ir",
+      "file": "spec/idl/semantic-ir.afidl",
+      "type_name": "WorkflowOutputDecl",
+      "digest_hex": "c0a14c327f3c95640914a20f8ed54456f56c53c4aaad0af6430261c6c551acc6"
     }
   ],
   "mutation_cases": [
