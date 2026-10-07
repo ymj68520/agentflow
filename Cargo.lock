@@ -25,6 +25,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "af-ir"
+version = "0.1.0"
+dependencies = [
+ "af-core",
+ "af-idl",
+ "af-semantic",
+ "hex",
+ "serde",
+ "serde_json",
+ "unicode-normalization",
+]
+
+[[package]]
 name = "af-semantic"
 version = "0.1.0"
 dependencies = [
