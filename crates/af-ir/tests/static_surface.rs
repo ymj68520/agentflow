@@ -292,3 +292,110 @@ fn the_interface_projection_has_no_second_table() {
         "the derived interface projection must exist"
     );
 }
+
+// ---------------------------------------------------------------------------
+// Phase 3C wire-model freeze: the analysis layer must be invisible on every
+// durable surface (schema modules, ABI rows, HashV1 domains, the digest).
+// ---------------------------------------------------------------------------
+
+#[test]
+fn the_wire_schema_is_frozen_at_its_phase_3b_identity() {
+    // spec-check enforces file == registry digest; this test pins the
+    // registry entry itself to the exact Phase 3B value, so any byte drift
+    // in spec/idl/semantic-ir.afidl fails here before it fails there.
+    let specifications: serde_json::Value =
+        serde_json::from_str(&read("spec/registry/specifications.json")).unwrap();
+    let entry = specifications["specifications"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|spec| spec["specification_id"] == "agentflow.semantic.ir@1")
+        .expect("the semantic IR specification is registered");
+    assert_eq!(
+        entry["normative_source"]["content_digest"]["hex"],
+        "9fb3292a0fe90b207db037575c50ef3ca50174411b3c5a461c09c37d53f616a3",
+        "spec/idl/semantic-ir.afidl drifted off its Phase 3B identity"
+    );
+}
+
+#[test]
+fn phase_3c_added_no_module_abi_row_or_domain() {
+    // Exactly the four frozen AFIDL modules.
+    fn collect_modules(directory: &Path, out: &mut Vec<String>) {
+        for entry in std::fs::read_dir(directory).unwrap() {
+            let path = entry.unwrap().path();
+            if path.is_dir() {
+                collect_modules(&path, out);
+            } else if path.extension().and_then(|e| e.to_str()) == Some("afidl") {
+                out.push(path.to_string_lossy().replace('\\', "/"));
+            }
+        }
+    }
+    let mut modules = Vec::new();
+    collect_modules(&repo_root().join("spec/idl"), &mut modules);
+    modules.sort_unstable();
+    assert_eq!(modules.len(), 4, "an AFIDL module was added: {modules:?}");
+
+    // Exactly the frozen ABI rows: 232 total, 100 of them semantic IR.
+    let abi: serde_json::Value =
+        serde_json::from_str(&read("spec/registry/abi-numbers.json")).unwrap();
+    let rows = abi["assignments"].as_array().unwrap();
+    assert_eq!(rows.len(), 232, "an ABI row was added");
+    assert_eq!(
+        rows.iter()
+            .filter(|row| row["schema_family"] == "agentflow.semantic.ir@1")
+            .count(),
+        100,
+        "the semantic IR ABI block changed size"
+    );
+
+    // Exactly the frozen HashV1 domains.
+    let domains: serde_json::Value =
+        serde_json::from_str(&read("spec/tables/hash-domains.json")).unwrap();
+    assert_eq!(
+        domains["domains"].as_array().unwrap().len(),
+        14,
+        "a HashV1 domain was added"
+    );
+}
+
+#[test]
+fn the_analysis_is_derived_only_and_never_enters_the_digest() {
+    // The canonical/digest path must not know the analysis exists.
+    let canonical = code_only(&read("crates/af-ir/src/canonical.rs"));
+    assert_absent(&canonical, "dataflow", "the analysis projection");
+    assert_absent(&canonical, "Dataflow", "the analysis projection");
+    // The analysis exists, is a plain derived structure, and is never
+    // canonicalized: only the canonical document feeds the digest.
+    let sources = crate_sources();
+    assert!(
+        sources.contains("pub fn analyze_dataflow"),
+        "the Phase 3C analysis pass must exist"
+    );
+    assert_absent(
+        &sources,
+        "DataflowAnalysisDigest",
+        "a new digest over the analysis",
+    );
+}
+
+#[test]
+fn no_deferred_phase_3d_or_runtime_placeholder_exists() {
+    // FailureValue, the Component/Subflow port ABI and parallel resource
+    // concurrency remain deferred; none of them may sneak in as a
+    // placeholder while the analysis is built.
+    let sources = crate_sources();
+    for forbidden in [
+        "FailureValue",
+        "failure_slot",
+        "SubflowInterface",
+        "ContractPort",
+        "resource_shared_in_parallel",
+    ] {
+        assert_absent(
+            &sources,
+            forbidden,
+            &format!("the deferred placeholder {forbidden}"),
+        );
+    }
+}
