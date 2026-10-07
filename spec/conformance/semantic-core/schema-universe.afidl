@@ -1,0 +1,47 @@
+afidl 1;
+
+schema agentflow.test.semantic @1;
+
+// Fixture data schema universe for the semantic-core conformance corpus.
+//
+// This is *data*, not semantic-core machinery: it exists so that golden
+// semantic-core documents have named record/variant/enum/alias targets to pin
+// with exact TypeSchemaDigests. The machine-only aliases are deliberate: they
+// give the corpus a reachable path for the "machine-only primitive must not
+// surface as a workflow value type" rule, which the closed
+// SemanticPrimitiveType enum already blocks at the type-node level.
+
+alias UserId = string;
+alias MachineFloat = float64;
+alias MachineCount = uint32;
+alias MachineWide = uint64;
+alias MachineSmall = int32;
+
+enum Status {
+    1 pending;
+    2 closed;
+}
+
+record User {
+    1 id: UserId;
+    2 name: string;
+    3 status: Status;
+}
+
+record Metrics {
+    1 count: int64;
+    2 ratio: MachineFloat;
+}
+
+variant LookupResult {
+    1 found: User;
+    2 missing: unit;
+    3 failed: string;
+}
+
+record Container {
+    1 items: list<string>;
+    2 lookup: map<string,int64>;
+    3 note: option<string>;
+    4 nested: list<list<int64>>;
+}
