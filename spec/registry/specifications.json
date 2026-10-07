@@ -67,12 +67,12 @@
       "status": "frozen"
     },
     {
-      "description": "AFIDL1: the closed schema definition language, its grammar and its identity model.",
+      "description": "AFIDL1: the closed schema definition language, its grammar, its identity model and (Phase 2C) its cross-module import capability. Imports are an additive AFIDL1 source feature: the language major stays 1 and every module without imports keeps its exact previous meaning and digests.",
       "kind": "schema_language",
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "fcfe75ba7a498ec2308aaee625bf7687d955e7681f5210bc3a2ce435666fb0aa"
+          "hex": "074fb124d4d5ae90df64ffa23205eb30bfe81c10a3c8db6784adcd81b26a81a8"
         },
         "logical_path": "spec/idl/afidl1-grammar.md"
       },
@@ -85,7 +85,7 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "fcfe75ba7a498ec2308aaee625bf7687d955e7681f5210bc3a2ce435666fb0aa"
+          "hex": "074fb124d4d5ae90df64ffa23205eb30bfe81c10a3c8db6784adcd81b26a81a8"
         },
         "logical_path": "spec/idl/afidl1-grammar.md"
       },

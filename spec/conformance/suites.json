@@ -3,6 +3,30 @@
   "suite_revision": 1,
   "suites": [
     {
+      "description": "An AFIDL import names an exact SpecificationId and nothing else. Covers the import grammar itself, which admits only ns-segment ('.' ns-segment)* '@' MAJOR as its target: there is no syntactic position for a version range, a path, a wildcard or a per-type alias, so the rejected forms are rejected by the grammar rather than by a post-hoc check.",
+      "suite_id": "SUITE-AFIDL-IMPORT-EXACT-IDENTITY",
+      "targets": [
+        "af-idl import grammar (import-decl production)",
+        "spec/idl/afidl1-grammar.md section 5.1"
+      ]
+    },
+    {
+      "description": "Import resolution is a pure function of the source and an explicitly supplied in-memory universe: af-idl has no filesystem, network, registry or clock dependency at all, so a latest-version or network lookup is not merely discouraged but unrepresentable in the crate's dependency set.",
+      "suite_id": "SUITE-AFIDL-IMPORT-EXPLICIT-UNIVERSE",
+      "targets": [
+        "af-idl crate dependency set (af-core only)",
+        "af_idl::ResolvedSchemaUniverse (explicit, immutable input)"
+      ]
+    },
+    {
+      "description": "Import declarations never enter canonical identity: the canonical TypeSchema record keeps exactly its three members schema/name/body, and no import alias can appear in a NamedRef. Covers the frozen import equivalence groups (alias rename, import order, unused import) and the structural audit of the canonical model.",
+      "suite_id": "SUITE-AFIDL-IMPORT-IDENTITY-ISOLATION",
+      "targets": [
+        "spec/conformance/afidl/import-golden.json equivalence groups",
+        "af-idl canonical TypeSchema record (three members)"
+      ]
+    },
+    {
       "description": "Cross-domain digest separation: the same payload hashed under every frozen HashV1 domain yields pairwise-distinct digests. Covers the af-core property test over the full registry and the frozen matrix in spec/conformance/digest/domain-separation.json.",
       "suite_id": "SUITE-DIGEST-DOMAIN-SEPARATION",
       "targets": [

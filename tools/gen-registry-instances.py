@@ -277,6 +277,68 @@ RULES = [
          "TypeSchemaDigest = SHA256(\"AF\\0type-schema\\0\" || "
          "ACE1(canonical TypeSchema)), computed per named type.",
          ["machine-primitives", "record-multi-field"]),
+    rule("AF-AFIDL-0016", "AFIDL", AFIDL_SRC, "afidl-import-exact-specification-id",
+         "An import names an exact SpecificationId, major included; version "
+         "ranges (latest, ^1, >=1, 1.x, *), file paths, wildcards, re-exports "
+         "and per-type alias imports do not exist in AFIDL1.",
+         ["invalid-import-spec-id", "malformed-import",
+          "SUITE-AFIDL-IMPORT-EXACT-IDENTITY"]),
+    rule("AF-AFIDL-0017", "AFIDL", AFIDL_SRC, "afidl-import-explicit-universe",
+         "Import resolution uses an explicit, immutable, in-memory schema "
+         "universe supplied by the caller: no registry lookup, no latest-version "
+         "resolution, no filesystem read and no network access. An import of a "
+         "specification absent from the universe is unknown_import_specification.",
+         ["unknown-import-specification", "SUITE-AFIDL-IMPORT-EXPLICIT-UNIVERSE"]),
+    rule("AF-AFIDL-0018", "AFIDL", AFIDL_SRC, "afidl-import-alias-grammar",
+         "An import alias matches [a-z][a-z0-9_]* and is not a reserved keyword; "
+         "aliases are unique within the module.",
+         ["reserved-import-alias", "duplicate-import-alias"]),
+    rule("AF-AFIDL-0019", "AFIDL", AFIDL_SRC, "afidl-import-specification-unique",
+         "A module holds at most one alias per imported specification family, so "
+         "one specification has exactly one source spelling.",
+         ["duplicate-import-specification"]),
+    rule("AF-AFIDL-0020", "AFIDL", AFIDL_SRC, "afidl-import-no-self",
+         "Importing the module's own schema id is rejected; local types are "
+         "referenced unqualified.",
+         ["self-import"]),
+    rule("AF-AFIDL-0021", "AFIDL", AFIDL_SRC, "afidl-import-header-position",
+         "Import declarations appear only between the schema declaration and the "
+         "first type declaration; an import after a declaration is rejected.",
+         ["import-after-declaration"]),
+    rule("AF-AFIDL-0022", "AFIDL", AFIDL_SRC, "afidl-qualified-ref-not-primitive",
+         "A qualified reference names a named AFIDL declaration only: qualified "
+         "primitives such as core.int64 are rejected, because builtin primitives "
+         "are always spelled bare.",
+         ["qualified-primitive-ref"]),
+    rule("AF-AFIDL-0023", "AFIDL", AFIDL_SRC, "afidl-external-ref-qualified",
+         "An external type is reachable only through <import-alias>.<TypeName>. "
+         "An unqualified name never resolves to an imported type (no implicit "
+         "import, no shadowing, no resolution-order dependence), and a qualified "
+         "reference never falls back to a local reference.",
+         ["qualified-ref-without-import", "unknown-import-alias",
+          "unknown-imported-type", "import-basic", "import-multiple",
+          "import-nested-container-ref"]),
+    rule("AF-AFIDL-0024", "AFIDL", AFIDL_SRC, "afidl-imports-excluded-from-identity",
+         "Import declarations and import aliases do not enter the canonical "
+         "TypeSchema record (schema/name/body); a qualified reference lowers to "
+         "the imported specification's full logical identity. An alias rename, an "
+         "import reordering or an unused import therefore leaves every canonical "
+         "byte and every TypeSchemaDigest unchanged.",
+         ["import-alias-rename-a", "import-alias-rename-b", "import-order-a",
+          "import-order-b", "import-unused-a", "import-unused-b",
+          "SUITE-AFIDL-IMPORT-IDENTITY-ISOLATION"]),
+    rule("AF-AFIDL-0025", "AFIDL", AFIDL_SRC, "afidl-cross-module-type-graph-acyclic",
+         "The global named-type dependency graph over a module set - through "
+         "alias targets, record fields, variant payloads and every list/map/option "
+         "wrapper - must be acyclic; imports never bypass the recursion "
+         "restriction. The module import graph itself may contain cycles.",
+         ["cross-module-direct-cycle", "cross-module-indirect-cycle",
+          "mutual-import-without-type-cycle"]),
+    rule("AF-AFIDL-0026", "AFIDL", AFIDL_SRC, "afidl-import-graph-may-cycle",
+         "Two modules may import each other; only a type dependency between them "
+         "is a cycle. Requiring an acyclic import graph would reject legal "
+         "schemas, so the recursion restriction is stated over the type graph.",
+         ["mutual-import-without-type-cycle"]),
     # --- SPEC -------------------------------------------------------------
     rule("AF-SPEC-0001", "SPEC", REG_SRC, "spec-specification-id-unique",
          "A SpecificationId is unique across the Specification Registry; "
@@ -546,8 +608,11 @@ SPECS = [
      "Closed normative table of the AFIDL1 builtin primitive universe."),
     ("agentflow.idl.afidl@1", "schema_language",
      "spec/idl/afidl1-grammar.md",
-     "AFIDL1: the closed schema definition language, its grammar and its "
-     "identity model."),
+     "AFIDL1: the closed schema definition language, its grammar, its "
+     "identity model and (Phase 2C) its cross-module import capability. "
+     "Imports are an additive AFIDL1 source feature: the language major stays "
+     "1 and every module without imports keeps its exact previous meaning "
+     "and digests."),
     ("agentflow.idl.type-schema@1", "schema_language",
      "spec/idl/afidl1-grammar.md",
      "The canonical TypeSchema machine representation and the TypeSchemaDigest "
@@ -637,6 +702,50 @@ write_json("spec/conformance/suites.json", {
     "kind": "agentflow.conformance.suites",
     "suite_revision": 1,
     "suites": [
+        {
+            "suite_id": "SUITE-AFIDL-IMPORT-EXACT-IDENTITY",
+            "description": (
+                "An AFIDL import names an exact SpecificationId and nothing "
+                "else. Covers the import grammar itself, which admits only "
+                "ns-segment ('.' ns-segment)* '@' MAJOR as its target: there is "
+                "no syntactic position for a version range, a path, a wildcard "
+                "or a per-type alias, so the rejected forms are rejected by the "
+                "grammar rather than by a post-hoc check."
+            ),
+            "targets": [
+                "af-idl import grammar (import-decl production)",
+                "spec/idl/afidl1-grammar.md section 5.1",
+            ],
+        },
+        {
+            "suite_id": "SUITE-AFIDL-IMPORT-EXPLICIT-UNIVERSE",
+            "description": (
+                "Import resolution is a pure function of the source and an "
+                "explicitly supplied in-memory universe: af-idl has no "
+                "filesystem, network, registry or clock dependency at all, so a "
+                "latest-version or network lookup is not merely discouraged but "
+                "unrepresentable in the crate's dependency set."
+            ),
+            "targets": [
+                "af-idl crate dependency set (af-core only)",
+                "af_idl::ResolvedSchemaUniverse (explicit, immutable input)",
+            ],
+        },
+        {
+            "suite_id": "SUITE-AFIDL-IMPORT-IDENTITY-ISOLATION",
+            "description": (
+                "Import declarations never enter canonical identity: the "
+                "canonical TypeSchema record keeps exactly its three members "
+                "schema/name/body, and no import alias can appear in a "
+                "NamedRef. Covers the frozen import equivalence groups "
+                "(alias rename, import order, unused import) and the structural "
+                "audit of the canonical model."
+            ),
+            "targets": [
+                "spec/conformance/afidl/import-golden.json equivalence groups",
+                "af-idl canonical TypeSchema record (three members)",
+            ],
+        },
         {
             "suite_id": "SUITE-DIGEST-DOMAIN-SEPARATION",
             "description": (

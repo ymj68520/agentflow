@@ -372,6 +372,144 @@
       "source_anchor": "afidl-type-schema-digest-formula"
     },
     {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "invalid-import-spec-id",
+        "malformed-import",
+        "SUITE-AFIDL-IMPORT-EXACT-IDENTITY"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0016",
+      "short_statement": "An import names an exact SpecificationId, major included; version ranges (latest, ^1, >=1, 1.x, *), file paths, wildcards, re-exports and per-type alias imports do not exist in AFIDL1.",
+      "source_anchor": "afidl-import-exact-specification-id"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "unknown-import-specification",
+        "SUITE-AFIDL-IMPORT-EXPLICIT-UNIVERSE"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0017",
+      "short_statement": "Import resolution uses an explicit, immutable, in-memory schema universe supplied by the caller: no registry lookup, no latest-version resolution, no filesystem read and no network access. An import of a specification absent from the universe is unknown_import_specification.",
+      "source_anchor": "afidl-import-explicit-universe"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "reserved-import-alias",
+        "duplicate-import-alias"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0018",
+      "short_statement": "An import alias matches [a-z][a-z0-9_]* and is not a reserved keyword; aliases are unique within the module.",
+      "source_anchor": "afidl-import-alias-grammar"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "duplicate-import-specification"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0019",
+      "short_statement": "A module holds at most one alias per imported specification family, so one specification has exactly one source spelling.",
+      "source_anchor": "afidl-import-specification-unique"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "self-import"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0020",
+      "short_statement": "Importing the module's own schema id is rejected; local types are referenced unqualified.",
+      "source_anchor": "afidl-import-no-self"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "import-after-declaration"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0021",
+      "short_statement": "Import declarations appear only between the schema declaration and the first type declaration; an import after a declaration is rejected.",
+      "source_anchor": "afidl-import-header-position"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "qualified-primitive-ref"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0022",
+      "short_statement": "A qualified reference names a named AFIDL declaration only: qualified primitives such as core.int64 are rejected, because builtin primitives are always spelled bare.",
+      "source_anchor": "afidl-qualified-ref-not-primitive"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "qualified-ref-without-import",
+        "unknown-import-alias",
+        "unknown-imported-type",
+        "import-basic",
+        "import-multiple",
+        "import-nested-container-ref"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0023",
+      "short_statement": "An external type is reachable only through <import-alias>.<TypeName>. An unqualified name never resolves to an imported type (no implicit import, no shadowing, no resolution-order dependence), and a qualified reference never falls back to a local reference.",
+      "source_anchor": "afidl-external-ref-qualified"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "import-alias-rename-a",
+        "import-alias-rename-b",
+        "import-order-a",
+        "import-order-b",
+        "import-unused-a",
+        "import-unused-b",
+        "SUITE-AFIDL-IMPORT-IDENTITY-ISOLATION"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0024",
+      "short_statement": "Import declarations and import aliases do not enter the canonical TypeSchema record (schema/name/body); a qualified reference lowers to the imported specification's full logical identity. An alias rename, an import reordering or an unused import therefore leaves every canonical byte and every TypeSchemaDigest unchanged.",
+      "source_anchor": "afidl-imports-excluded-from-identity"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "cross-module-direct-cycle",
+        "cross-module-indirect-cycle",
+        "mutual-import-without-type-cycle"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0025",
+      "short_statement": "The global named-type dependency graph over a module set - through alias targets, record fields, variant payloads and every list/map/option wrapper - must be acyclic; imports never bypass the recursion restriction. The module import graph itself may contain cycles.",
+      "source_anchor": "afidl-cross-module-type-graph-acyclic"
+    },
+    {
+      "area": "AFIDL",
+      "conformance_refs": [
+        "mutual-import-without-type-cycle"
+      ],
+      "normative_source": "spec/idl/afidl1-grammar.md",
+      "requirement_level": "must",
+      "rule_id": "AF-AFIDL-0026",
+      "short_statement": "Two modules may import each other; only a type dependency between them is a cycle. Requiring an acyclic import graph would reject legal schemas, so the recursion restriction is stated over the type graph.",
+      "source_anchor": "afidl-import-graph-may-cycle"
+    },
+    {
       "area": "DIGEST",
       "conformance_refs": [
         "prefix-in-payload/plan-core",
