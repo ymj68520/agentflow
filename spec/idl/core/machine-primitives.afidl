@@ -1,54 +1,31 @@
-// AgentFlow Machine Primitives v1 — AFIDL1 source of truth (materialization).
+afidl 1;
+
+schema agentflow.core.machine-primitives @1;
+
+// AgentFlow machine primitive universe — AFIDL1 builtin registry.
 //
-// syntax provisional until AFIDL1 grammar materialization
-// semantic declarations authoritative only after Phase 2 rewrite
+// The 13 primitives below are builtin TypeExprs of the AFIDL1 language
+// (spec/idl/afidl1-grammar.md, spec/tables/afidl-primitives.json). They are
+// NOT user-declared types: TypeExpr positions reference them directly as
+// keywords. Each alias in this module binds a nominal schema name to the
+// corresponding builtin primitive so this file is a real, parseable AFIDL1
+// module; alias identity is deliberately distinct from primitive identity
+// (nominal distinction, consistent with unit/null and timestamp/int64).
 //
-// Normative sources: docs/ §24.1 (Canonical Encoding / AFIDL v1) and §22.13
-// (Type / Failure / Resource / Usage Contract). The exact AFIDL1 grammar is
-// itself pending formal materialization (see
-// docs/implementation/phase-01-open-questions.md, OQ-11); this file uses the
-// minimal declarative notation below, which the Phase 1 implementation and
-// the conformance corpus agree on.
-//
-// Scope note: this is the AFIDL *machine* primitive set. The Workflow CORE
-// semantic primitive set is narrower (v1 does not make float64/uint* ordinary
-// Workflow semantic primitives); that narrowing is a later phase's concern
-// and must not be conflated with this machine foundation.
+// This file is the source of truth for the builtin universe: conformance
+// tests parse it and drift-check the alias target set against the Rust
+// Primitive enum and the closed JSON table.
 
-package agentflow.machine.v1
-
-// Closed machine primitive set. JSON numbers are never the canonical
-// authority: every numeric primitive encodes canonically as a string.
-primitives {
-  unit        // empty product; encodes as the literal null
-  null        // explicit JSON null; distinct from unit and from a missing field
-  bool        // true | false
-
-  int32       // exact range [-2147483648, 2147483647]; canonical decimal text
-  uint32      // exact range [0, 4294967295]; canonical decimal text
-  int64       // exact range [-9223372036854775808, 9223372036854775807]
-  uint64      // exact range [0, 18446744073709551615]
-
-  decimal     // exact base-10; canonical form per spec/encoding/ace1-grammar.md §4
-  float64     // IEEE-754 binary64; 16 lowercase hex chars; no NaN/±Inf; -0 → +0
-
-  string      // Unicode NFC, UTF-8
-  bytes       // opaque; unpadded base64url
-
-  timestamp   // nominal int64 microseconds
-  duration    // nominal int64 microseconds; distinct type from timestamp
-}
-
-// Closed container kinds. Map keys are strings only; keys normalize to NFC,
-// must be unique after normalization, and sort by unsigned UTF-8 bytes.
-containers {
-  list<T>
-  map<string, T>
-  option<T>          // None encodes as explicit null; no nested option
-  record { fields }  // closed declared fields; canonical byte-sorted members
-  variant { cases }  // closed case set; single-key tagged object
-  enum { values }    // closed value set; fail closed on unknown value
-}
-
-// v1 exclusions (fail closed): no Any, no Set, no user-defined generics,
-// no open unions, no unknown-variant tolerance at the canonical boundary.
+alias Unit = unit;
+alias Null = null;
+alias Bool = bool;
+alias Int32 = int32;
+alias UInt32 = uint32;
+alias Int64 = int64;
+alias UInt64 = uint64;
+alias Decimal = decimal;
+alias Float64 = float64;
+alias String = string;
+alias Bytes = bytes;
+alias Timestamp = timestamp;
+alias Duration = duration;

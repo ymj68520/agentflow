@@ -1,0 +1,20 @@
+{
+  "kind": "agentflow.afidl-primitives",
+  "afidl_version": 1,
+  "note": "Closed normative table of the AFIDL1 builtin primitive TypeExpr universe. Drift-checked against the Rust Primitive enum (crates/af-idl/src/primitives.rs) and spec/idl/core/machine-primitives.afidl; the three must never diverge. Primitive keywords are referenced directly in TypeExpr positions; they are not user-declared types.",
+  "primitives": [
+    { "name": "unit", "ace1_shape": "the literal null; distinct nominal type from null", "description": "empty product" },
+    { "name": "null", "ace1_shape": "the literal null", "description": "explicit JSON-null primitive" },
+    { "name": "bool", "ace1_shape": "true | false", "description": "boolean" },
+    { "name": "int32", "ace1_shape": "canonical decimal text in a JSON string", "description": "signed 32-bit integer" },
+    { "name": "uint32", "ace1_shape": "canonical decimal text in a JSON string", "description": "unsigned 32-bit integer" },
+    { "name": "int64", "ace1_shape": "canonical decimal text in a JSON string", "description": "signed 64-bit integer" },
+    { "name": "uint64", "ace1_shape": "canonical decimal text in a JSON string", "description": "unsigned 64-bit integer" },
+    { "name": "decimal", "ace1_shape": "canonical decimal text in a JSON string", "description": "exact base-10 decimal" },
+    { "name": "float64", "ace1_shape": "16 lowercase IEEE-754 hex chars in a JSON string", "description": "binary64, no NaN/Inf, -0 -> +0" },
+    { "name": "string", "ace1_shape": "NFC-normalized escaped UTF-8", "description": "Unicode text" },
+    { "name": "bytes", "ace1_shape": "unpadded base64url", "description": "opaque bytes" },
+    { "name": "timestamp", "ace1_shape": "canonical int64 text in a JSON string", "description": "nominal int64 microseconds" },
+    { "name": "duration", "ace1_shape": "canonical int64 text in a JSON string", "description": "nominal int64 microseconds; distinct type from timestamp" }
+  ]
+}
