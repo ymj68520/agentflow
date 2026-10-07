@@ -1,0 +1,22 @@
+[package]
+name = "af-spec"
+description = "AgentFlow specification registries: registry models, cross-reference validation, ABI number checks and the spec-check tool"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+af-core = { path = "../af-core" }
+af-idl = { path = "../af-idl" }
+sha2 = "0.10"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[lints]
+workspace = true
+
+[[bin]]
+name = "spec-check"
+path = "src/bin/spec-check.rs"
