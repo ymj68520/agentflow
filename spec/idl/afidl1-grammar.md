@@ -29,6 +29,9 @@
 
 ## 2. Grammar
 
+<a id="afidl-language-major"></a>
+<a id="afidl-primitive-universe-closed"></a>
+
 ```text
 module        := "afidl" MAJOR ";" schema-decl declaration*
 
@@ -79,6 +82,8 @@ Notes:
 
 ## 3. Identity model
 
+<a id="afidl-specification-id-syntax"></a>
+
 Three distinct layers, never conflated:
 
 ```text
@@ -96,6 +101,14 @@ Type local name          User                    (UpperCamelCase, unique per com
   avoids undefined module/type major relationships.
 
 ## 4. Numbering: field_no / case_no / value_no
+
+<a id="afidl-field-numbering-positive"></a>
+<a id="afidl-field-numbering-unique"></a>
+<a id="afidl-case-numbering-positive"></a>
+<a id="afidl-case-numbering-unique"></a>
+<a id="afidl-value-numbering-positive"></a>
+<a id="afidl-value-numbering-unique"></a>
+<a id="afidl-number-binding-semantic"></a>
 
 - `field_no`, `case_no`, and `value_no` are explicit `u32` numbers in the
   source; `0` is invalid (`1..=UINT32_MAX`).
@@ -121,6 +134,10 @@ Type local name          User                    (UpperCamelCase, unique per com
 
 ## 5. References, aliases and recursion
 
+<a id="afidl-named-ref-resolution"></a>
+<a id="afidl-alias-cycles"></a>
+<a id="afidl-recursion-restriction"></a>
+
 - `NamedRef` resolves within the single compilation unit (a set of files
   sharing one schema identity may be merged before compilation). There is no
   registry, package resolver, or remote import in AFIDL1.
@@ -137,6 +154,8 @@ Type local name          User                    (UpperCamelCase, unique per com
   and cyclic canonical schema hashing is out of scope for Phase 2A.
 
 ## 6. Canonical TypeSchema machine representation
+
+<a id="afidl-source-order-nonsemantic"></a>
 
 The canonical model is a closed machine object encoded with ACE1 exactly as
 frozen in Phase 1/1A (strings, canonical numeric strings, NFC, unsigned-byte
@@ -178,6 +197,8 @@ TypeExpr (variant) {
   order do not exist in this model.
 
 ## 7. TypeSchemaDigest
+
+<a id="afidl-type-schema-digest-formula"></a>
 
 ```text
 TypeSchemaDigest = HashV1("type-schema", ACE1(CanonicalTypeSchema))

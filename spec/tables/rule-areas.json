@@ -1,0 +1,12 @@
+{
+  "kind": "agentflow.rule-areas",
+  "version": "v1",
+  "note": "Closed normative table of RuleId areas (Phase 2B). A RuleId is AF-<AREA>-<4DIGIT>; the AREA segment must be an entry of this table. Areas are added only when their domain enters formal normative-source status; areas without registered rules may exist. Drift-checked against the rule registry by af-spec (spec-check).",
+  "areas": [
+    { "area": "ACE1", "description": "Canonical encoding of values (spec/encoding/ace1-grammar.md)" },
+    { "area": "AFIDL", "description": "AFIDL1 schema language, canonical TypeSchema and TypeSchemaDigest (spec/idl/afidl1-grammar.md)" },
+    { "area": "DIGEST", "description": "HashV1 digest foundation and DigestRef (spec/digest/hash-v1.md)" },
+    { "area": "REGISTRY", "description": "Normative rule registry and stable ABI number registry mechanics (spec/registry/registry-spec.md)" },
+    { "area": "SPEC", "description": "Specification registry and normative-source integrity (spec/registry/registry-spec.md)" }
+  ]
+}

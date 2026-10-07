@@ -1,0 +1,129 @@
+afidl 1;
+
+schema agentflow.spec.registry @1;
+
+// AgentFlow Specification Registry — normative shape of the Phase 2B
+// registries (spec/registry/registry-spec.md). This module is the AUTHORITY
+// for registry object shapes; the JSON files under spec/registry/ are
+// instances validated against it. Rules of the grammar:
+//
+// - no free-form metadata: every field here is consumed by the validator
+//   (no map<string, any> escape hatch);
+// - nominal string aliases keep schema-layer identity even where the Rust
+//   validator applies stricter formats on top (RuleId, lower-names, ...);
+// - ArtifactFileDigest is repository tooling identity (plain SHA-256 of file
+//   bytes) and is deliberately a different type from DigestRef (HashV1
+//   semantic identity, domain-carrying). The two are never interchangeable;
+// - this module self-hosts: its own field/value numbering is registered as
+//   `active` rows in spec/registry/abi-numbers.json, and its per-type
+//   TypeSchemaDigests are frozen in the AFIDL corpus (case
+//   `specification-registry`). No new HashV1 domain is introduced.
+
+// ---------------------------------------------------------------------------
+// Nominal identity aliases
+// ---------------------------------------------------------------------------
+
+alias SpecificationIdText = string;
+alias LogicalPath = string;
+alias SourceAnchor = string;
+alias Sha256Hex = string;
+alias RuleId = string;
+alias RuleArea = string;
+alias ConformanceCaseId = string;
+alias TypeName = string;
+alias SymbolicName = string;
+
+// ---------------------------------------------------------------------------
+// Specification Registry
+// ---------------------------------------------------------------------------
+
+enum SpecificationKind {
+  1 encoding;
+  2 digest;
+  3 digest_domain_registry;
+  4 schema_language;
+  5 schema;
+  6 closed_table;
+  7 registry;
+}
+
+enum SpecificationStatus {
+  1 draft;
+  2 frozen;
+  3 deprecated;
+  4 withdrawn;
+}
+
+record ArtifactFileDigest {
+  1 algorithm: string;
+  2 hex: Sha256Hex;
+}
+
+record SpecificationArtifactRef {
+  1 logical_path: LogicalPath;
+  2 content_digest: ArtifactFileDigest;
+}
+
+record DigestRef {
+  1 alg: string;
+  2 domain: string;
+  3 hex: Sha256Hex;
+}
+
+record SpecificationRegistryEntry {
+  1 specification_id: SpecificationIdText;
+  2 kind: SpecificationKind;
+  3 status: SpecificationStatus;
+  4 normative_source: SpecificationArtifactRef;
+  5 schema_digest: option<DigestRef>;
+  6 description: option<string>;
+}
+
+// ---------------------------------------------------------------------------
+// Normative Rule Registry
+// ---------------------------------------------------------------------------
+
+enum RequirementLevel {
+  1 must;
+  2 must_not;
+  3 should;
+  4 should_not;
+  5 may;
+}
+
+record NormativeRuleDescriptor {
+  1 rule_id: RuleId;
+  2 area: RuleArea;
+  3 normative_source: LogicalPath;
+  4 source_anchor: SourceAnchor;
+  5 requirement_level: RequirementLevel;
+  6 short_statement: string;
+  7 conformance_refs: list<ConformanceCaseId>;
+  8 intentionally_uncovered_reason: option<string>;
+}
+
+// ---------------------------------------------------------------------------
+// Stable ABI Number Registry
+// ---------------------------------------------------------------------------
+
+enum AbiNumberKind {
+  1 field;
+  2 variant_case;
+  3 enum_value;
+}
+
+enum AbiNumberStatus {
+  1 active;
+  2 reserved;
+  3 retired;
+}
+
+record AbiNumberAssignment {
+  1 schema_family: SpecificationIdText;
+  2 type_name: TypeName;
+  3 number_kind: AbiNumberKind;
+  4 number: uint32;
+  5 symbolic_name: SymbolicName;
+  6 status: AbiNumberStatus;
+  7 first_seen_schema_digest: option<DigestRef>;
+}

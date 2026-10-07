@@ -10,14 +10,16 @@
 > The frozen decisions and their provenance are recorded in the Decision
 > Register, `docs/implementation/phase-01-open-questions.md`.
 >
-> Out of scope here: the AFIDL source grammar. AFIDL syntax remains provisional
-> until its Phase 2 materialization; this file defines only the canonical byte
-> grammar of encoded values.
+> Out of scope here: the AFIDL source grammar — that is a separate normative
+> artifact (`spec/idl/afidl1-grammar.md`, materialized in Phase 2A). This file
+> defines only the canonical byte grammar of encoded values.
 >
 > This is NOT a copy of `docs/`; it is the exact grammar extracted and made
 > precise from it.
 
 ## 1. Positioning
+
+<a id="ace1-schema-directed"></a>
 
 ACE1 is AgentFlow v1's **deterministic, schema-directed, UTF-8 canonical
 encoding** — a strict subset of JSON text. It is not `JSON.stringify`, not
@@ -32,6 +34,8 @@ encoding** — a strict subset of JSON text. It is not `JSON.stringify`, not
 
 ## 2. Top-level productions
 
+<a id="ace1-utf8-canonical-bytes"></a>
+
 ```text
 canonical-bytes := canonical-value        ; UTF-8, no BOM, no trailing bytes
 ```
@@ -40,6 +44,9 @@ An encoder never emits whitespace; a canonical decoder rejects any whitespace
 byte outside string content, any trailing data, and any leading data.
 
 ## 3. Primitive encodings
+
+<a id="ace1-numeric-as-string"></a>
+<a id="ace1-timestamp-duration-micros"></a>
 
 | Machine type | Canonical encoding |
 |---|---|
@@ -87,6 +94,10 @@ Canonical form (stored and encoded):
 
 ## 5. Float64
 
+<a id="ace1-float64-exact"></a>
+<a id="ace1-float64-nonfinite"></a>
+<a id="ace1-float64-negative-zero"></a>
+
 IEEE-754 binary64. The canonical text is the 64-bit pattern serialized
 big-endian as exactly 16 lowercase hex characters inside a JSON string.
 
@@ -97,6 +108,8 @@ big-endian as exactly 16 lowercase hex characters inside a JSON string.
 - Examples: `1.0` → `"3ff0000000000000"`, `-1.0` → `"bff0000000000000"`.
 
 ## 6. Strings
+
+<a id="ace1-string-nfc"></a>
 
 - Content is Unicode text; the canonical bytes contain NFC-normalized UTF-8.
   Canonically equivalent input sequences must produce identical canonical
@@ -119,12 +132,19 @@ everything else       →  raw NFC UTF-8 (no U+2028/2029 escaping, no \u for non
 
 ## 7. Bytes
 
+<a id="ace1-bytes-base64url"></a>
+
 Unpadded base64url (RFC 4648 §5): alphabet `A-Z a-z 0-9 - _`; `+`, `/` and
 `=` never appear. Empty bytes encode as the empty string `""` — exactly one
 representation. Decoding is strict: padding, foreign alphabet characters,
 impossible lengths and non-canonical trailing bits are rejected.
 
 ## 8. Containers
+
+<a id="ace1-map-key-nfc"></a>
+<a id="ace1-map-key-ordering"></a>
+<a id="ace1-duplicate-key-rejection"></a>
+<a id="ace1-closed-enum-variant"></a>
 
 ```text
 record  := "{" ( member "," )* member "}" | "{" "}"
@@ -156,6 +176,8 @@ member  := canonical-string ":" canonical-value
   rejected.
 
 ## 9. Missing / null / unit / Option distinctions
+
+<a id="ace1-option-tagging"></a>
 
 `missing`, explicit `null`, `unit`, `Option::None` and `Option::Some(v)` are
 five distinct states resolved by the schema-directed typed encoder:
