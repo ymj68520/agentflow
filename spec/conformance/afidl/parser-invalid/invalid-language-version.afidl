@@ -1,0 +1,3 @@
+afidl 2;
+
+schema agentflow.test.invalid @1;

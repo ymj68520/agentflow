@@ -1,0 +1,11 @@
+afidl 1;
+
+schema agentflow.test.golden @1;
+
+record User {
+    1 id: UserId;
+    2 name: int64;
+    3 email: option<string>;
+}
+
+alias UserId = string;

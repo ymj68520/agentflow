@@ -1,0 +1,5 @@
+afidl 1;
+
+schema agentflow.test.invalid @1;
+
+alias A = A;

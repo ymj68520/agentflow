@@ -1,0 +1,12 @@
+afidl 1;
+
+schema agentflow.test.golden @1;
+
+record Index {
+    1 entries: map<string, LookupResult>;
+}
+
+variant LookupResult {
+    1 hit: string;
+    2 miss: unit;
+}

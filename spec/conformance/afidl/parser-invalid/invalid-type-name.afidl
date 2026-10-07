@@ -1,0 +1,7 @@
+afidl 1;
+
+schema agentflow.test.invalid @1;
+
+record lower_case {
+    1 x: string;
+}

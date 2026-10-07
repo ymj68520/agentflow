@@ -1,0 +1,17 @@
+afidl 1;
+
+schema agentflow.test.order @1;
+
+record Alpha {
+    1 name: string;
+}
+
+variant Beta {
+    1 one: unit;
+    2 two: Alpha;
+}
+
+enum Gamma {
+    1 yes;
+    2 no;
+}

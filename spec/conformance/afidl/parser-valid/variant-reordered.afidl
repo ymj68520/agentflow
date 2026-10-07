@@ -1,0 +1,11 @@
+afidl 1;
+schema agentflow.test.golden @1;
+record Point {
+    2 y: int64;
+    1 x: int64;
+}
+variant LookupResult {
+    3 error: string;
+    1 found: Point;
+    2 missing: unit;
+}

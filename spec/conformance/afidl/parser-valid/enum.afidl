@@ -1,0 +1,9 @@
+afidl 1;
+
+schema agentflow.test.golden @1;
+
+enum Status {
+    1 pending;
+    2 complete;
+    3 cancelled;
+}

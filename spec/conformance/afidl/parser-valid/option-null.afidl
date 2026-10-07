@@ -1,0 +1,6 @@
+afidl 1;
+
+schema agentflow.test.golden @1;
+
+alias MaybeNull = option<null>;
+alias MaybeUnit = option<unit>;

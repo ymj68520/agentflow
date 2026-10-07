@@ -1,0 +1,19 @@
+afidl 1;
+
+schema agentflow.test.golden @1;
+
+record Everything {
+    1 a_bool: bool;
+    2 a_int32: int32;
+    3 a_uint32: uint32;
+    4 a_int64: int64;
+    5 a_uint64: uint64;
+    6 a_decimal: decimal;
+    7 a_float64: float64;
+    8 a_string: string;
+    9 a_bytes: bytes;
+    10 a_timestamp: timestamp;
+    11 a_duration: duration;
+    12 a_null: null;
+    13 a_unit: unit;
+}

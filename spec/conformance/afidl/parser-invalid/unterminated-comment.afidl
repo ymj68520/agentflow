@@ -1,0 +1,5 @@
+afidl 1;
+
+/* never closed
+
+schema agentflow.test.invalid @1;

@@ -1,0 +1,8 @@
+afidl 1;
+
+schema agentflow.test.invalid @1;
+
+enum Bad {
+    1 first;
+    1 second;
+}

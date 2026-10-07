@@ -1,0 +1,6 @@
+afidl 1;
+
+schema agentflow.test.golden @1;
+
+alias NestedOption = option<option<string>>;
+alias NestedOptionNull = option<option<null>>;

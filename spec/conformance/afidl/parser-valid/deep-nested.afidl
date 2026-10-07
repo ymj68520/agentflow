@@ -1,0 +1,11 @@
+afidl 1;
+
+schema agentflow.test.golden @1;
+
+record Deep {
+    1 tree: list<map<string, option<list<Leaf>>>>;
+}
+
+record Leaf {
+    1 value: int64;
+}

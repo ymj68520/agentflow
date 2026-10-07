@@ -1,0 +1,7 @@
+afidl 1;
+
+schema agentflow.test.invalid @1;
+
+record Bad {
+    1 x: option<>;
+}

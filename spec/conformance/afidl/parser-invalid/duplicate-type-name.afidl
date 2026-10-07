@@ -1,0 +1,11 @@
+afidl 1;
+
+schema agentflow.test.invalid @1;
+
+record Same {
+    1 x: string;
+}
+
+record Same {
+    2 y: int64;
+}

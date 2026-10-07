@@ -1,0 +1,7 @@
+afidl 1;
+
+schema agentflow.test.invalid @1;
+
+record Node {
+    1 children: list<Node>;
+}

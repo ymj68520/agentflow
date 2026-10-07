@@ -1,0 +1,9 @@
+afidl 1;
+
+schema agentflow.test.invalid @1;
+
+record Ok {
+    1 x: string;
+}
+
+1 2 3;

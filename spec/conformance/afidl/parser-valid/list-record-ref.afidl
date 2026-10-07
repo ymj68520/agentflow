@@ -1,0 +1,12 @@
+afidl 1;
+
+schema agentflow.test.golden @1;
+
+record Basket {
+    1 items: list<Item>;
+}
+
+record Item {
+    1 label: string;
+    2 quantity: uint32;
+}

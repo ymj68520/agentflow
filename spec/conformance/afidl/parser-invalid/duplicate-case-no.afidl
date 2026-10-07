@@ -1,0 +1,8 @@
+afidl 1;
+
+schema agentflow.test.invalid @1;
+
+variant Bad {
+    1 a: unit;
+    1 b: string;
+}

@@ -1,0 +1,10 @@
+afidl 1; /* language */
+schema agentflow.test.golden @1; // family
+record User {
+    // the identifier
+    1 id: UserId;
+    2 name: string; // display name
+    /* optional contact */
+    3 email: option<string>;
+}
+alias UserId = string;

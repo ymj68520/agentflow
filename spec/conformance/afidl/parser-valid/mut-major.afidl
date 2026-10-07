@@ -1,0 +1,7 @@
+afidl 1;
+
+schema agentflow.test.golden @2;
+
+record Single {
+    1 value: string;
+}

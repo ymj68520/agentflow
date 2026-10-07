@@ -1,0 +1,10 @@
+afidl 1;
+
+schema agentflow.test.golden @1;
+
+alias Base = int64;
+alias Derived = Base;
+
+record Holder {
+    1 value: Derived;
+}

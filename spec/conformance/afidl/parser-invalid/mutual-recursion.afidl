@@ -1,0 +1,11 @@
+afidl 1;
+
+schema agentflow.test.invalid @1;
+
+record A {
+    1 b: B;
+}
+
+record B {
+    1 a: A;
+}
