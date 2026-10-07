@@ -1,0 +1,12 @@
+afidl 1;
+
+schema agentflow.test.mini @1;
+
+record Widget {
+    2 count: uint32;
+}
+
+enum Color {
+    1 red;
+    2 green;
+}

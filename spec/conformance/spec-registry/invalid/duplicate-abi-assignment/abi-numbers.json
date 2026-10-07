@@ -1,0 +1,45 @@
+{
+  "assignments": [
+    {
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.test.mini@1",
+      "status": "active",
+      "symbolic_name": "red",
+      "type_name": "Color"
+    },
+    {
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.test.mini@1",
+      "status": "active",
+      "symbolic_name": "green",
+      "type_name": "Color"
+    },
+    {
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.test.mini@1",
+      "status": "active",
+      "symbolic_name": "id",
+      "type_name": "Widget"
+    },
+    {
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.test.mini@1",
+      "status": "active",
+      "symbolic_name": "id",
+      "type_name": "Widget"
+    },
+    {
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.test.mini@1",
+      "status": "active",
+      "symbolic_name": "count",
+      "type_name": "Widget"
+    }
+  ],
+  "registry_revision": 1
+}

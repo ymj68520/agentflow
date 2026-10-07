@@ -1,5 +1,5 @@
 {
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "kind": "agentflow.conformance.afidl.type-schema-digest-golden",
   "note": "Frozen TypeSchemaDigest values (SHA256(\"AF\\0type-schema\\0\" || canonical ACE1 bytes)). Mutation cases assert that semantic changes alter the digest while the equivalence groups in schema-golden.json assert that formatting does not.",
   "cases": [
@@ -386,6 +386,126 @@
       "file": "spec/idl/core/machine-primitives.afidl",
       "type_name": "Unit",
       "digest_hex": "20d504fb2f76f5b6c79b1c6b80eabebcdfd375302c023931c530e4eca7f17e84"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "AbiNumberAssignment",
+      "digest_hex": "8c0e45ac0562494b4ce3e6a37842cdde65cad1ec8a2f61e70dc39699a280834c"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "AbiNumberKind",
+      "digest_hex": "87f49f06ff0899b60bf65f7476706b7ccee8a65026dd684940f2c4c6a15277ea"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "AbiNumberStatus",
+      "digest_hex": "7068d098e923393e292cf3fa9708b5d9346e16fe8abd61b728051f3ad2336fe5"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "ArtifactFileDigest",
+      "digest_hex": "4d85e05e5ab5aee08fb696e2b4ebf50e69eb14c0c856d4bc4898cf9cfa21f93b"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "ConformanceCaseId",
+      "digest_hex": "cc7b8eb0d1f4c3f942dd2207326641757b92e642afd398518d1b3bdcb0452ebe"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "DigestRef",
+      "digest_hex": "5a8c24604b918a20e772e87565143c6a83270bf98088a289fda4bc46111adc33"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "LogicalPath",
+      "digest_hex": "4df97222c943e43afac0e5e8cc35055ada480121c96e4e6e2ac7b53e29167bb4"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "NormativeRuleDescriptor",
+      "digest_hex": "5498e71bbe4329a1f2b0c160084a945cd744b8e5cf12d7d14f00d091e4ef93c8"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "RequirementLevel",
+      "digest_hex": "239f0abbb8ef00f1330516d3791ac6347b8e38513c85d9ee121b7d4960bbb4c3"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "RuleArea",
+      "digest_hex": "0ca27a157e8ce745c5cb6e45262610b1a44cf7b92df960e0eb170431a11887a6"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "RuleId",
+      "digest_hex": "0f75cefd3ae7ae1431bb48d9953ea9d7d992a5cf0d3c617800756c799ecbd24b"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "Sha256Hex",
+      "digest_hex": "0e7711322460801ff10daab44bacc6c00358389c92ea4cf6e623e58a72c10615"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "SourceAnchor",
+      "digest_hex": "c0bfbf1ce3be2e74e42a4f273edab8d0783b90f4352707551d6b801e507166ca"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "SpecificationArtifactRef",
+      "digest_hex": "afdeef15c0a24d0385fac9159b2b81126a776411ed95983a769b619307e2f841"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "SpecificationIdText",
+      "digest_hex": "dfad74755e3a8aa3940cdd23e177b77cb15faaac5186f6fc353375818e9ac883"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "SpecificationKind",
+      "digest_hex": "1bd62de836089e1f75fd489e87010fab6cd6e6951c83d515fa38c2aab12fb293"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "SpecificationRegistryEntry",
+      "digest_hex": "091d836ac9107f19813b36c15e1c812779417beb4a960303e474ec981bd3e4e4"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "SpecificationStatus",
+      "digest_hex": "ba664592202004949b4b967c921e667c7765ecaa4e7dfb1254f72b31901ec7f3"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "SymbolicName",
+      "digest_hex": "8a950a9acbf1eb8c27b34ded3220238613f12be02bbce358ef81b68779aaa5cf"
+    },
+    {
+      "case_id": "specification-registry",
+      "file": "spec/idl/specification-registry.afidl",
+      "type_name": "TypeName",
+      "digest_hex": "96871f0a24d162c5a27bf8cadcc2538f37a8db7ffa22f120dd681db071cea248"
     }
   ],
   "mutation_cases": [

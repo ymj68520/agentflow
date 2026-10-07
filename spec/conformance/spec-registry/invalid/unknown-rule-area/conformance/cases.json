@@ -1,0 +1,10 @@
+{
+  "cases": [
+    {
+      "case_id": "CONF-MINI-0001",
+      "description": "The only resolvable conformance case in the mini corpus."
+    }
+  ],
+  "kind": "agentflow.conformance.mini-cases",
+  "note": "Mini fixture case universe."
+}

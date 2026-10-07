@@ -1,0 +1,26 @@
+{
+  "registry_revision": 1,
+  "rules": [
+    {
+      "area": "MINI",
+      "conformance_refs": [
+        "CONF-MINI-0001"
+      ],
+      "normative_source": "source.md",
+      "requirement_level": "must",
+      "rule_id": "AF-MINI-1",
+      "short_statement": "The mini schema keeps its declared numbering.",
+      "source_anchor": "mini-rule-one"
+    },
+    {
+      "area": "MINI",
+      "conformance_refs": [],
+      "intentionally_uncovered_reason": "Corpus fixture rule; it exercises the intentionally-uncovered classification, not a real requirement.",
+      "normative_source": "source.md",
+      "requirement_level": "should",
+      "rule_id": "AF-MINI-0002",
+      "short_statement": "Fixture rules may exist without runnable cases.",
+      "source_anchor": "mini-rule-two"
+    }
+  ]
+}

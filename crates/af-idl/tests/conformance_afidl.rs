@@ -79,7 +79,11 @@ struct MutationCase {
 }
 
 /// Frozen corpus revision this harness is written against.
-const CORPUS_REVISION: u64 = 1;
+// Golden revision 2 (Phase 2B): additive `specification-registry` case;
+// existing cases and digests are unchanged. The parser-invalid manifest is
+// a separate frozen artifact and stays at revision 1.
+const CORPUS_REVISION: u64 = 2;
+const PARSER_INVALID_CORPUS_REVISION: u64 = 1;
 
 fn frozen_digest_map() -> BTreeMap<(String, String), String> {
     let golden: DigestGolden = serde_json::from_value(load_json(
@@ -246,7 +250,7 @@ fn parser_invalid_corpus_fails_with_frozen_kinds() {
     ))
     .expect("parser-invalid manifest is valid");
     assert_eq!(
-        manifest.corpus_revision, CORPUS_REVISION,
+        manifest.corpus_revision, PARSER_INVALID_CORPUS_REVISION,
         "unexpected corpus revision"
     );
     assert!(

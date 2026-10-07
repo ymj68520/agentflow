@@ -1,0 +1,18 @@
+{
+  "registry_revision": 1,
+  "specifications": [
+    {
+      "description": "Mini fixture schema for the spec-registry corpus.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        "logical_path": "source.md"
+      },
+      "specification_id": "agentflow.test.mini@1",
+      "status": "frozen"
+    }
+  ]
+}

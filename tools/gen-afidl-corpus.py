@@ -17,7 +17,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONF = ROOT / "spec" / "conformance" / "afidl"
-CORPUS_REVISION = 1
+# Revision 2 (Phase 2B): adds the `specification-registry` case for the
+# self-hosting registry schema module. Existing cases and digests are
+# unchanged; the revision bump marks the additive corpus extension.
+CORPUS_REVISION = 2
 
 PRIMITIVES = [
     "unit", "null", "bool", "int32", "uint32", "int64", "uint64",
@@ -429,6 +432,9 @@ def main():
     # The normative builtin registry file is itself part of the corpus.
     primitives_file = ROOT / "spec" / "idl" / "core" / "machine-primitives.afidl"
     cases.append(case_entry(primitives_file, case_id="machine-primitives"))
+    # The Phase 2B self-hosting registry schema module is part of the corpus.
+    registry_file = ROOT / "spec" / "idl" / "specification-registry.afidl"
+    cases.append(case_entry(registry_file, case_id="specification-registry"))
 
     schema_golden = {
         "kind": "agentflow.conformance.afidl.schema-golden",
@@ -514,6 +520,22 @@ def main():
     assert alias_targets == set(PRIMITIVES), "builtin universe drifted"
     assert len(mp["types"]) == len(PRIMITIVES)
     print("machine-primitives.afidl alias targets match the closed primitive table")
+
+    # Self-check: the registry schema module must expose the closed registry
+    # object set (spec/registry/registry-spec.md).
+    reg = next(c for c in cases if c["case_id"] == "specification-registry")
+    reg_names = {t["name"] for t in reg["types"]}
+    for expected in (
+        "AbiNumberAssignment", "AbiNumberKind", "AbiNumberStatus",
+        "ArtifactFileDigest", "ConformanceCaseId", "DigestRef", "LogicalPath",
+        "NormativeRuleDescriptor", "RequirementLevel", "RuleArea", "RuleId",
+        "Sha256Hex", "SpecificationArtifactRef", "SpecificationIdText",
+        "SpecificationKind", "SpecificationRegistryEntry", "SpecificationStatus",
+        "SourceAnchor", "SymbolicName", "TypeName",
+    ):
+        assert expected in reg_names, f"registry schema is missing {expected}"
+    assert len(reg["types"]) == 20, "registry schema type count drifted"
+    print("specification-registry.afidl exposes the closed registry object set")
 
 
 if __name__ == "__main__":
