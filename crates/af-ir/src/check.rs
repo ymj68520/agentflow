@@ -31,7 +31,9 @@
 //!
 //! Dataflow (expression → slot) and ownership (computation → child) are
 //! deliberately separate logics sharing no edge type. Dominance and
-//! value-availability analysis are Phase 3C and are not approximated here.
+//! value-availability analysis are the separate Phase 3C pass
+//! ([`crate::dataflow`]), which runs strictly after this validation and
+//! therefore never changes a Phase 3B error kind.
 
 use crate::error::{IrError, kind};
 use crate::ids::{

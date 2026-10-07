@@ -81,6 +81,10 @@ pub mod kind {
     pub const SCOPE_INTERFACE_MISMATCH: &str = "scope_interface_mismatch";
     pub const COMPENSATION_SCOPE_INTERFACE_MISMATCH: &str = "compensation_scope_interface_mismatch";
     pub const ENCODING_ERROR: &str = "encoding_error";
+    // Phase 3C scoped dataflow analysis (raised by `analyze_dataflow`, never
+    // by `check`; the analysis pass runs strictly after Phase 3B validation).
+    pub const VALUE_NOT_AVAILABLE: &str = "value_not_available";
+    pub const RESOURCE_NOT_VISIBLE: &str = "resource_not_visible";
 }
 
 /// Semantic IR validation, canonicalization and digest errors.

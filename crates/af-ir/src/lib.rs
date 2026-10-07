@@ -30,16 +30,26 @@
 //! `SemanticExecutionState`, runtime commands, occurrence identity
 //! (`OccurrencePath`/`AttemptId`/`InvocationId`), workers, schedulers,
 //! regions, leases, timers, resource handles and any opcode state machine.
-//! Dominance and value-availability analysis are deferred to Phase 3C.
+//!
+//! Phase 3C adds [`dataflow`]: the derived-only scoped typed dataflow pass
+//! ([`CheckedIrDocument::analyze_dataflow`]) that checks per-use-site value
+//! availability, producer dominance, branch isolation and resource lexical
+//! visibility, and projects [`SemanticDataflowAnalysis`]. It runs strictly
+//! after `check`, changes no wire model, no AFIDL module, no ABI row, no
+//! HashV1 domain, and never enters the `SemanticIrDigest`.
 
 pub mod canonical;
 pub mod check;
+pub mod dataflow;
 pub mod error;
 pub mod ids;
 pub mod model;
 
 pub use canonical::canonical_computations;
 pub use check::CheckedIrDocument;
+pub use dataflow::{
+    AvailabilityReason, ExpressionUseSite, ProducerLocation, SemanticDataflowAnalysis,
+};
 pub use error::{IrError, kind};
 pub use ids::{
     BranchOrdinal, ComputationId, ContractRefId, HandlerOrdinal, PortNo, RunParameterId,
