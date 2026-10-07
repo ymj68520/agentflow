@@ -11,10 +11,54 @@ script after editing any registered source file.
 """
 
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+
+# The independent AFIDL1 implementation (tools/gen-afidl-corpus.py): used here
+# to *derive* ABI assignments from the normative schema modules instead of
+# hand-copying them.
+_spec = importlib.util.spec_from_file_location(
+    "afidl_corpus", Path(__file__).resolve().parent / "gen-afidl-corpus.py")
+afidl = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(afidl)
+
+
+def digest_ref(hex_value: str) -> dict:
+    return {"alg": "sha256", "domain": "type-schema", "hex": hex_value}
+
+
+def derive_assignments(rel_path, status="active"):
+    """Derives one assignment row per declared field / enum value / variant
+    case of an AFIDL module, plus the per-type TypeSchemaDigest pin."""
+    module = afidl.parse_afidl((ROOT / rel_path).read_text(encoding="utf-8"))
+    family = f"{module['spec']['namespace']}@{module['spec']['major']}"
+    rows = []
+    for declaration in module["declarations"]:
+        schema = afidl.canonical_type(family, declaration)
+        _payload, digest = afidl.type_schema_digest(schema)
+        kind = declaration["kind"]
+        if kind == "alias":
+            continue  # aliases carry no numbering
+        if kind == "enum":
+            members = [(v["no"], v["name"], "enum_value") for v in declaration["values"]]
+        elif kind == "record":
+            members = [(f["no"], f["name"], "field") for f in declaration["fields"]]
+        else:
+            members = [(c["no"], c["name"], "variant_case") for c in declaration["cases"]]
+        for number, name, number_kind in members:
+            rows.append({
+                "schema_family": family,
+                "type_name": declaration["name"],
+                "number_kind": number_kind,
+                "number": number,
+                "symbolic_name": name,
+                "status": status,
+                "first_seen_schema_digest": digest_ref(digest),
+            })
+    return rows, family
 
 
 def sha256_file(rel: str) -> str:
@@ -44,6 +88,7 @@ ACE1_SRC = "spec/encoding/ace1-grammar.md"
 DIGEST_SRC = "spec/digest/hash-v1.md"
 AFIDL_SRC = "spec/idl/afidl1-grammar.md"
 REG_SRC = "spec/registry/registry-spec.md"
+SEMANTIC_SRC = "spec/semantic/core-semantic-types.md"
 
 ARCH_UNCOVERED_REASON = (
     "Architectural invariant: not falsifiable by a data-driven fixture. "
@@ -293,6 +338,182 @@ RULES = [
          ["spec-registry/canonical-order-violation"]),
 ]
 
+SEMANTIC_RULES = [
+    rule("AF-SEMANTIC-0001", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-workflow-primitive-set-closed",
+         "The workflow semantic primitive universe is closed to the nine "
+         "registered primitives with value_no 1..9; no other type may enter "
+         "the workflow value layer.",
+         ["constant/unit", "constant/duration", "primitive/machine-only-alias-int32"]),
+    rule("AF-SEMANTIC-0002", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-machine-only-primitives-prohibited",
+         "int32, uint32, uint64 and float64 are machine-only and MUST NOT "
+         "surface as workflow value types at any point.",
+         ["primitive/machine-only-alias-float64",
+          "primitive/machine-only-alias-uint64",
+          "primitive/machine-only-record-field",
+          "constant/machine-only-case"]),
+    rule("AF-SEMANTIC-0003", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-type-dag",
+         "Composite workflow types are expressed as a document-local indexed "
+         "type DAG whose list/map_string/option cases reference other nodes by "
+         "SemanticTypeId; recursive AFIDL schemas are neither required nor "
+         "permitted.",
+         ["type/nested-list-map-option", "type/unknown-node-reference"]),
+    rule("AF-SEMANTIC-0004", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-type-dag-ids",
+         "Semantic type ids are positive and unique within the document; the "
+         "canonical type table is ordered by id ascending and source order "
+         "never affects identity.",
+         ["type/id-zero", "type/duplicate-id", "canonical/types-sorted",
+          "canonical/types-shuffled"]),
+    rule("AF-SEMANTIC-0005", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-type-dag-acyclic",
+         "The semantic type DAG MUST be acyclic: a type that expands through "
+         "itself, directly or transitively, is rejected.",
+         ["type/self-cycle", "type/two-node-cycle", "type/longer-cycle"]),
+    rule("AF-SEMANTIC-0006", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-schema-ref-pins-digest",
+         "A TypeSchemaRef pins <SpecificationId>/<TypeName> together with the "
+         "exact TypeSchemaDigest it was authored against; a published "
+         "reference is never re-resolved against a later schema of that name.",
+         ["type/schema-ref", "schema/wrong-digest"]),
+    rule("AF-SEMANTIC-0007", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-schema-ref-digest-must-match",
+         "A TypeSchemaRef is valid only when the identity resolves in the "
+         "supplied TypeSchemaUniverse and the pinned digest equals that "
+         "schema's actual canonical digest; a merely well-formed digest is "
+         "not sufficient.",
+         ["schema/wrong-digest", "schema/unknown", "schema/digest-bad-hex",
+          "schema/digest-bad-algorithm", "schema/digest-wrong-domain"]),
+    rule("AF-SEMANTIC-0008", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-digest-ref-value-shape",
+         "A digest reference is the DigestRefValue record "
+         "(algorithm/domain/hex); algorithm is sha256, the domain is a member "
+         "of the frozen HashV1 registry (type-schema for a TypeSchemaRef) and "
+         "hex is 64 lowercase hexadecimal characters. A bare digest string is "
+         "forbidden.",
+         ["schema/digest-bad-algorithm", "schema/digest-wrong-domain",
+          "schema/digest-bad-hex"]),
+    rule("AF-SEMANTIC-0009", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-value-slot-immutable",
+         "A value slot is an immutable SSA binding: one producer and "
+         "zero-or-more consumers, with no mutation operation. Phase 3A "
+         "validates slot identity and type only; producer consistency belongs "
+         "to the semantic IR dataflow stage.",
+         ["expr/value-slot", "value-slot/read-unknown-slot"]),
+    rule("AF-SEMANTIC-0010", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-local-ids-positive-unique",
+         "Local ids in every namespace are > 0 and unique within the "
+         "document; 0 is reserved as invalid/unset and no further reserved "
+         "ranges exist.",
+         ["type/id-zero", "value-slot/id-zero", "expression/id-zero",
+          "resource/id-zero", "value-slot/duplicate-id",
+          "expression/duplicate-id", "resource/duplicate-id",
+          "type/duplicate-id"]),
+    rule("AF-SEMANTIC-0011", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-namespace-separation",
+         "SemanticTypeId, ValueSlotId, ExpressionId and ResourceSlotId are "
+         "four independent namespaces: identical numbers in two namespaces "
+         "denote unrelated objects, and a value never travels through a "
+         "resource slot.",
+         ["SUITE-SEMANTIC-NAMESPACE-SEPARATION",
+          "resource/unknown-requirement-schema"]),
+    rule("AF-SEMANTIC-0012", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-primitive-constants-closed",
+         "PrimitiveConstant is closed to the nine workflow primitives and its "
+         "cases map 1:1 onto SemanticPrimitiveType; bytes payloads are "
+         "canonical unpadded base64url.",
+         ["constant/unit", "constant/bytes", "constant/machine-only-case",
+          "expression/invalid-bytes-constant"]),
+    rule("AF-SEMANTIC-0013", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-expression-pure",
+         "Expressions are pure and deterministic: no I/O, no clock, no "
+         "randomness, no environment, no policy or registry query and no "
+         "resource access; they never produce effects.",
+         ["SUITE-SEMANTIC-PURITY"]),
+    rule("AF-SEMANTIC-0014", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-expression-closed-set",
+         "The expression body set is closed to the fifteen registered "
+         "expressions; arithmetic, string operators, indexing, variant "
+         "inspection and every fallible operation are absent.",
+         ["SUITE-SEMANTIC-CLOSED-EXPRESSION-SET"]),
+    rule("AF-SEMANTIC-0015", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-expression-dag",
+         "Expressions form a DAG: forward references are legal and cycles "
+         "(self, two-node or longer) are rejected.",
+         ["expression/self-cycle", "expression/two-node-cycle",
+          "expression/longer-cycle", "expr/list-construct"]),
+    rule("AF-SEMANTIC-0016", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-expression-references-valid",
+         "Every expression, value slot and semantic type reference must "
+         "resolve; unresolved references are rejected.",
+         ["expression/unknown-reference", "value-slot/read-unknown-slot",
+          "type/unknown-node-reference", "value-slot/unknown-type"]),
+    rule("AF-SEMANTIC-0017", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-expression-static-type-correctness",
+         "The validator implements a real type checker: every expression "
+         "derives its result type from its body and the declared result_type "
+         "must equal the derived type.",
+         ["expr/equals-primitive", "expr/if-then-else-then",
+          "expression/result-type-mismatch", "option-some/derivation-mismatch",
+          "bool/not-non-bool", "bool/and-non-bool", "bool/or-non-bool",
+          "if/non-bool-condition", "if/branch-type-mismatch",
+          "equals/type-mismatch", "equals/not-comparable-record",
+          "equals/not-comparable-list", "list/element-type-mismatch",
+          "map/value-type-mismatch"]),
+    rule("AF-SEMANTIC-0018", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-field-selection-by-number",
+         "Record construction and field_get select fields by field_no; "
+         "variant construction and enum selection use case_no and value_no. "
+         "Numbers are the durable schema ABI, names remain value-encoding "
+         "keys.",
+         ["expr/record-construct", "expr/field-get",
+          "record/unknown-field-no", "field-get/unknown-field-no",
+          "record/duplicate-field", "record/missing-field",
+          "record/field-type-mismatch", "record/target-not-record",
+          "variant/unknown-case", "variant/payload-mismatch",
+          "variant/target-not-variant", "enum/unknown-value",
+          "enum/target-not-enum", "field-get/target-not-record"]),
+    rule("AF-SEMANTIC-0019", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-map-key-rules",
+         "Map construction applies the ACE1 key invariants during validation: "
+         "keys are NFC-normalized, keys colliding after normalization are "
+         "rejected, and entries are stored in unsigned UTF-8 byte order.",
+         ["expr/map-construct-nfc-key", "expr/map-construct-empty",
+          "map/duplicate-nfc-key"]),
+    rule("AF-SEMANTIC-0020", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-resource-slot-separate-namespace",
+         "A resource slot is a logical requirement declaration in its own "
+         "namespace: values never travel through resource slots and a "
+         "ResourceSlotId is unrelated to a ValueSlotId with the same number.",
+         ["SUITE-SEMANTIC-NAMESPACE-SEPARATION"]),
+    rule("AF-SEMANTIC-0021", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-resource-slot-immutable",
+         "A resource slot's definition is immutable for the life of the "
+         "document and its requirement_type pins an exact contract schema.",
+         ["SUITE-SEMANTIC-RESOURCE-IMMUTABILITY"]),
+    rule("AF-SEMANTIC-0022", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-resource-not-runtime-handle",
+         "No ResourceHandle, binding snapshot or runtime resource object "
+         "exists at the semantic layer; a resource slot is a logical "
+         "requirement only.",
+         ["SUITE-SEMANTIC-NO-RUNTIME-HANDLE"]),
+    rule("AF-SEMANTIC-0023", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-canonical-ordering",
+         "Type nodes, value slots, expressions and resource slots are "
+         "canonically ordered by id ascending; source order never enters "
+         "identity.",
+         ["canonical/types-sorted", "canonical/types-shuffled",
+          "canonical/expressions-sorted", "canonical/expressions-shuffled"]),
+    rule("AF-SEMANTIC-0024", "SEMANTIC", SEMANTIC_SRC,
+         "semantic-no-new-hash-domain",
+         "Phase 3A introduces no new HashV1 domain: type identity comes from "
+         "TypeSchemaDigest and the semantic objects are ordinary ACE1 objects.",
+         ["SUITE-SEMANTIC-NO-NEW-DOMAIN"]),
+]
+RULES.extend(SEMANTIC_RULES)
+
 RULES.sort(key=lambda r: r["rule_id"])
 write_json("spec/registry/rules.json", {
     "registry_revision": 1,
@@ -338,6 +559,16 @@ SPECS = [
     ("agentflow.registry.rule-areas@1", "closed_table",
      "spec/tables/rule-areas.json",
      "Closed table of RuleId areas."),
+    ("agentflow.semantic.core@1", "schema",
+     "spec/idl/semantic-core.afidl",
+     "Normative shape of the workflow semantic core: primitive universe, "
+     "semantic type DAG, digest-pinned references, value slots, pure "
+     "expressions and logical resource slots."),
+    ("agentflow.semantic.types@1", "schema_language",
+     "spec/semantic/core-semantic-types.md",
+     "Workflow semantic core semantics: machine vs workflow primitives, "
+     "type DAG rules, exact pinning, SSA value slots, expression purity and "
+     "type checking, resource slot scope."),
     ("agentflow.spec.registry@1", "schema",
      "spec/idl/specification-registry.afidl",
      "Normative shape of the Specification, Rule and ABI-number registries "
@@ -361,86 +592,21 @@ write_json("spec/registry/specifications.json", {
 })
 
 # ---------------------------------------------------------------------------
-# abi-numbers.json — the self-hosted numbering of agentflow.spec.registry@1
+# abi-numbers.json — stable numbering, derived from the normative modules
 # ---------------------------------------------------------------------------
 
-REG_FAMILY = "agentflow.spec.registry@1"
-
-ENUM_VALUES = {
-    "AbiNumberKind": ["field", "variant_case", "enum_value"],
-    "AbiNumberStatus": ["active", "reserved", "retired"],
-    "RequirementLevel": ["must", "must_not", "should", "should_not", "may"],
-    "SpecificationKind": [
-        "encoding", "digest", "digest_domain_registry", "schema_language",
-        "schema", "closed_table", "registry",
-    ],
-    "SpecificationStatus": ["draft", "frozen", "deprecated", "withdrawn"],
-}
-
-RECORD_FIELDS = {
-    "AbiNumberAssignment": [
-        "schema_family", "type_name", "number_kind", "number",
-        "symbolic_name", "status", "first_seen_schema_digest",
-    ],
-    "ArtifactFileDigest": ["algorithm", "hex"],
-    "DigestRef": ["alg", "domain", "hex"],
-    "NormativeRuleDescriptor": [
-        "rule_id", "area", "normative_source", "source_anchor",
-        "requirement_level", "short_statement", "conformance_refs",
-        "intentionally_uncovered_reason",
-    ],
-    "SpecificationArtifactRef": ["logical_path", "content_digest"],
-    "SpecificationRegistryEntry": [
-        "specification_id", "kind", "status", "normative_source",
-        "schema_digest", "description",
-    ],
-}
-
-# Per-type TypeSchemaDigest of agentflow.spec.registry@1, frozen by
-# tools/gen-afidl-corpus.py in spec/conformance/afidl/
-# (type-schema-digest-golden.json, case `specification-registry`).
-TYPE_DIGESTS = {
-    "AbiNumberAssignment": "8c0e45ac0562494b4ce3e6a37842cdde65cad1ec8a2f61e70dc39699a280834c",
-    "AbiNumberKind": "87f49f06ff0899b60bf65f7476706b7ccee8a65026dd684940f2c4c6a15277ea",
-    "AbiNumberStatus": "7068d098e923393e292cf3fa9708b5d9346e16fe8abd61b728051f3ad2336fe5",
-    "ArtifactFileDigest": "4d85e05e5ab5aee08fb696e2b4ebf50e69eb14c0c856d4bc4898cf9cfa21f93b",
-    "DigestRef": "5a8c24604b918a20e772e87565143c6a83270bf98088a289fda4bc46111adc33",
-    "NormativeRuleDescriptor": "5498e71bbe4329a1f2b0c160084a945cd744b8e5cf12d7d14f00d091e4ef93c8",
-    "RequirementLevel": "239f0abbb8ef00f1330516d3791ac6347b8e38513c85d9ee121b7d4960bbb4c3",
-    "SpecificationArtifactRef": "afdeef15c0a24d0385fac9159b2b81126a776411ed95983a769b619307e2f841",
-    "SpecificationKind": "1bd62de836089e1f75fd489e87010fab6cd6e6951c83d515fa38c2aab12fb293",
-    "SpecificationRegistryEntry": "091d836ac9107f19813b36c15e1c812779417beb4a960303e474ec981bd3e4e4",
-    "SpecificationStatus": "ba664592202004949b4b967c921e667c7765ecaa4e7dfb1254f72b31901ec7f3",
-}
-
-
-def digest_ref(hex_value: str) -> dict:
-    return {"alg": "sha256", "domain": "type-schema", "hex": hex_value}
-
+SCHEMA_MODULES = [
+    "spec/idl/specification-registry.afidl",
+    "spec/idl/semantic-core.afidl",
+]
 
 assignments = []
-for type_name, values in ENUM_VALUES.items():
-    for no, name in enumerate(values, start=1):
-        assignments.append({
-            "schema_family": REG_FAMILY,
-            "type_name": type_name,
-            "number_kind": "enum_value",
-            "number": no,
-            "symbolic_name": name,
-            "status": "active",
-            "first_seen_schema_digest": digest_ref(TYPE_DIGESTS[type_name]),
-        })
-for type_name, fields in RECORD_FIELDS.items():
-    for no, name in enumerate(fields, start=1):
-        assignments.append({
-            "schema_family": REG_FAMILY,
-            "type_name": type_name,
-            "number_kind": "field",
-            "number": no,
-            "symbolic_name": name,
-            "status": "active",
-            "first_seen_schema_digest": digest_ref(TYPE_DIGESTS[type_name]),
-        })
+for module in SCHEMA_MODULES:
+    rows, family = derive_assignments(module)
+    print(f"derived {len(rows)} ABI assignments from {module} ({family})")
+    assignments.extend(rows)
+
+# Deterministic canonical order: (schema_family, type_name, number_kind, number).
 assignments.sort(key=lambda a: (
     a["schema_family"], a["type_name"], a["number_kind"], a["number"]))
 write_json("spec/registry/abi-numbers.json", {
@@ -483,6 +649,83 @@ write_json("spec/conformance/suites.json", {
             "targets": [
                 "af-core digest domain-separation property test",
                 "spec/conformance/digest/domain-separation.json",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-CLOSED-EXPRESSION-SET",
+            "description": (
+                "The expression body set is closed to the fifteen Phase 3A "
+                "expressions and to the workflow primitive universe. Covers "
+                "the exhaustive match over ExpressionBody in the Rust checker "
+                "and the closed SemanticPrimitiveType enum, whose ALL table "
+                "and keyword round-trip are asserted in-tree."
+            ),
+            "targets": [
+                "af-semantic SemanticPrimitiveType::ALL and try_from_keyword",
+                "af-semantic expression body match exhaustiveness",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-NAMESPACE-SEPARATION",
+            "description": (
+                "ValueSlotId and ResourceSlotId are distinct nominal types that "
+                "may carry the same number. Covers the Rust newtype separation "
+                "test and the corpus case where a value slot 1 and a resource "
+                "slot 1 coexist in one document."
+            ),
+            "targets": [
+                "af-semantic ids namespace separation test",
+                "spec/conformance/semantic-core/semantic-core-golden.json",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-NO-NEW-DOMAIN",
+            "description": (
+                "No new HashV1 domain is introduced in Phase 3A: the domain "
+                "registry table still has exactly its frozen entries and the "
+                "semantic layer computes no digest of its own."
+            ),
+            "targets": [
+                "spec/tables/hash-domains.json",
+                "af-semantic (no digest computation outside TypeSchemaDigest)",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-NO-RUNTIME-HANDLE",
+            "description": (
+                "No ResourceHandle, binding snapshot or runtime object exists "
+                "in the semantic layer. Covers the static absence audit over "
+                "the crate's public surface and the resource slot model."
+            ),
+            "targets": [
+                "af-semantic resource slot model (logical requirement only)",
+                "static self-check: no runtime object in af-semantic",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-PURITY",
+            "description": (
+                "Expressions are pure: no I/O, clock, randomness, environment, "
+                "policy or registry query, resource access or effect. Covers "
+                "the static purity audit over the closed expression body set "
+                "and the absence of I/O dependencies in the crate."
+            ),
+            "targets": [
+                "af-semantic (no I/O, clock, random or env dependency)",
+                "static self-check: closed expression body set",
+            ],
+        },
+        {
+            "suite_id": "SUITE-SEMANTIC-RESOURCE-IMMUTABILITY",
+            "description": (
+                "A resource slot's definition is immutable for the document's "
+                "life. Covered by the absence of any mutating operation in the "
+                "resource model and by the checked document type being the only "
+                "way to reach a resolved requirement."
+            ),
+            "targets": [
+                "af-semantic ResourceSlot (no mutation surface)",
+                "CheckedDocument construction path",
             ],
         },
     ],

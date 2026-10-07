@@ -111,11 +111,37 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "82386649110d4854c19de2c532c4b7ec752b007944ad00edf1bc2b7656a9cc5d"
+          "hex": "891da6997138a6597c30a80231687b6b2f4bb3013cf52984bd35d7faa43dac67"
         },
         "logical_path": "spec/tables/rule-areas.json"
       },
       "specification_id": "agentflow.registry.rule-areas@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the workflow semantic core: primitive universe, semantic type DAG, digest-pinned references, value slots, pure expressions and logical resource slots.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "44054abf93fb21a10eca43d9397ba2151bc3ccda96fefef562a35e288931e250"
+        },
+        "logical_path": "spec/idl/semantic-core.afidl"
+      },
+      "specification_id": "agentflow.semantic.core@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Workflow semantic core semantics: machine vs workflow primitives, type DAG rules, exact pinning, SSA value slots, expression purity and type checking, resource slot scope.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "cf389a50fe8dbc553973f98422dc5603c421bfb75cfeb6db915458b85ea1597b"
+        },
+        "logical_path": "spec/semantic/core-semantic-types.md"
+      },
+      "specification_id": "agentflow.semantic.types@1",
       "status": "frozen"
     },
     {

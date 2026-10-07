@@ -548,6 +548,337 @@
       "source_anchor": "registry-canonical-form"
     },
     {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "constant/unit",
+        "constant/duration",
+        "primitive/machine-only-alias-int32"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0001",
+      "short_statement": "The workflow semantic primitive universe is closed to the nine registered primitives with value_no 1..9; no other type may enter the workflow value layer.",
+      "source_anchor": "semantic-workflow-primitive-set-closed"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "primitive/machine-only-alias-float64",
+        "primitive/machine-only-alias-uint64",
+        "primitive/machine-only-record-field",
+        "constant/machine-only-case"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0002",
+      "short_statement": "int32, uint32, uint64 and float64 are machine-only and MUST NOT surface as workflow value types at any point.",
+      "source_anchor": "semantic-machine-only-primitives-prohibited"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "type/nested-list-map-option",
+        "type/unknown-node-reference"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0003",
+      "short_statement": "Composite workflow types are expressed as a document-local indexed type DAG whose list/map_string/option cases reference other nodes by SemanticTypeId; recursive AFIDL schemas are neither required nor permitted.",
+      "source_anchor": "semantic-type-dag"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "type/id-zero",
+        "type/duplicate-id",
+        "canonical/types-sorted",
+        "canonical/types-shuffled"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0004",
+      "short_statement": "Semantic type ids are positive and unique within the document; the canonical type table is ordered by id ascending and source order never affects identity.",
+      "source_anchor": "semantic-type-dag-ids"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "type/self-cycle",
+        "type/two-node-cycle",
+        "type/longer-cycle"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0005",
+      "short_statement": "The semantic type DAG MUST be acyclic: a type that expands through itself, directly or transitively, is rejected.",
+      "source_anchor": "semantic-type-dag-acyclic"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "type/schema-ref",
+        "schema/wrong-digest"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0006",
+      "short_statement": "A TypeSchemaRef pins <SpecificationId>/<TypeName> together with the exact TypeSchemaDigest it was authored against; a published reference is never re-resolved against a later schema of that name.",
+      "source_anchor": "semantic-schema-ref-pins-digest"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "schema/wrong-digest",
+        "schema/unknown",
+        "schema/digest-bad-hex",
+        "schema/digest-bad-algorithm",
+        "schema/digest-wrong-domain"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0007",
+      "short_statement": "A TypeSchemaRef is valid only when the identity resolves in the supplied TypeSchemaUniverse and the pinned digest equals that schema's actual canonical digest; a merely well-formed digest is not sufficient.",
+      "source_anchor": "semantic-schema-ref-digest-must-match"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "schema/digest-bad-algorithm",
+        "schema/digest-wrong-domain",
+        "schema/digest-bad-hex"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0008",
+      "short_statement": "A digest reference is the DigestRefValue record (algorithm/domain/hex); algorithm is sha256, the domain is a member of the frozen HashV1 registry (type-schema for a TypeSchemaRef) and hex is 64 lowercase hexadecimal characters. A bare digest string is forbidden.",
+      "source_anchor": "semantic-digest-ref-value-shape"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "expr/value-slot",
+        "value-slot/read-unknown-slot"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0009",
+      "short_statement": "A value slot is an immutable SSA binding: one producer and zero-or-more consumers, with no mutation operation. Phase 3A validates slot identity and type only; producer consistency belongs to the semantic IR dataflow stage.",
+      "source_anchor": "semantic-value-slot-immutable"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "type/id-zero",
+        "value-slot/id-zero",
+        "expression/id-zero",
+        "resource/id-zero",
+        "value-slot/duplicate-id",
+        "expression/duplicate-id",
+        "resource/duplicate-id",
+        "type/duplicate-id"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0010",
+      "short_statement": "Local ids in every namespace are > 0 and unique within the document; 0 is reserved as invalid/unset and no further reserved ranges exist.",
+      "source_anchor": "semantic-local-ids-positive-unique"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "SUITE-SEMANTIC-NAMESPACE-SEPARATION",
+        "resource/unknown-requirement-schema"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0011",
+      "short_statement": "SemanticTypeId, ValueSlotId, ExpressionId and ResourceSlotId are four independent namespaces: identical numbers in two namespaces denote unrelated objects, and a value never travels through a resource slot.",
+      "source_anchor": "semantic-namespace-separation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "constant/unit",
+        "constant/bytes",
+        "constant/machine-only-case",
+        "expression/invalid-bytes-constant"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0012",
+      "short_statement": "PrimitiveConstant is closed to the nine workflow primitives and its cases map 1:1 onto SemanticPrimitiveType; bytes payloads are canonical unpadded base64url.",
+      "source_anchor": "semantic-primitive-constants-closed"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "SUITE-SEMANTIC-PURITY"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0013",
+      "short_statement": "Expressions are pure and deterministic: no I/O, no clock, no randomness, no environment, no policy or registry query and no resource access; they never produce effects.",
+      "source_anchor": "semantic-expression-pure"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "SUITE-SEMANTIC-CLOSED-EXPRESSION-SET"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0014",
+      "short_statement": "The expression body set is closed to the fifteen registered expressions; arithmetic, string operators, indexing, variant inspection and every fallible operation are absent.",
+      "source_anchor": "semantic-expression-closed-set"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "expression/self-cycle",
+        "expression/two-node-cycle",
+        "expression/longer-cycle",
+        "expr/list-construct"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0015",
+      "short_statement": "Expressions form a DAG: forward references are legal and cycles (self, two-node or longer) are rejected.",
+      "source_anchor": "semantic-expression-dag"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "expression/unknown-reference",
+        "value-slot/read-unknown-slot",
+        "type/unknown-node-reference",
+        "value-slot/unknown-type"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0016",
+      "short_statement": "Every expression, value slot and semantic type reference must resolve; unresolved references are rejected.",
+      "source_anchor": "semantic-expression-references-valid"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "expr/equals-primitive",
+        "expr/if-then-else-then",
+        "expression/result-type-mismatch",
+        "option-some/derivation-mismatch",
+        "bool/not-non-bool",
+        "bool/and-non-bool",
+        "bool/or-non-bool",
+        "if/non-bool-condition",
+        "if/branch-type-mismatch",
+        "equals/type-mismatch",
+        "equals/not-comparable-record",
+        "equals/not-comparable-list",
+        "list/element-type-mismatch",
+        "map/value-type-mismatch"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0017",
+      "short_statement": "The validator implements a real type checker: every expression derives its result type from its body and the declared result_type must equal the derived type.",
+      "source_anchor": "semantic-expression-static-type-correctness"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "expr/record-construct",
+        "expr/field-get",
+        "record/unknown-field-no",
+        "field-get/unknown-field-no",
+        "record/duplicate-field",
+        "record/missing-field",
+        "record/field-type-mismatch",
+        "record/target-not-record",
+        "variant/unknown-case",
+        "variant/payload-mismatch",
+        "variant/target-not-variant",
+        "enum/unknown-value",
+        "enum/target-not-enum",
+        "field-get/target-not-record"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0018",
+      "short_statement": "Record construction and field_get select fields by field_no; variant construction and enum selection use case_no and value_no. Numbers are the durable schema ABI, names remain value-encoding keys.",
+      "source_anchor": "semantic-field-selection-by-number"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "expr/map-construct-nfc-key",
+        "expr/map-construct-empty",
+        "map/duplicate-nfc-key"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0019",
+      "short_statement": "Map construction applies the ACE1 key invariants during validation: keys are NFC-normalized, keys colliding after normalization are rejected, and entries are stored in unsigned UTF-8 byte order.",
+      "source_anchor": "semantic-map-key-rules"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "SUITE-SEMANTIC-NAMESPACE-SEPARATION"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0020",
+      "short_statement": "A resource slot is a logical requirement declaration in its own namespace: values never travel through resource slots and a ResourceSlotId is unrelated to a ValueSlotId with the same number.",
+      "source_anchor": "semantic-resource-slot-separate-namespace"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "SUITE-SEMANTIC-RESOURCE-IMMUTABILITY"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0021",
+      "short_statement": "A resource slot's definition is immutable for the life of the document and its requirement_type pins an exact contract schema.",
+      "source_anchor": "semantic-resource-slot-immutable"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "SUITE-SEMANTIC-NO-RUNTIME-HANDLE"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0022",
+      "short_statement": "No ResourceHandle, binding snapshot or runtime resource object exists at the semantic layer; a resource slot is a logical requirement only.",
+      "source_anchor": "semantic-resource-not-runtime-handle"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "canonical/types-sorted",
+        "canonical/types-shuffled",
+        "canonical/expressions-sorted",
+        "canonical/expressions-shuffled"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0023",
+      "short_statement": "Type nodes, value slots, expressions and resource slots are canonically ordered by id ascending; source order never enters identity.",
+      "source_anchor": "semantic-canonical-ordering"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "SUITE-SEMANTIC-NO-NEW-DOMAIN"
+      ],
+      "normative_source": "spec/semantic/core-semantic-types.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0024",
+      "short_statement": "Phase 3A introduces no new HashV1 domain: type identity comes from TypeSchemaDigest and the semantic objects are ordinary ACE1 objects.",
+      "source_anchor": "semantic-no-new-hash-domain"
+    },
+    {
       "area": "SPEC",
       "conformance_refs": [
         "spec-registry/duplicate-specification-id"

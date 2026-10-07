@@ -4,6 +4,1072 @@
       "first_seen_schema_digest": {
         "alg": "sha256",
         "domain": "type-schema",
+        "hex": "1fabc442050ef8c8bf26de23e67b7ab72c785a5bd43a004a79c25f62595a64a2"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "left",
+      "type_name": "AndBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "1fabc442050ef8c8bf26de23e67b7ab72c785a5bd43a004a79c25f62595a64a2"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "right",
+      "type_name": "AndBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "11fc0503b6695db4af3d9e5e3f8f8219126a4661c1116017984701d74b04127c"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "algorithm",
+      "type_name": "DigestRefValue"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "11fc0503b6695db4af3d9e5e3f8f8219126a4661c1116017984701d74b04127c"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "domain",
+      "type_name": "DigestRefValue"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "11fc0503b6695db4af3d9e5e3f8f8219126a4661c1116017984701d74b04127c"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "hex",
+      "type_name": "DigestRefValue"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "b4fc9604244f02a4c9f002c4872a7d5050aad5aab16749e5a9247ddf8f49673d"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "schema",
+      "type_name": "EnumValueBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "b4fc9604244f02a4c9f002c4872a7d5050aad5aab16749e5a9247ddf8f49673d"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "value_no",
+      "type_name": "EnumValueBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c64fcb4f286c0d0b84f7d55e1fc9f9b32093812e2e9c4713fe16679467f8d0f8"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "left",
+      "type_name": "EqualsBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c64fcb4f286c0d0b84f7d55e1fc9f9b32093812e2e9c4713fe16679467f8d0f8"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "right",
+      "type_name": "EqualsBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c8b499070ee32e6d346cf5413bf326423e39e63439390bd950f7a34b3e0ce1d1"
+      },
+      "number": 1,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "constant",
+      "type_name": "ExpressionBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c8b499070ee32e6d346cf5413bf326423e39e63439390bd950f7a34b3e0ce1d1"
+      },
+      "number": 2,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "value_slot",
+      "type_name": "ExpressionBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c8b499070ee32e6d346cf5413bf326423e39e63439390bd950f7a34b3e0ce1d1"
+      },
+      "number": 3,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "record_construct",
+      "type_name": "ExpressionBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c8b499070ee32e6d346cf5413bf326423e39e63439390bd950f7a34b3e0ce1d1"
+      },
+      "number": 4,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "variant_construct",
+      "type_name": "ExpressionBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c8b499070ee32e6d346cf5413bf326423e39e63439390bd950f7a34b3e0ce1d1"
+      },
+      "number": 5,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "enum_value",
+      "type_name": "ExpressionBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c8b499070ee32e6d346cf5413bf326423e39e63439390bd950f7a34b3e0ce1d1"
+      },
+      "number": 6,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "list_construct",
+      "type_name": "ExpressionBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c8b499070ee32e6d346cf5413bf326423e39e63439390bd950f7a34b3e0ce1d1"
+      },
+      "number": 7,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "map_construct",
+      "type_name": "ExpressionBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c8b499070ee32e6d346cf5413bf326423e39e63439390bd950f7a34b3e0ce1d1"
+      },
+      "number": 8,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "option_none",
+      "type_name": "ExpressionBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c8b499070ee32e6d346cf5413bf326423e39e63439390bd950f7a34b3e0ce1d1"
+      },
+      "number": 9,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "option_some",
+      "type_name": "ExpressionBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c8b499070ee32e6d346cf5413bf326423e39e63439390bd950f7a34b3e0ce1d1"
+      },
+      "number": 10,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "field_get",
+      "type_name": "ExpressionBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c8b499070ee32e6d346cf5413bf326423e39e63439390bd950f7a34b3e0ce1d1"
+      },
+      "number": 11,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "equals",
+      "type_name": "ExpressionBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c8b499070ee32e6d346cf5413bf326423e39e63439390bd950f7a34b3e0ce1d1"
+      },
+      "number": 12,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "not",
+      "type_name": "ExpressionBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c8b499070ee32e6d346cf5413bf326423e39e63439390bd950f7a34b3e0ce1d1"
+      },
+      "number": 13,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "and",
+      "type_name": "ExpressionBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c8b499070ee32e6d346cf5413bf326423e39e63439390bd950f7a34b3e0ce1d1"
+      },
+      "number": 14,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "or",
+      "type_name": "ExpressionBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c8b499070ee32e6d346cf5413bf326423e39e63439390bd950f7a34b3e0ce1d1"
+      },
+      "number": 15,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "if_then_else",
+      "type_name": "ExpressionBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ddcecbf594568ef2b58a59162df0070374f22106f49a79e8f45e162a21c33060"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "id",
+      "type_name": "ExpressionDef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ddcecbf594568ef2b58a59162df0070374f22106f49a79e8f45e162a21c33060"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "result_type",
+      "type_name": "ExpressionDef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ddcecbf594568ef2b58a59162df0070374f22106f49a79e8f45e162a21c33060"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "body",
+      "type_name": "ExpressionDef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "af62f48067c12839720a6aad030ececeb762e366a3b168b961745e3f5c2b128a"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "record",
+      "type_name": "FieldGetBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "af62f48067c12839720a6aad030ececeb762e366a3b168b961745e3f5c2b128a"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "field_no",
+      "type_name": "FieldGetBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "da30b071829ae0de4a5b9d9b63d888d2385f649b91c42342c5d6f258bc15d578"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "condition",
+      "type_name": "IfThenElseBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "da30b071829ae0de4a5b9d9b63d888d2385f649b91c42342c5d6f258bc15d578"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "then_expr",
+      "type_name": "IfThenElseBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "da30b071829ae0de4a5b9d9b63d888d2385f649b91c42342c5d6f258bc15d578"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "else_expr",
+      "type_name": "IfThenElseBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "bf832429da632907e8ef19b4591dbc0d16c74eebdeccc83598b7725f99efec1e"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "element_type",
+      "type_name": "ListConstructBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "bf832429da632907e8ef19b4591dbc0d16c74eebdeccc83598b7725f99efec1e"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "elements",
+      "type_name": "ListConstructBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "8f384528a29053c4ef018296a9adc0499e25c1d2003e8aef531516d77c65450b"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "value_type",
+      "type_name": "MapConstructBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "8f384528a29053c4ef018296a9adc0499e25c1d2003e8aef531516d77c65450b"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "entries",
+      "type_name": "MapConstructBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "b619a48b5fb2cd1b6bada48a4fd1a7f808da353d8a305f91fc9e0d9d56336756"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "key",
+      "type_name": "MapEntryExpr"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "b619a48b5fb2cd1b6bada48a4fd1a7f808da353d8a305f91fc9e0d9d56336756"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "value_expr",
+      "type_name": "MapEntryExpr"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "cf61f39e12f5b656cf44340822922d7bd866917101d033f6f122e02ad83b1d95"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "operand",
+      "type_name": "NotBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5b04dcbf667767cb653f0d5caab77dc141d42c000be23ba7370530b1469cc8fc"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "inner_type",
+      "type_name": "OptionNoneBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "6dbdb8217ac61ad619468a756af1a105d1a4cd45dfcea12490047b1d5b56d964"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "payload_expr",
+      "type_name": "OptionSomeBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ee5887fed8c182a5766ba52ab8822404a928c39d4568ff689423eb9334c649cb"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "left",
+      "type_name": "OrBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ee5887fed8c182a5766ba52ab8822404a928c39d4568ff689423eb9334c649cb"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "right",
+      "type_name": "OrBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4304dc670aaab7c1a2522b3bdcd8b854df97660edfd100454b247b3281baf887"
+      },
+      "number": 1,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "unit",
+      "type_name": "PrimitiveConstant"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4304dc670aaab7c1a2522b3bdcd8b854df97660edfd100454b247b3281baf887"
+      },
+      "number": 2,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "null",
+      "type_name": "PrimitiveConstant"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4304dc670aaab7c1a2522b3bdcd8b854df97660edfd100454b247b3281baf887"
+      },
+      "number": 3,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "bool",
+      "type_name": "PrimitiveConstant"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4304dc670aaab7c1a2522b3bdcd8b854df97660edfd100454b247b3281baf887"
+      },
+      "number": 4,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "int64",
+      "type_name": "PrimitiveConstant"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4304dc670aaab7c1a2522b3bdcd8b854df97660edfd100454b247b3281baf887"
+      },
+      "number": 5,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "decimal",
+      "type_name": "PrimitiveConstant"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4304dc670aaab7c1a2522b3bdcd8b854df97660edfd100454b247b3281baf887"
+      },
+      "number": 6,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "string",
+      "type_name": "PrimitiveConstant"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4304dc670aaab7c1a2522b3bdcd8b854df97660edfd100454b247b3281baf887"
+      },
+      "number": 7,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "bytes",
+      "type_name": "PrimitiveConstant"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4304dc670aaab7c1a2522b3bdcd8b854df97660edfd100454b247b3281baf887"
+      },
+      "number": 8,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "timestamp",
+      "type_name": "PrimitiveConstant"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4304dc670aaab7c1a2522b3bdcd8b854df97660edfd100454b247b3281baf887"
+      },
+      "number": 9,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "duration",
+      "type_name": "PrimitiveConstant"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "33601853b7f41d61709e544aa4c74c0c57bb5229fc424515cf4079ca69c8163e"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "schema",
+      "type_name": "RecordConstructBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "33601853b7f41d61709e544aa4c74c0c57bb5229fc424515cf4079ca69c8163e"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "fields",
+      "type_name": "RecordConstructBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "8f6bc6b80024fdb1bce3db49938a4642da112160d6f8f9d7bd82073946a4b212"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "field_no",
+      "type_name": "RecordFieldExpr"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "8f6bc6b80024fdb1bce3db49938a4642da112160d6f8f9d7bd82073946a4b212"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "expr_id",
+      "type_name": "RecordFieldExpr"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5da4cf7c5d3cccebd8ccd0cf9bdd1c1197811ab953cd898e25561863f336aa48"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "id",
+      "type_name": "ResourceSlot"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5da4cf7c5d3cccebd8ccd0cf9bdd1c1197811ab953cd898e25561863f336aa48"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "requirement_type",
+      "type_name": "ResourceSlot"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "b0512c05814d627cf2c67c62da204997f6b90e9bc2d9521d22235e2d7abc86b2"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "unit",
+      "type_name": "SemanticPrimitiveType"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "b0512c05814d627cf2c67c62da204997f6b90e9bc2d9521d22235e2d7abc86b2"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "null",
+      "type_name": "SemanticPrimitiveType"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "b0512c05814d627cf2c67c62da204997f6b90e9bc2d9521d22235e2d7abc86b2"
+      },
+      "number": 3,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "bool",
+      "type_name": "SemanticPrimitiveType"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "b0512c05814d627cf2c67c62da204997f6b90e9bc2d9521d22235e2d7abc86b2"
+      },
+      "number": 4,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "int64",
+      "type_name": "SemanticPrimitiveType"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "b0512c05814d627cf2c67c62da204997f6b90e9bc2d9521d22235e2d7abc86b2"
+      },
+      "number": 5,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "decimal",
+      "type_name": "SemanticPrimitiveType"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "b0512c05814d627cf2c67c62da204997f6b90e9bc2d9521d22235e2d7abc86b2"
+      },
+      "number": 6,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "string",
+      "type_name": "SemanticPrimitiveType"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "b0512c05814d627cf2c67c62da204997f6b90e9bc2d9521d22235e2d7abc86b2"
+      },
+      "number": 7,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "bytes",
+      "type_name": "SemanticPrimitiveType"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "b0512c05814d627cf2c67c62da204997f6b90e9bc2d9521d22235e2d7abc86b2"
+      },
+      "number": 8,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "timestamp",
+      "type_name": "SemanticPrimitiveType"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "b0512c05814d627cf2c67c62da204997f6b90e9bc2d9521d22235e2d7abc86b2"
+      },
+      "number": 9,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "duration",
+      "type_name": "SemanticPrimitiveType"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5384b4996a329ca28bfa3a09732e7f4ab0a12016d57d6456b6de3de0f4c57d19"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "id",
+      "type_name": "SemanticTypeNode"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5384b4996a329ca28bfa3a09732e7f4ab0a12016d57d6456b6de3de0f4c57d19"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "body",
+      "type_name": "SemanticTypeNode"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "6b7ad7213ee4be10b8c03df7c5a08fb9b4a56e25161c37e84e08a9f1640b244f"
+      },
+      "number": 1,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "primitive",
+      "type_name": "SemanticTypeNodeBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "6b7ad7213ee4be10b8c03df7c5a08fb9b4a56e25161c37e84e08a9f1640b244f"
+      },
+      "number": 2,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "schema",
+      "type_name": "SemanticTypeNodeBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "6b7ad7213ee4be10b8c03df7c5a08fb9b4a56e25161c37e84e08a9f1640b244f"
+      },
+      "number": 3,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "list",
+      "type_name": "SemanticTypeNodeBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "6b7ad7213ee4be10b8c03df7c5a08fb9b4a56e25161c37e84e08a9f1640b244f"
+      },
+      "number": 4,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "map_string",
+      "type_name": "SemanticTypeNodeBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "6b7ad7213ee4be10b8c03df7c5a08fb9b4a56e25161c37e84e08a9f1640b244f"
+      },
+      "number": 5,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "option",
+      "type_name": "SemanticTypeNodeBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "e1739609320518db9f8e00714ca67e9a79fcd5735a5eb8e8dae15911f15558e4"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "specification_id",
+      "type_name": "TypeSchemaRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "e1739609320518db9f8e00714ca67e9a79fcd5735a5eb8e8dae15911f15558e4"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "type_name",
+      "type_name": "TypeSchemaRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "e1739609320518db9f8e00714ca67e9a79fcd5735a5eb8e8dae15911f15558e4"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "schema_digest",
+      "type_name": "TypeSchemaRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "e4e90fb374e4141bac8bcc61070846df847c7fff9f681ead5f71f3b87620151a"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "id",
+      "type_name": "ValueSlot"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "e4e90fb374e4141bac8bcc61070846df847c7fff9f681ead5f71f3b87620151a"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "type",
+      "type_name": "ValueSlot"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "71a9af45eee9dd39afe33059ba774649262b83c7303c01037f0079a68040c0e0"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "schema",
+      "type_name": "VariantConstructBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "71a9af45eee9dd39afe33059ba774649262b83c7303c01037f0079a68040c0e0"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "case_no",
+      "type_name": "VariantConstructBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "71a9af45eee9dd39afe33059ba774649262b83c7303c01037f0079a68040c0e0"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.semantic.core@1",
+      "status": "active",
+      "symbolic_name": "payload_expr",
+      "type_name": "VariantConstructBody"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
         "hex": "8c0e45ac0562494b4ce3e6a37842cdde65cad1ec8a2f61e70dc39699a280834c"
       },
       "number": 1,
