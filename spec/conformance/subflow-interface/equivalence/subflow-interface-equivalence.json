@@ -1,0 +1,597 @@
+{
+  "kind": "agentflow.conformance.subflow-interface.equivalence",
+  "corpus_revision": 1,
+  "note": "NON_NORMATIVE CONFORMANCE PROJECTION. Equivalence properties: table order never moves the digest or the interface; local type numbering never changes the derived interface shape; port ordinals follow the frozen canonical key orders.",
+  "fixture_schemas": [
+    {
+      "specification_id": "agentflow.test.semantic.v2@1",
+      "source": "afidl 1;\nschema agentflow.test.semantic.v2@1;\nrecord User { 1 name: string; }\n",
+      "types": [
+        {
+          "name": "User",
+          "digest_hex": "acabe2c6fbc5512821a6476ff05e85bc3635ae6a6c2d1f93b237d12c8578130e"
+        }
+      ]
+    }
+  ],
+  "table_order_groups": [
+    {
+      "case_id": "equivalence/target-table-order",
+      "note": "reordering every non-semantic table changes neither the SemanticIrDigest nor the derived interface",
+      "base": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          },
+          {
+            "id": 2,
+            "body": {
+              "primitive": "string"
+            }
+          }
+        ],
+        "values": [
+          {
+            "id": 6,
+            "type": 2
+          },
+          {
+            "id": 7,
+            "type": 1
+          }
+        ],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 2,
+            "body": {
+              "value_slot": 6
+            }
+          },
+          {
+            "id": 2,
+            "result_type": 1,
+            "body": {
+              "value_slot": 7
+            }
+          }
+        ],
+        "resources": [
+          {
+            "id": 5,
+            "requirement_type": {
+              "specification_id": "agentflow.test.semantic@1",
+              "type_name": "User",
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+              }
+            }
+          }
+        ],
+        "contracts": [],
+        "run_parameters": [
+          {
+            "id": 4,
+            "name": "name",
+            "type": 2,
+            "value_slot": 6
+          },
+          {
+            "id": 2,
+            "name": "limit",
+            "type": 1,
+            "value_slot": 7
+          }
+        ],
+        "workflow_outputs": [
+          {
+            "name": "greeting",
+            "expression": 1
+          },
+          {
+            "name": "count",
+            "expression": 2
+          }
+        ],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [],
+            "body": {
+              "await": {
+                "signal_type": {
+                  "specification_id": "agentflow.test.semantic@1",
+                  "type_name": "User",
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                  }
+                },
+                "correlation": 1
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "member": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          },
+          {
+            "id": 2,
+            "body": {
+              "primitive": "string"
+            }
+          }
+        ],
+        "values": [
+          {
+            "id": 7,
+            "type": 1
+          },
+          {
+            "id": 6,
+            "type": 2
+          }
+        ],
+        "expressions": [
+          {
+            "id": 2,
+            "result_type": 1,
+            "body": {
+              "value_slot": 7
+            }
+          },
+          {
+            "id": 1,
+            "result_type": 2,
+            "body": {
+              "value_slot": 6
+            }
+          }
+        ],
+        "resources": [
+          {
+            "id": 5,
+            "requirement_type": {
+              "specification_id": "agentflow.test.semantic@1",
+              "type_name": "User",
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+              }
+            }
+          }
+        ],
+        "contracts": [],
+        "run_parameters": [
+          {
+            "id": 2,
+            "name": "limit",
+            "type": 1,
+            "value_slot": 7
+          },
+          {
+            "id": 4,
+            "name": "name",
+            "type": 2,
+            "value_slot": 6
+          }
+        ],
+        "workflow_outputs": [
+          {
+            "name": "count",
+            "expression": 2
+          },
+          {
+            "name": "greeting",
+            "expression": 1
+          }
+        ],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [],
+            "body": {
+              "await": {
+                "signal_type": {
+                  "specification_id": "agentflow.test.semantic@1",
+                  "type_name": "User",
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                  }
+                },
+                "correlation": 1
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "expected_digest": "dbf76f721d4f3c85e9b112a3c56abb34a6ee299e1b8adb8c2d8c1e9e8a7bc293",
+      "expected_interface": {
+        "inputs": [
+          {
+            "port_no": 1,
+            "name": "limit",
+            "type": "primitive:int64"
+          },
+          {
+            "port_no": 2,
+            "name": "name",
+            "type": "primitive:string"
+          }
+        ],
+        "outputs": [
+          {
+            "port_no": 1,
+            "name": "count",
+            "type": "primitive:int64"
+          },
+          {
+            "port_no": 2,
+            "name": "greeting",
+            "type": "primitive:string"
+          }
+        ],
+        "resources": [
+          {
+            "port_no": 1,
+            "source_resource_slot": 5,
+            "requirement_type": "agentflow.test.semantic@1/User@4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+          }
+        ]
+      }
+    }
+  ],
+  "type_id_groups": [
+    {
+      "case_id": "equivalence/local-type-ids-differ",
+      "note": "two targets with different type DAG numbering: digests differ, the derived interface shape is identical",
+      "target_a": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          },
+          {
+            "id": 2,
+            "body": {
+              "primitive": "string"
+            }
+          },
+          {
+            "id": 12,
+            "body": {
+              "option": 1
+            }
+          },
+          {
+            "id": 11,
+            "body": {
+              "list": 12
+            }
+          },
+          {
+            "id": 10,
+            "body": {
+              "map_string": 11
+            }
+          }
+        ],
+        "values": [
+          {
+            "id": 6,
+            "type": 10
+          }
+        ],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 10,
+            "body": {
+              "value_slot": 6
+            }
+          }
+        ],
+        "resources": [],
+        "contracts": [],
+        "run_parameters": [
+          {
+            "id": 1,
+            "name": "matrix",
+            "type": 10,
+            "value_slot": 6
+          }
+        ],
+        "workflow_outputs": [
+          {
+            "name": "out",
+            "expression": 1
+          }
+        ],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [],
+            "body": {
+              "await": {
+                "signal_type": {
+                  "specification_id": "agentflow.test.semantic@1",
+                  "type_name": "User",
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                  }
+                },
+                "correlation": 1
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "target_b": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 31,
+            "body": {
+              "primitive": "int64"
+            }
+          },
+          {
+            "id": 32,
+            "body": {
+              "primitive": "string"
+            }
+          },
+          {
+            "id": 33,
+            "body": {
+              "option": 31
+            }
+          },
+          {
+            "id": 34,
+            "body": {
+              "list": 33
+            }
+          },
+          {
+            "id": 35,
+            "body": {
+              "map_string": 34
+            }
+          }
+        ],
+        "values": [
+          {
+            "id": 6,
+            "type": 35
+          }
+        ],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 35,
+            "body": {
+              "value_slot": 6
+            }
+          }
+        ],
+        "resources": [],
+        "contracts": [],
+        "run_parameters": [
+          {
+            "id": 1,
+            "name": "matrix",
+            "type": 35,
+            "value_slot": 6
+          }
+        ],
+        "workflow_outputs": [
+          {
+            "name": "out",
+            "expression": 1
+          }
+        ],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [],
+            "body": {
+              "await": {
+                "signal_type": {
+                  "specification_id": "agentflow.test.semantic@1",
+                  "type_name": "User",
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                  }
+                },
+                "correlation": 1
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "expected_digest_a": "17cd09cc3e06940e8d495c4d3815140ab8c08966c391f47022af9cfc5408d322",
+      "expected_digest_b": "df754a6da3808c53b610841da512fc1a3f48c470c3590124be0a9594fa048d7b",
+      "expected_interface": {
+        "inputs": [
+          {
+            "port_no": 1,
+            "name": "matrix",
+            "type": "map_string:list:option:primitive:int64"
+          }
+        ],
+        "outputs": [
+          {
+            "port_no": 1,
+            "name": "out",
+            "type": "map_string:list:option:primitive:int64"
+          }
+        ],
+        "resources": []
+      }
+    }
+  ],
+  "port_order_proofs": [
+    {
+      "case_id": "equivalence/port-order-canonical-keys",
+      "note": "input ports follow RunParameterId order, output ports the canonical NFC-name order and resource ports the ResourceSlotId order, regardless of table order",
+      "target": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          },
+          {
+            "id": 2,
+            "body": {
+              "primitive": "string"
+            }
+          }
+        ],
+        "values": [
+          {
+            "id": 6,
+            "type": 2
+          },
+          {
+            "id": 7,
+            "type": 1
+          }
+        ],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 2,
+            "body": {
+              "value_slot": 6
+            }
+          },
+          {
+            "id": 2,
+            "result_type": 1,
+            "body": {
+              "value_slot": 7
+            }
+          }
+        ],
+        "resources": [
+          {
+            "id": 5,
+            "requirement_type": {
+              "specification_id": "agentflow.test.semantic@1",
+              "type_name": "User",
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+              }
+            }
+          }
+        ],
+        "contracts": [],
+        "run_parameters": [
+          {
+            "id": 4,
+            "name": "name",
+            "type": 2,
+            "value_slot": 6
+          },
+          {
+            "id": 2,
+            "name": "limit",
+            "type": 1,
+            "value_slot": 7
+          }
+        ],
+        "workflow_outputs": [
+          {
+            "name": "greeting",
+            "expression": 1
+          },
+          {
+            "name": "count",
+            "expression": 2
+          }
+        ],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [],
+            "body": {
+              "await": {
+                "signal_type": {
+                  "specification_id": "agentflow.test.semantic@1",
+                  "type_name": "User",
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                  }
+                },
+                "correlation": 1
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "expected_inputs": [
+        {
+          "port_no": 1,
+          "parameter_id": 2
+        },
+        {
+          "port_no": 2,
+          "parameter_id": 4
+        }
+      ],
+      "expected_outputs": [
+        {
+          "port_no": 1,
+          "name": "count"
+        },
+        {
+          "port_no": 2,
+          "name": "greeting"
+        }
+      ],
+      "expected_resources": [
+        {
+          "port_no": 1,
+          "source_resource_slot": 5
+        }
+      ]
+    }
+  ]
+}

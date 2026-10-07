@@ -1,0 +1,2501 @@
+{
+  "kind": "agentflow.conformance.subflow-interface.negative",
+  "corpus_revision": 1,
+  "note": "NON_NORMATIVE CONFORMANCE PROJECTION. Frozen Phase 3D negatives: every caller and target passes Phase 3B and the Phase 3C analysis; the rejection comes from the subflow interface check alone.",
+  "fixture_schemas": [
+    {
+      "specification_id": "agentflow.test.semantic.v2@1",
+      "source": "afidl 1;\nschema agentflow.test.semantic.v2@1;\nrecord User { 1 name: string; }\n",
+      "types": [
+        {
+          "name": "User",
+          "digest_hex": "acabe2c6fbc5512821a6476ff05e85bc3635ae6a6c2d1f93b237d12c8578130e"
+        }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "subflow/unknown-target-digest",
+      "note": "the pinned digest is not in the universe",
+      "targets": [
+        {
+          "semantic_refs": [],
+          "types": [
+            {
+              "id": 1,
+              "body": {
+                "primitive": "int64"
+              }
+            }
+          ],
+          "values": [
+            {
+              "id": 1,
+              "type": 1
+            }
+          ],
+          "expressions": [
+            {
+              "id": 1,
+              "result_type": 1,
+              "body": {
+                "value_slot": 1
+              }
+            }
+          ],
+          "resources": [],
+          "contracts": [],
+          "run_parameters": [
+            {
+              "id": 1,
+              "name": "limit",
+              "type": 1,
+              "value_slot": 1
+            }
+          ],
+          "workflow_outputs": [
+            {
+              "name": "total",
+              "expression": 1
+            }
+          ],
+          "computations": [
+            {
+              "id": 1,
+              "outputs": [],
+              "body": {
+                "await": {
+                  "signal_type": {
+                    "specification_id": "agentflow.test.semantic@1",
+                    "type_name": "User",
+                    "schema_digest": {
+                      "algorithm": "sha256",
+                      "domain": "type-schema",
+                      "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                    }
+                  },
+                  "correlation": 1
+                }
+              }
+            }
+          ],
+          "root": 1
+        }
+      ],
+      "caller": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          }
+        ],
+        "values": [
+          {
+            "id": 9,
+            "type": 1
+          }
+        ],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 1,
+            "body": {
+              "constant": {
+                "int64": 7
+              }
+            }
+          }
+        ],
+        "resources": [],
+        "contracts": [
+          {
+            "id": 1,
+            "kind": "subflow",
+            "digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+            }
+          }
+        ],
+        "run_parameters": [],
+        "workflow_outputs": [],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [
+              {
+                "port_no": 1,
+                "value_slot": 9
+              }
+            ],
+            "body": {
+              "call_subflow": {
+                "contract": 1,
+                "inputs": [
+                  {
+                    "port_no": 1,
+                    "expression": 1
+                  }
+                ],
+                "resources": []
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "error_kind": "unknown_subflow_target"
+    },
+    {
+      "case_id": "subflow/stale-target-digest",
+      "note": "the caller pins the superseded digest; the universe holds v2",
+      "targets": [
+        {
+          "semantic_refs": [],
+          "types": [
+            {
+              "id": 1,
+              "body": {
+                "primitive": "int64"
+              }
+            },
+            {
+              "id": 2,
+              "body": {
+                "primitive": "string"
+              }
+            }
+          ],
+          "values": [
+            {
+              "id": 7,
+              "type": 2
+            }
+          ],
+          "expressions": [
+            {
+              "id": 1,
+              "result_type": 2,
+              "body": {
+                "value_slot": 7
+              }
+            }
+          ],
+          "resources": [],
+          "contracts": [],
+          "run_parameters": [
+            {
+              "id": 1,
+              "name": "limit",
+              "type": 2,
+              "value_slot": 7
+            }
+          ],
+          "workflow_outputs": [
+            {
+              "name": "total",
+              "expression": 1
+            }
+          ],
+          "computations": [
+            {
+              "id": 1,
+              "outputs": [],
+              "body": {
+                "await": {
+                  "signal_type": {
+                    "specification_id": "agentflow.test.semantic@1",
+                    "type_name": "User",
+                    "schema_digest": {
+                      "algorithm": "sha256",
+                      "domain": "type-schema",
+                      "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                    }
+                  },
+                  "correlation": 1
+                }
+              }
+            }
+          ],
+          "root": 1
+        }
+      ],
+      "caller": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          }
+        ],
+        "values": [
+          {
+            "id": 9,
+            "type": 1
+          }
+        ],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 1,
+            "body": {
+              "constant": {
+                "int64": 7
+              }
+            }
+          }
+        ],
+        "resources": [],
+        "contracts": [
+          {
+            "id": 1,
+            "kind": "subflow",
+            "digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "0f69f8c415beabf35a6273597d472cb11145d6d88adf1df818176283d91f0ec9"
+            }
+          }
+        ],
+        "run_parameters": [],
+        "workflow_outputs": [],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [
+              {
+                "port_no": 1,
+                "value_slot": 9
+              }
+            ],
+            "body": {
+              "call_subflow": {
+                "contract": 1,
+                "inputs": [
+                  {
+                    "port_no": 1,
+                    "expression": 1
+                  }
+                ],
+                "resources": []
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "error_kind": "unknown_subflow_target"
+    },
+    {
+      "case_id": "subflow/universe-does-not-fallback-latest",
+      "note": "no name-based latest fallback exists",
+      "targets": [
+        {
+          "semantic_refs": [],
+          "types": [
+            {
+              "id": 1,
+              "body": {
+                "primitive": "int64"
+              }
+            }
+          ],
+          "values": [
+            {
+              "id": 1,
+              "type": 1
+            }
+          ],
+          "expressions": [
+            {
+              "id": 1,
+              "result_type": 1,
+              "body": {
+                "value_slot": 1
+              }
+            }
+          ],
+          "resources": [],
+          "contracts": [],
+          "run_parameters": [
+            {
+              "id": 1,
+              "name": "limit",
+              "type": 1,
+              "value_slot": 1
+            }
+          ],
+          "workflow_outputs": [
+            {
+              "name": "total",
+              "expression": 1
+            }
+          ],
+          "computations": [
+            {
+              "id": 1,
+              "outputs": [],
+              "body": {
+                "await": {
+                  "signal_type": {
+                    "specification_id": "agentflow.test.semantic@1",
+                    "type_name": "User",
+                    "schema_digest": {
+                      "algorithm": "sha256",
+                      "domain": "type-schema",
+                      "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                    }
+                  },
+                  "correlation": 1
+                }
+              }
+            }
+          ],
+          "root": 1
+        }
+      ],
+      "caller": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          }
+        ],
+        "values": [
+          {
+            "id": 9,
+            "type": 1
+          }
+        ],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 1,
+            "body": {
+              "constant": {
+                "int64": 7
+              }
+            }
+          }
+        ],
+        "resources": [],
+        "contracts": [
+          {
+            "id": 1,
+            "kind": "subflow",
+            "digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "abababababababababababababababababababababababababababababababab"
+            }
+          }
+        ],
+        "run_parameters": [],
+        "workflow_outputs": [],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [
+              {
+                "port_no": 1,
+                "value_slot": 9
+              }
+            ],
+            "body": {
+              "call_subflow": {
+                "contract": 1,
+                "inputs": [
+                  {
+                    "port_no": 1,
+                    "expression": 1
+                  }
+                ],
+                "resources": []
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "error_kind": "unknown_subflow_target"
+    },
+    {
+      "case_id": "input/missing-port",
+      "note": "input port 2 is never bound",
+      "targets": [
+        {
+          "semantic_refs": [],
+          "types": [
+            {
+              "id": 1,
+              "body": {
+                "primitive": "int64"
+              }
+            },
+            {
+              "id": 2,
+              "body": {
+                "primitive": "string"
+              }
+            },
+            {
+              "id": 3,
+              "body": {
+                "option": 2
+              }
+            }
+          ],
+          "values": [
+            {
+              "id": 6,
+              "type": 1
+            },
+            {
+              "id": 7,
+              "type": 3
+            }
+          ],
+          "expressions": [
+            {
+              "id": 1,
+              "result_type": 1,
+              "body": {
+                "constant": {
+                  "int64": 0
+                }
+              }
+            }
+          ],
+          "resources": [],
+          "contracts": [],
+          "run_parameters": [
+            {
+              "id": 2,
+              "name": "count",
+              "type": 1,
+              "value_slot": 6
+            },
+            {
+              "id": 5,
+              "name": "tags",
+              "type": 3,
+              "value_slot": 7
+            }
+          ],
+          "workflow_outputs": [],
+          "computations": [
+            {
+              "id": 1,
+              "outputs": [],
+              "body": {
+                "await": {
+                  "signal_type": {
+                    "specification_id": "agentflow.test.semantic@1",
+                    "type_name": "User",
+                    "schema_digest": {
+                      "algorithm": "sha256",
+                      "domain": "type-schema",
+                      "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                    }
+                  },
+                  "correlation": 1
+                }
+              }
+            }
+          ],
+          "root": 1
+        }
+      ],
+      "caller": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 17,
+            "body": {
+              "primitive": "string"
+            }
+          },
+          {
+            "id": 18,
+            "body": {
+              "primitive": "int64"
+            }
+          },
+          {
+            "id": 19,
+            "body": {
+              "option": 17
+            }
+          }
+        ],
+        "values": [
+          {
+            "id": 1,
+            "type": 18
+          }
+        ],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 18,
+            "body": {
+              "value_slot": 1
+            }
+          }
+        ],
+        "resources": [],
+        "contracts": [
+          {
+            "id": 1,
+            "kind": "subflow",
+            "digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "bde91bc79e0b0faa93bf48c0a338cd84771e19960f71aeefc315b4343839e330"
+            }
+          }
+        ],
+        "run_parameters": [
+          {
+            "id": 1,
+            "name": "n",
+            "type": 18,
+            "value_slot": 1
+          }
+        ],
+        "workflow_outputs": [],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [],
+            "body": {
+              "call_subflow": {
+                "contract": 1,
+                "inputs": [
+                  {
+                    "port_no": 1,
+                    "expression": 1
+                  }
+                ],
+                "resources": []
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "error_kind": "subflow_input_port_mismatch"
+    },
+    {
+      "case_id": "input/extra-port",
+      "note": "the target has no input port 2",
+      "targets": [
+        {
+          "semantic_refs": [],
+          "types": [
+            {
+              "id": 1,
+              "body": {
+                "primitive": "int64"
+              }
+            }
+          ],
+          "values": [
+            {
+              "id": 1,
+              "type": 1
+            }
+          ],
+          "expressions": [
+            {
+              "id": 1,
+              "result_type": 1,
+              "body": {
+                "value_slot": 1
+              }
+            }
+          ],
+          "resources": [],
+          "contracts": [],
+          "run_parameters": [
+            {
+              "id": 1,
+              "name": "limit",
+              "type": 1,
+              "value_slot": 1
+            }
+          ],
+          "workflow_outputs": [
+            {
+              "name": "total",
+              "expression": 1
+            }
+          ],
+          "computations": [
+            {
+              "id": 1,
+              "outputs": [],
+              "body": {
+                "await": {
+                  "signal_type": {
+                    "specification_id": "agentflow.test.semantic@1",
+                    "type_name": "User",
+                    "schema_digest": {
+                      "algorithm": "sha256",
+                      "domain": "type-schema",
+                      "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                    }
+                  },
+                  "correlation": 1
+                }
+              }
+            }
+          ],
+          "root": 1
+        }
+      ],
+      "caller": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          }
+        ],
+        "values": [],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 1,
+            "body": {
+              "constant": {
+                "int64": 7
+              }
+            }
+          },
+          {
+            "id": 2,
+            "result_type": 1,
+            "body": {
+              "constant": {
+                "int64": 8
+              }
+            }
+          }
+        ],
+        "resources": [],
+        "contracts": [
+          {
+            "id": 1,
+            "kind": "subflow",
+            "digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "0f69f8c415beabf35a6273597d472cb11145d6d88adf1df818176283d91f0ec9"
+            }
+          }
+        ],
+        "run_parameters": [],
+        "workflow_outputs": [],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [],
+            "body": {
+              "call_subflow": {
+                "contract": 1,
+                "inputs": [
+                  {
+                    "port_no": 1,
+                    "expression": 1
+                  },
+                  {
+                    "port_no": 2,
+                    "expression": 2
+                  }
+                ],
+                "resources": []
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "error_kind": "subflow_input_port_mismatch"
+    },
+    {
+      "case_id": "input/type-mismatch",
+      "note": "local id 5 means string in the target, int64 in the caller",
+      "targets": [
+        {
+          "semantic_refs": [],
+          "types": [
+            {
+              "id": 1,
+              "body": {
+                "primitive": "int64"
+              }
+            },
+            {
+              "id": 5,
+              "body": {
+                "primitive": "string"
+              }
+            }
+          ],
+          "values": [
+            {
+              "id": 6,
+              "type": 5
+            }
+          ],
+          "expressions": [
+            {
+              "id": 1,
+              "result_type": 1,
+              "body": {
+                "constant": {
+                  "int64": 0
+                }
+              }
+            }
+          ],
+          "resources": [],
+          "contracts": [],
+          "run_parameters": [
+            {
+              "id": 1,
+              "name": "label",
+              "type": 5,
+              "value_slot": 6
+            }
+          ],
+          "workflow_outputs": [],
+          "computations": [
+            {
+              "id": 1,
+              "outputs": [],
+              "body": {
+                "await": {
+                  "signal_type": {
+                    "specification_id": "agentflow.test.semantic@1",
+                    "type_name": "User",
+                    "schema_digest": {
+                      "algorithm": "sha256",
+                      "domain": "type-schema",
+                      "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                    }
+                  },
+                  "correlation": 1
+                }
+              }
+            }
+          ],
+          "root": 1
+        }
+      ],
+      "caller": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          },
+          {
+            "id": 5,
+            "body": {
+              "primitive": "int64"
+            }
+          }
+        ],
+        "values": [],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 5,
+            "body": {
+              "constant": {
+                "int64": 7
+              }
+            }
+          }
+        ],
+        "resources": [],
+        "contracts": [
+          {
+            "id": 1,
+            "kind": "subflow",
+            "digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "bdd06d99abc2a48830f73a36df1e15aa772dee2247dc26f22ea76c9b12f03c37"
+            }
+          }
+        ],
+        "run_parameters": [],
+        "workflow_outputs": [],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [],
+            "body": {
+              "call_subflow": {
+                "contract": 1,
+                "inputs": [
+                  {
+                    "port_no": 1,
+                    "expression": 1
+                  }
+                ],
+                "resources": []
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "error_kind": "subflow_input_type_mismatch"
+    },
+    {
+      "case_id": "input/nested-type-mismatch",
+      "note": "list<string> vs list<int64>",
+      "targets": [
+        {
+          "semantic_refs": [],
+          "types": [
+            {
+              "id": 1,
+              "body": {
+                "primitive": "int64"
+              }
+            },
+            {
+              "id": 2,
+              "body": {
+                "primitive": "string"
+              }
+            },
+            {
+              "id": 8,
+              "body": {
+                "list": 2
+              }
+            }
+          ],
+          "values": [
+            {
+              "id": 6,
+              "type": 8
+            }
+          ],
+          "expressions": [
+            {
+              "id": 1,
+              "result_type": 1,
+              "body": {
+                "constant": {
+                  "int64": 0
+                }
+              }
+            }
+          ],
+          "resources": [],
+          "contracts": [],
+          "run_parameters": [
+            {
+              "id": 1,
+              "name": "tags",
+              "type": 8,
+              "value_slot": 6
+            }
+          ],
+          "workflow_outputs": [],
+          "computations": [
+            {
+              "id": 1,
+              "outputs": [],
+              "body": {
+                "await": {
+                  "signal_type": {
+                    "specification_id": "agentflow.test.semantic@1",
+                    "type_name": "User",
+                    "schema_digest": {
+                      "algorithm": "sha256",
+                      "domain": "type-schema",
+                      "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                    }
+                  },
+                  "correlation": 1
+                }
+              }
+            }
+          ],
+          "root": 1
+        }
+      ],
+      "caller": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          },
+          {
+            "id": 2,
+            "body": {
+              "primitive": "string"
+            }
+          },
+          {
+            "id": 11,
+            "body": {
+              "list": 1
+            }
+          }
+        ],
+        "values": [
+          {
+            "id": 1,
+            "type": 11
+          }
+        ],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 11,
+            "body": {
+              "value_slot": 1
+            }
+          }
+        ],
+        "resources": [],
+        "contracts": [
+          {
+            "id": 1,
+            "kind": "subflow",
+            "digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "619fb4fceb03b8a36086942ccc17582d77e1dc633100a9c1cac12df7b991b240"
+            }
+          }
+        ],
+        "run_parameters": [
+          {
+            "id": 1,
+            "name": "xs",
+            "type": 11,
+            "value_slot": 1
+          }
+        ],
+        "workflow_outputs": [],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [],
+            "body": {
+              "call_subflow": {
+                "contract": 1,
+                "inputs": [
+                  {
+                    "port_no": 1,
+                    "expression": 1
+                  }
+                ],
+                "resources": []
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "error_kind": "subflow_input_type_mismatch"
+    },
+    {
+      "case_id": "input/schema-digest-mismatch",
+      "note": "same record name, different exact schema pin",
+      "targets": [
+        {
+          "semantic_refs": [],
+          "types": [
+            {
+              "id": 1,
+              "body": {
+                "primitive": "int64"
+              }
+            },
+            {
+              "id": 2,
+              "body": {
+                "schema": {
+                  "specification_id": "agentflow.test.semantic@1",
+                  "type_name": "User",
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                  }
+                }
+              }
+            }
+          ],
+          "values": [
+            {
+              "id": 6,
+              "type": 2
+            }
+          ],
+          "expressions": [
+            {
+              "id": 1,
+              "result_type": 1,
+              "body": {
+                "constant": {
+                  "int64": 0
+                }
+              }
+            }
+          ],
+          "resources": [],
+          "contracts": [],
+          "run_parameters": [
+            {
+              "id": 1,
+              "name": "user",
+              "type": 2,
+              "value_slot": 6
+            }
+          ],
+          "workflow_outputs": [
+            {
+              "name": "ok",
+              "expression": 1
+            }
+          ],
+          "computations": [
+            {
+              "id": 1,
+              "outputs": [],
+              "body": {
+                "await": {
+                  "signal_type": {
+                    "specification_id": "agentflow.test.semantic@1",
+                    "type_name": "User",
+                    "schema_digest": {
+                      "algorithm": "sha256",
+                      "domain": "type-schema",
+                      "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                    }
+                  },
+                  "correlation": 1
+                }
+              }
+            }
+          ],
+          "root": 1
+        }
+      ],
+      "caller": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          },
+          {
+            "id": 9,
+            "body": {
+              "schema": {
+                "specification_id": "agentflow.test.semantic.v2@1",
+                "type_name": "User",
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "acabe2c6fbc5512821a6476ff05e85bc3635ae6a6c2d1f93b237d12c8578130e"
+                }
+              }
+            }
+          }
+        ],
+        "values": [
+          {
+            "id": 1,
+            "type": 9
+          }
+        ],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 9,
+            "body": {
+              "value_slot": 1
+            }
+          }
+        ],
+        "resources": [],
+        "contracts": [
+          {
+            "id": 1,
+            "kind": "subflow",
+            "digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "4095cd26d822159feedf64b03935c5eed88cacb5fea656b8b0e10f3fae785b83"
+            }
+          }
+        ],
+        "run_parameters": [
+          {
+            "id": 1,
+            "name": "user",
+            "type": 9,
+            "value_slot": 1
+          }
+        ],
+        "workflow_outputs": [],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [],
+            "body": {
+              "call_subflow": {
+                "contract": 1,
+                "inputs": [
+                  {
+                    "port_no": 1,
+                    "expression": 1
+                  }
+                ],
+                "resources": []
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "error_kind": "subflow_input_type_mismatch"
+    },
+    {
+      "case_id": "output/missing-port",
+      "note": "the caller declares only output port 2",
+      "targets": [
+        {
+          "semantic_refs": [],
+          "types": [
+            {
+              "id": 1,
+              "body": {
+                "primitive": "int64"
+              }
+            },
+            {
+              "id": 2,
+              "body": {
+                "primitive": "string"
+              }
+            }
+          ],
+          "values": [
+            {
+              "id": 6,
+              "type": 2
+            },
+            {
+              "id": 7,
+              "type": 1
+            }
+          ],
+          "expressions": [
+            {
+              "id": 1,
+              "result_type": 2,
+              "body": {
+                "value_slot": 6
+              }
+            },
+            {
+              "id": 2,
+              "result_type": 1,
+              "body": {
+                "value_slot": 7
+              }
+            }
+          ],
+          "resources": [
+            {
+              "id": 5,
+              "requirement_type": {
+                "specification_id": "agentflow.test.semantic@1",
+                "type_name": "User",
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                }
+              }
+            }
+          ],
+          "contracts": [],
+          "run_parameters": [
+            {
+              "id": 4,
+              "name": "name",
+              "type": 2,
+              "value_slot": 6
+            },
+            {
+              "id": 2,
+              "name": "limit",
+              "type": 1,
+              "value_slot": 7
+            }
+          ],
+          "workflow_outputs": [
+            {
+              "name": "greeting",
+              "expression": 1
+            },
+            {
+              "name": "count",
+              "expression": 2
+            }
+          ],
+          "computations": [
+            {
+              "id": 1,
+              "outputs": [],
+              "body": {
+                "await": {
+                  "signal_type": {
+                    "specification_id": "agentflow.test.semantic@1",
+                    "type_name": "User",
+                    "schema_digest": {
+                      "algorithm": "sha256",
+                      "domain": "type-schema",
+                      "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                    }
+                  },
+                  "correlation": 1
+                }
+              }
+            }
+          ],
+          "root": 1
+        }
+      ],
+      "caller": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          },
+          {
+            "id": 2,
+            "body": {
+              "primitive": "string"
+            }
+          }
+        ],
+        "values": [
+          {
+            "id": 1,
+            "type": 2
+          },
+          {
+            "id": 9,
+            "type": 1
+          }
+        ],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 2,
+            "body": {
+              "value_slot": 1
+            }
+          },
+          {
+            "id": 2,
+            "result_type": 1,
+            "body": {
+              "constant": {
+                "int64": 5
+              }
+            }
+          }
+        ],
+        "resources": [
+          {
+            "id": 1,
+            "requirement_type": {
+              "specification_id": "agentflow.test.semantic@1",
+              "type_name": "User",
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+              }
+            }
+          }
+        ],
+        "contracts": [
+          {
+            "id": 1,
+            "kind": "subflow",
+            "digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "dbf76f721d4f3c85e9b112a3c56abb34a6ee299e1b8adb8c2d8c1e9e8a7bc293"
+            }
+          }
+        ],
+        "run_parameters": [
+          {
+            "id": 1,
+            "name": "who",
+            "type": 2,
+            "value_slot": 1
+          }
+        ],
+        "workflow_outputs": [],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [
+              {
+                "port_no": 2,
+                "value_slot": 9
+              }
+            ],
+            "body": {
+              "call_subflow": {
+                "contract": 1,
+                "inputs": [
+                  {
+                    "port_no": 1,
+                    "expression": 2
+                  },
+                  {
+                    "port_no": 2,
+                    "expression": 1
+                  }
+                ],
+                "resources": [
+                  {
+                    "port_no": 1,
+                    "resource_slot": 1
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "error_kind": "subflow_output_port_mismatch"
+    },
+    {
+      "case_id": "output/extra-port",
+      "note": "the target has no output port 2",
+      "targets": [
+        {
+          "semantic_refs": [],
+          "types": [
+            {
+              "id": 1,
+              "body": {
+                "primitive": "int64"
+              }
+            }
+          ],
+          "values": [
+            {
+              "id": 1,
+              "type": 1
+            }
+          ],
+          "expressions": [
+            {
+              "id": 1,
+              "result_type": 1,
+              "body": {
+                "value_slot": 1
+              }
+            }
+          ],
+          "resources": [],
+          "contracts": [],
+          "run_parameters": [
+            {
+              "id": 1,
+              "name": "limit",
+              "type": 1,
+              "value_slot": 1
+            }
+          ],
+          "workflow_outputs": [
+            {
+              "name": "total",
+              "expression": 1
+            }
+          ],
+          "computations": [
+            {
+              "id": 1,
+              "outputs": [],
+              "body": {
+                "await": {
+                  "signal_type": {
+                    "specification_id": "agentflow.test.semantic@1",
+                    "type_name": "User",
+                    "schema_digest": {
+                      "algorithm": "sha256",
+                      "domain": "type-schema",
+                      "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                    }
+                  },
+                  "correlation": 1
+                }
+              }
+            }
+          ],
+          "root": 1
+        }
+      ],
+      "caller": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          }
+        ],
+        "values": [
+          {
+            "id": 9,
+            "type": 1
+          },
+          {
+            "id": 10,
+            "type": 1
+          }
+        ],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 1,
+            "body": {
+              "constant": {
+                "int64": 7
+              }
+            }
+          }
+        ],
+        "resources": [],
+        "contracts": [
+          {
+            "id": 1,
+            "kind": "subflow",
+            "digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "0f69f8c415beabf35a6273597d472cb11145d6d88adf1df818176283d91f0ec9"
+            }
+          }
+        ],
+        "run_parameters": [],
+        "workflow_outputs": [],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [
+              {
+                "port_no": 1,
+                "value_slot": 9
+              },
+              {
+                "port_no": 2,
+                "value_slot": 10
+              }
+            ],
+            "body": {
+              "call_subflow": {
+                "contract": 1,
+                "inputs": [
+                  {
+                    "port_no": 1,
+                    "expression": 1
+                  }
+                ],
+                "resources": []
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "error_kind": "subflow_output_port_mismatch"
+    },
+    {
+      "case_id": "output/type-mismatch",
+      "note": "int64 output bound over a string slot",
+      "targets": [
+        {
+          "semantic_refs": [],
+          "types": [
+            {
+              "id": 1,
+              "body": {
+                "primitive": "int64"
+              }
+            }
+          ],
+          "values": [
+            {
+              "id": 1,
+              "type": 1
+            }
+          ],
+          "expressions": [
+            {
+              "id": 1,
+              "result_type": 1,
+              "body": {
+                "value_slot": 1
+              }
+            }
+          ],
+          "resources": [],
+          "contracts": [],
+          "run_parameters": [
+            {
+              "id": 1,
+              "name": "limit",
+              "type": 1,
+              "value_slot": 1
+            }
+          ],
+          "workflow_outputs": [
+            {
+              "name": "total",
+              "expression": 1
+            }
+          ],
+          "computations": [
+            {
+              "id": 1,
+              "outputs": [],
+              "body": {
+                "await": {
+                  "signal_type": {
+                    "specification_id": "agentflow.test.semantic@1",
+                    "type_name": "User",
+                    "schema_digest": {
+                      "algorithm": "sha256",
+                      "domain": "type-schema",
+                      "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                    }
+                  },
+                  "correlation": 1
+                }
+              }
+            }
+          ],
+          "root": 1
+        }
+      ],
+      "caller": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          },
+          {
+            "id": 2,
+            "body": {
+              "primitive": "string"
+            }
+          }
+        ],
+        "values": [
+          {
+            "id": 9,
+            "type": 2
+          }
+        ],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 1,
+            "body": {
+              "constant": {
+                "int64": 7
+              }
+            }
+          }
+        ],
+        "resources": [],
+        "contracts": [
+          {
+            "id": 1,
+            "kind": "subflow",
+            "digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "0f69f8c415beabf35a6273597d472cb11145d6d88adf1df818176283d91f0ec9"
+            }
+          }
+        ],
+        "run_parameters": [],
+        "workflow_outputs": [],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [
+              {
+                "port_no": 1,
+                "value_slot": 9
+              }
+            ],
+            "body": {
+              "call_subflow": {
+                "contract": 1,
+                "inputs": [
+                  {
+                    "port_no": 1,
+                    "expression": 1
+                  }
+                ],
+                "resources": []
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "error_kind": "subflow_output_type_mismatch"
+    },
+    {
+      "case_id": "output/nested-type-mismatch",
+      "note": "option<int64> vs option<string>",
+      "targets": [
+        {
+          "semantic_refs": [],
+          "types": [
+            {
+              "id": 1,
+              "body": {
+                "primitive": "int64"
+              }
+            },
+            {
+              "id": 2,
+              "body": {
+                "primitive": "string"
+              }
+            },
+            {
+              "id": 8,
+              "body": {
+                "option": 1
+              }
+            }
+          ],
+          "values": [
+            {
+              "id": 6,
+              "type": 1
+            }
+          ],
+          "expressions": [
+            {
+              "id": 1,
+              "result_type": 1,
+              "body": {
+                "value_slot": 6
+              }
+            }
+          ],
+          "resources": [],
+          "contracts": [],
+          "run_parameters": [
+            {
+              "id": 1,
+              "name": "limit",
+              "type": 1,
+              "value_slot": 6
+            }
+          ],
+          "workflow_outputs": [
+            {
+              "name": "maybe",
+              "expression": 1
+            }
+          ],
+          "computations": [
+            {
+              "id": 1,
+              "outputs": [],
+              "body": {
+                "await": {
+                  "signal_type": {
+                    "specification_id": "agentflow.test.semantic@1",
+                    "type_name": "User",
+                    "schema_digest": {
+                      "algorithm": "sha256",
+                      "domain": "type-schema",
+                      "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                    }
+                  },
+                  "correlation": 1
+                }
+              }
+            }
+          ],
+          "root": 1
+        }
+      ],
+      "caller": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          },
+          {
+            "id": 2,
+            "body": {
+              "primitive": "string"
+            }
+          },
+          {
+            "id": 12,
+            "body": {
+              "option": 2
+            }
+          }
+        ],
+        "values": [
+          {
+            "id": 9,
+            "type": 12
+          }
+        ],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 1,
+            "body": {
+              "constant": {
+                "int64": 7
+              }
+            }
+          }
+        ],
+        "resources": [],
+        "contracts": [
+          {
+            "id": 1,
+            "kind": "subflow",
+            "digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "e711557c81efb162856ed8e2a87948a5236637d2a4803fb16daa22b95a39c1f7"
+            }
+          }
+        ],
+        "run_parameters": [],
+        "workflow_outputs": [],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [
+              {
+                "port_no": 1,
+                "value_slot": 9
+              }
+            ],
+            "body": {
+              "call_subflow": {
+                "contract": 1,
+                "inputs": [
+                  {
+                    "port_no": 1,
+                    "expression": 1
+                  }
+                ],
+                "resources": []
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "error_kind": "subflow_output_type_mismatch"
+    },
+    {
+      "case_id": "resource/missing-port",
+      "note": "resource port 1 (status) is never bound",
+      "targets": [
+        {
+          "semantic_refs": [],
+          "types": [
+            {
+              "id": 1,
+              "body": {
+                "primitive": "int64"
+              }
+            }
+          ],
+          "values": [],
+          "expressions": [
+            {
+              "id": 1,
+              "result_type": 1,
+              "body": {
+                "constant": {
+                  "int64": 0
+                }
+              }
+            }
+          ],
+          "resources": [
+            {
+              "id": 7,
+              "requirement_type": {
+                "specification_id": "agentflow.test.semantic@1",
+                "type_name": "User",
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                }
+              }
+            },
+            {
+              "id": 3,
+              "requirement_type": {
+                "specification_id": "agentflow.test.semantic@1",
+                "type_name": "Status",
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "811a48602d5640115482447c631c8b5232827010cf4dcc98d42c7d854661f959"
+                }
+              }
+            }
+          ],
+          "contracts": [],
+          "run_parameters": [],
+          "workflow_outputs": [],
+          "computations": [
+            {
+              "id": 1,
+              "outputs": [],
+              "body": {
+                "await": {
+                  "signal_type": {
+                    "specification_id": "agentflow.test.semantic@1",
+                    "type_name": "User",
+                    "schema_digest": {
+                      "algorithm": "sha256",
+                      "domain": "type-schema",
+                      "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                    }
+                  },
+                  "correlation": 1
+                }
+              }
+            }
+          ],
+          "root": 1
+        }
+      ],
+      "caller": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          }
+        ],
+        "values": [],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 1,
+            "body": {
+              "constant": {
+                "int64": 0
+              }
+            }
+          }
+        ],
+        "resources": [
+          {
+            "id": 1,
+            "requirement_type": {
+              "specification_id": "agentflow.test.semantic@1",
+              "type_name": "User",
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+              }
+            }
+          },
+          {
+            "id": 2,
+            "requirement_type": {
+              "specification_id": "agentflow.test.semantic@1",
+              "type_name": "Status",
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "811a48602d5640115482447c631c8b5232827010cf4dcc98d42c7d854661f959"
+              }
+            }
+          }
+        ],
+        "contracts": [
+          {
+            "id": 1,
+            "kind": "subflow",
+            "digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "cac614dde364f67cc47041fa038e272f5e18ad9edc3a9fb1d437ccae39e364f8"
+            }
+          }
+        ],
+        "run_parameters": [],
+        "workflow_outputs": [],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [],
+            "body": {
+              "call_subflow": {
+                "contract": 1,
+                "inputs": [],
+                "resources": [
+                  {
+                    "port_no": 1,
+                    "resource_slot": 1
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "error_kind": "subflow_resource_port_mismatch"
+    },
+    {
+      "case_id": "resource/extra-port",
+      "note": "the target has no resource port 3",
+      "targets": [
+        {
+          "semantic_refs": [],
+          "types": [
+            {
+              "id": 1,
+              "body": {
+                "primitive": "int64"
+              }
+            }
+          ],
+          "values": [],
+          "expressions": [
+            {
+              "id": 1,
+              "result_type": 1,
+              "body": {
+                "constant": {
+                  "int64": 0
+                }
+              }
+            }
+          ],
+          "resources": [
+            {
+              "id": 7,
+              "requirement_type": {
+                "specification_id": "agentflow.test.semantic@1",
+                "type_name": "User",
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                }
+              }
+            },
+            {
+              "id": 3,
+              "requirement_type": {
+                "specification_id": "agentflow.test.semantic@1",
+                "type_name": "Status",
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "811a48602d5640115482447c631c8b5232827010cf4dcc98d42c7d854661f959"
+                }
+              }
+            }
+          ],
+          "contracts": [],
+          "run_parameters": [],
+          "workflow_outputs": [],
+          "computations": [
+            {
+              "id": 1,
+              "outputs": [],
+              "body": {
+                "await": {
+                  "signal_type": {
+                    "specification_id": "agentflow.test.semantic@1",
+                    "type_name": "User",
+                    "schema_digest": {
+                      "algorithm": "sha256",
+                      "domain": "type-schema",
+                      "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                    }
+                  },
+                  "correlation": 1
+                }
+              }
+            }
+          ],
+          "root": 1
+        }
+      ],
+      "caller": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          }
+        ],
+        "values": [],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 1,
+            "body": {
+              "constant": {
+                "int64": 0
+              }
+            }
+          }
+        ],
+        "resources": [
+          {
+            "id": 1,
+            "requirement_type": {
+              "specification_id": "agentflow.test.semantic@1",
+              "type_name": "User",
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+              }
+            }
+          },
+          {
+            "id": 2,
+            "requirement_type": {
+              "specification_id": "agentflow.test.semantic@1",
+              "type_name": "Status",
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "811a48602d5640115482447c631c8b5232827010cf4dcc98d42c7d854661f959"
+              }
+            }
+          }
+        ],
+        "contracts": [
+          {
+            "id": 1,
+            "kind": "subflow",
+            "digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "cac614dde364f67cc47041fa038e272f5e18ad9edc3a9fb1d437ccae39e364f8"
+            }
+          }
+        ],
+        "run_parameters": [],
+        "workflow_outputs": [],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [],
+            "body": {
+              "call_subflow": {
+                "contract": 1,
+                "inputs": [],
+                "resources": [
+                  {
+                    "port_no": 1,
+                    "resource_slot": 1
+                  },
+                  {
+                    "port_no": 2,
+                    "resource_slot": 2
+                  },
+                  {
+                    "port_no": 3,
+                    "resource_slot": 1
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "error_kind": "subflow_resource_port_mismatch"
+    },
+    {
+      "case_id": "resource/type-mismatch",
+      "note": "port 2 requires User, the bound slot requires Status",
+      "targets": [
+        {
+          "semantic_refs": [],
+          "types": [
+            {
+              "id": 1,
+              "body": {
+                "primitive": "int64"
+              }
+            }
+          ],
+          "values": [],
+          "expressions": [
+            {
+              "id": 1,
+              "result_type": 1,
+              "body": {
+                "constant": {
+                  "int64": 0
+                }
+              }
+            }
+          ],
+          "resources": [
+            {
+              "id": 7,
+              "requirement_type": {
+                "specification_id": "agentflow.test.semantic@1",
+                "type_name": "User",
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                }
+              }
+            },
+            {
+              "id": 3,
+              "requirement_type": {
+                "specification_id": "agentflow.test.semantic@1",
+                "type_name": "Status",
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "811a48602d5640115482447c631c8b5232827010cf4dcc98d42c7d854661f959"
+                }
+              }
+            }
+          ],
+          "contracts": [],
+          "run_parameters": [],
+          "workflow_outputs": [],
+          "computations": [
+            {
+              "id": 1,
+              "outputs": [],
+              "body": {
+                "await": {
+                  "signal_type": {
+                    "specification_id": "agentflow.test.semantic@1",
+                    "type_name": "User",
+                    "schema_digest": {
+                      "algorithm": "sha256",
+                      "domain": "type-schema",
+                      "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                    }
+                  },
+                  "correlation": 1
+                }
+              }
+            }
+          ],
+          "root": 1
+        }
+      ],
+      "caller": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          }
+        ],
+        "values": [],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 1,
+            "body": {
+              "constant": {
+                "int64": 0
+              }
+            }
+          }
+        ],
+        "resources": [
+          {
+            "id": 1,
+            "requirement_type": {
+              "specification_id": "agentflow.test.semantic@1",
+              "type_name": "Status",
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "811a48602d5640115482447c631c8b5232827010cf4dcc98d42c7d854661f959"
+              }
+            }
+          }
+        ],
+        "contracts": [
+          {
+            "id": 1,
+            "kind": "subflow",
+            "digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "cac614dde364f67cc47041fa038e272f5e18ad9edc3a9fb1d437ccae39e364f8"
+            }
+          }
+        ],
+        "run_parameters": [],
+        "workflow_outputs": [],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [],
+            "body": {
+              "call_subflow": {
+                "contract": 1,
+                "inputs": [],
+                "resources": [
+                  {
+                    "port_no": 1,
+                    "resource_slot": 1
+                  },
+                  {
+                    "port_no": 2,
+                    "resource_slot": 1
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "error_kind": "subflow_resource_type_mismatch"
+    },
+    {
+      "case_id": "resource/schema-digest-mismatch",
+      "note": "port 2 requires User@v1, the bound slot requires User@v2",
+      "targets": [
+        {
+          "semantic_refs": [],
+          "types": [
+            {
+              "id": 1,
+              "body": {
+                "primitive": "int64"
+              }
+            }
+          ],
+          "values": [],
+          "expressions": [
+            {
+              "id": 1,
+              "result_type": 1,
+              "body": {
+                "constant": {
+                  "int64": 0
+                }
+              }
+            }
+          ],
+          "resources": [
+            {
+              "id": 7,
+              "requirement_type": {
+                "specification_id": "agentflow.test.semantic@1",
+                "type_name": "User",
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                }
+              }
+            },
+            {
+              "id": 3,
+              "requirement_type": {
+                "specification_id": "agentflow.test.semantic@1",
+                "type_name": "Status",
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "811a48602d5640115482447c631c8b5232827010cf4dcc98d42c7d854661f959"
+                }
+              }
+            }
+          ],
+          "contracts": [],
+          "run_parameters": [],
+          "workflow_outputs": [],
+          "computations": [
+            {
+              "id": 1,
+              "outputs": [],
+              "body": {
+                "await": {
+                  "signal_type": {
+                    "specification_id": "agentflow.test.semantic@1",
+                    "type_name": "User",
+                    "schema_digest": {
+                      "algorithm": "sha256",
+                      "domain": "type-schema",
+                      "hex": "4db8cdf6ac53afcb0b011496db71d941304ebe57e2a6c1529bc27af754b40e5c"
+                    }
+                  },
+                  "correlation": 1
+                }
+              }
+            }
+          ],
+          "root": 1
+        }
+      ],
+      "caller": {
+        "semantic_refs": [],
+        "types": [
+          {
+            "id": 1,
+            "body": {
+              "primitive": "int64"
+            }
+          }
+        ],
+        "values": [],
+        "expressions": [
+          {
+            "id": 1,
+            "result_type": 1,
+            "body": {
+              "constant": {
+                "int64": 0
+              }
+            }
+          }
+        ],
+        "resources": [
+          {
+            "id": 1,
+            "requirement_type": {
+              "specification_id": "agentflow.test.semantic.v2@1",
+              "type_name": "User",
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "acabe2c6fbc5512821a6476ff05e85bc3635ae6a6c2d1f93b237d12c8578130e"
+              }
+            }
+          }
+        ],
+        "contracts": [
+          {
+            "id": 1,
+            "kind": "subflow",
+            "digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "cac614dde364f67cc47041fa038e272f5e18ad9edc3a9fb1d437ccae39e364f8"
+            }
+          }
+        ],
+        "run_parameters": [],
+        "workflow_outputs": [],
+        "computations": [
+          {
+            "id": 1,
+            "outputs": [],
+            "body": {
+              "call_subflow": {
+                "contract": 1,
+                "inputs": [],
+                "resources": [
+                  {
+                    "port_no": 1,
+                    "resource_slot": 1
+                  },
+                  {
+                    "port_no": 2,
+                    "resource_slot": 1
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "root": 1
+      },
+      "error_kind": "subflow_resource_type_mismatch"
+    }
+  ]
+}
