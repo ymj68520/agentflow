@@ -20,7 +20,7 @@
 | OQ-8 | float64 decimal 输入解析器 | `DEFERRED` / `NOT PART OF ACE1` | ACE1 canonical boundary 只接受 machine float value / exact bit identity。未来 permissive authoring parser（若有）不属于 Canonical Encoding。 |
 | OQ-9 | Timestamp/Duration 日历范围 | `DEFERRED_TO_SEMANTIC_VALIDATION` | ACE1 v1 继续使用完整 Int64 microseconds machine range。 |
 | OQ-10 | Digest domain 命名 | `RATIFIED` | kebab domain registry（`spec/tables/hash-domains.json`）为正式 v1 实现基线。禁止同时保留另一套 `agentflow.xxx.v1` 作为 HashV1 domain alias——一个 semantic domain 只能有一个 canonical domain string。 |
-| OQ-11 | AFIDL grammar | `DEFERRED_TO_PHASE_2` | 下一正式阶段的核心任务。当前 `machine-primitives.afidl` 顶部已明确标注：`syntax provisional until AFIDL1 grammar materialization` / `semantic declarations authoritative only after Phase 2 rewrite`。当前临时语法不得成为事实 ABI。 |
+| OQ-11 | AFIDL grammar | `RESOLVED_IN_PHASE_2A` | AFIDL1 exact grammar 已于 Phase 2A 物化为 `spec/idl/afidl1-grammar.md`（repository normative source）；`machine-primitives.afidl` 已用正式语法重写、provisional 标记删除，并可被 `crates/af-idl` parser 真实解析、其 TypeSchemaDigest 已冻结于 corpus。详见 `docs/implementation/phase-02a-afidl-core.md` 与 `phase-02a-decisions.md`。 |
 | OQ-12 | DigestRef Display format | `CONVENIENCE_ONLY` / `NON_NORMATIVE` | `sha256/{domain}/{hex}` 便利形式不参与 HashV1、ACE1、wire identity，除非未来独立规范。 |
 | OQ-13 | String NFC | `RESOLVED_FROM_FROZEN_SPEC` | 非开放问题：冻结规范已规定 "Strings normalize to NFC"。所有 string primitive（record value / list item / map value / variant payload）一律 NFC。Map key 额外执行：normalize → unsigned UTF-8 sort → duplicate detection。 |
 
