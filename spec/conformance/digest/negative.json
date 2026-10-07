@@ -1,0 +1,48 @@
+{
+  "kind": "agentflow.conformance.hash-v1-negative",
+  "note": "Negative cases for DigestRef parsing/validation.",
+  "cases": [
+    {
+      "case_id": "digest/unknown-algorithm",
+      "description": "md5 is not a v1 digest algorithm",
+      "input": "md5/value/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+      "error_class": "invalid_digest"
+    },
+    {
+      "case_id": "digest/unknown-domain",
+      "description": "domain outside the frozen registry",
+      "input": "sha256/not-a-domain/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+      "error_class": "unknown_digest_domain"
+    },
+    {
+      "case_id": "digest/short-hex",
+      "description": "63 hex characters",
+      "input": "sha256/value/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcde",
+      "error_class": "invalid_digest"
+    },
+    {
+      "case_id": "digest/long-hex",
+      "description": "65 hex characters",
+      "input": "sha256/value/0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdeff",
+      "error_class": "invalid_digest"
+    },
+    {
+      "case_id": "digest/uppercase-hex",
+      "description": "uppercase digest hex is forbidden",
+      "input": "sha256/value/0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF",
+      "error_class": "invalid_digest"
+    },
+    {
+      "case_id": "digest/non-hex",
+      "description": "non-hex characters in digest",
+      "input": "sha256/value/zz23456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+      "error_class": "invalid_digest"
+    },
+    {
+      "case_id": "digest/malformed",
+      "description": "wrong number of '/'-separated parts",
+      "input": "sha256/value",
+      "error_class": "invalid_digest"
+    }
+  ]
+}

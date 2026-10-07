@@ -1,0 +1,895 @@
+{
+  "kind": "agentflow.conformance.ace1-golden",
+  "ace1_version": "1",
+  "note": "Golden fixtures for ACE1 machine primitives. Value grammar: scalars are tagged objects ({\"int32\": \"-2147483648\"}); float64 input is the exact IEEE-754 bit pattern as 16 hex chars (negative-zero pattern included to prove canonicalization); bytes input is an array of byte values. expected_ace1_utf8 / expected_bytes_hex are frozen; tests must not regenerate them.",
+  "cases": [
+    {
+      "case_id": "int32/zero",
+      "description": "int32 zero",
+      "shape": "int32",
+      "value": {
+        "int32": "0"
+      },
+      "expected_ace1_utf8": "\"0\"",
+      "expected_bytes_hex": "223022"
+    },
+    {
+      "case_id": "int32/one",
+      "description": "int32 one",
+      "shape": "int32",
+      "value": {
+        "int32": "1"
+      },
+      "expected_ace1_utf8": "\"1\"",
+      "expected_bytes_hex": "223122"
+    },
+    {
+      "case_id": "int32/negative-one",
+      "description": "int32 negative one",
+      "shape": "int32",
+      "value": {
+        "int32": "-1"
+      },
+      "expected_ace1_utf8": "\"-1\"",
+      "expected_bytes_hex": "222d3122"
+    },
+    {
+      "case_id": "int32/min",
+      "description": "int32 minimum boundary",
+      "shape": "int32",
+      "value": {
+        "int32": "-2147483648"
+      },
+      "expected_ace1_utf8": "\"-2147483648\"",
+      "expected_bytes_hex": "222d3231343734383336343822"
+    },
+    {
+      "case_id": "int32/max",
+      "description": "int32 maximum boundary",
+      "shape": "int32",
+      "value": {
+        "int32": "2147483647"
+      },
+      "expected_ace1_utf8": "\"2147483647\"",
+      "expected_bytes_hex": "223231343734383336343722"
+    },
+    {
+      "case_id": "int32/sample",
+      "description": "int32 multi-digit sample",
+      "shape": "int32",
+      "value": {
+        "int32": "123456789"
+      },
+      "expected_ace1_utf8": "\"123456789\"",
+      "expected_bytes_hex": "2231323334353637383922"
+    },
+    {
+      "case_id": "uint32/zero",
+      "description": "zero uint32 value",
+      "shape": "uint32",
+      "value": {
+        "uint32": "0"
+      },
+      "expected_ace1_utf8": "\"0\"",
+      "expected_bytes_hex": "223022"
+    },
+    {
+      "case_id": "uint32/one",
+      "description": "one uint32 value",
+      "shape": "uint32",
+      "value": {
+        "uint32": "1"
+      },
+      "expected_ace1_utf8": "\"1\"",
+      "expected_bytes_hex": "223122"
+    },
+    {
+      "case_id": "uint32/max",
+      "description": "max uint32 value",
+      "shape": "uint32",
+      "value": {
+        "uint32": "4294967295"
+      },
+      "expected_ace1_utf8": "\"4294967295\"",
+      "expected_bytes_hex": "223432393439363732393522"
+    },
+    {
+      "case_id": "uint32/large",
+      "description": "large uint32 value",
+      "shape": "uint32",
+      "value": {
+        "uint32": "4294967294"
+      },
+      "expected_ace1_utf8": "\"4294967294\"",
+      "expected_bytes_hex": "223432393439363732393422"
+    },
+    {
+      "case_id": "int64/zero",
+      "description": "zero int64 value (exact integer, no float path)",
+      "shape": "int64",
+      "value": {
+        "int64": "0"
+      },
+      "expected_ace1_utf8": "\"0\"",
+      "expected_bytes_hex": "223022"
+    },
+    {
+      "case_id": "int64/one",
+      "description": "one int64 value (exact integer, no float path)",
+      "shape": "int64",
+      "value": {
+        "int64": "1"
+      },
+      "expected_ace1_utf8": "\"1\"",
+      "expected_bytes_hex": "223122"
+    },
+    {
+      "case_id": "int64/negative-one",
+      "description": "negative-one int64 value (exact integer, no float path)",
+      "shape": "int64",
+      "value": {
+        "int64": "-1"
+      },
+      "expected_ace1_utf8": "\"-1\"",
+      "expected_bytes_hex": "222d3122"
+    },
+    {
+      "case_id": "int64/min",
+      "description": "min int64 value (exact integer, no float path)",
+      "shape": "int64",
+      "value": {
+        "int64": "-9223372036854775808"
+      },
+      "expected_ace1_utf8": "\"-9223372036854775808\"",
+      "expected_bytes_hex": "222d3932323333373230333638353437373538303822"
+    },
+    {
+      "case_id": "int64/max",
+      "description": "max int64 value (exact integer, no float path)",
+      "shape": "int64",
+      "value": {
+        "int64": "9223372036854775807"
+      },
+      "expected_ace1_utf8": "\"9223372036854775807\"",
+      "expected_bytes_hex": "223932323333373230333638353437373538303722"
+    },
+    {
+      "case_id": "int64/beyond-float53",
+      "description": "beyond-float53 int64 value (exact integer, no float path)",
+      "shape": "int64",
+      "value": {
+        "int64": "9007199254740993"
+      },
+      "expected_ace1_utf8": "\"9007199254740993\"",
+      "expected_bytes_hex": "223930303731393932353437343039393322"
+    },
+    {
+      "case_id": "int64/negative-beyond-float53",
+      "description": "negative-beyond-float53 int64 value (exact integer, no float path)",
+      "shape": "int64",
+      "value": {
+        "int64": "-9007199254740993"
+      },
+      "expected_ace1_utf8": "\"-9007199254740993\"",
+      "expected_bytes_hex": "222d3930303731393932353437343039393322"
+    },
+    {
+      "case_id": "uint64/zero",
+      "description": "zero uint64 value",
+      "shape": "uint64",
+      "value": {
+        "uint64": "0"
+      },
+      "expected_ace1_utf8": "\"0\"",
+      "expected_bytes_hex": "223022"
+    },
+    {
+      "case_id": "uint64/one",
+      "description": "one uint64 value",
+      "shape": "uint64",
+      "value": {
+        "uint64": "1"
+      },
+      "expected_ace1_utf8": "\"1\"",
+      "expected_bytes_hex": "223122"
+    },
+    {
+      "case_id": "uint64/max",
+      "description": "max uint64 value",
+      "shape": "uint64",
+      "value": {
+        "uint64": "18446744073709551615"
+      },
+      "expected_ace1_utf8": "\"18446744073709551615\"",
+      "expected_bytes_hex": "22313834343637343430373337303935353136313522"
+    },
+    {
+      "case_id": "uint64/high-bit",
+      "description": "high-bit uint64 value",
+      "shape": "uint64",
+      "value": {
+        "uint64": "9223372036854775808"
+      },
+      "expected_ace1_utf8": "\"9223372036854775808\"",
+      "expected_bytes_hex": "223932323333373230333638353437373538303822"
+    },
+    {
+      "case_id": "uint64/near-max",
+      "description": "near-max uint64 value",
+      "shape": "uint64",
+      "value": {
+        "uint64": "18446744073709551614"
+      },
+      "expected_ace1_utf8": "\"18446744073709551614\"",
+      "expected_bytes_hex": "22313834343637343430373337303935353136313422"
+    },
+    {
+      "case_id": "decimal/zero",
+      "description": "decimal canonical form 0",
+      "shape": "decimal",
+      "value": {
+        "decimal": "0"
+      },
+      "expected_ace1_utf8": "\"0\"",
+      "expected_bytes_hex": "223022"
+    },
+    {
+      "case_id": "decimal/one",
+      "description": "decimal canonical form 1",
+      "shape": "decimal",
+      "value": {
+        "decimal": "1"
+      },
+      "expected_ace1_utf8": "\"1\"",
+      "expected_bytes_hex": "223122"
+    },
+    {
+      "case_id": "decimal/negative-one",
+      "description": "decimal canonical form -1",
+      "shape": "decimal",
+      "value": {
+        "decimal": "-1"
+      },
+      "expected_ace1_utf8": "\"-1\"",
+      "expected_bytes_hex": "222d3122"
+    },
+    {
+      "case_id": "decimal/fraction",
+      "description": "decimal canonical form 0.5",
+      "shape": "decimal",
+      "value": {
+        "decimal": "0.5"
+      },
+      "expected_ace1_utf8": "\"0.5\"",
+      "expected_bytes_hex": "22302e3522"
+    },
+    {
+      "case_id": "decimal/negative-fraction",
+      "description": "decimal canonical form -0.5",
+      "shape": "decimal",
+      "value": {
+        "decimal": "-0.5"
+      },
+      "expected_ace1_utf8": "\"-0.5\"",
+      "expected_bytes_hex": "222d302e3522"
+    },
+    {
+      "case_id": "decimal/two-point-twenty-five",
+      "description": "decimal canonical form 1.25",
+      "shape": "decimal",
+      "value": {
+        "decimal": "1.25"
+      },
+      "expected_ace1_utf8": "\"1.25\"",
+      "expected_bytes_hex": "22312e323522"
+    },
+    {
+      "case_id": "decimal/small",
+      "description": "decimal canonical form 0.001",
+      "shape": "decimal",
+      "value": {
+        "decimal": "0.001"
+      },
+      "expected_ace1_utf8": "\"0.001\"",
+      "expected_bytes_hex": "22302e30303122"
+    },
+    {
+      "case_id": "decimal/tiny",
+      "description": "decimal canonical form 0.000000000000000000000000000001",
+      "shape": "decimal",
+      "value": {
+        "decimal": "0.000000000000000000000000000001"
+      },
+      "expected_ace1_utf8": "\"0.000000000000000000000000000001\"",
+      "expected_bytes_hex": "22302e30303030303030303030303030303030303030303030303030303030303122"
+    },
+    {
+      "case_id": "decimal/large-integer",
+      "description": "decimal canonical form 123456789012345678901234567890",
+      "shape": "decimal",
+      "value": {
+        "decimal": "123456789012345678901234567890"
+      },
+      "expected_ace1_utf8": "\"123456789012345678901234567890\"",
+      "expected_bytes_hex": "2231323334353637383930313233343536373839303132333435363738393022"
+    },
+    {
+      "case_id": "decimal/large-fraction",
+      "description": "decimal canonical form 123456789012345678901234567890.123456789",
+      "shape": "decimal",
+      "value": {
+        "decimal": "123456789012345678901234567890.123456789"
+      },
+      "expected_ace1_utf8": "\"123456789012345678901234567890.123456789\"",
+      "expected_bytes_hex": "223132333435363738393031323334353637383930313233343536373839302e31323334353637383922"
+    },
+    {
+      "case_id": "decimal/repeating-look",
+      "description": "decimal canonical form 3.141592653589793238462643383279",
+      "shape": "decimal",
+      "value": {
+        "decimal": "3.141592653589793238462643383279"
+      },
+      "expected_ace1_utf8": "\"3.141592653589793238462643383279\"",
+      "expected_bytes_hex": "22332e31343135393236353335383937393332333834363236343333383332373922"
+    },
+    {
+      "case_id": "decimal/equivalent-input-1.250",
+      "description": "decimal input 1.250 canonicalizes to the same bytes as its canonical form 1.25",
+      "shape": "decimal",
+      "value": {
+        "decimal": "1.250"
+      },
+      "expected_ace1_utf8": "\"1.25\"",
+      "expected_bytes_hex": "22312e323522",
+      "equivalent_to": "decimal/two-point-twenty-five"
+    },
+    {
+      "case_id": "decimal/equivalent-input-1.000",
+      "description": "decimal input 1.000 canonicalizes to an integral form",
+      "shape": "decimal",
+      "value": {
+        "decimal": "1.000"
+      },
+      "expected_ace1_utf8": "\"1\"",
+      "expected_bytes_hex": "223122",
+      "equivalent_to": "decimal/one"
+    },
+    {
+      "case_id": "decimal/equivalent-input-negative-zero",
+      "description": "decimal input -0 canonicalizes to zero",
+      "shape": "decimal",
+      "value": {
+        "decimal": "-0"
+      },
+      "expected_ace1_utf8": "\"0\"",
+      "expected_bytes_hex": "223022",
+      "equivalent_to": "decimal/zero"
+    },
+    {
+      "case_id": "decimal/equivalent-input-0.000",
+      "description": "decimal input 0.000 canonicalizes to zero",
+      "shape": "decimal",
+      "value": {
+        "decimal": "0.000"
+      },
+      "expected_ace1_utf8": "\"0\"",
+      "expected_bytes_hex": "223022",
+      "equivalent_to": "decimal/zero"
+    },
+    {
+      "case_id": "decimal/equivalent-input-0.0010",
+      "description": "decimal input 0.0010 canonicalizes to 0.001",
+      "shape": "decimal",
+      "value": {
+        "decimal": "0.0010"
+      },
+      "expected_ace1_utf8": "\"0.001\"",
+      "expected_bytes_hex": "22302e30303122",
+      "equivalent_to": "decimal/small"
+    },
+    {
+      "case_id": "float64/positive-zero",
+      "description": "float64 +0.0",
+      "shape": "float64",
+      "value": {
+        "float64": "0000000000000000"
+      },
+      "expected_ace1_utf8": "\"0000000000000000\"",
+      "expected_bytes_hex": "223030303030303030303030303030303022"
+    },
+    {
+      "case_id": "float64/negative-zero-canonicalized",
+      "description": "float64 -0.0 bit pattern must canonicalize to +0",
+      "shape": "float64",
+      "value": {
+        "float64": "8000000000000000"
+      },
+      "expected_ace1_utf8": "\"0000000000000000\"",
+      "expected_bytes_hex": "223030303030303030303030303030303022"
+    },
+    {
+      "case_id": "float64/one",
+      "description": "float64 1.0",
+      "shape": "float64",
+      "value": {
+        "float64": "3ff0000000000000"
+      },
+      "expected_ace1_utf8": "\"3ff0000000000000\"",
+      "expected_bytes_hex": "223366663030303030303030303030303022"
+    },
+    {
+      "case_id": "float64/negative-one",
+      "description": "float64 -1.0",
+      "shape": "float64",
+      "value": {
+        "float64": "bff0000000000000"
+      },
+      "expected_ace1_utf8": "\"bff0000000000000\"",
+      "expected_bytes_hex": "226266663030303030303030303030303022"
+    },
+    {
+      "case_id": "float64/half",
+      "description": "float64 0.5",
+      "shape": "float64",
+      "value": {
+        "float64": "3fe0000000000000"
+      },
+      "expected_ace1_utf8": "\"3fe0000000000000\"",
+      "expected_bytes_hex": "223366653030303030303030303030303022"
+    },
+    {
+      "case_id": "float64/two",
+      "description": "float64 2.0",
+      "shape": "float64",
+      "value": {
+        "float64": "4000000000000000"
+      },
+      "expected_ace1_utf8": "\"4000000000000000\"",
+      "expected_bytes_hex": "223430303030303030303030303030303022"
+    },
+    {
+      "case_id": "float64/one-tenth",
+      "description": "float64 0.1 (exact stored bits)",
+      "shape": "float64",
+      "value": {
+        "float64": "3fb999999999999a"
+      },
+      "expected_ace1_utf8": "\"3fb999999999999a\"",
+      "expected_bytes_hex": "223366623939393939393939393939396122"
+    },
+    {
+      "case_id": "float64/min-subnormal",
+      "description": "smallest subnormal 2**-1074",
+      "shape": "float64",
+      "value": {
+        "float64": "0000000000000001"
+      },
+      "expected_ace1_utf8": "\"0000000000000001\"",
+      "expected_bytes_hex": "223030303030303030303030303030303122"
+    },
+    {
+      "case_id": "float64/max-subnormal",
+      "description": "largest subnormal",
+      "shape": "float64",
+      "value": {
+        "float64": "000fffffffffffff"
+      },
+      "expected_ace1_utf8": "\"000fffffffffffff\"",
+      "expected_bytes_hex": "223030306666666666666666666666666622"
+    },
+    {
+      "case_id": "float64/min-normal",
+      "description": "smallest normal 2**-1022",
+      "shape": "float64",
+      "value": {
+        "float64": "0010000000000000"
+      },
+      "expected_ace1_utf8": "\"0010000000000000\"",
+      "expected_bytes_hex": "223030313030303030303030303030303022"
+    },
+    {
+      "case_id": "float64/max-finite",
+      "description": "largest finite float64",
+      "shape": "float64",
+      "value": {
+        "float64": "7fefffffffffffff"
+      },
+      "expected_ace1_utf8": "\"7fefffffffffffff\"",
+      "expected_bytes_hex": "223766656666666666666666666666666622"
+    },
+    {
+      "case_id": "float64/large-finite",
+      "description": "large finite float64",
+      "shape": "float64",
+      "value": {
+        "float64": "7fe8000000000000"
+      },
+      "expected_ace1_utf8": "\"7fe8000000000000\"",
+      "expected_bytes_hex": "223766653830303030303030303030303022"
+    },
+    {
+      "case_id": "bool/true",
+      "description": "bool true literal",
+      "shape": "bool",
+      "value": {
+        "bool": true
+      },
+      "expected_ace1_utf8": "true",
+      "expected_bytes_hex": "74727565"
+    },
+    {
+      "case_id": "bool/false",
+      "description": "bool false literal",
+      "shape": "bool",
+      "value": {
+        "bool": false
+      },
+      "expected_ace1_utf8": "false",
+      "expected_bytes_hex": "66616c7365"
+    },
+    {
+      "case_id": "null/explicit",
+      "description": "explicit null primitive",
+      "shape": "null",
+      "value": {
+        "null": null
+      },
+      "expected_ace1_utf8": "null",
+      "expected_bytes_hex": "6e756c6c"
+    },
+    {
+      "case_id": "unit/value",
+      "description": "unit primitive (distinct nominal type from null)",
+      "shape": "unit",
+      "value": {
+        "unit": null
+      },
+      "expected_ace1_utf8": "null",
+      "expected_bytes_hex": "6e756c6c"
+    },
+    {
+      "case_id": "timestamp/zero",
+      "description": "timestamp microseconds 0",
+      "shape": "timestamp",
+      "value": {
+        "timestamp": "0"
+      },
+      "expected_ace1_utf8": "\"0\"",
+      "expected_bytes_hex": "223022"
+    },
+    {
+      "case_id": "timestamp/one-micro",
+      "description": "timestamp microseconds 1",
+      "shape": "timestamp",
+      "value": {
+        "timestamp": "1"
+      },
+      "expected_ace1_utf8": "\"1\"",
+      "expected_bytes_hex": "223122"
+    },
+    {
+      "case_id": "timestamp/negative-one",
+      "description": "timestamp microseconds -1",
+      "shape": "timestamp",
+      "value": {
+        "timestamp": "-1"
+      },
+      "expected_ace1_utf8": "\"-1\"",
+      "expected_bytes_hex": "222d3122"
+    },
+    {
+      "case_id": "timestamp/2023-11-14",
+      "description": "timestamp microseconds 1700000000000000",
+      "shape": "timestamp",
+      "value": {
+        "timestamp": "1700000000000000"
+      },
+      "expected_ace1_utf8": "\"1700000000000000\"",
+      "expected_bytes_hex": "223137303030303030303030303030303022"
+    },
+    {
+      "case_id": "timestamp/min",
+      "description": "timestamp microseconds -9223372036854775808",
+      "shape": "timestamp",
+      "value": {
+        "timestamp": "-9223372036854775808"
+      },
+      "expected_ace1_utf8": "\"-9223372036854775808\"",
+      "expected_bytes_hex": "222d3932323333373230333638353437373538303822"
+    },
+    {
+      "case_id": "timestamp/max",
+      "description": "timestamp microseconds 9223372036854775807",
+      "shape": "timestamp",
+      "value": {
+        "timestamp": "9223372036854775807"
+      },
+      "expected_ace1_utf8": "\"9223372036854775807\"",
+      "expected_bytes_hex": "223932323333373230333638353437373538303722"
+    },
+    {
+      "case_id": "duration/zero",
+      "description": "duration microseconds 0",
+      "shape": "duration",
+      "value": {
+        "duration": "0"
+      },
+      "expected_ace1_utf8": "\"0\"",
+      "expected_bytes_hex": "223022"
+    },
+    {
+      "case_id": "duration/one-micro",
+      "description": "duration microseconds 1",
+      "shape": "duration",
+      "value": {
+        "duration": "1"
+      },
+      "expected_ace1_utf8": "\"1\"",
+      "expected_bytes_hex": "223122"
+    },
+    {
+      "case_id": "duration/negative-one",
+      "description": "duration microseconds -1",
+      "shape": "duration",
+      "value": {
+        "duration": "-1"
+      },
+      "expected_ace1_utf8": "\"-1\"",
+      "expected_bytes_hex": "222d3122"
+    },
+    {
+      "case_id": "duration/one-day",
+      "description": "duration microseconds 86400000000",
+      "shape": "duration",
+      "value": {
+        "duration": "86400000000"
+      },
+      "expected_ace1_utf8": "\"86400000000\"",
+      "expected_bytes_hex": "22383634303030303030303022"
+    },
+    {
+      "case_id": "duration/negative-day",
+      "description": "duration microseconds -86400000000",
+      "shape": "duration",
+      "value": {
+        "duration": "-86400000000"
+      },
+      "expected_ace1_utf8": "\"-86400000000\"",
+      "expected_bytes_hex": "222d383634303030303030303022"
+    },
+    {
+      "case_id": "duration/min",
+      "description": "duration microseconds -9223372036854775808",
+      "shape": "duration",
+      "value": {
+        "duration": "-9223372036854775808"
+      },
+      "expected_ace1_utf8": "\"-9223372036854775808\"",
+      "expected_bytes_hex": "222d3932323333373230333638353437373538303822"
+    },
+    {
+      "case_id": "duration/max",
+      "description": "duration microseconds 9223372036854775807",
+      "shape": "duration",
+      "value": {
+        "duration": "9223372036854775807"
+      },
+      "expected_ace1_utf8": "\"9223372036854775807\"",
+      "expected_bytes_hex": "223932323333373230333638353437373538303722"
+    },
+    {
+      "case_id": "bytes/empty",
+      "description": "bytes 0 byte(s), unpadded base64url",
+      "shape": "bytes",
+      "value": {
+        "bytes": []
+      },
+      "expected_ace1_utf8": "\"\"",
+      "expected_bytes_hex": "2222"
+    },
+    {
+      "case_id": "bytes/f",
+      "description": "bytes 1 byte(s), unpadded base64url",
+      "shape": "bytes",
+      "value": {
+        "bytes": [
+          102
+        ]
+      },
+      "expected_ace1_utf8": "\"Zg\"",
+      "expected_bytes_hex": "225a6722"
+    },
+    {
+      "case_id": "bytes/fo",
+      "description": "bytes 2 byte(s), unpadded base64url",
+      "shape": "bytes",
+      "value": {
+        "bytes": [
+          102,
+          111
+        ]
+      },
+      "expected_ace1_utf8": "\"Zm8\"",
+      "expected_bytes_hex": "225a6d3822"
+    },
+    {
+      "case_id": "bytes/foo",
+      "description": "bytes 3 byte(s), unpadded base64url",
+      "shape": "bytes",
+      "value": {
+        "bytes": [
+          102,
+          111,
+          111
+        ]
+      },
+      "expected_ace1_utf8": "\"Zm9v\"",
+      "expected_bytes_hex": "225a6d397622"
+    },
+    {
+      "case_id": "bytes/url-safe-alphabet",
+      "description": "bytes 3 byte(s), unpadded base64url",
+      "shape": "bytes",
+      "value": {
+        "bytes": [
+          251,
+          255,
+          191
+        ]
+      },
+      "expected_ace1_utf8": "\"-_-_\"",
+      "expected_bytes_hex": "222d5f2d5f22"
+    },
+    {
+      "case_id": "bytes/all-byte-values-low",
+      "description": "bytes 64 byte(s), unpadded base64url",
+      "shape": "bytes",
+      "value": {
+        "bytes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63
+        ]
+      },
+      "expected_ace1_utf8": "\"AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0-Pw\"",
+      "expected_bytes_hex": "2241414543417751464267634943516f4c4441304f4478415245684d554652595847426b6147787764486838674953496a4a43556d4a7967704b6973734c5334764d4445794d7a51314e6a63344f546f375044302d507722"
+    },
+    {
+      "case_id": "bytes/all-byte-values-high",
+      "description": "bytes 64 byte(s), unpadded base64url",
+      "shape": "bytes",
+      "value": {
+        "bytes": [
+          192,
+          193,
+          194,
+          195,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          207,
+          208,
+          209,
+          210,
+          211,
+          212,
+          213,
+          214,
+          215,
+          216,
+          217,
+          218,
+          219,
+          220,
+          221,
+          222,
+          223,
+          224,
+          225,
+          226,
+          227,
+          228,
+          229,
+          230,
+          231,
+          232,
+          233,
+          234,
+          235,
+          236,
+          237,
+          238,
+          239,
+          240,
+          241,
+          242,
+          243,
+          244,
+          245,
+          246,
+          247,
+          248,
+          249,
+          250,
+          251,
+          252,
+          253,
+          254,
+          255
+        ]
+      },
+      "expected_ace1_utf8": "\"wMHCw8TFxsfIycrLzM3Oz9DR0tPU1dbX2Nna29zd3t_g4eLj5OXm5-jp6uvs7e7v8PHy8_T19vf4-fr7_P3-_w\"",
+      "expected_bytes_hex": "22774d484377385446787366497963724c7a4d334f7a3944523074505531646258324e6e6132397a6433745f6734654c6a354f586d352d6a70367576733765377638504879385f5431397666342d6672375f50332d5f7722"
+    }
+  ]
+}

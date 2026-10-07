@@ -1,0 +1,1061 @@
+{
+  "kind": "agentflow.conformance.ace1-golden",
+  "ace1_version": "1",
+  "note": "Golden fixtures for ACE1 containers. Shape grammar: primitive names as strings; {\"enum\": {name, values}}, {\"list\": T}, {\"option\": T}, {\"map\": T}, {\"record\": {name, fields:[{field,type}]}}, {\"variant\": {name, cases:[{case,type}]}}. Record/map member order in canonical bytes is unsigned UTF-8 byte order of NFC names, independent of declaration or input order.",
+  "cases": [
+    {
+      "case_id": "list/empty",
+      "description": "empty list",
+      "shape": {
+        "list": "int32"
+      },
+      "value": {
+        "list": []
+      },
+      "expected_ace1_utf8": "[]",
+      "expected_bytes_hex": "5b5d"
+    },
+    {
+      "case_id": "list/int32-order-preserved",
+      "description": "list keeps order (not sorted)",
+      "shape": {
+        "list": "int32"
+      },
+      "value": {
+        "list": [
+          {
+            "int32": "3"
+          },
+          {
+            "int32": "1"
+          },
+          {
+            "int32": "2"
+          }
+        ]
+      },
+      "expected_ace1_utf8": "[\"3\",\"1\",\"2\"]",
+      "expected_bytes_hex": "5b2233222c2231222c2232225d"
+    },
+    {
+      "case_id": "list/int32-boundaries",
+      "description": "int32 boundaries in a list",
+      "shape": {
+        "list": "int32"
+      },
+      "value": {
+        "list": [
+          {
+            "int32": "-2147483648"
+          },
+          {
+            "int32": "2147483647"
+          }
+        ]
+      },
+      "expected_ace1_utf8": "[\"-2147483648\",\"2147483647\"]",
+      "expected_bytes_hex": "5b222d32313437343833363438222c2232313437343833363437225d"
+    },
+    {
+      "case_id": "list/string",
+      "description": "list of strings",
+      "shape": {
+        "list": "string"
+      },
+      "value": {
+        "list": [
+          {
+            "string": "b"
+          },
+          {
+            "string": "a"
+          },
+          {
+            "string": "c"
+          }
+        ]
+      },
+      "expected_ace1_utf8": "[\"b\",\"a\",\"c\"]",
+      "expected_bytes_hex": "5b2262222c2261222c2263225d"
+    },
+    {
+      "case_id": "list/nested",
+      "description": "nested lists",
+      "shape": {
+        "list": {
+          "list": "uint32"
+        }
+      },
+      "value": {
+        "list": [
+          {
+            "list": [
+              {
+                "uint32": "1"
+              },
+              {
+                "uint32": "2"
+              }
+            ]
+          },
+          {
+            "list": []
+          }
+        ]
+      },
+      "expected_ace1_utf8": "[[\"1\",\"2\"],[]]",
+      "expected_bytes_hex": "5b5b2231222c2232225d2c5b5d5d"
+    },
+    {
+      "case_id": "list/enum",
+      "description": "list of closed enum values",
+      "shape": {
+        "list": {
+          "enum": {
+            "name": "TaskOutcome",
+            "values": [
+              "SUCCEEDED",
+              "FAILED",
+              "CANCELLED",
+              "TIMED_OUT"
+            ]
+          }
+        }
+      },
+      "value": {
+        "list": [
+          {
+            "enum": "SUCCEEDED"
+          },
+          {
+            "enum": "TIMED_OUT"
+          }
+        ]
+      },
+      "expected_ace1_utf8": "[\"SUCCEEDED\",\"TIMED_OUT\"]",
+      "expected_bytes_hex": "5b22535543434545444544222c2254494d45445f4f5554225d"
+    },
+    {
+      "case_id": "map/empty",
+      "description": "empty map",
+      "shape": {
+        "map": "int32"
+      },
+      "value": {
+        "map": []
+      },
+      "expected_ace1_utf8": "{}",
+      "expected_bytes_hex": "7b7d"
+    },
+    {
+      "case_id": "map/single",
+      "description": "single-entry map",
+      "shape": {
+        "map": "int32"
+      },
+      "value": {
+        "map": [
+          {
+            "key": "a",
+            "value": {
+              "int32": "1"
+            }
+          }
+        ]
+      },
+      "expected_ace1_utf8": "{\"a\":\"1\"}",
+      "expected_bytes_hex": "7b2261223a2231227d"
+    },
+    {
+      "case_id": "map/unsorted-input",
+      "description": "unsorted input keys are canonicalized into byte order",
+      "shape": {
+        "map": "int32"
+      },
+      "value": {
+        "map": [
+          {
+            "key": "zeta",
+            "value": {
+              "int32": "3"
+            }
+          },
+          {
+            "key": "alpha",
+            "value": {
+              "int32": "1"
+            }
+          },
+          {
+            "key": "mid",
+            "value": {
+              "int32": "2"
+            }
+          }
+        ]
+      },
+      "expected_ace1_utf8": "{\"alpha\":\"1\",\"mid\":\"2\",\"zeta\":\"3\"}",
+      "expected_bytes_hex": "7b22616c706861223a2231222c226d6964223a2232222c227a657461223a2233227d"
+    },
+    {
+      "case_id": "map/sorted-input-equivalent",
+      "description": "the same map in sorted input order — bytes identical to map/unsorted-input",
+      "shape": {
+        "map": "int32"
+      },
+      "value": {
+        "map": [
+          {
+            "key": "alpha",
+            "value": {
+              "int32": "1"
+            }
+          },
+          {
+            "key": "mid",
+            "value": {
+              "int32": "2"
+            }
+          },
+          {
+            "key": "zeta",
+            "value": {
+              "int32": "3"
+            }
+          }
+        ]
+      },
+      "expected_ace1_utf8": "{\"alpha\":\"1\",\"mid\":\"2\",\"zeta\":\"3\"}",
+      "expected_bytes_hex": "7b22616c706861223a2231222c226d6964223a2232222c227a657461223a2233227d"
+    },
+    {
+      "case_id": "map/byte-order-case",
+      "description": "uppercase B (0x42) sorts before lowercase a (0x61)",
+      "shape": {
+        "map": "int32"
+      },
+      "value": {
+        "map": [
+          {
+            "key": "a",
+            "value": {
+              "int32": "2"
+            }
+          },
+          {
+            "key": "B",
+            "value": {
+              "int32": "1"
+            }
+          }
+        ]
+      },
+      "expected_ace1_utf8": "{\"B\":\"1\",\"a\":\"2\"}",
+      "expected_bytes_hex": "7b2242223a2231222c2261223a2232227d"
+    },
+    {
+      "case_id": "map/byte-order-multibyte",
+      "description": "multibyte keys sort by unsigned UTF-8 bytes: z(0x7A) < é(U+00E9) < 中(U+4E2D)",
+      "shape": {
+        "map": "int32"
+      },
+      "value": {
+        "map": [
+          {
+            "key": "中",
+            "value": {
+              "int32": "3"
+            }
+          },
+          {
+            "key": "z",
+            "value": {
+              "int32": "1"
+            }
+          },
+          {
+            "key": "é",
+            "value": {
+              "int32": "2"
+            }
+          }
+        ]
+      },
+      "expected_ace1_utf8": "{\"z\":\"1\",\"é\":\"2\",\"中\":\"3\"}",
+      "expected_bytes_hex": "7b227a223a2231222c22c3a9223a2232222c22e4b8ad223a2233227d"
+    },
+    {
+      "case_id": "map/empty-key",
+      "description": "empty string key sorts first",
+      "shape": {
+        "map": "int32"
+      },
+      "value": {
+        "map": [
+          {
+            "key": "a",
+            "value": {
+              "int32": "2"
+            }
+          },
+          {
+            "key": "",
+            "value": {
+              "int32": "1"
+            }
+          }
+        ]
+      },
+      "expected_ace1_utf8": "{\"\":\"1\",\"a\":\"2\"}",
+      "expected_bytes_hex": "7b22223a2231222c2261223a2232227d"
+    },
+    {
+      "case_id": "map/key-needs-escaping",
+      "description": "map key containing a quote",
+      "shape": {
+        "map": "int32"
+      },
+      "value": {
+        "map": [
+          {
+            "key": "a\"b",
+            "value": {
+              "int32": "1"
+            }
+          },
+          {
+            "key": "ab",
+            "value": {
+              "int32": "2"
+            }
+          }
+        ]
+      },
+      "expected_ace1_utf8": "{\"a\\\"b\":\"1\",\"ab\":\"2\"}",
+      "expected_bytes_hex": "7b22615c2262223a2231222c226162223a2232227d"
+    },
+    {
+      "case_id": "map/nfc-key-input",
+      "description": "decomposed key input is NFC-normalized",
+      "shape": {
+        "map": "int32"
+      },
+      "value": {
+        "map": [
+          {
+            "key": "école",
+            "value": {
+              "int32": "1"
+            }
+          }
+        ]
+      },
+      "expected_ace1_utf8": "{\"école\":\"1\"}",
+      "expected_bytes_hex": "7b22c3a9636f6c65223a2231227d"
+    },
+    {
+      "case_id": "map/value-shapes",
+      "description": "map<string,string> values",
+      "shape": {
+        "map": "string"
+      },
+      "value": {
+        "map": [
+          {
+            "key": "b",
+            "value": {
+              "string": "second"
+            }
+          },
+          {
+            "key": "a",
+            "value": {
+              "string": "first"
+            }
+          }
+        ]
+      },
+      "expected_ace1_utf8": "{\"a\":\"first\",\"b\":\"second\"}",
+      "expected_bytes_hex": "7b2261223a226669727374222c2262223a227365636f6e64227d"
+    },
+    {
+      "case_id": "map/variant-values",
+      "description": "map of variants",
+      "shape": {
+        "map": {
+          "variant": {
+            "name": "Result",
+            "cases": [
+              {
+                "case": "ok",
+                "type": "string"
+              },
+              {
+                "case": "error",
+                "type": "string"
+              },
+              {
+                "case": "empty",
+                "type": "unit"
+              }
+            ]
+          }
+        }
+      },
+      "value": {
+        "map": [
+          {
+            "key": "a",
+            "value": {
+              "variant": {
+                "case": "ok",
+                "value": {
+                  "string": "fine"
+                }
+              }
+            }
+          },
+          {
+            "key": "b",
+            "value": {
+              "variant": {
+                "case": "empty",
+                "value": {
+                  "unit": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      "expected_ace1_utf8": "{\"a\":{\"ok\":\"fine\"},\"b\":{\"empty\":null}}",
+      "expected_bytes_hex": "7b2261223a7b226f6b223a2266696e65227d2c2262223a7b22656d707479223a6e756c6c7d7d"
+    },
+    {
+      "case_id": "record/declared-order-not-canonical",
+      "description": "fields declared y,x are emitted in canonical byte order x,y",
+      "shape": {
+        "record": {
+          "name": "Point",
+          "fields": [
+            {
+              "field": "x",
+              "type": "int64"
+            },
+            {
+              "field": "y",
+              "type": "int64"
+            }
+          ]
+        }
+      },
+      "value": {
+        "record": [
+          {
+            "field": "y",
+            "value": {
+              "int64": "2"
+            }
+          },
+          {
+            "field": "x",
+            "value": {
+              "int64": "1"
+            }
+          }
+        ]
+      },
+      "expected_ace1_utf8": "{\"x\":\"1\",\"y\":\"2\"}",
+      "expected_bytes_hex": "7b2278223a2231222c2279223a2232227d"
+    },
+    {
+      "case_id": "record/empty",
+      "description": "record with no declared fields",
+      "shape": {
+        "record": {
+          "name": "Empty",
+          "fields": []
+        }
+      },
+      "value": {
+        "record": []
+      },
+      "expected_ace1_utf8": "{}",
+      "expected_bytes_hex": "7b7d"
+    },
+    {
+      "case_id": "record/with-option-none",
+      "description": "record with Option field None (explicit null)",
+      "shape": {
+        "record": {
+          "name": "Maybe",
+          "fields": [
+            {
+              "field": "value",
+              "type": {
+                "option": "string"
+              }
+            }
+          ]
+        }
+      },
+      "value": {
+        "record": [
+          {
+            "field": "value",
+            "value": {
+              "none": null
+            }
+          }
+        ]
+      },
+      "expected_ace1_utf8": "{\"value\":null}",
+      "expected_bytes_hex": "7b2276616c7565223a6e756c6c7d"
+    },
+    {
+      "case_id": "record/with-option-some",
+      "description": "record with Option field Some",
+      "shape": {
+        "record": {
+          "name": "Maybe",
+          "fields": [
+            {
+              "field": "value",
+              "type": {
+                "option": "string"
+              }
+            }
+          ]
+        }
+      },
+      "value": {
+        "record": [
+          {
+            "field": "value",
+            "value": {
+              "some": {
+                "string": "present"
+              }
+            }
+          }
+        ]
+      },
+      "expected_ace1_utf8": "{\"value\":\"present\"}",
+      "expected_bytes_hex": "7b2276616c7565223a2270726573656e74227d"
+    },
+    {
+      "case_id": "record/with-null-field",
+      "description": "record with a null-typed field",
+      "shape": {
+        "record": {
+          "name": "Nullable",
+          "fields": [
+            {
+              "field": "value",
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "value": {
+        "record": [
+          {
+            "field": "value",
+            "value": {
+              "null": null
+            }
+          }
+        ]
+      },
+      "expected_ace1_utf8": "{\"value\":null}",
+      "expected_bytes_hex": "7b2276616c7565223a6e756c6c7d"
+    },
+    {
+      "case_id": "record/with-unit-field",
+      "description": "record with a unit-typed field",
+      "shape": {
+        "record": {
+          "name": "Unitary",
+          "fields": [
+            {
+              "field": "value",
+              "type": "unit"
+            }
+          ]
+        }
+      },
+      "value": {
+        "record": [
+          {
+            "field": "value",
+            "value": {
+              "unit": null
+            }
+          }
+        ]
+      },
+      "expected_ace1_utf8": "{\"value\":null}",
+      "expected_bytes_hex": "7b2276616c7565223a6e756c6c7d"
+    },
+    {
+      "case_id": "record/nested",
+      "description": "nested records",
+      "shape": {
+        "record": {
+          "name": "Outer",
+          "fields": [
+            {
+              "field": "inner",
+              "type": {
+                "record": {
+                  "name": "Point",
+                  "fields": [
+                    {
+                      "field": "x",
+                      "type": "int64"
+                    },
+                    {
+                      "field": "y",
+                      "type": "int64"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "field": "label",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "value": {
+        "record": [
+          {
+            "field": "inner",
+            "value": {
+              "record": [
+                {
+                  "field": "x",
+                  "value": {
+                    "int64": "10"
+                  }
+                },
+                {
+                  "field": "y",
+                  "value": {
+                    "int64": "20"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "field": "label",
+            "value": {
+              "string": "origin"
+            }
+          }
+        ]
+      },
+      "expected_ace1_utf8": "{\"inner\":{\"x\":\"10\",\"y\":\"20\"},\"label\":\"origin\"}",
+      "expected_bytes_hex": "7b22696e6e6572223a7b2278223a223130222c2279223a223230227d2c226c6162656c223a226f726967696e227d"
+    },
+    {
+      "case_id": "record/all-primitives",
+      "description": "record touching every machine primitive",
+      "shape": {
+        "record": {
+          "name": "Everything",
+          "fields": [
+            {
+              "field": "a_bool",
+              "type": "bool"
+            },
+            {
+              "field": "a_bytes",
+              "type": "bytes"
+            },
+            {
+              "field": "a_decimal",
+              "type": "decimal"
+            },
+            {
+              "field": "a_duration",
+              "type": "duration"
+            },
+            {
+              "field": "a_f64",
+              "type": "float64"
+            },
+            {
+              "field": "a_i32",
+              "type": "int32"
+            },
+            {
+              "field": "a_i64",
+              "type": "int64"
+            },
+            {
+              "field": "a_string",
+              "type": "string"
+            },
+            {
+              "field": "a_ts",
+              "type": "timestamp"
+            },
+            {
+              "field": "a_u32",
+              "type": "uint32"
+            },
+            {
+              "field": "a_u64",
+              "type": "uint64"
+            }
+          ]
+        }
+      },
+      "value": {
+        "record": [
+          {
+            "field": "a_bool",
+            "value": {
+              "bool": true
+            }
+          },
+          {
+            "field": "a_bytes",
+            "value": {
+              "bytes": [
+                1,
+                2,
+                3
+              ]
+            }
+          },
+          {
+            "field": "a_decimal",
+            "value": {
+              "decimal": "1.5"
+            }
+          },
+          {
+            "field": "a_duration",
+            "value": {
+              "duration": "-42"
+            }
+          },
+          {
+            "field": "a_f64",
+            "value": {
+              "float64": "3ff0000000000000"
+            }
+          },
+          {
+            "field": "a_i32",
+            "value": {
+              "int32": "-5"
+            }
+          },
+          {
+            "field": "a_i64",
+            "value": {
+              "int64": "9007199254740993"
+            }
+          },
+          {
+            "field": "a_string",
+            "value": {
+              "string": "héllo"
+            }
+          },
+          {
+            "field": "a_ts",
+            "value": {
+              "timestamp": "1700000000000000"
+            }
+          },
+          {
+            "field": "a_u32",
+            "value": {
+              "uint32": "4294967295"
+            }
+          },
+          {
+            "field": "a_u64",
+            "value": {
+              "uint64": "18446744073709551615"
+            }
+          }
+        ]
+      },
+      "expected_ace1_utf8": "{\"a_bool\":true,\"a_bytes\":\"AQID\",\"a_decimal\":\"1.5\",\"a_duration\":\"-42\",\"a_f64\":\"3ff0000000000000\",\"a_i32\":\"-5\",\"a_i64\":\"9007199254740993\",\"a_string\":\"héllo\",\"a_ts\":\"1700000000000000\",\"a_u32\":\"4294967295\",\"a_u64\":\"18446744073709551615\"}",
+      "expected_bytes_hex": "7b22615f626f6f6c223a747275652c22615f6279746573223a2241514944222c22615f646563696d616c223a22312e35222c22615f6475726174696f6e223a222d3432222c22615f663634223a2233666630303030303030303030303030222c22615f693332223a222d35222c22615f693634223a2239303037313939323534373430393933222c22615f737472696e67223a2268c3a96c6c6f222c22615f7473223a2231373030303030303030303030303030222c22615f753332223a2234323934393637323935222c22615f753634223a223138343436373434303733373039353531363135227d"
+    },
+    {
+      "case_id": "variant/string-payload",
+      "description": "variant with string payload",
+      "shape": {
+        "variant": {
+          "name": "Result",
+          "cases": [
+            {
+              "case": "ok",
+              "type": "string"
+            },
+            {
+              "case": "error",
+              "type": "string"
+            },
+            {
+              "case": "empty",
+              "type": "unit"
+            }
+          ]
+        }
+      },
+      "value": {
+        "variant": {
+          "case": "ok",
+          "value": {
+            "string": "fine"
+          }
+        }
+      },
+      "expected_ace1_utf8": "{\"ok\":\"fine\"}",
+      "expected_bytes_hex": "7b226f6b223a2266696e65227d"
+    },
+    {
+      "case_id": "variant/unit-payload",
+      "description": "variant with unit payload",
+      "shape": {
+        "variant": {
+          "name": "Result",
+          "cases": [
+            {
+              "case": "ok",
+              "type": "string"
+            },
+            {
+              "case": "error",
+              "type": "string"
+            },
+            {
+              "case": "empty",
+              "type": "unit"
+            }
+          ]
+        }
+      },
+      "value": {
+        "variant": {
+          "case": "empty",
+          "value": {
+            "unit": null
+          }
+        }
+      },
+      "expected_ace1_utf8": "{\"empty\":null}",
+      "expected_bytes_hex": "7b22656d707479223a6e756c6c7d"
+    },
+    {
+      "case_id": "variant/nested-variant",
+      "description": "variant whose payload is another variant",
+      "shape": {
+        "variant": {
+          "name": "Outer",
+          "cases": [
+            {
+              "case": "wrap",
+              "type": {
+                "variant": {
+                  "name": "Result",
+                  "cases": [
+                    {
+                      "case": "ok",
+                      "type": "string"
+                    },
+                    {
+                      "case": "error",
+                      "type": "string"
+                    },
+                    {
+                      "case": "empty",
+                      "type": "unit"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "case": "nothing",
+              "type": "unit"
+            }
+          ]
+        }
+      },
+      "value": {
+        "variant": {
+          "case": "wrap",
+          "value": {
+            "variant": {
+              "case": "error",
+              "value": {
+                "string": "boom"
+              }
+            }
+          }
+        }
+      },
+      "expected_ace1_utf8": "{\"wrap\":{\"error\":\"boom\"}}",
+      "expected_bytes_hex": "7b2277726170223a7b226572726f72223a22626f6f6d227d7d"
+    },
+    {
+      "case_id": "variant/record-payload",
+      "description": "variant with record payload",
+      "shape": {
+        "variant": {
+          "name": "Shape",
+          "cases": [
+            {
+              "case": "point",
+              "type": {
+                "record": {
+                  "name": "Point",
+                  "fields": [
+                    {
+                      "field": "x",
+                      "type": "int64"
+                    },
+                    {
+                      "field": "y",
+                      "type": "int64"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "value": {
+        "variant": {
+          "case": "point",
+          "value": {
+            "record": [
+              {
+                "field": "x",
+                "value": {
+                  "int64": "1"
+                }
+              },
+              {
+                "field": "y",
+                "value": {
+                  "int64": "2"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "expected_ace1_utf8": "{\"point\":{\"x\":\"1\",\"y\":\"2\"}}",
+      "expected_bytes_hex": "7b22706f696e74223a7b2278223a2231222c2279223a2232227d7d"
+    },
+    {
+      "case_id": "option/some-string",
+      "description": "standalone Some",
+      "shape": {
+        "option": "string"
+      },
+      "value": {
+        "some": {
+          "string": "x"
+        }
+      },
+      "expected_ace1_utf8": "\"x\"",
+      "expected_bytes_hex": "227822"
+    },
+    {
+      "case_id": "option/none-string",
+      "description": "standalone None (explicit null)",
+      "shape": {
+        "option": "string"
+      },
+      "value": {
+        "none": null
+      },
+      "expected_ace1_utf8": "null",
+      "expected_bytes_hex": "6e756c6c"
+    },
+    {
+      "case_id": "option/int32-in-list",
+      "description": "options inside a list",
+      "shape": {
+        "list": {
+          "option": "int32"
+        }
+      },
+      "value": {
+        "list": [
+          {
+            "some": {
+              "int32": "1"
+            }
+          },
+          {
+            "none": null
+          },
+          {
+            "some": {
+              "int32": "3"
+            }
+          }
+        ]
+      },
+      "expected_ace1_utf8": "[\"1\",null,\"3\"]",
+      "expected_bytes_hex": "5b2231222c6e756c6c2c2233225d"
+    },
+    {
+      "case_id": "option/record-some",
+      "description": "Some(record)",
+      "shape": {
+        "option": {
+          "record": {
+            "name": "Point",
+            "fields": [
+              {
+                "field": "x",
+                "type": "int64"
+              },
+              {
+                "field": "y",
+                "type": "int64"
+              }
+            ]
+          }
+        }
+      },
+      "value": {
+        "some": {
+          "record": [
+            {
+              "field": "x",
+              "value": {
+                "int64": "1"
+              }
+            },
+            {
+              "field": "y",
+              "value": {
+                "int64": "2"
+              }
+            }
+          ]
+        }
+      },
+      "expected_ace1_utf8": "{\"x\":\"1\",\"y\":\"2\"}",
+      "expected_bytes_hex": "7b2278223a2231222c2279223a2232227d"
+    }
+  ]
+}

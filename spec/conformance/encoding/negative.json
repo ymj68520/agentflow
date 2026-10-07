@@ -1,0 +1,918 @@
+{
+  "kind": "agentflow.conformance.ace1-negative",
+  "ace1_version": "1",
+  "note": "Negative corpus. encoder cases fail while building/encoding the typed value; decoder cases fail while strict-decoding the raw bytes. error_class values are stable identifiers (AceError::kind / DigestError::kind). requires_decoder is false everywhere because this phase ships a strict decoder; the field remains for corpus evolution.",
+  "cases": [
+    {
+      "case_id": "int32/overflow",
+      "description": "int32 above maximum",
+      "shape": "int32",
+      "value": {
+        "int32": "2147483648"
+      },
+      "error_class": "integer_out_of_range",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "int32/underflow",
+      "description": "int32 below minimum",
+      "shape": "int32",
+      "value": {
+        "int32": "-2147483649"
+      },
+      "error_class": "integer_out_of_range",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "int64/overflow",
+      "description": "int64 above maximum",
+      "shape": "int64",
+      "value": {
+        "int64": "9223372036854775808"
+      },
+      "error_class": "integer_out_of_range",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "int64/underflow",
+      "description": "int64 below minimum",
+      "shape": "int64",
+      "value": {
+        "int64": "-9223372036854775809"
+      },
+      "error_class": "integer_out_of_range",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "uint32/negative",
+      "description": "uint32 rejects negative values",
+      "shape": "uint32",
+      "value": {
+        "uint32": "-1"
+      },
+      "error_class": "integer_out_of_range",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "uint64/negative",
+      "description": "uint64 rejects negative values",
+      "shape": "uint64",
+      "value": {
+        "uint64": "-1"
+      },
+      "error_class": "integer_out_of_range",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "uint64/overflow",
+      "description": "uint64 above maximum",
+      "shape": "uint64",
+      "value": {
+        "uint64": "18446744073709551616"
+      },
+      "error_class": "integer_out_of_range",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "int/plus-sign",
+      "description": "leading + is not canonical integer text",
+      "shape": "int32",
+      "value": {
+        "int32": "+1"
+      },
+      "error_class": "invalid_integer",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "int/leading-zeros",
+      "description": "leading zeros are not canonical integer text",
+      "shape": "int32",
+      "value": {
+        "int32": "007"
+      },
+      "error_class": "invalid_integer",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "int/negative-zero",
+      "description": "-0 is not canonical integer text",
+      "shape": "int64",
+      "value": {
+        "int64": "-0"
+      },
+      "error_class": "invalid_integer",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "int/empty",
+      "description": "empty integer text",
+      "shape": "int32",
+      "value": {
+        "int32": ""
+      },
+      "error_class": "invalid_integer",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "int/junk",
+      "description": "non-digit characters",
+      "shape": "int32",
+      "value": {
+        "int32": "12a4"
+      },
+      "error_class": "invalid_integer",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "int/float-text",
+      "description": "float text is not integer text",
+      "shape": "int32",
+      "value": {
+        "int32": "1.5"
+      },
+      "error_class": "invalid_integer",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "nominal/int64-into-int32",
+      "description": "int64 value into an int32 shape",
+      "shape": "int32",
+      "value": {
+        "int64": "5"
+      },
+      "error_class": "type_mismatch",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "nominal/timestamp-into-int64",
+      "description": "timestamp into an int64 shape",
+      "shape": "int64",
+      "value": {
+        "timestamp": "0"
+      },
+      "error_class": "type_mismatch",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "nominal/duration-into-timestamp",
+      "description": "duration into a timestamp shape",
+      "shape": "timestamp",
+      "value": {
+        "duration": "0"
+      },
+      "error_class": "type_mismatch",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "nominal/int32-into-timestamp",
+      "description": "int32 into a timestamp shape",
+      "shape": "timestamp",
+      "value": {
+        "int32": "0"
+      },
+      "error_class": "type_mismatch",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "decimal/plus-sign",
+      "description": "decimal with + sign",
+      "shape": "decimal",
+      "value": {
+        "decimal": "+1.5"
+      },
+      "error_class": "invalid_decimal",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "decimal/leading-zero",
+      "description": "decimal with leading zero",
+      "shape": "decimal",
+      "value": {
+        "decimal": "01.5"
+      },
+      "error_class": "invalid_decimal",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "decimal/trailing-dot",
+      "description": "decimal without fractional digits",
+      "shape": "decimal",
+      "value": {
+        "decimal": "1."
+      },
+      "error_class": "invalid_decimal",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "decimal/leading-dot",
+      "description": "decimal without integer digits",
+      "shape": "decimal",
+      "value": {
+        "decimal": ".5"
+      },
+      "error_class": "invalid_decimal",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "decimal/exponent",
+      "description": "exponent notation is not part of ACE1 decimals",
+      "shape": "decimal",
+      "value": {
+        "decimal": "1.5e2"
+      },
+      "error_class": "invalid_decimal",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "decimal/double-dot",
+      "description": "malformed decimal",
+      "shape": "decimal",
+      "value": {
+        "decimal": "1.2.3"
+      },
+      "error_class": "invalid_decimal",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "decimal/empty",
+      "description": "empty decimal",
+      "shape": "decimal",
+      "value": {
+        "decimal": ""
+      },
+      "error_class": "invalid_decimal",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "decimal/text",
+      "description": "non-numeric decimal",
+      "shape": "decimal",
+      "value": {
+        "decimal": "abc"
+      },
+      "error_class": "invalid_decimal",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "float64/nan",
+      "description": "NaN is forbidden",
+      "shape": "float64",
+      "value": {
+        "float64": "7ff8000000000000"
+      },
+      "error_class": "non_finite_float",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "float64/nan-signaling",
+      "description": "signaling NaN is forbidden",
+      "shape": "float64",
+      "value": {
+        "float64": "7ff0000000000001"
+      },
+      "error_class": "non_finite_float",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "float64/positive-infinity",
+      "description": "+Inf is forbidden",
+      "shape": "float64",
+      "value": {
+        "float64": "7ff0000000000000"
+      },
+      "error_class": "non_finite_float",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "float64/negative-infinity",
+      "description": "-Inf is forbidden",
+      "shape": "float64",
+      "value": {
+        "float64": "fff0000000000000"
+      },
+      "error_class": "non_finite_float",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "record/missing-field",
+      "description": "declared field not supplied",
+      "shape": {
+        "record": {
+          "name": "Point",
+          "fields": [
+            {
+              "field": "x",
+              "type": "int64"
+            },
+            {
+              "field": "y",
+              "type": "int64"
+            }
+          ]
+        }
+      },
+      "value": {
+        "record": [
+          {
+            "field": "x",
+            "value": {
+              "int64": "1"
+            }
+          }
+        ]
+      },
+      "error_class": "missing_field",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "record/unknown-field",
+      "description": "undeclared field supplied",
+      "shape": {
+        "record": {
+          "name": "Point",
+          "fields": [
+            {
+              "field": "x",
+              "type": "int64"
+            },
+            {
+              "field": "y",
+              "type": "int64"
+            }
+          ]
+        }
+      },
+      "value": {
+        "record": [
+          {
+            "field": "x",
+            "value": {
+              "int64": "1"
+            }
+          },
+          {
+            "field": "z",
+            "value": {
+              "int64": "2"
+            }
+          }
+        ]
+      },
+      "error_class": "unknown_field",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "record/duplicate-field",
+      "description": "field supplied twice",
+      "shape": {
+        "record": {
+          "name": "Point",
+          "fields": [
+            {
+              "field": "x",
+              "type": "int64"
+            },
+            {
+              "field": "y",
+              "type": "int64"
+            }
+          ]
+        }
+      },
+      "value": {
+        "record": [
+          {
+            "field": "x",
+            "value": {
+              "int64": "1"
+            }
+          },
+          {
+            "field": "x",
+            "value": {
+              "int64": "2"
+            }
+          }
+        ]
+      },
+      "error_class": "duplicate_field",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "map/duplicate-key",
+      "description": "identical map keys",
+      "shape": {
+        "map": "int32"
+      },
+      "value": {
+        "map": [
+          {
+            "key": "a",
+            "value": {
+              "int32": "1"
+            }
+          },
+          {
+            "key": "a",
+            "value": {
+              "int32": "2"
+            }
+          }
+        ]
+      },
+      "error_class": "duplicate_normalized_key",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "map/nfc-duplicate-key",
+      "description": "NFC-equivalent map keys (é vs e+U+0301)",
+      "shape": {
+        "map": "int32"
+      },
+      "value": {
+        "map": [
+          {
+            "key": "é",
+            "value": {
+              "int32": "1"
+            }
+          },
+          {
+            "key": "é",
+            "value": {
+              "int32": "2"
+            }
+          }
+        ]
+      },
+      "error_class": "duplicate_normalized_key",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "enum/unknown-value",
+      "description": "closed enum rejects unknown value",
+      "shape": {
+        "enum": {
+          "name": "TaskOutcome",
+          "values": [
+            "SUCCEEDED",
+            "FAILED",
+            "CANCELLED",
+            "TIMED_OUT"
+          ]
+        }
+      },
+      "value": {
+        "enum": "ABORTED"
+      },
+      "error_class": "unknown_enum_value",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "variant/unknown-case",
+      "description": "closed variant rejects unknown case",
+      "shape": {
+        "variant": {
+          "name": "Result",
+          "cases": [
+            {
+              "case": "ok",
+              "type": "string"
+            },
+            {
+              "case": "error",
+              "type": "string"
+            },
+            {
+              "case": "empty",
+              "type": "unit"
+            }
+          ]
+        }
+      },
+      "value": {
+        "variant": {
+          "case": "panic",
+          "value": {
+            "string": "x"
+          }
+        }
+      },
+      "error_class": "unknown_variant_case",
+      "target": "encoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/whitespace",
+      "description": "insignificant whitespace is not canonical",
+      "shape": "int32",
+      "bytes": " \"42\" ",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/trailing-newline",
+      "description": "trailing newline is not canonical",
+      "shape": "int32",
+      "bytes": "\"42\"\n",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/trailing-bytes",
+      "description": "trailing data after the value",
+      "shape": "int32",
+      "bytes": "\"42\"x",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/bare-number",
+      "description": "bare JSON numbers are not ACE1",
+      "shape": "int32",
+      "bytes": "42",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/unsorted-keys",
+      "description": "map keys not in byte order",
+      "shape": {
+        "map": "int32"
+      },
+      "bytes": "{\"b\":\"1\",\"a\":\"2\"}",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/duplicate-keys",
+      "description": "duplicate map keys in bytes",
+      "shape": {
+        "map": "int32"
+      },
+      "bytes": "{\"a\":\"1\",\"a\":\"2\"}",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/non-canonical-decimal",
+      "description": "decimal text not in canonical form",
+      "shape": "decimal",
+      "bytes": "\"1.50\"",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/float-uppercase-hex",
+      "description": "uppercase float hex is not canonical",
+      "shape": "float64",
+      "bytes": "\"3FF0000000000000\"",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/float-negative-zero",
+      "description": "-0 float bits are non-canonical",
+      "shape": "float64",
+      "bytes": "\"8000000000000000\"",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/float-short-hex",
+      "description": "float hex must be 16 characters",
+      "shape": "float64",
+      "bytes": "\"3ff00000000000\"",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/float-nan",
+      "description": "NaN bits rejected by decoder",
+      "shape": "float64",
+      "bytes": "\"7ff8000000000000\"",
+      "error_class": "non_finite_float",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/float-inf",
+      "description": "+Inf bits rejected by decoder",
+      "shape": "float64",
+      "bytes": "\"7ff0000000000000\"",
+      "error_class": "non_finite_float",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/padded-base64url",
+      "description": "padded base64url is forbidden",
+      "shape": "bytes",
+      "bytes": "\"Zg==\"",
+      "error_class": "invalid_bytes_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/standard-base64-alphabet",
+      "description": "'+' and '/' are forbidden",
+      "shape": "bytes",
+      "bytes": "\"Zm8+\"",
+      "error_class": "invalid_bytes_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/int-leading-zeros",
+      "description": "leading zeros in encoded integer",
+      "shape": "int32",
+      "bytes": "\"007\"",
+      "error_class": "invalid_integer",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/int-plus",
+      "description": "+ sign in encoded integer",
+      "shape": "int32",
+      "bytes": "\"+1\"",
+      "error_class": "invalid_integer",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/int-out-of-range",
+      "description": "encoded integer out of int32 range",
+      "shape": "int32",
+      "bytes": "\"2147483648\"",
+      "error_class": "integer_out_of_range",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/record-missing-field",
+      "description": "record bytes missing a declared field",
+      "shape": {
+        "record": {
+          "name": "Point",
+          "fields": [
+            {
+              "field": "x",
+              "type": "int64"
+            },
+            {
+              "field": "y",
+              "type": "int64"
+            }
+          ]
+        }
+      },
+      "bytes": "{\"x\":\"1\"}",
+      "error_class": "missing_field",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/record-unknown-field",
+      "description": "record bytes with an undeclared field",
+      "shape": {
+        "record": {
+          "name": "Point",
+          "fields": [
+            {
+              "field": "x",
+              "type": "int64"
+            },
+            {
+              "field": "y",
+              "type": "int64"
+            }
+          ]
+        }
+      },
+      "bytes": "{\"x\":\"1\",\"z\":\"2\"}",
+      "error_class": "unknown_field",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/record-unsorted-fields",
+      "description": "record members not in canonical order",
+      "shape": {
+        "record": {
+          "name": "Point",
+          "fields": [
+            {
+              "field": "x",
+              "type": "int64"
+            },
+            {
+              "field": "y",
+              "type": "int64"
+            }
+          ]
+        }
+      },
+      "bytes": "{\"y\":\"2\",\"x\":\"1\"}",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/variant-two-cases",
+      "description": "variant must encode exactly one case",
+      "shape": {
+        "variant": {
+          "name": "Result",
+          "cases": [
+            {
+              "case": "ok",
+              "type": "string"
+            },
+            {
+              "case": "error",
+              "type": "string"
+            },
+            {
+              "case": "empty",
+              "type": "unit"
+            }
+          ]
+        }
+      },
+      "bytes": "{\"ok\":\"a\",\"error\":\"b\"}",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/variant-unknown-case",
+      "description": "unknown variant case in bytes",
+      "shape": {
+        "variant": {
+          "name": "Result",
+          "cases": [
+            {
+              "case": "ok",
+              "type": "string"
+            },
+            {
+              "case": "error",
+              "type": "string"
+            },
+            {
+              "case": "empty",
+              "type": "unit"
+            }
+          ]
+        }
+      },
+      "bytes": "{\"panic\":\"x\"}",
+      "error_class": "unknown_variant_case",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/enum-unknown-value",
+      "description": "unknown enum value in bytes",
+      "shape": {
+        "enum": {
+          "name": "TaskOutcome",
+          "values": [
+            "SUCCEEDED",
+            "FAILED",
+            "CANCELLED",
+            "TIMED_OUT"
+          ]
+        }
+      },
+      "bytes": "\"ABORTED\"",
+      "error_class": "unknown_enum_value",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/escape-slash",
+      "description": "\\ escape is non-canonical",
+      "shape": "string",
+      "bytes": "\"a\\/b\"",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/escape-uppercase-hex",
+      "description": "uppercase \\u hex digit is non-canonical",
+      "shape": "string",
+      "bytes": "\"a\\u000B\"",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/escape-non-control",
+      "description": "\\u escape for a non-control is non-canonical",
+      "shape": "string",
+      "bytes": "\"a\\u0041b\"",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/escape-short-form-required",
+      "description": "\\u000a must be written as \\n",
+      "shape": "string",
+      "bytes": "\"a\\u000ab\"",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/raw-control-in-string",
+      "description": "raw control byte inside a string",
+      "shape": "string",
+      "bytes": "\"a\u0001b\"",
+      "error_class": "non_canonical_encoding",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/non-nfc-string",
+      "description": "raw non-NFC (decomposed) string content",
+      "shape": "string",
+      "bytes": "\"é\"",
+      "error_class": "invalid_unicode",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/non-nfc-map-key",
+      "description": "raw non-NFC (decomposed) map key",
+      "shape": {
+        "map": "int32"
+      },
+      "bytes": "{\"école\":\"1\"}",
+      "error_class": "invalid_unicode",
+      "target": "decoder",
+      "requires_decoder": false
+    },
+    {
+      "case_id": "dec/option-nested-unrepresentable",
+      "description": "option<option<T>> is unrepresentable",
+      "shape": {
+        "option": {
+          "option": "int32"
+        }
+      },
+      "bytes": "null",
+      "error_class": "invalid_shape",
+      "target": "decoder",
+      "requires_decoder": false
+    }
+  ]
+}

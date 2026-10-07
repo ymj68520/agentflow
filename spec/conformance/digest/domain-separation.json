@@ -1,0 +1,64 @@
+{
+  "kind": "agentflow.conformance.hash-v1-domain-separation",
+  "hash_algorithm": "sha256",
+  "payload_hex": "646f6d61696e2d73657061726174696f6e2d70726f62652d7061796c6f6164",
+  "note": "One fixed payload hashed under every frozen domain. All digests must be pairwise distinct and match the frozen values.",
+  "domains": [
+    {
+      "domain": "type-schema",
+      "expected_sha256_hex": "0187aab36b11b360b6926c6763d78cee1197e090a0a4368b4a1e92fd66d3c12d"
+    },
+    {
+      "domain": "value",
+      "expected_sha256_hex": "49aadfec975a9db4251f52bd61cda3ff8c66c6afe468094a507d755563ba7a81"
+    },
+    {
+      "domain": "provenance",
+      "expected_sha256_hex": "b5be59c74a51d1fc53e74a1ee090db90e0f1c1211284604129f274e0d88860a4"
+    },
+    {
+      "domain": "artifact",
+      "expected_sha256_hex": "87c34a2e2b75b1e8f42f0b8b51ba12b2b3ab58909af445a24e4215f528f1f2a5"
+    },
+    {
+      "domain": "semantic-ir",
+      "expected_sha256_hex": "7ac5f96c2296b8a548466aa8c768aaca87cc268b05703a48564d569810841392"
+    },
+    {
+      "domain": "plan-core",
+      "expected_sha256_hex": "8461c27be8ea981635d3f134d4c4b67e97cd5ececff264fb26d08f7f4cb2bd7e"
+    },
+    {
+      "domain": "run-manifest",
+      "expected_sha256_hex": "7011e3a481e285fe6fb6c5ba60b49f496cca09dba99c8078b4914b873433d0a8"
+    },
+    {
+      "domain": "lock-graph",
+      "expected_sha256_hex": "4825768f9d78835b8e6344e3a2027cc25ed67ce196c937c775483d114d61b192"
+    },
+    {
+      "domain": "journal-event-payload",
+      "expected_sha256_hex": "cbfe1342b1249b04c6d40655bdb62fd69f9de02c6ae35bd70f41dc2efdbf0ba4"
+    },
+    {
+      "domain": "runtime-command-payload",
+      "expected_sha256_hex": "4a3b8ffaa41f6e12308ca98021a979a3d8f5351b666a2cdcdc84bcdb4c727aa8"
+    },
+    {
+      "domain": "semantic-execution-state",
+      "expected_sha256_hex": "edb396372430201bf59fd65107b8aa181a44ad822cb73539f847994042ea419b"
+    },
+    {
+      "domain": "component-contract",
+      "expected_sha256_hex": "4bc1f62f1ec3ccf93ae23b893310a5def3486765ffcaf9fdb85caae5b42505b3"
+    },
+    {
+      "domain": "resource-contract",
+      "expected_sha256_hex": "8e765074b560fcc57e691f96b1fc830474cfe55655cfe0ed1d3073ce2faffcb6"
+    },
+    {
+      "domain": "conformance",
+      "expected_sha256_hex": "f9d0b000b38c6ca58683c3bd292379710430a6e6e926d5f9550a7f4137e90d2f"
+    }
+  ]
+}

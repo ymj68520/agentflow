@@ -1,0 +1,197 @@
+{
+  "kind": "agentflow.conformance.ace1-golden",
+  "ace1_version": "1",
+  "note": "Golden fixtures for ACE1 strings: NFC normalization, deterministic escaping, non-ASCII raw UTF-8. Decomposed-input cases must produce byte-identical output to their precomposed counterparts.",
+  "cases": [
+    {
+      "case_id": "string/empty",
+      "description": "empty string",
+      "shape": "string",
+      "value": {
+        "string": ""
+      },
+      "expected_ace1_utf8": "\"\"",
+      "expected_bytes_hex": "2222"
+    },
+    {
+      "case_id": "string/ascii",
+      "description": "plain ASCII text",
+      "shape": "string",
+      "value": {
+        "string": "hello world"
+      },
+      "expected_ace1_utf8": "\"hello world\"",
+      "expected_bytes_hex": "2268656c6c6f20776f726c6422"
+    },
+    {
+      "case_id": "string/nfc-precomposed",
+      "description": "precomposed e-acute U+00E9",
+      "shape": "string",
+      "value": {
+        "string": "é"
+      },
+      "expected_ace1_utf8": "\"é\"",
+      "expected_bytes_hex": "22c3a922"
+    },
+    {
+      "case_id": "string/nfc-decomposed-input",
+      "description": "decomposed e + U+0301 must canonicalize to U+00E9",
+      "shape": "string",
+      "value": {
+        "string": "é"
+      },
+      "expected_ace1_utf8": "\"é\"",
+      "expected_bytes_hex": "22c3a922"
+    },
+    {
+      "case_id": "string/nfc-hangul-precomposed",
+      "description": "precomposed Hangul syllable U+AC01",
+      "shape": "string",
+      "value": {
+        "string": "각"
+      },
+      "expected_ace1_utf8": "\"각\"",
+      "expected_bytes_hex": "22eab08122"
+    },
+    {
+      "case_id": "string/nfc-hangul-decomposed-input",
+      "description": "decomposed Hangul jamo must canonicalize to U+AC01",
+      "shape": "string",
+      "value": {
+        "string": "각"
+      },
+      "expected_ace1_utf8": "\"각\"",
+      "expected_bytes_hex": "22eab08122"
+    },
+    {
+      "case_id": "string/quotes",
+      "description": "embedded double quotes need escaping",
+      "shape": "string",
+      "value": {
+        "string": "He said \"hi\""
+      },
+      "expected_ace1_utf8": "\"He said \\\"hi\\\"\"",
+      "expected_bytes_hex": "2248652073616964205c2268695c2222"
+    },
+    {
+      "case_id": "string/backslash",
+      "description": "embedded backslash needs escaping",
+      "shape": "string",
+      "value": {
+        "string": "C:\\path\\to"
+      },
+      "expected_ace1_utf8": "\"C:\\\\path\\\\to\"",
+      "expected_bytes_hex": "22433a5c5c706174685c5c746f22"
+    },
+    {
+      "case_id": "string/short-escapes",
+      "description": "tab and newline use short escapes",
+      "shape": "string",
+      "value": {
+        "string": "a\tb\nc"
+      },
+      "expected_ace1_utf8": "\"a\\tb\\nc\"",
+      "expected_bytes_hex": "22615c74625c6e6322"
+    },
+    {
+      "case_id": "string/short-escapes-2",
+      "description": "form feed and carriage return short escapes",
+      "shape": "string",
+      "value": {
+        "string": "a\fb\rc"
+      },
+      "expected_ace1_utf8": "\"a\\fb\\rc\"",
+      "expected_bytes_hex": "22615c66625c726322"
+    },
+    {
+      "case_id": "string/control-nul",
+      "description": "NUL control character escaped as \\u0000",
+      "shape": "string",
+      "value": {
+        "string": "a\u0000b"
+      },
+      "expected_ace1_utf8": "\"a\\u0000b\"",
+      "expected_bytes_hex": "22615c75303030306222"
+    },
+    {
+      "case_id": "string/control-low",
+      "description": "control U+0001 escaped as \\u0001 (lowercase hex)",
+      "shape": "string",
+      "value": {
+        "string": "a\u0001b"
+      },
+      "expected_ace1_utf8": "\"a\\u0001b\"",
+      "expected_bytes_hex": "22615c75303030316222"
+    },
+    {
+      "case_id": "string/control-high",
+      "description": "control U+001F escaped as \\u001f",
+      "shape": "string",
+      "value": {
+        "string": "a\u001fb"
+      },
+      "expected_ace1_utf8": "\"a\\u001fb\"",
+      "expected_bytes_hex": "22615c75303031666222"
+    },
+    {
+      "case_id": "string/del-raw",
+      "description": "U+007F DEL is not escaped",
+      "shape": "string",
+      "value": {
+        "string": "ab"
+      },
+      "expected_ace1_utf8": "\"ab\"",
+      "expected_bytes_hex": "22617f6222"
+    },
+    {
+      "case_id": "string/cjk",
+      "description": "CJK text stays raw UTF-8",
+      "shape": "string",
+      "value": {
+        "string": "中文测试"
+      },
+      "expected_ace1_utf8": "\"中文测试\"",
+      "expected_bytes_hex": "22e4b8ade69687e6b58be8af9522"
+    },
+    {
+      "case_id": "string/emoji",
+      "description": "emoji (4-byte UTF-8) stays raw",
+      "shape": "string",
+      "value": {
+        "string": "🚀🎉"
+      },
+      "expected_ace1_utf8": "\"🚀🎉\"",
+      "expected_bytes_hex": "22f09f9a80f09f8e8922"
+    },
+    {
+      "case_id": "string/greek",
+      "description": "Greek text",
+      "shape": "string",
+      "value": {
+        "string": "Ωμέγα"
+      },
+      "expected_ace1_utf8": "\"Ωμέγα\"",
+      "expected_bytes_hex": "22cea9cebcceadceb3ceb122"
+    },
+    {
+      "case_id": "string/mixed",
+      "description": "mixed scripts, emoji, spaces",
+      "shape": "string",
+      "value": {
+        "string": "café ☕ 中文 🚀 end"
+      },
+      "expected_ace1_utf8": "\"café ☕ 中文 🚀 end\"",
+      "expected_bytes_hex": "22636166c3a920e2989520e4b8ade6968720f09f9a8020656e6422"
+    },
+    {
+      "case_id": "string/nfc-multiple-combining",
+      "description": "multiple combining marks canonicalize",
+      "shape": "string",
+      "value": {
+        "string": "ạ́"
+      },
+      "expected_ace1_utf8": "\"ạ́\"",
+      "expected_bytes_hex": "22e1baa1cc8122"
+    }
+  ]
+}
