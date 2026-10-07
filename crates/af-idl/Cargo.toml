@@ -1,0 +1,19 @@
+[package]
+name = "af-idl"
+description = "AgentFlow AFIDL1 schema language: lexer, parser, validation, canonical TypeSchema model and TypeSchemaDigest"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+af-core = { path = "../af-core" }
+
+[dev-dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+hex = "0.4"
+
+[lints]
+workspace = true
