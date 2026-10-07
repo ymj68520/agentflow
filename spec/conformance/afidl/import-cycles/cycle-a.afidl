@@ -1,0 +1,10 @@
+// Two-module direct cycle: each record depends on the other module's type.
+afidl 1;
+
+schema agentflow.test.cycle-a @1;
+
+import agentflow.test.cycle-b@1 as b;
+
+record A {
+    1 other: b.B;
+}

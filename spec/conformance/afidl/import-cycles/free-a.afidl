@@ -1,0 +1,10 @@
+// Mutual imports with NO type dependency on either side: legal.
+afidl 1;
+
+schema agentflow.test.free-a @1;
+
+import agentflow.test.free-b@1 as b;
+
+record A {
+    1 name: string;
+}

@@ -1,0 +1,10 @@
+afidl 1;
+
+schema agentflow.test.consumer @1;
+
+import agentflow.test.imported@1 as first;
+import agentflow.test.imported@1 as second;
+
+record Bad {
+    1 value: first.Slot;
+}

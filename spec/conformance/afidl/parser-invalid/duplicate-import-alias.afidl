@@ -1,0 +1,10 @@
+afidl 1;
+
+schema agentflow.test.consumer @1;
+
+import agentflow.test.imported@1 as dep;
+import agentflow.test.second@1 as dep;
+
+record Bad {
+    1 value: dep.Marker;
+}

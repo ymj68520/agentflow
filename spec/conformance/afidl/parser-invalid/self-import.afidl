@@ -1,0 +1,9 @@
+afidl 1;
+
+schema agentflow.test.consumer @1;
+
+import agentflow.test.consumer@1 as self2;
+
+record Bad {
+    1 value: self2.Thing;
+}

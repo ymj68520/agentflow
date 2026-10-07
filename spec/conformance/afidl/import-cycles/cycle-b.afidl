@@ -1,0 +1,9 @@
+afidl 1;
+
+schema agentflow.test.cycle-b @1;
+
+import agentflow.test.cycle-a@1 as a;
+
+record B {
+    1 other: a.A;
+}

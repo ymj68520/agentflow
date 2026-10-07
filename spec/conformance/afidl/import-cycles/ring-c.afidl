@@ -1,0 +1,9 @@
+afidl 1;
+
+schema agentflow.test.ring-c @1;
+
+import agentflow.test.ring-a@1 as a;
+
+record C {
+    1 next: map<string,a.A>;
+}

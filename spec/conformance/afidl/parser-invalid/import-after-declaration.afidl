@@ -1,0 +1,9 @@
+afidl 1;
+
+schema agentflow.test.consumer @1;
+
+record Bad {
+    1 value: string;
+}
+
+import agentflow.test.imported@1 as dep;

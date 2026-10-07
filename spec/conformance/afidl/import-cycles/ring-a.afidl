@@ -1,0 +1,10 @@
+// Three-module indirect cycle A -> B -> C -> A.
+afidl 1;
+
+schema agentflow.test.ring-a @1;
+
+import agentflow.test.ring-b@1 as b;
+
+record A {
+    1 next: list<b.B>;
+}

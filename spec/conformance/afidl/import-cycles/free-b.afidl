@@ -1,0 +1,9 @@
+afidl 1;
+
+schema agentflow.test.free-b @1;
+
+import agentflow.test.free-a@1 as a;
+
+record B {
+    1 name: string;
+}
