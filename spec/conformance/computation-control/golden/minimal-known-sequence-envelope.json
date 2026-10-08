@@ -1,0 +1,111 @@
+{
+  "case_id": "computation-control/golden/minimal-known-sequence-envelope",
+  "expected": {
+    "effect_lower_bound_adjusted_children": [],
+    "effect_occurrences": [],
+    "effect_row_complete": true,
+    "effects": {
+      "entries": [],
+      "residuals": [],
+      "row": "closed"
+    },
+    "execution_by_child": [],
+    "failures": [],
+    "flow": {
+      "constraints_by_child": [
+        {
+          "constraints": [],
+          "node": 2
+        },
+        {
+          "constraints": [],
+          "node": 3
+        }
+      ],
+      "decision_dependencies": [],
+      "effective_authority_inferred": false,
+      "influence_unknown": false,
+      "may_carry_authority": "none",
+      "sources": [],
+      "taints": [],
+      "verdict": "proven"
+    },
+    "recovery_sources": [],
+    "resources_by_child": [],
+    "unresolved_children": [],
+    "usage": {
+      "coordinates": {
+        "forward/api_calls": 0
+      },
+      "state": "known"
+    },
+    "verdict": "proven"
+  },
+  "group": "golden",
+  "input": {
+    "children": [
+      {
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "effect_entries": [],
+        "effects": {
+          "entries": [],
+          "residuals": [],
+          "row": "closed"
+        },
+        "execution": null,
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
+        "node": 2,
+        "recovery_actions": null,
+        "resolved": true,
+        "resources": null,
+        "usage": {
+          "coordinates": {
+            "forward/api_calls": 0
+          }
+        },
+        "verdict": "proven"
+      },
+      {
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "effect_entries": [],
+        "effects": {
+          "entries": [],
+          "residuals": [],
+          "row": "closed"
+        },
+        "execution": null,
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
+        "node": 3,
+        "recovery_actions": null,
+        "resolved": true,
+        "resources": null,
+        "usage": {
+          "coordinates": {
+            "forward/api_calls": 0
+          }
+        },
+        "verdict": "proven"
+      }
+    ],
+    "operation": "compose",
+    "operator": "sequence"
+  },
+  "kind": "agentflow.conformance.computation-control.test-vector",
+  "note": "A fully specified minimal control envelope is deterministic and keeps explicit zero distinct from missing."
+}

@@ -353,6 +353,19 @@
       "status": "frozen"
     },
     {
+      "description": "Conservative, provenance-preserving static composition for SEQUENCE, SELECT, PARALLEL and RACE without workflow ABI or runtime authority.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a3547a0a662cc21131b55f2340938e12b7079e4a3f35b5a6b8a3404eeb525901"
+        },
+        "logical_path": "spec/computation/control-contract-algebra.md"
+      },
+      "specification_id": "agentflow.semantic.control-contract-algebra.semantics@1",
+      "status": "frozen"
+    },
+    {
       "description": "Normative shape of the workflow semantic core: primitive universe, semantic type DAG, digest-pinned references, value slots, pure expressions and logical resource slots.",
       "kind": "schema",
       "normative_source": {

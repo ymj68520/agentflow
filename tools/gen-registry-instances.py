@@ -1263,6 +1263,92 @@ LEAF_RESOLUTION_RULES = [
 RULES.extend(LEAF_RESOLUTION_RULES)
 
 # ---------------------------------------------------------------------------
+# Phase 4B.2B.1 structured control contract algebra (area SEMANTIC)
+# ---------------------------------------------------------------------------
+
+CONTROL_ALGEBRA_SRC = "spec/computation/control-contract-algebra.md"
+
+CONTROL_ALGEBRA_RULES = [
+    rule("AF-SEMANTIC-0124", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-summary-is-derived-only",
+         "A control result is a source-traceable non-wire DerivedControlContractSummary, never a CheckedComponentContract or digest input.",
+         ["computation-control/golden/minimal-known-sequence-envelope", "SUITE-COMPUTATION-CONTROL-PHASE-BOUNDARY"]),
+    rule("AF-SEMANTIC-0125", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-context-and-leaves",
+         "Bottom-up traversal requires the exact current caller SemanticIrDigest, proof-context object, validator-created leaf summaries and Phase 3C evidence.",
+         ["computation-control/equivalence/same-snapshot-deterministic", "computation-control/sequence/typed-cross-sibling-edge", "SUITE-COMPUTATION-CONTROL-DIMENSIONS"]),
+    rule("AF-SEMANTIC-0126", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-unsupported-not-empty",
+         "ITERATE/RETRY/TIMEOUT/HANDLE/SCOPE/COMPENSATION_SCOPE remain unsupported and Unproven; known descendants are not discarded and no row defaults empty.",
+         ["computation-control/proof/unsupported-timeout-not-empty", "SUITE-COMPUTATION-CONTROL-PHASE-BOUNDARY"]),
+    rule("AF-SEMANTIC-0127", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-sequence-effect",
+         "SEQUENCE preserves semantic child order, uses existing Effect accumulation, weakens later-child lower bounds when prior success is not proven, and retains upper bounds/occurrences.",
+         ["computation-control/sequence/two-effects-accumulate", "computation-control/sequence/second-lower-conditional", "computation-control/sequence/same-atom-occurrences-distinct", "computation-control/negative/effect-overflow", "SUITE-COMPUTATION-CONTROL-SEQUENCE"]),
+    rule("AF-SEMANTIC-0128", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-select-exclusive",
+         "SELECT uses the frozen exclusive Effect branch_join and Usage maximum, retaining complete AtomKey qualifiers and guard-sensitive lower bounds.",
+         ["computation-control/select/exclusive-effect-join", "computation-control/select/different-guards-lower-zero", "computation-control/select/qualifier-members-distinct", "computation-control/select/usage-maximum", "SUITE-COMPUTATION-CONTROL-SELECT"]),
+    rule("AF-SEMANTIC-0129", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-select-coverage-and-influence",
+         "SELECT totality is not invented without a default/range proof; selector dependencies remain decision influence and cannot elevate authority.",
+         ["computation-control/select/decision-input-influence", "computation-control/select/unmatched-ordinal-unproven", "computation-control/select/exact-constant-case", "computation-control/proof/authority-upper-not-permission", "SUITE-COMPUTATION-CONTROL-SELECT"]),
+    rule("AF-SEMANTIC-0130", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-parallel-all",
+         "The frozen PARALLEL all mode accumulates every branch's possible Effect and Usage; max_inflight is concurrency only, and outputs use the explicit typed branch mapping.",
+         ["computation-control/parallel/all-effects-accumulate", "computation-control/parallel/all-usage-accumulates", "computation-control/parallel/max-inflight-not-total-count", "computation-control/parallel/output-explicit-branch-map", "SUITE-COMPUTATION-CONTROL-PARALLEL"]),
+    rule("AF-SEMANTIC-0131", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-parallel-fail-fast",
+         "PARALLEL fail_fast retains sibling Effect/Usage/Failure facts despite cancellation and weakens lower bounds whose full execution is not guaranteed.",
+         ["computation-control/parallel/fail-fast-sibling-effect-retained", "computation-control/parallel/fail-fast-lower-zero", "computation-control/proof/cancellation-not-failure", "SUITE-COMPUTATION-CONTROL-PARALLEL"]),
+    rule("AF-SEMANTIC-0132", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-race-effect-usage",
+         "RACE is FIRST_TERMINAL, not a SELECT join: all contestants including losers contribute Effect and Usage upper bounds, with only unguaranteed lower bounds weakened.",
+         ["computation-control/race/all-contestants-not-winner-only", "computation-control/race/loser-effect-retained", "computation-control/race/loser-usage-retained", "computation-control/race/cancel-not-no-effect", "SUITE-COMPUTATION-CONTROL-RACE"]),
+    rule("AF-SEMANTIC-0133", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-race-recovery",
+         "RACE retains every contestant's exact Recovery/K and per-action Usage source facts, including losers; compensation never subtracts forward effects.",
+         ["computation-control/race/loser-recovery-retained", "computation-control/proof/compensation-not-subtraction", "SUITE-COMPUTATION-CONTROL-RACE"]),
+    rule("AF-SEMANTIC-0134", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-race-outcome-flow",
+         "Failure rows union across possible branches; cancellation/timeout are not typed business Failure, and static analysis never selects a physical winner or primary cause.",
+         ["computation-control/race/winner-may-fail", "computation-control/race/physical-timing-not-decision", "computation-control/proof/cancellation-not-failure", "SUITE-COMPUTATION-CONTROL-RACE"]),
+    rule("AF-SEMANTIC-0135", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-typed-interface",
+         "Control outputs reuse checked IR interfaces, Phase 3C producer evidence and explicit Parallel branch/port mapping; local types are not public schema aliases.",
+         ["computation-control/sequence/typed-output-last-child", "computation-control/parallel/output-explicit-branch-map", "computation-control/select/typed-merge-mismatch", "SUITE-COMPUTATION-CONTROL-DIMENSIONS"]),
+    rule("AF-SEMANTIC-0136", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-flow-may-influence",
+         "Flow sources/taints union conservatively, may-carry authority takes its existing upper bound, unknown remains sticky, and selector/sequence/winner influence is not discarded.",
+         ["computation-control/select/taints-union", "computation-control/select/decision-input-influence", "computation-control/sequence/typed-cross-sibling-edge", "computation-control/race/winner-output-taints-union", "SUITE-COMPUTATION-CONTROL-DIMENSIONS"]),
+    rule("AF-SEMANTIC-0137", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-usage-propagation",
+         "Usage uses checked accumulation or exclusive join by (phase,meter); missing coordinates remain Unknown, Forward/Recovery stay separate, and no retry/concurrency multiplier is inferred.",
+         ["computation-control/sequence/usage-checked-sum", "computation-control/select/usage-maximum", "computation-control/parallel/all-usage-accumulates", "computation-control/race/loser-usage-retained", "computation-control/proof/missing-usage-not-zero", "SUITE-COMPUTATION-CONTROL-DIMENSIONS"]),
+    rule("AF-SEMANTIC-0138", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-recovery-per-child",
+         "Recovery contracts, action identities and profiles remain per child; RACE losers do not lose declared recovery obligations.",
+         ["computation-control/race/loser-recovery-retained", "computation-control/proof/compensation-not-subtraction", "SUITE-COMPUTATION-CONTROL-RACE"]),
+    rule("AF-SEMANTIC-0139", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-resource-port-provenance",
+         "Resource ports stay source-scoped; numeric port equality never merges namespaces, and aliases require the exact same caller ResourceSlotId.",
+         ["computation-control/parallel/shared-slot-alias-explicit", "computation-control/parallel/different-port-namespaces", "SUITE-COMPUTATION-CONTROL-DIMENSIONS"]),
+    rule("AF-SEMANTIC-0140", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-execution-per-child",
+         "ExecutionRequirements remain per child and are not summed into a single Worker, placement, admission or capacity requirement.",
+         ["computation-control/parallel/execution-per-child", "computation-control/proof/execution-not-worker-sum", "SUITE-COMPUTATION-CONTROL-PHASE-BOUNDARY"]),
+    rule("AF-SEMANTIC-0141", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-occurrence-identity",
+         "Repeated uses of one contract remain distinct by caller digest, control/leaf node, contract digest and source ordinal even if the envelope algebra combines equal AtomKeys.",
+         ["computation-control/sequence/same-atom-occurrences-distinct", "computation-control/parallel/same-contract-occurrences", "computation-control/race/same-atom-distinct-occurrences", "SUITE-COMPUTATION-CONTROL-OCCURRENCE"]),
+    rule("AF-SEMANTIC-0142", "SEMANTIC", CONTROL_ALGEBRA_SRC,
+         "control-proof-obligation-propagation",
+         "Child Violation/Unproven/RequiresEvidence facts remain per-dimension obligations; a computed envelope cannot downgrade child evidence or be issued as a checked ComponentContract.",
+         ["computation-control/proof/requires-evidence-propagates", "computation-control/proof/unproven-propagates", "computation-control/proof/known-bound-with-evidence", "computation-control/proof/unknown-effect-row-not-empty", "computation-control/proof/open-effect-row-remains-open", "SUITE-COMPUTATION-CONTROL-PROOF"]),
+]
+RULES.extend(CONTROL_ALGEBRA_RULES)
+
+# ---------------------------------------------------------------------------
 # Effect Signature rules (Phase 4A.1, area EFFECT)
 # ---------------------------------------------------------------------------
 
@@ -2488,6 +2574,10 @@ SPECS = [
      "Exact, source-preserving static contract resolution for INVOKE, AWAIT "
      "and CALL_SUBFLOW computation leaves; no workflow control algebra or "
      "runtime authority."),
+    ("agentflow.semantic.control-contract-algebra.semantics@1", "schema_language",
+     "spec/computation/control-contract-algebra.md",
+     "Conservative, provenance-preserving static composition for SEQUENCE, "
+     "SELECT, PARALLEL and RACE without workflow ABI or runtime authority."),
     ("agentflow.semantic.types@1", "schema_language",
      "spec/semantic/core-semantic-types.md",
      "Workflow semantic core semantics: machine vs workflow primitives, "
@@ -3733,6 +3823,128 @@ SUITE_LIST.extend([
         "targets": [
             "spec/conformance/computation-leaf/equivalence/",
             "tools/gen-computation-leaf-corpus.py",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-CONTROL-SEQUENCE",
+        "description": (
+            "SEQUENCE preserves child order, uses formal Effect/Usage "
+            "accumulation, weakens conditional lower bounds, and retains "
+            "Phase 3C cross-sibling dataflow evidence."
+        ),
+        "targets": [
+            "crates/af-computation/src/control.rs",
+            "crates/af-computation/tests/leaf_resolution.rs",
+            "spec/conformance/computation-control/sequence/",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-CONTROL-SELECT",
+        "description": (
+            "SELECT uses exclusive joins, full guard/qualifier identities, "
+            "exact typed interfaces, and explicit unresolved selector "
+            "coverage/decision influence."
+        ),
+        "targets": [
+            "crates/af-computation/src/control.rs",
+            "spec/conformance/computation-control/select/",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-CONTROL-PARALLEL",
+        "description": (
+            "The frozen all/fail_fast modes retain sibling effects and usage, "
+            "keep explicit branch-output and resource mappings, and do not "
+            "aggregate X into one Worker."
+        ),
+        "targets": [
+            "spec/semantic/semantic-ir.md sections 10.3 and 13.2",
+            "spec/conformance/computation-control/parallel/",
+            "crates/af-computation/tests/leaf_resolution.rs",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-CONTROL-RACE",
+        "description": (
+            "RACE is first-terminal and conservatively accumulates every "
+            "contestant's effect, usage, failure and recovery facts without "
+            "choosing a static winner."
+        ),
+        "targets": [
+            "spec/conformance/computation-control/race/",
+            "crates/af-computation/src/control.rs",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-CONTROL-DIMENSIONS",
+        "description": (
+            "Failure, Effect, Flow, Usage, Resource, Recovery and Execution "
+            "use their separate frozen algebras or source-scoped summaries; "
+            "unknown is never treated as empty."
+        ),
+        "targets": [
+            "crates/af-computation/src/control.rs",
+            "spec/conformance/computation-control/proof/",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-CONTROL-OCCURRENCE",
+        "description": (
+            "Equal contract digests and AtomKeys do not merge logical call "
+            "sites; control provenance retains source nodes and row ordinals."
+        ),
+        "targets": [
+            "crates/af-computation/tests/leaf_resolution.rs",
+            "spec/conformance/computation-control/sequence/",
+            "spec/conformance/computation-control/parallel/",
+            "spec/conformance/computation-control/race/",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-CONTROL-PROOF",
+        "description": (
+            "Inherited Violation, Unproven and RequiresEvidence statuses are "
+            "retained alongside any derived envelope; unsupported operators "
+            "never default to empty."
+        ),
+        "targets": [
+            "crates/af-computation/src/proof.rs",
+            "spec/conformance/computation-control/proof/",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-CONTROL-PYTHON-ORACLE",
+        "description": (
+            "A standalone Python oracle computes the frozen control vectors "
+            "without invoking Rust or introducing a persistence format."
+        ),
+        "targets": [
+            "tools/gen-computation-control-corpus.py",
+            "spec/conformance/computation-control/manifest.json",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-CONTROL-PHASE-BOUNDARY",
+        "description": (
+            "The derived summary is not a checked component contract and "
+            "creates no control digest, runtime state, grant, handle, plan, "
+            "journal, reducer or worker placement."
+        ),
+        "targets": [
+            "crates/af-computation/Cargo.toml",
+            "spec/computation/control-contract-algebra.md",
+            "docs/implementation/phase-04b2b1-proof-boundaries.md",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-CONTROL-EQUIVALENCE",
+        "description": (
+            "Unordered summary inputs normalize deterministically while the "
+            "frozen SEQUENCE child order remains semantic."
+        ),
+        "targets": [
+            "spec/conformance/computation-control/equivalence/",
+            "tools/gen-computation-control-corpus.py",
         ],
     },
 ])

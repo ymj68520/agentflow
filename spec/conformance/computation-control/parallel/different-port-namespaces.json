@@ -1,0 +1,41 @@
+{
+  "case_id": "computation-control/parallel/different-port-namespaces",
+  "expected": {
+    "component_ports": [
+      {
+        "component": "A",
+        "port": 1
+      },
+      {
+        "component": "B",
+        "port": 1
+      }
+    ],
+    "merged_by_port_number": false,
+    "resource_slots": [
+      "resource-slot:4",
+      "resource-slot:9"
+    ],
+    "verdict": "proven"
+  },
+  "group": "parallel",
+  "input": {
+    "component_ports": [
+      {
+        "component": "A",
+        "port": 1
+      },
+      {
+        "component": "B",
+        "port": 1
+      }
+    ],
+    "operation": "namespace_alias",
+    "resource_slots": [
+      "resource-slot:4",
+      "resource-slot:9"
+    ]
+  },
+  "kind": "agentflow.conformance.computation-control.test-vector",
+  "note": "Equal component port numbers do not merge resource identities."
+}

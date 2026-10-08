@@ -1,0 +1,102 @@
+{
+  "case_id": "computation-control/proof/authority-upper-not-permission",
+  "expected": {
+    "effect_lower_bound_adjusted_children": [],
+    "effect_occurrences": [],
+    "effect_row_complete": false,
+    "effects": {
+      "known_contributions": [],
+      "row": "unknown"
+    },
+    "execution_by_child": [],
+    "failures": null,
+    "flow": {
+      "constraints_by_child": [
+        {
+          "constraints": [],
+          "node": 2
+        },
+        {
+          "constraints": [],
+          "node": 3
+        }
+      ],
+      "decision_dependencies": [],
+      "effective_authority_inferred": false,
+      "influence_unknown": true,
+      "may_carry_authority": "user",
+      "sources": [
+        "input:1",
+        "unknown_external"
+      ],
+      "taints": [],
+      "verdict": "unproven"
+    },
+    "recovery_sources": [],
+    "resources_by_child": [],
+    "unresolved_children": [
+      2,
+      3
+    ],
+    "usage": {
+      "known_contributions": [],
+      "state": "unknown"
+    },
+    "verdict": "unproven"
+  },
+  "group": "proof",
+  "input": {
+    "children": [
+      {
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "effect_entries": [],
+        "effects": null,
+        "execution": null,
+        "failures": null,
+        "flow": {
+          "authority": "user",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [
+            "input:1"
+          ],
+          "taints": []
+        },
+        "node": 2,
+        "recovery_actions": null,
+        "resolved": false,
+        "resources": null,
+        "usage": null,
+        "verdict": "proven"
+      },
+      {
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "effect_entries": [],
+        "effects": null,
+        "execution": null,
+        "failures": null,
+        "flow": {
+          "authority": "external_data",
+          "constraints": [],
+          "influence_unknown": true,
+          "sources": [
+            "unknown_external"
+          ],
+          "taints": []
+        },
+        "node": 3,
+        "recovery_actions": null,
+        "resolved": false,
+        "resources": null,
+        "usage": null,
+        "verdict": "proven"
+      }
+    ],
+    "operation": "compose",
+    "operator": "parallel_all"
+  },
+  "kind": "agentflow.conformance.computation-control.test-vector",
+  "note": "The maximum is only a may-carry upper bound; no effective authority or grant is inferred."
+}

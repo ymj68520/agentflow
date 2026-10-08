@@ -1,0 +1,24 @@
+{
+  "case_id": "computation-control/equivalence/unordered-members-normalized",
+  "expected": {
+    "normalized": [
+      "input:a",
+      "input:b"
+    ],
+    "verdict": "proven"
+  },
+  "group": "equivalence",
+  "input": {
+    "left": [
+      "input:b",
+      "input:a"
+    ],
+    "operation": "equivalence",
+    "right": [
+      "input:a",
+      "input:b"
+    ]
+  },
+  "kind": "agentflow.conformance.computation-control.test-vector",
+  "note": "Unordered summary members normalize deterministically."
+}

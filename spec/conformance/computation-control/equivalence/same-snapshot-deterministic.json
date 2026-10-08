@@ -1,0 +1,39 @@
+{
+  "case_id": "computation-control/equivalence/same-snapshot-deterministic",
+  "expected": {
+    "normalized": [
+      {
+        "children": [
+          2,
+          3
+        ],
+        "op": "race"
+      }
+    ],
+    "verdict": "proven"
+  },
+  "group": "equivalence",
+  "input": {
+    "left": [
+      {
+        "children": [
+          2,
+          3
+        ],
+        "op": "race"
+      }
+    ],
+    "operation": "equivalence",
+    "right": [
+      {
+        "children": [
+          2,
+          3
+        ],
+        "op": "race"
+      }
+    ]
+  },
+  "kind": "agentflow.conformance.computation-control.test-vector",
+  "note": "One exact checked IR/context yields deterministic summaries."
+}

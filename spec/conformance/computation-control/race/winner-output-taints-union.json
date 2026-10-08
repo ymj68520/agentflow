@@ -1,0 +1,109 @@
+{
+  "case_id": "computation-control/race/winner-output-taints-union",
+  "expected": {
+    "effect_lower_bound_adjusted_children": [],
+    "effect_occurrences": [],
+    "effect_row_complete": false,
+    "effects": {
+      "known_contributions": [],
+      "row": "unknown"
+    },
+    "execution_by_child": [],
+    "failures": null,
+    "flow": {
+      "constraints_by_child": [
+        {
+          "constraints": [],
+          "node": 2
+        },
+        {
+          "constraints": [],
+          "node": 3
+        }
+      ],
+      "decision_dependencies": [],
+      "effective_authority_inferred": false,
+      "influence_unknown": true,
+      "may_carry_authority": "none",
+      "sources": [
+        "input:a",
+        "input:b"
+      ],
+      "taints": [
+        "user",
+        "web"
+      ],
+      "verdict": "unproven"
+    },
+    "recovery_sources": [],
+    "resources_by_child": [],
+    "unresolved_children": [
+      2,
+      3
+    ],
+    "usage": {
+      "known_contributions": [],
+      "state": "unknown"
+    },
+    "verdict": "unproven"
+  },
+  "group": "race",
+  "input": {
+    "children": [
+      {
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "effect_entries": [],
+        "effects": null,
+        "execution": null,
+        "failures": null,
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [
+            "input:a"
+          ],
+          "taints": [
+            "web"
+          ]
+        },
+        "node": 2,
+        "recovery_actions": null,
+        "resolved": false,
+        "resources": null,
+        "usage": null,
+        "verdict": "proven"
+      },
+      {
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "effect_entries": [],
+        "effects": null,
+        "execution": null,
+        "failures": null,
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [
+            "input:b"
+          ],
+          "taints": [
+            "user"
+          ]
+        },
+        "node": 3,
+        "recovery_actions": null,
+        "resolved": false,
+        "resources": null,
+        "usage": null,
+        "verdict": "proven"
+      }
+    ],
+    "operation": "compose",
+    "operator": "race"
+  },
+  "kind": "agentflow.conformance.computation-control.test-vector",
+  "note": "Every possible winner contributes output taint and source facts."
+}

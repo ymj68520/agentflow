@@ -1,0 +1,22 @@
+{
+  "case_id": "computation-control/equivalence/sequence-order-is-semantic",
+  "expected": {
+    "equivalent": false,
+    "verdict": "violation"
+  },
+  "group": "equivalence",
+  "input": {
+    "left": [
+      "node:2",
+      "node:3"
+    ],
+    "operation": "equivalence",
+    "right": [
+      "node:3",
+      "node:2"
+    ],
+    "semantic_order": true
+  },
+  "kind": "agentflow.conformance.computation-control.test-vector",
+  "note": "SEQUENCE list order is not sorted to create equivalence."
+}

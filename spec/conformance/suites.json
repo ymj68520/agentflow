@@ -74,6 +74,91 @@
       ]
     },
     {
+      "description": "Failure, Effect, Flow, Usage, Resource, Recovery and Execution use their separate frozen algebras or source-scoped summaries; unknown is never treated as empty.",
+      "suite_id": "SUITE-COMPUTATION-CONTROL-DIMENSIONS",
+      "targets": [
+        "crates/af-computation/src/control.rs",
+        "spec/conformance/computation-control/proof/"
+      ]
+    },
+    {
+      "description": "Unordered summary inputs normalize deterministically while the frozen SEQUENCE child order remains semantic.",
+      "suite_id": "SUITE-COMPUTATION-CONTROL-EQUIVALENCE",
+      "targets": [
+        "spec/conformance/computation-control/equivalence/",
+        "tools/gen-computation-control-corpus.py"
+      ]
+    },
+    {
+      "description": "Equal contract digests and AtomKeys do not merge logical call sites; control provenance retains source nodes and row ordinals.",
+      "suite_id": "SUITE-COMPUTATION-CONTROL-OCCURRENCE",
+      "targets": [
+        "crates/af-computation/tests/leaf_resolution.rs",
+        "spec/conformance/computation-control/sequence/",
+        "spec/conformance/computation-control/parallel/",
+        "spec/conformance/computation-control/race/"
+      ]
+    },
+    {
+      "description": "The frozen all/fail_fast modes retain sibling effects and usage, keep explicit branch-output and resource mappings, and do not aggregate X into one Worker.",
+      "suite_id": "SUITE-COMPUTATION-CONTROL-PARALLEL",
+      "targets": [
+        "spec/semantic/semantic-ir.md sections 10.3 and 13.2",
+        "spec/conformance/computation-control/parallel/",
+        "crates/af-computation/tests/leaf_resolution.rs"
+      ]
+    },
+    {
+      "description": "The derived summary is not a checked component contract and creates no control digest, runtime state, grant, handle, plan, journal, reducer or worker placement.",
+      "suite_id": "SUITE-COMPUTATION-CONTROL-PHASE-BOUNDARY",
+      "targets": [
+        "crates/af-computation/Cargo.toml",
+        "spec/computation/control-contract-algebra.md",
+        "docs/implementation/phase-04b2b1-proof-boundaries.md"
+      ]
+    },
+    {
+      "description": "Inherited Violation, Unproven and RequiresEvidence statuses are retained alongside any derived envelope; unsupported operators never default to empty.",
+      "suite_id": "SUITE-COMPUTATION-CONTROL-PROOF",
+      "targets": [
+        "crates/af-computation/src/proof.rs",
+        "spec/conformance/computation-control/proof/"
+      ]
+    },
+    {
+      "description": "A standalone Python oracle computes the frozen control vectors without invoking Rust or introducing a persistence format.",
+      "suite_id": "SUITE-COMPUTATION-CONTROL-PYTHON-ORACLE",
+      "targets": [
+        "tools/gen-computation-control-corpus.py",
+        "spec/conformance/computation-control/manifest.json"
+      ]
+    },
+    {
+      "description": "RACE is first-terminal and conservatively accumulates every contestant's effect, usage, failure and recovery facts without choosing a static winner.",
+      "suite_id": "SUITE-COMPUTATION-CONTROL-RACE",
+      "targets": [
+        "spec/conformance/computation-control/race/",
+        "crates/af-computation/src/control.rs"
+      ]
+    },
+    {
+      "description": "SELECT uses exclusive joins, full guard/qualifier identities, exact typed interfaces, and explicit unresolved selector coverage/decision influence.",
+      "suite_id": "SUITE-COMPUTATION-CONTROL-SELECT",
+      "targets": [
+        "crates/af-computation/src/control.rs",
+        "spec/conformance/computation-control/select/"
+      ]
+    },
+    {
+      "description": "SEQUENCE preserves child order, uses formal Effect/Usage accumulation, weakens conditional lower bounds, and retains Phase 3C cross-sibling dataflow evidence.",
+      "suite_id": "SUITE-COMPUTATION-CONTROL-SEQUENCE",
+      "targets": [
+        "crates/af-computation/src/control.rs",
+        "crates/af-computation/tests/leaf_resolution.rs",
+        "spec/conformance/computation-control/sequence/"
+      ]
+    },
+    {
       "description": "AWAIT keeps its exact signal pin and correlation, explicit unknown external provenance, missing adapter obligations, and the absence of implicit timeout or business failure.",
       "suite_id": "SUITE-COMPUTATION-LEAF-AWAIT",
       "targets": [

@@ -1,0 +1,30 @@
+{
+  "case_id": "computation-control/equivalence/presentation-metadata-only",
+  "expected": {
+    "normalized": [
+      {
+        "contract_body": "A",
+        "label": "before"
+      }
+    ],
+    "verdict": "violation"
+  },
+  "group": "equivalence",
+  "input": {
+    "left": [
+      {
+        "contract_body": "A",
+        "label": "before"
+      }
+    ],
+    "operation": "equivalence",
+    "right": [
+      {
+        "contract_body": "A",
+        "label": "after"
+      }
+    ]
+  },
+  "kind": "agentflow.conformance.computation-control.test-vector",
+  "note": "Presentation metadata does not change semantic control facts."
+}

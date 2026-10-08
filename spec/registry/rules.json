@@ -3822,6 +3822,273 @@
       "source_anchor": "leaf-resolution-digest-stability"
     },
     {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/golden/minimal-known-sequence-envelope",
+        "SUITE-COMPUTATION-CONTROL-PHASE-BOUNDARY"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0124",
+      "short_statement": "A control result is a source-traceable non-wire DerivedControlContractSummary, never a CheckedComponentContract or digest input.",
+      "source_anchor": "control-summary-is-derived-only"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/equivalence/same-snapshot-deterministic",
+        "computation-control/sequence/typed-cross-sibling-edge",
+        "SUITE-COMPUTATION-CONTROL-DIMENSIONS"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0125",
+      "short_statement": "Bottom-up traversal requires the exact current caller SemanticIrDigest, proof-context object, validator-created leaf summaries and Phase 3C evidence.",
+      "source_anchor": "control-context-and-leaves"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/proof/unsupported-timeout-not-empty",
+        "SUITE-COMPUTATION-CONTROL-PHASE-BOUNDARY"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0126",
+      "short_statement": "ITERATE/RETRY/TIMEOUT/HANDLE/SCOPE/COMPENSATION_SCOPE remain unsupported and Unproven; known descendants are not discarded and no row defaults empty.",
+      "source_anchor": "control-unsupported-not-empty"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/sequence/two-effects-accumulate",
+        "computation-control/sequence/second-lower-conditional",
+        "computation-control/sequence/same-atom-occurrences-distinct",
+        "computation-control/negative/effect-overflow",
+        "SUITE-COMPUTATION-CONTROL-SEQUENCE"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0127",
+      "short_statement": "SEQUENCE preserves semantic child order, uses existing Effect accumulation, weakens later-child lower bounds when prior success is not proven, and retains upper bounds/occurrences.",
+      "source_anchor": "control-sequence-effect"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/select/exclusive-effect-join",
+        "computation-control/select/different-guards-lower-zero",
+        "computation-control/select/qualifier-members-distinct",
+        "computation-control/select/usage-maximum",
+        "SUITE-COMPUTATION-CONTROL-SELECT"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0128",
+      "short_statement": "SELECT uses the frozen exclusive Effect branch_join and Usage maximum, retaining complete AtomKey qualifiers and guard-sensitive lower bounds.",
+      "source_anchor": "control-select-exclusive"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/select/decision-input-influence",
+        "computation-control/select/unmatched-ordinal-unproven",
+        "computation-control/select/exact-constant-case",
+        "computation-control/proof/authority-upper-not-permission",
+        "SUITE-COMPUTATION-CONTROL-SELECT"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0129",
+      "short_statement": "SELECT totality is not invented without a default/range proof; selector dependencies remain decision influence and cannot elevate authority.",
+      "source_anchor": "control-select-coverage-and-influence"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/parallel/all-effects-accumulate",
+        "computation-control/parallel/all-usage-accumulates",
+        "computation-control/parallel/max-inflight-not-total-count",
+        "computation-control/parallel/output-explicit-branch-map",
+        "SUITE-COMPUTATION-CONTROL-PARALLEL"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0130",
+      "short_statement": "The frozen PARALLEL all mode accumulates every branch's possible Effect and Usage; max_inflight is concurrency only, and outputs use the explicit typed branch mapping.",
+      "source_anchor": "control-parallel-all"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/parallel/fail-fast-sibling-effect-retained",
+        "computation-control/parallel/fail-fast-lower-zero",
+        "computation-control/proof/cancellation-not-failure",
+        "SUITE-COMPUTATION-CONTROL-PARALLEL"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0131",
+      "short_statement": "PARALLEL fail_fast retains sibling Effect/Usage/Failure facts despite cancellation and weakens lower bounds whose full execution is not guaranteed.",
+      "source_anchor": "control-parallel-fail-fast"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/race/all-contestants-not-winner-only",
+        "computation-control/race/loser-effect-retained",
+        "computation-control/race/loser-usage-retained",
+        "computation-control/race/cancel-not-no-effect",
+        "SUITE-COMPUTATION-CONTROL-RACE"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0132",
+      "short_statement": "RACE is FIRST_TERMINAL, not a SELECT join: all contestants including losers contribute Effect and Usage upper bounds, with only unguaranteed lower bounds weakened.",
+      "source_anchor": "control-race-effect-usage"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/race/loser-recovery-retained",
+        "computation-control/proof/compensation-not-subtraction",
+        "SUITE-COMPUTATION-CONTROL-RACE"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0133",
+      "short_statement": "RACE retains every contestant's exact Recovery/K and per-action Usage source facts, including losers; compensation never subtracts forward effects.",
+      "source_anchor": "control-race-recovery"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/race/winner-may-fail",
+        "computation-control/race/physical-timing-not-decision",
+        "computation-control/proof/cancellation-not-failure",
+        "SUITE-COMPUTATION-CONTROL-RACE"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0134",
+      "short_statement": "Failure rows union across possible branches; cancellation/timeout are not typed business Failure, and static analysis never selects a physical winner or primary cause.",
+      "source_anchor": "control-race-outcome-flow"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/sequence/typed-output-last-child",
+        "computation-control/parallel/output-explicit-branch-map",
+        "computation-control/select/typed-merge-mismatch",
+        "SUITE-COMPUTATION-CONTROL-DIMENSIONS"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0135",
+      "short_statement": "Control outputs reuse checked IR interfaces, Phase 3C producer evidence and explicit Parallel branch/port mapping; local types are not public schema aliases.",
+      "source_anchor": "control-typed-interface"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/select/taints-union",
+        "computation-control/select/decision-input-influence",
+        "computation-control/sequence/typed-cross-sibling-edge",
+        "computation-control/race/winner-output-taints-union",
+        "SUITE-COMPUTATION-CONTROL-DIMENSIONS"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0136",
+      "short_statement": "Flow sources/taints union conservatively, may-carry authority takes its existing upper bound, unknown remains sticky, and selector/sequence/winner influence is not discarded.",
+      "source_anchor": "control-flow-may-influence"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/sequence/usage-checked-sum",
+        "computation-control/select/usage-maximum",
+        "computation-control/parallel/all-usage-accumulates",
+        "computation-control/race/loser-usage-retained",
+        "computation-control/proof/missing-usage-not-zero",
+        "SUITE-COMPUTATION-CONTROL-DIMENSIONS"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0137",
+      "short_statement": "Usage uses checked accumulation or exclusive join by (phase,meter); missing coordinates remain Unknown, Forward/Recovery stay separate, and no retry/concurrency multiplier is inferred.",
+      "source_anchor": "control-usage-propagation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/race/loser-recovery-retained",
+        "computation-control/proof/compensation-not-subtraction",
+        "SUITE-COMPUTATION-CONTROL-RACE"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0138",
+      "short_statement": "Recovery contracts, action identities and profiles remain per child; RACE losers do not lose declared recovery obligations.",
+      "source_anchor": "control-recovery-per-child"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/parallel/shared-slot-alias-explicit",
+        "computation-control/parallel/different-port-namespaces",
+        "SUITE-COMPUTATION-CONTROL-DIMENSIONS"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0139",
+      "short_statement": "Resource ports stay source-scoped; numeric port equality never merges namespaces, and aliases require the exact same caller ResourceSlotId.",
+      "source_anchor": "control-resource-port-provenance"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/parallel/execution-per-child",
+        "computation-control/proof/execution-not-worker-sum",
+        "SUITE-COMPUTATION-CONTROL-PHASE-BOUNDARY"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0140",
+      "short_statement": "ExecutionRequirements remain per child and are not summed into a single Worker, placement, admission or capacity requirement.",
+      "source_anchor": "control-execution-per-child"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/sequence/same-atom-occurrences-distinct",
+        "computation-control/parallel/same-contract-occurrences",
+        "computation-control/race/same-atom-distinct-occurrences",
+        "SUITE-COMPUTATION-CONTROL-OCCURRENCE"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0141",
+      "short_statement": "Repeated uses of one contract remain distinct by caller digest, control/leaf node, contract digest and source ordinal even if the envelope algebra combines equal AtomKeys.",
+      "source_anchor": "control-occurrence-identity"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-control/proof/requires-evidence-propagates",
+        "computation-control/proof/unproven-propagates",
+        "computation-control/proof/known-bound-with-evidence",
+        "computation-control/proof/unknown-effect-row-not-empty",
+        "computation-control/proof/open-effect-row-remains-open",
+        "SUITE-COMPUTATION-CONTROL-PROOF"
+      ],
+      "normative_source": "spec/computation/control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0142",
+      "short_statement": "Child Violation/Unproven/RequiresEvidence facts remain per-dimension obligations; a computed envelope cannot downgrade child evidence or be issued as a checked ComponentContract.",
+      "source_anchor": "control-proof-obligation-propagation"
+    },
+    {
       "area": "SPEC",
       "conformance_refs": [
         "spec-registry/duplicate-specification-id"

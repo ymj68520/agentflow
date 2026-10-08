@@ -1,0 +1,76 @@
+{
+  "case_id": "computation-control/proof/unknown-effect-row-not-empty",
+  "expected": {
+    "effect_lower_bound_adjusted_children": [],
+    "effect_occurrences": [],
+    "effect_row_complete": false,
+    "effects": {
+      "row": "unknown"
+    },
+    "execution_by_child": [],
+    "failures": null,
+    "flow": {
+      "constraints_by_child": [],
+      "decision_dependencies": [],
+      "effective_authority_inferred": false,
+      "influence_unknown": true,
+      "may_carry_authority": "none",
+      "sources": [],
+      "taints": [],
+      "verdict": "unproven"
+    },
+    "recovery_sources": [],
+    "resources_by_child": [],
+    "unresolved_children": [],
+    "usage": {
+      "known_contributions": [],
+      "state": "unknown"
+    },
+    "verdict": "unproven"
+  },
+  "group": "proof",
+  "input": {
+    "children": [
+      {
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "effect_entries": [],
+        "effects": {
+          "row": "unknown"
+        },
+        "execution": null,
+        "failures": null,
+        "flow": null,
+        "node": 2,
+        "recovery_actions": null,
+        "resolved": true,
+        "resources": null,
+        "usage": null,
+        "verdict": "proven"
+      },
+      {
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "effect_entries": [],
+        "effects": {
+          "entries": [],
+          "residuals": [],
+          "row": "closed"
+        },
+        "execution": null,
+        "failures": null,
+        "flow": null,
+        "node": 3,
+        "recovery_actions": null,
+        "resolved": true,
+        "resources": null,
+        "usage": null,
+        "verdict": "proven"
+      }
+    ],
+    "operation": "compose",
+    "operator": "compose"
+  },
+  "kind": "agentflow.conformance.computation-control.test-vector",
+  "note": "EffectRow::Unknown contaminates the result; no pure Closed row is synthesized."
+}

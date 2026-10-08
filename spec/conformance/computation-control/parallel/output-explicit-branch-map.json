@@ -1,0 +1,68 @@
+{
+  "case_id": "computation-control/parallel/output-explicit-branch-map",
+  "expected": {
+    "outputs": [
+      {
+        "parent_port": 1,
+        "parent_slot": "slot:parent",
+        "source_child": 3,
+        "source_port": 1,
+        "type_id": "semantic-type:1"
+      }
+    ],
+    "verdict": "proven"
+  },
+  "group": "parallel",
+  "input": {
+    "bindings": [
+      {
+        "branch_ordinal": 2,
+        "child": 3,
+        "child_port": 1,
+        "parent_port": 1
+      }
+    ],
+    "branches": [
+      {
+        "child": 2,
+        "ordinal": 1
+      },
+      {
+        "child": 3,
+        "ordinal": 2
+      }
+    ],
+    "children": [
+      {
+        "node": 2,
+        "outputs": [
+          {
+            "port": 1,
+            "slot": "slot:left",
+            "type_id": "semantic-type:1"
+          }
+        ]
+      },
+      {
+        "node": 3,
+        "outputs": [
+          {
+            "port": 1,
+            "slot": "slot:right",
+            "type_id": "semantic-type:1"
+          }
+        ]
+      }
+    ],
+    "operation": "parallel_output",
+    "parent_outputs": [
+      {
+        "port": 1,
+        "slot": "slot:parent",
+        "type_id": "semantic-type:1"
+      }
+    ]
+  },
+  "kind": "agentflow.conformance.computation-control.test-vector",
+  "note": "Parallel output is sourced only by its explicit checked branch/port mapping."
+}

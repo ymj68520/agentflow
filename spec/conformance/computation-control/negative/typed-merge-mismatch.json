@@ -1,0 +1,47 @@
+{
+  "case_id": "computation-control/select/typed-merge-mismatch",
+  "expected": {
+    "outputs": [
+      {
+        "parent_port": 1,
+        "parent_slot": "slot:p",
+        "source_child": 2,
+        "source_port": 1,
+        "type_id": "semantic-type:1"
+      }
+    ],
+    "verdict": "violation"
+  },
+  "group": "negative",
+  "input": {
+    "bindings": [
+      {
+        "child": 2,
+        "child_port": 1,
+        "parent_port": 1
+      }
+    ],
+    "children": [
+      {
+        "node": 2,
+        "outputs": [
+          {
+            "port": 1,
+            "slot": "slot:a",
+            "type_id": "semantic-type:2"
+          }
+        ]
+      }
+    ],
+    "operation": "parallel_output",
+    "parent_outputs": [
+      {
+        "port": 1,
+        "slot": "slot:p",
+        "type_id": "semantic-type:1"
+      }
+    ]
+  },
+  "kind": "agentflow.conformance.computation-control.test-vector",
+  "note": "A typed output mismatch is not accepted by a display-name or local-id heuristic."
+}

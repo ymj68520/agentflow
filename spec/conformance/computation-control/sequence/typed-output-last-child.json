@@ -1,0 +1,47 @@
+{
+  "case_id": "computation-control/sequence/typed-output-last-child",
+  "expected": {
+    "outputs": [
+      {
+        "parent_port": 1,
+        "parent_slot": "slot:parent",
+        "source_child": 3,
+        "source_port": 1,
+        "type_id": "semantic-type:1"
+      }
+    ],
+    "verdict": "proven"
+  },
+  "group": "sequence",
+  "input": {
+    "bindings": [
+      {
+        "child": 3,
+        "child_port": 1,
+        "parent_port": 1
+      }
+    ],
+    "children": [
+      {
+        "node": 3,
+        "outputs": [
+          {
+            "port": 1,
+            "slot": "slot:last",
+            "type_id": "semantic-type:1"
+          }
+        ]
+      }
+    ],
+    "operation": "parallel_output",
+    "parent_outputs": [
+      {
+        "port": 1,
+        "slot": "slot:parent",
+        "type_id": "semantic-type:1"
+      }
+    ]
+  },
+  "kind": "agentflow.conformance.computation-control.test-vector",
+  "note": "Sequence output interface follows the final child and retains typed evidence."
+}

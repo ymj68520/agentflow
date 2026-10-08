@@ -1,0 +1,27 @@
+{
+  "case_id": "computation-control/proof/unsupported-timeout-not-empty",
+  "expected": {
+    "dimension_state": "unknown",
+    "known_children": [
+      2
+    ],
+    "operator": "timeout",
+    "treated_as_empty": false,
+    "verdict": "unproven"
+  },
+  "group": "proof",
+  "input": {
+    "known_children": [
+      2
+    ],
+    "known_effect": {
+      "entries": [],
+      "residuals": [],
+      "row": "closed"
+    },
+    "operation": "unknown_control",
+    "operator": "timeout"
+  },
+  "kind": "agentflow.conformance.computation-control.test-vector",
+  "note": "An unsupported wrapper carries an explicit unknown state, not empty."
+}
