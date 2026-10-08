@@ -56,7 +56,7 @@ pub use control::{
 pub use error::{EffectError, kind};
 pub use model::{
     AtomKey, EffectAtom, EffectEntry, EffectGuard, EffectGuardInputEquals,
-    EffectIdempotencyQualifier, EffectOpenRow, EffectOperationRef, EffectQualifier, EffectResidual,
-    EffectRow, EffectSignature, OccurrenceBounds, OccurrenceCeiling, ResourceSelector,
-    ScopeBinding,
+    EffectIdempotencyQualifier, EffectOpenRow, EffectOperationRef, EffectQualifier,
+    EffectQualifierIdentity, EffectResidual, EffectRow, EffectSignature, OccurrenceBounds,
+    OccurrenceCeiling, ResourceSelector, ScopeBinding,
 };

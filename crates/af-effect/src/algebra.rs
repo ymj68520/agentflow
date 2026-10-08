@@ -10,8 +10,8 @@
 
 use crate::error::{EffectError, kind};
 use crate::model::{
-    AtomKey, EffectEntry, EffectGuard, EffectOpenRow, EffectResidual, EffectRow, EffectSignature,
-    OccurrenceBounds, ResourceSelector,
+    AtomKey, EffectEntry, EffectGuard, EffectOpenRow, EffectQualifierIdentity, EffectResidual,
+    EffectRow, EffectSignature, OccurrenceBounds, ResourceSelector,
 };
 use std::collections::BTreeMap;
 
@@ -73,7 +73,7 @@ struct CoverKey {
     catalog: String,
     name: String,
     port_no: u32,
-    qualifiers: Vec<u32>,
+    qualifiers: Vec<EffectQualifierIdentity>,
 }
 
 impl CoverKey {

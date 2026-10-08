@@ -1,8 +1,8 @@
 //! Structural validation, canonical ordering and the canonical ACE1 bytes.
 //!
 //! Canonicalization is a pure function of the declaration: entries are
-//! ordered by their exact atom key, scope bindings by (key, value), qualifier
-//! families by case number, and residuals by (catalog, port, scope). Inputs
+//! ordered by their exact atom key, scope bindings by (key, value), qualifiers
+//! by family/member/payload, and residuals by (catalog, port, scope). Inputs
 //! that differ only in ordering therefore have identical canonical bytes.
 //!
 //! Two semantic normalizations are part of the canonical form:
@@ -23,7 +23,8 @@ use crate::catalog::is_nfc;
 use crate::error::{EffectError, kind};
 use crate::model::{
     AtomKey, EffectAtom, EffectEntry, EffectGuard, EffectIdempotencyQualifier, EffectOpenRow,
-    EffectQualifier, EffectResidual, EffectRow, EffectSignature, OccurrenceBounds,
+    EffectQualifier, EffectQualifierIdentity, EffectResidual, EffectRow, EffectSignature,
+    OccurrenceBounds,
 };
 use af_core::Value;
 use af_semantic::PrimitiveConstant;
@@ -175,16 +176,16 @@ fn canonical_entries(entries: &[EffectEntry]) -> Result<Vec<EffectEntry>, Effect
 }
 
 /// Canonical atom internals: scope bindings sorted by (key, value) and
-/// qualifier families by case number — binding or qualifier input order is
-/// not part of the semantic identity, so it must not reach the canonical
-/// bytes.
+/// qualifiers by family, member number and typed payload — binding or
+/// qualifier declaration order is not semantic identity, so it must not
+/// reach the canonical bytes.
 fn canonical_entry(entry: &EffectEntry) -> EffectEntry {
     let mut atom = entry.atom.clone();
     atom.resource_selector
         .scope_bindings
         .sort_by(|a, b| (&a.key, &a.value).cmp(&(&b.key, &b.value)));
     atom.qualifiers
-        .sort_by_key(|qualifier| qualifier.family_no());
+        .sort_by_key(|qualifier| EffectQualifierIdentity::of(*qualifier));
     EffectEntry {
         atom,
         bounds: entry.bounds.clone(),

@@ -43,7 +43,7 @@ pub struct ResourceSelector {
 }
 
 /// The closed idempotency qualifier family.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum EffectIdempotencyQualifier {
     Natural,
@@ -63,7 +63,7 @@ impl EffectIdempotencyQualifier {
 
 /// One qualifier, tagged by family. At most one qualifier per family may
 /// appear in an atom's qualifier list.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum EffectQualifier {
     Idempotency(EffectIdempotencyQualifier),
@@ -76,6 +76,55 @@ impl EffectQualifier {
         match self {
             EffectQualifier::Idempotency(_) => 1,
         }
+    }
+
+    /// The member discriminant (`value_no`) within this qualifier family.
+    #[must_use]
+    pub fn member_no(self) -> u32 {
+        match self {
+            EffectQualifier::Idempotency(member) => member.value_no(),
+        }
+    }
+}
+
+/// The canonical ordering and matching identity of one typed qualifier.
+/// Frozen discriminants establish the primary order; retaining the complete
+/// qualifier value makes any semantic member payload participate in equality
+/// and ordering as well.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+pub struct EffectQualifierIdentity {
+    family_no: u32,
+    member_no: u32,
+    qualifier: EffectQualifier,
+}
+
+impl EffectQualifierIdentity {
+    /// Builds the full identity from its typed qualifier value.
+    #[must_use]
+    pub fn of(qualifier: EffectQualifier) -> Self {
+        Self {
+            family_no: qualifier.family_no(),
+            member_no: qualifier.member_no(),
+            qualifier,
+        }
+    }
+
+    /// The frozen family case number.
+    #[must_use]
+    pub fn family_no(self) -> u32 {
+        self.family_no
+    }
+
+    /// The frozen member discriminant within the family.
+    #[must_use]
+    pub fn member_no(self) -> u32 {
+        self.member_no
+    }
+
+    /// The complete typed qualifier, including any semantic payload.
+    #[must_use]
+    pub fn qualifier(self) -> EffectQualifier {
+        self.qualifier
     }
 }
 
@@ -389,17 +438,18 @@ pub struct EffectSignature {
 // ---------------------------------------------------------------------------
 
 /// The exact canonical identity of an effect atom: operation identity,
-/// requirement port, the sorted exact scope-binding set and the sorted
-/// qualifier-family list. Two entries share an atom key exactly when they
-/// declare the same effect on the same range with the same qualifiers; this
-/// is the merge key of the algebra and the duplicate key of validation.
+/// requirement port, the sorted exact scope-binding set and the sorted full
+/// typed qualifier set (family, member and any typed payload). Two entries
+/// share an atom key exactly when they declare the same effect on the same
+/// range with the same complete qualifiers; this is the merge key of the
+/// algebra and the duplicate key of validation.
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub struct AtomKey {
     catalog: String,
     name: String,
     port_no: u32,
     scope: Vec<(String, String)>,
-    qualifiers: Vec<u32>,
+    qualifiers: Vec<EffectQualifierIdentity>,
 }
 
 impl AtomKey {
@@ -415,7 +465,12 @@ impl AtomKey {
             .map(|binding| (binding.key.clone(), binding.value.clone()))
             .collect();
         scope.sort();
-        let mut qualifiers: Vec<u32> = atom.qualifiers.iter().map(|q| q.family_no()).collect();
+        let mut qualifiers: Vec<EffectQualifierIdentity> = atom
+            .qualifiers
+            .iter()
+            .copied()
+            .map(EffectQualifierIdentity::of)
+            .collect();
         qualifiers.sort_unstable();
         AtomKey {
             catalog: atom.operation.catalog.clone(),
@@ -450,9 +505,10 @@ impl AtomKey {
         &self.scope
     }
 
-    /// The sorted qualifier-family case numbers (part of the exact identity).
+    /// The sorted complete typed qualifier identities (family, member and
+    /// any typed payload); declaration order is not semantic identity.
     #[must_use]
-    pub fn qualifiers(&self) -> &[u32] {
+    pub fn qualifiers(&self) -> &[EffectQualifierIdentity] {
         &self.qualifiers
     }
 
