@@ -104,7 +104,9 @@
     "failures": null,
     "flow": {
       "constraints_by_child": [],
-      "decision_dependencies": [],
+      "decision_dependencies": [
+        "value-slot:1"
+      ],
       "effective_authority_inferred": false,
       "influence_unknown": true,
       "may_carry_authority": "none",
@@ -181,11 +183,11 @@
         "failures": null,
         "flow": null,
         "node": 2,
+        "proof_source": "checked_component",
         "recovery_actions": null,
         "resolved": true,
         "resources": null,
-        "usage": null,
-        "verdict": "proven"
+        "usage": null
       },
       {
         "caller_digest": "semantic-ir:caller",
@@ -244,12 +246,15 @@
         "failures": null,
         "flow": null,
         "node": 3,
+        "proof_source": "checked_component",
         "recovery_actions": null,
         "resolved": true,
         "resources": null,
-        "usage": null,
-        "verdict": "proven"
+        "usage": null
       }
+    ],
+    "decision_dependencies": [
+      "value-slot:1"
     ],
     "operation": "compose",
     "operator": "select"

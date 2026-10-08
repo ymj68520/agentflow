@@ -220,14 +220,22 @@ def control_compose(data: dict) -> dict:
         adjustment_names = [child["node"] for child in children[1:] if any(int(entry["lower"]) > 0 for entry in (child.get("effects") or {}).get("entries", []))]
     elif operator in ("race", "parallel_fail_fast", "select"):
         adjustment_names = [child["node"] for child in children if any(int(entry["lower"]) > 0 for entry in (child.get("effects") or {}).get("entries", []))]
-    proof_verdicts = [child.get("verdict", "proven") for child in children]
+    proof_sources = {
+        "checked_component": "proven",
+        "unresolved_component_pin": "unproven",
+        "subflow_body_evidence": "requires_evidence",
+    }
+    proof_verdicts = [
+        proof_sources[child.get("proof_source", "checked_component")]
+        for child in children
+    ]
     proof_verdicts.extend([effect_verdict, usage_verdict, failure_verdict, flow["verdict"]])
     if missing:
         proof_verdicts.append("unproven")
     return {
         "verdict": verdict(proof_verdicts),
         "effects": effects,
-        "effect_row_complete": all_effects and effects.get("row") != "unknown",
+        "effect_row_complete": all_effects and effects.get("row") == "closed",
         "effect_lower_bound_adjusted_children": adjustment_names,
         "effect_occurrences": occurrences,
         "usage": usage,
@@ -320,10 +328,17 @@ def usage(**coordinates: int | str) -> dict:
 
 
 def child(node: int, contract: str, *, effects: dict | None = None, usage_row: dict | None = None, failures: list[str] | None = None, sources: list[str] | None = None, taints: list[str] | None = None, authority: str = "none", unknown: bool = False, recovery_actions: list[dict] | None = None, execution: dict | None = None, resources: list[dict] | None = None, verdict_value: str = "proven") -> dict:
-    return {"node": node, "contract_digest": contract, "caller_digest": "semantic-ir:caller", "effects": effects, "effect_entries": (effects or {}).get("entries", []), "usage": usage_row, "failures": failures, "flow": None if sources is None and taints is None else {"sources": sources or [], "taints": taints or [], "authority": authority, "influence_unknown": unknown, "constraints": []}, "recovery_actions": recovery_actions, "execution": execution, "resources": resources, "verdict": verdict_value, "resolved": effects is not None}
+    proof_source = {
+        "proven": "checked_component",
+        "unproven": "unresolved_component_pin",
+        "requires_evidence": "subflow_body_evidence",
+    }[verdict_value]
+    return {"node": node, "contract_digest": contract, "caller_digest": "semantic-ir:caller", "effects": effects, "effect_entries": (effects or {}).get("entries", []), "usage": usage_row, "failures": failures, "flow": None if sources is None and taints is None else {"sources": sources or [], "taints": taints or [], "authority": authority, "influence_unknown": unknown, "constraints": []}, "recovery_actions": recovery_actions, "execution": execution, "resources": resources, "proof_source": proof_source, "resolved": effects is not None}
 
 
 def compose_case(case_id: str, group: str, operator: str, children: list[dict], note: str, **options: Any) -> dict:
+    if operator == "select" and "exact_child" not in options:
+        options.setdefault("decision_dependencies", ["value-slot:1"])
     return case(case_id, group, "compose", {"operator": operator, "children": children, **options}, note)
 
 
@@ -375,11 +390,11 @@ CASES = [
     compose_case("computation-control/race/winner-output-taints-union", "race", "race", [child(2, COMPONENT_A, sources=["input:a"], taints=["web"]), child(3, COMPONENT_B, sources=["input:b"], taints=["user"])], "Every possible winner contributes output taint and source facts."),
     compose_case("computation-control/race/same-atom-distinct-occurrences", "race", "race", [child(2, COMPONENT_A, effects=effect_row(effect_entry())), child(3, COMPONENT_A, effects=effect_row(effect_entry()))], "Same AtomKey across branches may merge in the upper row, never in occurrence provenance."),
     compose_case("computation-control/race/physical-timing-not-decision", "race", "race", BASE_CHILDREN, "Static analysis does not select a winner from physical completion timing."),
-    compose_case("computation-control/proof/requires-evidence-propagates", "proof", "compose", [child(2, COMPONENT_A, effects=effect_row(effect_entry()), verdict_value="requires_evidence"), child(3, COMPONENT_B, effects=effect_row())], "Known Effect envelope and inherited RequiresEvidence coexist."),
-    compose_case("computation-control/proof/unproven-propagates", "proof", "compose", [child(2, COMPONENT_A, effects=None, verdict_value="unproven"), child(3, COMPONENT_B, effects=effect_row())], "Unproven child never becomes a Proven parent."),
-    compose_case("computation-control/proof/known-bound-with-evidence", "proof", "compose", [child(2, COMPONENT_A, effects=effect_row(effect_entry()), verdict_value="requires_evidence"), child(3, COMPONENT_B, effects=effect_row())], "The conservative declared bound remains materialized while the overall proof is RequiresEvidence."),
-    compose_case("computation-control/proof/unknown-effect-row-not-empty", "proof", "compose", [child(2, COMPONENT_A, effects={"row": "unknown"}), child(3, COMPONENT_B, effects=effect_row())], "EffectRow::Unknown contaminates the result; no pure Closed row is synthesized."),
-    compose_case("computation-control/proof/open-effect-row-remains-open", "proof", "compose", [child(2, COMPONENT_A, effects=effect_row(effect_entry(), row="open", residuals=[{"catalog": "agentflow.effects@1", "selector": {"requirement_port_no": 1, "scope_bindings": []}, "lower": 0, "upper": 4}])), child(3, COMPONENT_B, effects=effect_row())], "Bounded open residuals remain open after composition."),
+    compose_case("computation-control/proof/requires-evidence-propagates", "proof", "sequence", [child(2, COMPONENT_A, effects=effect_row(effect_entry()), verdict_value="requires_evidence"), child(3, COMPONENT_B, effects=effect_row())], "Known Effect envelope and inherited RequiresEvidence coexist; the evidence source is a subflow body, not a claimed verdict."),
+    compose_case("computation-control/proof/unproven-propagates", "proof", "sequence", [child(2, COMPONENT_A, effects=None, verdict_value="unproven"), child(3, COMPONENT_B, effects=effect_row())], "Unproven child is materialized as an unresolved exact component pin, not a claimed verdict."),
+    compose_case("computation-control/proof/known-bound-with-evidence", "proof", "sequence", [child(2, COMPONENT_A, effects=effect_row(effect_entry()), verdict_value="requires_evidence"), child(3, COMPONENT_B, effects=effect_row())], "The conservative declared bound remains materialized while the subflow body proof requires evidence."),
+    compose_case("computation-control/proof/unknown-effect-row-not-empty", "proof", "sequence", [child(2, COMPONENT_A, effects=None, verdict_value="unproven"), child(3, COMPONENT_B, effects=effect_row())], "An unresolved exact leaf pin contributes an unknown Effect row; no pure Closed row is synthesized."),
+    compose_case("computation-control/proof/open-effect-row-remains-open", "proof", "sequence", [child(2, COMPONENT_A, effects=effect_row(effect_entry(), row="open", residuals=[{"catalog": "agentflow.effects@1", "selector": {"requirement_port_no": 1, "scope_bindings": []}, "lower": 0, "upper": 4}])), child(3, COMPONENT_B, effects=effect_row())], "Bounded open residuals remain open after composition; formal resolution feasibility is audited separately."),
     compose_case("computation-control/proof/missing-usage-not-zero", "proof", "compose", [child(2, COMPONENT_A, usage_row=None, verdict_value="unproven"), child(3, COMPONENT_B, usage_row=usage(**{"forward/api_calls": 5}))], "Missing Usage remains unknown, never finite(0)."),
     compose_case("computation-control/proof/cancellation-not-failure", "proof", "race", [child(2, COMPONENT_A, failures=["FailureA"]), child(3, COMPONENT_B, failures=["FailureB"])], "Cancellation is not inserted into the typed Failure row."),
     compose_case("computation-control/negative/effect-overflow", "negative", "sequence", [child(2, COMPONENT_A, effects=effect_row(effect_entry(lower=0, upper=MAX_U64))), child(3, COMPONENT_B, effects=effect_row(effect_entry(lower=0, upper=1)))], "Finite upper overflow is a violation and never wraps."),
@@ -412,7 +427,7 @@ def main() -> None:
         write_case(item)
     manifest = {
         "kind": "agentflow.conformance.computation-control.test-corpus",
-        "corpus_revision": 1,
+        "corpus_revision": 2,
         "format_note": "static test vectors only; no AFIDL, ACE1 or HashV1 control identity",
         "case_count": len(CASES),
         "case_ids": sorted(ids),

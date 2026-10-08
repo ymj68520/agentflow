@@ -47,6 +47,7 @@
         "failures": null,
         "flow": null,
         "node": 2,
+        "proof_source": "checked_component",
         "recovery_actions": null,
         "resolved": false,
         "resources": null,
@@ -55,8 +56,7 @@
             "forward/api_calls": 10,
             "recovery/api_calls": 2
           }
-        },
-        "verdict": "proven"
+        }
       },
       {
         "caller_digest": "semantic-ir:caller",
@@ -67,6 +67,7 @@
         "failures": null,
         "flow": null,
         "node": 3,
+        "proof_source": "checked_component",
         "recovery_actions": null,
         "resolved": false,
         "resources": null,
@@ -75,8 +76,7 @@
             "forward/api_calls": 20,
             "recovery/api_calls": 3
           }
-        },
-        "verdict": "proven"
+        }
       }
     ],
     "operation": "compose",

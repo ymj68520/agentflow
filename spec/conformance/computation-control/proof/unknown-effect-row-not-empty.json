@@ -5,6 +5,13 @@
     "effect_occurrences": [],
     "effect_row_complete": false,
     "effects": {
+      "known_contributions": [
+        {
+          "entries": [],
+          "residuals": [],
+          "row": "closed"
+        }
+      ],
       "row": "unknown"
     },
     "execution_by_child": [],
@@ -21,7 +28,9 @@
     },
     "recovery_sources": [],
     "resources_by_child": [],
-    "unresolved_children": [],
+    "unresolved_children": [
+      2
+    ],
     "usage": {
       "known_contributions": [],
       "state": "unknown"
@@ -35,18 +44,16 @@
         "caller_digest": "semantic-ir:caller",
         "contract_digest": "component-contract:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "effect_entries": [],
-        "effects": {
-          "row": "unknown"
-        },
+        "effects": null,
         "execution": null,
         "failures": null,
         "flow": null,
         "node": 2,
+        "proof_source": "unresolved_component_pin",
         "recovery_actions": null,
-        "resolved": true,
+        "resolved": false,
         "resources": null,
-        "usage": null,
-        "verdict": "proven"
+        "usage": null
       },
       {
         "caller_digest": "semantic-ir:caller",
@@ -61,16 +68,16 @@
         "failures": null,
         "flow": null,
         "node": 3,
+        "proof_source": "checked_component",
         "recovery_actions": null,
         "resolved": true,
         "resources": null,
-        "usage": null,
-        "verdict": "proven"
+        "usage": null
       }
     ],
     "operation": "compose",
-    "operator": "compose"
+    "operator": "sequence"
   },
   "kind": "agentflow.conformance.computation-control.test-vector",
-  "note": "EffectRow::Unknown contaminates the result; no pure Closed row is synthesized."
+  "note": "An unresolved exact leaf pin contributes an unknown Effect row; no pure Closed row is synthesized."
 }

@@ -157,11 +157,11 @@
         "failures": null,
         "flow": null,
         "node": 2,
+        "proof_source": "checked_component",
         "recovery_actions": null,
         "resolved": true,
         "resources": null,
-        "usage": null,
-        "verdict": "proven"
+        "usage": null
       },
       {
         "caller_digest": "semantic-ir:caller",
@@ -220,11 +220,11 @@
         "failures": null,
         "flow": null,
         "node": 3,
+        "proof_source": "checked_component",
         "recovery_actions": null,
         "resolved": true,
         "resources": null,
-        "usage": null,
-        "verdict": "proven"
+        "usage": null
       }
     ],
     "operation": "compose",

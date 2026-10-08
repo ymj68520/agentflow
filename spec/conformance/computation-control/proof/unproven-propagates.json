@@ -49,11 +49,11 @@
         "failures": null,
         "flow": null,
         "node": 2,
+        "proof_source": "unresolved_component_pin",
         "recovery_actions": null,
         "resolved": false,
         "resources": null,
-        "usage": null,
-        "verdict": "unproven"
+        "usage": null
       },
       {
         "caller_digest": "semantic-ir:caller",
@@ -68,16 +68,16 @@
         "failures": null,
         "flow": null,
         "node": 3,
+        "proof_source": "checked_component",
         "recovery_actions": null,
         "resolved": true,
         "resources": null,
-        "usage": null,
-        "verdict": "proven"
+        "usage": null
       }
     ],
     "operation": "compose",
-    "operator": "compose"
+    "operator": "sequence"
   },
   "kind": "agentflow.conformance.computation-control.test-vector",
-  "note": "Unproven child never becomes a Proven parent."
+  "note": "Unproven child is materialized as an unresolved exact component pin, not a claimed verdict."
 }

@@ -190,6 +190,7 @@
           ]
         },
         "node": 2,
+        "proof_source": "checked_component",
         "recovery_actions": null,
         "resolved": true,
         "resources": [
@@ -202,8 +203,7 @@
           "coordinates": {
             "forward/api_calls": 100
           }
-        },
-        "verdict": "proven"
+        }
       },
       {
         "caller_digest": "semantic-ir:caller",
@@ -214,11 +214,11 @@
         "failures": null,
         "flow": null,
         "node": 3,
+        "proof_source": "unresolved_component_pin",
         "recovery_actions": null,
         "resolved": false,
         "resources": null,
-        "usage": null,
-        "verdict": "unproven"
+        "usage": null
       }
     ],
     "operation": "compose",

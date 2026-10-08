@@ -226,6 +226,7 @@
           ]
         },
         "node": 2,
+        "proof_source": "checked_component",
         "recovery_actions": null,
         "resolved": true,
         "resources": [
@@ -238,8 +239,7 @@
           "coordinates": {
             "forward/api_calls": 100
           }
-        },
-        "verdict": "proven"
+        }
       },
       {
         "caller_digest": "semantic-ir:caller",
@@ -312,6 +312,7 @@
           ]
         },
         "node": 3,
+        "proof_source": "checked_component",
         "recovery_actions": null,
         "resolved": true,
         "resources": [
@@ -324,8 +325,7 @@
           "coordinates": {
             "forward/api_calls": 200
           }
-        },
-        "verdict": "proven"
+        }
       }
     ],
     "operation": "compose",

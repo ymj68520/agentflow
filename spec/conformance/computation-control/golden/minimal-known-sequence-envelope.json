@@ -63,6 +63,7 @@
           "taints": []
         },
         "node": 2,
+        "proof_source": "checked_component",
         "recovery_actions": null,
         "resolved": true,
         "resources": null,
@@ -70,8 +71,7 @@
           "coordinates": {
             "forward/api_calls": 0
           }
-        },
-        "verdict": "proven"
+        }
       },
       {
         "caller_digest": "semantic-ir:caller",
@@ -92,6 +92,7 @@
           "taints": []
         },
         "node": 3,
+        "proof_source": "checked_component",
         "recovery_actions": null,
         "resolved": true,
         "resources": null,
@@ -99,8 +100,7 @@
           "coordinates": {
             "forward/api_calls": 0
           }
-        },
-        "verdict": "proven"
+        }
       }
     ],
     "operation": "compose",
