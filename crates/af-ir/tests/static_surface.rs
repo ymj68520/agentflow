@@ -319,8 +319,11 @@ fn the_wire_schema_is_frozen_at_its_phase_3b_identity() {
 }
 
 #[test]
-fn phase_3c_added_no_module_abi_row_or_domain() {
-    // Exactly the four frozen AFIDL modules.
+fn module_abi_and_domain_counts_hold_at_their_frozen_values() {
+    // The cumulative module freeze: exactly five AFIDL modules after Phase
+    // 4A.1 added the Effect Signature schema module (the first four are the
+    // machine primitives, the self-hosting registry, the semantic core and
+    // the Semantic IR).
     fn collect_modules(directory: &Path, out: &mut Vec<String>) {
         for entry in std::fs::read_dir(directory).unwrap() {
             let path = entry.unwrap().path();
@@ -334,19 +337,31 @@ fn phase_3c_added_no_module_abi_row_or_domain() {
     let mut modules = Vec::new();
     collect_modules(&repo_root().join("spec/idl"), &mut modules);
     modules.sort_unstable();
-    assert_eq!(modules.len(), 4, "an AFIDL module was added: {modules:?}");
+    assert_eq!(
+        modules.len(),
+        5,
+        "an unexpected AFIDL module set: {modules:?}"
+    );
 
-    // Exactly the frozen ABI rows: 232 total, 100 of them semantic IR.
+    // Exactly the frozen ABI rows: 264 total, 100 of them semantic IR and
+    // 32 of them the Phase 4A.1 effect-signature family.
     let abi: serde_json::Value =
         serde_json::from_str(&read("spec/registry/abi-numbers.json")).unwrap();
     let rows = abi["assignments"].as_array().unwrap();
-    assert_eq!(rows.len(), 232, "an ABI row was added");
+    assert_eq!(rows.len(), 264, "an ABI row was added or removed");
     assert_eq!(
         rows.iter()
             .filter(|row| row["schema_family"] == "agentflow.semantic.ir@1")
             .count(),
         100,
         "the semantic IR ABI block changed size"
+    );
+    assert_eq!(
+        rows.iter()
+            .filter(|row| row["schema_family"] == "agentflow.effect.signature@1")
+            .count(),
+        32,
+        "the effect-signature ABI block changed size"
     );
 
     // Exactly the frozen HashV1 domains.

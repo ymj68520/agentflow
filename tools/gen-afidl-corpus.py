@@ -17,13 +17,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONF = ROOT / "spec" / "conformance" / "afidl"
-# Revision 5 (Phase 3B): adds the `semantic-ir` case for the canonical
-# Semantic IR schema module (the first production cross-module importer).
-# Revision 4 (Phase 2C) added cross-module import cases; revision 3 (Phase 3A)
-# added the `semantic-core` case; revision 2 (Phase 2B) added the self-hosting
-# registry schema module. Every bump is purely additive: existing cases, bytes
-# and digests are unchanged.
-CORPUS_REVISION = 5
+# Revision 6 (Phase 4A.1): adds the `effect-signature` case for the Effect
+# Signature schema module (the second production cross-module importer; it
+# reuses the semantic core's PrimitiveConstant for guard payloads).
+# Revision 5 (Phase 3B) added the `semantic-ir` case; revision 4 (Phase 2C)
+# added cross-module import cases; revision 3 (Phase 3A) added the
+# `semantic-core` case; revision 2 (Phase 2B) added the self-hosting
+# registry schema module. Every bump is purely additive: existing cases,
+# bytes and digests are unchanged.
+CORPUS_REVISION = 6
 
 # The frozen 13-opcode case table (spec/semantic/semantic-ir.md section 4).
 OPCODE_TABLE = [
@@ -705,6 +707,9 @@ def main():
     # The Phase 3B canonical Semantic IR schema module is part of the corpus.
     ir_file = ROOT / "spec" / "idl" / "semantic-ir.afidl"
     cases.append(case_entry(ir_file, case_id="semantic-ir"))
+    # The Phase 4A.1 Effect Signature schema module is part of the corpus.
+    effect_file = ROOT / "spec" / "idl" / "effect-signature.afidl"
+    cases.append(case_entry(effect_file, case_id="effect-signature"))
 
     schema_golden = {
         "kind": "agentflow.conformance.afidl.schema-golden",

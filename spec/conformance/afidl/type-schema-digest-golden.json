@@ -1,5 +1,5 @@
 {
-  "corpus_revision": 5,
+  "corpus_revision": 6,
   "kind": "agentflow.conformance.afidl.type-schema-digest-golden",
   "note": "Frozen TypeSchemaDigest values (SHA256(\"AF\\0type-schema\\0\" || canonical ACE1 bytes)). Mutation cases assert that semantic changes alter the digest while the equivalence groups in schema-golden.json assert that formatting does not.",
   "cases": [
@@ -1010,6 +1010,126 @@
       "file": "spec/idl/semantic-ir.afidl",
       "type_name": "WorkflowOutputDecl",
       "digest_hex": "c0a14c327f3c95640914a20f8ed54456f56c53c4aaad0af6430261c6c551acc6"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "CatalogId",
+      "digest_hex": "cf20c3cd607d450acfb1dad8966477809e9c291b7cbe03867050437ee1e52f4a"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "EffectAtom",
+      "digest_hex": "32b9d48632927b2c2a280893e89fe72a2dfb18a7e6cf75b81dcbe0a9a6757bc7"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "EffectEntry",
+      "digest_hex": "ecc868c104fee4e054f0e174cd841838dd5746a5f148ad11ba912de57fbf777f"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "EffectGuard",
+      "digest_hex": "c2ac46373486ea59b43da4c61fd40330b69d65f55b27f6ab1bd8ba56023d6293"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "EffectGuardInputEquals",
+      "digest_hex": "bd6846b1c60d1783ee96f5e240261f14fffa65cb12079caafd558bcaf8dcc46f"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "EffectIdempotencyQualifier",
+      "digest_hex": "4b5c03b25641849e4f136a4cb425fe13a1531ab1b231aa2b4ab03f82e06feebb"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "EffectOpenRow",
+      "digest_hex": "f194d138141ce680b29b9d3972bafb46926b430bce87b27fec08641d9a67632a"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "EffectOperationRef",
+      "digest_hex": "1d60a16a17218bffac205f1ef42c447ef8db39b2d4f35368e7e55e79c19c72d2"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "EffectQualifier",
+      "digest_hex": "312ecc40abfb594136f9c61bb86a06c5ca6f4ac4be3e1b8ac0293de4146b3a12"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "EffectResidual",
+      "digest_hex": "ac338c7d5bdafb769ff79e489927ca6f79ec4468d1cedbfe3e9d2ef0edd6acf3"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "EffectRow",
+      "digest_hex": "79032f60154a2329aecc7519f7198475688c7759e41c44047189ee165d942f89"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "EffectSignature",
+      "digest_hex": "3544a30f7d706831eb1edcb864e791a51495225fee9cb7a3f8d8d939f636942c"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "OccurrenceBounds",
+      "digest_hex": "0082777af0ee6ef307c4fdda25ccc7a4bc96f861d38d16e62a96f05895aff7d8"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "OccurrenceCeiling",
+      "digest_hex": "4cf11aba08570379078d18314fadd68438754685624089b7719210f8c7928c2f"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "OperationName",
+      "digest_hex": "aa6fa182b1a42c94039ad0fd49aa07cd7365605779932f6cf866bef921339842"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "RequirementPortNo",
+      "digest_hex": "71c934cbb1b16d37965990f1e037027f4039cf03dc699caf5589fe0e993c1ba0"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "ResourceSelector",
+      "digest_hex": "dba0b3d3b7b0927f17ae28964c20705bf1dbf693c570f7b2b5ddef9338634f9f"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "ScopeBinding",
+      "digest_hex": "c3dbb0575dde1c6c5a805590fdfce0f2a6fe0c8254037bc6d797f4fdf711b2e2"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "ScopeKey",
+      "digest_hex": "49c23c36a1046815c599487d24dac5eb1a10711746cb29df607b501a3a4a865e"
+    },
+    {
+      "case_id": "effect-signature",
+      "file": "spec/idl/effect-signature.afidl",
+      "type_name": "ScopeValue",
+      "digest_hex": "d2f064cd78376dbf0a1f672747029270c9d80c6e7e3b7abcbe0d6fc87301be8f"
     }
   ],
   "mutation_cases": [
