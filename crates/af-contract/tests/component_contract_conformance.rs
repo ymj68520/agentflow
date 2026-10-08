@@ -621,6 +621,54 @@ fn missing_effect_resource_catalog_is_unproven_not_allowed() {
 }
 
 #[test]
+fn io_pin_and_namespace_negatives_are_rejected_before_digest_issuance() {
+    let fixture = FixtureContext::new();
+    let type_ref = fixture
+        .schemas
+        .get("agentflow.semantic.core@1/TypeSchemaRef")
+        .unwrap()
+        .reference();
+    let context = fixture.view();
+    let mut duplicate = empty_contract(false);
+    duplicate.inputs = vec![
+        af_contract::ComponentInputPort {
+            port_no: 1,
+            type_ref: type_ref.clone(),
+        },
+        af_contract::ComponentInputPort {
+            port_no: 1,
+            type_ref: type_ref.clone(),
+        },
+    ];
+    let report = check_contract(&duplicate, &context).unwrap_err();
+    assert_eq!(report.overall(), af_contract::ProofVerdict::Violation);
+
+    let mut wrong_digest = empty_contract(false);
+    let mut bad_pin = type_ref;
+    bad_pin.schema_digest.hex = "ff".repeat(32);
+    wrong_digest.outputs = vec![af_contract::ComponentOutputPort {
+        port_no: 1,
+        type_ref: bad_pin,
+    }];
+    let report = check_contract(&wrong_digest, &context).unwrap_err();
+    assert_eq!(report.overall(), af_contract::ProofVerdict::Violation);
+}
+
+#[test]
+fn malformed_relation_catalog_rows_are_rejected_not_canonicalized_away() {
+    let fixture = FixtureContext::new();
+    let operation = EffectOperationRef {
+        catalog: "agentflow.effects@1".into(),
+        name: "read".into(),
+    };
+    let invalid = EffectResourceCompatibilityCatalog {
+        complete_operations: vec![operation.clone(), operation],
+        supported_pairs: vec![],
+    };
+    assert!(RelationCatalogSnapshot::new("fixture-invalid", invalid, &fixture.modules).is_err());
+}
+
+#[test]
 fn recovery_meter_product_is_checked_and_must_fit_u_recovery() {
     let mut fixture = FixtureContext::new();
     let contract = recovery_contract_with_usage(&mut fixture, Some(100));
