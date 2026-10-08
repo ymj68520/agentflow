@@ -1,6 +1,6 @@
 [package]
 name = "af-computation"
-description = "Pure static resolution and proof summaries for Semantic IR computation leaves"
+description = "Pure static computation-leaf resolution and structured control contract algebra"
 version.workspace = true
 edition.workspace = true
 license.workspace = true

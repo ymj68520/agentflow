@@ -1,26 +1,35 @@
 use af_computation::{
-    LeafVerdict, SnapshotError, StaticComputationResolutionSnapshotBuilder,
-    resolve_computation_leaf,
+    ControlDerivationError, ControlDimensionValue, LeafVerdict, SnapshotError,
+    StaticComputationResolutionSnapshotBuilder, derive_control_contract, resolve_computation_leaf,
 };
 use af_contract::{
     ComponentContract, ComponentIdentity, ComponentInputPort, ComponentOutputPort,
-    EffectFlowPartition, EffectResourceCompatibilityCatalog, RecoveryActionBinding,
-    RecoveryUsageBinding, RelationCatalogSnapshot, RelationSnapshots, StaticContractProofContext,
-    check_contract, component_contract_digest,
+    EffectFlowPartition, EffectQualifierProfile, EffectResourceCompatibilityCatalog,
+    RecoveryActionBinding, RecoveryUsageBinding, RelationCatalogSnapshot, RelationSnapshots,
+    StaticContractProofContext, SupportedEffectResourcePair, check_contract,
+    component_contract_digest,
 };
-use af_effect::{EffectCatalogUniverse, EffectOperationRef, EffectRow, EffectSignature};
+use af_effect::{
+    CapabilityCatalog, EffectAtom, EffectCatalogUniverse, EffectEntry, EffectGuard,
+    EffectOperationRef, EffectRow, EffectSignature, OccurrenceBounds, ResourceSelector,
+};
 use af_execution::ExecutionUniverses;
-use af_failure::FailureRow;
+use af_failure::{FailureRow, FailureTypeRef};
 use af_flow::{
     FlowCatalogs, InformationFlowContract, InstructionAuthority, StaticInformationSummary,
 };
 use af_idl::{CompiledModuleSet, compile_module_set};
 use af_ir::{
     AwaitBody, CallSubflowBody, ComputationBody, ComputationDef, ComputationId, ContractRefEntry,
-    ContractRefId, ContractRefKind, InputBinding, InvokeBody, ResourceUseBinding, RunParameterDecl,
-    SemanticIrDocument, SequenceBody, SubflowIrUniverse,
+    ContractRefId, ContractRefKind, InputBinding, InvokeBody, ParallelBody, ParallelBranch,
+    ParallelMode, ParallelOutputBinding, RaceBody, RaceBranch, ResourceUseBinding,
+    RunParameterDecl, SelectBody, SelectCase, SemanticIrDocument, SequenceBody, SubflowIrUniverse,
+    TimeoutBody,
 };
-use af_recovery::{RecoveryContract, RecoveryOperationUniverse, ReplaySemantics};
+use af_recovery::{
+    CompensationRequirement, EffectRecoveryClause, IdempotencySemantics, ReconciliationRequirement,
+    RecoveryContract, RecoveryOperationUniverse, ReplaySemantics, UnknownEffectHandling,
+};
 use af_resource::{
     ResourceRequirement, ResourceRequirementRow, ResourceTypeDescriptor, ResourceTypeRef,
     ResourceTypeUniverse,
@@ -29,7 +38,9 @@ use af_semantic::{
     DigestRefValue, ExpressionBody, ExpressionDef, SemanticPrimitiveType, SemanticTypeNode,
     SemanticTypeNodeBody, TypeSchemaUniverse,
 };
-use af_usage::UsageMeterUniverse;
+use af_usage::{
+    StaticUsageBound, UsageCoordinate, UsageMeterRef, UsageMeterUniverse, UsagePhase, UsageUnitRef,
+};
 
 fn modules() -> CompiledModuleSet {
     let sources = vec![
@@ -167,6 +178,77 @@ impl Context {
             .unwrap();
         ResourceTypeRef { schema }
     }
+
+    fn usage_meter(&mut self) -> UsageMeterRef {
+        let meter = UsageMeterRef {
+            catalog: "agentflow.meters@1".into(),
+            name: "api_calls".into(),
+        };
+        let unit = UsageUnitRef::new("agentflow.units@1", "calls").unwrap();
+        self.usage.recognize_additive(&meter, &unit).unwrap();
+        meter
+    }
+
+    fn effectful_contract(&mut self) -> (ComponentContract, af_semantic::TypeSchemaRef) {
+        let resource_type = self.resource_type();
+        let operation = EffectOperationRef {
+            catalog: "agentflow.effects@1".into(),
+            name: "write".into(),
+        };
+        let catalog = CapabilityCatalog::new("agentflow.effects@1", ["write"]).unwrap();
+        self.effects.insert(&catalog).unwrap();
+        self.recovery.effects.insert(&catalog).unwrap();
+        let atom = EffectAtom {
+            operation: operation.clone(),
+            resource_selector: ResourceSelector {
+                requirement_port_no: 1,
+                scope_bindings: vec![],
+            },
+            qualifiers: vec![],
+        };
+        let mut contract = empty_contract();
+        contract.effects = EffectSignature {
+            row: EffectRow::Closed(vec![EffectEntry {
+                atom: atom.clone(),
+                bounds: OccurrenceBounds::finite(1, 2).unwrap(),
+                guard: EffectGuard::Unconditional,
+            }]),
+        };
+        contract.recovery.effect_recovery_clauses = vec![EffectRecoveryClause {
+            effect: atom,
+            idempotency: IdempotencySemantics::Natural,
+            key_requirement: None,
+            reconciliation: ReconciliationRequirement::None,
+            compensation: CompensationRequirement::None,
+            unknown_effect_handling: UnknownEffectHandling::Block,
+        }];
+        contract.resources = ResourceRequirementRow {
+            requirements: vec![ResourceRequirement {
+                port_no: 1,
+                resource_type: resource_type.clone(),
+                required_attributes: vec![],
+            }],
+        };
+        self.relations.effect_resource = Some(
+            RelationCatalogSnapshot::new(
+                "control-test-effects-r1",
+                EffectResourceCompatibilityCatalog {
+                    complete_operations: vec![operation.clone()],
+                    supported_pairs: vec![SupportedEffectResourcePair {
+                        operation,
+                        resource_type: resource_type.clone(),
+                        selector_keys: vec![],
+                        allowed_qualifier_profiles: vec![EffectQualifierProfile {
+                            qualifiers: vec![],
+                        }],
+                    }],
+                },
+                &self.modules,
+            )
+            .unwrap(),
+        );
+        (contract, resource_type.schema)
+    }
 }
 
 fn empty_contract() -> ComponentContract {
@@ -202,6 +284,18 @@ fn empty_contract() -> ComponentContract {
         recovery_action_bindings: Vec::<RecoveryActionBinding>::new(),
         recovery_usage_bindings: Vec::<RecoveryUsageBinding>::new(),
     }
+}
+
+fn usage_contract(meter: UsageMeterRef, upper: u64) -> ComponentContract {
+    let mut contract = empty_contract();
+    contract.usage = af_usage::UsageSignature {
+        limits: vec![af_usage::UsageLimit {
+            meter,
+            phase: UsagePhase::Forward,
+            upper: af_usage::UsageUpperBound::Finite(upper),
+        }],
+    };
+    contract
 }
 
 fn digest_value(
@@ -280,6 +374,172 @@ fn document(digest: DigestRefValue, call_count: usize) -> SemanticIrDocument {
     }
 }
 
+fn two_call_control_document(
+    first: DigestRefValue,
+    second: DigestRefValue,
+    operator: &str,
+    resource_type: Option<&af_semantic::TypeSchemaRef>,
+) -> SemanticIrDocument {
+    let same_contract = first == second;
+    let second_contract_ref = if same_contract { 1 } else { 2 };
+    let (types, values, expressions, run_parameters, body) = if operator == "select" {
+        (
+            vec![SemanticTypeNode {
+                id: 1.into(),
+                body: SemanticTypeNodeBody::Primitive(SemanticPrimitiveType::Int64),
+            }],
+            vec![af_semantic::ValueSlot {
+                id: 1.into(),
+                type_id: 1.into(),
+            }],
+            vec![ExpressionDef {
+                id: 1.into(),
+                result_type_id: 1.into(),
+                body: ExpressionBody::ValueSlot(1.into()),
+            }],
+            vec![RunParameterDecl {
+                id: 1.into(),
+                name: "branch".into(),
+                type_id: 1.into(),
+                value_slot: 1.into(),
+            }],
+            ComputationBody::Select(SelectBody {
+                selector: 1.into(),
+                cases: vec![
+                    SelectCase {
+                        ordinal: 1.into(),
+                        child: 2.into(),
+                    },
+                    SelectCase {
+                        ordinal: 2.into(),
+                        child: 3.into(),
+                    },
+                ],
+            }),
+        )
+    } else {
+        let body = match operator {
+            "sequence" => ComputationBody::Sequence(SequenceBody {
+                children: vec![2.into(), 3.into()],
+            }),
+            "parallel_all" => ComputationBody::Parallel(ParallelBody {
+                mode: ParallelMode::All,
+                branches: vec![
+                    ParallelBranch {
+                        ordinal: 1.into(),
+                        child: 2.into(),
+                    },
+                    ParallelBranch {
+                        ordinal: 2.into(),
+                        child: 3.into(),
+                    },
+                ],
+                max_inflight: Some(1),
+                output_bindings: vec![],
+            }),
+            "parallel_fail_fast" => ComputationBody::Parallel(ParallelBody {
+                mode: ParallelMode::FailFast,
+                branches: vec![
+                    ParallelBranch {
+                        ordinal: 1.into(),
+                        child: 2.into(),
+                    },
+                    ParallelBranch {
+                        ordinal: 2.into(),
+                        child: 3.into(),
+                    },
+                ],
+                max_inflight: Some(1),
+                output_bindings: vec![],
+            }),
+            "race" => ComputationBody::Race(RaceBody {
+                branches: vec![
+                    RaceBranch {
+                        ordinal: 1.into(),
+                        child: 2.into(),
+                    },
+                    RaceBranch {
+                        ordinal: 2.into(),
+                        child: 3.into(),
+                    },
+                ],
+            }),
+            _ => panic!("unsupported test operator"),
+        };
+        (vec![], vec![], vec![], vec![], body)
+    };
+    SemanticIrDocument {
+        semantic_refs: vec![],
+        types,
+        values,
+        expressions,
+        resources: resource_type.map_or_else(Vec::new, |requirement_type| {
+            vec![af_semantic::ResourceSlot {
+                id: 1.into(),
+                requirement_type: requirement_type.clone(),
+            }]
+        }),
+        contracts: if same_contract {
+            vec![ContractRefEntry {
+                id: 1.into(),
+                kind: ContractRefKind::Component,
+                digest: first,
+            }]
+        } else {
+            vec![
+                ContractRefEntry {
+                    id: 1.into(),
+                    kind: ContractRefKind::Component,
+                    digest: first,
+                },
+                ContractRefEntry {
+                    id: 2.into(),
+                    kind: ContractRefKind::Component,
+                    digest: second,
+                },
+            ]
+        },
+        run_parameters,
+        workflow_outputs: vec![],
+        computations: vec![
+            ComputationDef {
+                id: 1.into(),
+                outputs: vec![],
+                body,
+            },
+            ComputationDef {
+                id: 2.into(),
+                outputs: vec![],
+                body: ComputationBody::Invoke(InvokeBody {
+                    contract: 1.into(),
+                    inputs: vec![],
+                    resources: resource_type.map_or_else(Vec::new, |_| {
+                        vec![ResourceUseBinding {
+                            port_no: 1.into(),
+                            resource_slot: 1.into(),
+                        }]
+                    }),
+                }),
+            },
+            ComputationDef {
+                id: 3.into(),
+                outputs: vec![],
+                body: ComputationBody::Invoke(InvokeBody {
+                    contract: second_contract_ref.into(),
+                    inputs: vec![],
+                    resources: resource_type.map_or_else(Vec::new, |_| {
+                        vec![ResourceUseBinding {
+                            port_no: 1.into(),
+                            resource_slot: 1.into(),
+                        }]
+                    }),
+                }),
+            },
+        ],
+        root: 1.into(),
+    }
+}
+
 fn typed_invoke_document(
     digest: DigestRefValue,
     input_type: af_semantic::TypeSchemaRef,
@@ -341,6 +601,175 @@ fn typed_invoke_document(
             }),
         }],
         root: ComputationId::from_raw(1),
+    }
+}
+
+fn sequence_output_input_document(
+    producer_pin: DigestRefValue,
+    consumer_pin: DigestRefValue,
+    schema: af_semantic::TypeSchemaRef,
+) -> SemanticIrDocument {
+    SemanticIrDocument {
+        semantic_refs: vec![],
+        types: vec![SemanticTypeNode {
+            id: 1.into(),
+            body: SemanticTypeNodeBody::Schema(schema),
+        }],
+        values: vec![af_semantic::ValueSlot {
+            id: 1.into(),
+            type_id: 1.into(),
+        }],
+        expressions: vec![ExpressionDef {
+            id: 1.into(),
+            result_type_id: 1.into(),
+            body: ExpressionBody::ValueSlot(1.into()),
+        }],
+        resources: vec![],
+        contracts: vec![
+            ContractRefEntry {
+                id: 1.into(),
+                kind: ContractRefKind::Component,
+                digest: producer_pin,
+            },
+            ContractRefEntry {
+                id: 2.into(),
+                kind: ContractRefKind::Component,
+                digest: consumer_pin,
+            },
+        ],
+        run_parameters: vec![],
+        workflow_outputs: vec![],
+        computations: vec![
+            ComputationDef {
+                id: 1.into(),
+                outputs: vec![],
+                body: ComputationBody::Sequence(SequenceBody {
+                    children: vec![2.into(), 3.into()],
+                }),
+            },
+            ComputationDef {
+                id: 2.into(),
+                outputs: vec![af_ir::model::ComputationOutputBinding {
+                    port_no: 1.into(),
+                    value_slot: 1.into(),
+                }],
+                body: ComputationBody::Invoke(InvokeBody {
+                    contract: 1.into(),
+                    inputs: vec![],
+                    resources: vec![],
+                }),
+            },
+            ComputationDef {
+                id: 3.into(),
+                outputs: vec![],
+                body: ComputationBody::Invoke(InvokeBody {
+                    contract: 2.into(),
+                    inputs: vec![InputBinding {
+                        port_no: 1.into(),
+                        expression: 1.into(),
+                    }],
+                    resources: vec![],
+                }),
+            },
+        ],
+        root: 1.into(),
+    }
+}
+
+fn parallel_output_document(
+    first_pin: DigestRefValue,
+    second_pin: DigestRefValue,
+    schema: af_semantic::TypeSchemaRef,
+) -> SemanticIrDocument {
+    SemanticIrDocument {
+        semantic_refs: vec![],
+        types: vec![SemanticTypeNode {
+            id: 1.into(),
+            body: SemanticTypeNodeBody::Schema(schema),
+        }],
+        values: vec![
+            af_semantic::ValueSlot {
+                id: 1.into(),
+                type_id: 1.into(),
+            },
+            af_semantic::ValueSlot {
+                id: 2.into(),
+                type_id: 1.into(),
+            },
+            af_semantic::ValueSlot {
+                id: 3.into(),
+                type_id: 1.into(),
+            },
+        ],
+        expressions: vec![],
+        resources: vec![],
+        contracts: vec![
+            ContractRefEntry {
+                id: 1.into(),
+                kind: ContractRefKind::Component,
+                digest: first_pin,
+            },
+            ContractRefEntry {
+                id: 2.into(),
+                kind: ContractRefKind::Component,
+                digest: second_pin,
+            },
+        ],
+        run_parameters: vec![],
+        workflow_outputs: vec![],
+        computations: vec![
+            ComputationDef {
+                id: 1.into(),
+                outputs: vec![af_ir::model::ComputationOutputBinding {
+                    port_no: 1.into(),
+                    value_slot: 3.into(),
+                }],
+                body: ComputationBody::Parallel(ParallelBody {
+                    mode: ParallelMode::All,
+                    branches: vec![
+                        ParallelBranch {
+                            ordinal: 1.into(),
+                            child: 2.into(),
+                        },
+                        ParallelBranch {
+                            ordinal: 2.into(),
+                            child: 3.into(),
+                        },
+                    ],
+                    max_inflight: None,
+                    output_bindings: vec![ParallelOutputBinding {
+                        parent_port_no: 1.into(),
+                        branch_ordinal: 2.into(),
+                        child_port_no: 1.into(),
+                    }],
+                }),
+            },
+            ComputationDef {
+                id: 2.into(),
+                outputs: vec![af_ir::model::ComputationOutputBinding {
+                    port_no: 1.into(),
+                    value_slot: 1.into(),
+                }],
+                body: ComputationBody::Invoke(InvokeBody {
+                    contract: 1.into(),
+                    inputs: vec![],
+                    resources: vec![],
+                }),
+            },
+            ComputationDef {
+                id: 3.into(),
+                outputs: vec![af_ir::model::ComputationOutputBinding {
+                    port_no: 1.into(),
+                    value_slot: 2.into(),
+                }],
+                body: ComputationBody::Invoke(InvokeBody {
+                    contract: 2.into(),
+                    inputs: vec![],
+                    resources: vec![],
+                }),
+            },
+        ],
+        root: 1.into(),
     }
 }
 
@@ -673,6 +1102,136 @@ fn component_public_ports_require_exact_pins_and_reuse_dataflow_scope() {
 }
 
 #[test]
+fn sequence_records_phase3c_cross_sibling_dataflow_without_claiming_value_level_flow_proof() {
+    let fixture = Context::new();
+    let schema = fixture
+        .schemas
+        .get("agentflow.semantic.core@1/TypeSchemaRef")
+        .unwrap()
+        .reference();
+    let mut producer = empty_contract();
+    producer.component_identity.name = "acme.producer".into();
+    producer.outputs = vec![ComponentOutputPort {
+        port_no: 1,
+        type_ref: schema.clone(),
+    }];
+    let mut consumer = empty_contract();
+    consumer.component_identity.name = "acme.consumer".into();
+    consumer.inputs = vec![ComponentInputPort {
+        port_no: 1,
+        type_ref: schema.clone(),
+    }];
+    let context = fixture.view();
+    let checked_producer = check_contract(&producer, &context).unwrap();
+    let checked_consumer = check_contract(&consumer, &context).unwrap();
+    let producer_pin = digest_value(&checked_producer, &context);
+    let consumer_pin = digest_value(&checked_consumer, &context);
+    let source = sequence_output_input_document(producer_pin, consumer_pin, schema);
+    let checked_ir = source.check(&fixture.schemas).unwrap();
+    let subflows = SubflowIrUniverse::new();
+    let snapshot = StaticComputationResolutionSnapshotBuilder::new(&context, &subflows)
+        .component(&checked_producer)
+        .unwrap()
+        .component(&checked_consumer)
+        .unwrap()
+        .build();
+    let producer_leaf =
+        resolve_computation_leaf(&checked_ir, ComputationId::from_raw(2), &snapshot).unwrap();
+    let consumer_leaf =
+        resolve_computation_leaf(&checked_ir, ComputationId::from_raw(3), &snapshot).unwrap();
+    let summary = derive_control_contract(
+        &checked_ir,
+        ComputationId::from_raw(1),
+        &[producer_leaf, consumer_leaf],
+        &context,
+    )
+    .unwrap();
+    assert_eq!(summary.sequence_dataflow_dependencies().len(), 1);
+    let edge = &summary.sequence_dataflow_dependencies()[0];
+    assert_eq!(edge.producer_child(), ComputationId::from_raw(2));
+    assert_eq!(edge.consumer_child(), ComputationId::from_raw(3));
+    assert_eq!(edge.value_slot(), 1.into());
+    assert_eq!(edge.expression(), 1.into());
+    assert!(
+        summary
+            .information_flow()
+            .proofs()
+            .iter()
+            .any(|proof| proof.verdict() == LeafVerdict::Unproven)
+    );
+}
+
+#[test]
+fn parallel_output_uses_the_frozen_explicit_branch_mapping() {
+    let fixture = Context::new();
+    let schema = fixture
+        .schemas
+        .get("agentflow.semantic.core@1/TypeSchemaRef")
+        .unwrap()
+        .reference();
+    let mut first = empty_contract();
+    first.component_identity.name = "acme.first".into();
+    first.outputs = vec![ComponentOutputPort {
+        port_no: 1,
+        type_ref: schema.clone(),
+    }];
+    let mut second = empty_contract();
+    second.component_identity.name = "acme.second".into();
+    second.outputs = vec![ComponentOutputPort {
+        port_no: 1,
+        type_ref: schema.clone(),
+    }];
+    let context = fixture.view();
+    let checked_first = check_contract(&first, &context).unwrap();
+    let checked_second = check_contract(&second, &context).unwrap();
+    let source = parallel_output_document(
+        digest_value(&checked_first, &context),
+        digest_value(&checked_second, &context),
+        schema,
+    );
+    let checked_ir = source.check(&fixture.schemas).unwrap();
+    let subflows = SubflowIrUniverse::new();
+    let snapshot = StaticComputationResolutionSnapshotBuilder::new(&context, &subflows)
+        .component(&checked_first)
+        .unwrap()
+        .component(&checked_second)
+        .unwrap()
+        .build();
+    let left =
+        resolve_computation_leaf(&checked_ir, ComputationId::from_raw(2), &snapshot).unwrap();
+    let right =
+        resolve_computation_leaf(&checked_ir, ComputationId::from_raw(3), &snapshot).unwrap();
+    let summary = derive_control_contract(
+        &checked_ir,
+        ComputationId::from_raw(1),
+        &[left, right],
+        &context,
+    )
+    .unwrap();
+    assert_eq!(
+        summary
+            .proof()
+            .dimensions()
+            .iter()
+            .find(|proof| proof.dimension() == "typed-output-interface")
+            .unwrap()
+            .verdict(),
+        LeafVerdict::Proven
+    );
+    let ControlDimensionValue::Complete(outputs) = summary.interface().outputs() else {
+        panic!("typed output mapping should be available");
+    };
+    assert_eq!(outputs.len(), 1);
+    assert_eq!(outputs[0].parent_value_slot(), 3.into());
+    assert_eq!(outputs[0].sources().len(), 1);
+    assert_eq!(
+        outputs[0].sources()[0].child_node(),
+        ComputationId::from_raw(3)
+    );
+    assert_eq!(outputs[0].sources()[0].child_value_slot(), 2.into());
+}
+
+#[test]
 fn resource_port_aliases_are_explicit_and_do_not_change_static_rows() {
     let mut fixture = Context::new();
     let resource_type = fixture.resource_type();
@@ -777,6 +1336,43 @@ fn checked_component_digest_is_context_independent_but_checked_value_is_not_reus
 }
 
 #[test]
+fn control_derivation_rejects_leaf_summaries_from_another_exact_context_or_ir() {
+    let first = Context::new();
+    let first_context = first.view();
+    let checked_contract = check_contract(&empty_contract(), &first_context).unwrap();
+    let pin = digest_value(&checked_contract, &first_context);
+    let source_one = document(pin.clone(), 1);
+    let ir_one = source_one.check(&first.schemas).unwrap();
+    let subflows = SubflowIrUniverse::new();
+    let snapshot = StaticComputationResolutionSnapshotBuilder::new(&first_context, &subflows)
+        .component(&checked_contract)
+        .unwrap()
+        .build();
+    let leaf = resolve_computation_leaf(&ir_one, ComputationId::from_raw(1), &snapshot).unwrap();
+
+    let second = Context::new();
+    let second_context = second.view();
+    let source_two = document(pin, 2);
+    let ir_two = source_two.check(&second.schemas).unwrap();
+    let context_error = derive_control_contract(
+        &ir_one,
+        ComputationId::from_raw(1),
+        std::slice::from_ref(&leaf),
+        &second_context,
+    )
+    .unwrap_err();
+    assert!(
+        matches!(context_error, ControlDerivationError::LeafContextMismatch(id) if id == ComputationId::from_raw(1))
+    );
+    let digest_error =
+        derive_control_contract(&ir_two, ComputationId::from_raw(2), &[leaf], &first_context)
+            .unwrap_err();
+    assert!(
+        matches!(digest_error, ControlDerivationError::CallerDigestMismatch(id) if id == ComputationId::from_raw(1))
+    );
+}
+
+#[test]
 fn await_is_typed_but_partial_and_keeps_unknown_external_provenance() {
     let fixture = Context::new();
     let context = fixture.view();
@@ -785,7 +1381,7 @@ fn await_is_typed_but_partial_and_keeps_unknown_external_provenance() {
         .get("agentflow.semantic.core@1/TypeSchemaRef")
         .unwrap()
         .reference();
-    let source = await_document(signal_type);
+    let source = await_document(signal_type.clone());
     let ir = source.check(&fixture.schemas).unwrap();
     let subflows = SubflowIrUniverse::new();
     let snapshot = StaticComputationResolutionSnapshotBuilder::new(&context, &subflows).build();
@@ -803,6 +1399,69 @@ fn await_is_typed_but_partial_and_keeps_unknown_external_provenance() {
     assert_eq!(
         await_summary.authority,
         af_computation::AwaitAuthorityStatus::NotInferred
+    );
+
+    let checked_contract = check_contract(&empty_contract(), &context).unwrap();
+    let component_pin = digest_value(&checked_contract, &context);
+    let mut composed_source = await_document(signal_type);
+    composed_source.contracts = vec![ContractRefEntry {
+        id: 1.into(),
+        kind: ContractRefKind::Component,
+        digest: component_pin,
+    }];
+    let await_body = composed_source.computations[0].body.clone();
+    composed_source.computations = vec![
+        ComputationDef {
+            id: 1.into(),
+            outputs: vec![],
+            body: ComputationBody::Sequence(SequenceBody {
+                children: vec![2.into(), 3.into()],
+            }),
+        },
+        ComputationDef {
+            id: 2.into(),
+            outputs: vec![],
+            body: await_body,
+        },
+        ComputationDef {
+            id: 3.into(),
+            outputs: vec![],
+            body: ComputationBody::Invoke(InvokeBody {
+                contract: 1.into(),
+                inputs: vec![],
+                resources: vec![],
+            }),
+        },
+    ];
+    composed_source.root = ComputationId::from_raw(1);
+    let composed_ir = composed_source.check(&fixture.schemas).unwrap();
+    let composed_snapshot = StaticComputationResolutionSnapshotBuilder::new(&context, &subflows)
+        .component(&checked_contract)
+        .unwrap()
+        .build();
+    let await_leaf =
+        resolve_computation_leaf(&composed_ir, ComputationId::from_raw(2), &composed_snapshot)
+            .unwrap();
+    let invoke_leaf =
+        resolve_computation_leaf(&composed_ir, ComputationId::from_raw(3), &composed_snapshot)
+            .unwrap();
+    let composed = derive_control_contract(
+        &composed_ir,
+        ComputationId::from_raw(1),
+        &[await_leaf, invoke_leaf],
+        &context,
+    )
+    .unwrap();
+    let ControlDimensionValue::Partial {
+        known_contribution: Some(flow),
+        ..
+    } = composed.information_flow().value()
+    else {
+        panic!("known child Flow facts and unknown Await influence must both remain explicit");
+    };
+    assert_eq!(
+        flow.unknown_external_children(),
+        &[ComputationId::from_raw(2)]
     );
 }
 
@@ -838,6 +1497,172 @@ fn subflow_export_is_exact_but_body_conformance_remains_requires_evidence() {
             .iter()
             .any(|item| item.dimension() == "subflow-body-conformance"
                 && item.verdict() == LeafVerdict::RequiresEvidence)
+    );
+}
+
+#[test]
+fn child_requires_evidence_propagates_without_erasing_a_known_parent_effect_envelope() {
+    let fixture = Context::new();
+    let context = fixture.view();
+    let checked = check_contract(&empty_contract(), &context).unwrap();
+    let component_pin = digest_value(&checked, &context);
+    let target_source = subflow_target_document(component_pin.clone());
+    let target_ir = target_source.check(&fixture.schemas).unwrap();
+    let mut subflows = SubflowIrUniverse::new();
+    let target_digest = subflows.insert(&target_ir, &fixture.modules).unwrap();
+    let caller_source = SemanticIrDocument {
+        semantic_refs: vec![],
+        types: vec![],
+        values: vec![],
+        expressions: vec![],
+        resources: vec![],
+        contracts: vec![
+            ContractRefEntry {
+                id: 1.into(),
+                kind: ContractRefKind::Subflow,
+                digest: target_digest.clone(),
+            },
+            ContractRefEntry {
+                id: 2.into(),
+                kind: ContractRefKind::Component,
+                digest: component_pin,
+            },
+        ],
+        run_parameters: vec![],
+        workflow_outputs: vec![],
+        computations: vec![
+            ComputationDef {
+                id: 1.into(),
+                outputs: vec![],
+                body: ComputationBody::Sequence(SequenceBody {
+                    children: vec![2.into(), 3.into()],
+                }),
+            },
+            ComputationDef {
+                id: 2.into(),
+                outputs: vec![],
+                body: ComputationBody::CallSubflow(CallSubflowBody {
+                    contract: 1.into(),
+                    inputs: vec![],
+                    resources: vec![],
+                }),
+            },
+            ComputationDef {
+                id: 3.into(),
+                outputs: vec![],
+                body: ComputationBody::Invoke(InvokeBody {
+                    contract: 2.into(),
+                    inputs: vec![],
+                    resources: vec![],
+                }),
+            },
+        ],
+        root: 1.into(),
+    };
+    let caller_ir = caller_source.check(&fixture.schemas).unwrap();
+    let snapshot = StaticComputationResolutionSnapshotBuilder::new(&context, &subflows)
+        .component(&checked)
+        .unwrap()
+        .subflow_export(&target_digest, &checked)
+        .unwrap()
+        .build();
+    let child_subflow =
+        resolve_computation_leaf(&caller_ir, ComputationId::from_raw(2), &snapshot).unwrap();
+    let child_invoke =
+        resolve_computation_leaf(&caller_ir, ComputationId::from_raw(3), &snapshot).unwrap();
+    let summary = derive_control_contract(
+        &caller_ir,
+        ComputationId::from_raw(1),
+        &[child_subflow, child_invoke],
+        &context,
+    )
+    .unwrap();
+    assert_eq!(summary.proof().overall(), LeafVerdict::RequiresEvidence);
+    assert!(
+        summary
+            .proof()
+            .dimensions()
+            .iter()
+            .any(|proof| proof.source_node() == ComputationId::from_raw(2)
+                && proof.dimension() == "subflow-body-conformance"
+                && proof.verdict() == LeafVerdict::RequiresEvidence)
+    );
+    let ControlDimensionValue::Complete(effects) = summary.effects().value() else {
+        panic!("known child Effect declarations remain composable")
+    };
+    assert_eq!(effects.row, EffectRow::Closed(vec![]));
+}
+
+#[test]
+fn unsupported_control_remains_unknown_instead_of_becoming_an_empty_child() {
+    let fixture = Context::new();
+    let context = fixture.view();
+    let checked = check_contract(&empty_contract(), &context).unwrap();
+    let pin = digest_value(&checked, &context);
+    let source = SemanticIrDocument {
+        semantic_refs: vec![],
+        types: vec![SemanticTypeNode {
+            id: 1.into(),
+            body: SemanticTypeNodeBody::Primitive(SemanticPrimitiveType::Duration),
+        }],
+        values: vec![],
+        expressions: vec![ExpressionDef {
+            id: 1.into(),
+            result_type_id: 1.into(),
+            body: ExpressionBody::Constant(af_semantic::PrimitiveConstant::Duration(
+                af_core::Duration::new(10),
+            )),
+        }],
+        resources: vec![],
+        contracts: vec![ContractRefEntry {
+            id: 1.into(),
+            kind: ContractRefKind::Component,
+            digest: pin,
+        }],
+        run_parameters: vec![],
+        workflow_outputs: vec![],
+        computations: vec![
+            ComputationDef {
+                id: 1.into(),
+                outputs: vec![],
+                body: ComputationBody::Timeout(TimeoutBody {
+                    child: 2.into(),
+                    timeout: 1.into(),
+                }),
+            },
+            ComputationDef {
+                id: 2.into(),
+                outputs: vec![],
+                body: ComputationBody::Invoke(InvokeBody {
+                    contract: 1.into(),
+                    inputs: vec![],
+                    resources: vec![],
+                }),
+            },
+        ],
+        root: 1.into(),
+    };
+    let ir = source.check(&fixture.schemas).unwrap();
+    let subflows = SubflowIrUniverse::new();
+    let snapshot = StaticComputationResolutionSnapshotBuilder::new(&context, &subflows)
+        .component(&checked)
+        .unwrap()
+        .build();
+    let leaf = resolve_computation_leaf(&ir, ComputationId::from_raw(2), &snapshot).unwrap();
+    let summary =
+        derive_control_contract(&ir, ComputationId::from_raw(1), &[leaf], &context).unwrap();
+    assert_eq!(
+        summary.operator(),
+        &af_computation::ControlOperator::Unsupported {
+            opcode: "timeout".into()
+        }
+    );
+    assert_eq!(summary.proof().overall(), LeafVerdict::Unproven);
+    assert!(
+        matches!(summary.effects().value(), ControlDimensionValue::Unknown { unresolved_sources, .. } if unresolved_sources.contains(&ComputationId::from_raw(1)))
+    );
+    assert!(
+        matches!(summary.children()[0].effects().value(), ControlDimensionValue::Complete(EffectSignature { row: EffectRow::Closed(entries) }) if entries.is_empty())
     );
 }
 
@@ -964,4 +1789,296 @@ fn independent_python_oracle_corpus_covers_all_leaf_verdicts() {
             .map(str::to_owned)
             .collect()
     );
+}
+
+#[test]
+fn independent_python_control_oracle_freezes_all_four_verdict_classes() {
+    let manifest: serde_json::Value = serde_json::from_str(include_str!(
+        "../../../spec/conformance/computation-control/manifest.json"
+    ))
+    .unwrap();
+    assert_eq!(manifest["case_count"].as_u64(), Some(58));
+    let root = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .join("../../spec/conformance/computation-control");
+    let groups = [
+        "golden",
+        "negative",
+        "sequence",
+        "select",
+        "parallel",
+        "race",
+        "proof",
+        "equivalence",
+    ];
+    let mut ids = std::collections::BTreeSet::new();
+    let mut verdicts = std::collections::BTreeSet::new();
+    for group in groups {
+        for entry in std::fs::read_dir(root.join(group)).unwrap() {
+            let path = entry.unwrap().path();
+            let value: serde_json::Value =
+                serde_json::from_slice(&std::fs::read(path).unwrap()).unwrap();
+            ids.insert(value["case_id"].as_str().unwrap().to_owned());
+            verdicts.insert(value["expected"]["verdict"].as_str().unwrap().to_owned());
+        }
+    }
+    assert_eq!(ids.len(), 58);
+    assert_eq!(
+        verdicts,
+        ["proven", "requires_evidence", "unproven", "violation"]
+            .into_iter()
+            .map(str::to_owned)
+            .collect()
+    );
+}
+
+#[test]
+fn four_control_operators_use_their_distinct_static_usage_algebras() {
+    let mut fixture = Context::new();
+    let meter = fixture.usage_meter();
+    let contract_a = usage_contract(meter.clone(), 10);
+    let contract_b = usage_contract(meter.clone(), 20);
+    let context = fixture.view();
+    let checked_a = check_contract(&contract_a, &context).unwrap();
+    let checked_b = check_contract(&contract_b, &context).unwrap();
+    let pin_a = digest_value(&checked_a, &context);
+    let pin_b = digest_value(&checked_b, &context);
+    let subflows = SubflowIrUniverse::new();
+    let snapshot = StaticComputationResolutionSnapshotBuilder::new(&context, &subflows)
+        .component(&checked_a)
+        .unwrap()
+        .component(&checked_b)
+        .unwrap()
+        .build();
+    let coordinate = UsageCoordinate {
+        phase: UsagePhase::Forward,
+        meter,
+    };
+
+    for (operator, expected) in [
+        ("sequence", 30),
+        ("select", 20),
+        ("parallel_all", 30),
+        ("parallel_fail_fast", 30),
+        ("race", 30),
+    ] {
+        let source = two_call_control_document(pin_a.clone(), pin_b.clone(), operator, None);
+        let checked_ir = source.check(&fixture.schemas).unwrap();
+        let leaf_a =
+            resolve_computation_leaf(&checked_ir, ComputationId::from_raw(2), &snapshot).unwrap();
+        let leaf_b =
+            resolve_computation_leaf(&checked_ir, ComputationId::from_raw(3), &snapshot).unwrap();
+        let summary = derive_control_contract(
+            &checked_ir,
+            ComputationId::from_raw(1),
+            &[leaf_a, leaf_b],
+            &context,
+        )
+        .unwrap();
+        let ControlDimensionValue::Complete(envelope) = summary.usage().value() else {
+            panic!(
+                "{operator} should retain a complete usage envelope for complete child declarations"
+            );
+        };
+        assert_eq!(
+            envelope.get(&coordinate),
+            StaticUsageBound::KnownFinite(expected),
+            "{operator}"
+        );
+        if operator == "select" {
+            assert_eq!(
+                summary.proof().overall(),
+                LeafVerdict::Unproven,
+                "the int64 selector has no finite-case exhaustiveness proof"
+            );
+        }
+        if operator == "race" {
+            let ControlDimensionValue::PerChild {
+                contributions,
+                unresolved_sources,
+            } = summary.execution().value()
+            else {
+                panic!("X must remain per-child, never a single-worker aggregate");
+            };
+            assert!(unresolved_sources.is_empty());
+            assert_eq!(contributions.len(), 2);
+            assert_eq!(contributions[0].source_node(), ComputationId::from_raw(2));
+            assert_eq!(contributions[1].source_node(), ComputationId::from_raw(3));
+            assert_eq!(
+                contributions[0].value()[0].target(),
+                &af_computation::ResolvedTarget::Component {
+                    identity: contract_a.component_identity.clone(),
+                    contract_digest: pin_a.clone(),
+                }
+            );
+            assert_eq!(
+                contributions[1].value()[0].target(),
+                &af_computation::ResolvedTarget::Component {
+                    identity: contract_b.component_identity.clone(),
+                    contract_digest: pin_b.clone(),
+                }
+            );
+        }
+    }
+}
+
+#[test]
+fn all_four_operators_union_typed_failure_rows_without_inventing_control_failures() {
+    let fixture = Context::new();
+    let failure_a = fixture
+        .schemas
+        .get("agentflow.semantic.core@1/TypeSchemaRef")
+        .unwrap()
+        .reference();
+    let failure_b = fixture
+        .schemas
+        .get("agentflow.semantic.core@1/ValueSlot")
+        .unwrap()
+        .reference();
+    let mut body_a = empty_contract();
+    body_a.failures = FailureRow {
+        failures: vec![FailureTypeRef {
+            payload_type: failure_a,
+        }],
+    };
+    let mut body_b = empty_contract();
+    body_b.failures = FailureRow {
+        failures: vec![FailureTypeRef {
+            payload_type: failure_b,
+        }],
+    };
+    let context = fixture.view();
+    let checked_a = check_contract(&body_a, &context).unwrap();
+    let checked_b = check_contract(&body_b, &context).unwrap();
+    let subflows = SubflowIrUniverse::new();
+    let snapshot = StaticComputationResolutionSnapshotBuilder::new(&context, &subflows)
+        .component(&checked_a)
+        .unwrap()
+        .component(&checked_b)
+        .unwrap()
+        .build();
+    for operator in [
+        "sequence",
+        "select",
+        "parallel_all",
+        "parallel_fail_fast",
+        "race",
+    ] {
+        let source = two_call_control_document(
+            digest_value(&checked_a, &context),
+            digest_value(&checked_b, &context),
+            operator,
+            None,
+        );
+        let ir = source.check(&fixture.schemas).unwrap();
+        let left = resolve_computation_leaf(&ir, ComputationId::from_raw(2), &snapshot).unwrap();
+        let right = resolve_computation_leaf(&ir, ComputationId::from_raw(3), &snapshot).unwrap();
+        let summary =
+            derive_control_contract(&ir, ComputationId::from_raw(1), &[left, right], &context)
+                .unwrap();
+        let ControlDimensionValue::Complete(row) = summary.failures().value() else {
+            panic!("typed child Failure rows remain complete")
+        };
+        assert_eq!(row.failures.len(), 2, "{operator}");
+        assert_eq!(
+            summary.failures().proofs()[0].verdict(),
+            LeafVerdict::Proven
+        );
+    }
+}
+
+#[test]
+fn effect_bounds_weaken_conditional_lower_but_retain_all_occurrences_and_resources() {
+    let mut fixture = Context::new();
+    let (contract, resource_type) = fixture.effectful_contract();
+    let context = fixture.view();
+    let checked = check_contract(&contract, &context).unwrap();
+    let pin = digest_value(&checked, &context);
+    let subflows = SubflowIrUniverse::new();
+    let snapshot = StaticComputationResolutionSnapshotBuilder::new(&context, &subflows)
+        .component(&checked)
+        .unwrap()
+        .build();
+
+    for (operator, expected_lower, expected_upper) in [
+        ("sequence", 1, 4),
+        ("parallel_all", 2, 4),
+        ("parallel_fail_fast", 0, 4),
+        ("race", 0, 4),
+        ("select", 0, 2),
+    ] {
+        let source =
+            two_call_control_document(pin.clone(), pin.clone(), operator, Some(&resource_type));
+        let checked_ir = source.check(&fixture.schemas).unwrap();
+        let leaf_left =
+            resolve_computation_leaf(&checked_ir, ComputationId::from_raw(2), &snapshot).unwrap();
+        let leaf_right =
+            resolve_computation_leaf(&checked_ir, ComputationId::from_raw(3), &snapshot).unwrap();
+        let summary = derive_control_contract(
+            &checked_ir,
+            ComputationId::from_raw(1),
+            &[leaf_left, leaf_right],
+            &context,
+        )
+        .unwrap();
+        let ControlDimensionValue::Complete(signature) = summary.effects().value() else {
+            panic!(
+                "complete child Effect rows should produce a typed conservative envelope for {operator}"
+            );
+        };
+        let EffectRow::Closed(entries) = &signature.row else {
+            panic!("expected the two exact known effects to remain closed");
+        };
+        assert_eq!(
+            entries.len(),
+            1,
+            "same full AtomKey is merged only in the algebraic envelope for {operator}"
+        );
+        assert_eq!(entries[0].bounds.lower, expected_lower, "{operator}");
+        assert_eq!(
+            entries[0].bounds.upper,
+            af_effect::OccurrenceCeiling::Finite(expected_upper),
+            "{operator}"
+        );
+        assert_eq!(
+            summary.effect_occurrences().len(),
+            2,
+            "source occurrence provenance is never merged for {operator}"
+        );
+        assert_ne!(
+            summary.effect_occurrences()[0].computation,
+            summary.effect_occurrences()[1].computation
+        );
+        assert_eq!(
+            summary.effect_occurrences()[0].declared.atom.qualifiers,
+            summary.effect_occurrences()[1].declared.atom.qualifiers
+        );
+        assert_eq!(
+            summary.resource_aliases().len(),
+            1,
+            "the same caller slot is recorded as an alias across two distinct call sites"
+        );
+        assert_eq!(summary.resource_aliases()[0].occurrences().len(), 2);
+        if operator == "race" {
+            let ControlDimensionValue::PerChild { contributions, .. } = summary.recovery().value()
+            else {
+                panic!("recovery declarations must remain per child");
+            };
+            let recovery_sources = contributions
+                .iter()
+                .flat_map(af_computation::DimensionContribution::value)
+                .collect::<Vec<_>>();
+            assert_eq!(
+                recovery_sources.len(),
+                2,
+                "RACE loser K declarations remain in the summary"
+            );
+            assert!(
+                recovery_sources.iter().all(|source| source
+                    .contract()
+                    .effect_recovery_clauses
+                    .len()
+                    == 1)
+            );
+        }
+    }
 }

@@ -1,16 +1,28 @@
-//! Pure, explicit static resolution for Semantic IR computation leaves.
+//! Pure, explicit static analysis for Semantic IR computation leaves and
+//! selected structured control nodes.
 //!
-//! This crate deliberately resolves only `INVOKE`, `AWAIT`, and
-//! `CALL_SUBFLOW`. It consumes checked IR, Phase 3C/3D analysis inputs, exact
-//! checked ComponentContracts, and an immutable caller-built snapshot. It
-//! creates no runtime bindings, grants, handles, plans, or workflow-level
-//! contract algebra.
+//! Leaf resolution handles `INVOKE`, `AWAIT`, and `CALL_SUBFLOW`. The
+//! control algebra composes only `SEQUENCE`, `SELECT`, `PARALLEL`, and
+//! `RACE`, consuming the checked IR, Phase 3C dataflow, resolved leaves, and
+//! the same immutable proof context. Other control nodes remain explicitly
+//! unsupported/Unproven. No summary is a ComponentContract, digest input,
+//! runtime binding, grant, handle, plan, or workflow attestation.
 
+mod control;
 mod mapping;
 mod proof;
 mod resolution;
 mod summary;
 
+pub use control::{
+    ControlDerivationError, ControlDimension, ControlDimensionProof, ControlDimensionValue,
+    ControlFlowContractSource, ControlFlowSummary, ControlInterfaceSummary, ControlOperator,
+    ControlOutputPort, ControlOutputSource, ControlProofReport, ControlResourceAlias,
+    DerivedControlContractSummary, DimensionContribution, EffectLowerBoundAdjustment,
+    EffectLowerBoundAdjustmentReason, ExecutionSourceSummary, InheritedControlObligation,
+    RecoverySourceSummary, ResourcePortOccurrence, SelectDecisionEvidence,
+    SequenceDataflowDependency, derive_control_contract,
+};
 pub use proof::{LeafDimensionProof, LeafProofReport, LeafVerdict};
 pub use resolution::{
     LeafResolutionError, SnapshotError, StaticComputationResolutionSnapshot,
