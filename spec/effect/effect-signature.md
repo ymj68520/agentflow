@@ -307,16 +307,32 @@ a silent merge; merging same-key atoms is EXCLUSIVELY the algebra's job.
 
 <a id="effect-branch-join"></a>
 
-`εa ⊔ εb` — two mutually exclusive branches; exactly one runs. Per atom
-key the result is the conservative interval covering both branches' legal
-cases. A key declared by BOTH branches keeps the guaranteed minimum lower
-bound (whichever branch runs delivers at least its own lower bound, hence
-at least the minimum) and the covering ceiling `max(u1, u2)`. A key
-declared by only ONE branch counts as zero occurrences when the other
-branch runs, so its interval is `[0, u]` with that branch's guard kept
-(the guard still describes when it can fire). Equal conditions keep their
-guard; different conditions widen to `unconditional` — their union is not
-expressible. ⊤ contaminates. Join is commutative and idempotent.
+`εa ⊔ εb` — two mutually exclusive branches; exactly one runs. The
+governing rule: **a lower occurrence bound guarded by G is guaranteed only
+under G** — when G fails, the effect occurs zero times, so a conditional
+lower bound may never be promoted to an unconditional one. Per atom key:
+
+- **Case A — identical guards** (both `unconditional`, or the same
+  `input_equals` condition): the merged entry keeps guard G with
+  `lower = min(lower_a, lower_b)` (whichever branch runs delivers at least
+  its own lower bound under that same condition, so the minimum is the
+  tightest guaranteed conditional lower) and `upper = max(upper_a,
+  upper_b)`.
+- **Case B — different, not provably equivalent guards**: the merged entry
+  widens to `unconditional` (the union of the two trigger conditions is
+  not expressible in the closed guard language, and no implication solver
+  exists in this layer) with `lower = 0` — an unconditional positive lower
+  bound would claim occurrences even when NEITHER condition holds — and
+  `upper = max(upper_a, upper_b)`. `min(lower_a, lower_b)` MUST NOT
+  survive the widening.
+- **Case C — key declared by only ONE branch**: the other branch may run
+  instead, so the interval is `[0, upper]` with that branch's guard KEPT
+  (the guard still describes when the effect can fire); the absent branch
+  invents no occurrences and no guard.
+
+Residual ceilings join as `[0, max(u1, u2)]`. ⊤ contaminates. Join is
+commutative, idempotent, and associative over the implemented closed guard
+set.
 
 ### 9.3 Repetition (n ⊗ ε)
 

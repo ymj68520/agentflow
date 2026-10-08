@@ -725,12 +725,20 @@
       "area": "EFFECT",
       "conformance_refs": [
         "effect/algebra/join-commutativity",
-        "effect/algebra/join-idempotence"
+        "effect/algebra/join-idempotence",
+        "effect/algebra/join-same-unconditional-guard",
+        "effect/algebra/join-same-conditional-guard",
+        "effect/algebra/join-different-input-equals-guards",
+        "effect/algebra/join-unconditional-vs-conditional",
+        "effect/algebra/join-one-sided-guarded-effect",
+        "effect/algebra/join-commutativity-with-guards",
+        "effect/algebra/join-idempotence-with-guards",
+        "effect/algebra/join-associativity-with-guards"
       ],
       "normative_source": "spec/effect/effect-signature.md",
       "requirement_level": "must",
       "rule_id": "AF-EFFECT-0011",
-      "short_statement": "Branch join (⊔) keeps the possible effects of both mutually exclusive branches: both-declared keys keep the guaranteed minimum lower bound and the covering ceiling, one-sided keys drop to [0, u], one-sided guards are kept and different conditions widen to unconditional.",
+      "short_statement": "Branch join (⊔) keeps the possible effects of both mutually exclusive branches: a guarded lower bound is guaranteed only under its guard — identical guards keep the conditional minimum, different conditions widen to unconditional with the lower bound weakened to zero, and one-sided keys drop to [0, u] with their guard kept.",
       "source_anchor": "effect-branch-join"
     },
     {

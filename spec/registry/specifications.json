@@ -46,7 +46,7 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "393158912e1cd3cbb93f4a2c04bc60fab923b769d99ad0d115e3ef338c1a2bc3"
+          "hex": "bd806541dd2616486fceee2992c5545725ac6741059d53aa8d46153ed1e263bd"
         },
         "logical_path": "spec/effect/effect-signature.md"
       },

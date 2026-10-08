@@ -1216,12 +1216,21 @@ EFFECT_RULES = [
           "effect/algebra/parallel-accumulation"]),
     rule("AF-EFFECT-0011", "EFFECT", EFFECT_SRC, "effect-branch-join",
          "Branch join (⊔) keeps the possible effects of both mutually "
-         "exclusive branches: both-declared keys keep the guaranteed "
-         "minimum lower bound and the covering ceiling, one-sided keys "
-         "drop to [0, u], one-sided guards are kept and different "
-         "conditions widen to unconditional.",
+         "exclusive branches: a guarded lower bound is guaranteed only "
+         "under its guard — identical guards keep the conditional minimum, "
+         "different conditions widen to unconditional with the lower bound "
+         "weakened to zero, and one-sided keys drop to [0, u] with their "
+         "guard kept.",
          ["effect/algebra/join-commutativity",
-          "effect/algebra/join-idempotence"]),
+          "effect/algebra/join-idempotence",
+          "effect/algebra/join-same-unconditional-guard",
+          "effect/algebra/join-same-conditional-guard",
+          "effect/algebra/join-different-input-equals-guards",
+          "effect/algebra/join-unconditional-vs-conditional",
+          "effect/algebra/join-one-sided-guarded-effect",
+          "effect/algebra/join-commutativity-with-guards",
+          "effect/algebra/join-idempotence-with-guards",
+          "effect/algebra/join-associativity-with-guards"]),
     rule("AF-EFFECT-0012", "EFFECT", EFFECT_SRC, "effect-race",
          "RACE is conservative accumulation over ALL contestants: a loser "
          "may have produced effects before cancellation, so loser effects "
