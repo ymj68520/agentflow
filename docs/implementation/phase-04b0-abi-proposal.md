@@ -1,7 +1,7 @@
 # ComponentContract Canonical ABI — Design Proposal
 
-> **DESIGN PROPOSAL**  
-> **NON-NORMATIVE**  
+> **DESIGN PROPOSAL**
+> **NON-NORMATIVE**
 > **NOT A FROZEN ABI**
 
 This proposal has no AFIDL source, SpecificationId, ABI assignments, RuleIds,
