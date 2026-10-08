@@ -1,0 +1,70 @@
+{
+  "cases": [
+    {
+      "case_id": "contract/compatibility/exact-same-contract",
+      "expected_verdict": "proven"
+    },
+    {
+      "case_id": "contract/compatibility/same-semantics-distinct-publication-version",
+      "expected_verdict": "proven"
+    },
+    {
+      "case_id": "contract/compatibility/same-lineage-semantic-change",
+      "expected_verdict": "unproven"
+    },
+    {
+      "case_id": "contract/compatibility/implementation-change-contract-unchanged",
+      "expected_verdict": "proven"
+    },
+    {
+      "case_id": "contract/compatibility/input-type-pin-mismatch",
+      "expected_verdict": "unproven"
+    },
+    {
+      "case_id": "contract/compatibility/output-type-pin-mismatch",
+      "expected_verdict": "unproven"
+    },
+    {
+      "case_id": "contract/compatibility/failure-expansion",
+      "expected_verdict": "unproven"
+    },
+    {
+      "case_id": "contract/compatibility/effect-expansion",
+      "expected_verdict": "unproven"
+    },
+    {
+      "case_id": "contract/compatibility/resource-strengthening",
+      "expected_verdict": "unproven"
+    },
+    {
+      "case_id": "contract/compatibility/flow-relaxation",
+      "expected_verdict": "unproven"
+    },
+    {
+      "case_id": "contract/compatibility/usage-ceiling-increase",
+      "expected_verdict": "unproven"
+    },
+    {
+      "case_id": "contract/compatibility/recovery-guarantee-weakening",
+      "expected_verdict": "unproven"
+    },
+    {
+      "case_id": "contract/compatibility/sandbox-relaxation-feasibility-security-split",
+      "expected_verdict": "unproven"
+    },
+    {
+      "case_id": "contract/compatibility/one-unproven-dimension-blocks-proven",
+      "expected_verdict": "unproven"
+    },
+    {
+      "case_id": "contract/compatibility/new-required-input",
+      "expected_verdict": "violation"
+    },
+    {
+      "case_id": "contract/compatibility/removed-required-output",
+      "expected_verdict": "violation"
+    }
+  ],
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.component-contract.compatibility"
+}

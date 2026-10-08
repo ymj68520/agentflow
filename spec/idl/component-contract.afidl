@@ -1,0 +1,71 @@
+afidl 1;
+
+schema agentflow.component.contract @1;
+
+import agentflow.semantic.core@1 as core;
+import agentflow.failure.row@1 as failure;
+import agentflow.effect.signature@1 as effect;
+import agentflow.resource.requirement@1 as resource;
+import agentflow.information.flow@1 as flow;
+import agentflow.usage.signature@1 as usage;
+import agentflow.recovery.contract@1 as recovery;
+import agentflow.execution.requirements@1 as execution;
+
+record ComponentIdentity {
+    1 catalog: string;
+    2 name: string;
+}
+
+record ComponentInputPort {
+    1 port_no: uint32;
+    2 type: core.TypeSchemaRef;
+}
+
+record ComponentOutputPort {
+    1 port_no: uint32;
+    2 type: core.TypeSchemaRef;
+}
+
+record EffectFlowPartition {
+    1 operation: effect.EffectOperationRef;
+    2 kind: flow.FlowKind;
+    3 allowed_effects: list<effect.EffectAtom>;
+}
+
+enum RecoveryActionKind {
+    1 reconciliation;
+    2 compensation;
+}
+
+record RecoveryActionIdentity {
+    1 forward_effect: effect.EffectAtom;
+    2 action_kind: RecoveryActionKind;
+    3 action_effect: effect.EffectAtom;
+}
+
+record RecoveryActionBinding {
+    1 identity: RecoveryActionIdentity;
+}
+
+record RecoveryUsageBinding {
+    1 action: RecoveryActionIdentity;
+    2 activations_per_forward: effect.OccurrenceBounds;
+    3 attempts_per_activation: effect.OccurrenceBounds;
+    4 per_attempt_usage: usage.UsageSignature;
+}
+
+record ComponentContract {
+    1 component_identity: ComponentIdentity;
+    2 inputs: list<ComponentInputPort>;
+    3 outputs: list<ComponentOutputPort>;
+    4 failures: failure.FailureRow;
+    5 effects: effect.EffectSignature;
+    6 resources: resource.ResourceRequirementRow;
+    7 information_flow: flow.InformationFlowContract;
+    8 usage: usage.UsageSignature;
+    9 recovery: recovery.RecoveryContract;
+    10 execution: execution.ExecutionRequirements;
+    11 effect_flow_partitions: list<EffectFlowPartition>;
+    12 recovery_action_bindings: list<RecoveryActionBinding>;
+    13 recovery_usage_bindings: list<RecoveryUsageBinding>;
+}

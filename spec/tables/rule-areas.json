@@ -5,6 +5,7 @@
   "areas": [
     { "area": "ACE1", "description": "Canonical encoding of values (spec/encoding/ace1-grammar.md)" },
     { "area": "AFIDL", "description": "AFIDL1 schema language, canonical TypeSchema and TypeSchemaDigest (spec/idl/afidl1-grammar.md)" },
+    { "area": "CONTRACT", "description": "Static full ComponentContract ABI, canonical digest, proof context, cross-dimension validation and substitution proof (spec/component/)" },
     { "area": "DIGEST", "description": "HashV1 digest foundation and DigestRef (spec/digest/hash-v1.md)" },
     { "area": "EFFECT", "description": "Effect Signature: effect atoms, resource selectors, occurrence bounds, guards, closed/open/top rows, the effect algebra and static control propagation (spec/effect/effect-signature.md)" },
     { "area": "EXECUTION", "description": "Static Execution Requirements: hard and soft placement constraints, explicit capability/quantity/sandbox/trust/region/runtime/ABI universes, profile matching and separate feasibility/security compatibility (spec/execution/execution-requirements.md)" },

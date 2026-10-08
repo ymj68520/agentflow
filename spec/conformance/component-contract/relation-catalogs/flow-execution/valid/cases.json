@@ -1,0 +1,87 @@
+{
+  "cases": [
+    {
+      "ace1_utf8": "{\"authority_rules\":[],\"closed_regions\":[],\"closed_trust_domains\":[],\"confidentiality_rules\":[],\"sink_rules\":[],\"taint_rules\":[]}",
+      "canonical_value": {
+        "authority_rules": [],
+        "closed_regions": [],
+        "closed_trust_domains": [],
+        "confidentiality_rules": [],
+        "sink_rules": [],
+        "taint_rules": []
+      },
+      "case_id": "relation/flow-execution/valid/empty-explicit-snapshot",
+      "content_checksum_sha256": "230c5cfa61402fa1acedb17f35b9fb408fa475890f817de40621b54f2aa1944e",
+      "revision": "fixture-r1",
+      "root_type": "InformationFlowExecutionCatalog",
+      "schema": "agentflow.flow.execution.relation@1"
+    },
+    {
+      "ace1_utf8": "{\"authority_rules\":[],\"closed_regions\":[{\"catalog\":\"agentflow.regions@1\",\"name\":\"sg\"},{\"catalog\":\"agentflow.regions@1\",\"name\":\"us\"}],\"closed_trust_domains\":[{\"catalog\":\"agentflow.trust@1\",\"name\":\"worker-a\"},{\"catalog\":\"agentflow.trust@1\",\"name\":\"worker-b\"}],\"confidentiality_rules\":[{\"label\":{\"catalog\":\"agentflow.labels@1\",\"name\":\"pii\"},\"region_pairs\":{\"finite_exact_pairs\":[{\"execution_region\":{\"catalog\":\"agentflow.regions@1\",\"name\":\"sg\"},\"residency_region\":{\"catalog\":\"agentflow.regions@1\",\"name\":\"us\"}},{\"execution_region\":{\"catalog\":\"agentflow.regions@1\",\"name\":\"us\"},\"residency_region\":{\"catalog\":\"agentflow.regions@1\",\"name\":\"sg\"}}]}}],\"sink_rules\":[],\"taint_rules\":[]}",
+      "canonical_value": {
+        "authority_rules": [],
+        "closed_regions": [
+          {
+            "catalog": "agentflow.regions@1",
+            "name": "sg"
+          },
+          {
+            "catalog": "agentflow.regions@1",
+            "name": "us"
+          }
+        ],
+        "closed_trust_domains": [
+          {
+            "catalog": "agentflow.trust@1",
+            "name": "worker-a"
+          },
+          {
+            "catalog": "agentflow.trust@1",
+            "name": "worker-b"
+          }
+        ],
+        "confidentiality_rules": [
+          {
+            "label": {
+              "catalog": "agentflow.labels@1",
+              "name": "pii"
+            },
+            "region_pairs": {
+              "finite_exact_pairs": [
+                {
+                  "execution_region": {
+                    "catalog": "agentflow.regions@1",
+                    "name": "sg"
+                  },
+                  "residency_region": {
+                    "catalog": "agentflow.regions@1",
+                    "name": "us"
+                  }
+                },
+                {
+                  "execution_region": {
+                    "catalog": "agentflow.regions@1",
+                    "name": "us"
+                  },
+                  "residency_region": {
+                    "catalog": "agentflow.regions@1",
+                    "name": "sg"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "sink_rules": [],
+        "taint_rules": []
+      },
+      "case_id": "relation/flow-execution/valid/nonempty-exact-snapshot",
+      "content_checksum_sha256": "14ce465ff62642ede2c6532693b920d9a95918a29e3613301a79aea1918b962f",
+      "revision": "fixture-r2",
+      "root_type": "InformationFlowExecutionCatalog",
+      "schema": "agentflow.flow.execution.relation@1"
+    }
+  ],
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.component-contract.relation-valid"
+}

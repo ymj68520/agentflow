@@ -1,0 +1,34 @@
+afidl 1;
+
+schema agentflow.effect.resource.compatibility @1;
+
+import agentflow.effect.signature@1 as effect;
+import agentflow.resource.requirement@1 as resource;
+
+variant ScopeValueRule {
+    1 finite_exact_values: list<string>;
+    2 opaque_nfc_exact_string: unit;
+}
+
+record SelectorKeyRule {
+    1 selector_key: string;
+    2 resource_attribute_key: string;
+    3 required: bool;
+    4 values: ScopeValueRule;
+}
+
+record EffectQualifierProfile {
+    1 qualifiers: list<effect.EffectQualifier>;
+}
+
+record SupportedEffectResourcePair {
+    1 operation: effect.EffectOperationRef;
+    2 resource_type: resource.ResourceTypeRef;
+    3 selector_keys: list<SelectorKeyRule>;
+    4 allowed_qualifier_profiles: list<EffectQualifierProfile>;
+}
+
+record EffectResourceCompatibilityCatalog {
+    1 complete_operations: list<effect.EffectOperationRef>;
+    2 supported_pairs: list<SupportedEffectResourcePair>;
+}

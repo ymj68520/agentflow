@@ -1,0 +1,500 @@
+{
+  "cases": [
+    {
+      "case_id": "contract/negative/unknown-input-type-schema",
+      "expected_verdict": "violation",
+      "input_mutation": "unknown-input-type-schema",
+      "wire_input": {
+        "component_identity": {
+          "catalog": "agentflow.components@1",
+          "name": "acme.transform"
+        },
+        "effect_flow_partitions": [],
+        "effects": {
+          "row": {
+            "closed": []
+          }
+        },
+        "execution": {
+          "capabilities": [],
+          "implementation_abis": [],
+          "quantities": [],
+          "region_residency": {
+            "none": null
+          },
+          "runtime_profile": {
+            "none": null
+          },
+          "sandbox": {
+            "none": null
+          },
+          "soft_preferences": [],
+          "trust_domain": {
+            "none": null
+          }
+        },
+        "failures": {
+          "failures": []
+        },
+        "information_flow": {
+          "confidentiality_restrictions": [],
+          "flow_constraints": [],
+          "summary": {
+            "influence_unknown": false,
+            "instruction_authority": "none",
+            "sources": [],
+            "taints": []
+          }
+        },
+        "inputs": [
+          {
+            "port_no": 1,
+            "type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+              },
+              "specification_id": "agentflow.unknown.types@1",
+              "type_name": "Text"
+            }
+          }
+        ],
+        "outputs": [],
+        "recovery": {
+          "effect_recovery_clauses": [],
+          "replay_semantics": "recompute"
+        },
+        "recovery_action_bindings": [],
+        "recovery_usage_bindings": [],
+        "resources": {
+          "requirements": []
+        },
+        "usage": {
+          "limits": []
+        }
+      }
+    },
+    {
+      "case_id": "contract/negative/wrong-output-type-digest",
+      "expected_verdict": "violation",
+      "input_mutation": "wrong-output-type-digest",
+      "wire_input": {
+        "component_identity": {
+          "catalog": "agentflow.components@1",
+          "name": "acme.transform"
+        },
+        "effect_flow_partitions": [],
+        "effects": {
+          "row": {
+            "closed": []
+          }
+        },
+        "execution": {
+          "capabilities": [],
+          "implementation_abis": [],
+          "quantities": [],
+          "region_residency": {
+            "none": null
+          },
+          "runtime_profile": {
+            "none": null
+          },
+          "sandbox": {
+            "none": null
+          },
+          "soft_preferences": [],
+          "trust_domain": {
+            "none": null
+          }
+        },
+        "failures": {
+          "failures": []
+        },
+        "information_flow": {
+          "confidentiality_restrictions": [],
+          "flow_constraints": [],
+          "summary": {
+            "influence_unknown": false,
+            "instruction_authority": "none",
+            "sources": [],
+            "taints": []
+          }
+        },
+        "inputs": [],
+        "outputs": [
+          {
+            "port_no": 1,
+            "type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+              },
+              "specification_id": "agentflow.semantic.types@1",
+              "type_name": "Text"
+            }
+          }
+        ],
+        "recovery": {
+          "effect_recovery_clauses": [],
+          "replay_semantics": "recompute"
+        },
+        "recovery_action_bindings": [],
+        "recovery_usage_bindings": [],
+        "resources": {
+          "requirements": []
+        },
+        "usage": {
+          "limits": []
+        }
+      }
+    },
+    {
+      "case_id": "contract/negative/duplicate-input-port",
+      "expected_verdict": "violation",
+      "input_mutation": "duplicate-input-port",
+      "wire_input": {
+        "component_identity": {
+          "catalog": "agentflow.components@1",
+          "name": "acme.transform"
+        },
+        "effect_flow_partitions": [],
+        "effects": {
+          "row": {
+            "closed": []
+          }
+        },
+        "execution": {
+          "capabilities": [],
+          "implementation_abis": [],
+          "quantities": [],
+          "region_residency": {
+            "none": null
+          },
+          "runtime_profile": {
+            "none": null
+          },
+          "sandbox": {
+            "none": null
+          },
+          "soft_preferences": [],
+          "trust_domain": {
+            "none": null
+          }
+        },
+        "failures": {
+          "failures": []
+        },
+        "information_flow": {
+          "confidentiality_restrictions": [],
+          "flow_constraints": [],
+          "summary": {
+            "influence_unknown": false,
+            "instruction_authority": "none",
+            "sources": [],
+            "taints": []
+          }
+        },
+        "inputs": [
+          {
+            "port_no": 1,
+            "type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+              },
+              "specification_id": "agentflow.semantic.types@1",
+              "type_name": "Text"
+            }
+          },
+          {
+            "port_no": 1,
+            "type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+              },
+              "specification_id": "agentflow.semantic.types@1",
+              "type_name": "Text"
+            }
+          }
+        ],
+        "outputs": [],
+        "recovery": {
+          "effect_recovery_clauses": [],
+          "replay_semantics": "recompute"
+        },
+        "recovery_action_bindings": [],
+        "recovery_usage_bindings": [],
+        "resources": {
+          "requirements": []
+        },
+        "usage": {
+          "limits": []
+        }
+      }
+    },
+    {
+      "case_id": "contract/negative/duplicate-output-port",
+      "expected_verdict": "violation",
+      "input_mutation": "duplicate-output-port",
+      "wire_input": {
+        "component_identity": {
+          "catalog": "agentflow.components@1",
+          "name": "acme.transform"
+        },
+        "effect_flow_partitions": [],
+        "effects": {
+          "row": {
+            "closed": []
+          }
+        },
+        "execution": {
+          "capabilities": [],
+          "implementation_abis": [],
+          "quantities": [],
+          "region_residency": {
+            "none": null
+          },
+          "runtime_profile": {
+            "none": null
+          },
+          "sandbox": {
+            "none": null
+          },
+          "soft_preferences": [],
+          "trust_domain": {
+            "none": null
+          }
+        },
+        "failures": {
+          "failures": []
+        },
+        "information_flow": {
+          "confidentiality_restrictions": [],
+          "flow_constraints": [],
+          "summary": {
+            "influence_unknown": false,
+            "instruction_authority": "none",
+            "sources": [],
+            "taints": []
+          }
+        },
+        "inputs": [],
+        "outputs": [
+          {
+            "port_no": 1,
+            "type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+              },
+              "specification_id": "agentflow.semantic.types@1",
+              "type_name": "Text"
+            }
+          },
+          {
+            "port_no": 1,
+            "type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+              },
+              "specification_id": "agentflow.semantic.types@1",
+              "type_name": "Text"
+            }
+          }
+        ],
+        "recovery": {
+          "effect_recovery_clauses": [],
+          "replay_semantics": "recompute"
+        },
+        "recovery_action_bindings": [],
+        "recovery_usage_bindings": [],
+        "resources": {
+          "requirements": []
+        },
+        "usage": {
+          "limits": []
+        }
+      }
+    },
+    {
+      "case_id": "contract/negative/zero-port-number",
+      "expected_verdict": "violation",
+      "input_mutation": "zero-port-number",
+      "wire_input": {
+        "component_identity": {
+          "catalog": "agentflow.components@1",
+          "name": "acme.transform"
+        },
+        "effect_flow_partitions": [],
+        "effects": {
+          "row": {
+            "closed": []
+          }
+        },
+        "execution": {
+          "capabilities": [],
+          "implementation_abis": [],
+          "quantities": [],
+          "region_residency": {
+            "none": null
+          },
+          "runtime_profile": {
+            "none": null
+          },
+          "sandbox": {
+            "none": null
+          },
+          "soft_preferences": [],
+          "trust_domain": {
+            "none": null
+          }
+        },
+        "failures": {
+          "failures": []
+        },
+        "information_flow": {
+          "confidentiality_restrictions": [],
+          "flow_constraints": [],
+          "summary": {
+            "influence_unknown": false,
+            "instruction_authority": "none",
+            "sources": [],
+            "taints": []
+          }
+        },
+        "inputs": [
+          {
+            "port_no": 0,
+            "type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+              },
+              "specification_id": "agentflow.semantic.types@1",
+              "type_name": "Text"
+            }
+          }
+        ],
+        "outputs": [],
+        "recovery": {
+          "effect_recovery_clauses": [],
+          "replay_semantics": "recompute"
+        },
+        "recovery_action_bindings": [],
+        "recovery_usage_bindings": [],
+        "resources": {
+          "requirements": []
+        },
+        "usage": {
+          "limits": []
+        }
+      }
+    },
+    {
+      "case_id": "contract/negative/effect-selector-missing-resource-port",
+      "expected_verdict": "violation",
+      "input_mutation": "effect-selector-missing-resource-port"
+    },
+    {
+      "case_id": "contract/negative/effect-resource-relation-missing",
+      "expected_verdict": "unproven",
+      "input_mutation": "effect-resource-relation-missing"
+    },
+    {
+      "case_id": "contract/negative/effect-resource-explicit-denial",
+      "expected_verdict": "violation",
+      "input_mutation": "effect-resource-explicit-denial"
+    },
+    {
+      "case_id": "contract/negative/partition-exceeds-legacy-flow-ceiling",
+      "expected_verdict": "violation",
+      "input_mutation": "partition-exceeds-legacy-flow-ceiling"
+    },
+    {
+      "case_id": "contract/negative/partition-effect-qualifier-mismatch",
+      "expected_verdict": "violation",
+      "input_mutation": "partition-effect-qualifier-mismatch"
+    },
+    {
+      "case_id": "contract/negative/partition-misses-required-exact-atom",
+      "expected_verdict": "unproven",
+      "input_mutation": "partition-misses-required-exact-atom"
+    },
+    {
+      "case_id": "contract/negative/flow-sink-undeclared-output",
+      "expected_verdict": "violation",
+      "input_mutation": "flow-sink-undeclared-output"
+    },
+    {
+      "case_id": "contract/negative/recovery-action-qualifier-mismatch",
+      "expected_verdict": "violation",
+      "input_mutation": "recovery-action-qualifier-mismatch"
+    },
+    {
+      "case_id": "contract/negative/recovery-action-undeclared-effect",
+      "expected_verdict": "violation",
+      "input_mutation": "recovery-action-undeclared-effect"
+    },
+    {
+      "case_id": "contract/negative/recovery-action-cycle",
+      "expected_verdict": "violation",
+      "input_mutation": "recovery-action-cycle"
+    },
+    {
+      "case_id": "contract/negative/recovery-action-missing-meter-profile",
+      "expected_verdict": "violation",
+      "input_mutation": "recovery-action-missing-meter-profile"
+    },
+    {
+      "case_id": "contract/negative/recovery-missing-coverage-catalog",
+      "expected_verdict": "unproven",
+      "input_mutation": "recovery-missing-coverage-catalog"
+    },
+    {
+      "case_id": "contract/negative/recovery-aggregate-exceeds-u",
+      "expected_verdict": "violation",
+      "input_mutation": "recovery-aggregate-exceeds-u"
+    },
+    {
+      "case_id": "contract/negative/flow-execution-residency-conflict",
+      "expected_verdict": "violation",
+      "input_mutation": "flow-execution-residency-conflict"
+    },
+    {
+      "case_id": "contract/negative/changed-catalog-content-stale-proof",
+      "expected_verdict": "unproven",
+      "input_mutation": "changed-catalog-content-stale-proof"
+    },
+    {
+      "case_id": "contract/negative/unknown-effect-not-covered",
+      "expected_verdict": "unproven",
+      "input_mutation": "unknown-effect-not-covered"
+    },
+    {
+      "case_id": "contract/negative/missing-usage-not-zero",
+      "expected_verdict": "unproven",
+      "input_mutation": "missing-usage-not-zero"
+    },
+    {
+      "case_id": "contract/negative/unknown-external-provenance",
+      "expected_verdict": "requires_evidence",
+      "input_mutation": "unknown-external-provenance"
+    },
+    {
+      "case_id": "contract/negative/open-epsilon-partition-coverage",
+      "expected_verdict": "unproven",
+      "input_mutation": "open-epsilon-partition-coverage"
+    }
+  ],
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.component-contract.negative"
+}

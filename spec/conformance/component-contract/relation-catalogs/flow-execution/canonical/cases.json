@@ -1,0 +1,124 @@
+{
+  "cases": [
+    {
+      "case_id": "relation/flow-execution/canonical/order-independent",
+      "expected_canonical_ace1": "{\"authority_rules\":[],\"closed_regions\":[{\"catalog\":\"agentflow.regions@1\",\"name\":\"sg\"},{\"catalog\":\"agentflow.regions@1\",\"name\":\"us\"}],\"closed_trust_domains\":[{\"catalog\":\"agentflow.trust@1\",\"name\":\"worker-a\"},{\"catalog\":\"agentflow.trust@1\",\"name\":\"worker-b\"}],\"confidentiality_rules\":[{\"label\":{\"catalog\":\"agentflow.labels@1\",\"name\":\"pii\"},\"region_pairs\":{\"finite_exact_pairs\":[{\"execution_region\":{\"catalog\":\"agentflow.regions@1\",\"name\":\"sg\"},\"residency_region\":{\"catalog\":\"agentflow.regions@1\",\"name\":\"us\"}},{\"execution_region\":{\"catalog\":\"agentflow.regions@1\",\"name\":\"us\"},\"residency_region\":{\"catalog\":\"agentflow.regions@1\",\"name\":\"sg\"}}]}}],\"sink_rules\":[],\"taint_rules\":[]}",
+      "expected_canonical_value": {
+        "authority_rules": [],
+        "closed_regions": [
+          {
+            "catalog": "agentflow.regions@1",
+            "name": "sg"
+          },
+          {
+            "catalog": "agentflow.regions@1",
+            "name": "us"
+          }
+        ],
+        "closed_trust_domains": [
+          {
+            "catalog": "agentflow.trust@1",
+            "name": "worker-a"
+          },
+          {
+            "catalog": "agentflow.trust@1",
+            "name": "worker-b"
+          }
+        ],
+        "confidentiality_rules": [
+          {
+            "label": {
+              "catalog": "agentflow.labels@1",
+              "name": "pii"
+            },
+            "region_pairs": {
+              "finite_exact_pairs": [
+                {
+                  "execution_region": {
+                    "catalog": "agentflow.regions@1",
+                    "name": "sg"
+                  },
+                  "residency_region": {
+                    "catalog": "agentflow.regions@1",
+                    "name": "us"
+                  }
+                },
+                {
+                  "execution_region": {
+                    "catalog": "agentflow.regions@1",
+                    "name": "us"
+                  },
+                  "residency_region": {
+                    "catalog": "agentflow.regions@1",
+                    "name": "sg"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "sink_rules": [],
+        "taint_rules": []
+      },
+      "input_value": {
+        "authority_rules": [],
+        "closed_regions": [
+          {
+            "catalog": "agentflow.regions@1",
+            "name": "us"
+          },
+          {
+            "catalog": "agentflow.regions@1",
+            "name": "sg"
+          }
+        ],
+        "closed_trust_domains": [
+          {
+            "catalog": "agentflow.trust@1",
+            "name": "worker-b"
+          },
+          {
+            "catalog": "agentflow.trust@1",
+            "name": "worker-a"
+          }
+        ],
+        "confidentiality_rules": [
+          {
+            "label": {
+              "catalog": "agentflow.labels@1",
+              "name": "pii"
+            },
+            "region_pairs": {
+              "finite_exact_pairs": [
+                {
+                  "execution_region": {
+                    "catalog": "agentflow.regions@1",
+                    "name": "us"
+                  },
+                  "residency_region": {
+                    "catalog": "agentflow.regions@1",
+                    "name": "sg"
+                  }
+                },
+                {
+                  "execution_region": {
+                    "catalog": "agentflow.regions@1",
+                    "name": "sg"
+                  },
+                  "residency_region": {
+                    "catalog": "agentflow.regions@1",
+                    "name": "us"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "sink_rules": [],
+        "taint_rules": []
+      }
+    }
+  ],
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.component-contract.relation-canonical"
+}

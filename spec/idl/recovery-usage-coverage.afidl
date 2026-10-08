@@ -1,0 +1,15 @@
+afidl 1;
+
+schema agentflow.recovery.usage.coverage @1;
+
+import agentflow.component.contract@1 as component;
+import agentflow.usage.signature@1 as usage;
+
+record RecoveryUsageCoverageRule {
+    1 action: component.RecoveryActionIdentity;
+    2 complete_meters: list<usage.UsageMeterRef>;
+}
+
+record RecoveryUsageCoverageCatalog {
+    1 rules: list<RecoveryUsageCoverageRule>;
+}

@@ -510,6 +510,240 @@
       "source_anchor": "afidl-import-graph-may-cycle"
     },
     {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-WIRE-FREEZE"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0001",
+      "short_statement": "ComponentContract is a closed thirteen-field semantic body with exact imports and no arbitrary extension field.",
+      "source_anchor": "component-contract-closed-abi"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-CANONICAL"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0002",
+      "short_statement": "Exact ComponentIdentity enters semantic identity while publication version and implementation metadata remain outside.",
+      "source_anchor": "component-contract-identity-digest"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-CANONICAL"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0003",
+      "short_statement": "Only a validator-created checked body may be hashed with the existing component-contract HashV1 domain.",
+      "source_anchor": "component-contract-canonical-digest"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-STATIC",
+        "SUITE-COMPONENT-CONTRACT-COMPATIBILITY"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0004",
+      "short_statement": "Public I/O ports use independent positive namespaces and exact nominal TypeSchemaRef pins.",
+      "source_anchor": "component-contract-ports"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-STATIC"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0005",
+      "short_statement": "The Failure row remains a separate exact-pinned proof dimension in the assembled contract.",
+      "source_anchor": "component-contract-cross-dimension"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-RELATION-CATALOGS",
+        "SUITE-COMPONENT-CONTRACT-STATIC"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0006",
+      "short_statement": "Effect operations and exact resource types require explicit complete relation coverage.",
+      "source_anchor": "component-contract-effect-resource"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-STATIC"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0007",
+      "short_statement": "Effect selectors bind only to declared resource ports and exact mapped resource attributes.",
+      "source_anchor": "component-contract-effect-selector-mapping"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-STATIC"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0008",
+      "short_statement": "Information-flow sources and sinks resolve in their exact input, resource and output namespaces.",
+      "source_anchor": "component-contract-flow-ports"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-STATIC"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0009",
+      "short_statement": "Usage ceilings remain exact additive declarations and missing recovery coordinates are not zero.",
+      "source_anchor": "component-contract-recovery-usage"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-STATIC"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0010",
+      "short_statement": "Recovery actions bind complete forward/action EffectAtom identities and form an acyclic dependency graph.",
+      "source_anchor": "component-contract-recovery-bindings"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-STATIC"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0011",
+      "short_statement": "Execution constraints are resolved against explicit capability and profile universes.",
+      "source_anchor": "component-contract-execution"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-STATIC"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0012",
+      "short_statement": "Unknown provenance or influence never establishes an unjustified positive flow proof.",
+      "source_anchor": "component-contract-flow-unknown"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-STATIC"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0013",
+      "short_statement": "An effect selector requires a declared resource port, exact resource pin, full qualifier profile and closed operation support.",
+      "source_anchor": "component-contract-effect-resource-closure"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-STATIC"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0014",
+      "short_statement": "EffectFlowPartitions retain full atom identity and only narrow an existing operation-level flow ceiling.",
+      "source_anchor": "component-contract-flow-partitions"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-STATIC"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0015",
+      "short_statement": "Every required K action has exactly one exact ε binding and no undeclared action is accepted.",
+      "source_anchor": "component-contract-recovery-action-coverage"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-STATIC"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0016",
+      "short_statement": "Recovery meter coverage is exhaustive and activation, attempt and usage bounds use checked arithmetic.",
+      "source_anchor": "component-contract-recovery-usage-checked"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-STATIC"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0017",
+      "short_statement": "Any non-Proven required dimension prevents a Proven aggregate contract verdict.",
+      "source_anchor": "component-contract-proof-composition"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-RELATION-CATALOGS",
+        "SUITE-COMPONENT-CONTRACT-STATIC"
+      ],
+      "normative_source": "spec/component/relation-catalogs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0018",
+      "short_statement": "F/X relations match exact labels, taints, authority levels, flow kinds, sinks, regions and trust domains.",
+      "source_anchor": "flow-execution-catalog-exact-relations"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-RELATION-CATALOGS"
+      ],
+      "normative_source": "spec/component/relation-catalogs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0019",
+      "short_statement": "Proof context pins canonical relation content and changed snapshots invalidate prior proof results.",
+      "source_anchor": "component-relation-catalogs-snapshots"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-COMPATIBILITY"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0020",
+      "short_statement": "Substitution uses exact I/O pins and existing directional dimension proofs; unsupported refinements remain Unproven.",
+      "source_anchor": "component-contract-substitution"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-WIRE-FREEZE"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0021",
+      "short_statement": "Static compatibility and relation proofs never create runtime authority, worker attestation or execution authorization.",
+      "source_anchor": "component-contract-static-authority-boundary"
+    },
+    {
       "area": "DIGEST",
       "conformance_refs": [
         "prefix-in-payload/plan-core",

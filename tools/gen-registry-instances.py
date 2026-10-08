@@ -2096,6 +2096,76 @@ EXECUTION_RULES = [
 ]
 RULES.extend(EXECUTION_RULES)
 
+# Component Contract rules (Phase 4B.1, area CONTRACT)
+COMPONENT_SRC = "spec/component/component-contract.md"
+RELATION_SRC = "spec/component/relation-catalogs.md"
+COMPONENT_RULES = [
+    rule("AF-CONTRACT-0001", "CONTRACT", COMPONENT_SRC, "component-contract-closed-abi",
+         "ComponentContract is a closed thirteen-field semantic body with exact imports and no arbitrary extension field.",
+         ["SUITE-COMPONENT-CONTRACT-WIRE-FREEZE"]),
+    rule("AF-CONTRACT-0002", "CONTRACT", COMPONENT_SRC, "component-contract-identity-digest",
+         "Exact ComponentIdentity enters semantic identity while publication version and implementation metadata remain outside.",
+         ["SUITE-COMPONENT-CONTRACT-CANONICAL"]),
+    rule("AF-CONTRACT-0003", "CONTRACT", COMPONENT_SRC, "component-contract-canonical-digest",
+         "Only a validator-created checked body may be hashed with the existing component-contract HashV1 domain.",
+         ["SUITE-COMPONENT-CONTRACT-CANONICAL"]),
+    rule("AF-CONTRACT-0004", "CONTRACT", COMPONENT_SRC, "component-contract-ports",
+         "Public I/O ports use independent positive namespaces and exact nominal TypeSchemaRef pins.",
+         ["SUITE-COMPONENT-CONTRACT-STATIC", "SUITE-COMPONENT-CONTRACT-COMPATIBILITY"]),
+    rule("AF-CONTRACT-0005", "CONTRACT", COMPONENT_SRC, "component-contract-cross-dimension",
+         "The Failure row remains a separate exact-pinned proof dimension in the assembled contract.",
+         ["SUITE-COMPONENT-CONTRACT-STATIC"]),
+    rule("AF-CONTRACT-0006", "CONTRACT", COMPONENT_SRC, "component-contract-effect-resource",
+         "Effect operations and exact resource types require explicit complete relation coverage.",
+         ["SUITE-COMPONENT-RELATION-CATALOGS", "SUITE-COMPONENT-CONTRACT-STATIC"]),
+    rule("AF-CONTRACT-0007", "CONTRACT", COMPONENT_SRC, "component-contract-effect-selector-mapping",
+         "Effect selectors bind only to declared resource ports and exact mapped resource attributes.",
+         ["SUITE-COMPONENT-CONTRACT-STATIC"]),
+    rule("AF-CONTRACT-0008", "CONTRACT", COMPONENT_SRC, "component-contract-flow-ports",
+         "Information-flow sources and sinks resolve in their exact input, resource and output namespaces.",
+         ["SUITE-COMPONENT-CONTRACT-STATIC"]),
+    rule("AF-CONTRACT-0009", "CONTRACT", COMPONENT_SRC, "component-contract-recovery-usage",
+         "Usage ceilings remain exact additive declarations and missing recovery coordinates are not zero.",
+         ["SUITE-COMPONENT-CONTRACT-STATIC"]),
+    rule("AF-CONTRACT-0010", "CONTRACT", COMPONENT_SRC, "component-contract-recovery-bindings",
+         "Recovery actions bind complete forward/action EffectAtom identities and form an acyclic dependency graph.",
+         ["SUITE-COMPONENT-CONTRACT-STATIC"]),
+    rule("AF-CONTRACT-0011", "CONTRACT", COMPONENT_SRC, "component-contract-execution",
+         "Execution constraints are resolved against explicit capability and profile universes.",
+         ["SUITE-COMPONENT-CONTRACT-STATIC"]),
+    rule("AF-CONTRACT-0012", "CONTRACT", COMPONENT_SRC, "component-contract-flow-unknown",
+         "Unknown provenance or influence never establishes an unjustified positive flow proof.",
+         ["SUITE-COMPONENT-CONTRACT-STATIC"]),
+    rule("AF-CONTRACT-0013", "CONTRACT", COMPONENT_SRC, "component-contract-effect-resource-closure",
+         "An effect selector requires a declared resource port, exact resource pin, full qualifier profile and closed operation support.",
+         ["SUITE-COMPONENT-CONTRACT-STATIC"]),
+    rule("AF-CONTRACT-0014", "CONTRACT", COMPONENT_SRC, "component-contract-flow-partitions",
+         "EffectFlowPartitions retain full atom identity and only narrow an existing operation-level flow ceiling.",
+         ["SUITE-COMPONENT-CONTRACT-STATIC"]),
+    rule("AF-CONTRACT-0015", "CONTRACT", COMPONENT_SRC, "component-contract-recovery-action-coverage",
+         "Every required K action has exactly one exact ε binding and no undeclared action is accepted.",
+         ["SUITE-COMPONENT-CONTRACT-STATIC"]),
+    rule("AF-CONTRACT-0016", "CONTRACT", COMPONENT_SRC, "component-contract-recovery-usage-checked",
+         "Recovery meter coverage is exhaustive and activation, attempt and usage bounds use checked arithmetic.",
+         ["SUITE-COMPONENT-CONTRACT-STATIC"]),
+    rule("AF-CONTRACT-0017", "CONTRACT", COMPONENT_SRC, "component-contract-proof-composition",
+         "Any non-Proven required dimension prevents a Proven aggregate contract verdict.",
+         ["SUITE-COMPONENT-CONTRACT-STATIC"]),
+    rule("AF-CONTRACT-0018", "CONTRACT", RELATION_SRC, "flow-execution-catalog-exact-relations",
+         "F/X relations match exact labels, taints, authority levels, flow kinds, sinks, regions and trust domains.",
+         ["SUITE-COMPONENT-RELATION-CATALOGS", "SUITE-COMPONENT-CONTRACT-STATIC"]),
+    rule("AF-CONTRACT-0019", "CONTRACT", RELATION_SRC, "component-relation-catalogs-snapshots",
+         "Proof context pins canonical relation content and changed snapshots invalidate prior proof results.",
+         ["SUITE-COMPONENT-RELATION-CATALOGS"]),
+    rule("AF-CONTRACT-0020", "CONTRACT", COMPONENT_SRC, "component-contract-substitution",
+         "Substitution uses exact I/O pins and existing directional dimension proofs; unsupported refinements remain Unproven.",
+         ["SUITE-COMPONENT-CONTRACT-COMPATIBILITY"]),
+    rule("AF-CONTRACT-0021", "CONTRACT", COMPONENT_SRC, "component-contract-static-authority-boundary",
+         "Static compatibility and relation proofs never create runtime authority, worker attestation or execution authorization.",
+         ["SUITE-COMPONENT-CONTRACT-WIRE-FREEZE"]),
+]
+RULES.extend(COMPONENT_RULES)
+
 
 
 
@@ -2115,6 +2185,21 @@ SPECS = [
      "The AFIDL1 builtin machine primitive universe expressed as a parseable "
      "nominal-alias module; its 13 alias digests are frozen in the AFIDL "
      "corpus."),
+    ("agentflow.component.contract@1", "schema",
+     "spec/idl/component-contract.afidl",
+     "Closed thirteen-field ComponentContract ABI using exact pins to the existing semantic dimension schemas."),
+    ("agentflow.component.contract.semantics@1", "schema_language",
+     "spec/component/component-contract.md",
+     "Component identity and digest scope, exact public port ABI, cross-dimension static proof and substitution limits."),
+    ("agentflow.component.relation-catalogs.semantics@1", "schema_language",
+     "spec/component/relation-catalogs.md",
+     "Exact versioned relation catalog snapshots and content-bound static proof assumptions."),
+    ("agentflow.effect.resource.compatibility@1", "schema",
+     "spec/idl/effect-resource-compatibility.afidl",
+     "Exact operation/resource-type compatibility relation, selector mappings and complete qualifier profiles."),
+    ("agentflow.flow.execution.relation@1", "schema",
+     "spec/idl/flow-execution-relation.afidl",
+     "Exact information-flow and execution region, trust, sandbox and sink relation."),
     ("agentflow.digest.hash-domains@1", "digest_domain_registry",
      "spec/tables/hash-domains.json",
      "Closed central registry of HashV1 digest domains."),
@@ -2216,6 +2301,9 @@ SPECS = [
      "semantics, key obligations, exact EffectAtom recovery clauses, "
      "reconciliation requirements, unknown-effect handling and compensation "
      "obligations."),
+    ("agentflow.recovery.usage.coverage@1", "schema",
+     "spec/idl/recovery-usage-coverage.afidl",
+     "Exhaustive exact recovery-action to usage-meter coverage catalog."),
     ("agentflow.recovery.contract.semantics@1", "schema_language",
      "spec/recovery/recovery-contract.md",
      "Static Recovery semantics: replay boundaries, idempotency declarations, "
@@ -2315,6 +2403,10 @@ SCHEMA_MODULES = [
     "spec/idl/cost-projection.afidl",
     "spec/idl/recovery-contract.afidl",
     "spec/idl/execution-requirements.afidl",
+    "spec/idl/component-contract.afidl",
+    "spec/idl/effect-resource-compatibility.afidl",
+    "spec/idl/recovery-usage-coverage.afidl",
+    "spec/idl/flow-execution-relation.afidl",
 ]
 
 assignments = []
@@ -3324,6 +3416,82 @@ SUITE_LIST = [
             ],
         },
 ]
+
+SUITE_LIST.extend([
+    {
+        "suite_id": "SUITE-COMPONENT-CONTRACT-CANONICAL",
+        "description": (
+            "Component identity, all thirteen semantic fields and full Effect "
+            "Atom identity define canonical contract bytes. Publication version, "
+            "implementation identity, price and diagnostics are excluded. "
+            "Expected bytes and HashV1 values are generated by the independent "
+            "Python component-contract oracle."
+        ),
+        "targets": [
+            "crates/af-contract/src/canonical.rs",
+            "crates/af-contract/src/digest.rs",
+            "spec/conformance/component-contract/canonical/",
+            "spec/conformance/component-contract/golden/",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPONENT-CONTRACT-COMPATIBILITY",
+        "description": (
+            "Component substitution preserves separate directional proofs. "
+            "Exact I/O sets and nominal pins are the positive v1 subset; "
+            "required-input/output breaks violate and unsupported relations "
+            "remain Unproven."
+        ),
+        "targets": [
+            "crates/af-contract/src/compatibility.rs",
+            "spec/conformance/component-contract/compatibility/",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPONENT-CONTRACT-STATIC",
+        "description": (
+            "Single-component validation composes exact I/O/R/F/epsilon/K/U/X "
+            "checks with explicit relation snapshots. Open and unknown rows, "
+            "missing catalog coverage and missing meter coordinates fail "
+            "closed; non-Proven subproofs remain visible in the report."
+        ),
+        "targets": [
+            "crates/af-contract/src/validate.rs",
+            "spec/conformance/component-contract/cross-dimension/",
+            "spec/conformance/component-contract/negative/",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPONENT-CONTRACT-WIRE-FREEZE",
+        "description": (
+            "Phase 4B.1 adds exactly the ComponentContract and three accepted "
+            "relation schemas, with additive ABI and no new HashV1 domain or "
+            "Semantic IR change. Existing schemas and prior corpus fixtures "
+            "remain byte-identical."
+        ),
+        "targets": [
+            "spec/idl/component-contract.afidl",
+            "spec/idl/effect-resource-compatibility.afidl",
+            "spec/idl/recovery-usage-coverage.afidl",
+            "spec/idl/flow-execution-relation.afidl",
+            "spec/conformance/component-contract/schema-golden.json",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPONENT-RELATION-CATALOGS",
+        "description": (
+            "Three standalone relation catalogs have closed exact schemas, "
+            "canonical typed content and checksums over ACE1 bytes. A proof "
+            "records schema, opaque revision and content checksum; changed "
+            "catalog content cannot reuse an old result."
+        ),
+        "targets": [
+            "crates/af-contract/src/universe.rs",
+            "spec/component/relation-catalogs.md",
+            "spec/conformance/component-contract/relation-catalogs/",
+        ],
+    },
+])
 
 SUITE_LIST.sort(key=lambda suite: suite["suite_id"])
 write_json("spec/conformance/suites.json", {

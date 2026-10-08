@@ -1,0 +1,56 @@
+{
+  "cases": [
+    {
+      "case_id": "relation/flow-execution/invalid/1",
+      "expected_error": "duplicate_closed_region",
+      "expected_verdict": "violation",
+      "input_value": {
+        "authority_rules": [],
+        "closed_regions": [
+          {
+            "catalog": "agentflow.regions@1",
+            "name": "us"
+          },
+          {
+            "catalog": "agentflow.regions@1",
+            "name": "us"
+          }
+        ],
+        "closed_trust_domains": [],
+        "confidentiality_rules": [],
+        "sink_rules": [],
+        "taint_rules": []
+      },
+      "schema": "agentflow.flow.execution.relation@1"
+    },
+    {
+      "case_id": "relation/flow-execution/invalid/2",
+      "expected_error": "zero_output_sink_port",
+      "expected_verdict": "violation",
+      "input_value": {
+        "authority_rules": [],
+        "closed_regions": [],
+        "closed_trust_domains": [],
+        "confidentiality_rules": [],
+        "sink_rules": [
+          {
+            "kind": "data_egress",
+            "sandbox": {
+              "no_additional_minimum": null
+            },
+            "sink": {
+              "workflow_output": 0
+            },
+            "trust_domains": {
+              "no_additional_trust_requirement": null
+            }
+          }
+        ],
+        "taint_rules": []
+      },
+      "schema": "agentflow.flow.execution.relation@1"
+    }
+  ],
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.component-contract.relation-invalid"
+}

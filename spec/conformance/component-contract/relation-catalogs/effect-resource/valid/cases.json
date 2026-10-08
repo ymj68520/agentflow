@@ -1,0 +1,87 @@
+{
+  "cases": [
+    {
+      "ace1_utf8": "{\"complete_operations\":[],\"supported_pairs\":[]}",
+      "canonical_value": {
+        "complete_operations": [],
+        "supported_pairs": []
+      },
+      "case_id": "relation/effect-resource/valid/empty-explicit-snapshot",
+      "content_checksum_sha256": "13a08406a48eac360235eee1f6370820835a015f87329c0694b3f3bb2e9e759c",
+      "revision": "fixture-r1",
+      "root_type": "EffectResourceCompatibilityCatalog",
+      "schema": "agentflow.effect.resource.compatibility@1"
+    },
+    {
+      "ace1_utf8": "{\"complete_operations\":[{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"},{\"catalog\":\"agentflow.effects@1\",\"name\":\"write\"}],\"supported_pairs\":[{\"allowed_qualifier_profiles\":[{\"qualifiers\":[{\"idempotency\":\"none\"}]}],\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"},\"resource_type\":{\"schema\":{\"schema_digest\":{\"algorithm\":\"sha256\",\"domain\":\"type-schema\",\"hex\":\"1111111111111111111111111111111111111111111111111111111111111111\"},\"specification_id\":\"agentflow.semantic.core@1\",\"type_name\":\"TypeSchemaRef\"}},\"selector_keys\":[{\"required\":true,\"resource_attribute_key\":\"tenant\",\"selector_key\":\"tenant\",\"values\":{\"opaque_nfc_exact_string\":null}},{\"required\":false,\"resource_attribute_key\":\"region\",\"selector_key\":\"zone\",\"values\":{\"finite_exact_values\":[\"sg\",\"us\"]}}]}]}",
+      "canonical_value": {
+        "complete_operations": [
+          {
+            "catalog": "agentflow.effects@1",
+            "name": "read"
+          },
+          {
+            "catalog": "agentflow.effects@1",
+            "name": "write"
+          }
+        ],
+        "supported_pairs": [
+          {
+            "allowed_qualifier_profiles": [
+              {
+                "qualifiers": [
+                  {
+                    "idempotency": "none"
+                  }
+                ]
+              }
+            ],
+            "operation": {
+              "catalog": "agentflow.effects@1",
+              "name": "read"
+            },
+            "resource_type": {
+              "schema": {
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+                },
+                "specification_id": "agentflow.semantic.core@1",
+                "type_name": "TypeSchemaRef"
+              }
+            },
+            "selector_keys": [
+              {
+                "required": true,
+                "resource_attribute_key": "tenant",
+                "selector_key": "tenant",
+                "values": {
+                  "opaque_nfc_exact_string": null
+                }
+              },
+              {
+                "required": false,
+                "resource_attribute_key": "region",
+                "selector_key": "zone",
+                "values": {
+                  "finite_exact_values": [
+                    "sg",
+                    "us"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "case_id": "relation/effect-resource/valid/nonempty-exact-snapshot",
+      "content_checksum_sha256": "40d6fea249f99a614261d439788ec749aaa8b9e1752d21cab2db74268da118b4",
+      "revision": "fixture-r2",
+      "root_type": "EffectResourceCompatibilityCatalog",
+      "schema": "agentflow.effect.resource.compatibility@1"
+    }
+  ],
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.component-contract.relation-valid"
+}

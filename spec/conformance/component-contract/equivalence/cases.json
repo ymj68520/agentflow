@@ -1,0 +1,38 @@
+{
+  "cases": [
+    {
+      "case_id": "contract/equivalence/source-port-order",
+      "equivalent": true
+    },
+    {
+      "case_id": "contract/equivalence/source-declaration-order",
+      "equivalent": true
+    },
+    {
+      "case_id": "contract/equivalence/contract-version",
+      "equivalent": true
+    },
+    {
+      "case_id": "contract/equivalence/diagnostic-metadata",
+      "equivalent": true
+    },
+    {
+      "case_id": "contract/equivalence/price-snapshot",
+      "equivalent": true
+    },
+    {
+      "case_id": "contract/equivalence/implementation-digest",
+      "equivalent": true
+    },
+    {
+      "case_id": "contract/equivalence/component-identity",
+      "equivalent": false
+    },
+    {
+      "case_id": "contract/equivalence/full-qualifier-member",
+      "equivalent": false
+    }
+  ],
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.component-contract.equivalence"
+}

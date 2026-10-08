@@ -1,0 +1,102 @@
+{
+  "cases": [
+    {
+      "ace1_utf8": "{\"rules\":[]}",
+      "canonical_value": {
+        "rules": []
+      },
+      "case_id": "relation/recovery-usage/valid/empty-explicit-snapshot",
+      "content_checksum_sha256": "da506c8a9c8a9f31aa00eaeef23d49764b9ace97158a1a0a7aa628e6d446b0fb",
+      "revision": "fixture-r1",
+      "root_type": "RecoveryUsageCoverageCatalog",
+      "schema": "agentflow.recovery.usage.coverage@1"
+    },
+    {
+      "ace1_utf8": "{\"rules\":[{\"action\":{\"action_effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"reverse\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"action_kind\":\"reconciliation\",\"forward_effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"charge\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}}},\"complete_meters\":[]},{\"action\":{\"action_effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"reverse\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"action_kind\":\"compensation\",\"forward_effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"charge\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}}},\"complete_meters\":[{\"catalog\":\"agentflow.meters@1\",\"name\":\"a_calls\"},{\"catalog\":\"agentflow.meters@1\",\"name\":\"z_calls\"}]}]}",
+      "canonical_value": {
+        "rules": [
+          {
+            "action": {
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "reverse"
+                },
+                "qualifiers": [],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "reconciliation",
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "charge"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            },
+            "complete_meters": []
+          },
+          {
+            "action": {
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "reverse"
+                },
+                "qualifiers": [],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "compensation",
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "charge"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            },
+            "complete_meters": [
+              {
+                "catalog": "agentflow.meters@1",
+                "name": "a_calls"
+              },
+              {
+                "catalog": "agentflow.meters@1",
+                "name": "z_calls"
+              }
+            ]
+          }
+        ]
+      },
+      "case_id": "relation/recovery-usage/valid/nonempty-exact-snapshot",
+      "content_checksum_sha256": "8d236916193493b3554e1d3253f33cac8b167416b13a80e20f66aaf02408b8dc",
+      "revision": "fixture-r2",
+      "root_type": "RecoveryUsageCoverageCatalog",
+      "schema": "agentflow.recovery.usage.coverage@1"
+    }
+  ],
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.component-contract.relation-valid"
+}

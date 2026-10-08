@@ -1,0 +1,22 @@
+{
+  "cases": [
+    {
+      "case_id": "relation/flow-execution/equivalence/same-revision-different-content",
+      "equivalent": false,
+      "first_checksum": "230c5cfa61402fa1acedb17f35b9fb408fa475890f817de40621b54f2aa1944e",
+      "proof_reuse": "unproven",
+      "revision": "fixture-r1",
+      "second_checksum": "14ce465ff62642ede2c6532693b920d9a95918a29e3613301a79aea1918b962f"
+    },
+    {
+      "case_id": "relation/flow-execution/equivalence/same-content-different-revision",
+      "checksum": "230c5cfa61402fa1acedb17f35b9fb408fa475890f817de40621b54f2aa1944e",
+      "equivalent": false,
+      "proof_reuse": "unproven",
+      "revision_a": "fixture-r1",
+      "revision_b": "fixture-r2"
+    }
+  ],
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.component-contract.relation-equivalence"
+}

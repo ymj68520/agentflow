@@ -1,0 +1,164 @@
+{
+  "cases": [
+    {
+      "case_id": "relation/recovery-usage/canonical/order-independent",
+      "expected_canonical_ace1": "{\"rules\":[{\"action\":{\"action_effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"reverse\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"action_kind\":\"reconciliation\",\"forward_effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"charge\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}}},\"complete_meters\":[]},{\"action\":{\"action_effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"reverse\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"action_kind\":\"compensation\",\"forward_effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"charge\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}}},\"complete_meters\":[{\"catalog\":\"agentflow.meters@1\",\"name\":\"a_calls\"},{\"catalog\":\"agentflow.meters@1\",\"name\":\"z_calls\"}]}]}",
+      "expected_canonical_value": {
+        "rules": [
+          {
+            "action": {
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "reverse"
+                },
+                "qualifiers": [],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "reconciliation",
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "charge"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            },
+            "complete_meters": []
+          },
+          {
+            "action": {
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "reverse"
+                },
+                "qualifiers": [],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "compensation",
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "charge"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            },
+            "complete_meters": [
+              {
+                "catalog": "agentflow.meters@1",
+                "name": "a_calls"
+              },
+              {
+                "catalog": "agentflow.meters@1",
+                "name": "z_calls"
+              }
+            ]
+          }
+        ]
+      },
+      "input_value": {
+        "rules": [
+          {
+            "action": {
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "reverse"
+                },
+                "qualifiers": [],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "compensation",
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "charge"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            },
+            "complete_meters": [
+              {
+                "catalog": "agentflow.meters@1",
+                "name": "z_calls"
+              },
+              {
+                "catalog": "agentflow.meters@1",
+                "name": "a_calls"
+              }
+            ]
+          },
+          {
+            "action": {
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "reverse"
+                },
+                "qualifiers": [],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "reconciliation",
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "charge"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            },
+            "complete_meters": []
+          }
+        ]
+      }
+    }
+  ],
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.component-contract.relation-canonical"
+}

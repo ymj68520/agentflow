@@ -1,0 +1,131 @@
+{
+  "cases": [
+    {
+      "case_id": "relation/recovery-usage/invalid/1",
+      "expected_error": "duplicate_exact_action_rule",
+      "expected_verdict": "violation",
+      "input_value": {
+        "rules": [
+          {
+            "action": {
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "reverse"
+                },
+                "qualifiers": [],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "compensation",
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "charge"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            },
+            "complete_meters": []
+          },
+          {
+            "action": {
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "reverse"
+                },
+                "qualifiers": [],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "compensation",
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "charge"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            },
+            "complete_meters": []
+          }
+        ]
+      },
+      "schema": "agentflow.recovery.usage.coverage@1"
+    },
+    {
+      "case_id": "relation/recovery-usage/invalid/2",
+      "expected_error": "duplicate_meter_coordinate",
+      "expected_verdict": "violation",
+      "input_value": {
+        "rules": [
+          {
+            "action": {
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "reverse"
+                },
+                "qualifiers": [],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "compensation",
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "charge"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            },
+            "complete_meters": [
+              {
+                "catalog": "agentflow.meters@1",
+                "name": "x"
+              },
+              {
+                "catalog": "agentflow.meters@1",
+                "name": "x"
+              }
+            ]
+          }
+        ]
+      },
+      "schema": "agentflow.recovery.usage.coverage@1"
+    }
+  ],
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.component-contract.relation-invalid"
+}

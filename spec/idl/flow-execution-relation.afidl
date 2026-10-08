@@ -1,0 +1,66 @@
+afidl 1;
+
+schema agentflow.flow.execution.relation @1;
+
+import agentflow.effect.signature@1 as effect;
+import agentflow.execution.requirements@1 as execution;
+import agentflow.information.flow@1 as flow;
+
+record RegionPair {
+    1 execution_region: execution.RegionRef;
+    2 residency_region: execution.RegionRef;
+}
+
+variant RegionPairPolicy {
+    1 finite_exact_pairs: list<RegionPair>;
+    2 all_pairs_in_closed_region_snapshot: unit;
+}
+
+variant TrustDomainPolicy {
+    1 exact_allowlist: list<execution.TrustDomainRef>;
+    2 all_domains_in_closed_trust_snapshot: unit;
+    3 no_additional_trust_requirement: unit;
+}
+
+variant SandboxFloor {
+    1 no_additional_minimum: unit;
+    2 minimum: execution.SandboxLevel;
+}
+
+record ConfidentialityExecutionRule {
+    1 label: flow.ConfidentialityLabelRef;
+    2 region_pairs: RegionPairPolicy;
+}
+
+record TaintExecutionRule {
+    1 taint: flow.TaintRef;
+    2 trust_domains: TrustDomainPolicy;
+    3 sandbox: SandboxFloor;
+}
+
+record AuthorityExecutionRule {
+    1 authority: flow.InstructionAuthority;
+    2 trust_domains: TrustDomainPolicy;
+    3 sandbox: SandboxFloor;
+}
+
+variant FlowExecutionSink {
+    1 workflow_output: uint32;
+    2 exact_effect: effect.EffectAtom;
+}
+
+record FlowExecutionRule {
+    1 kind: flow.FlowKind;
+    2 sink: FlowExecutionSink;
+    3 trust_domains: TrustDomainPolicy;
+    4 sandbox: SandboxFloor;
+}
+
+record InformationFlowExecutionCatalog {
+    1 closed_regions: list<execution.RegionRef>;
+    2 closed_trust_domains: list<execution.TrustDomainRef>;
+    3 confidentiality_rules: list<ConfidentialityExecutionRule>;
+    4 taint_rules: list<TaintExecutionRule>;
+    5 authority_rules: list<AuthorityExecutionRule>;
+    6 sink_rules: list<FlowExecutionRule>;
+}

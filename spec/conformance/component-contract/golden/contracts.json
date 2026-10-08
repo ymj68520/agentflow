@@ -1,0 +1,1402 @@
+{
+  "cases": [
+    {
+      "ace1_hex": "7b22636f6d706f6e656e745f6964656e74697479223a7b22636174616c6f67223a226167656e74666c6f772e636f6d706f6e656e74734031222c226e616d65223a2261636d652e7472616e73666f726d227d2c226566666563745f666c6f775f706172746974696f6e73223a5b5d2c2265666665637473223a7b22726f77223a7b22636c6f736564223a5b5d7d7d2c22657865637574696f6e223a7b226361706162696c6974696573223a5b5d2c22696d706c656d656e746174696f6e5f61626973223a5b5d2c227175616e746974696573223a5b5d2c22726567696f6e5f7265736964656e6379223a7b226e6f6e65223a6e756c6c7d2c2272756e74696d655f70726f66696c65223a7b226e6f6e65223a6e756c6c7d2c2273616e64626f78223a7b226e6f6e65223a6e756c6c7d2c22736f66745f707265666572656e636573223a5b5d2c2274727573745f646f6d61696e223a7b226e6f6e65223a6e756c6c7d7d2c226661696c75726573223a7b226661696c75726573223a5b5d7d2c22696e666f726d6174696f6e5f666c6f77223a7b22636f6e666964656e7469616c6974795f7265737472696374696f6e73223a5b5d2c22666c6f775f636f6e73747261696e7473223a5b5d2c2273756d6d617279223a7b22696e666c75656e63655f756e6b6e6f776e223a66616c73652c22696e737472756374696f6e5f617574686f72697479223a226e6f6e65222c22736f7572636573223a5b5d2c227461696e7473223a5b5d7d7d2c22696e70757473223a5b5d2c226f757470757473223a5b5d2c227265636f76657279223a7b226566666563745f7265636f766572795f636c6175736573223a5b5d2c227265706c61795f73656d616e74696373223a227265636f6d70757465227d2c227265636f766572795f616374696f6e5f62696e64696e6773223a5b5d2c227265636f766572795f75736167655f62696e64696e6773223a5b5d2c227265736f7572636573223a7b22726571756972656d656e7473223a5b5d7d2c227573616765223a7b226c696d697473223a5b5d7d7d",
+      "ace1_utf8": "{\"component_identity\":{\"catalog\":\"agentflow.components@1\",\"name\":\"acme.transform\"},\"effect_flow_partitions\":[],\"effects\":{\"row\":{\"closed\":[]}},\"execution\":{\"capabilities\":[],\"implementation_abis\":[],\"quantities\":[],\"region_residency\":{\"none\":null},\"runtime_profile\":{\"none\":null},\"sandbox\":{\"none\":null},\"soft_preferences\":[],\"trust_domain\":{\"none\":null}},\"failures\":{\"failures\":[]},\"information_flow\":{\"confidentiality_restrictions\":[],\"flow_constraints\":[],\"summary\":{\"influence_unknown\":false,\"instruction_authority\":\"none\",\"sources\":[],\"taints\":[]}},\"inputs\":[],\"outputs\":[],\"recovery\":{\"effect_recovery_clauses\":[],\"replay_semantics\":\"recompute\"},\"recovery_action_bindings\":[],\"recovery_usage_bindings\":[],\"resources\":{\"requirements\":[]},\"usage\":{\"limits\":[]}}",
+      "canonical_component_contract": {
+        "component_identity": {
+          "catalog": "agentflow.components@1",
+          "name": "acme.transform"
+        },
+        "effect_flow_partitions": [],
+        "effects": {
+          "row": {
+            "closed": []
+          }
+        },
+        "execution": {
+          "capabilities": [],
+          "implementation_abis": [],
+          "quantities": [],
+          "region_residency": {
+            "none": null
+          },
+          "runtime_profile": {
+            "none": null
+          },
+          "sandbox": {
+            "none": null
+          },
+          "soft_preferences": [],
+          "trust_domain": {
+            "none": null
+          }
+        },
+        "failures": {
+          "failures": []
+        },
+        "information_flow": {
+          "confidentiality_restrictions": [],
+          "flow_constraints": [],
+          "summary": {
+            "influence_unknown": false,
+            "instruction_authority": "none",
+            "sources": [],
+            "taints": []
+          }
+        },
+        "inputs": [],
+        "outputs": [],
+        "recovery": {
+          "effect_recovery_clauses": [],
+          "replay_semantics": "recompute"
+        },
+        "recovery_action_bindings": [],
+        "recovery_usage_bindings": [],
+        "resources": {
+          "requirements": []
+        },
+        "usage": {
+          "limits": []
+        }
+      },
+      "case_id": "contract/golden/minimal-closed",
+      "component_contract_digest": "6aa54613a68eaf9347fa50b256022a775a22e2f4b936f87139330bfb55b035ac"
+    },
+    {
+      "ace1_hex": "7b22636f6d706f6e656e745f6964656e74697479223a7b22636174616c6f67223a226167656e74666c6f772e636f6d706f6e656e74734031222c226e616d65223a2261636d652e7472616e73666f726d227d2c226566666563745f666c6f775f706172746974696f6e73223a5b5d2c2265666665637473223a7b22726f77223a7b22636c6f736564223a5b5d7d7d2c22657865637574696f6e223a7b226361706162696c6974696573223a5b5d2c22696d706c656d656e746174696f6e5f61626973223a5b5d2c227175616e746974696573223a5b5d2c22726567696f6e5f7265736964656e6379223a7b226e6f6e65223a6e756c6c7d2c2272756e74696d655f70726f66696c65223a7b226e6f6e65223a6e756c6c7d2c2273616e64626f78223a7b226e6f6e65223a6e756c6c7d2c22736f66745f707265666572656e636573223a5b5d2c2274727573745f646f6d61696e223a7b226e6f6e65223a6e756c6c7d7d2c226661696c75726573223a7b226661696c75726573223a5b5d7d2c22696e666f726d6174696f6e5f666c6f77223a7b22636f6e666964656e7469616c6974795f7265737472696374696f6e73223a5b5d2c22666c6f775f636f6e73747261696e7473223a5b5d2c2273756d6d617279223a7b22696e666c75656e63655f756e6b6e6f776e223a66616c73652c22696e737472756374696f6e5f617574686f72697479223a226e6f6e65222c22736f7572636573223a5b7b2263617465676f7279223a7b22776f726b666c6f775f696e707574223a2231227d7d5d2c227461696e7473223a5b5d7d7d2c22696e70757473223a5b7b22706f72745f6e6f223a2231222c2274797065223a7b22736368656d615f646967657374223a7b22616c676f726974686d223a22736861323536222c22646f6d61696e223a22747970652d736368656d61222c22686578223a2231313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131227d2c2273706563696669636174696f6e5f6964223a226167656e74666c6f772e73656d616e7469632e74797065734031222c22747970655f6e616d65223a2254657874227d7d2c7b22706f72745f6e6f223a2232222c2274797065223a7b22736368656d615f646967657374223a7b22616c676f726974686d223a22736861323536222c22646f6d61696e223a22747970652d736368656d61222c22686578223a2231313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131227d2c2273706563696669636174696f6e5f6964223a226167656e74666c6f772e73656d616e7469632e74797065734031222c22747970655f6e616d65223a2254657874227d7d5d2c226f757470757473223a5b7b22706f72745f6e6f223a2231222c2274797065223a7b22736368656d615f646967657374223a7b22616c676f726974686d223a22736861323536222c22646f6d61696e223a22747970652d736368656d61222c22686578223a2231313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131227d2c2273706563696669636174696f6e5f6964223a226167656e74666c6f772e73656d616e7469632e74797065734031222c22747970655f6e616d65223a2254657874227d7d5d2c227265636f76657279223a7b226566666563745f7265636f766572795f636c6175736573223a5b5d2c227265706c61795f73656d616e74696373223a227265636f6d70757465227d2c227265636f766572795f616374696f6e5f62696e64696e6773223a5b5d2c227265636f766572795f75736167655f62696e64696e6773223a5b5d2c227265736f7572636573223a7b22726571756972656d656e7473223a5b5d7d2c227573616765223a7b226c696d697473223a5b5d7d7d",
+      "ace1_utf8": "{\"component_identity\":{\"catalog\":\"agentflow.components@1\",\"name\":\"acme.transform\"},\"effect_flow_partitions\":[],\"effects\":{\"row\":{\"closed\":[]}},\"execution\":{\"capabilities\":[],\"implementation_abis\":[],\"quantities\":[],\"region_residency\":{\"none\":null},\"runtime_profile\":{\"none\":null},\"sandbox\":{\"none\":null},\"soft_preferences\":[],\"trust_domain\":{\"none\":null}},\"failures\":{\"failures\":[]},\"information_flow\":{\"confidentiality_restrictions\":[],\"flow_constraints\":[],\"summary\":{\"influence_unknown\":false,\"instruction_authority\":\"none\",\"sources\":[{\"category\":{\"workflow_input\":\"1\"}}],\"taints\":[]}},\"inputs\":[{\"port_no\":\"1\",\"type\":{\"schema_digest\":{\"algorithm\":\"sha256\",\"domain\":\"type-schema\",\"hex\":\"1111111111111111111111111111111111111111111111111111111111111111\"},\"specification_id\":\"agentflow.semantic.types@1\",\"type_name\":\"Text\"}},{\"port_no\":\"2\",\"type\":{\"schema_digest\":{\"algorithm\":\"sha256\",\"domain\":\"type-schema\",\"hex\":\"1111111111111111111111111111111111111111111111111111111111111111\"},\"specification_id\":\"agentflow.semantic.types@1\",\"type_name\":\"Text\"}}],\"outputs\":[{\"port_no\":\"1\",\"type\":{\"schema_digest\":{\"algorithm\":\"sha256\",\"domain\":\"type-schema\",\"hex\":\"1111111111111111111111111111111111111111111111111111111111111111\"},\"specification_id\":\"agentflow.semantic.types@1\",\"type_name\":\"Text\"}}],\"recovery\":{\"effect_recovery_clauses\":[],\"replay_semantics\":\"recompute\"},\"recovery_action_bindings\":[],\"recovery_usage_bindings\":[],\"resources\":{\"requirements\":[]},\"usage\":{\"limits\":[]}}",
+      "canonical_component_contract": {
+        "component_identity": {
+          "catalog": "agentflow.components@1",
+          "name": "acme.transform"
+        },
+        "effect_flow_partitions": [],
+        "effects": {
+          "row": {
+            "closed": []
+          }
+        },
+        "execution": {
+          "capabilities": [],
+          "implementation_abis": [],
+          "quantities": [],
+          "region_residency": {
+            "none": null
+          },
+          "runtime_profile": {
+            "none": null
+          },
+          "sandbox": {
+            "none": null
+          },
+          "soft_preferences": [],
+          "trust_domain": {
+            "none": null
+          }
+        },
+        "failures": {
+          "failures": []
+        },
+        "information_flow": {
+          "confidentiality_restrictions": [],
+          "flow_constraints": [],
+          "summary": {
+            "influence_unknown": false,
+            "instruction_authority": "none",
+            "sources": [
+              {
+                "category": {
+                  "workflow_input": 1
+                }
+              }
+            ],
+            "taints": []
+          }
+        },
+        "inputs": [
+          {
+            "port_no": 1,
+            "type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+              },
+              "specification_id": "agentflow.semantic.types@1",
+              "type_name": "Text"
+            }
+          },
+          {
+            "port_no": 2,
+            "type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+              },
+              "specification_id": "agentflow.semantic.types@1",
+              "type_name": "Text"
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "port_no": 1,
+            "type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+              },
+              "specification_id": "agentflow.semantic.types@1",
+              "type_name": "Text"
+            }
+          }
+        ],
+        "recovery": {
+          "effect_recovery_clauses": [],
+          "replay_semantics": "recompute"
+        },
+        "recovery_action_bindings": [],
+        "recovery_usage_bindings": [],
+        "resources": {
+          "requirements": []
+        },
+        "usage": {
+          "limits": []
+        }
+      },
+      "case_id": "contract/golden/typed-io",
+      "component_contract_digest": "a50b2e1b80e8954fa5a0b7a5dea7c6c2cf2cdd98cbd0297a13d6d7b6f3b78e88"
+    },
+    {
+      "ace1_hex": "7b22636f6d706f6e656e745f6964656e74697479223a7b22636174616c6f67223a226167656e74666c6f772e636f6d706f6e656e74734031222c226e616d65223a2261636d652e7472616e73666f726d227d2c226566666563745f666c6f775f706172746974696f6e73223a5b7b22616c6c6f7765645f65666665637473223a5b7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272656164227d2c227175616c696669657273223a5b7b226964656d706f74656e6379223a226e61747572616c227d5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d5d2c226b696e64223a22646174615f656772657373222c226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272656164227d7d5d2c2265666665637473223a7b22726f77223a7b22636c6f736564223a5b7b2261746f6d223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272656164227d2c227175616c696669657273223a5b7b226964656d706f74656e6379223a226e61747572616c227d5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c22626f756e6473223a7b226c6f776572223a2231222c227570706572223a7b2266696e697465223a2232227d7d2c226775617264223a7b22756e636f6e646974696f6e616c223a6e756c6c7d7d5d7d7d2c22657865637574696f6e223a7b226361706162696c6974696573223a5b5d2c22696d706c656d656e746174696f6e5f61626973223a5b5d2c227175616e746974696573223a5b5d2c22726567696f6e5f7265736964656e6379223a7b226e6f6e65223a6e756c6c7d2c2272756e74696d655f70726f66696c65223a7b226e6f6e65223a6e756c6c7d2c2273616e64626f78223a7b226e6f6e65223a6e756c6c7d2c22736f66745f707265666572656e636573223a5b5d2c2274727573745f646f6d61696e223a7b226e6f6e65223a6e756c6c7d7d2c226661696c75726573223a7b226661696c75726573223a5b5d7d2c22696e666f726d6174696f6e5f666c6f77223a7b22636f6e666964656e7469616c6974795f7265737472696374696f6e73223a5b5d2c22666c6f775f636f6e73747261696e7473223a5b7b226b696e64223a22646174615f656772657373222c2273696e6b223a7b2265787465726e616c5f656666656374223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272656164227d7d7d5d2c2273756d6d617279223a7b22696e666c75656e63655f756e6b6e6f776e223a66616c73652c22696e737472756374696f6e5f617574686f72697479223a226e6f6e65222c22736f7572636573223a5b5d2c227461696e7473223a5b5d7d7d2c22696e70757473223a5b5d2c226f757470757473223a5b5d2c227265636f76657279223a7b226566666563745f7265636f766572795f636c6175736573223a5b5d2c227265706c61795f73656d616e74696373223a227265636f6d70757465227d2c227265636f766572795f616374696f6e5f62696e64696e6773223a5b5d2c227265636f766572795f75736167655f62696e64696e6773223a5b5d2c227265736f7572636573223a7b22726571756972656d656e7473223a5b7b22706f72745f6e6f223a2231222c2272657175697265645f61747472696275746573223a5b5d2c227265736f757263655f74797065223a7b22736368656d61223a7b22736368656d615f646967657374223a7b22616c676f726974686d223a22736861323536222c22646f6d61696e223a22747970652d736368656d61222c22686578223a2231313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131227d2c2273706563696669636174696f6e5f6964223a226167656e74666c6f772e73656d616e7469632e74797065734031222c22747970655f6e616d65223a2254657874227d7d7d5d7d2c227573616765223a7b226c696d697473223a5b5d7d7d",
+      "ace1_utf8": "{\"component_identity\":{\"catalog\":\"agentflow.components@1\",\"name\":\"acme.transform\"},\"effect_flow_partitions\":[{\"allowed_effects\":[{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}}],\"kind\":\"data_egress\",\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"}}],\"effects\":{\"row\":{\"closed\":[{\"atom\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"bounds\":{\"lower\":\"1\",\"upper\":{\"finite\":\"2\"}},\"guard\":{\"unconditional\":null}}]}},\"execution\":{\"capabilities\":[],\"implementation_abis\":[],\"quantities\":[],\"region_residency\":{\"none\":null},\"runtime_profile\":{\"none\":null},\"sandbox\":{\"none\":null},\"soft_preferences\":[],\"trust_domain\":{\"none\":null}},\"failures\":{\"failures\":[]},\"information_flow\":{\"confidentiality_restrictions\":[],\"flow_constraints\":[{\"kind\":\"data_egress\",\"sink\":{\"external_effect\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"}}}],\"summary\":{\"influence_unknown\":false,\"instruction_authority\":\"none\",\"sources\":[],\"taints\":[]}},\"inputs\":[],\"outputs\":[],\"recovery\":{\"effect_recovery_clauses\":[],\"replay_semantics\":\"recompute\"},\"recovery_action_bindings\":[],\"recovery_usage_bindings\":[],\"resources\":{\"requirements\":[{\"port_no\":\"1\",\"required_attributes\":[],\"resource_type\":{\"schema\":{\"schema_digest\":{\"algorithm\":\"sha256\",\"domain\":\"type-schema\",\"hex\":\"1111111111111111111111111111111111111111111111111111111111111111\"},\"specification_id\":\"agentflow.semantic.types@1\",\"type_name\":\"Text\"}}}]},\"usage\":{\"limits\":[]}}",
+      "canonical_component_contract": {
+        "component_identity": {
+          "catalog": "agentflow.components@1",
+          "name": "acme.transform"
+        },
+        "effect_flow_partitions": [
+          {
+            "allowed_effects": [
+              {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "read"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            ],
+            "kind": "data_egress",
+            "operation": {
+              "catalog": "agentflow.effects@1",
+              "name": "read"
+            }
+          }
+        ],
+        "effects": {
+          "row": {
+            "closed": [
+              {
+                "atom": {
+                  "operation": {
+                    "catalog": "agentflow.effects@1",
+                    "name": "read"
+                  },
+                  "qualifiers": [
+                    {
+                      "idempotency": "natural"
+                    }
+                  ],
+                  "resource_selector": {
+                    "requirement_port_no": 1,
+                    "scope_bindings": []
+                  }
+                },
+                "bounds": {
+                  "lower": 1,
+                  "upper": {
+                    "finite": 2
+                  }
+                },
+                "guard": {
+                  "unconditional": null
+                }
+              }
+            ]
+          }
+        },
+        "execution": {
+          "capabilities": [],
+          "implementation_abis": [],
+          "quantities": [],
+          "region_residency": {
+            "none": null
+          },
+          "runtime_profile": {
+            "none": null
+          },
+          "sandbox": {
+            "none": null
+          },
+          "soft_preferences": [],
+          "trust_domain": {
+            "none": null
+          }
+        },
+        "failures": {
+          "failures": []
+        },
+        "information_flow": {
+          "confidentiality_restrictions": [],
+          "flow_constraints": [
+            {
+              "kind": "data_egress",
+              "sink": {
+                "external_effect": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "read"
+                }
+              }
+            }
+          ],
+          "summary": {
+            "influence_unknown": false,
+            "instruction_authority": "none",
+            "sources": [],
+            "taints": []
+          }
+        },
+        "inputs": [],
+        "outputs": [],
+        "recovery": {
+          "effect_recovery_clauses": [],
+          "replay_semantics": "recompute"
+        },
+        "recovery_action_bindings": [],
+        "recovery_usage_bindings": [],
+        "resources": {
+          "requirements": [
+            {
+              "port_no": 1,
+              "required_attributes": [],
+              "resource_type": {
+                "schema": {
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+                  },
+                  "specification_id": "agentflow.semantic.types@1",
+                  "type_name": "Text"
+                }
+              }
+            }
+          ]
+        },
+        "usage": {
+          "limits": []
+        }
+      },
+      "case_id": "contract/golden/declared-effects-resource-partition",
+      "component_contract_digest": "8c1a93b29d150bb3e9c4575a47bd0134eb4c5663b4f220ee6dcbe296505a231d"
+    },
+    {
+      "ace1_hex": "7b22636f6d706f6e656e745f6964656e74697479223a7b22636174616c6f67223a226167656e74666c6f772e636f6d706f6e656e74734031222c226e616d65223a2261636d652e7472616e73666f726d227d2c226566666563745f666c6f775f706172746974696f6e73223a5b5d2c2265666665637473223a7b22726f77223a7b22636c6f736564223a5b5d7d7d2c22657865637574696f6e223a7b226361706162696c6974696573223a5b5d2c22696d706c656d656e746174696f6e5f61626973223a5b5d2c227175616e746974696573223a5b5d2c22726567696f6e5f7265736964656e6379223a7b226e6f6e65223a6e756c6c7d2c2272756e74696d655f70726f66696c65223a7b226e6f6e65223a6e756c6c7d2c2273616e64626f78223a7b226e6f6e65223a6e756c6c7d2c22736f66745f707265666572656e636573223a5b5d2c2274727573745f646f6d61696e223a7b226e6f6e65223a6e756c6c7d7d2c226661696c75726573223a7b226661696c75726573223a5b7b227061796c6f61645f74797065223a7b22736368656d615f646967657374223a7b22616c676f726974686d223a22736861323536222c22646f6d61696e223a22747970652d736368656d61222c22686578223a2231313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131227d2c2273706563696669636174696f6e5f6964223a226167656e74666c6f772e73656d616e7469632e74797065734031222c22747970655f6e616d65223a2254657874227d7d5d7d2c22696e666f726d6174696f6e5f666c6f77223a7b22636f6e666964656e7469616c6974795f7265737472696374696f6e73223a5b5d2c22666c6f775f636f6e73747261696e7473223a5b5d2c2273756d6d617279223a7b22696e666c75656e63655f756e6b6e6f776e223a66616c73652c22696e737472756374696f6e5f617574686f72697479223a226e6f6e65222c22736f7572636573223a5b5d2c227461696e7473223a5b5d7d7d2c22696e70757473223a5b5d2c226f757470757473223a5b5d2c227265636f76657279223a7b226566666563745f7265636f766572795f636c6175736573223a5b5d2c227265706c61795f73656d616e74696373223a227265636f6d70757465227d2c227265636f766572795f616374696f6e5f62696e64696e6773223a5b5d2c227265636f766572795f75736167655f62696e64696e6773223a5b5d2c227265736f7572636573223a7b22726571756972656d656e7473223a5b5d7d2c227573616765223a7b226c696d697473223a5b5d7d7d",
+      "ace1_utf8": "{\"component_identity\":{\"catalog\":\"agentflow.components@1\",\"name\":\"acme.transform\"},\"effect_flow_partitions\":[],\"effects\":{\"row\":{\"closed\":[]}},\"execution\":{\"capabilities\":[],\"implementation_abis\":[],\"quantities\":[],\"region_residency\":{\"none\":null},\"runtime_profile\":{\"none\":null},\"sandbox\":{\"none\":null},\"soft_preferences\":[],\"trust_domain\":{\"none\":null}},\"failures\":{\"failures\":[{\"payload_type\":{\"schema_digest\":{\"algorithm\":\"sha256\",\"domain\":\"type-schema\",\"hex\":\"1111111111111111111111111111111111111111111111111111111111111111\"},\"specification_id\":\"agentflow.semantic.types@1\",\"type_name\":\"Text\"}}]},\"information_flow\":{\"confidentiality_restrictions\":[],\"flow_constraints\":[],\"summary\":{\"influence_unknown\":false,\"instruction_authority\":\"none\",\"sources\":[],\"taints\":[]}},\"inputs\":[],\"outputs\":[],\"recovery\":{\"effect_recovery_clauses\":[],\"replay_semantics\":\"recompute\"},\"recovery_action_bindings\":[],\"recovery_usage_bindings\":[],\"resources\":{\"requirements\":[]},\"usage\":{\"limits\":[]}}",
+      "canonical_component_contract": {
+        "component_identity": {
+          "catalog": "agentflow.components@1",
+          "name": "acme.transform"
+        },
+        "effect_flow_partitions": [],
+        "effects": {
+          "row": {
+            "closed": []
+          }
+        },
+        "execution": {
+          "capabilities": [],
+          "implementation_abis": [],
+          "quantities": [],
+          "region_residency": {
+            "none": null
+          },
+          "runtime_profile": {
+            "none": null
+          },
+          "sandbox": {
+            "none": null
+          },
+          "soft_preferences": [],
+          "trust_domain": {
+            "none": null
+          }
+        },
+        "failures": {
+          "failures": [
+            {
+              "payload_type": {
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+                },
+                "specification_id": "agentflow.semantic.types@1",
+                "type_name": "Text"
+              }
+            }
+          ]
+        },
+        "information_flow": {
+          "confidentiality_restrictions": [],
+          "flow_constraints": [],
+          "summary": {
+            "influence_unknown": false,
+            "instruction_authority": "none",
+            "sources": [],
+            "taints": []
+          }
+        },
+        "inputs": [],
+        "outputs": [],
+        "recovery": {
+          "effect_recovery_clauses": [],
+          "replay_semantics": "recompute"
+        },
+        "recovery_action_bindings": [],
+        "recovery_usage_bindings": [],
+        "resources": {
+          "requirements": []
+        },
+        "usage": {
+          "limits": []
+        }
+      },
+      "case_id": "contract/golden/declared-failure-row",
+      "component_contract_digest": "d1e0d4d66bfd11b84af970c377345c961e303afc50bd7d26fe284ac978709ad8"
+    },
+    {
+      "ace1_hex": "7b22636f6d706f6e656e745f6964656e74697479223a7b22636174616c6f67223a226167656e74666c6f772e636f6d706f6e656e74734031222c226e616d65223a2261636d652e7472616e73666f726d227d2c226566666563745f666c6f775f706172746974696f6e73223a5b5d2c2265666665637473223a7b22726f77223a7b22636c6f736564223a5b7b2261746f6d223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272656164227d2c227175616c696669657273223a5b7b226964656d706f74656e6379223a226e61747572616c227d5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c22626f756e6473223a7b226c6f776572223a2231222c227570706572223a7b2266696e697465223a2232227d7d2c226775617264223a7b22756e636f6e646974696f6e616c223a6e756c6c7d7d2c7b2261746f6d223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272657665727365227d2c227175616c696669657273223a5b5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c22626f756e6473223a7b226c6f776572223a2230222c227570706572223a7b2266696e697465223a2232227d7d2c226775617264223a7b22756e636f6e646974696f6e616c223a6e756c6c7d7d5d7d7d2c22657865637574696f6e223a7b226361706162696c6974696573223a5b5d2c22696d706c656d656e746174696f6e5f61626973223a5b5d2c227175616e746974696573223a5b5d2c22726567696f6e5f7265736964656e6379223a7b226e6f6e65223a6e756c6c7d2c2272756e74696d655f70726f66696c65223a7b226e6f6e65223a6e756c6c7d2c2273616e64626f78223a7b226e6f6e65223a6e756c6c7d2c22736f66745f707265666572656e636573223a5b5d2c2274727573745f646f6d61696e223a7b226e6f6e65223a6e756c6c7d7d2c226661696c75726573223a7b226661696c75726573223a5b5d7d2c22696e666f726d6174696f6e5f666c6f77223a7b22636f6e666964656e7469616c6974795f7265737472696374696f6e73223a5b5d2c22666c6f775f636f6e73747261696e7473223a5b5d2c2273756d6d617279223a7b22696e666c75656e63655f756e6b6e6f776e223a66616c73652c22696e737472756374696f6e5f617574686f72697479223a226e6f6e65222c22736f7572636573223a5b5d2c227461696e7473223a5b5d7d7d2c22696e70757473223a5b5d2c226f757470757473223a5b5d2c227265636f76657279223a7b226566666563745f7265636f766572795f636c6175736573223a5b7b22636f6d70656e736174696f6e223a7b227265717569726564223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272657665727365227d7d2c22656666656374223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272656164227d2c227175616c696669657273223a5b7b226964656d706f74656e6379223a226e61747572616c227d5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c226964656d706f74656e6379223a226e61747572616c222c226b65795f726571756972656d656e74223a7b226e6f6e65223a6e756c6c7d2c227265636f6e63696c696174696f6e223a226e6f6e65222c22756e6b6e6f776e5f6566666563745f68616e646c696e67223a22626c6f636b227d5d2c227265706c61795f73656d616e74696373223a227265636f6d70757465227d2c227265636f766572795f616374696f6e5f62696e64696e6773223a5b7b226964656e74697479223a7b22616374696f6e5f656666656374223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272657665727365227d2c227175616c696669657273223a5b5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c22616374696f6e5f6b696e64223a22636f6d70656e736174696f6e222c22666f72776172645f656666656374223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272656164227d2c227175616c696669657273223a5b7b226964656d706f74656e6379223a226e61747572616c227d5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d7d7d5d2c227265636f766572795f75736167655f62696e64696e6773223a5b5d2c227265736f7572636573223a7b22726571756972656d656e7473223a5b7b22706f72745f6e6f223a2231222c2272657175697265645f61747472696275746573223a5b5d2c227265736f757263655f74797065223a7b22736368656d61223a7b22736368656d615f646967657374223a7b22616c676f726974686d223a22736861323536222c22646f6d61696e223a22747970652d736368656d61222c22686578223a2231313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131227d2c2273706563696669636174696f6e5f6964223a226167656e74666c6f772e73656d616e7469632e74797065734031222c22747970655f6e616d65223a2254657874227d7d7d5d7d2c227573616765223a7b226c696d697473223a5b5d7d7d",
+      "ace1_utf8": "{\"component_identity\":{\"catalog\":\"agentflow.components@1\",\"name\":\"acme.transform\"},\"effect_flow_partitions\":[],\"effects\":{\"row\":{\"closed\":[{\"atom\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"bounds\":{\"lower\":\"1\",\"upper\":{\"finite\":\"2\"}},\"guard\":{\"unconditional\":null}},{\"atom\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"reverse\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"bounds\":{\"lower\":\"0\",\"upper\":{\"finite\":\"2\"}},\"guard\":{\"unconditional\":null}}]}},\"execution\":{\"capabilities\":[],\"implementation_abis\":[],\"quantities\":[],\"region_residency\":{\"none\":null},\"runtime_profile\":{\"none\":null},\"sandbox\":{\"none\":null},\"soft_preferences\":[],\"trust_domain\":{\"none\":null}},\"failures\":{\"failures\":[]},\"information_flow\":{\"confidentiality_restrictions\":[],\"flow_constraints\":[],\"summary\":{\"influence_unknown\":false,\"instruction_authority\":\"none\",\"sources\":[],\"taints\":[]}},\"inputs\":[],\"outputs\":[],\"recovery\":{\"effect_recovery_clauses\":[{\"compensation\":{\"required\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"reverse\"}},\"effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"idempotency\":\"natural\",\"key_requirement\":{\"none\":null},\"reconciliation\":\"none\",\"unknown_effect_handling\":\"block\"}],\"replay_semantics\":\"recompute\"},\"recovery_action_bindings\":[{\"identity\":{\"action_effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"reverse\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"action_kind\":\"compensation\",\"forward_effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}}}}],\"recovery_usage_bindings\":[],\"resources\":{\"requirements\":[{\"port_no\":\"1\",\"required_attributes\":[],\"resource_type\":{\"schema\":{\"schema_digest\":{\"algorithm\":\"sha256\",\"domain\":\"type-schema\",\"hex\":\"1111111111111111111111111111111111111111111111111111111111111111\"},\"specification_id\":\"agentflow.semantic.types@1\",\"type_name\":\"Text\"}}}]},\"usage\":{\"limits\":[]}}",
+      "canonical_component_contract": {
+        "component_identity": {
+          "catalog": "agentflow.components@1",
+          "name": "acme.transform"
+        },
+        "effect_flow_partitions": [],
+        "effects": {
+          "row": {
+            "closed": [
+              {
+                "atom": {
+                  "operation": {
+                    "catalog": "agentflow.effects@1",
+                    "name": "read"
+                  },
+                  "qualifiers": [
+                    {
+                      "idempotency": "natural"
+                    }
+                  ],
+                  "resource_selector": {
+                    "requirement_port_no": 1,
+                    "scope_bindings": []
+                  }
+                },
+                "bounds": {
+                  "lower": 1,
+                  "upper": {
+                    "finite": 2
+                  }
+                },
+                "guard": {
+                  "unconditional": null
+                }
+              },
+              {
+                "atom": {
+                  "operation": {
+                    "catalog": "agentflow.effects@1",
+                    "name": "reverse"
+                  },
+                  "qualifiers": [],
+                  "resource_selector": {
+                    "requirement_port_no": 1,
+                    "scope_bindings": []
+                  }
+                },
+                "bounds": {
+                  "lower": 0,
+                  "upper": {
+                    "finite": 2
+                  }
+                },
+                "guard": {
+                  "unconditional": null
+                }
+              }
+            ]
+          }
+        },
+        "execution": {
+          "capabilities": [],
+          "implementation_abis": [],
+          "quantities": [],
+          "region_residency": {
+            "none": null
+          },
+          "runtime_profile": {
+            "none": null
+          },
+          "sandbox": {
+            "none": null
+          },
+          "soft_preferences": [],
+          "trust_domain": {
+            "none": null
+          }
+        },
+        "failures": {
+          "failures": []
+        },
+        "information_flow": {
+          "confidentiality_restrictions": [],
+          "flow_constraints": [],
+          "summary": {
+            "influence_unknown": false,
+            "instruction_authority": "none",
+            "sources": [],
+            "taints": []
+          }
+        },
+        "inputs": [],
+        "outputs": [],
+        "recovery": {
+          "effect_recovery_clauses": [
+            {
+              "compensation": {
+                "required": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "reverse"
+                }
+              },
+              "effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "read"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "idempotency": "natural",
+              "key_requirement": {
+                "none": null
+              },
+              "reconciliation": "none",
+              "unknown_effect_handling": "block"
+            }
+          ],
+          "replay_semantics": "recompute"
+        },
+        "recovery_action_bindings": [
+          {
+            "identity": {
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "reverse"
+                },
+                "qualifiers": [],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "compensation",
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "read"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            }
+          }
+        ],
+        "recovery_usage_bindings": [],
+        "resources": {
+          "requirements": [
+            {
+              "port_no": 1,
+              "required_attributes": [],
+              "resource_type": {
+                "schema": {
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+                  },
+                  "specification_id": "agentflow.semantic.types@1",
+                  "type_name": "Text"
+                }
+              }
+            }
+          ]
+        },
+        "usage": {
+          "limits": []
+        }
+      },
+      "case_id": "contract/golden/recovery-action",
+      "component_contract_digest": "aee10e93d3968e0c90b7613aca97fa9e3936ac92dbc8d0c6c078745fcbcdea62"
+    },
+    {
+      "ace1_hex": "7b22636f6d706f6e656e745f6964656e74697479223a7b22636174616c6f67223a226167656e74666c6f772e636f6d706f6e656e74734031222c226e616d65223a2261636d652e7472616e73666f726d227d2c226566666563745f666c6f775f706172746974696f6e73223a5b5d2c2265666665637473223a7b22726f77223a7b22636c6f736564223a5b7b2261746f6d223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272656164227d2c227175616c696669657273223a5b7b226964656d706f74656e6379223a226e61747572616c227d5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c22626f756e6473223a7b226c6f776572223a2231222c227570706572223a7b2266696e697465223a2232227d7d2c226775617264223a7b22756e636f6e646974696f6e616c223a6e756c6c7d7d2c7b2261746f6d223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272657665727365227d2c227175616c696669657273223a5b5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c22626f756e6473223a7b226c6f776572223a2230222c227570706572223a7b2266696e697465223a2232227d7d2c226775617264223a7b22756e636f6e646974696f6e616c223a6e756c6c7d7d5d7d7d2c22657865637574696f6e223a7b226361706162696c6974696573223a5b5d2c22696d706c656d656e746174696f6e5f61626973223a5b5d2c227175616e746974696573223a5b5d2c22726567696f6e5f7265736964656e6379223a7b226e6f6e65223a6e756c6c7d2c2272756e74696d655f70726f66696c65223a7b226e6f6e65223a6e756c6c7d2c2273616e64626f78223a7b226e6f6e65223a6e756c6c7d2c22736f66745f707265666572656e636573223a5b5d2c2274727573745f646f6d61696e223a7b226e6f6e65223a6e756c6c7d7d2c226661696c75726573223a7b226661696c75726573223a5b5d7d2c22696e666f726d6174696f6e5f666c6f77223a7b22636f6e666964656e7469616c6974795f7265737472696374696f6e73223a5b5d2c22666c6f775f636f6e73747261696e7473223a5b5d2c2273756d6d617279223a7b22696e666c75656e63655f756e6b6e6f776e223a66616c73652c22696e737472756374696f6e5f617574686f72697479223a226e6f6e65222c22736f7572636573223a5b5d2c227461696e7473223a5b5d7d7d2c22696e70757473223a5b5d2c226f757470757473223a5b5d2c227265636f76657279223a7b226566666563745f7265636f766572795f636c6175736573223a5b7b22636f6d70656e736174696f6e223a7b227265717569726564223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272657665727365227d7d2c22656666656374223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272656164227d2c227175616c696669657273223a5b7b226964656d706f74656e6379223a226e61747572616c227d5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c226964656d706f74656e6379223a226e61747572616c222c226b65795f726571756972656d656e74223a7b226e6f6e65223a6e756c6c7d2c227265636f6e63696c696174696f6e223a226e6f6e65222c22756e6b6e6f776e5f6566666563745f68616e646c696e67223a22626c6f636b227d5d2c227265706c61795f73656d616e74696373223a227265636f6d70757465227d2c227265636f766572795f616374696f6e5f62696e64696e6773223a5b7b226964656e74697479223a7b22616374696f6e5f656666656374223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272657665727365227d2c227175616c696669657273223a5b5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c22616374696f6e5f6b696e64223a22636f6d70656e736174696f6e222c22666f72776172645f656666656374223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272656164227d2c227175616c696669657273223a5b7b226964656d706f74656e6379223a226e61747572616c227d5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d7d7d5d2c227265636f766572795f75736167655f62696e64696e6773223a5b7b22616374696f6e223a7b22616374696f6e5f656666656374223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272657665727365227d2c227175616c696669657273223a5b5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c22616374696f6e5f6b696e64223a22636f6d70656e736174696f6e222c22666f72776172645f656666656374223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272656164227d2c227175616c696669657273223a5b7b226964656d706f74656e6379223a226e61747572616c227d5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d7d2c2261637469766174696f6e735f7065725f666f7277617264223a7b226c6f776572223a2231222c227570706572223a7b2266696e697465223a2231227d7d2c22617474656d7074735f7065725f61637469766174696f6e223a7b226c6f776572223a2231222c227570706572223a7b2266696e697465223a2232227d7d2c227065725f617474656d70745f7573616765223a7b226c696d697473223a5b7b226d65746572223a7b22636174616c6f67223a226167656e74666c6f772e6d65746572734031222c226e616d65223a226170695f63616c6c73227d2c227068617365223a227265636f76657279222c227570706572223a7b2266696e697465223a2233227d7d5d7d7d5d2c227265736f7572636573223a7b22726571756972656d656e7473223a5b7b22706f72745f6e6f223a2231222c2272657175697265645f61747472696275746573223a5b5d2c227265736f757263655f74797065223a7b22736368656d61223a7b22736368656d615f646967657374223a7b22616c676f726974686d223a22736861323536222c22646f6d61696e223a22747970652d736368656d61222c22686578223a2231313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131227d2c2273706563696669636174696f6e5f6964223a226167656e74666c6f772e73656d616e7469632e74797065734031222c22747970655f6e616d65223a2254657874227d7d7d5d7d2c227573616765223a7b226c696d697473223a5b7b226d65746572223a7b22636174616c6f67223a226167656e74666c6f772e6d65746572734031222c226e616d65223a226170695f63616c6c73227d2c227068617365223a22666f7277617264222c227570706572223a7b2266696e697465223a2232227d7d2c7b226d65746572223a7b22636174616c6f67223a226167656e74666c6f772e6d65746572734031222c226e616d65223a226170695f63616c6c73227d2c227068617365223a227265636f76657279222c227570706572223a7b2266696e697465223a223132227d7d5d7d7d",
+      "ace1_utf8": "{\"component_identity\":{\"catalog\":\"agentflow.components@1\",\"name\":\"acme.transform\"},\"effect_flow_partitions\":[],\"effects\":{\"row\":{\"closed\":[{\"atom\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"bounds\":{\"lower\":\"1\",\"upper\":{\"finite\":\"2\"}},\"guard\":{\"unconditional\":null}},{\"atom\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"reverse\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"bounds\":{\"lower\":\"0\",\"upper\":{\"finite\":\"2\"}},\"guard\":{\"unconditional\":null}}]}},\"execution\":{\"capabilities\":[],\"implementation_abis\":[],\"quantities\":[],\"region_residency\":{\"none\":null},\"runtime_profile\":{\"none\":null},\"sandbox\":{\"none\":null},\"soft_preferences\":[],\"trust_domain\":{\"none\":null}},\"failures\":{\"failures\":[]},\"information_flow\":{\"confidentiality_restrictions\":[],\"flow_constraints\":[],\"summary\":{\"influence_unknown\":false,\"instruction_authority\":\"none\",\"sources\":[],\"taints\":[]}},\"inputs\":[],\"outputs\":[],\"recovery\":{\"effect_recovery_clauses\":[{\"compensation\":{\"required\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"reverse\"}},\"effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"idempotency\":\"natural\",\"key_requirement\":{\"none\":null},\"reconciliation\":\"none\",\"unknown_effect_handling\":\"block\"}],\"replay_semantics\":\"recompute\"},\"recovery_action_bindings\":[{\"identity\":{\"action_effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"reverse\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"action_kind\":\"compensation\",\"forward_effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}}}}],\"recovery_usage_bindings\":[{\"action\":{\"action_effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"reverse\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"action_kind\":\"compensation\",\"forward_effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}}},\"activations_per_forward\":{\"lower\":\"1\",\"upper\":{\"finite\":\"1\"}},\"attempts_per_activation\":{\"lower\":\"1\",\"upper\":{\"finite\":\"2\"}},\"per_attempt_usage\":{\"limits\":[{\"meter\":{\"catalog\":\"agentflow.meters@1\",\"name\":\"api_calls\"},\"phase\":\"recovery\",\"upper\":{\"finite\":\"3\"}}]}}],\"resources\":{\"requirements\":[{\"port_no\":\"1\",\"required_attributes\":[],\"resource_type\":{\"schema\":{\"schema_digest\":{\"algorithm\":\"sha256\",\"domain\":\"type-schema\",\"hex\":\"1111111111111111111111111111111111111111111111111111111111111111\"},\"specification_id\":\"agentflow.semantic.types@1\",\"type_name\":\"Text\"}}}]},\"usage\":{\"limits\":[{\"meter\":{\"catalog\":\"agentflow.meters@1\",\"name\":\"api_calls\"},\"phase\":\"forward\",\"upper\":{\"finite\":\"2\"}},{\"meter\":{\"catalog\":\"agentflow.meters@1\",\"name\":\"api_calls\"},\"phase\":\"recovery\",\"upper\":{\"finite\":\"12\"}}]}}",
+      "canonical_component_contract": {
+        "component_identity": {
+          "catalog": "agentflow.components@1",
+          "name": "acme.transform"
+        },
+        "effect_flow_partitions": [],
+        "effects": {
+          "row": {
+            "closed": [
+              {
+                "atom": {
+                  "operation": {
+                    "catalog": "agentflow.effects@1",
+                    "name": "read"
+                  },
+                  "qualifiers": [
+                    {
+                      "idempotency": "natural"
+                    }
+                  ],
+                  "resource_selector": {
+                    "requirement_port_no": 1,
+                    "scope_bindings": []
+                  }
+                },
+                "bounds": {
+                  "lower": 1,
+                  "upper": {
+                    "finite": 2
+                  }
+                },
+                "guard": {
+                  "unconditional": null
+                }
+              },
+              {
+                "atom": {
+                  "operation": {
+                    "catalog": "agentflow.effects@1",
+                    "name": "reverse"
+                  },
+                  "qualifiers": [],
+                  "resource_selector": {
+                    "requirement_port_no": 1,
+                    "scope_bindings": []
+                  }
+                },
+                "bounds": {
+                  "lower": 0,
+                  "upper": {
+                    "finite": 2
+                  }
+                },
+                "guard": {
+                  "unconditional": null
+                }
+              }
+            ]
+          }
+        },
+        "execution": {
+          "capabilities": [],
+          "implementation_abis": [],
+          "quantities": [],
+          "region_residency": {
+            "none": null
+          },
+          "runtime_profile": {
+            "none": null
+          },
+          "sandbox": {
+            "none": null
+          },
+          "soft_preferences": [],
+          "trust_domain": {
+            "none": null
+          }
+        },
+        "failures": {
+          "failures": []
+        },
+        "information_flow": {
+          "confidentiality_restrictions": [],
+          "flow_constraints": [],
+          "summary": {
+            "influence_unknown": false,
+            "instruction_authority": "none",
+            "sources": [],
+            "taints": []
+          }
+        },
+        "inputs": [],
+        "outputs": [],
+        "recovery": {
+          "effect_recovery_clauses": [
+            {
+              "compensation": {
+                "required": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "reverse"
+                }
+              },
+              "effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "read"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "idempotency": "natural",
+              "key_requirement": {
+                "none": null
+              },
+              "reconciliation": "none",
+              "unknown_effect_handling": "block"
+            }
+          ],
+          "replay_semantics": "recompute"
+        },
+        "recovery_action_bindings": [
+          {
+            "identity": {
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "reverse"
+                },
+                "qualifiers": [],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "compensation",
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "read"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            }
+          }
+        ],
+        "recovery_usage_bindings": [
+          {
+            "action": {
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "reverse"
+                },
+                "qualifiers": [],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "compensation",
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "read"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            },
+            "activations_per_forward": {
+              "lower": 1,
+              "upper": {
+                "finite": 1
+              }
+            },
+            "attempts_per_activation": {
+              "lower": 1,
+              "upper": {
+                "finite": 2
+              }
+            },
+            "per_attempt_usage": {
+              "limits": [
+                {
+                  "meter": {
+                    "catalog": "agentflow.meters@1",
+                    "name": "api_calls"
+                  },
+                  "phase": "recovery",
+                  "upper": {
+                    "finite": 3
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "resources": {
+          "requirements": [
+            {
+              "port_no": 1,
+              "required_attributes": [],
+              "resource_type": {
+                "schema": {
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+                  },
+                  "specification_id": "agentflow.semantic.types@1",
+                  "type_name": "Text"
+                }
+              }
+            }
+          ]
+        },
+        "usage": {
+          "limits": [
+            {
+              "meter": {
+                "catalog": "agentflow.meters@1",
+                "name": "api_calls"
+              },
+              "phase": "forward",
+              "upper": {
+                "finite": 2
+              }
+            },
+            {
+              "meter": {
+                "catalog": "agentflow.meters@1",
+                "name": "api_calls"
+              },
+              "phase": "recovery",
+              "upper": {
+                "finite": 12
+              }
+            }
+          ]
+        }
+      },
+      "case_id": "contract/golden/recovery-usage",
+      "component_contract_digest": "03506846fd45ea032a557231c561ee96b4f0dae5cfaf0e831564d40aea605947"
+    },
+    {
+      "ace1_hex": "7b22636f6d706f6e656e745f6964656e74697479223a7b22636174616c6f67223a226167656e74666c6f772e636f6d706f6e656e74734031222c226e616d65223a2261636d652e7472616e73666f726d227d2c226566666563745f666c6f775f706172746974696f6e73223a5b5d2c2265666665637473223a7b22726f77223a7b22636c6f736564223a5b5d7d7d2c22657865637574696f6e223a7b226361706162696c6974696573223a5b5d2c22696d706c656d656e746174696f6e5f61626973223a5b5d2c227175616e746974696573223a5b7b226b696e64223a226370755f6d696c6c69636f726573222c226d696e696d756d223a2231303030227d5d2c22726567696f6e5f7265736964656e6379223a7b22736f6d65223a7b22657865637574696f6e5f726567696f6e73223a5b7b22636174616c6f67223a226167656e74666c6f772e726567696f6e734031222c226e616d65223a227367227d5d2c227265736964656e63795f726567696f6e73223a5b7b22636174616c6f67223a226167656e74666c6f772e726567696f6e734031222c226e616d65223a227367227d5d7d7d2c2272756e74696d655f70726f66696c65223a7b226e6f6e65223a6e756c6c7d2c2273616e64626f78223a7b22736f6d65223a7b226d696e696d756d223a227374726f6e67227d7d2c22736f66745f707265666572656e636573223a5b5d2c2274727573745f646f6d61696e223a7b22736f6d65223a7b22636174616c6f67223a226167656e74666c6f772e74727573744031222c226e616d65223a2270726f64227d7d7d2c226661696c75726573223a7b226661696c75726573223a5b5d7d2c22696e666f726d6174696f6e5f666c6f77223a7b22636f6e666964656e7469616c6974795f7265737472696374696f6e73223a5b5d2c22666c6f775f636f6e73747261696e7473223a5b5d2c2273756d6d617279223a7b22696e666c75656e63655f756e6b6e6f776e223a66616c73652c22696e737472756374696f6e5f617574686f72697479223a226e6f6e65222c22736f7572636573223a5b5d2c227461696e7473223a5b5d7d7d2c22696e70757473223a5b5d2c226f757470757473223a5b5d2c227265636f76657279223a7b226566666563745f7265636f766572795f636c6175736573223a5b5d2c227265706c61795f73656d616e74696373223a227265636f6d70757465227d2c227265636f766572795f616374696f6e5f62696e64696e6773223a5b5d2c227265636f766572795f75736167655f62696e64696e6773223a5b5d2c227265736f7572636573223a7b22726571756972656d656e7473223a5b5d7d2c227573616765223a7b226c696d697473223a5b5d7d7d",
+      "ace1_utf8": "{\"component_identity\":{\"catalog\":\"agentflow.components@1\",\"name\":\"acme.transform\"},\"effect_flow_partitions\":[],\"effects\":{\"row\":{\"closed\":[]}},\"execution\":{\"capabilities\":[],\"implementation_abis\":[],\"quantities\":[{\"kind\":\"cpu_millicores\",\"minimum\":\"1000\"}],\"region_residency\":{\"some\":{\"execution_regions\":[{\"catalog\":\"agentflow.regions@1\",\"name\":\"sg\"}],\"residency_regions\":[{\"catalog\":\"agentflow.regions@1\",\"name\":\"sg\"}]}},\"runtime_profile\":{\"none\":null},\"sandbox\":{\"some\":{\"minimum\":\"strong\"}},\"soft_preferences\":[],\"trust_domain\":{\"some\":{\"catalog\":\"agentflow.trust@1\",\"name\":\"prod\"}}},\"failures\":{\"failures\":[]},\"information_flow\":{\"confidentiality_restrictions\":[],\"flow_constraints\":[],\"summary\":{\"influence_unknown\":false,\"instruction_authority\":\"none\",\"sources\":[],\"taints\":[]}},\"inputs\":[],\"outputs\":[],\"recovery\":{\"effect_recovery_clauses\":[],\"replay_semantics\":\"recompute\"},\"recovery_action_bindings\":[],\"recovery_usage_bindings\":[],\"resources\":{\"requirements\":[]},\"usage\":{\"limits\":[]}}",
+      "canonical_component_contract": {
+        "component_identity": {
+          "catalog": "agentflow.components@1",
+          "name": "acme.transform"
+        },
+        "effect_flow_partitions": [],
+        "effects": {
+          "row": {
+            "closed": []
+          }
+        },
+        "execution": {
+          "capabilities": [],
+          "implementation_abis": [],
+          "quantities": [
+            {
+              "kind": "cpu_millicores",
+              "minimum": 1000
+            }
+          ],
+          "region_residency": {
+            "some": {
+              "execution_regions": [
+                {
+                  "catalog": "agentflow.regions@1",
+                  "name": "sg"
+                }
+              ],
+              "residency_regions": [
+                {
+                  "catalog": "agentflow.regions@1",
+                  "name": "sg"
+                }
+              ]
+            }
+          },
+          "runtime_profile": {
+            "none": null
+          },
+          "sandbox": {
+            "some": {
+              "minimum": "strong"
+            }
+          },
+          "soft_preferences": [],
+          "trust_domain": {
+            "some": {
+              "catalog": "agentflow.trust@1",
+              "name": "prod"
+            }
+          }
+        },
+        "failures": {
+          "failures": []
+        },
+        "information_flow": {
+          "confidentiality_restrictions": [],
+          "flow_constraints": [],
+          "summary": {
+            "influence_unknown": false,
+            "instruction_authority": "none",
+            "sources": [],
+            "taints": []
+          }
+        },
+        "inputs": [],
+        "outputs": [],
+        "recovery": {
+          "effect_recovery_clauses": [],
+          "replay_semantics": "recompute"
+        },
+        "recovery_action_bindings": [],
+        "recovery_usage_bindings": [],
+        "resources": {
+          "requirements": []
+        },
+        "usage": {
+          "limits": []
+        }
+      },
+      "case_id": "contract/golden/execution-constraints",
+      "component_contract_digest": "36cb0c6089d440002e859086c01d0f719b1ff98059ad0ae677fa62307ce999f2"
+    },
+    {
+      "ace1_hex": "7b22636f6d706f6e656e745f6964656e74697479223a7b22636174616c6f67223a226167656e74666c6f772e636f6d706f6e656e74734031222c226e616d65223a2261636d652e7472616e73666f726d227d2c226566666563745f666c6f775f706172746974696f6e73223a5b7b22616c6c6f7765645f65666665637473223a5b7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272656164227d2c227175616c696669657273223a5b7b226964656d706f74656e6379223a226e61747572616c227d5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d5d2c226b696e64223a226465636973696f6e5f696e666c75656e6365222c226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272656164227d7d5d2c2265666665637473223a7b22726f77223a7b22636c6f736564223a5b7b2261746f6d223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272656164227d2c227175616c696669657273223a5b7b226964656d706f74656e6379223a226e61747572616c227d5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c22626f756e6473223a7b226c6f776572223a2231222c227570706572223a7b2266696e697465223a2232227d7d2c226775617264223a7b22756e636f6e646974696f6e616c223a6e756c6c7d7d2c7b2261746f6d223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272657665727365227d2c227175616c696669657273223a5b5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c22626f756e6473223a7b226c6f776572223a2230222c227570706572223a7b2266696e697465223a2232227d7d2c226775617264223a7b22756e636f6e646974696f6e616c223a6e756c6c7d7d5d7d7d2c22657865637574696f6e223a7b226361706162696c6974696573223a5b5d2c22696d706c656d656e746174696f6e5f61626973223a5b5d2c227175616e746974696573223a5b7b226b696e64223a226370755f6d696c6c69636f726573222c226d696e696d756d223a2231303030227d5d2c22726567696f6e5f7265736964656e6379223a7b22736f6d65223a7b22657865637574696f6e5f726567696f6e73223a5b7b22636174616c6f67223a226167656e74666c6f772e726567696f6e734031222c226e616d65223a227367227d5d2c227265736964656e63795f726567696f6e73223a5b7b22636174616c6f67223a226167656e74666c6f772e726567696f6e734031222c226e616d65223a227367227d5d7d7d2c2272756e74696d655f70726f66696c65223a7b226e6f6e65223a6e756c6c7d2c2273616e64626f78223a7b22736f6d65223a7b226d696e696d756d223a227374726f6e67227d7d2c22736f66745f707265666572656e636573223a5b5d2c2274727573745f646f6d61696e223a7b22736f6d65223a7b22636174616c6f67223a226167656e74666c6f772e74727573744031222c226e616d65223a2270726f64227d7d7d2c226661696c75726573223a7b226661696c75726573223a5b7b227061796c6f61645f74797065223a7b22736368656d615f646967657374223a7b22616c676f726974686d223a22736861323536222c22646f6d61696e223a22747970652d736368656d61222c22686578223a2231313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131227d2c2273706563696669636174696f6e5f6964223a226167656e74666c6f772e73656d616e7469632e74797065734031222c22747970655f6e616d65223a2254657874227d7d5d7d2c22696e666f726d6174696f6e5f666c6f77223a7b22636f6e666964656e7469616c6974795f7265737472696374696f6e73223a5b7b22636174616c6f67223a226167656e74666c6f772e6c6162656c734031222c226e616d65223a22706969227d5d2c22666c6f775f636f6e73747261696e7473223a5b7b226b696e64223a22646174615f656772657373222c2273696e6b223a7b22776f726b666c6f775f6f7574707574223a2231227d7d2c7b226b696e64223a226465636973696f6e5f696e666c75656e6365222c2273696e6b223a7b2265787465726e616c5f656666656374223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272656164227d7d7d5d2c2273756d6d617279223a7b22696e666c75656e63655f756e6b6e6f776e223a66616c73652c22696e737472756374696f6e5f617574686f72697479223a2275736572222c22736f7572636573223a5b7b2263617465676f7279223a7b22776f726b666c6f775f696e707574223a2231227d7d2c7b2263617465676f7279223a7b227265736f757263655f726571756972656d656e74223a2231227d7d5d2c227461696e7473223a5b7b22636174616c6f67223a226167656e74666c6f772e6c6162656c734031222c226e616d65223a22757365725f696e707574227d5d7d7d2c22696e70757473223a5b7b22706f72745f6e6f223a2231222c2274797065223a7b22736368656d615f646967657374223a7b22616c676f726974686d223a22736861323536222c22646f6d61696e223a22747970652d736368656d61222c22686578223a2231313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131227d2c2273706563696669636174696f6e5f6964223a226167656e74666c6f772e73656d616e7469632e74797065734031222c22747970655f6e616d65223a2254657874227d7d5d2c226f757470757473223a5b7b22706f72745f6e6f223a2231222c2274797065223a7b22736368656d615f646967657374223a7b22616c676f726974686d223a22736861323536222c22646f6d61696e223a22747970652d736368656d61222c22686578223a2231313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131227d2c2273706563696669636174696f6e5f6964223a226167656e74666c6f772e73656d616e7469632e74797065734031222c22747970655f6e616d65223a2254657874227d7d5d2c227265636f76657279223a7b226566666563745f7265636f766572795f636c6175736573223a5b7b22636f6d70656e736174696f6e223a7b227265717569726564223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272657665727365227d7d2c22656666656374223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272656164227d2c227175616c696669657273223a5b7b226964656d706f74656e6379223a226e61747572616c227d5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c226964656d706f74656e6379223a226e61747572616c222c226b65795f726571756972656d656e74223a7b226e6f6e65223a6e756c6c7d2c227265636f6e63696c696174696f6e223a226e6f6e65222c22756e6b6e6f776e5f6566666563745f68616e646c696e67223a22626c6f636b227d5d2c227265706c61795f73656d616e74696373223a227265636f6d70757465227d2c227265636f766572795f616374696f6e5f62696e64696e6773223a5b7b226964656e74697479223a7b22616374696f6e5f656666656374223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272657665727365227d2c227175616c696669657273223a5b5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c22616374696f6e5f6b696e64223a22636f6d70656e736174696f6e222c22666f72776172645f656666656374223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272656164227d2c227175616c696669657273223a5b7b226964656d706f74656e6379223a226e61747572616c227d5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d7d7d5d2c227265636f766572795f75736167655f62696e64696e6773223a5b7b22616374696f6e223a7b22616374696f6e5f656666656374223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272657665727365227d2c227175616c696669657273223a5b5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c22616374696f6e5f6b696e64223a22636f6d70656e736174696f6e222c22666f72776172645f656666656374223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272656164227d2c227175616c696669657273223a5b7b226964656d706f74656e6379223a226e61747572616c227d5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d7d2c2261637469766174696f6e735f7065725f666f7277617264223a7b226c6f776572223a2231222c227570706572223a7b2266696e697465223a2231227d7d2c22617474656d7074735f7065725f61637469766174696f6e223a7b226c6f776572223a2231222c227570706572223a7b2266696e697465223a2232227d7d2c227065725f617474656d70745f7573616765223a7b226c696d697473223a5b7b226d65746572223a7b22636174616c6f67223a226167656e74666c6f772e6d65746572734031222c226e616d65223a226170695f63616c6c73227d2c227068617365223a227265636f76657279222c227570706572223a7b2266696e697465223a2233227d7d5d7d7d5d2c227265736f7572636573223a7b22726571756972656d656e7473223a5b7b22706f72745f6e6f223a2231222c2272657175697265645f61747472696275746573223a5b5d2c227265736f757263655f74797065223a7b22736368656d61223a7b22736368656d615f646967657374223a7b22616c676f726974686d223a22736861323536222c22646f6d61696e223a22747970652d736368656d61222c22686578223a2231313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131313131227d2c2273706563696669636174696f6e5f6964223a226167656e74666c6f772e73656d616e7469632e74797065734031222c22747970655f6e616d65223a2254657874227d7d7d5d7d2c227573616765223a7b226c696d697473223a5b7b226d65746572223a7b22636174616c6f67223a226167656e74666c6f772e6d65746572734031222c226e616d65223a226170695f63616c6c73227d2c227068617365223a22666f7277617264222c227570706572223a7b2266696e697465223a2232227d7d2c7b226d65746572223a7b22636174616c6f67223a226167656e74666c6f772e6d65746572734031222c226e616d65223a226170695f63616c6c73227d2c227068617365223a227265636f76657279222c227570706572223a7b2266696e697465223a223132227d7d5d7d7d",
+      "ace1_utf8": "{\"component_identity\":{\"catalog\":\"agentflow.components@1\",\"name\":\"acme.transform\"},\"effect_flow_partitions\":[{\"allowed_effects\":[{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}}],\"kind\":\"decision_influence\",\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"}}],\"effects\":{\"row\":{\"closed\":[{\"atom\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"bounds\":{\"lower\":\"1\",\"upper\":{\"finite\":\"2\"}},\"guard\":{\"unconditional\":null}},{\"atom\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"reverse\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"bounds\":{\"lower\":\"0\",\"upper\":{\"finite\":\"2\"}},\"guard\":{\"unconditional\":null}}]}},\"execution\":{\"capabilities\":[],\"implementation_abis\":[],\"quantities\":[{\"kind\":\"cpu_millicores\",\"minimum\":\"1000\"}],\"region_residency\":{\"some\":{\"execution_regions\":[{\"catalog\":\"agentflow.regions@1\",\"name\":\"sg\"}],\"residency_regions\":[{\"catalog\":\"agentflow.regions@1\",\"name\":\"sg\"}]}},\"runtime_profile\":{\"none\":null},\"sandbox\":{\"some\":{\"minimum\":\"strong\"}},\"soft_preferences\":[],\"trust_domain\":{\"some\":{\"catalog\":\"agentflow.trust@1\",\"name\":\"prod\"}}},\"failures\":{\"failures\":[{\"payload_type\":{\"schema_digest\":{\"algorithm\":\"sha256\",\"domain\":\"type-schema\",\"hex\":\"1111111111111111111111111111111111111111111111111111111111111111\"},\"specification_id\":\"agentflow.semantic.types@1\",\"type_name\":\"Text\"}}]},\"information_flow\":{\"confidentiality_restrictions\":[{\"catalog\":\"agentflow.labels@1\",\"name\":\"pii\"}],\"flow_constraints\":[{\"kind\":\"data_egress\",\"sink\":{\"workflow_output\":\"1\"}},{\"kind\":\"decision_influence\",\"sink\":{\"external_effect\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"}}}],\"summary\":{\"influence_unknown\":false,\"instruction_authority\":\"user\",\"sources\":[{\"category\":{\"workflow_input\":\"1\"}},{\"category\":{\"resource_requirement\":\"1\"}}],\"taints\":[{\"catalog\":\"agentflow.labels@1\",\"name\":\"user_input\"}]}},\"inputs\":[{\"port_no\":\"1\",\"type\":{\"schema_digest\":{\"algorithm\":\"sha256\",\"domain\":\"type-schema\",\"hex\":\"1111111111111111111111111111111111111111111111111111111111111111\"},\"specification_id\":\"agentflow.semantic.types@1\",\"type_name\":\"Text\"}}],\"outputs\":[{\"port_no\":\"1\",\"type\":{\"schema_digest\":{\"algorithm\":\"sha256\",\"domain\":\"type-schema\",\"hex\":\"1111111111111111111111111111111111111111111111111111111111111111\"},\"specification_id\":\"agentflow.semantic.types@1\",\"type_name\":\"Text\"}}],\"recovery\":{\"effect_recovery_clauses\":[{\"compensation\":{\"required\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"reverse\"}},\"effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"idempotency\":\"natural\",\"key_requirement\":{\"none\":null},\"reconciliation\":\"none\",\"unknown_effect_handling\":\"block\"}],\"replay_semantics\":\"recompute\"},\"recovery_action_bindings\":[{\"identity\":{\"action_effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"reverse\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"action_kind\":\"compensation\",\"forward_effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}}}}],\"recovery_usage_bindings\":[{\"action\":{\"action_effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"reverse\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"action_kind\":\"compensation\",\"forward_effect\":{\"operation\":{\"catalog\":\"agentflow.effects@1\",\"name\":\"read\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}}},\"activations_per_forward\":{\"lower\":\"1\",\"upper\":{\"finite\":\"1\"}},\"attempts_per_activation\":{\"lower\":\"1\",\"upper\":{\"finite\":\"2\"}},\"per_attempt_usage\":{\"limits\":[{\"meter\":{\"catalog\":\"agentflow.meters@1\",\"name\":\"api_calls\"},\"phase\":\"recovery\",\"upper\":{\"finite\":\"3\"}}]}}],\"resources\":{\"requirements\":[{\"port_no\":\"1\",\"required_attributes\":[],\"resource_type\":{\"schema\":{\"schema_digest\":{\"algorithm\":\"sha256\",\"domain\":\"type-schema\",\"hex\":\"1111111111111111111111111111111111111111111111111111111111111111\"},\"specification_id\":\"agentflow.semantic.types@1\",\"type_name\":\"Text\"}}}]},\"usage\":{\"limits\":[{\"meter\":{\"catalog\":\"agentflow.meters@1\",\"name\":\"api_calls\"},\"phase\":\"forward\",\"upper\":{\"finite\":\"2\"}},{\"meter\":{\"catalog\":\"agentflow.meters@1\",\"name\":\"api_calls\"},\"phase\":\"recovery\",\"upper\":{\"finite\":\"12\"}}]}}",
+      "canonical_component_contract": {
+        "component_identity": {
+          "catalog": "agentflow.components@1",
+          "name": "acme.transform"
+        },
+        "effect_flow_partitions": [
+          {
+            "allowed_effects": [
+              {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "read"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            ],
+            "kind": "decision_influence",
+            "operation": {
+              "catalog": "agentflow.effects@1",
+              "name": "read"
+            }
+          }
+        ],
+        "effects": {
+          "row": {
+            "closed": [
+              {
+                "atom": {
+                  "operation": {
+                    "catalog": "agentflow.effects@1",
+                    "name": "read"
+                  },
+                  "qualifiers": [
+                    {
+                      "idempotency": "natural"
+                    }
+                  ],
+                  "resource_selector": {
+                    "requirement_port_no": 1,
+                    "scope_bindings": []
+                  }
+                },
+                "bounds": {
+                  "lower": 1,
+                  "upper": {
+                    "finite": 2
+                  }
+                },
+                "guard": {
+                  "unconditional": null
+                }
+              },
+              {
+                "atom": {
+                  "operation": {
+                    "catalog": "agentflow.effects@1",
+                    "name": "reverse"
+                  },
+                  "qualifiers": [],
+                  "resource_selector": {
+                    "requirement_port_no": 1,
+                    "scope_bindings": []
+                  }
+                },
+                "bounds": {
+                  "lower": 0,
+                  "upper": {
+                    "finite": 2
+                  }
+                },
+                "guard": {
+                  "unconditional": null
+                }
+              }
+            ]
+          }
+        },
+        "execution": {
+          "capabilities": [],
+          "implementation_abis": [],
+          "quantities": [
+            {
+              "kind": "cpu_millicores",
+              "minimum": 1000
+            }
+          ],
+          "region_residency": {
+            "some": {
+              "execution_regions": [
+                {
+                  "catalog": "agentflow.regions@1",
+                  "name": "sg"
+                }
+              ],
+              "residency_regions": [
+                {
+                  "catalog": "agentflow.regions@1",
+                  "name": "sg"
+                }
+              ]
+            }
+          },
+          "runtime_profile": {
+            "none": null
+          },
+          "sandbox": {
+            "some": {
+              "minimum": "strong"
+            }
+          },
+          "soft_preferences": [],
+          "trust_domain": {
+            "some": {
+              "catalog": "agentflow.trust@1",
+              "name": "prod"
+            }
+          }
+        },
+        "failures": {
+          "failures": [
+            {
+              "payload_type": {
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+                },
+                "specification_id": "agentflow.semantic.types@1",
+                "type_name": "Text"
+              }
+            }
+          ]
+        },
+        "information_flow": {
+          "confidentiality_restrictions": [
+            {
+              "catalog": "agentflow.labels@1",
+              "name": "pii"
+            }
+          ],
+          "flow_constraints": [
+            {
+              "kind": "data_egress",
+              "sink": {
+                "workflow_output": 1
+              }
+            },
+            {
+              "kind": "decision_influence",
+              "sink": {
+                "external_effect": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "read"
+                }
+              }
+            }
+          ],
+          "summary": {
+            "influence_unknown": false,
+            "instruction_authority": "user",
+            "sources": [
+              {
+                "category": {
+                  "workflow_input": 1
+                }
+              },
+              {
+                "category": {
+                  "resource_requirement": 1
+                }
+              }
+            ],
+            "taints": [
+              {
+                "catalog": "agentflow.labels@1",
+                "name": "user_input"
+              }
+            ]
+          }
+        },
+        "inputs": [
+          {
+            "port_no": 1,
+            "type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+              },
+              "specification_id": "agentflow.semantic.types@1",
+              "type_name": "Text"
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "port_no": 1,
+            "type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+              },
+              "specification_id": "agentflow.semantic.types@1",
+              "type_name": "Text"
+            }
+          }
+        ],
+        "recovery": {
+          "effect_recovery_clauses": [
+            {
+              "compensation": {
+                "required": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "reverse"
+                }
+              },
+              "effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "read"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "idempotency": "natural",
+              "key_requirement": {
+                "none": null
+              },
+              "reconciliation": "none",
+              "unknown_effect_handling": "block"
+            }
+          ],
+          "replay_semantics": "recompute"
+        },
+        "recovery_action_bindings": [
+          {
+            "identity": {
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "reverse"
+                },
+                "qualifiers": [],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "compensation",
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "read"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            }
+          }
+        ],
+        "recovery_usage_bindings": [
+          {
+            "action": {
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "reverse"
+                },
+                "qualifiers": [],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "compensation",
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "read"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            },
+            "activations_per_forward": {
+              "lower": 1,
+              "upper": {
+                "finite": 1
+              }
+            },
+            "attempts_per_activation": {
+              "lower": 1,
+              "upper": {
+                "finite": 2
+              }
+            },
+            "per_attempt_usage": {
+              "limits": [
+                {
+                  "meter": {
+                    "catalog": "agentflow.meters@1",
+                    "name": "api_calls"
+                  },
+                  "phase": "recovery",
+                  "upper": {
+                    "finite": 3
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "resources": {
+          "requirements": [
+            {
+              "port_no": 1,
+              "required_attributes": [],
+              "resource_type": {
+                "schema": {
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+                  },
+                  "specification_id": "agentflow.semantic.types@1",
+                  "type_name": "Text"
+                }
+              }
+            }
+          ]
+        },
+        "usage": {
+          "limits": [
+            {
+              "meter": {
+                "catalog": "agentflow.meters@1",
+                "name": "api_calls"
+              },
+              "phase": "forward",
+              "upper": {
+                "finite": 2
+              }
+            },
+            {
+              "meter": {
+                "catalog": "agentflow.meters@1",
+                "name": "api_calls"
+              },
+              "phase": "recovery",
+              "upper": {
+                "finite": 12
+              }
+            }
+          ]
+        }
+      },
+      "case_id": "contract/golden/all-dimensions",
+      "component_contract_digest": "e328f89a192c5164d65759ca67cb1d9091def2822c26d05e4abedecd7392d29c"
+    },
+    {
+      "ace1_hex": "7b22636f6d706f6e656e745f6964656e74697479223a7b22636174616c6f67223a226167656e74666c6f772e636f6d706f6e656e74734031222c226e616d65223a2261636d652e7472616e73666f726d227d2c226566666563745f666c6f775f706172746974696f6e73223a5b5d2c2265666665637473223a7b22726f77223a7b22636c6f736564223a5b5d7d7d2c22657865637574696f6e223a7b226361706162696c6974696573223a5b5d2c22696d706c656d656e746174696f6e5f61626973223a5b5d2c227175616e746974696573223a5b5d2c22726567696f6e5f7265736964656e6379223a7b226e6f6e65223a6e756c6c7d2c2272756e74696d655f70726f66696c65223a7b226e6f6e65223a6e756c6c7d2c2273616e64626f78223a7b226e6f6e65223a6e756c6c7d2c22736f66745f707265666572656e636573223a5b5d2c2274727573745f646f6d61696e223a7b226e6f6e65223a6e756c6c7d7d2c226661696c75726573223a7b226661696c75726573223a5b5d7d2c22696e666f726d6174696f6e5f666c6f77223a7b22636f6e666964656e7469616c6974795f7265737472696374696f6e73223a5b5d2c22666c6f775f636f6e73747261696e7473223a5b5d2c2273756d6d617279223a7b22696e666c75656e63655f756e6b6e6f776e223a66616c73652c22696e737472756374696f6e5f617574686f72697479223a226e6f6e65222c22736f7572636573223a5b5d2c227461696e7473223a5b5d7d7d2c22696e70757473223a5b5d2c226f757470757473223a5b5d2c227265636f76657279223a7b226566666563745f7265636f766572795f636c6175736573223a5b5d2c227265706c61795f73656d616e74696373223a227265636f6d70757465227d2c227265636f766572795f616374696f6e5f62696e64696e6773223a5b5d2c227265636f766572795f75736167655f62696e64696e6773223a5b5d2c227265736f7572636573223a7b22726571756972656d656e7473223a5b5d7d2c227573616765223a7b226c696d697473223a5b5d7d7d",
+      "ace1_utf8": "{\"component_identity\":{\"catalog\":\"agentflow.components@1\",\"name\":\"acme.transform\"},\"effect_flow_partitions\":[],\"effects\":{\"row\":{\"closed\":[]}},\"execution\":{\"capabilities\":[],\"implementation_abis\":[],\"quantities\":[],\"region_residency\":{\"none\":null},\"runtime_profile\":{\"none\":null},\"sandbox\":{\"none\":null},\"soft_preferences\":[],\"trust_domain\":{\"none\":null}},\"failures\":{\"failures\":[]},\"information_flow\":{\"confidentiality_restrictions\":[],\"flow_constraints\":[],\"summary\":{\"influence_unknown\":false,\"instruction_authority\":\"none\",\"sources\":[],\"taints\":[]}},\"inputs\":[],\"outputs\":[],\"recovery\":{\"effect_recovery_clauses\":[],\"replay_semantics\":\"recompute\"},\"recovery_action_bindings\":[],\"recovery_usage_bindings\":[],\"resources\":{\"requirements\":[]},\"usage\":{\"limits\":[]}}",
+      "canonical_component_contract": {
+        "component_identity": {
+          "catalog": "agentflow.components@1",
+          "name": "acme.transform"
+        },
+        "effect_flow_partitions": [],
+        "effects": {
+          "row": {
+            "closed": []
+          }
+        },
+        "execution": {
+          "capabilities": [],
+          "implementation_abis": [],
+          "quantities": [],
+          "region_residency": {
+            "none": null
+          },
+          "runtime_profile": {
+            "none": null
+          },
+          "sandbox": {
+            "none": null
+          },
+          "soft_preferences": [],
+          "trust_domain": {
+            "none": null
+          }
+        },
+        "failures": {
+          "failures": []
+        },
+        "information_flow": {
+          "confidentiality_restrictions": [],
+          "flow_constraints": [],
+          "summary": {
+            "influence_unknown": false,
+            "instruction_authority": "none",
+            "sources": [],
+            "taints": []
+          }
+        },
+        "inputs": [],
+        "outputs": [],
+        "recovery": {
+          "effect_recovery_clauses": [],
+          "replay_semantics": "recompute"
+        },
+        "recovery_action_bindings": [],
+        "recovery_usage_bindings": [],
+        "resources": {
+          "requirements": []
+        },
+        "usage": {
+          "limits": []
+        }
+      },
+      "case_id": "contract/golden/publication-and-metadata-excluded",
+      "component_contract_digest": "6aa54613a68eaf9347fa50b256022a775a22e2f4b936f87139330bfb55b035ac",
+      "non_semantic_metadata": {
+        "contract_version": {
+          "major": 9,
+          "minor": 2,
+          "patch": 1
+        },
+        "diagnostic_name": "friendly label",
+        "implementation_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "price_table_snapshot": "prices-v44"
+      }
+    }
+  ],
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.component-contract.golden"
+}

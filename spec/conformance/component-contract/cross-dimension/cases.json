@@ -1,0 +1,76 @@
+{
+  "cases": [
+    {
+      "case_id": "contract/cross/flow-input-to-exact-I-port",
+      "expected": "requires_exact_context",
+      "rule_id": "AF-CONTRACT-0017"
+    },
+    {
+      "case_id": "contract/cross/flow-resource-to-exact-R-port",
+      "expected": "requires_exact_context",
+      "rule_id": "AF-CONTRACT-0017"
+    },
+    {
+      "case_id": "contract/cross/flow-output-to-exact-O-port",
+      "expected": "requires_exact_context",
+      "rule_id": "AF-CONTRACT-0017"
+    },
+    {
+      "case_id": "contract/cross/effect-selector-to-exact-R-port",
+      "expected": "requires_exact_context",
+      "rule_id": "AF-CONTRACT-0017"
+    },
+    {
+      "case_id": "contract/cross/effect-resource-complete-operation-coverage",
+      "expected": "requires_exact_context",
+      "rule_id": "AF-CONTRACT-0017"
+    },
+    {
+      "case_id": "contract/cross/operation-level-F-ceiling-refined-by-full-atom-partition",
+      "expected": "requires_exact_context",
+      "rule_id": "AF-CONTRACT-0017"
+    },
+    {
+      "case_id": "contract/cross/partition-is-subset-not-expansion",
+      "expected": "requires_exact_context",
+      "rule_id": "AF-CONTRACT-0017"
+    },
+    {
+      "case_id": "contract/cross/K-exact-forward-effect-action-effect",
+      "expected": "requires_exact_context",
+      "rule_id": "AF-CONTRACT-0017"
+    },
+    {
+      "case_id": "contract/cross/K-action-dependency-acyclic",
+      "expected": "requires_exact_context",
+      "rule_id": "AF-CONTRACT-0017"
+    },
+    {
+      "case_id": "contract/cross/K-to-U-exhaustive-meter-coverage",
+      "expected": "requires_exact_context",
+      "rule_id": "AF-CONTRACT-0017"
+    },
+    {
+      "case_id": "contract/cross/checked-forward-activation-attempt-meter-product",
+      "expected": "requires_exact_context",
+      "rule_id": "AF-CONTRACT-0017"
+    },
+    {
+      "case_id": "contract/cross/F-X-exact-region-pairs",
+      "expected": "requires_exact_context",
+      "rule_id": "AF-CONTRACT-0017"
+    },
+    {
+      "case_id": "contract/cross/F-X-exact-taint-trust-sandbox",
+      "expected": "requires_exact_context",
+      "rule_id": "AF-CONTRACT-0017"
+    },
+    {
+      "case_id": "contract/cross/one-unproven-dimension-blocks-overall-proven",
+      "expected": "proven",
+      "rule_id": "AF-CONTRACT-0017"
+    }
+  ],
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.component-contract.cross-dimension"
+}

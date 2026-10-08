@@ -1,0 +1,60 @@
+{
+  "cases": [
+    {
+      "case_id": "relation/effect-resource/invalid/1",
+      "expected_error": "pair_operation_outside_complete_set",
+      "expected_verdict": "violation",
+      "input_value": {
+        "complete_operations": [
+          {
+            "catalog": "agentflow.effects@1",
+            "name": "read"
+          }
+        ],
+        "supported_pairs": [
+          {
+            "allowed_qualifier_profiles": [],
+            "operation": {
+              "catalog": "agentflow.effects@1",
+              "name": "write"
+            },
+            "resource_type": {
+              "schema": {
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+                },
+                "specification_id": "agentflow.semantic.core@1",
+                "type_name": "TypeSchemaRef"
+              }
+            },
+            "selector_keys": []
+          }
+        ]
+      },
+      "schema": "agentflow.effect.resource.compatibility@1"
+    },
+    {
+      "case_id": "relation/effect-resource/invalid/2",
+      "expected_error": "duplicate_complete_operation",
+      "expected_verdict": "violation",
+      "input_value": {
+        "complete_operations": [
+          {
+            "catalog": "agentflow.effects@1",
+            "name": "read"
+          },
+          {
+            "catalog": "agentflow.effects@1",
+            "name": "read"
+          }
+        ],
+        "supported_pairs": []
+      },
+      "schema": "agentflow.effect.resource.compatibility@1"
+    }
+  ],
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.component-contract.relation-invalid"
+}

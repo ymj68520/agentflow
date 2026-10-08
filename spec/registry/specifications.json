@@ -2,6 +2,45 @@
   "registry_revision": 1,
   "specifications": [
     {
+      "description": "Component identity and digest scope, exact public port ABI, cross-dimension static proof and substitution limits.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "eb7f964eefd47f42ca62408c2e0c1219ebe2074c499d37708455bdb7711336f4"
+        },
+        "logical_path": "spec/component/component-contract.md"
+      },
+      "specification_id": "agentflow.component.contract.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed thirteen-field ComponentContract ABI using exact pins to the existing semantic dimension schemas.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "421a6e6357d76864208099053a027e837b73bb8e0075612a374d0ea8f5e0f3c5"
+        },
+        "logical_path": "spec/idl/component-contract.afidl"
+      },
+      "specification_id": "agentflow.component.contract@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Exact versioned relation catalog snapshots and content-bound static proof assumptions.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "742027e8b8c60312a7a6b0a4a39d3469be22cba71b02b5d92e726e4814c0a7db"
+        },
+        "logical_path": "spec/component/relation-catalogs.md"
+      },
+      "specification_id": "agentflow.component.relation-catalogs.semantics@1",
+      "status": "frozen"
+    },
+    {
       "description": "The AFIDL1 builtin machine primitive universe expressed as a parseable nominal-alias module; its 13 alias digests are frozen in the AFIDL corpus.",
       "kind": "schema",
       "normative_source": {
@@ -38,6 +77,19 @@
         "logical_path": "spec/digest/hash-v1.md"
       },
       "specification_id": "agentflow.digest.hash-v1@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Exact operation/resource-type compatibility relation, selector mappings and complete qualifier profiles.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a0e480086b68549c8c1831b086acb270d51c1225a30f785f65ce642e164b6364"
+        },
+        "logical_path": "spec/idl/effect-resource-compatibility.afidl"
+      },
+      "specification_id": "agentflow.effect.resource.compatibility@1",
       "status": "frozen"
     },
     {
@@ -132,6 +184,19 @@
       "status": "frozen"
     },
     {
+      "description": "Exact information-flow and execution region, trust, sandbox and sink relation.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "c8601246b7864b45a333dd63161941a66508f0a2fe103b08ce5bb9d0181e3217"
+        },
+        "logical_path": "spec/idl/flow-execution-relation.afidl"
+      },
+      "specification_id": "agentflow.flow.execution.relation@1",
+      "status": "frozen"
+    },
+    {
       "description": "Closed normative table of the AFIDL1 builtin primitive universe.",
       "kind": "closed_table",
       "normative_source": {
@@ -223,6 +288,19 @@
       "status": "frozen"
     },
     {
+      "description": "Exhaustive exact recovery-action to usage-meter coverage catalog.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "2472b1aed0eab71c3be176010b6eb9f744675c31f17e22346c1ea95ffa30c887"
+        },
+        "logical_path": "spec/idl/recovery-usage-coverage.afidl"
+      },
+      "specification_id": "agentflow.recovery.usage.coverage@1",
+      "status": "frozen"
+    },
+    {
       "description": "Registry mechanics: Specification Registry, RuleId system, Stable ABI Number Registry, ConformanceCaseId and canonical registry form.",
       "kind": "registry",
       "normative_source": {
@@ -241,7 +319,7 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "719e7093dd10f6ce35f9b8c4e11f478c563fd91f91ba5b2d3408d86ad952c1d8"
+          "hex": "5b33545c54cc94518ca5263931a6cef527e69f3d316c2e89157efa41cbb4d942"
         },
         "logical_path": "spec/tables/rule-areas.json"
       },
