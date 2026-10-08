@@ -1,0 +1,211 @@
+afidl 1;
+
+schema agentflow.effect.signature @1;
+
+import agentflow.semantic.core@1 as core;
+
+// AgentFlow Effect Signature — Phase 4A.1. This module is the machine
+// description of the STATIC DECLARATION side of the ε (Effect Signature)
+// dimension of Computation<I, O, Φ, ε, R>:
+//
+//   Effect = Operation + Resource Selector + Qualifiers
+//   Effect Signature = Capability Row + Resource Scope
+//                    + Occurrence Bounds + Guards + Openness
+//
+// It defines ONLY the declared capability envelope:
+//
+//   - the structured effect atom (operation identity, logical resource
+//     selector, closed qualifiers);
+//   - explicit occurrence bounds with an explicit infinity;
+//   - a closed guard language (unconditional / typed input equality);
+//   - the four distinct row states: pure ∅, closed ε, bounded-open ε | ρ,
+//     and unknown ⊤;
+//   - the residual ceiling of a bounded-open row.
+//
+// Deliberately absent, and structurally inexpressible here: EffectGrant,
+// EffectIntent, EffectReceipt, Effect Gateway, Credential Broker, Provider
+// Dispatch, Policy decisions, authorization verdicts, runtime resource
+// handles, physical worker bindings, effect occurrence records. Declared
+// effects are NOT granted effects and NOT authorization: Dispatched ⊆
+// Granted ⊆ Declared is a Runtime/Effect-Gateway invariant built on top of
+// this declaration layer, never inside it.
+//
+// The guard payload reuses the semantic core's closed PrimitiveConstant by
+// exact cross-module identity (agentflow.semantic.core@1/PrimitiveConstant):
+// no guard-specific literal model is redeclared.
+//
+// This module self-hosts like the other production modules: its field/case/
+// value numbering is registered as `active` rows in
+// spec/registry/abi-numbers.json, and its per-type TypeSchemaDigests are
+// frozen in the AFIDL corpus (case `effect-signature`). No new HashV1 domain
+// is introduced: type identity is TypeSchemaDigest, and the canonical effect
+// signature has canonical ACE1 bytes but deliberately NO EffectSignatureDigest
+// — the future ComponentContract will hash as a whole under the already
+// frozen `component-contract` domain.
+
+// ---------------------------------------------------------------------------
+// Local identity aliases
+// ---------------------------------------------------------------------------
+
+// Identity of a capability catalog (the operation universe an effect draws
+// from). Syntax-checked as a SpecificationId; the catalogs themselves are
+// explicit, immutable, in-memory inputs to validation — there is no registry
+// lookup, no latest-version fallback and no network discovery.
+alias CatalogId = string;
+
+// Dotted lowercase operation path inside one catalog, e.g.
+// `github.issue.create`. NFC text; the full logical operation identity is
+// `<CatalogId>/<OperationName>`.
+alias OperationName = string;
+
+// The future ComponentContract resource-requirement port the effect acts
+// through. Must be >= 1; 0 is representable in the wire type and rejected by
+// validation. Whether the port exists in a contract is NOT decidable here
+// (the Resource Requirement Row is a later phase); this phase validates the
+// selector itself.
+alias RequirementPortNo = uint32;
+
+// Logical resource scope dimension and its exact bound, e.g.
+// key `repo`, value `foo/bar`. NFC text, non-empty, at most one binding per
+// key. A scope binding is an EXACT constraint, never a prefix pattern.
+alias ScopeKey = string;
+alias ScopeValue = string;
+
+// ---------------------------------------------------------------------------
+// Effect atom
+// ---------------------------------------------------------------------------
+
+// The operation half of an atom. `catalog` + `name` is the full logical
+// identity; validation resolves it fail-closed against the supplied explicit
+// catalog universe. There is no operation hierarchy, no wildcard and no
+// free-text description: containment between different operations is NOT
+// provable in this phase.
+record EffectOperationRef {
+  1 catalog: CatalogId;
+  2 name: OperationName;
+}
+
+// One exact logical scope constraint on the resource the effect acts through.
+record ScopeBinding {
+  1 key: ScopeKey;
+  2 value: ScopeValue;
+}
+
+// The logical acting range of an effect: the requirement port it flows
+// through plus an exact-binding scope narrowing. This is a DECLARED logical
+// scope — never a raw ResourceHandle, filesystem root, database connection,
+// secret material or worker endpoint, none of which are representable here.
+record ResourceSelector {
+  1 requirement_port_no: RequirementPortNo;
+  2 scope_bindings: list<ScopeBinding>;
+}
+
+// Closed qualifier families. Case 1 is the idempotency family; further
+// families are additive future cases with their own defined meaning.
+enum EffectIdempotencyQualifier {
+  1 natural;
+  2 none;
+}
+
+// One qualifier, tagged by family. At most one qualifier per family may
+// appear in an atom's qualifier list.
+variant EffectQualifier {
+  1 idempotency: EffectIdempotencyQualifier;
+}
+
+// One declared effect: operation + logical selector + closed qualifiers.
+record EffectAtom {
+  1 operation: EffectOperationRef;
+  2 resource_selector: ResourceSelector;
+  3 qualifiers: list<EffectQualifier>;
+}
+
+// ---------------------------------------------------------------------------
+// Occurrence bounds
+// ---------------------------------------------------------------------------
+
+// Explicit occurrence ceiling. `unbounded` IS the infinity case — it is a
+// distinct declared state, never an overflow artifact and never encoded as
+// UINT64_MAX.
+variant OccurrenceCeiling {
+  1 finite: uint64;
+  2 unbounded: unit;
+}
+
+// Bounds on LOGICAL effect occurrences of one atom (how often the observable
+// interaction may happen). Physical task attempts are a separate concept and
+// are modeled only by the retry envelope's explicit attempt bounds — the two
+// counters are never mixed.
+record OccurrenceBounds {
+  1 lower: uint64;
+  2 upper: OccurrenceCeiling;
+}
+
+// ---------------------------------------------------------------------------
+// Guards
+// ---------------------------------------------------------------------------
+
+// Payload of the typed input-equality guard: a component input port (>= 1)
+// and the exact primitive value the input must equal for the guarded effect
+// to be possible. The port's existence in a component contract is a later
+// phase's composition check.
+record EffectGuardInputEquals {
+  1 port_no: uint32;
+  2 expected: core.PrimitiveConstant;
+}
+
+// Closed guard language. A guard narrows WHEN an effect may occur; it never
+// widens an envelope and never carries execution capability. There is no
+// negation, no time, no randomness, no policy lookup and no free-text
+// predicate: conditions this language cannot express are conservatively
+// declared as unconditional effects instead.
+variant EffectGuard {
+  1 unconditional: unit;
+  2 input_equals: EffectGuardInputEquals;
+}
+
+// ---------------------------------------------------------------------------
+// Rows
+// ---------------------------------------------------------------------------
+
+// One row entry: an atom, its occurrence bounds and its guard.
+record EffectEntry {
+  1 atom: EffectAtom;
+  2 bounds: OccurrenceBounds;
+  3 guard: EffectGuard;
+}
+
+// The residual ceiling of a bounded-open row: unknown operations, but only
+// from this catalog, only through this selector, and only within these
+// occurrence bounds. The ceiling must be verifiable (a scope binding or a
+// finite occurrence upper bound must constrain it); a residual that proves
+// nothing is rejected.
+record EffectResidual {
+  1 catalog: CatalogId;
+  2 selector: ResourceSelector;
+  3 bounds: OccurrenceBounds;
+}
+
+// A bounded-open row: the known effects plus an explicitly bounded residual.
+record EffectOpenRow {
+  1 known: list<EffectEntry>;
+  2 residual: list<EffectResidual>;
+}
+
+// The capability row. The four states are distinct and never collapsed:
+//
+//   - `closed` with an empty list is the ONE representation of pure (∅);
+//   - `closed` with entries is a known closed signature (ε);
+//   - `open` is a bounded-open row (ε | ρ) with a verifiable ceiling;
+//   - `unknown` is ⊤, "this envelope could not be proven" — a static
+//     analysis result that is not pure and never a grant of authority.
+variant EffectRow {
+  1 closed: list<EffectEntry>;
+  2 open: EffectOpenRow;
+  3 unknown: unit;
+}
+
+// The declared effect envelope of a computation: exactly one row.
+record EffectSignature {
+  1 row: EffectRow;
+}
