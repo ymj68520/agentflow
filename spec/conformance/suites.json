@@ -103,6 +103,40 @@
       ]
     },
     {
+      "description": "Execution compatibility freezes separate placement-feasibility and security-preservation directions and combines them only after both verdicts are available.",
+      "suite_id": "SUITE-EXECUTION-COMPATIBILITY",
+      "targets": [
+        "af-execution execution_compatibility",
+        "spec/conformance/execution-requirements/compatibility/"
+      ]
+    },
+    {
+      "description": "Static profile matching checks all hard constraints and keeps rejection, unproven evidence and descriptor proof distinct; soft preferences never compensate for a hard failure.",
+      "suite_id": "SUITE-EXECUTION-MATCHING",
+      "targets": [
+        "af-execution match_execution_requirements",
+        "spec/conformance/execution-requirements/matching/"
+      ]
+    },
+    {
+      "description": "Execution Requirements is static only: explicit capability, quantity, sandbox, trust, residency, runtime and ABI constraints are not workers, advertisements, admission, leases, reservations, scheduler state or authority.",
+      "suite_id": "SUITE-EXECUTION-STATIC",
+      "targets": [
+        "af-execution static surface audit",
+        "spec/conformance/execution-requirements/golden/",
+        "spec/conformance/execution-requirements/negative/"
+      ]
+    },
+    {
+      "description": "Phase 4A.7 adds one additive Execution Requirements AFIDL module and ABI/corpus entries but no HashV1 domain or X digest; all prior schema digests and static corpora remain unchanged.",
+      "suite_id": "SUITE-EXECUTION-WIRE-FREEZE",
+      "targets": [
+        "af-execution static surface audit (no digest/runtime symbols)",
+        "af-ir cumulative module/ABI/domain audit",
+        "spec/conformance/execution-requirements/"
+      ]
+    },
+    {
       "description": "The five non-failure planes are structurally outside the Failure Row: no TimedOut/Cancelled/RecoveryBlocked/TaskAttemptLost/RuntimeIncident failure type exists anywhere in af-failure, the frozen HandleMatch carries timed_out as a payload-less unit case beside the typed failure matcher, and TIMEOUT/AWAIT compositions add no type. Covers the static absence audit and the read-only HandleMatch consistency check.",
       "suite_id": "SUITE-FAILURE-CONTROL-OUTCOME-ISOLATION",
       "targets": [

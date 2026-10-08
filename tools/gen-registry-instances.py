@@ -1938,6 +1938,139 @@ RECOVERY_RULES = [
 ]
 RULES.extend(RECOVERY_RULES)
 
+# ---------------------------------------------------------------------------
+# Execution Requirements rules (Phase 4A.7, area EXECUTION)
+# ---------------------------------------------------------------------------
+
+EXECUTION_SRC = "spec/execution/execution-requirements.md"
+
+EXECUTION_RULES = [
+    rule("AF-EXECUTION-0001", "EXECUTION", EXECUTION_SRC,
+         "execution-static-boundary",
+         "Execution Requirements is a static declaration/proof layer only: it "
+         "contains no worker identity, endpoint, lease, credential, heartbeat, "
+         "live load, live price, reservation, scheduler state, placement result "
+         "or HashV1 digest.",
+         ["SUITE-EXECUTION-STATIC"]),
+    rule("AF-EXECUTION-0002", "EXECUTION", EXECUTION_SRC,
+         "execution-hard-soft-separation",
+         "Hard constraints are conjunctive eligibility conditions; closed soft "
+         "preferences never compensate for a hard rejection or unproven fact.",
+         ["execution/golden/hard-and-soft",
+          "execution/matching/soft-preferences-do-not-bypass-hard",
+          "SUITE-EXECUTION-MATCHING"]),
+    rule("AF-EXECUTION-0003", "EXECUTION", EXECUTION_SRC,
+         "execution-capability-identity",
+         "Capability matching uses the complete explicit catalog/name identity "
+         "and an explicitly recognized exact version; unknown capability or "
+         "version fails closed.",
+         ["execution/golden/single-capability",
+          "execution/golden/multiple-capabilities",
+          "execution/negative/unknown-capability",
+          "execution/negative/wrong-version"]),
+    rule("AF-EXECUTION-0004", "EXECUTION", EXECUTION_SRC,
+         "execution-capability-attributes",
+         "Capability attributes are NFC-normalized, non-empty, sorted and "
+         "checked against the explicit vocabulary; unknown attributes are not "
+         "silently compatible.",
+         ["execution/negative/invalid-capability-attribute",
+          "execution/negative/unknown-capability-attribute"]),
+    rule("AF-EXECUTION-0005", "EXECUTION", EXECUTION_SRC,
+         "execution-quantity-units",
+         "CPU millicores, memory bytes and GPU device count are independent "
+         "unsigned units; quantity capacity is nominal, checked only within a "
+         "unit, and missing evidence is unproven rather than zero.",
+         ["execution/golden/quantities",
+          "execution/golden/gpu-capability-quantity",
+          "execution/matching/missing-quantity-unproven",
+          "execution/negative/invalid-quantity-representation",
+          "execution/negative/quantity-unit-mismatch"]),
+    rule("AF-EXECUTION-0006", "EXECUTION", EXECUTION_SRC,
+         "execution-sandbox-assurance",
+         "Sandbox assurance is a closed basic/strong hard requirement; a weak "
+         "descriptor rejects and an absent descriptor is unproven, while the "
+         "level is not enforcement or attestation.",
+          ["execution/golden/sandbox-trust-region-runtime",
+          "execution/matching/sandbox-weak",
+          "execution/negative/unknown-sandbox-profile"]),
+    rule("AF-EXECUTION-0007", "EXECUTION", EXECUTION_SRC,
+         "execution-trust-domain",
+         "Trust domains are exact nominal identities resolved from an explicit "
+         "universe; matching never infers provider, parent, identity, "
+         "delegation or authority equivalence.",
+         ["execution/golden/sandbox-trust-region-runtime",
+          "execution/matching/trust-mismatch",
+          "execution/negative/unknown-trust"]),
+    rule("AF-EXECUTION-0008", "EXECUTION", EXECUTION_SRC,
+         "execution-region-residency",
+         "Execution region and data residency are separate hard constraints; "
+         "nominal region identities require explicit resolution and never use "
+         "prefix, geography or provider inference.",
+         ["execution/golden/sandbox-trust-region-runtime",
+          "execution/matching/region-exact",
+          "execution/matching/residency-exact",
+          "execution/matching/residency-violation",
+          "execution/negative/unknown-region"]),
+    rule("AF-EXECUTION-0009", "EXECUTION", EXECUTION_SRC,
+         "execution-runtime-abi",
+         "Runtime profile and implementation ABI requirements use exact explicit "
+         "identity/feature/digest pins; missing or incompatible evidence is not "
+         "implicitly compatible.",
+         ["execution/golden/runtime-and-abi",
+          "execution/matching/runtime-mismatch",
+          "execution/matching/abi-unproven",
+          "execution/negative/unknown-runtime"]),
+    rule("AF-EXECUTION-0010", "EXECUTION", EXECUTION_SRC,
+         "execution-canonicalization",
+         "Canonicalization resolves explicit universes, rejects duplicate hard "
+         "requirements, sorts unordered dimensions deterministically and is "
+         "idempotent; no requirement is silently relaxed.",
+         ["execution/equivalence/capability-order",
+          "execution/equivalence/region-order",
+          "execution/equivalence/preference-order"]),
+    rule("AF-EXECUTION-0011", "EXECUTION", EXECUTION_SRC,
+         "execution-profile-matching",
+         "Static profile matching checks every hard constraint conjunctively and "
+         "returns only descriptor proof, rejection or unproven evidence; it is "
+         "not availability, admission or placement.",
+         ["execution/matching/all-hard-satisfied",
+          "execution/matching/hard-capability-rejected",
+          "execution/matching/abi-unproven",
+          "SUITE-EXECUTION-MATCHING"]),
+    rule("AF-EXECUTION-0012", "EXECUTION", EXECUTION_SRC,
+         "execution-feasibility-direction",
+         "Feasibility compares old eligible profiles as a subset of new eligible "
+         "profiles; added requirements or narrowed regions are not deployment "
+         "compatible by default.",
+         ["execution/compatibility/reduces-memory",
+          "execution/compatibility/increases-memory",
+          "execution/compatibility/tightens-residency",
+          "execution/compatibility/adds-capability",
+          "execution/compatibility/removes-capability"]),
+    rule("AF-EXECUTION-0013", "EXECUTION", EXECUTION_SRC,
+         "execution-security-preservation",
+         "A feasibility expansion does not prove security preservation; sandbox, "
+         "trust and residency relaxation is independently reported as a security "
+         "violation or unproven relation.",
+         ["execution/compatibility/weakens-sandbox",
+          "execution/compatibility/expands-residency",
+          "execution/compatibility/trust-change"]),
+    rule("AF-EXECUTION-0014", "EXECUTION", EXECUTION_SRC,
+         "execution-combined-compatibility",
+         "Combined compatibility requires both independent feasibility and "
+         "security verdicts and never hides their directions in one boolean.",
+         ["execution/compatibility/identical",
+          "execution/compatibility/strengthens-sandbox",
+          "execution/compatibility/version-change"]),
+    rule("AF-EXECUTION-0015", "EXECUTION", EXECUTION_SRC,
+         "execution-no-authority-or-aggregation",
+         "X does not create execution authority and does not blindly aggregate "
+         "control-tree requirements into a fictitious worker or scheduler "
+         "surface; cross-dimension composition is deferred.",
+         ["SUITE-EXECUTION-STATIC"]),
+]
+RULES.extend(EXECUTION_RULES)
+
 
 
 
@@ -2063,6 +2196,18 @@ SPECS = [
      "Static Recovery semantics: replay boundaries, idempotency declarations, "
      "unknown and partial effect safety, reconciliation/compensation obligations, "
      "forward-history preservation, static proofs and conservative compatibility."),
+    ("agentflow.execution.requirements@1", "schema",
+     "spec/idl/execution-requirements.afidl",
+     "Normative shape of static Execution Requirements: exact capability and "
+     "attribute requirements, independent nominal compute quantities, sandbox, "
+     "trust, region/residency, runtime profile, implementation ABI obligations "
+     "and closed soft preferences."),
+    ("agentflow.execution.requirements.semantics@1", "schema_language",
+     "spec/execution/execution-requirements.md",
+     "Static X semantics: hard/soft separation, explicit capability/profile "
+     "universes, canonicalization, descriptor matching, separate feasibility "
+     "and security-preservation proofs, compatibility and the no-authority "
+     "boundary."),
     ("agentflow.registry.core@1", "registry",
      "spec/registry/registry-spec.md",
      "Registry mechanics: Specification Registry, RuleId system, Stable ABI "
@@ -2144,6 +2289,7 @@ SCHEMA_MODULES = [
     "spec/idl/usage-signature.afidl",
     "spec/idl/cost-projection.afidl",
     "spec/idl/recovery-contract.afidl",
+    "spec/idl/execution-requirements.afidl",
 ]
 
 assignments = []
@@ -3025,6 +3171,58 @@ SUITE_LIST = [
                 "af-recovery static surface audit",
                 "af-ir cumulative module/ABI/domain audit",
                 "spec/conformance/recovery-contract/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-EXECUTION-STATIC",
+            "description": (
+                "Execution Requirements is static only: explicit capability, "
+                "quantity, sandbox, trust, residency, runtime and ABI "
+                "constraints are not workers, advertisements, admission, "
+                "leases, reservations, scheduler state or authority."
+            ),
+            "targets": [
+                "af-execution static surface audit",
+                "spec/conformance/execution-requirements/golden/",
+                "spec/conformance/execution-requirements/negative/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-EXECUTION-MATCHING",
+            "description": (
+                "Static profile matching checks all hard constraints and keeps "
+                "rejection, unproven evidence and descriptor proof distinct; "
+                "soft preferences never compensate for a hard failure."
+            ),
+            "targets": [
+                "af-execution match_execution_requirements",
+                "spec/conformance/execution-requirements/matching/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-EXECUTION-COMPATIBILITY",
+            "description": (
+                "Execution compatibility freezes separate placement-feasibility "
+                "and security-preservation directions and combines them only "
+                "after both verdicts are available."
+            ),
+            "targets": [
+                "af-execution execution_compatibility",
+                "spec/conformance/execution-requirements/compatibility/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-EXECUTION-WIRE-FREEZE",
+            "description": (
+                "Phase 4A.7 adds one additive Execution Requirements AFIDL "
+                "module and ABI/corpus entries but no HashV1 domain or X "
+                "digest; all prior schema digests and static corpora remain "
+                "unchanged."
+            ),
+            "targets": [
+                "af-execution static surface audit (no digest/runtime symbols)",
+                "af-ir cumulative module/ABI/domain audit",
+                "spec/conformance/execution-requirements/",
             ],
         },
         {

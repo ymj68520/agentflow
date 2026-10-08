@@ -1,5 +1,5 @@
 {
-  "corpus_revision": 12,
+  "corpus_revision": 13,
   "kind": "agentflow.conformance.afidl.type-schema-digest-golden",
   "note": "Frozen TypeSchemaDigest values (SHA256(\"AF\\0type-schema\\0\" || canonical ACE1 bytes)). Mutation cases assert that semantic changes alter the digest while the equivalence groups in schema-golden.json assert that formatting does not.",
   "cases": [
@@ -1382,6 +1382,96 @@
       "file": "spec/idl/recovery-contract.afidl",
       "type_name": "UnknownEffectHandling",
       "digest_hex": "62177f73d1e720f06317f02896dbdcedc0ba511eb6743de7eda350e7df88f3c9"
+    },
+    {
+      "case_id": "execution-requirements",
+      "file": "spec/idl/execution-requirements.afidl",
+      "type_name": "CapabilityAttribute",
+      "digest_hex": "985b98541354ec2d6a5f1451ec492aee7059828453337511ff11e45d80948282"
+    },
+    {
+      "case_id": "execution-requirements",
+      "file": "spec/idl/execution-requirements.afidl",
+      "type_name": "CapabilityRequirement",
+      "digest_hex": "5b8e233a4d98dd8b214ace46e643b1aff8423c7aff7f66e23d5e00abdc631183"
+    },
+    {
+      "case_id": "execution-requirements",
+      "file": "spec/idl/execution-requirements.afidl",
+      "type_name": "ComputeQuantityKind",
+      "digest_hex": "3be59f1f5d097746b66df3d0f166f71a690ad18b87a5b3c11f85a1c45a4e0d49"
+    },
+    {
+      "case_id": "execution-requirements",
+      "file": "spec/idl/execution-requirements.afidl",
+      "type_name": "ComputeQuantityRequirement",
+      "digest_hex": "302569091d3cabe7563b71f806c1e378840bab74b33e08c3fbeb364b0b6ba1b3"
+    },
+    {
+      "case_id": "execution-requirements",
+      "file": "spec/idl/execution-requirements.afidl",
+      "type_name": "ExecutionCapabilityRef",
+      "digest_hex": "3da7430eda30f843ebe1bd05356d4eae090c223494091f6dc4fcc3182d5739ef"
+    },
+    {
+      "case_id": "execution-requirements",
+      "file": "spec/idl/execution-requirements.afidl",
+      "type_name": "ExecutionRequirements",
+      "digest_hex": "9e1b0dc1f267fe2a7b47faeb35259053e9dccb78fef63178ec071ca8b540b360"
+    },
+    {
+      "case_id": "execution-requirements",
+      "file": "spec/idl/execution-requirements.afidl",
+      "type_name": "ImplementationAbiRequirement",
+      "digest_hex": "61508eeb3c99f0e2ec387532b5cd9e5690976e9fcd9d49324e91a2e404e2571c"
+    },
+    {
+      "case_id": "execution-requirements",
+      "file": "spec/idl/execution-requirements.afidl",
+      "type_name": "PlacementPreference",
+      "digest_hex": "34892976bee0441975acb74c1098b13b211c4e73ee8e0cc8924edf0415baa883"
+    },
+    {
+      "case_id": "execution-requirements",
+      "file": "spec/idl/execution-requirements.afidl",
+      "type_name": "RegionRef",
+      "digest_hex": "4457f9f325c05e7b20a10e0d1842892da5a8191719b2dfb891451d21f3cb0041"
+    },
+    {
+      "case_id": "execution-requirements",
+      "file": "spec/idl/execution-requirements.afidl",
+      "type_name": "RegionResidencyRequirement",
+      "digest_hex": "cd0a308443c9376e16fec300b2ce04d9e9e1bd71b88449f3481caf69293a11b1"
+    },
+    {
+      "case_id": "execution-requirements",
+      "file": "spec/idl/execution-requirements.afidl",
+      "type_name": "RuntimeProfileRef",
+      "digest_hex": "f9cfc0ce7082cde576a41943e77cc066ee54d1b09d97c7e32a502b1e73d6bcfb"
+    },
+    {
+      "case_id": "execution-requirements",
+      "file": "spec/idl/execution-requirements.afidl",
+      "type_name": "RuntimeProfileRequirement",
+      "digest_hex": "9e953ea5eb369cd351b4bbcf7b59c141234988c49bd1ebffe406f1b466281524"
+    },
+    {
+      "case_id": "execution-requirements",
+      "file": "spec/idl/execution-requirements.afidl",
+      "type_name": "SandboxLevel",
+      "digest_hex": "ad94de47f5f779ca9197f5f054cd0b3a927356ee303a8f852f55627e0dcb799b"
+    },
+    {
+      "case_id": "execution-requirements",
+      "file": "spec/idl/execution-requirements.afidl",
+      "type_name": "SandboxRequirement",
+      "digest_hex": "2306c9980711470c7ff68d40f82197d28f96363c6cca19bf12a6c4fca17964ae"
+    },
+    {
+      "case_id": "execution-requirements",
+      "file": "spec/idl/execution-requirements.afidl",
+      "type_name": "TrustDomainRef",
+      "digest_hex": "4833cc7ef73d9b981ca8fe266019e63c7e0ee12205e0ed11df12516121c3495b"
     }
   ],
   "mutation_cases": [

@@ -826,6 +826,205 @@
       "source_anchor": "effect-overflow"
     },
     {
+      "area": "EXECUTION",
+      "conformance_refs": [
+        "SUITE-EXECUTION-STATIC"
+      ],
+      "normative_source": "spec/execution/execution-requirements.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EXECUTION-0001",
+      "short_statement": "Execution Requirements is a static declaration/proof layer only: it contains no worker identity, endpoint, lease, credential, heartbeat, live load, live price, reservation, scheduler state, placement result or HashV1 digest.",
+      "source_anchor": "execution-static-boundary"
+    },
+    {
+      "area": "EXECUTION",
+      "conformance_refs": [
+        "execution/golden/hard-and-soft",
+        "execution/matching/soft-preferences-do-not-bypass-hard",
+        "SUITE-EXECUTION-MATCHING"
+      ],
+      "normative_source": "spec/execution/execution-requirements.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EXECUTION-0002",
+      "short_statement": "Hard constraints are conjunctive eligibility conditions; closed soft preferences never compensate for a hard rejection or unproven fact.",
+      "source_anchor": "execution-hard-soft-separation"
+    },
+    {
+      "area": "EXECUTION",
+      "conformance_refs": [
+        "execution/golden/single-capability",
+        "execution/golden/multiple-capabilities",
+        "execution/negative/unknown-capability",
+        "execution/negative/wrong-version"
+      ],
+      "normative_source": "spec/execution/execution-requirements.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EXECUTION-0003",
+      "short_statement": "Capability matching uses the complete explicit catalog/name identity and an explicitly recognized exact version; unknown capability or version fails closed.",
+      "source_anchor": "execution-capability-identity"
+    },
+    {
+      "area": "EXECUTION",
+      "conformance_refs": [
+        "execution/negative/invalid-capability-attribute",
+        "execution/negative/unknown-capability-attribute"
+      ],
+      "normative_source": "spec/execution/execution-requirements.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EXECUTION-0004",
+      "short_statement": "Capability attributes are NFC-normalized, non-empty, sorted and checked against the explicit vocabulary; unknown attributes are not silently compatible.",
+      "source_anchor": "execution-capability-attributes"
+    },
+    {
+      "area": "EXECUTION",
+      "conformance_refs": [
+        "execution/golden/quantities",
+        "execution/golden/gpu-capability-quantity",
+        "execution/matching/missing-quantity-unproven",
+        "execution/negative/invalid-quantity-representation",
+        "execution/negative/quantity-unit-mismatch"
+      ],
+      "normative_source": "spec/execution/execution-requirements.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EXECUTION-0005",
+      "short_statement": "CPU millicores, memory bytes and GPU device count are independent unsigned units; quantity capacity is nominal, checked only within a unit, and missing evidence is unproven rather than zero.",
+      "source_anchor": "execution-quantity-units"
+    },
+    {
+      "area": "EXECUTION",
+      "conformance_refs": [
+        "execution/golden/sandbox-trust-region-runtime",
+        "execution/matching/sandbox-weak",
+        "execution/negative/unknown-sandbox-profile"
+      ],
+      "normative_source": "spec/execution/execution-requirements.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EXECUTION-0006",
+      "short_statement": "Sandbox assurance is a closed basic/strong hard requirement; a weak descriptor rejects and an absent descriptor is unproven, while the level is not enforcement or attestation.",
+      "source_anchor": "execution-sandbox-assurance"
+    },
+    {
+      "area": "EXECUTION",
+      "conformance_refs": [
+        "execution/golden/sandbox-trust-region-runtime",
+        "execution/matching/trust-mismatch",
+        "execution/negative/unknown-trust"
+      ],
+      "normative_source": "spec/execution/execution-requirements.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EXECUTION-0007",
+      "short_statement": "Trust domains are exact nominal identities resolved from an explicit universe; matching never infers provider, parent, identity, delegation or authority equivalence.",
+      "source_anchor": "execution-trust-domain"
+    },
+    {
+      "area": "EXECUTION",
+      "conformance_refs": [
+        "execution/golden/sandbox-trust-region-runtime",
+        "execution/matching/region-exact",
+        "execution/matching/residency-exact",
+        "execution/matching/residency-violation",
+        "execution/negative/unknown-region"
+      ],
+      "normative_source": "spec/execution/execution-requirements.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EXECUTION-0008",
+      "short_statement": "Execution region and data residency are separate hard constraints; nominal region identities require explicit resolution and never use prefix, geography or provider inference.",
+      "source_anchor": "execution-region-residency"
+    },
+    {
+      "area": "EXECUTION",
+      "conformance_refs": [
+        "execution/golden/runtime-and-abi",
+        "execution/matching/runtime-mismatch",
+        "execution/matching/abi-unproven",
+        "execution/negative/unknown-runtime"
+      ],
+      "normative_source": "spec/execution/execution-requirements.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EXECUTION-0009",
+      "short_statement": "Runtime profile and implementation ABI requirements use exact explicit identity/feature/digest pins; missing or incompatible evidence is not implicitly compatible.",
+      "source_anchor": "execution-runtime-abi"
+    },
+    {
+      "area": "EXECUTION",
+      "conformance_refs": [
+        "execution/equivalence/capability-order",
+        "execution/equivalence/region-order",
+        "execution/equivalence/preference-order"
+      ],
+      "normative_source": "spec/execution/execution-requirements.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EXECUTION-0010",
+      "short_statement": "Canonicalization resolves explicit universes, rejects duplicate hard requirements, sorts unordered dimensions deterministically and is idempotent; no requirement is silently relaxed.",
+      "source_anchor": "execution-canonicalization"
+    },
+    {
+      "area": "EXECUTION",
+      "conformance_refs": [
+        "execution/matching/all-hard-satisfied",
+        "execution/matching/hard-capability-rejected",
+        "execution/matching/abi-unproven",
+        "SUITE-EXECUTION-MATCHING"
+      ],
+      "normative_source": "spec/execution/execution-requirements.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EXECUTION-0011",
+      "short_statement": "Static profile matching checks every hard constraint conjunctively and returns only descriptor proof, rejection or unproven evidence; it is not availability, admission or placement.",
+      "source_anchor": "execution-profile-matching"
+    },
+    {
+      "area": "EXECUTION",
+      "conformance_refs": [
+        "execution/compatibility/reduces-memory",
+        "execution/compatibility/increases-memory",
+        "execution/compatibility/tightens-residency",
+        "execution/compatibility/adds-capability",
+        "execution/compatibility/removes-capability"
+      ],
+      "normative_source": "spec/execution/execution-requirements.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EXECUTION-0012",
+      "short_statement": "Feasibility compares old eligible profiles as a subset of new eligible profiles; added requirements or narrowed regions are not deployment compatible by default.",
+      "source_anchor": "execution-feasibility-direction"
+    },
+    {
+      "area": "EXECUTION",
+      "conformance_refs": [
+        "execution/compatibility/weakens-sandbox",
+        "execution/compatibility/expands-residency",
+        "execution/compatibility/trust-change"
+      ],
+      "normative_source": "spec/execution/execution-requirements.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EXECUTION-0013",
+      "short_statement": "A feasibility expansion does not prove security preservation; sandbox, trust and residency relaxation is independently reported as a security violation or unproven relation.",
+      "source_anchor": "execution-security-preservation"
+    },
+    {
+      "area": "EXECUTION",
+      "conformance_refs": [
+        "execution/compatibility/identical",
+        "execution/compatibility/strengthens-sandbox",
+        "execution/compatibility/version-change"
+      ],
+      "normative_source": "spec/execution/execution-requirements.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EXECUTION-0014",
+      "short_statement": "Combined compatibility requires both independent feasibility and security verdicts and never hides their directions in one boolean.",
+      "source_anchor": "execution-combined-compatibility"
+    },
+    {
+      "area": "EXECUTION",
+      "conformance_refs": [
+        "SUITE-EXECUTION-STATIC"
+      ],
+      "normative_source": "spec/execution/execution-requirements.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EXECUTION-0015",
+      "short_statement": "X does not create execution authority and does not blindly aggregate control-tree requirements into a fictitious worker or scheduler surface; cross-dimension composition is deferred.",
+      "source_anchor": "execution-no-authority-or-aggregation"
+    },
+    {
       "area": "FAILURE",
       "conformance_refs": [
         "failure/golden/same-short-name-different-family",

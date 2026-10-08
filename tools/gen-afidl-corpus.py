@@ -17,6 +17,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONF = ROOT / "spec" / "conformance" / "afidl"
+# Revision 13 (Phase 4A.7): adds the `execution-requirements` case for static
+# capability, quantity, sandbox, trust, region, runtime and ABI constraints.
 # Revision 12 (Phase 4A.6): adds the `recovery-contract` case for static
 # replay, idempotency, reconciliation and compensation obligations.
 # Revision 11 (Phase 4A.5B): adds the `cost-projection` case for the static
@@ -43,7 +45,7 @@ CONF = ROOT / "spec" / "conformance" / "afidl"
 # `semantic-core` case; revision 2 (Phase 2B) added the self-hosting
 # registry schema module. Every bump is purely additive: existing cases,
 # bytes and digests are unchanged.
-CORPUS_REVISION = 12
+CORPUS_REVISION = 13
 
 # The frozen 13-opcode case table (spec/semantic/semantic-ir.md section 4).
 OPCODE_TABLE = [
@@ -747,6 +749,9 @@ def main():
     # The Phase 4A.6 Recovery Contract schema module is part of the corpus.
     recovery_file = ROOT / "spec" / "idl" / "recovery-contract.afidl"
     cases.append(case_entry(recovery_file, case_id="recovery-contract"))
+    # The Phase 4A.7 Execution Requirements schema module is part of the corpus.
+    execution_file = ROOT / "spec" / "idl" / "execution-requirements.afidl"
+    cases.append(case_entry(execution_file, case_id="execution-requirements"))
 
     schema_golden = {
         "kind": "agentflow.conformance.afidl.schema-golden",

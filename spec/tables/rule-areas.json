@@ -7,6 +7,7 @@
     { "area": "AFIDL", "description": "AFIDL1 schema language, canonical TypeSchema and TypeSchemaDigest (spec/idl/afidl1-grammar.md)" },
     { "area": "DIGEST", "description": "HashV1 digest foundation and DigestRef (spec/digest/hash-v1.md)" },
     { "area": "EFFECT", "description": "Effect Signature: effect atoms, resource selectors, occurrence bounds, guards, closed/open/top rows, the effect algebra and static control propagation (spec/effect/effect-signature.md)" },
+    { "area": "EXECUTION", "description": "Static Execution Requirements: hard and soft placement constraints, explicit capability/quantity/sandbox/trust/region/runtime/ABI universes, profile matching and separate feasibility/security compatibility (spec/execution/execution-requirements.md)" },
     { "area": "FAILURE", "description": "Static Typed Failure Row: nominal failure type identity, exact schema pinning, the closed failure set, failure algebra and static control propagation (spec/failure/failure-row.md)" },
     { "area": "INFOFLOW", "description": "Static Information Flow Contract: label and taint identity, instruction authority, conservative taint propagation, the LLM strong taint mixer, flow-kind-separated ceilings, declassification/endorsement obligations and flow non-relaxation (spec/information-flow/information-flow.md)" },
     { "area": "RECOVERY", "description": "Static Recovery Contract: replay semantics, idempotency declarations, reconciliation and compensation obligations, unknown-effect safety and recovery compatibility (spec/recovery/recovery-contract.md)" },

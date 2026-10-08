@@ -420,6 +420,513 @@
       "first_seen_schema_digest": {
         "alg": "sha256",
         "domain": "type-schema",
+        "hex": "985b98541354ec2d6a5f1451ec492aee7059828453337511ff11e45d80948282"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "key",
+      "type_name": "CapabilityAttribute"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "985b98541354ec2d6a5f1451ec492aee7059828453337511ff11e45d80948282"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "value",
+      "type_name": "CapabilityAttribute"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5b8e233a4d98dd8b214ace46e643b1aff8423c7aff7f66e23d5e00abdc631183"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "capability",
+      "type_name": "CapabilityRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5b8e233a4d98dd8b214ace46e643b1aff8423c7aff7f66e23d5e00abdc631183"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "exact_version",
+      "type_name": "CapabilityRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5b8e233a4d98dd8b214ace46e643b1aff8423c7aff7f66e23d5e00abdc631183"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "required_attributes",
+      "type_name": "CapabilityRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "3be59f1f5d097746b66df3d0f166f71a690ad18b87a5b3c11f85a1c45a4e0d49"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "cpu_millicores",
+      "type_name": "ComputeQuantityKind"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "3be59f1f5d097746b66df3d0f166f71a690ad18b87a5b3c11f85a1c45a4e0d49"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "memory_bytes",
+      "type_name": "ComputeQuantityKind"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "3be59f1f5d097746b66df3d0f166f71a690ad18b87a5b3c11f85a1c45a4e0d49"
+      },
+      "number": 3,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "gpu_count",
+      "type_name": "ComputeQuantityKind"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "302569091d3cabe7563b71f806c1e378840bab74b33e08c3fbeb364b0b6ba1b3"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "kind",
+      "type_name": "ComputeQuantityRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "302569091d3cabe7563b71f806c1e378840bab74b33e08c3fbeb364b0b6ba1b3"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "minimum",
+      "type_name": "ComputeQuantityRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "3da7430eda30f843ebe1bd05356d4eae090c223494091f6dc4fcc3182d5739ef"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "catalog",
+      "type_name": "ExecutionCapabilityRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "3da7430eda30f843ebe1bd05356d4eae090c223494091f6dc4fcc3182d5739ef"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "name",
+      "type_name": "ExecutionCapabilityRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "9e1b0dc1f267fe2a7b47faeb35259053e9dccb78fef63178ec071ca8b540b360"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "capabilities",
+      "type_name": "ExecutionRequirements"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "9e1b0dc1f267fe2a7b47faeb35259053e9dccb78fef63178ec071ca8b540b360"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "quantities",
+      "type_name": "ExecutionRequirements"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "9e1b0dc1f267fe2a7b47faeb35259053e9dccb78fef63178ec071ca8b540b360"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "sandbox",
+      "type_name": "ExecutionRequirements"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "9e1b0dc1f267fe2a7b47faeb35259053e9dccb78fef63178ec071ca8b540b360"
+      },
+      "number": 4,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "trust_domain",
+      "type_name": "ExecutionRequirements"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "9e1b0dc1f267fe2a7b47faeb35259053e9dccb78fef63178ec071ca8b540b360"
+      },
+      "number": 5,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "region_residency",
+      "type_name": "ExecutionRequirements"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "9e1b0dc1f267fe2a7b47faeb35259053e9dccb78fef63178ec071ca8b540b360"
+      },
+      "number": 6,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "runtime_profile",
+      "type_name": "ExecutionRequirements"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "9e1b0dc1f267fe2a7b47faeb35259053e9dccb78fef63178ec071ca8b540b360"
+      },
+      "number": 7,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "implementation_abis",
+      "type_name": "ExecutionRequirements"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "9e1b0dc1f267fe2a7b47faeb35259053e9dccb78fef63178ec071ca8b540b360"
+      },
+      "number": 8,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "soft_preferences",
+      "type_name": "ExecutionRequirements"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "61508eeb3c99f0e2ec387532b5cd9e5690976e9fcd9d49324e91a2e404e2571c"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "schema",
+      "type_name": "ImplementationAbiRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "34892976bee0441975acb74c1098b13b211c4e73ee8e0cc8924edf0415baa883"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "artifact_locality",
+      "type_name": "PlacementPreference"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "34892976bee0441975acb74c1098b13b211c4e73ee8e0cc8924edf0415baa883"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "warm_model_cache",
+      "type_name": "PlacementPreference"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "34892976bee0441975acb74c1098b13b211c4e73ee8e0cc8924edf0415baa883"
+      },
+      "number": 3,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "lower_load",
+      "type_name": "PlacementPreference"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "34892976bee0441975acb74c1098b13b211c4e73ee8e0cc8924edf0415baa883"
+      },
+      "number": 4,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "lower_cost",
+      "type_name": "PlacementPreference"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4457f9f325c05e7b20a10e0d1842892da5a8191719b2dfb891451d21f3cb0041"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "catalog",
+      "type_name": "RegionRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4457f9f325c05e7b20a10e0d1842892da5a8191719b2dfb891451d21f3cb0041"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "name",
+      "type_name": "RegionRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "cd0a308443c9376e16fec300b2ce04d9e9e1bd71b88449f3481caf69293a11b1"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "execution_regions",
+      "type_name": "RegionResidencyRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "cd0a308443c9376e16fec300b2ce04d9e9e1bd71b88449f3481caf69293a11b1"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "residency_regions",
+      "type_name": "RegionResidencyRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f9cfc0ce7082cde576a41943e77cc066ee54d1b09d97c7e32a502b1e73d6bcfb"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "catalog",
+      "type_name": "RuntimeProfileRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f9cfc0ce7082cde576a41943e77cc066ee54d1b09d97c7e32a502b1e73d6bcfb"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "name",
+      "type_name": "RuntimeProfileRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "9e953ea5eb369cd351b4bbcf7b59c141234988c49bd1ebffe406f1b466281524"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "family",
+      "type_name": "RuntimeProfileRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "9e953ea5eb369cd351b4bbcf7b59c141234988c49bd1ebffe406f1b466281524"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "profile",
+      "type_name": "RuntimeProfileRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "9e953ea5eb369cd351b4bbcf7b59c141234988c49bd1ebffe406f1b466281524"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "required_features",
+      "type_name": "RuntimeProfileRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ad94de47f5f779ca9197f5f054cd0b3a927356ee303a8f852f55627e0dcb799b"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "basic",
+      "type_name": "SandboxLevel"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ad94de47f5f779ca9197f5f054cd0b3a927356ee303a8f852f55627e0dcb799b"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "strong",
+      "type_name": "SandboxLevel"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "2306c9980711470c7ff68d40f82197d28f96363c6cca19bf12a6c4fca17964ae"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "minimum",
+      "type_name": "SandboxRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4833cc7ef73d9b981ca8fe266019e63c7e0ee12205e0ed11df12516121c3495b"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "catalog",
+      "type_name": "TrustDomainRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4833cc7ef73d9b981ca8fe266019e63c7e0ee12205e0ed11df12516121c3495b"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.execution.requirements@1",
+      "status": "active",
+      "symbolic_name": "name",
+      "type_name": "TrustDomainRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
         "hex": "f044f201a15d5a2bd1030b860fb1475cf2119d66b69ed99cf9a7077a3d37a3ab"
       },
       "number": 1,

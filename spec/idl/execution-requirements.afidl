@@ -1,0 +1,94 @@
+afidl 1;
+
+schema agentflow.execution.requirements @1;
+
+import agentflow.semantic.core @1 as core;
+
+// Static Execution Requirements X. This module declares hard eligibility
+// constraints and soft placement preferences. It contains no WorkerId,
+// endpoint, lease, credential, live load, current price, heartbeat,
+// reservation, scheduler state or placement decision.
+
+record ExecutionCapabilityRef {
+    1 catalog: string;
+    2 name: string;
+}
+
+record CapabilityAttribute {
+    1 key: string;
+    2 value: string;
+}
+
+record CapabilityRequirement {
+    1 capability: ExecutionCapabilityRef;
+    2 exact_version: string;
+    3 required_attributes: list<CapabilityAttribute>;
+}
+
+enum ComputeQuantityKind {
+    1 cpu_millicores;
+    2 memory_bytes;
+    3 gpu_count;
+}
+
+record ComputeQuantityRequirement {
+    1 kind: ComputeQuantityKind;
+    2 minimum: uint64;
+}
+
+enum SandboxLevel {
+    1 basic;
+    2 strong;
+}
+
+record SandboxRequirement {
+    1 minimum: SandboxLevel;
+}
+
+record TrustDomainRef {
+    1 catalog: string;
+    2 name: string;
+}
+
+record RegionRef {
+    1 catalog: string;
+    2 name: string;
+}
+
+record RegionResidencyRequirement {
+    1 execution_regions: list<RegionRef>;
+    2 residency_regions: list<RegionRef>;
+}
+
+record RuntimeProfileRef {
+    1 catalog: string;
+    2 name: string;
+}
+
+record RuntimeProfileRequirement {
+    1 family: string;
+    2 profile: RuntimeProfileRef;
+    3 required_features: list<string>;
+}
+
+record ImplementationAbiRequirement {
+    1 schema: core.TypeSchemaRef;
+}
+
+enum PlacementPreference {
+    1 artifact_locality;
+    2 warm_model_cache;
+    3 lower_load;
+    4 lower_cost;
+}
+
+record ExecutionRequirements {
+    1 capabilities: list<CapabilityRequirement>;
+    2 quantities: list<ComputeQuantityRequirement>;
+    3 sandbox: option<SandboxRequirement>;
+    4 trust_domain: option<TrustDomainRef>;
+    5 region_residency: option<RegionResidencyRequirement>;
+    6 runtime_profile: option<RuntimeProfileRequirement>;
+    7 implementation_abis: list<ImplementationAbiRequirement>;
+    8 soft_preferences: list<PlacementPreference>;
+}

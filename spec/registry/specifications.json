@@ -80,6 +80,32 @@
       "status": "frozen"
     },
     {
+      "description": "Static X semantics: hard/soft separation, explicit capability/profile universes, canonicalization, descriptor matching, separate feasibility and security-preservation proofs, compatibility and the no-authority boundary.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "44717f9e878564e2a7aba4eaef878e65d51db14d8834654285a9bc688d95c911"
+        },
+        "logical_path": "spec/execution/execution-requirements.md"
+      },
+      "specification_id": "agentflow.execution.requirements.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of static Execution Requirements: exact capability and attribute requirements, independent nominal compute quantities, sandbox, trust, region/residency, runtime profile, implementation ABI obligations and closed soft preferences.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "6914020b3e9b0d900274fc5d75daac9f27e3b02bb889920c676278b84fff0576"
+        },
+        "logical_path": "spec/idl/execution-requirements.afidl"
+      },
+      "specification_id": "agentflow.execution.requirements@1",
+      "status": "frozen"
+    },
+    {
       "description": "Failure Row semantics: the six error planes, nominal identity and exact pinning, the closed-row and empty-not-success rules, canonical ordering, exact containment, the union algebra, HANDLE residual and handler propagation, control propagation, and the Unproven analysis result.",
       "kind": "schema_language",
       "normative_source": {
@@ -215,7 +241,7 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "997475c5833011dd0e347bfa30abcbb4e01d079917a776b1a2ac4b36844deb8d"
+          "hex": "719e7093dd10f6ce35f9b8c4e11f478c563fd91f91ba5b2d3408d86ad952c1d8"
         },
         "logical_path": "spec/tables/rule-areas.json"
       },
