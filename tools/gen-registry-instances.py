@@ -1856,6 +1856,88 @@ COST_RULES = [
 ]
 RULES.extend(COST_RULES)
 
+# ---------------------------------------------------------------------------
+# Recovery rules (Phase 4A.6, area RECOVERY)
+# ---------------------------------------------------------------------------
+
+RECOVERY_SRC = "spec/recovery/recovery-contract.md"
+
+RECOVERY_RULES = [
+    rule("AF-RECOVERY-0001", "RECOVERY", RECOVERY_SRC, "recovery-static-boundary",
+         "Recovery Contract is a static declaration and proof layer only: it "
+         "does not create receipts, grants, keys, runtime state or execution.",
+         ["SUITE-RECOVERY-STATIC"]),
+    rule("AF-RECOVERY-0002", "RECOVERY", RECOVERY_SRC, "recovery-replay-modes",
+         "ReplaySemantics is closed at recompute, recorded, reconcile and "
+         "forbidden with distinct static obligations.",
+         ["recovery/golden/pure-recorded", "recovery/golden/recompute",
+          "recovery/golden/forbidden-replay"]),
+    rule("AF-RECOVERY-0003", "RECOVERY", RECOVERY_SRC, "recovery-replay-not-authority",
+         "Replay declaration is not authority, safe retry permission, runtime "
+         "evidence or historical/fork equivalence.",
+         ["recovery/replay/historical-no-dispatch", "recovery/replay/fork-fresh-admission",
+          "SUITE-RECOVERY-STATIC"]),
+    rule("AF-RECOVERY-0004", "RECOVERY", RECOVERY_SRC, "recovery-idempotency",
+         "IdempotencySemantics is closed at natural, keyed, none and reconciled; "
+         "each is a declaration rather than provider proof.",
+         ["recovery/golden/natural-idempotency", "recovery/golden/keyed-idempotency",
+          "recovery/golden/reconciled-idempotency"]),
+    rule("AF-RECOVERY-0005", "RECOVERY", RECOVERY_SRC, "recovery-key-obligations",
+         "KEYED recovery carries explicit key stability obligations and never "
+         "generates an IdempotencyKey or durable Invocation/Attempt identity.",
+         ["recovery/golden/keyed-idempotency", "recovery/negative/keyed-without-evidence"]),
+    rule("AF-RECOVERY-0006", "RECOVERY", RECOVERY_SRC, "recovery-effect-identity",
+         "Effect recovery clauses use the complete canonical EffectAtom identity "
+         "including selector and qualifiers; duplicates are rejected.",
+         ["recovery/golden/effect-specific-clause", "recovery/negative/duplicate-effect-clause",
+          "recovery/equivalence/effect-clause-order"]),
+    rule("AF-RECOVERY-0007", "RECOVERY", RECOVERY_SRC, "recovery-coverage",
+         "Every known recoverable Effect requires an explicit matching clause; "
+         "unknown/open effect coverage is not assumed safe.",
+         ["recovery/negative/undeclared-effect-identity",
+          "recovery/negative/unknown-effect-coverage"]),
+    rule("AF-RECOVERY-0008", "RECOVERY", RECOVERY_SRC, "recovery-reconciliation",
+         "Reconciliation requirement declares capability/evidence obligations; "
+         "it never creates APPLIED, NOT_APPLIED, PARTIALLY_APPLIED or STILL_UNKNOWN "
+         "runtime evidence.",
+         ["recovery/golden/reconciled-idempotency", "recovery/negative/reconciled-without-result",
+          "recovery/reconciliation/not-applied-evidence"]),
+    rule("AF-RECOVERY-0009", "RECOVERY", RECOVERY_SRC, "recovery-unknown-effect",
+         "Unknown effects may only block or require reconciliation; UNKNOWN is "
+         "never blindly retried and PARTIALLY_APPLIED is never coerced to another result.",
+         ["recovery/negative/none-unknown-blind-retry", "recovery/reconciliation/still-unknown-blocked",
+          "recovery/reconciliation/partially-applied"]),
+    rule("AF-RECOVERY-0010", "RECOVERY", RECOVERY_SRC, "recovery-compensation",
+         "Compensation is a new explicit Effect operation obligation, not an "
+         "execution grant, rollback API or hidden method.",
+         ["recovery/golden/compensation-requirement", "recovery/negative/unknown-recovery-operation"]),
+    rule("AF-RECOVERY-0011", "RECOVERY", RECOVERY_SRC, "recovery-forward-history",
+         "Compensation preserves forward Effect history and never subtracts "
+         "forward Usage/Cost or erases Failure/Cancelled/Timeout facts.",
+         ["recovery/compensation/forward-history-preserved",
+          "recovery/compensation/recovery-usage-not-refund"]),
+    rule("AF-RECOVERY-0012", "RECOVERY", RECOVERY_SRC, "recovery-static-proof",
+         "Static safety returns ProvenStaticConstraint, RequiresEvidence, "
+         "Unproven or Violation; Proven is never runtime retry authorization.",
+         ["recovery/golden/pure-recorded", "recovery/negative/keyed-without-evidence",
+          "recovery/negative/reconciled-without-result", "SUITE-RECOVERY-PROOF"]),
+    rule("AF-RECOVERY-0013", "RECOVERY", RECOVERY_SRC, "recovery-compatibility",
+         "Recovery compatibility is conservative: exact-equivalent declarations "
+         "are proven, removed capability is weakened and other mode changes are "
+         "Unproven; enum order is not a strength order.",
+         ["recovery/compatibility/identical", "recovery/compatibility/clause-removed",
+          "recovery/compatibility/keyed-not-natural"]),
+    rule("AF-RECOVERY-0014", "RECOVERY", RECOVERY_SRC, "recovery-cross-dimensions",
+         "K-to-ε/Φ/U correspondence is explicit future integration; RecoveryBlocked "
+         "is not a business FailureValue and no temporary ComponentContract exists.",
+         ["SUITE-RECOVERY-STATIC"]),
+    rule("AF-RECOVERY-0015", "RECOVERY", RECOVERY_SRC, "recovery-no-runtime",
+         "Recovery adds no Receipt, Grant, Reconciliation execution, Compensation "
+         "execution, journal, runtime, scheduler, worker or Recovery digest/domain.",
+         ["SUITE-RECOVERY-WIRE-FREEZE"]),
+]
+RULES.extend(RECOVERY_RULES)
+
 
 
 
@@ -1970,6 +2052,17 @@ SPECS = [
      "fixed rational pricing, conservative per-meter-unit rounding, meter "
      "coverage, static cost and budget proofs, cost non-increase and the "
      "runtime billing boundary."),
+    ("agentflow.recovery.contract@1", "schema",
+     "spec/idl/recovery-contract.afidl",
+     "Normative shape of the static Recovery Contract: replay and idempotency "
+     "semantics, key obligations, exact EffectAtom recovery clauses, "
+     "reconciliation requirements, unknown-effect handling and compensation "
+     "obligations."),
+    ("agentflow.recovery.contract.semantics@1", "schema_language",
+     "spec/recovery/recovery-contract.md",
+     "Static Recovery semantics: replay boundaries, idempotency declarations, "
+     "unknown and partial effect safety, reconciliation/compensation obligations, "
+     "forward-history preservation, static proofs and conservative compatibility."),
     ("agentflow.registry.core@1", "registry",
      "spec/registry/registry-spec.md",
      "Registry mechanics: Specification Registry, RuleId system, Stable ABI "
@@ -2050,6 +2143,7 @@ SCHEMA_MODULES = [
     "spec/idl/information-flow.afidl",
     "spec/idl/usage-signature.afidl",
     "spec/idl/cost-projection.afidl",
+    "spec/idl/recovery-contract.afidl",
 ]
 
 assignments = []
@@ -2892,6 +2986,45 @@ SUITE_LIST = [
                 "af-usage cost static surface audit (no digest/ledger/runtime)",
                 "af-ir cumulative module/ABI/domain audit",
                 "spec/conformance/cost-projection/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-RECOVERY-STATIC",
+            "description": (
+                "Recovery Contract is static only: replay/idempotency declarations, "
+                "exact EffectAtom clauses, reconciliation and compensation obligations "
+                "are not receipts, grants, runtime decisions or business failures."
+            ),
+            "targets": [
+                "af-recovery static surface audit",
+                "spec/conformance/recovery-contract/golden/",
+                "spec/conformance/recovery-contract/replay/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-RECOVERY-PROOF",
+            "description": (
+                "Unknown and partially-applied effects fail closed: blind retry is "
+                "forbidden, reconciliation evidence is required, and static proof "
+                "distinguishes Proven, RequiresEvidence, Unproven and Violation."
+            ),
+            "targets": [
+                "af-recovery analyze_recovery_safety",
+                "spec/conformance/recovery-contract/reconciliation/",
+                "spec/conformance/recovery-contract/negative/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-RECOVERY-WIRE-FREEZE",
+            "description": (
+                "Phase 4A.6 adds one additive Recovery AFIDL module and ABI/corpus "
+                "entries but no HashV1 domain, receipt, runtime or journal surface; "
+                "all prior TypeSchemaDigests and corpora remain unchanged."
+            ),
+            "targets": [
+                "af-recovery static surface audit",
+                "af-ir cumulative module/ABI/domain audit",
+                "spec/conformance/recovery-contract/",
             ],
         },
         {

@@ -218,6 +218,33 @@
       ]
     },
     {
+      "description": "Unknown and partially-applied effects fail closed: blind retry is forbidden, reconciliation evidence is required, and static proof distinguishes Proven, RequiresEvidence, Unproven and Violation.",
+      "suite_id": "SUITE-RECOVERY-PROOF",
+      "targets": [
+        "af-recovery analyze_recovery_safety",
+        "spec/conformance/recovery-contract/reconciliation/",
+        "spec/conformance/recovery-contract/negative/"
+      ]
+    },
+    {
+      "description": "Recovery Contract is static only: replay/idempotency declarations, exact EffectAtom clauses, reconciliation and compensation obligations are not receipts, grants, runtime decisions or business failures.",
+      "suite_id": "SUITE-RECOVERY-STATIC",
+      "targets": [
+        "af-recovery static surface audit",
+        "spec/conformance/recovery-contract/golden/",
+        "spec/conformance/recovery-contract/replay/"
+      ]
+    },
+    {
+      "description": "Phase 4A.6 adds one additive Recovery AFIDL module and ABI/corpus entries but no HashV1 domain, receipt, runtime or journal surface; all prior TypeSchemaDigests and corpora remain unchanged.",
+      "suite_id": "SUITE-RECOVERY-WIRE-FREEZE",
+      "targets": [
+        "af-recovery static surface audit",
+        "af-ir cumulative module/ABI/domain audit",
+        "spec/conformance/recovery-contract/"
+      ]
+    },
+    {
       "description": "A resource requirement is a declaration of need, never a grant: satisfaction is a static predicate over explicit descriptors, no requirement-satisfied-implies-grant path exists anywhere in af-resource, and the capability ceiling / effect grant / requirement distinction is enforced by the static absence audit. Covers the authority-distinction rules and the crate source audit.",
       "suite_id": "SUITE-RESOURCE-DECLARATION-NOT-AUTHORITY",
       "targets": [

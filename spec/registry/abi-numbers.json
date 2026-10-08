@@ -797,6 +797,344 @@
       "first_seen_schema_digest": {
         "alg": "sha256",
         "domain": "type-schema",
+        "hex": "73cf0068a867211598da43af0a9e42c7d1ed68fc8f98bbae702c8efdb4504cf2"
+      },
+      "number": 1,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "none",
+      "type_name": "CompensationRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "73cf0068a867211598da43af0a9e42c7d1ed68fc8f98bbae702c8efdb4504cf2"
+      },
+      "number": 2,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "required",
+      "type_name": "CompensationRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c143556d1d637b58c9c8f1cc10f687d266ca89ca9b10afa27f5adf9443b78843"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "effect",
+      "type_name": "EffectRecoveryClause"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c143556d1d637b58c9c8f1cc10f687d266ca89ca9b10afa27f5adf9443b78843"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "idempotency",
+      "type_name": "EffectRecoveryClause"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c143556d1d637b58c9c8f1cc10f687d266ca89ca9b10afa27f5adf9443b78843"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "key_requirement",
+      "type_name": "EffectRecoveryClause"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c143556d1d637b58c9c8f1cc10f687d266ca89ca9b10afa27f5adf9443b78843"
+      },
+      "number": 4,
+      "number_kind": "field",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "reconciliation",
+      "type_name": "EffectRecoveryClause"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c143556d1d637b58c9c8f1cc10f687d266ca89ca9b10afa27f5adf9443b78843"
+      },
+      "number": 5,
+      "number_kind": "field",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "compensation",
+      "type_name": "EffectRecoveryClause"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c143556d1d637b58c9c8f1cc10f687d266ca89ca9b10afa27f5adf9443b78843"
+      },
+      "number": 6,
+      "number_kind": "field",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "unknown_effect_handling",
+      "type_name": "EffectRecoveryClause"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "568a7d6c14db84ee7555b66f6a036862a568b8d2c93b5415c17989edd88eafc8"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "natural",
+      "type_name": "IdempotencySemantics"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "568a7d6c14db84ee7555b66f6a036862a568b8d2c93b5415c17989edd88eafc8"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "keyed",
+      "type_name": "IdempotencySemantics"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "568a7d6c14db84ee7555b66f6a036862a568b8d2c93b5415c17989edd88eafc8"
+      },
+      "number": 3,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "none",
+      "type_name": "IdempotencySemantics"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "568a7d6c14db84ee7555b66f6a036862a568b8d2c93b5415c17989edd88eafc8"
+      },
+      "number": 4,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "reconciled",
+      "type_name": "IdempotencySemantics"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "6a4929260f550f6ceaa05afd242000fc45802a659cfcd269d77380062d18d032"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "stable_across_attempts",
+      "type_name": "KeyStabilityRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "6a4929260f550f6ceaa05afd242000fc45802a659cfcd269d77380062d18d032"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "distinct_across_invocations",
+      "type_name": "KeyStabilityRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "6a4929260f550f6ceaa05afd242000fc45802a659cfcd269d77380062d18d032"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "bound_to_operation",
+      "type_name": "KeyStabilityRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "6a4929260f550f6ceaa05afd242000fc45802a659cfcd269d77380062d18d032"
+      },
+      "number": 4,
+      "number_kind": "field",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "provider_honors",
+      "type_name": "KeyStabilityRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "9493c40863b7902e7cf959545ec754e95f72d9e0c7beacadc5c7d54e2c276025"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "none",
+      "type_name": "ReconciliationRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "9493c40863b7902e7cf959545ec754e95f72d9e0c7beacadc5c7d54e2c276025"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "required",
+      "type_name": "ReconciliationRequirement"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "64ff49b698c2856a2a79d1787a21771af33eaa657d6265aad41c5f42ae55b6e2"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "replay_semantics",
+      "type_name": "RecoveryContract"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "64ff49b698c2856a2a79d1787a21771af33eaa657d6265aad41c5f42ae55b6e2"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "effect_recovery_clauses",
+      "type_name": "RecoveryContract"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "796c6618d3b6a76b789bd7607d0b2d0ecec4fa50ca60fa80257cf2ce73c95026"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "recompute",
+      "type_name": "ReplaySemantics"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "796c6618d3b6a76b789bd7607d0b2d0ecec4fa50ca60fa80257cf2ce73c95026"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "recorded",
+      "type_name": "ReplaySemantics"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "796c6618d3b6a76b789bd7607d0b2d0ecec4fa50ca60fa80257cf2ce73c95026"
+      },
+      "number": 3,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "reconcile",
+      "type_name": "ReplaySemantics"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "796c6618d3b6a76b789bd7607d0b2d0ecec4fa50ca60fa80257cf2ce73c95026"
+      },
+      "number": 4,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "forbidden",
+      "type_name": "ReplaySemantics"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "62177f73d1e720f06317f02896dbdcedc0ba511eb6743de7eda350e7df88f3c9"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "block",
+      "type_name": "UnknownEffectHandling"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "62177f73d1e720f06317f02896dbdcedc0ba511eb6743de7eda350e7df88f3c9"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.recovery.contract@1",
+      "status": "active",
+      "symbolic_name": "reconciliation_required",
+      "type_name": "UnknownEffectHandling"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
         "hex": "f5bf583f3f2ad12e216733105845e1efe4427be5c4d48bd00c7785b74a52a94c"
       },
       "number": 1,

@@ -171,6 +171,32 @@
       "status": "frozen"
     },
     {
+      "description": "Static Recovery semantics: replay boundaries, idempotency declarations, unknown and partial effect safety, reconciliation/compensation obligations, forward-history preservation, static proofs and conservative compatibility.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "66f41dd0f1b8ab3a65d47e79d967e5807dab44483eda16913d80194f0d914036"
+        },
+        "logical_path": "spec/recovery/recovery-contract.md"
+      },
+      "specification_id": "agentflow.recovery.contract.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the static Recovery Contract: replay and idempotency semantics, key obligations, exact EffectAtom recovery clauses, reconciliation requirements, unknown-effect handling and compensation obligations.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "c38aa9e1a5452cb7724b02d08a22d79e2a6762680b4f6c390454519f682724a9"
+        },
+        "logical_path": "spec/idl/recovery-contract.afidl"
+      },
+      "specification_id": "agentflow.recovery.contract@1",
+      "status": "frozen"
+    },
+    {
       "description": "Registry mechanics: Specification Registry, RuleId system, Stable ABI Number Registry, ConformanceCaseId and canonical registry form.",
       "kind": "registry",
       "normative_source": {
@@ -189,7 +215,7 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "426a6f7c8555b63d1d7ba0bed9bce5df9cee1c5fc59b8a74e5d25d24d9307a80"
+          "hex": "997475c5833011dd0e347bfa30abcbb4e01d079917a776b1a2ac4b36844deb8d"
         },
         "logical_path": "spec/tables/rule-areas.json"
       },

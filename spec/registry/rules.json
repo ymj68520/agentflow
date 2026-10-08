@@ -1257,6 +1257,192 @@
       "source_anchor": "if-canonical-ordering"
     },
     {
+      "area": "RECOVERY",
+      "conformance_refs": [
+        "SUITE-RECOVERY-STATIC"
+      ],
+      "normative_source": "spec/recovery/recovery-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RECOVERY-0001",
+      "short_statement": "Recovery Contract is a static declaration and proof layer only: it does not create receipts, grants, keys, runtime state or execution.",
+      "source_anchor": "recovery-static-boundary"
+    },
+    {
+      "area": "RECOVERY",
+      "conformance_refs": [
+        "recovery/golden/pure-recorded",
+        "recovery/golden/recompute",
+        "recovery/golden/forbidden-replay"
+      ],
+      "normative_source": "spec/recovery/recovery-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RECOVERY-0002",
+      "short_statement": "ReplaySemantics is closed at recompute, recorded, reconcile and forbidden with distinct static obligations.",
+      "source_anchor": "recovery-replay-modes"
+    },
+    {
+      "area": "RECOVERY",
+      "conformance_refs": [
+        "recovery/replay/historical-no-dispatch",
+        "recovery/replay/fork-fresh-admission",
+        "SUITE-RECOVERY-STATIC"
+      ],
+      "normative_source": "spec/recovery/recovery-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RECOVERY-0003",
+      "short_statement": "Replay declaration is not authority, safe retry permission, runtime evidence or historical/fork equivalence.",
+      "source_anchor": "recovery-replay-not-authority"
+    },
+    {
+      "area": "RECOVERY",
+      "conformance_refs": [
+        "recovery/golden/natural-idempotency",
+        "recovery/golden/keyed-idempotency",
+        "recovery/golden/reconciled-idempotency"
+      ],
+      "normative_source": "spec/recovery/recovery-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RECOVERY-0004",
+      "short_statement": "IdempotencySemantics is closed at natural, keyed, none and reconciled; each is a declaration rather than provider proof.",
+      "source_anchor": "recovery-idempotency"
+    },
+    {
+      "area": "RECOVERY",
+      "conformance_refs": [
+        "recovery/golden/keyed-idempotency",
+        "recovery/negative/keyed-without-evidence"
+      ],
+      "normative_source": "spec/recovery/recovery-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RECOVERY-0005",
+      "short_statement": "KEYED recovery carries explicit key stability obligations and never generates an IdempotencyKey or durable Invocation/Attempt identity.",
+      "source_anchor": "recovery-key-obligations"
+    },
+    {
+      "area": "RECOVERY",
+      "conformance_refs": [
+        "recovery/golden/effect-specific-clause",
+        "recovery/negative/duplicate-effect-clause",
+        "recovery/equivalence/effect-clause-order"
+      ],
+      "normative_source": "spec/recovery/recovery-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RECOVERY-0006",
+      "short_statement": "Effect recovery clauses use the complete canonical EffectAtom identity including selector and qualifiers; duplicates are rejected.",
+      "source_anchor": "recovery-effect-identity"
+    },
+    {
+      "area": "RECOVERY",
+      "conformance_refs": [
+        "recovery/negative/undeclared-effect-identity",
+        "recovery/negative/unknown-effect-coverage"
+      ],
+      "normative_source": "spec/recovery/recovery-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RECOVERY-0007",
+      "short_statement": "Every known recoverable Effect requires an explicit matching clause; unknown/open effect coverage is not assumed safe.",
+      "source_anchor": "recovery-coverage"
+    },
+    {
+      "area": "RECOVERY",
+      "conformance_refs": [
+        "recovery/golden/reconciled-idempotency",
+        "recovery/negative/reconciled-without-result",
+        "recovery/reconciliation/not-applied-evidence"
+      ],
+      "normative_source": "spec/recovery/recovery-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RECOVERY-0008",
+      "short_statement": "Reconciliation requirement declares capability/evidence obligations; it never creates APPLIED, NOT_APPLIED, PARTIALLY_APPLIED or STILL_UNKNOWN runtime evidence.",
+      "source_anchor": "recovery-reconciliation"
+    },
+    {
+      "area": "RECOVERY",
+      "conformance_refs": [
+        "recovery/negative/none-unknown-blind-retry",
+        "recovery/reconciliation/still-unknown-blocked",
+        "recovery/reconciliation/partially-applied"
+      ],
+      "normative_source": "spec/recovery/recovery-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RECOVERY-0009",
+      "short_statement": "Unknown effects may only block or require reconciliation; UNKNOWN is never blindly retried and PARTIALLY_APPLIED is never coerced to another result.",
+      "source_anchor": "recovery-unknown-effect"
+    },
+    {
+      "area": "RECOVERY",
+      "conformance_refs": [
+        "recovery/golden/compensation-requirement",
+        "recovery/negative/unknown-recovery-operation"
+      ],
+      "normative_source": "spec/recovery/recovery-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RECOVERY-0010",
+      "short_statement": "Compensation is a new explicit Effect operation obligation, not an execution grant, rollback API or hidden method.",
+      "source_anchor": "recovery-compensation"
+    },
+    {
+      "area": "RECOVERY",
+      "conformance_refs": [
+        "recovery/compensation/forward-history-preserved",
+        "recovery/compensation/recovery-usage-not-refund"
+      ],
+      "normative_source": "spec/recovery/recovery-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RECOVERY-0011",
+      "short_statement": "Compensation preserves forward Effect history and never subtracts forward Usage/Cost or erases Failure/Cancelled/Timeout facts.",
+      "source_anchor": "recovery-forward-history"
+    },
+    {
+      "area": "RECOVERY",
+      "conformance_refs": [
+        "recovery/golden/pure-recorded",
+        "recovery/negative/keyed-without-evidence",
+        "recovery/negative/reconciled-without-result",
+        "SUITE-RECOVERY-PROOF"
+      ],
+      "normative_source": "spec/recovery/recovery-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RECOVERY-0012",
+      "short_statement": "Static safety returns ProvenStaticConstraint, RequiresEvidence, Unproven or Violation; Proven is never runtime retry authorization.",
+      "source_anchor": "recovery-static-proof"
+    },
+    {
+      "area": "RECOVERY",
+      "conformance_refs": [
+        "recovery/compatibility/identical",
+        "recovery/compatibility/clause-removed",
+        "recovery/compatibility/keyed-not-natural"
+      ],
+      "normative_source": "spec/recovery/recovery-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RECOVERY-0013",
+      "short_statement": "Recovery compatibility is conservative: exact-equivalent declarations are proven, removed capability is weakened and other mode changes are Unproven; enum order is not a strength order.",
+      "source_anchor": "recovery-compatibility"
+    },
+    {
+      "area": "RECOVERY",
+      "conformance_refs": [
+        "SUITE-RECOVERY-STATIC"
+      ],
+      "normative_source": "spec/recovery/recovery-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RECOVERY-0014",
+      "short_statement": "K-to-ε/Φ/U correspondence is explicit future integration; RecoveryBlocked is not a business FailureValue and no temporary ComponentContract exists.",
+      "source_anchor": "recovery-cross-dimensions"
+    },
+    {
+      "area": "RECOVERY",
+      "conformance_refs": [
+        "SUITE-RECOVERY-WIRE-FREEZE"
+      ],
+      "normative_source": "spec/recovery/recovery-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RECOVERY-0015",
+      "short_statement": "Recovery adds no Receipt, Grant, Reconciliation execution, Compensation execution, journal, runtime, scheduler, worker or Recovery digest/domain.",
+      "source_anchor": "recovery-no-runtime"
+    },
+    {
       "area": "REGISTRY",
       "conformance_refs": [
         "spec-registry/bad-rule-id",
