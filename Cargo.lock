@@ -77,6 +77,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "af-recovery"
+version = "0.1.0"
+dependencies = [
+ "af-core",
+ "af-effect",
+ "af-idl",
+ "af-semantic",
+ "hex",
+ "serde",
+ "serde_json",
+ "unicode-normalization",
+]
+
+[[package]]
 name = "af-resource"
 version = "0.1.0"
 dependencies = [

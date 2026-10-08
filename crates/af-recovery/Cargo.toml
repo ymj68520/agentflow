@@ -1,0 +1,23 @@
+[package]
+name = "af-recovery"
+description = "AgentFlow static recovery, replay, idempotency and compensation obligations"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+af-core = { path = "../af-core" }
+af-idl = { path = "../af-idl" }
+af-semantic = { path = "../af-semantic" }
+af-effect = { path = "../af-effect" }
+serde = { version = "1", features = ["derive"] }
+unicode-normalization = "0.1"
+
+[dev-dependencies]
+serde_json = "1"
+hex = "0.4"
+
+[lints]
+workspace = true
