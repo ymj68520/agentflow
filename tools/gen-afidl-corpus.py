@@ -17,6 +17,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONF = ROOT / "spec" / "conformance" / "afidl"
+# Revision 8 (Phase 4A.3): adds the `resource-requirement` case for the
+# Static Resource Requirement Row schema module (the R dimension:
+# ResourceTypeRef, ResourceAttributeConstraint, ResourceRequirement,
+# ResourceRequirementRow).
 # Revision 7 (Phase 4A.2): adds the `failure-row` case for the static
 # Typed Failure Row schema module (nominal FailureTypeRef over the core's
 # TypeSchemaRef, plus the closed FailureRow set).
@@ -28,7 +32,7 @@ CONF = ROOT / "spec" / "conformance" / "afidl"
 # `semantic-core` case; revision 2 (Phase 2B) added the self-hosting
 # registry schema module. Every bump is purely additive: existing cases,
 # bytes and digests are unchanged.
-CORPUS_REVISION = 7
+CORPUS_REVISION = 8
 
 # The frozen 13-opcode case table (spec/semantic/semantic-ir.md section 4).
 OPCODE_TABLE = [
@@ -716,6 +720,10 @@ def main():
     # The Phase 4A.2 Failure Row schema module is part of the corpus.
     failure_file = ROOT / "spec" / "idl" / "failure-row.afidl"
     cases.append(case_entry(failure_file, case_id="failure-row"))
+    # The Phase 4A.3 Resource Requirement Row schema module is part of the
+    # corpus.
+    resource_file = ROOT / "spec" / "idl" / "resource-requirement.afidl"
+    cases.append(case_entry(resource_file, case_id="resource-requirement"))
 
     schema_golden = {
         "kind": "agentflow.conformance.afidl.schema-golden",

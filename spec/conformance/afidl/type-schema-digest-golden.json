@@ -1,5 +1,5 @@
 {
-  "corpus_revision": 7,
+  "corpus_revision": 8,
   "kind": "agentflow.conformance.afidl.type-schema-digest-golden",
   "note": "Frozen TypeSchemaDigest values (SHA256(\"AF\\0type-schema\\0\" || canonical ACE1 bytes)). Mutation cases assert that semantic changes alter the digest while the equivalence groups in schema-golden.json assert that formatting does not.",
   "cases": [
@@ -1142,6 +1142,30 @@
       "file": "spec/idl/failure-row.afidl",
       "type_name": "FailureTypeRef",
       "digest_hex": "698627551a689d9248e2f5841585a540d8ec812cd017bf9840ae22141da666a6"
+    },
+    {
+      "case_id": "resource-requirement",
+      "file": "spec/idl/resource-requirement.afidl",
+      "type_name": "ResourceAttributeConstraint",
+      "digest_hex": "f5bf583f3f2ad12e216733105845e1efe4427be5c4d48bd00c7785b74a52a94c"
+    },
+    {
+      "case_id": "resource-requirement",
+      "file": "spec/idl/resource-requirement.afidl",
+      "type_name": "ResourceRequirement",
+      "digest_hex": "38e6641565854bc2fce90d662cf064152070fcba857173f2a0c5d297d73a510a"
+    },
+    {
+      "case_id": "resource-requirement",
+      "file": "spec/idl/resource-requirement.afidl",
+      "type_name": "ResourceRequirementRow",
+      "digest_hex": "eea52b75a501123d934d5ecb167326e4ba9728ba98c37c559a9d506a9ac81aa0"
+    },
+    {
+      "case_id": "resource-requirement",
+      "file": "spec/idl/resource-requirement.afidl",
+      "type_name": "ResourceTypeRef",
+      "digest_hex": "60e5031167e6f20aaee09af9aafcab310023cd4a15c9176233c0056aa5328611"
     }
   ],
   "mutation_cases": [
