@@ -1,0 +1,164 @@
+{
+  "canonical_ace1_utf8": "{\"atomic_unit\":{\"catalog\":\"agentflow.test.cost.units@1\",\"name\":\"usd_atomic\"},\"currency\":{\"catalog\":\"agentflow.test.cost.currencies@1\",\"code\":\"USD\"},\"entries\":[{\"meter\":{\"catalog\":\"agentflow.test.usage.meters@1\",\"name\":\"model.input_tokens\"},\"phase\":{\"none\":null},\"rate\":{\"denominator\":\"1\",\"numerator\":\"2\"},\"rounding\":\"per_meter_unit_ceil\",\"unit\":{\"catalog\":\"agentflow.test.usage.units@1\",\"name\":\"tokens\"}},{\"meter\":{\"catalog\":\"agentflow.test.usage.meters@1\",\"name\":\"tool.invocations\"},\"phase\":{\"none\":null},\"rate\":{\"denominator\":\"1\",\"numerator\":\"3\"},\"rounding\":\"per_meter_unit_ceil\",\"unit\":{\"catalog\":\"agentflow.test.usage.units@1\",\"name\":\"calls\"}}],\"model\":\"fixed_linear\"}",
+  "case_id": "cost/equivalence/price-entry-order",
+  "case_kind": "equivalence",
+  "catalogs": {
+    "currencies": [
+      {
+        "atomic_unit": {
+          "catalog": "agentflow.test.cost.units@1",
+          "name": "usd_atomic"
+        },
+        "currency": {
+          "catalog": "agentflow.test.cost.currencies@1",
+          "code": "USD"
+        },
+        "display_scale": 2
+      },
+      {
+        "atomic_unit": {
+          "catalog": "agentflow.test.cost.units@1",
+          "name": "jpy_atomic"
+        },
+        "currency": {
+          "catalog": "agentflow.test.cost.currencies@1",
+          "code": "JPY"
+        },
+        "display_scale": 0
+      }
+    ],
+    "meters": [
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "model.input_tokens",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "tokens"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "model.output_tokens",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "tokens"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "tool.invocations",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "calls"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "data.egress_bytes",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "bytes"
+        }
+      }
+    ]
+  },
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.cost-projection.case",
+  "members": [
+    {
+      "atomic_unit": {
+        "catalog": "agentflow.test.cost.units@1",
+        "name": "usd_atomic"
+      },
+      "currency": {
+        "catalog": "agentflow.test.cost.currencies@1",
+        "code": "USD"
+      },
+      "entries": [
+        {
+          "meter": {
+            "catalog": "agentflow.test.usage.meters@1",
+            "name": "tool.invocations"
+          },
+          "phase": null,
+          "rate": {
+            "denominator": 1,
+            "numerator": 3
+          },
+          "rounding": "per_meter_unit_ceil",
+          "unit": {
+            "catalog": "agentflow.test.usage.units@1",
+            "name": "calls"
+          }
+        },
+        {
+          "meter": {
+            "catalog": "agentflow.test.usage.meters@1",
+            "name": "model.input_tokens"
+          },
+          "phase": null,
+          "rate": {
+            "denominator": 1,
+            "numerator": 2
+          },
+          "rounding": "per_meter_unit_ceil",
+          "unit": {
+            "catalog": "agentflow.test.usage.units@1",
+            "name": "tokens"
+          }
+        }
+      ],
+      "model": "fixed_linear"
+    },
+    {
+      "atomic_unit": {
+        "catalog": "agentflow.test.cost.units@1",
+        "name": "usd_atomic"
+      },
+      "currency": {
+        "catalog": "agentflow.test.cost.currencies@1",
+        "code": "USD"
+      },
+      "entries": [
+        {
+          "meter": {
+            "catalog": "agentflow.test.usage.meters@1",
+            "name": "model.input_tokens"
+          },
+          "phase": null,
+          "rate": {
+            "denominator": 1,
+            "numerator": 2
+          },
+          "rounding": "per_meter_unit_ceil",
+          "unit": {
+            "catalog": "agentflow.test.usage.units@1",
+            "name": "tokens"
+          }
+        },
+        {
+          "meter": {
+            "catalog": "agentflow.test.usage.meters@1",
+            "name": "tool.invocations"
+          },
+          "phase": null,
+          "rate": {
+            "denominator": 1,
+            "numerator": 3
+          },
+          "rounding": "per_meter_unit_ceil",
+          "unit": {
+            "catalog": "agentflow.test.usage.units@1",
+            "name": "calls"
+          }
+        }
+      ],
+      "model": "fixed_linear"
+    }
+  ],
+  "note": "price declaration order is not identity"
+}

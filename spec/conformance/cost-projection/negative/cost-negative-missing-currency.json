@@ -1,0 +1,102 @@
+{
+  "case_id": "cost/negative/missing-currency",
+  "case_kind": "negative",
+  "catalogs": {
+    "currencies": [
+      {
+        "atomic_unit": {
+          "catalog": "agentflow.test.cost.units@1",
+          "name": "usd_atomic"
+        },
+        "currency": {
+          "catalog": "agentflow.test.cost.currencies@1",
+          "code": "USD"
+        },
+        "display_scale": 2
+      },
+      {
+        "atomic_unit": {
+          "catalog": "agentflow.test.cost.units@1",
+          "name": "jpy_atomic"
+        },
+        "currency": {
+          "catalog": "agentflow.test.cost.currencies@1",
+          "code": "JPY"
+        },
+        "display_scale": 0
+      }
+    ],
+    "meters": [
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "model.input_tokens",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "tokens"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "model.output_tokens",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "tokens"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "tool.invocations",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "calls"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "data.egress_bytes",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "bytes"
+        }
+      }
+    ]
+  },
+  "corpus_revision": 1,
+  "expected_kind": "unknown_currency",
+  "kind": "agentflow.conformance.cost-projection.case",
+  "note": "unknown currency fails closed",
+  "operation": "canonicalize",
+  "snapshot": {
+    "atomic_unit": {
+      "catalog": "agentflow.test.cost.units@1",
+      "name": "jpy_atomic"
+    },
+    "currency": {
+      "catalog": "agentflow.test.cost.currencies@1",
+      "code": "GBP"
+    },
+    "entries": [
+      {
+        "meter": {
+          "catalog": "agentflow.test.usage.meters@1",
+          "name": "model.input_tokens"
+        },
+        "phase": null,
+        "rate": {
+          "denominator": 1,
+          "numerator": 1
+        },
+        "rounding": "per_meter_unit_ceil",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "tokens"
+        }
+      }
+    ],
+    "model": "fixed_linear"
+  }
+}

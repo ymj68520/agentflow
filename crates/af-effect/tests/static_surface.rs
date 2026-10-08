@@ -164,7 +164,7 @@ fn the_wire_freeze_holds() {
     modules.sort_unstable();
     assert_eq!(
         modules.len(),
-        9,
+        10,
         "an unexpected AFIDL module set: {modules:?}"
     );
 

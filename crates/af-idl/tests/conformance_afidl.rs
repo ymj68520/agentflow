@@ -99,7 +99,7 @@ struct MutationCase {
 /// unchanged. The parser-invalid manifest is a separate frozen artifact and
 /// carries its own revision (2 since Phase 2C added the import negatives and
 /// the module-set cycle cases).
-const CORPUS_REVISION: u64 = 10;
+const CORPUS_REVISION: u64 = 11;
 const PARSER_INVALID_CORPUS_REVISION: u64 = 2;
 
 fn frozen_digest_map() -> BTreeMap<(String, String), String> {

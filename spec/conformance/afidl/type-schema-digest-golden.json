@@ -1,5 +1,5 @@
 {
-  "corpus_revision": 10,
+  "corpus_revision": 11,
   "kind": "agentflow.conformance.afidl.type-schema-digest-golden",
   "note": "Frozen TypeSchemaDigest values (SHA256(\"AF\\0type-schema\\0\" || canonical ACE1 bytes)). Mutation cases assert that semantic changes alter the digest while the equivalence groups in schema-golden.json assert that formatting does not.",
   "cases": [
@@ -1280,6 +1280,60 @@
       "file": "spec/idl/usage-signature.afidl",
       "type_name": "UsageUpperBound",
       "digest_hex": "406cc5c6e8f96452cd601cce92bcfac97b8bea7db965a6628d8ad4bbd27a0840"
+    },
+    {
+      "case_id": "cost-projection",
+      "file": "spec/idl/cost-projection.afidl",
+      "type_name": "CurrencyRef",
+      "digest_hex": "00def800f9441dd5f81c9a0884247905a42a355d9c78a561ac35ba69358fa485"
+    },
+    {
+      "case_id": "cost-projection",
+      "file": "spec/idl/cost-projection.afidl",
+      "type_name": "MeasurementUnitRef",
+      "digest_hex": "f07787ceb4626c399e7b4a748fd1ba4abd67f77b4c7a594628e780a815212691"
+    },
+    {
+      "case_id": "cost-projection",
+      "file": "spec/idl/cost-projection.afidl",
+      "type_name": "MoneyAmount",
+      "digest_hex": "3a961e5c972ab691721c00f825a27d9121b4ddd2052141ca019bbc08880870bc"
+    },
+    {
+      "case_id": "cost-projection",
+      "file": "spec/idl/cost-projection.afidl",
+      "type_name": "PriceEntry",
+      "digest_hex": "11ac9975e9e638626e8fc116e24a3046e5f790fd22cd632b7999c6e20eae1346"
+    },
+    {
+      "case_id": "cost-projection",
+      "file": "spec/idl/cost-projection.afidl",
+      "type_name": "PriceRate",
+      "digest_hex": "4e627402af586da9af1535b99bce1e106192416fdc520d328d0e703e78b8f440"
+    },
+    {
+      "case_id": "cost-projection",
+      "file": "spec/idl/cost-projection.afidl",
+      "type_name": "PriceTableSnapshot",
+      "digest_hex": "584a0d6348a8482323289482d7effadf2143c6b0b57f48c40341f967df634858"
+    },
+    {
+      "case_id": "cost-projection",
+      "file": "spec/idl/cost-projection.afidl",
+      "type_name": "PricingModel",
+      "digest_hex": "04f67a74fe21a8c222ce9ea398b7e4061743051964052b11c294d5459c56271e"
+    },
+    {
+      "case_id": "cost-projection",
+      "file": "spec/idl/cost-projection.afidl",
+      "type_name": "RoundingRule",
+      "digest_hex": "80de07ddd0fb7717f72edd7afb26cc309f7170050bc5d4b9cf1214dff75c51de"
+    },
+    {
+      "case_id": "cost-projection",
+      "file": "spec/idl/cost-projection.afidl",
+      "type_name": "StaticCostCeiling",
+      "digest_hex": "10f97f4853518a2d56d175ef84e7abb11556b98bf5bf351e1ab9f21b63535eb7"
     }
   ],
   "mutation_cases": [

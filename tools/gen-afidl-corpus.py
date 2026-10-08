@@ -17,6 +17,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONF = ROOT / "spec" / "conformance" / "afidl"
+# Revision 11 (Phase 4A.5B): adds the `cost-projection` case for the static
+# Currency, fixed-price, cost-projection and budget-ceiling schema module.
 # Revision 10 (Phase 4A.5A): adds the `usage-signature` case for the
 # Static Usage Signature schema module (the U dimension: additive meter
 # identity, forward/recovery phases and finite/unbounded upper bounds).
@@ -39,7 +41,7 @@ CONF = ROOT / "spec" / "conformance" / "afidl"
 # `semantic-core` case; revision 2 (Phase 2B) added the self-hosting
 # registry schema module. Every bump is purely additive: existing cases,
 # bytes and digests are unchanged.
-CORPUS_REVISION = 10
+CORPUS_REVISION = 11
 
 # The frozen 13-opcode case table (spec/semantic/semantic-ir.md section 4).
 OPCODE_TABLE = [
@@ -737,6 +739,9 @@ def main():
     # The Phase 4A.5A Usage Signature schema module is part of the corpus.
     usage_file = ROOT / "spec" / "idl" / "usage-signature.afidl"
     cases.append(case_entry(usage_file, case_id="usage-signature"))
+    # The Phase 4A.5B Cost Projection schema module is part of the corpus.
+    cost_file = ROOT / "spec" / "idl" / "cost-projection.afidl"
+    cases.append(case_entry(cost_file, case_id="cost-projection"))
 
     schema_golden = {
         "kind": "agentflow.conformance.afidl.schema-golden",
