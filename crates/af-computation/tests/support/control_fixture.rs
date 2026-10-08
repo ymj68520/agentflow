@@ -10,10 +10,12 @@ use af_computation::{
 };
 use af_contract::{
     AuthorityExecutionRule, ComponentContract, ComponentIdentity, ComponentInputPort,
-    EffectQualifierProfile, EffectResourceCompatibilityCatalog, InformationFlowExecutionCatalog,
-    RelationCatalogSnapshot, RelationSnapshots, SandboxFloor, StaticContractProofContext,
-    SupportedEffectResourcePair, TaintExecutionRule, TrustDomainPolicy, analyze_contract,
-    check_contract, component_contract_digest,
+    ComponentOutputPort, EffectQualifierProfile, EffectResourceCompatibilityCatalog,
+    InformationFlowExecutionCatalog, RecoveryActionBinding, RecoveryActionIdentity,
+    RecoveryActionKind, RecoveryUsageBinding, RecoveryUsageCoverageCatalog,
+    RecoveryUsageCoverageRule, RelationCatalogSnapshot, RelationSnapshots, SandboxFloor,
+    StaticContractProofContext, SupportedEffectResourcePair, TaintExecutionRule, TrustDomainPolicy,
+    analyze_contract, check_contract, component_contract_digest,
 };
 use af_effect::{
     CapabilityCatalog, EffectAtom, EffectCatalogUniverse, EffectEntry, EffectGuard,
@@ -31,20 +33,26 @@ use af_flow::{
     StaticInformationSummary, TaintRef,
 };
 use af_idl::{CompiledModuleSet, compile_module_set};
+use af_ir::model::ComputationOutputBinding;
 use af_ir::{
     CallSubflowBody, ComputationBody, ComputationDef, ComputationId, ContractRefEntry,
     ContractRefId, ContractRefKind, InputBinding, InvokeBody, ParallelBody, ParallelBranch,
-    ParallelMode, RaceBody, RaceBranch, ResourceUseBinding, RunParameterDecl, SelectBody,
-    SelectCase, SemanticIrDocument, SequenceBody, SubflowIrUniverse,
+    ParallelMode, ParallelOutputBinding, RaceBody, RaceBranch, ResourceUseBinding,
+    RunParameterDecl, SelectBody, SelectCase, SemanticIrDocument, SequenceBody, SubflowIrUniverse,
+    TimeoutBody,
 };
-use af_recovery::{RecoveryContract, RecoveryOperationUniverse, ReplaySemantics};
+use af_recovery::{
+    CompensationRequirement, EffectRecoveryClause, IdempotencySemantics, KeyStabilityRequirement,
+    ReconciliationRequirement, RecoveryContract, RecoveryOperationUniverse, ReplaySemantics,
+    UnknownEffectHandling,
+};
 use af_resource::{
     ResourceRequirement, ResourceRequirementRow, ResourceTypeDescriptor, ResourceTypeRef,
     ResourceTypeUniverse,
 };
 use af_semantic::{
     DigestRefValue, ExpressionBody, ExpressionDef, PrimitiveConstant, ResourceSlotId,
-    SemanticPrimitiveType, SemanticTypeNode, SemanticTypeNodeBody, TypeSchemaUniverse,
+    SemanticPrimitiveType, SemanticTypeNode, SemanticTypeNodeBody, TypeSchemaUniverse, ValueSlotId,
 };
 use af_usage::{
     StaticUsageBound, StaticUsageEnvelope, UsageLimit, UsageMeterRef, UsageMeterUniverse,
@@ -236,9 +244,40 @@ impl FixtureContext {
             )
             .unwrap(),
         );
+        let recovery_rules = children
+            .iter()
+            .flat_map(|child| child["recovery_actions"].as_array().into_iter().flatten())
+            .map(|item| {
+                let identity =
+                    recovery_action_identity(item).expect("well-formed test recovery action");
+                let complete_meters = item["coverage_meters"]
+                    .as_array()
+                    .expect("recovery fixture declares exact complete meters")
+                    .iter()
+                    .map(|meter| UsageMeterRef {
+                        catalog: METER_CATALOG.into(),
+                        name: meter.as_str().unwrap().into(),
+                    })
+                    .collect();
+                RecoveryUsageCoverageRule {
+                    action: identity,
+                    complete_meters,
+                }
+            })
+            .collect::<Vec<_>>();
+        let recovery_usage = (!recovery_rules.is_empty()).then(|| {
+            RelationCatalogSnapshot::new(
+                "fixture-recovery-usage-r1",
+                RecoveryUsageCoverageCatalog {
+                    rules: recovery_rules,
+                },
+                &modules,
+            )
+            .expect("well-formed test RecoveryUsage coverage snapshot")
+        });
         let relations = RelationSnapshots {
             effect_resource,
-            recovery_usage: None,
+            recovery_usage,
             flow_execution,
         };
         Self {
@@ -430,8 +469,337 @@ pub fn analyze_compose_case(case: &Value) -> Result<Value, String> {
     Ok(projection)
 }
 
+/// Materialize typed Sequence/PARALLEL output fixtures through checked IR,
+/// Phase 3C dataflow, leaf resolution, and the production control analyzer.
+/// A type mismatch returns the actual IR-validation error instead.
+pub fn analyze_output_case(case: &Value) -> Result<Value, String> {
+    let input = &case["input"];
+    let children = input["children"]
+        .as_array()
+        .ok_or("output fixture has no children")?;
+    let env = FixtureContext::for_case(case);
+    let view = env.view();
+    let schema_for_type = |type_id: &Value| -> Result<af_semantic::TypeSchemaRef, String> {
+        let name = match type_id.as_str() {
+            Some("semantic-type:1") => "TypeSchemaRef",
+            Some("semantic-type:2") => "DigestRefValue",
+            other => return Err(format!("unsupported output type id {other:?}")),
+        };
+        env.schemas
+            .get(&format!("agentflow.semantic.core@1/{name}"))
+            .map(af_semantic::SchemaEntry::reference)
+            .ok_or_else(|| format!("missing output schema {name}"))
+    };
+    let mut checked_by_alias =
+        BTreeMap::<String, af_contract::CheckedComponentContract<'_, '_>>::new();
+    let mut pin_by_alias = BTreeMap::<String, DigestRefValue>::new();
+    for child in children {
+        let alias = format!("component-contract:fixture-output:{}", child["node"]);
+        let mut raw = empty_contract(&alias);
+        raw.information_flow = InformationFlowContract {
+            confidentiality_restrictions: vec![],
+            summary: StaticInformationSummary {
+                sources: vec![],
+                taints: vec![],
+                instruction_authority: InstructionAuthority::None,
+                influence_unknown: false,
+            },
+            flow_constraints: vec![],
+        };
+        raw.outputs = child["outputs"]
+            .as_array()
+            .into_iter()
+            .flatten()
+            .map(|output| {
+                Ok(ComponentOutputPort {
+                    port_no: fixture_u32(&output["port"], "output port"),
+                    type_ref: schema_for_type(&output["type_id"])?,
+                })
+            })
+            .collect::<Result<Vec<_>, String>>()?;
+        let checked = check_contract(&raw, &view).map_err(|report| {
+            let failures = report
+                .dimensions
+                .iter()
+                .filter(|item| item.verdict != af_contract::ProofVerdict::Proven)
+                .map(|item| {
+                    format!(
+                        "{}={}:{}",
+                        item.dimension,
+                        item.verdict.as_str(),
+                        item.reason
+                    )
+                })
+                .collect::<Vec<_>>()
+                .join("; ");
+            format!("output child contract validation: {failures}")
+        })?;
+        let digest =
+            component_contract_digest(&checked, &view).map_err(|error| error.to_string())?;
+        pin_by_alias.insert(
+            alias.clone(),
+            DigestRefValue {
+                algorithm: "sha256".into(),
+                domain: digest.domain().as_str().into(),
+                hex: digest.hex().into(),
+            },
+        );
+        checked_by_alias.insert(alias, checked);
+    }
+
+    let mut output_slots = BTreeMap::<String, af_semantic::ValueSlotId>::new();
+    let mut type_ids = BTreeMap::<u32, af_semantic::TypeSchemaRef>::new();
+    let mut values = Vec::new();
+    let mut computations = Vec::new();
+    let mut refs = BTreeMap::<String, ContractRefId>::new();
+    let mut contracts = Vec::new();
+    let mut sorted_aliases = pin_by_alias.iter().collect::<Vec<_>>();
+    sorted_aliases.sort_by(|left, right| left.0.cmp(right.0));
+    for (index, (alias, pin)) in sorted_aliases.iter().enumerate() {
+        let id = ContractRefId::from_raw(fixture_index(index) + 1);
+        refs.insert((*alias).clone(), id);
+        contracts.push(ContractRefEntry {
+            id,
+            kind: ContractRefKind::Component,
+            digest: (*pin).clone(),
+        });
+    }
+    for output in input["parent_outputs"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .chain(
+            children
+                .iter()
+                .flat_map(|child| child["outputs"].as_array().into_iter().flatten()),
+        )
+    {
+        let type_ref = schema_for_type(&output["type_id"])?;
+        let type_id = output["type_id"]
+            .as_str()
+            .unwrap()
+            .strip_prefix("semantic-type:")
+            .unwrap()
+            .parse::<u32>()
+            .map_err(|error| error.to_string())?;
+        type_ids.insert(type_id, type_ref);
+        let slot = output["slot"]
+            .as_str()
+            .ok_or("output has no value slot")?
+            .to_owned();
+        let next = fixture_index(output_slots.len()) + 1;
+        let slot_id = *output_slots
+            .entry(slot)
+            .or_insert(af_semantic::ValueSlotId::from_raw(next));
+        values.push(af_semantic::ValueSlot {
+            id: slot_id,
+            type_id: type_id.into(),
+        });
+    }
+    let type_nodes = type_ids
+        .into_iter()
+        .map(|(id, schema)| SemanticTypeNode {
+            id: id.into(),
+            body: SemanticTypeNodeBody::Schema(schema),
+        })
+        .collect::<Vec<_>>();
+    let root_id = ComputationId::from_raw(1);
+    let child_ids = children
+        .iter()
+        .map(|child| ComputationId::from_raw(fixture_u32(&child["node"], "child node")))
+        .collect::<Vec<_>>();
+    let root_outputs = input["parent_outputs"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .map(|output| {
+            let slot = output_slots[output["slot"].as_str().unwrap()];
+            ComputationOutputBinding {
+                port_no: fixture_u32(&output["port"], "parent output port").into(),
+                value_slot: slot,
+            }
+        })
+        .collect::<Vec<_>>();
+    let root_body = if input["operation"] == "parallel_output" && input["branches"].is_array() {
+        let branches = input["branches"].as_array().unwrap();
+        let output_bindings = input["bindings"]
+            .as_array()
+            .into_iter()
+            .flatten()
+            .map(|binding| {
+                let child_index = children
+                    .iter()
+                    .position(|child| child["node"] == binding["child"])
+                    .ok_or("output binding names unknown child")?;
+                let ordinal = binding
+                    .get("branch_ordinal")
+                    .and_then(Value::as_u64)
+                    .unwrap_or(child_index as u64 + 1);
+                Ok(ParallelOutputBinding {
+                    parent_port_no: fixture_u32(&binding["parent_port"], "parent port").into(),
+                    branch_ordinal: u32::try_from(ordinal).unwrap().into(),
+                    child_port_no: fixture_u32(&binding["child_port"], "child port").into(),
+                })
+            })
+            .collect::<Result<Vec<_>, String>>()?;
+        ComputationBody::Parallel(ParallelBody {
+            mode: ParallelMode::All,
+            branches: branches
+                .iter()
+                .map(|branch| ParallelBranch {
+                    ordinal: fixture_u32(&branch["ordinal"], "branch ordinal").into(),
+                    child: ComputationId::from_raw(fixture_u32(&branch["child"], "branch child")),
+                })
+                .collect(),
+            max_inflight: None,
+            output_bindings,
+        })
+    } else if input["operation"] == "parallel_output" {
+        let output_bindings = input["bindings"]
+            .as_array()
+            .into_iter()
+            .flatten()
+            .map(|binding| {
+                let child_index = children
+                    .iter()
+                    .position(|child| child["node"] == binding["child"])
+                    .ok_or("output binding names unknown child")?;
+                Ok(ParallelOutputBinding {
+                    parent_port_no: fixture_u32(&binding["parent_port"], "parent port").into(),
+                    branch_ordinal: fixture_index(child_index).checked_add(1).unwrap().into(),
+                    child_port_no: fixture_u32(&binding["child_port"], "child port").into(),
+                })
+            })
+            .collect::<Result<Vec<_>, String>>()?;
+        ComputationBody::Parallel(ParallelBody {
+            mode: ParallelMode::All,
+            branches: child_ids
+                .iter()
+                .enumerate()
+                .map(|(index, child)| ParallelBranch {
+                    ordinal: fixture_index(index).checked_add(1).unwrap().into(),
+                    child: *child,
+                })
+                .collect(),
+            max_inflight: None,
+            output_bindings,
+        })
+    } else {
+        ComputationBody::Sequence(SequenceBody {
+            children: child_ids.clone(),
+        })
+    };
+    computations.push(ComputationDef {
+        id: root_id,
+        outputs: root_outputs,
+        body: root_body,
+    });
+    for child in children {
+        let node = ComputationId::from_raw(fixture_u32(&child["node"], "child node"));
+        let alias = format!("component-contract:fixture-output:{}", child["node"]);
+        let outputs = child["outputs"]
+            .as_array()
+            .into_iter()
+            .flatten()
+            .map(|output| ComputationOutputBinding {
+                port_no: fixture_u32(&output["port"], "child output port").into(),
+                value_slot: output_slots[output["slot"].as_str().unwrap()],
+            })
+            .collect();
+        computations.push(ComputationDef {
+            id: node,
+            outputs,
+            body: ComputationBody::Invoke(InvokeBody {
+                contract: refs[&alias],
+                inputs: vec![],
+                resources: vec![],
+            }),
+        });
+    }
+    let document = SemanticIrDocument {
+        semantic_refs: vec![],
+        types: type_nodes,
+        values,
+        expressions: vec![],
+        resources: vec![],
+        contracts,
+        run_parameters: vec![],
+        workflow_outputs: vec![],
+        computations,
+        root: root_id,
+    };
+    let checked_ir = match document.check(&env.schemas) {
+        Ok(checked) => checked,
+        Err(error) => {
+            return Ok(json!({
+                "stage":"ir_validation",
+                "error_kind":error.kind(),
+                "rule_id":if error.kind() == "parallel_output_type_mismatch" { "AF-SEMANTIC-0056" } else { "unmapped" },
+                "verdict":"violation"
+            }));
+        }
+    };
+    checked_ir
+        .analyze_dataflow()
+        .map_err(|error| format!("DataflowValidation:{}:{error}", error.kind()))?;
+    let subflows = SubflowIrUniverse::new();
+    let mut snapshot_builder = StaticComputationResolutionSnapshotBuilder::new(&view, &subflows);
+    for (alias, checked) in &checked_by_alias {
+        snapshot_builder = snapshot_builder
+            .component(checked)
+            .map_err(|error| format!("snapshot:{error}"))?;
+        let _ = alias;
+    }
+    let snapshot = snapshot_builder.build();
+    let leaves = children
+        .iter()
+        .map(|child| {
+            let node = ComputationId::from_raw(fixture_u32(&child["node"], "child node"));
+            resolve_computation_leaf(&checked_ir, node, &snapshot)
+                .map_err(|error| format!("leaf resolution:{error}"))
+        })
+        .collect::<Result<Vec<_>, _>>()?;
+    let summary = derive_control_contract(&checked_ir, root_id, &leaves, &view)
+        .map_err(|error| error.to_string())?;
+    let outputs = summary.interface().outputs();
+    let ControlDimensionValue::Complete(ports) = outputs else {
+        return Err("control output interface was not complete".into());
+    };
+    let actual_outputs = ports.iter().flat_map(|port| port.sources().iter().map(move |source| json!({
+        "parent_port":port.parent_port_no(),
+        "parent_slot":input["parent_outputs"].as_array().unwrap().iter().find(|output| fixture_u32(&output["port"], "port")==port.parent_port_no()).map_or(Value::Null, |output| output["slot"].clone()),
+        "source_child":source.child_node().raw(),
+        "source_port":source.child_port_no(),
+        "type_id":format!("semantic-type:{}",port.local_type_id().raw()),
+    }))).collect::<Vec<_>>();
+    let output_verdict = if matches!(outputs, ControlDimensionValue::Complete(_)) {
+        "proven"
+    } else {
+        "unproven"
+    };
+    let pins = pin_by_alias
+        .iter()
+        .map(|(alias, pin)| (pin.hex.clone(), alias.clone()))
+        .collect::<BTreeMap<_, _>>();
+    let full_projection = project(&summary, input, &pins, &BTreeMap::new()).into_value();
+    Ok(
+        json!({"outputs":actual_outputs,"verdict":output_verdict,"_execution_stage":"control_derivation","_semantic_projection":full_projection["_semantic_projection"]}),
+    )
+}
+
 fn component_contract(child: &Value, env: &FixtureContext) -> Result<ComponentContract, String> {
     let mut contract = empty_contract(child["contract_digest"].as_str().unwrap());
+    contract.outputs = child["outputs"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .map(|output| {
+            Ok(ComponentOutputPort {
+                port_no: fixture_u32(&output["port"], "output port"),
+                type_ref: fixture_type_schema(&output["type_id"], &env.schemas)?,
+            })
+        })
+        .collect::<Result<Vec<_>, String>>()?;
     contract.effects = parse_effects(&child["effects"])?;
     contract.failures = FailureRow {
         failures: child["failures"]
@@ -505,7 +873,99 @@ fn component_contract(child: &Value, env: &FixtureContext) -> Result<ComponentCo
     };
     contract.usage = parse_usage(child.get("usage"))?;
     contract.execution = parse_execution(child.get("execution"));
+    let mut actions = Vec::new();
+    let mut usage_bindings = Vec::new();
+    for item in child["recovery_actions"].as_array().into_iter().flatten() {
+        let forward_effect = parse_atom(&item["forward_atom"])?;
+        let identity = recovery_action_identity(item)?;
+        let clause = &item["clause"];
+        let idempotency = match clause["idempotency"].as_str() {
+            Some("natural") => IdempotencySemantics::Natural,
+            Some("keyed") => IdempotencySemantics::Keyed,
+            Some("none") => IdempotencySemantics::None,
+            Some("reconciled") => IdempotencySemantics::Reconciled,
+            other => return Err(format!("unsupported recovery idempotency {other:?}")),
+        };
+        let key_requirement = if clause["key_requirement"].is_null() {
+            None
+        } else {
+            Some(KeyStabilityRequirement {
+                stable_across_attempts: clause["key_requirement"]["stable_across_attempts"]
+                    .as_bool()
+                    .ok_or("missing stable_across_attempts")?,
+                distinct_across_invocations:
+                    clause["key_requirement"]["distinct_across_invocations"]
+                        .as_bool()
+                        .ok_or("missing distinct_across_invocations")?,
+                bound_to_operation: clause["key_requirement"]["bound_to_operation"]
+                    .as_bool()
+                    .ok_or("missing bound_to_operation")?,
+                provider_honors: clause["key_requirement"]["provider_honors"]
+                    .as_bool()
+                    .ok_or("missing provider_honors")?,
+            })
+        };
+        let reconciliation = match clause["reconciliation"].as_str() {
+            Some("none") => ReconciliationRequirement::None,
+            Some("required") => ReconciliationRequirement::Required,
+            other => return Err(format!("unsupported reconciliation requirement {other:?}")),
+        };
+        let compensation = if clause["compensation"] == "none" {
+            CompensationRequirement::None
+        } else {
+            CompensationRequirement::Required(EffectOperationRef {
+                catalog: clause["compensation"]["required"]["catalog"]
+                    .as_str()
+                    .ok_or("missing compensation catalog")?
+                    .into(),
+                name: clause["compensation"]["required"]["name"]
+                    .as_str()
+                    .ok_or("missing compensation operation")?
+                    .into(),
+            })
+        };
+        let unknown_effect_handling = match clause["unknown_effect_handling"].as_str() {
+            Some("block") => UnknownEffectHandling::Block,
+            Some("reconciliation_required") => UnknownEffectHandling::ReconciliationRequired,
+            other => return Err(format!("unsupported unknown-effect handling {other:?}")),
+        };
+        contract
+            .recovery
+            .effect_recovery_clauses
+            .push(EffectRecoveryClause {
+                effect: forward_effect,
+                idempotency,
+                key_requirement,
+                reconciliation,
+                compensation,
+                unknown_effect_handling,
+            });
+        actions.push(RecoveryActionBinding {
+            identity: identity.clone(),
+        });
+        usage_bindings.push(RecoveryUsageBinding {
+            action: identity,
+            activations_per_forward: parse_bounds(&item["activations_per_forward"])?,
+            attempts_per_activation: parse_bounds(&item["attempts_per_activation"])?,
+            per_attempt_usage: parse_usage(item.get("per_attempt_usage"))?,
+        });
+    }
+    contract.recovery_action_bindings = actions;
+    contract.recovery_usage_bindings = usage_bindings;
     Ok(contract)
+}
+
+fn recovery_action_identity(item: &Value) -> Result<RecoveryActionIdentity, String> {
+    let action_kind = match item["action"].as_str() {
+        Some("compensate") => RecoveryActionKind::Compensation,
+        Some("reconcile") => RecoveryActionKind::Reconciliation,
+        other => return Err(format!("unsupported recovery action kind {other:?}")),
+    };
+    Ok(RecoveryActionIdentity {
+        forward_effect: parse_atom(&item["forward_atom"])?,
+        action_kind,
+        action_effect: parse_atom(&item["action_atom"])?,
+    })
 }
 
 pub fn validate_contract_case(case: &Value) -> Result<Value, String> {
@@ -853,6 +1313,21 @@ fn failure_ref(name: &str, schemas: &TypeSchemaUniverse) -> Result<FailureTypeRe
     })
 }
 
+fn fixture_type_schema(
+    type_id: &Value,
+    schemas: &TypeSchemaUniverse,
+) -> Result<af_semantic::TypeSchemaRef, String> {
+    let name = match type_id.as_str() {
+        Some("semantic-type:1") => "TypeSchemaRef",
+        Some("semantic-type:2") => "DigestRefValue",
+        other => return Err(format!("unknown fixture Semantic type {other:?}")),
+    };
+    schemas
+        .get(&format!("agentflow.semantic.core@1/{name}"))
+        .map(af_semantic::SchemaEntry::reference)
+        .ok_or_else(|| format!("missing fixture output schema {name}"))
+}
+
 fn target_subflow_document(
     component_pin: DigestRefValue,
     contract: &ComponentContract,
@@ -931,16 +1406,50 @@ fn semantic_ir(
         ),
     }];
     let is_select = input["operator"].as_str() == Some("select");
+    let is_timeout = input["operator"].as_str() == Some("timeout");
     if is_select {
         type_nodes.push(SemanticTypeNode {
             id: 2.into(),
             body: SemanticTypeNodeBody::Primitive(SemanticPrimitiveType::Int64),
+        });
+    } else if is_timeout {
+        type_nodes.push(SemanticTypeNode {
+            id: 2.into(),
+            body: SemanticTypeNodeBody::Primitive(SemanticPrimitiveType::Duration),
         });
     }
     let mut values = Vec::new();
     let mut expressions = Vec::new();
     let mut run_parameters = Vec::new();
     let mut component_inputs = BTreeMap::<u32, (u32, u32)>::new();
+    let mut output_value_slots = BTreeMap::<String, ValueSlotId>::new();
+    for child in children {
+        for output in child["outputs"].as_array().into_iter().flatten() {
+            let alias = output["slot"]
+                .as_str()
+                .ok_or("child output lacks a value-slot alias")?
+                .to_owned();
+            let raw = alias
+                .rsplit(':')
+                .next()
+                .ok_or("malformed output value-slot alias")?
+                .parse::<u32>()
+                .map_err(|error| error.to_string())?;
+            let slot = ValueSlotId::from_raw(raw);
+            output_value_slots.insert(alias, slot);
+            let type_id = output["type_id"]
+                .as_str()
+                .unwrap()
+                .strip_prefix("semantic-type:")
+                .ok_or("malformed output type id")?
+                .parse::<u32>()
+                .map_err(|error| error.to_string())?;
+            values.push(af_semantic::ValueSlot {
+                id: slot,
+                type_id: type_id.into(),
+            });
+        }
+    }
     for child in children {
         let raw = raws
             .get(child["contract_digest"].as_str().unwrap())
@@ -959,7 +1468,20 @@ fn semantic_ir(
         expressions.push(ExpressionDef {
             id: (*expression).into(),
             result_type_id: 1.into(),
-            body: ExpressionBody::ValueSlot((*slot).into()),
+            body: input
+                .get("edge")
+                .filter(|edge| {
+                    edge["consumer_port"] == *port
+                        && children
+                            .iter()
+                            .any(|child| child["node"] == edge["consumer_child"])
+                })
+                .and_then(|edge| output_value_slots.get(edge["slot"].as_str()?))
+                .copied()
+                .map_or_else(
+                    || ExpressionBody::ValueSlot((*slot).into()),
+                    ExpressionBody::ValueSlot,
+                ),
         });
         run_parameters.push(RunParameterDecl {
             id: (*port).into(),
@@ -995,6 +1517,12 @@ fn semantic_ir(
                 value_slot: 1.into(),
             });
         }
+    } else if is_timeout {
+        expressions.push(ExpressionDef {
+            id: 1.into(),
+            result_type_id: 2.into(),
+            body: ExpressionBody::Constant(PrimitiveConstant::Duration(af_core::Duration::new(1))),
+        });
     }
 
     let mut resource_alias_ids = BTreeMap::<String, ResourceSlotId>::new();
@@ -1135,6 +1663,10 @@ fn semantic_ir(
                 })
                 .collect(),
         }),
+        "timeout" => ComputationBody::Timeout(TimeoutBody {
+            child: *child_ids.first().ok_or("TIMEOUT needs one child")?,
+            timeout: 1.into(),
+        }),
         other => return Err(format!("unsupported fixture opcode {other}")),
     };
     let mut computations = vec![ComputationDef {
@@ -1219,9 +1751,21 @@ fn semantic_ir(
                 resources: resource_bindings,
             })
         };
+        let output_bindings = child["outputs"]
+            .as_array()
+            .into_iter()
+            .flatten()
+            .map(|output| {
+                let alias = output["slot"].as_str().unwrap();
+                ComputationOutputBinding {
+                    port_no: fixture_u32(&output["port"], "output port").into(),
+                    value_slot: output_value_slots[alias],
+                }
+            })
+            .collect();
         computations.push(ComputationDef {
             id: node,
-            outputs: vec![],
+            outputs: output_bindings,
             body,
         });
     }
@@ -1286,11 +1830,13 @@ fn project(
     let usage = match summary.usage().value() {
         ControlDimensionValue::Complete(envelope) => usage_json(envelope),
         ControlDimensionValue::Partial {
-            known_contribution, ..
-        } => known_contribution
-            .as_ref()
-            .map(usage_json)
-            .unwrap_or(json!({"state":"unknown","coordinates":{}})),
+            known_contribution: _,
+            ..
+        }
+        | ControlDimensionValue::Unknown { .. } => json!({
+            "state":"unknown",
+            "known_contributions": usage_known_contributions(summary),
+        }),
         _ => json!({"state":"unknown","coordinates":{}}),
     };
     let flow = match summary.information_flow().value() {
@@ -1362,6 +1908,7 @@ fn project(
             "usage": usage,
             "verdict": verdict(summary.proof().overall()),
             "identity": {"operator": summary.operator().name(), "node": summary.control_node().raw(), "children": summary.direct_children().iter().map(|id| id.raw()).collect::<Vec<_>>()},
+            "sequence_dataflow_dependencies": summary.sequence_dataflow_dependencies().iter().map(|dependency|json!({"producer_child":dependency.producer_child().raw(),"producer_node":dependency.producer_node().raw(),"value_slot":dependency.value_slot().raw(),"consumer_child":dependency.consumer_child().raw(),"consumer_node":dependency.consumer_node().raw(),"expression":dependency.expression().raw()})).collect::<Vec<_>>(),
             "case_operator": input["operator"],
             "_inherited_obligations": summary.inherited_obligations().iter().map(|item|json!({"source_node":item.source_node().raw(),"dimension":item.dimension(),"verdict":verdict(item.verdict()),"rule_id":item.rule_id(),"reference":item.reference()})).collect::<Vec<_>>(),
             "_semantic_projection": {
@@ -1628,7 +2175,7 @@ fn bounds_json(bounds: &OccurrenceBounds) -> Value {
 }
 
 fn usage_signature_json(signature: &UsageSignature) -> Value {
-    json!(signature.limits.iter().map(|limit|json!({"meter":{"catalog":limit.meter.catalog,"name":limit.meter.name},"phase":limit.phase.as_str(),"upper":match limit.upper { UsageUpperBound::Finite(value)=>json!(value),UsageUpperBound::Unbounded=>json!("unbounded") }})).collect::<Vec<_>>())
+    json!({"limits":signature.limits.iter().map(|limit|json!({"meter":{"catalog":limit.meter.catalog,"name":limit.meter.name},"phase":limit.phase.as_str(),"upper":match limit.upper { UsageUpperBound::Finite(value)=>json!(value),UsageUpperBound::Unbounded=>json!("unbounded") }})).collect::<Vec<_>>()})
 }
 
 fn execution_full_json(summary: &DerivedControlContractSummary<'_, '_>) -> Vec<Value> {
@@ -1740,16 +2287,7 @@ fn ceiling_json(value: OccurrenceCeiling) -> Value {
 }
 
 fn usage_json(envelope: &StaticUsageEnvelope) -> Value {
-    let mut coordinates = serde_json::Map::new();
-    for (coordinate, bound) in envelope.iter() {
-        let key = format!("{}/{}", coordinate.phase.as_str(), coordinate.meter.name);
-        let value = match bound {
-            StaticUsageBound::KnownFinite(value) => json!(value),
-            StaticUsageBound::KnownUnbounded => json!("unbounded"),
-            StaticUsageBound::Unknown => json!("unknown"),
-        };
-        coordinates.insert(key, value);
-    }
+    let coordinates = usage_coordinates_json(envelope);
     let state = if envelope.is_globally_unknown() {
         "unknown"
     } else if coordinates.is_empty() {
@@ -1760,6 +2298,37 @@ fn usage_json(envelope: &StaticUsageEnvelope) -> Value {
         "known"
     };
     json!({"state":state,"coordinates":coordinates})
+}
+
+fn usage_coordinates_json(envelope: &StaticUsageEnvelope) -> serde_json::Map<String, Value> {
+    let mut coordinates = serde_json::Map::new();
+    for (coordinate, bound) in envelope.iter() {
+        let key = format!("{}/{}", coordinate.phase.as_str(), coordinate.meter.name);
+        let value = match bound {
+            StaticUsageBound::KnownFinite(value) => json!(value),
+            StaticUsageBound::KnownUnbounded => json!("unbounded"),
+            StaticUsageBound::Unknown => json!("unknown"),
+        };
+        coordinates.insert(key, value);
+    }
+    coordinates
+}
+
+fn usage_known_contributions(summary: &DerivedControlContractSummary<'_, '_>) -> Vec<Value> {
+    summary
+        .children()
+        .iter()
+        .filter_map(|child| match child.usage().value() {
+            ControlDimensionValue::Complete(envelope) => {
+                Some(json!({"coordinates":usage_coordinates_json(envelope)}))
+            }
+            ControlDimensionValue::Partial {
+                known_contribution: Some(envelope),
+                ..
+            } => Some(json!({"coordinates":usage_coordinates_json(envelope)})),
+            _ => None,
+        })
+        .collect()
 }
 
 fn flow_json(flow: &af_computation::ControlFlowSummary, verdict_value: LeafVerdict) -> Value {
@@ -1842,15 +2411,56 @@ fn execution_json(summary: &DerivedControlContractSummary<'_, '_>) -> Vec<Value>
 
 fn recovery_json(
     summary: &DerivedControlContractSummary<'_, '_>,
-    _pins: &BTreeMap<String, String>,
+    pins: &BTreeMap<String, String>,
 ) -> Vec<Value> {
     let ControlDimensionValue::PerChild { contributions, .. } = summary.recovery().value() else {
         return vec![];
     };
     contributions.iter().flat_map(|contribution| contribution.value().iter().filter_map(|source| {
         if source.contract().effect_recovery_clauses.is_empty() { return None; }
-        Some(json!({"node":contribution.source_node().raw(),"contract_digest":"fixture","actions":source.action_bindings().iter().map(|binding|match binding.identity.action_kind { af_contract::RecoveryActionKind::Compensation => "compensate", af_contract::RecoveryActionKind::Reconciliation => "reconcile" }).collect::<Vec<_>>() }))
+        let contract_digest = match source.target() {
+            af_computation::ResolvedTarget::Component { contract_digest, .. } => pins.get(&contract_digest.hex).cloned().unwrap_or_else(|| contract_digest.hex.clone()),
+            af_computation::ResolvedTarget::Subflow { exported_contract_digest: Some(contract_digest), .. } => pins.get(&contract_digest.hex).cloned().unwrap_or_else(|| contract_digest.hex.clone()),
+            _ => "unavailable".into(),
+        };
+        Some(json!({"node":contribution.source_node().raw(),"contract_digest":contract_digest,"actions":source.action_bindings().iter().map(|binding|{
+            let usage = source.usage_bindings().iter().find(|usage| usage.action == binding.identity);
+            let clause = source.contract().effect_recovery_clauses.first();
+            json!({
+                "forward_atom":atom_json(&binding.identity.forward_effect),
+                "action":if binding.identity.action_kind == RecoveryActionKind::Compensation {"compensate"} else {"reconcile"},
+                "action_atom":atom_json(&binding.identity.action_effect),
+                "clause":clause.map(recovery_clause_json),
+                "activations_per_forward":usage.map(|item|bounds_json(&item.activations_per_forward)),
+                "attempts_per_activation":usage.map(|item|bounds_json(&item.attempts_per_activation)),
+                "per_attempt_usage":usage.map(|item|usage_signature_json(&item.per_attempt_usage)),
+            })
+        }).collect::<Vec<_>>() }))
     })).collect()
+}
+
+fn recovery_clause_json(clause: &EffectRecoveryClause) -> Value {
+    json!({
+        "idempotency":clause.idempotency.as_str(),
+        "key_requirement":clause.key_requirement.as_ref().map(|key|json!({
+            "stable_across_attempts":key.stable_across_attempts,
+            "distinct_across_invocations":key.distinct_across_invocations,
+            "bound_to_operation":key.bound_to_operation,
+            "provider_honors":key.provider_honors,
+        })),
+        "reconciliation":match clause.reconciliation {
+            ReconciliationRequirement::None => "none",
+            ReconciliationRequirement::Required => "required",
+        },
+        "compensation":match &clause.compensation {
+            CompensationRequirement::None => json!("none"),
+            CompensationRequirement::Required(operation) => json!({"required":{"catalog":operation.catalog,"name":operation.name}}),
+        },
+        "unknown_effect_handling":match clause.unknown_effect_handling {
+            UnknownEffectHandling::Block => "block",
+            UnknownEffectHandling::ReconciliationRequired => "reconciliation_required",
+        },
+    })
 }
 
 fn verdict(value: LeafVerdict) -> &'static str {

@@ -17,7 +17,12 @@
     "execution_by_child": [],
     "failures": null,
     "flow": {
-      "constraints_by_child": [],
+      "constraints_by_child": [
+        {
+          "constraints": [],
+          "node": 3
+        }
+      ],
       "decision_dependencies": [],
       "effective_authority_inferred": false,
       "influence_unknown": true,
@@ -32,7 +37,11 @@
       2
     ],
     "usage": {
-      "known_contributions": [],
+      "known_contributions": [
+        {
+          "coordinates": {}
+        }
+      ],
       "state": "unknown"
     },
     "verdict": "unproven"
@@ -65,14 +74,22 @@
           "row": "closed"
         },
         "execution": null,
-        "failures": null,
-        "flow": null,
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
         "node": 3,
         "proof_source": "checked_component",
         "recovery_actions": null,
         "resolved": true,
         "resources": null,
-        "usage": null
+        "usage": {
+          "coordinates": {}
+        }
       }
     ],
     "operation": "compose",

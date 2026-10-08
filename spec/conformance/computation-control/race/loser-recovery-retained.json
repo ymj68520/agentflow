@@ -34,6 +34,28 @@
           "qualifiers": [
             {
               "family": "idempotency",
+              "member": "none"
+            }
+          ],
+          "resource_selector": {
+            "requirement_port_no": 1,
+            "scope_bindings": []
+          }
+        },
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entry_ordinal": 1,
+        "node": 2
+      },
+      {
+        "atom": {
+          "operation": {
+            "catalog": "agentflow.effects@1",
+            "name": "write"
+          },
+          "qualifiers": [
+            {
+              "family": "idempotency",
               "member": "natural"
             }
           ],
@@ -45,6 +67,28 @@
         "caller_digest": "semantic-ir:caller",
         "contract_digest": "component-contract:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
         "entry_ordinal": 0,
+        "node": 3
+      },
+      {
+        "atom": {
+          "operation": {
+            "catalog": "agentflow.effects@1",
+            "name": "write"
+          },
+          "qualifiers": [
+            {
+              "family": "idempotency",
+              "member": "none"
+            }
+          ],
+          "resource_selector": {
+            "requirement_port_no": 1,
+            "scope_bindings": []
+          }
+        },
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "entry_ordinal": 1,
         "node": 3
       }
     ],
@@ -71,15 +115,45 @@
           "guard": "unconditional",
           "lower": 0,
           "upper": 4
+        },
+        {
+          "atom": {
+            "operation": {
+              "catalog": "agentflow.effects@1",
+              "name": "write"
+            },
+            "qualifiers": [
+              {
+                "family": "idempotency",
+                "member": "none"
+              }
+            ],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            }
+          },
+          "guard": "unconditional",
+          "lower": 0,
+          "upper": 2
         }
       ],
       "residuals": [],
       "row": "closed"
     },
     "execution_by_child": [],
-    "failures": null,
+    "failures": [],
     "flow": {
-      "constraints_by_child": [],
+      "constraints_by_child": [
+        {
+          "constraints": [],
+          "node": 2
+        },
+        {
+          "constraints": [],
+          "node": 3
+        }
+      ],
       "decision_dependencies": [],
       "effective_authority_inferred": false,
       "influence_unknown": true,
@@ -93,6 +167,42 @@
         "actions": [
           {
             "action": "compensate",
+            "action_atom": {
+              "operation": {
+                "catalog": "agentflow.effects@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "family": "idempotency",
+                  "member": "none"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "activations_per_forward": {
+              "lower": 1,
+              "upper": 1
+            },
+            "attempts_per_activation": {
+              "lower": 1,
+              "upper": 1
+            },
+            "clause": {
+              "compensation": {
+                "required": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "write"
+                }
+              },
+              "idempotency": "natural",
+              "key_requirement": null,
+              "reconciliation": "none",
+              "unknown_effect_handling": "block"
+            },
             "forward_atom": {
               "operation": {
                 "catalog": "agentflow.effects@1",
@@ -108,6 +218,18 @@
                 "requirement_port_no": 1,
                 "scope_bindings": []
               }
+            },
+            "per_attempt_usage": {
+              "limits": [
+                {
+                  "meter": {
+                    "catalog": "agentflow.meters@1",
+                    "name": "api_calls"
+                  },
+                  "phase": "recovery",
+                  "upper": 1
+                }
+              ]
             }
           }
         ],
@@ -118,6 +240,37 @@
         "actions": [
           {
             "action": "reconcile",
+            "action_atom": {
+              "operation": {
+                "catalog": "agentflow.effects@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "family": "idempotency",
+                  "member": "none"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "activations_per_forward": {
+              "lower": 1,
+              "upper": 1
+            },
+            "attempts_per_activation": {
+              "lower": 1,
+              "upper": 1
+            },
+            "clause": {
+              "compensation": "none",
+              "idempotency": "natural",
+              "key_requirement": null,
+              "reconciliation": "required",
+              "unknown_effect_handling": "reconciliation_required"
+            },
             "forward_atom": {
               "operation": {
                 "catalog": "agentflow.effects@1",
@@ -133,6 +286,18 @@
                 "requirement_port_no": 1,
                 "scope_bindings": []
               }
+            },
+            "per_attempt_usage": {
+              "limits": [
+                {
+                  "meter": {
+                    "catalog": "agentflow.meters@1",
+                    "name": "api_calls"
+                  },
+                  "phase": "recovery",
+                  "upper": 1
+                }
+              ]
             }
           }
         ],
@@ -140,11 +305,32 @@
         "node": 3
       }
     ],
-    "resources_by_child": [],
+    "resources_by_child": [
+      {
+        "node": 2,
+        "requirements": [
+          {
+            "component_port": 1,
+            "resource_slot": "fixture:auto:2:1"
+          }
+        ]
+      },
+      {
+        "node": 3,
+        "requirements": [
+          {
+            "component_port": 1,
+            "resource_slot": "fixture:auto:3:1"
+          }
+        ]
+      }
+    ],
     "unresolved_children": [],
     "usage": {
-      "known_contributions": [],
-      "state": "unknown"
+      "coordinates": {
+        "recovery/api_calls": 4
+      },
+      "state": "known"
     },
     "verdict": "unproven"
   },
@@ -175,6 +361,27 @@
             "guard": "unconditional",
             "lower": 0,
             "upper": 2
+          },
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.effects@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "family": "idempotency",
+                  "member": "none"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "guard": "unconditional",
+            "lower": 0,
+            "upper": 1
           }
         ],
         "effects": {
@@ -199,19 +406,85 @@
               "guard": "unconditional",
               "lower": 0,
               "upper": 2
+            },
+            {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "write"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "none"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "guard": "unconditional",
+              "lower": 0,
+              "upper": 1
             }
           ],
           "residuals": [],
           "row": "closed"
         },
         "execution": null,
-        "failures": null,
-        "flow": null,
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
         "node": 2,
         "proof_source": "checked_component",
         "recovery_actions": [
           {
             "action": "compensate",
+            "action_atom": {
+              "operation": {
+                "catalog": "agentflow.effects@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "family": "idempotency",
+                  "member": "none"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "activations_per_forward": {
+              "lower": 1,
+              "upper": 1
+            },
+            "attempts_per_activation": {
+              "lower": 1,
+              "upper": 1
+            },
+            "clause": {
+              "compensation": {
+                "required": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "write"
+                }
+              },
+              "idempotency": "natural",
+              "key_requirement": null,
+              "reconciliation": "none",
+              "unknown_effect_handling": "block"
+            },
+            "coverage_meters": [
+              "api_calls"
+            ],
             "forward_atom": {
               "operation": {
                 "catalog": "agentflow.effects@1",
@@ -227,12 +500,26 @@
                 "requirement_port_no": 1,
                 "scope_bindings": []
               }
+            },
+            "per_attempt_usage": {
+              "coordinates": {
+                "recovery/api_calls": 1
+              }
             }
           }
         ],
         "resolved": true,
-        "resources": null,
-        "usage": null
+        "resources": [
+          {
+            "component_port": 1,
+            "resource_slot": "fixture:auto:2:1"
+          }
+        ],
+        "usage": {
+          "coordinates": {
+            "recovery/api_calls": 2
+          }
+        }
       },
       {
         "caller_digest": "semantic-ir:caller",
@@ -258,6 +545,27 @@
             "guard": "unconditional",
             "lower": 0,
             "upper": 2
+          },
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.effects@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "family": "idempotency",
+                  "member": "none"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "guard": "unconditional",
+            "lower": 0,
+            "upper": 1
           }
         ],
         "effects": {
@@ -282,19 +590,80 @@
               "guard": "unconditional",
               "lower": 0,
               "upper": 2
+            },
+            {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "write"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "none"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "guard": "unconditional",
+              "lower": 0,
+              "upper": 1
             }
           ],
           "residuals": [],
           "row": "closed"
         },
         "execution": null,
-        "failures": null,
-        "flow": null,
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
         "node": 3,
         "proof_source": "checked_component",
         "recovery_actions": [
           {
             "action": "reconcile",
+            "action_atom": {
+              "operation": {
+                "catalog": "agentflow.effects@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "family": "idempotency",
+                  "member": "none"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "activations_per_forward": {
+              "lower": 1,
+              "upper": 1
+            },
+            "attempts_per_activation": {
+              "lower": 1,
+              "upper": 1
+            },
+            "clause": {
+              "compensation": "none",
+              "idempotency": "natural",
+              "key_requirement": null,
+              "reconciliation": "required",
+              "unknown_effect_handling": "reconciliation_required"
+            },
+            "coverage_meters": [
+              "api_calls"
+            ],
             "forward_atom": {
               "operation": {
                 "catalog": "agentflow.effects@1",
@@ -310,12 +679,26 @@
                 "requirement_port_no": 1,
                 "scope_bindings": []
               }
+            },
+            "per_attempt_usage": {
+              "coordinates": {
+                "recovery/api_calls": 1
+              }
             }
           }
         ],
         "resolved": true,
-        "resources": null,
-        "usage": null
+        "resources": [
+          {
+            "component_port": 1,
+            "resource_slot": "fixture:auto:3:1"
+          }
+        ],
+        "usage": {
+          "coordinates": {
+            "recovery/api_calls": 2
+          }
+        }
       }
     ],
     "operation": "compose",

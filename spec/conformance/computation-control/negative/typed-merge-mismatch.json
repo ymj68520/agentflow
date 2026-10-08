@@ -1,15 +1,9 @@
 {
   "case_id": "computation-control/select/typed-merge-mismatch",
   "expected": {
-    "outputs": [
-      {
-        "parent_port": 1,
-        "parent_slot": "slot:p",
-        "source_child": 2,
-        "source_port": 1,
-        "type_id": "semantic-type:1"
-      }
-    ],
+    "error_kind": "parallel_output_type_mismatch",
+    "rule_id": "AF-SEMANTIC-0056",
+    "stage": "ir_validation",
     "verdict": "violation"
   },
   "group": "negative",

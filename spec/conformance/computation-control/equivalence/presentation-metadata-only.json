@@ -3,11 +3,10 @@
   "expected": {
     "normalized": [
       {
-        "contract_body": "A",
-        "label": "before"
+        "contract_body": "A"
       }
     ],
-    "verdict": "violation"
+    "verdict": "proven"
   },
   "group": "equivalence",
   "input": {

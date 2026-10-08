@@ -62,7 +62,12 @@
     "execution_by_child": [],
     "failures": null,
     "flow": {
-      "constraints_by_child": [],
+      "constraints_by_child": [
+        {
+          "constraints": [],
+          "node": 2
+        }
+      ],
       "decision_dependencies": [
         "value-slot:1"
       ],
@@ -74,12 +79,26 @@
       "verdict": "unproven"
     },
     "recovery_sources": [],
-    "resources_by_child": [],
+    "resources_by_child": [
+      {
+        "node": 2,
+        "requirements": [
+          {
+            "component_port": 1,
+            "resource_slot": "fixture:auto:2:1"
+          }
+        ]
+      }
+    ],
     "unresolved_children": [
       3
     ],
     "usage": {
-      "known_contributions": [],
+      "known_contributions": [
+        {
+          "coordinates": {}
+        }
+      ],
       "state": "unknown"
     },
     "verdict": "unproven"
@@ -141,14 +160,27 @@
           "row": "closed"
         },
         "execution": null,
-        "failures": null,
-        "flow": null,
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
         "node": 2,
         "proof_source": "checked_component",
         "recovery_actions": null,
         "resolved": true,
-        "resources": null,
-        "usage": null
+        "resources": [
+          {
+            "component_port": 1,
+            "resource_slot": "fixture:auto:2:1"
+          }
+        ],
+        "usage": {
+          "coordinates": {}
+        }
       },
       {
         "caller_digest": "semantic-ir:caller",

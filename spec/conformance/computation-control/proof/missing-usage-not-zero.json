@@ -5,13 +5,24 @@
     "effect_occurrences": [],
     "effect_row_complete": false,
     "effects": {
-      "known_contributions": [],
+      "known_contributions": [
+        {
+          "entries": [],
+          "residuals": [],
+          "row": "closed"
+        }
+      ],
       "row": "unknown"
     },
     "execution_by_child": [],
     "failures": null,
     "flow": {
-      "constraints_by_child": [],
+      "constraints_by_child": [
+        {
+          "constraints": [],
+          "node": 3
+        }
+      ],
       "decision_dependencies": [],
       "effective_authority_inferred": false,
       "influence_unknown": true,
@@ -23,8 +34,7 @@
     "recovery_sources": [],
     "resources_by_child": [],
     "unresolved_children": [
-      2,
-      3
+      2
     ],
     "usage": {
       "known_contributions": [
@@ -60,14 +70,24 @@
         "caller_digest": "semantic-ir:caller",
         "contract_digest": "component-contract:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
         "effect_entries": [],
-        "effects": null,
+        "effects": {
+          "entries": [],
+          "residuals": [],
+          "row": "closed"
+        },
         "execution": null,
-        "failures": null,
-        "flow": null,
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
         "node": 3,
         "proof_source": "checked_component",
         "recovery_actions": null,
-        "resolved": false,
+        "resolved": true,
         "resources": null,
         "usage": {
           "coordinates": {
@@ -77,7 +97,7 @@
       }
     ],
     "operation": "compose",
-    "operator": "compose"
+    "operator": "sequence"
   },
   "kind": "agentflow.conformance.computation-control.test-vector",
   "note": "Missing Usage remains unknown, never finite(0)."

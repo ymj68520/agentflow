@@ -109,7 +109,7 @@
       ],
       "decision_dependencies": [],
       "effective_authority_inferred": false,
-      "influence_unknown": false,
+      "influence_unknown": true,
       "may_carry_authority": "none",
       "sources": [
         "input:1",
@@ -119,7 +119,7 @@
         "user_text",
         "web_untrusted"
       ],
-      "verdict": "proven"
+      "verdict": "unproven"
     },
     "recovery_sources": [],
     "resources_by_child": [
@@ -142,6 +142,16 @@
         ]
       }
     ],
+    "sequence_dataflow_dependencies": [
+      {
+        "consumer_child": 3,
+        "consumer_node": 3,
+        "expression": 12,
+        "producer_child": 2,
+        "producer_node": 2,
+        "value_slot": 1
+      }
+    ],
     "unresolved_children": [],
     "usage": {
       "coordinates": {
@@ -149,7 +159,7 @@
       },
       "state": "known"
     },
-    "verdict": "proven"
+    "verdict": "unproven"
   },
   "group": "sequence",
   "input": {
@@ -225,6 +235,13 @@
           ]
         },
         "node": 2,
+        "outputs": [
+          {
+            "port": 1,
+            "slot": "value-slot:1",
+            "type_id": "semantic-type:1"
+          }
+        ],
         "proof_source": "checked_component",
         "recovery_actions": null,
         "resolved": true,
@@ -332,7 +349,10 @@
     ],
     "edge": {
       "consumer_child": 3,
+      "consumer_port": 2,
+      "expression": 12,
       "producer_child": 2,
+      "producer_port": 1,
       "slot": "value-slot:1"
     },
     "operation": "compose",

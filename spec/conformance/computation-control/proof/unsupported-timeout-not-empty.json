@@ -5,6 +5,13 @@
     "known_children": [
       2
     ],
+    "known_effect_contributions": [
+      {
+        "entries": [],
+        "residuals": [],
+        "row": "closed"
+      }
+    ],
     "operator": "timeout",
     "treated_as_empty": false,
     "verdict": "unproven"

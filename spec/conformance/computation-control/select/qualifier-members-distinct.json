@@ -101,9 +101,18 @@
       "row": "closed"
     },
     "execution_by_child": [],
-    "failures": null,
+    "failures": [],
     "flow": {
-      "constraints_by_child": [],
+      "constraints_by_child": [
+        {
+          "constraints": [],
+          "node": 2
+        },
+        {
+          "constraints": [],
+          "node": 3
+        }
+      ],
       "decision_dependencies": [
         "value-slot:1"
       ],
@@ -115,11 +124,30 @@
       "verdict": "unproven"
     },
     "recovery_sources": [],
-    "resources_by_child": [],
+    "resources_by_child": [
+      {
+        "node": 2,
+        "requirements": [
+          {
+            "component_port": 1,
+            "resource_slot": "fixture:auto:2:1"
+          }
+        ]
+      },
+      {
+        "node": 3,
+        "requirements": [
+          {
+            "component_port": 1,
+            "resource_slot": "fixture:auto:3:1"
+          }
+        ]
+      }
+    ],
     "unresolved_children": [],
     "usage": {
-      "known_contributions": [],
-      "state": "unknown"
+      "coordinates": {},
+      "state": "empty_without_zero_claim"
     },
     "verdict": "unproven"
   },
@@ -180,14 +208,27 @@
           "row": "closed"
         },
         "execution": null,
-        "failures": null,
-        "flow": null,
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
         "node": 2,
         "proof_source": "checked_component",
         "recovery_actions": null,
         "resolved": true,
-        "resources": null,
-        "usage": null
+        "resources": [
+          {
+            "component_port": 1,
+            "resource_slot": "fixture:auto:2:1"
+          }
+        ],
+        "usage": {
+          "coordinates": {}
+        }
       },
       {
         "caller_digest": "semantic-ir:caller",
@@ -243,14 +284,27 @@
           "row": "closed"
         },
         "execution": null,
-        "failures": null,
-        "flow": null,
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
         "node": 3,
         "proof_source": "checked_component",
         "recovery_actions": null,
         "resolved": true,
-        "resources": null,
-        "usage": null
+        "resources": [
+          {
+            "component_port": 1,
+            "resource_slot": "fixture:auto:3:1"
+          }
+        ],
+        "usage": {
+          "coordinates": {}
+        }
       }
     ],
     "decision_dependencies": [

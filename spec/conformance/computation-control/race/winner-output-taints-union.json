@@ -3,13 +3,14 @@
   "expected": {
     "effect_lower_bound_adjusted_children": [],
     "effect_occurrences": [],
-    "effect_row_complete": false,
+    "effect_row_complete": true,
     "effects": {
-      "known_contributions": [],
-      "row": "unknown"
+      "entries": [],
+      "residuals": [],
+      "row": "closed"
     },
     "execution_by_child": [],
-    "failures": null,
+    "failures": [],
     "flow": {
       "constraints_by_child": [
         {
@@ -26,8 +27,8 @@
       "influence_unknown": true,
       "may_carry_authority": "none",
       "sources": [
-        "input:a",
-        "input:b"
+        "input:1",
+        "input:2"
       ],
       "taints": [
         "user",
@@ -37,13 +38,10 @@
     },
     "recovery_sources": [],
     "resources_by_child": [],
-    "unresolved_children": [
-      2,
-      3
-    ],
+    "unresolved_children": [],
     "usage": {
-      "known_contributions": [],
-      "state": "unknown"
+      "coordinates": {},
+      "state": "empty_without_zero_claim"
     },
     "verdict": "unproven"
   },
@@ -54,15 +52,19 @@
         "caller_digest": "semantic-ir:caller",
         "contract_digest": "component-contract:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "effect_entries": [],
-        "effects": null,
+        "effects": {
+          "entries": [],
+          "residuals": [],
+          "row": "closed"
+        },
         "execution": null,
-        "failures": null,
+        "failures": [],
         "flow": {
           "authority": "none",
           "constraints": [],
           "influence_unknown": false,
           "sources": [
-            "input:a"
+            "input:1"
           ],
           "taints": [
             "web"
@@ -71,23 +73,29 @@
         "node": 2,
         "proof_source": "checked_component",
         "recovery_actions": null,
-        "resolved": false,
+        "resolved": true,
         "resources": null,
-        "usage": null
+        "usage": {
+          "coordinates": {}
+        }
       },
       {
         "caller_digest": "semantic-ir:caller",
         "contract_digest": "component-contract:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
         "effect_entries": [],
-        "effects": null,
+        "effects": {
+          "entries": [],
+          "residuals": [],
+          "row": "closed"
+        },
         "execution": null,
-        "failures": null,
+        "failures": [],
         "flow": {
           "authority": "none",
           "constraints": [],
           "influence_unknown": false,
           "sources": [
-            "input:b"
+            "input:2"
           ],
           "taints": [
             "user"
@@ -96,9 +104,11 @@
         "node": 3,
         "proof_source": "checked_component",
         "recovery_actions": null,
-        "resolved": false,
+        "resolved": true,
         "resources": null,
-        "usage": null
+        "usage": {
+          "coordinates": {}
+        }
       }
     ],
     "operation": "compose",

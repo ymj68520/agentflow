@@ -3,29 +3,36 @@
   "expected": {
     "effect_lower_bound_adjusted_children": [],
     "effect_occurrences": [],
-    "effect_row_complete": false,
+    "effect_row_complete": true,
     "effects": {
-      "known_contributions": [],
-      "row": "unknown"
+      "entries": [],
+      "residuals": [],
+      "row": "closed"
     },
     "execution_by_child": [],
-    "failures": null,
+    "failures": [],
     "flow": {
-      "constraints_by_child": [],
+      "constraints_by_child": [
+        {
+          "constraints": [],
+          "node": 2
+        },
+        {
+          "constraints": [],
+          "node": 3
+        }
+      ],
       "decision_dependencies": [],
       "effective_authority_inferred": false,
-      "influence_unknown": true,
+      "influence_unknown": false,
       "may_carry_authority": "none",
       "sources": [],
       "taints": [],
-      "verdict": "unproven"
+      "verdict": "proven"
     },
     "recovery_sources": [],
     "resources_by_child": [],
-    "unresolved_children": [
-      2,
-      3
-    ],
+    "unresolved_children": [],
     "usage": {
       "coordinates": {
         "forward/api_calls": 30,
@@ -33,7 +40,7 @@
       },
       "state": "known"
     },
-    "verdict": "unproven"
+    "verdict": "proven"
   },
   "group": "sequence",
   "input": {
@@ -42,14 +49,24 @@
         "caller_digest": "semantic-ir:caller",
         "contract_digest": "component-contract:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "effect_entries": [],
-        "effects": null,
+        "effects": {
+          "entries": [],
+          "residuals": [],
+          "row": "closed"
+        },
         "execution": null,
-        "failures": null,
-        "flow": null,
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
         "node": 2,
         "proof_source": "checked_component",
         "recovery_actions": null,
-        "resolved": false,
+        "resolved": true,
         "resources": null,
         "usage": {
           "coordinates": {
@@ -62,14 +79,24 @@
         "caller_digest": "semantic-ir:caller",
         "contract_digest": "component-contract:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
         "effect_entries": [],
-        "effects": null,
+        "effects": {
+          "entries": [],
+          "residuals": [],
+          "row": "closed"
+        },
         "execution": null,
-        "failures": null,
-        "flow": null,
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
         "node": 3,
         "proof_source": "checked_component",
         "recovery_actions": null,
-        "resolved": false,
+        "resolved": true,
         "resources": null,
         "usage": {
           "coordinates": {

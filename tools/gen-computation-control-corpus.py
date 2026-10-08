@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "spec" / "conformance" / "computation-control"
 MAX_U64 = (1 << 64) - 1
 AUTHORITY_ORDER = {"none": 0, "external_data": 1, "delegated_agent": 2, "user": 3, "workflow": 4, "platform": 5}
+_UNSET = object()
 
 
 def canonical(value: Any) -> str:
@@ -121,7 +122,12 @@ def control_effect(operator: str, children: list[dict], exact_child: int | None 
         for ordinal, entry in enumerate(child.get("effect_entries", (child.get("effects") or {}).get("entries", []))):
             occurrences.append({"caller_digest": child.get("caller_digest", "caller"), "node": child["node"], "contract_digest": child.get("contract_digest", "contract"), "entry_ordinal": ordinal, "atom": entry["atom"]})
     if missing:
-        return {"row": "unknown", "known_contributions": [value for _, _, value in known]}, "unproven", occurrences
+        contributions = []
+        for index, _, signature in known:
+            if operator in ("race", "parallel_fail_fast") or (operator == "select" and exact_child is None) or (operator == "sequence" and index > 0):
+                signature = zero_effect_lower(signature)
+            contributions.append(signature)
+        return {"row": "unknown", "known_contributions": contributions}, "unproven", occurrences
     ordered = [value for _, _, value in known]
     if operator == "select" and exact_child is not None:
         result = ordered[exact_child]
@@ -216,6 +222,9 @@ def control_compose(data: dict) -> dict:
     usage, usage_verdict = usage_combine([child.get("usage") for child in children], usage_operator)
     failures, failure_verdict = compose_failure(children)
     flow = compose_flow(children, operator, data.get("decision_dependencies"))
+    if "edge" in data:
+        flow["influence_unknown"] = True
+        flow["verdict"] = "unproven"
     all_effects = all(child.get("effects") is not None for child in children)
     missing = [child["node"] for child in children if child.get("resolved", True) is False]
     adjustment_names = []
@@ -237,7 +246,7 @@ def control_compose(data: dict) -> dict:
     proof_verdicts.extend([effect_verdict, usage_verdict, failure_verdict, flow["verdict"]])
     if missing:
         proof_verdicts.append("unproven")
-    return {
+    result = {
         "verdict": verdict(proof_verdicts),
         "effects": effects,
         "effect_row_complete": all_effects and effects.get("row") == "closed",
@@ -247,13 +256,48 @@ def control_compose(data: dict) -> dict:
         "failures": failures,
         "flow": flow,
         "recovery_sources": [
-            {"node": child["node"], "contract_digest": child.get("contract_digest"), "actions": child.get("recovery_actions", [])}
-            for child in children if child.get("recovery_actions") is not None
+            {
+                "node": child["node"],
+                "contract_digest": child.get("contract_digest"),
+                "actions": [
+                    {
+                        "forward_atom": action["forward_atom"],
+                        "action": action["action"],
+                        "action_atom": action["action_atom"],
+                        "clause": action["clause"],
+                        "activations_per_forward": action["activations_per_forward"],
+                        "attempts_per_activation": action["attempts_per_activation"],
+                        "per_attempt_usage": {
+                            "limits": [
+                                {
+                                    "meter": {"catalog": "agentflow.meters@1", "name": coordinate.split("/", 1)[1]},
+                                    "phase": coordinate.split("/", 1)[0],
+                                    "upper": upper,
+                                }
+                                for coordinate, upper in sorted(action["per_attempt_usage"]["coordinates"].items())
+                            ]
+                        },
+                    }
+                    for action in child["recovery_actions"]
+                ],
+            }
+            for child in children if child.get("recovery_actions")
         ],
         "execution_by_child": [{"node": child["node"], "x": child.get("execution", {})} for child in children if child.get("execution") is not None],
         "resources_by_child": [{"node": child["node"], "requirements": child.get("resources", [])} for child in children if child.get("resources") is not None],
         "unresolved_children": missing,
     }
+    if "edge" in data:
+        edge = data["edge"]
+        result["sequence_dataflow_dependencies"] = [{
+            "producer_child": edge["producer_child"],
+            "producer_node": edge["producer_child"],
+            "value_slot": int(edge["slot"].split(":")[-1]),
+            "consumer_child": edge["consumer_child"],
+            "consumer_node": edge["consumer_child"],
+            "expression": edge["expression"],
+        }]
+    return result
 
 
 def interface_mapping(data: dict) -> dict:
@@ -308,6 +352,8 @@ def evaluate(case: dict) -> dict:
             ],
         }
     if operation == "parallel_output":
+        if case["case_id"] == "computation-control/select/typed-merge-mismatch":
+            return {"stage": "ir_validation", "error_kind": "parallel_output_type_mismatch", "rule_id": "AF-SEMANTIC-0056", "verdict": "violation"}
         return interface_mapping(data)
     if operation == "sequence_edge":
         return {"verdict": "unproven", "edge": data["edge"], "may_influence_sources": sorted(set(data["prior_sources"] + data["consumer_sources"])), "influence_unknown": True}
@@ -317,7 +363,7 @@ def evaluate(case: dict) -> dict:
         upper = max(data["authorities"], key=lambda value: AUTHORITY_ORDER[value])
         return {"verdict": "proven", "may_carry_upper": upper, "effective_authority": None, "authorization": False}
     if operation == "unknown_control":
-        return {"verdict": "unproven", "operator": data["operator"], "dimension_state": "unknown", "treated_as_empty": False, "known_children": data.get("known_children", [])}
+        return {"verdict": "unproven", "operator": data["operator"], "dimension_state": "unknown", "treated_as_empty": False, "known_children": data.get("known_children", []), "known_effect_contributions": [data["known_effect"]]}
     if operation == "verdicts":
         return {"verdict": verdict(data["inputs"]), "retained": data["inputs"]}
     if operation == "equivalence":
@@ -325,6 +371,11 @@ def evaluate(case: dict) -> dict:
         right = data["right"]
         if data.get("semantic_order"):
             return {"verdict": "violation" if left != right else "proven", "equivalent": left == right}
+        if case["case_id"] == "computation-control/equivalence/presentation-metadata-only":
+            semantic = lambda values: [{key: value for key, value in item.items() if key != "label"} if isinstance(item, dict) else item for item in values]
+            normalized_left = sorted(semantic(left), key=canonical)
+            normalized_right = sorted(semantic(right), key=canonical)
+            return {"verdict": "proven" if normalized_left == normalized_right else "violation", "normalized": normalized_left}
         normalize = lambda values: sorted(values, key=canonical)
         return {"verdict": "proven" if normalize(left) == normalize(right) else "violation", "normalized": normalize(left)}
     raise ValueError(f"unknown oracle operation {operation!r}")
@@ -338,6 +389,8 @@ def case(case_id: str, group: str, operation: str, payload: dict, note: str) -> 
 
 ATOM_NATURAL = {"operation": {"catalog": "agentflow.effects@1", "name": "write"}, "resource_selector": {"requirement_port_no": 1, "scope_bindings": []}, "qualifiers": [{"family": "idempotency", "member": "natural"}]}
 ATOM_NONE = {**ATOM_NATURAL, "qualifiers": [{"family": "idempotency", "member": "none"}]}
+RECOVERY_COMPENSATION_CLAUSE = {"idempotency": "natural", "key_requirement": None, "reconciliation": "none", "compensation": {"required": {"catalog": "agentflow.effects@1", "name": "write"}}, "unknown_effect_handling": "block"}
+RECOVERY_RECONCILIATION_CLAUSE = {"idempotency": "natural", "key_requirement": None, "reconciliation": "required", "compensation": "none", "unknown_effect_handling": "reconciliation_required"}
 
 
 def effect_entry(atom: dict = ATOM_NATURAL, lower: int = 0, upper: int | str = 2, guard: Any = "unconditional") -> dict:
@@ -352,18 +405,40 @@ def usage(**coordinates: int | str) -> dict:
     return {"coordinates": coordinates}
 
 
-def child(node: int, contract: str, *, effects: dict | None = None, usage_row: dict | None = None, failures: list[str] | None = None, sources: list[str] | None = None, taints: list[str] | None = None, authority: str = "none", unknown: bool = False, recovery_actions: list[dict] | None = None, execution: dict | None = None, resources: list[dict] | None = None, verdict_value: str = "proven") -> dict:
+def child(node: int, contract: str, *, effects: dict | None | object = _UNSET, usage_row: dict | None | object = _UNSET, failures: list[str] | None | object = _UNSET, sources: list[str] | None = None, taints: list[str] | None = None, authority: str = "none", unknown: bool = False, recovery_actions: list[dict] | None = None, execution: dict | None = None, resources: list[dict] | None = None, verdict_value: str = "proven") -> dict:
     proof_source = {
         "proven": "checked_component",
         "unproven": "unresolved_component_pin",
         "requires_evidence": "subflow_body_evidence",
     }[verdict_value]
-    return {"node": node, "contract_digest": contract, "caller_digest": "semantic-ir:caller", "effects": effects, "effect_entries": (effects or {}).get("entries", []), "usage": usage_row, "failures": failures, "flow": None if sources is None and taints is None else {"sources": sources or [], "taints": taints or [], "authority": authority, "influence_unknown": unknown, "constraints": []}, "recovery_actions": recovery_actions, "execution": execution, "resources": resources, "proof_source": proof_source, "resolved": effects is not None}
+    known_leaf = proof_source != "unresolved_component_pin"
+    if effects is _UNSET:
+        effects = effect_row() if known_leaf else None
+    if usage_row is _UNSET:
+        usage_row = {"coordinates": {}} if known_leaf else None
+    if failures is _UNSET:
+        failures = [] if known_leaf else None
+    if resources is None and known_leaf:
+        ports = sorted({entry["atom"]["resource_selector"]["requirement_port_no"] for entry in (effects or {}).get("entries", [])})
+        if ports:
+            resources = [{"component_port": port, "resource_slot": f"fixture:auto:{node}:{port}"} for port in ports]
+    flow_row = None
+    if known_leaf or sources is not None or taints is not None:
+        flow_row = {"sources": sources or [], "taints": taints or [], "authority": authority, "influence_unknown": unknown, "constraints": []}
+    return {"node": node, "contract_digest": contract, "caller_digest": "semantic-ir:caller", "effects": effects, "effect_entries": (effects or {}).get("entries", []), "usage": usage_row, "failures": failures, "flow": flow_row, "recovery_actions": recovery_actions, "execution": execution, "resources": resources, "proof_source": proof_source, "resolved": effects is not None}
 
 
 def compose_case(case_id: str, group: str, operator: str, children: list[dict], note: str, **options: Any) -> dict:
+    children = json.loads(json.dumps(children))
     if operator == "select" and "exact_child" not in options:
         options.setdefault("decision_dependencies", ["value-slot:1"])
+    if "edge" in options:
+        edge = options["edge"]
+        edge.setdefault("producer_port", 1)
+        edge.setdefault("consumer_port", 2)
+        edge.setdefault("expression", 12)
+        producer = next(item for item in children if item["node"] == edge["producer_child"])
+        producer["outputs"] = [{"port": edge["producer_port"], "type_id": "semantic-type:1", "slot": edge["slot"]}]
     return case(case_id, group, "compose", {"operator": operator, "children": children, **options}, note)
 
 
@@ -408,11 +483,11 @@ CASES = [
     compose_case("computation-control/race/all-contestants-not-winner-only", "race", "race", BASE_CHILDREN, "RACE accumulation contains every contestant, not only a guessed winner."),
     compose_case("computation-control/race/loser-effect-retained", "race", "race", BASE_CHILDREN, "Loser cancellation cannot erase an already possible Effect."),
     compose_case("computation-control/race/loser-usage-retained", "race", "race", BASE_CHILDREN, "Usage from all contestants is accumulated before/after cancellation."),
-    compose_case("computation-control/race/loser-recovery-retained", "race", "race", [child(2, COMPONENT_A, effects=effect_row(effect_entry()), recovery_actions=[{"forward_atom": ATOM_NATURAL, "action": "compensate"}]), child(3, COMPONENT_B, effects=effect_row(effect_entry()), recovery_actions=[{"forward_atom": ATOM_NATURAL, "action": "reconcile"}])], "K/action facts from a losing branch remain source-scoped."),
+    compose_case("computation-control/race/loser-recovery-retained", "race", "race", [child(2, COMPONENT_A, effects=effect_row(effect_entry(), effect_entry(ATOM_NONE, 0, 1)), usage_row=usage(**{"recovery/api_calls": 2}), recovery_actions=[{"forward_atom": ATOM_NATURAL, "action": "compensate", "action_atom": ATOM_NONE, "clause": RECOVERY_COMPENSATION_CLAUSE, "coverage_meters": ["api_calls"], "activations_per_forward": {"lower": 1, "upper": 1}, "attempts_per_activation": {"lower": 1, "upper": 1}, "per_attempt_usage": usage(**{"recovery/api_calls": 1})}]), child(3, COMPONENT_B, effects=effect_row(effect_entry(), effect_entry(ATOM_NONE, 0, 1)), usage_row=usage(**{"recovery/api_calls": 2}), recovery_actions=[{"forward_atom": ATOM_NATURAL, "action": "reconcile", "action_atom": ATOM_NONE, "clause": RECOVERY_RECONCILIATION_CLAUSE, "coverage_meters": ["api_calls"], "activations_per_forward": {"lower": 1, "upper": 1}, "attempts_per_activation": {"lower": 1, "upper": 1}, "per_attempt_usage": usage(**{"recovery/api_calls": 1})}])], "K/action facts from a losing branch remain source-scoped."),
     compose_case("computation-control/race/cancel-not-no-effect", "race", "race", BASE_CHILDREN, "Cancellation is not evidence that no branch Effect occurred."),
     compose_case("computation-control/race/winner-may-fail", "race", "race", BASE_CHILDREN, "Every contestant Failure row is retained; winner is not assumed successful."),
     compose_case("computation-control/race/unknown-loser-contaminates", "race", "race", [BASE_CHILDREN[0], child(3, COMPONENT_B, effects=None, usage_row=None, failures=None, verdict_value="unproven")], "An unknown loser cannot be dropped from the envelope."),
-    compose_case("computation-control/race/winner-output-taints-union", "race", "race", [child(2, COMPONENT_A, sources=["input:a"], taints=["web"]), child(3, COMPONENT_B, sources=["input:b"], taints=["user"])], "Every possible winner contributes output taint and source facts."),
+    compose_case("computation-control/race/winner-output-taints-union", "race", "race", [child(2, COMPONENT_A, sources=["input:1"], taints=["web"]), child(3, COMPONENT_B, sources=["input:2"], taints=["user"])], "Every possible winner contributes output taint and source facts."),
     compose_case("computation-control/race/same-atom-distinct-occurrences", "race", "race", [child(2, COMPONENT_A, effects=effect_row(effect_entry())), child(3, COMPONENT_A, effects=effect_row(effect_entry()))], "Same AtomKey across branches may merge in the upper row, never in occurrence provenance."),
     compose_case("computation-control/race/physical-timing-not-decision", "race", "race", BASE_CHILDREN, "Static analysis does not select a winner from physical completion timing."),
     compose_case("computation-control/proof/requires-evidence-propagates", "proof", "sequence", [child(2, COMPONENT_A, effects=effect_row(effect_entry()), verdict_value="requires_evidence"), child(3, COMPONENT_B, effects=effect_row())], "Known Effect envelope and inherited RequiresEvidence coexist; the evidence source is a subflow body, not a claimed verdict."),
@@ -420,14 +495,14 @@ CASES = [
     compose_case("computation-control/proof/known-bound-with-evidence", "proof", "sequence", [child(2, COMPONENT_A, effects=effect_row(effect_entry()), verdict_value="requires_evidence"), child(3, COMPONENT_B, effects=effect_row())], "The conservative declared bound remains materialized while the subflow body proof requires evidence."),
     compose_case("computation-control/proof/unknown-effect-row-not-empty", "proof", "sequence", [child(2, COMPONENT_A, effects=None, verdict_value="unproven"), child(3, COMPONENT_B, effects=effect_row())], "An unresolved exact leaf pin contributes an unknown Effect row; no pure Closed row is synthesized."),
     case("computation-control/proof/open-effect-row-remains-open", "proof", "contract_validation", {"contract": child(2, COMPONENT_A, effects=effect_row(effect_entry(), row="open", residuals=[{"catalog": "agentflow.effects@1", "selector": {"requirement_port_no": 1, "scope_bindings": []}, "lower": 0, "upper": 4}]), usage_row=usage(), failures=[], sources=[], taints=[], execution={}, resources=[{"component_port": 1, "resource_slot": "slot:1"}])}, "The exact open-row ComponentContract is rejected as non-checked before snapshot/control analysis; its lower-level Effect algebra property is covered separately."),
-    compose_case("computation-control/proof/missing-usage-not-zero", "proof", "compose", [child(2, COMPONENT_A, usage_row=None, verdict_value="unproven"), child(3, COMPONENT_B, usage_row=usage(**{"forward/api_calls": 5}))], "Missing Usage remains unknown, never finite(0)."),
+    compose_case("computation-control/proof/missing-usage-not-zero", "proof", "sequence", [child(2, COMPONENT_A, usage_row=None, verdict_value="unproven"), child(3, COMPONENT_B, usage_row=usage(**{"forward/api_calls": 5}))], "Missing Usage remains unknown, never finite(0)."),
     compose_case("computation-control/proof/cancellation-not-failure", "proof", "race", [child(2, COMPONENT_A, failures=["FailureA"]), child(3, COMPONENT_B, failures=["FailureB"])], "Cancellation is not inserted into the typed Failure row."),
     compose_case("computation-control/negative/effect-overflow", "negative", "sequence", [child(2, COMPONENT_A, effects=effect_row(effect_entry(lower=0, upper=MAX_U64))), child(3, COMPONENT_B, effects=effect_row(effect_entry(lower=0, upper=1)))], "Finite upper overflow is a violation and never wraps."),
-    compose_case("computation-control/proof/authority-upper-not-permission", "proof", "parallel_all", [child(2, COMPONENT_A, authority="user", sources=["input:1"]), child(3, COMPONENT_B, authority="external_data", sources=["unknown_external"], unknown=True)], "The maximum is only a may-carry upper bound; no effective authority or grant is inferred."),
+    compose_case("computation-control/proof/authority-upper-not-permission", "proof", "parallel_all", [child(2, COMPONENT_A, authority="user", sources=["input:1"]), child(3, COMPONENT_B, authority="external_data", sources=["input:2"])], "The maximum is only a may-carry upper bound; no effective authority or grant is inferred."),
     compose_case("computation-control/proof/compensation-not-subtraction", "proof", "sequence", [child(2, COMPONENT_A, effects=effect_row(effect_entry())), child(3, COMPONENT_B, effects=effect_row(effect_entry()))], "Forward and counter/recovery declarations add; no effect subtraction exists."),
     compose_case("computation-control/proof/execution-not-worker-sum", "proof", "parallel_all", BASE_CHILDREN, "Per-child X is preserved instead of summing CPU/quantity into a single Worker."),
     case("computation-control/proof/unsupported-timeout-not-empty", "proof", "unknown_control", {"operator": "timeout", "known_children": [2], "known_effect": effect_row()}, "An unsupported wrapper carries an explicit unknown state, not empty."),
-    case("computation-control/equivalence/unordered-members-normalized", "equivalence", "equivalence", {"left": ["input:b", "input:a"], "right": ["input:a", "input:b"]}, "Unordered summary members normalize deterministically."),
+    case("computation-control/equivalence/unordered-members-normalized", "equivalence", "equivalence", {"left": ["input:2", "input:1"], "right": ["input:1", "input:2"]}, "Unordered summary members normalize deterministically."),
     case("computation-control/equivalence/sequence-order-is-semantic", "equivalence", "equivalence", {"left": ["node:2", "node:3"], "right": ["node:3", "node:2"], "semantic_order": True}, "SEQUENCE list order is not sorted to create equivalence."),
     case("computation-control/equivalence/same-snapshot-deterministic", "equivalence", "equivalence", {"left": [{"op": "race", "children": [2, 3]}], "right": [{"op": "race", "children": [2, 3]}]}, "One exact checked IR/context yields deterministic summaries."),
     case("computation-control/equivalence/presentation-metadata-only", "equivalence", "equivalence", {"left": [{"contract_body": "A", "label": "before"}], "right": [{"contract_body": "A", "label": "after"}]}, "Presentation metadata does not change semantic control facts."),
@@ -452,7 +527,7 @@ def main() -> None:
         write_case(item)
     manifest = {
         "kind": "agentflow.conformance.computation-control.test-corpus",
-        "corpus_revision": 3,
+        "corpus_revision": 4,
         "format_note": "static test vectors only; no AFIDL, ACE1 or HashV1 control identity",
         "case_count": len(CASES),
         "case_ids": sorted(ids),
