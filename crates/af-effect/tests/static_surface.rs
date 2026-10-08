@@ -147,8 +147,8 @@ fn the_dependency_set_is_exactly_the_static_layer() {
 
 #[test]
 fn the_wire_freeze_holds() {
-    // Exactly twelve AFIDL modules; the Semantic IR module stayed at its
-    // Phase 3B identity; X is additive and registered.
+    // Phase 4B.1 adds exactly four modules; the Semantic IR identity stays
+    // fixed and X remains an additive registered schema.
     fn collect_modules(directory: &Path, out: &mut Vec<String>) {
         for entry in std::fs::read_dir(directory).unwrap() {
             let path = entry.unwrap().path();
@@ -164,8 +164,8 @@ fn the_wire_freeze_holds() {
     modules.sort_unstable();
     assert_eq!(
         modules.len(),
-        12,
-        "an unexpected AFIDL module set: {modules:?}"
+        16,
+        "Phase 4B.1 must add exactly four AFIDL modules: {modules:?}"
     );
 
     let specifications: serde_json::Value =

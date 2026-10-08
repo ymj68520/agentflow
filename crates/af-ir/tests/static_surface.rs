@@ -338,12 +338,13 @@ fn module_abi_and_domain_counts_hold_at_their_frozen_values() {
     modules.sort_unstable();
     assert_eq!(
         modules.len(),
-        12,
-        "an unexpected AFIDL module set: {modules:?}"
+        16,
+        "Phase 4B.1 must add exactly four AFIDL modules: {modules:?}"
     );
 
-    // Exactly the frozen ABI rows: 400 total, 100 of them semantic IR,
-    // 32 of them the Phase 4A.1 effect-signature family, 2 of them the
+    // The prior 400 assignments remain unchanged (checked below after
+    // excluding the four Phase 4B.1 families): 100 are semantic IR,
+    // 32 are the Phase 4A.1 effect-signature family, 2 are the
     // Phase 4A.2 failure-row family, 7 of them the Phase 4A.3
     // resource-requirement family and 27 of them the Phase 4A.4
     // information-flow family, 10 of them the Phase 4A.5A usage family and
@@ -351,7 +352,23 @@ fn module_abi_and_domain_counts_hold_at_their_frozen_values() {
     let abi: serde_json::Value =
         serde_json::from_str(&read("spec/registry/abi-numbers.json")).unwrap();
     let rows = abi["assignments"].as_array().unwrap();
-    assert_eq!(rows.len(), 400, "an ABI row was added or removed");
+    let additive_families = [
+        "agentflow.component.contract@1",
+        "agentflow.effect.resource.compatibility@1",
+        "agentflow.recovery.usage.coverage@1",
+        "agentflow.flow.execution.relation@1",
+    ];
+    let prior_rows = rows
+        .iter()
+        .filter(|row| !additive_families.contains(&row["schema_family"].as_str().unwrap()))
+        .count();
+    assert_eq!(prior_rows, 400, "a pre-Phase 4B.1 ABI assignment drifted");
+    for family in additive_families {
+        assert!(
+            rows.iter().any(|row| row["schema_family"] == family),
+            "new schema family {family} has no generated ABI assignments"
+        );
+    }
     assert_eq!(
         rows.iter()
             .filter(|row| row["schema_family"] == "agentflow.semantic.ir@1")

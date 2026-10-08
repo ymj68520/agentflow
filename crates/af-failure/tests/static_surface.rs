@@ -211,8 +211,8 @@ fn the_frozen_handle_matcher_shape_is_compatible_and_untouched() {
 
 #[test]
 fn the_wire_freeze_holds() {
-    // Exactly twelve AFIDL modules; semantic-ir at its Phase 3B identity; 14
-    // HashV1 domains; the Effect corpus is at revision 3 after Phase 4B.0A.
+    // Phase 4B.1 adds exactly four modules; semantic-ir stays at its Phase
+    // 3B identity, with 14 domains and the Effect corpus at revision 3.
     fn collect_modules(directory: &Path, out: &mut Vec<String>) {
         for entry in std::fs::read_dir(directory).unwrap() {
             let path = entry.unwrap().path();
@@ -228,8 +228,8 @@ fn the_wire_freeze_holds() {
     modules.sort_unstable();
     assert_eq!(
         modules.len(),
-        12,
-        "an unexpected AFIDL module set: {modules:?}"
+        16,
+        "Phase 4B.1 must add exactly four AFIDL modules: {modules:?}"
     );
 
     let specifications: serde_json::Value =

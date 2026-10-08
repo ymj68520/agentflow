@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["crates/af-core", "crates/af-idl", "crates/af-spec", "crates/af-semantic", "crates/af-ir", "crates/af-effect", "crates/af-failure", "crates/af-resource", "crates/af-flow", "crates/af-usage", "crates/af-recovery", "crates/af-execution"]
+members = ["crates/af-core", "crates/af-idl", "crates/af-spec", "crates/af-semantic", "crates/af-ir", "crates/af-effect", "crates/af-failure", "crates/af-resource", "crates/af-flow", "crates/af-usage", "crates/af-recovery", "crates/af-execution", "crates/af-contract"]
 
 [workspace.package]
 version = "0.1.0"

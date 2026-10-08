@@ -236,9 +236,8 @@ fn the_effect_selector_linkage_is_recorded_and_the_module_is_clean() {
 
 #[test]
 fn the_wire_freeze_holds() {
-    // Exactly seven AFIDL modules; semantic-ir at its Phase 3B identity;
-    // 14 HashV1 domains; the effect corpus is revision 3 and the
-    // failure corpus at revision 1; X is an additive twelfth module.
+    // The Phase 4B.1 additions are four isolated modules; the earlier
+    // Semantic IR identity, HashV1 domains and effect/failure corpora stay fixed.
     fn collect_modules(directory: &Path, out: &mut Vec<String>) {
         for entry in std::fs::read_dir(directory).unwrap() {
             let path = entry.unwrap().path();
@@ -254,8 +253,8 @@ fn the_wire_freeze_holds() {
     modules.sort_unstable();
     assert_eq!(
         modules.len(),
-        12,
-        "an unexpected AFIDL module set: {modules:?}"
+        16,
+        "Phase 4B.1 must add exactly four AFIDL modules: {modules:?}"
     );
 
     let specifications: serde_json::Value =
