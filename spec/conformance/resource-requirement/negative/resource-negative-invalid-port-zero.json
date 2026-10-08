@@ -1,0 +1,96 @@
+{
+  "case_id": "resource/negative/invalid-port-zero",
+  "case_kind": "negative",
+  "corpus_revision": 1,
+  "expected_kind": "invalid_resource_port",
+  "fixture_schemas": [
+    {
+      "source": "afidl 1;\nschema agentflow.test.resources@1;\nrecord Repository { 1 provider_hint: string; }\nrecord StorageBucket { 1 region_hint: string; }\nrecord QueueEndpoint { 1 protocol_hint: string; }\n",
+      "specification_id": "agentflow.test.resources@1",
+      "types": [
+        {
+          "digest_hex": "4e09136b7eda13f54965b348e81d7bd32f516a5d88f776d00fc4663f166c0cca",
+          "name": "QueueEndpoint"
+        },
+        {
+          "digest_hex": "c6191a141a36d4e899815bea53319dc0d7c0a05daeb072f559a1b85adca408c5",
+          "name": "Repository"
+        },
+        {
+          "digest_hex": "4485524cddcaa4b081c37f3025eae66f255d3690a81f481c4c16bcaaf046e134",
+          "name": "StorageBucket"
+        }
+      ]
+    },
+    {
+      "source": "afidl 1;\nschema agentflow.test.resources-alt@1;\nrecord Repository { 1 code: int64; }\n",
+      "specification_id": "agentflow.test.resources-alt@1",
+      "types": [
+        {
+          "digest_hex": "c5bd6b668689ea11cf64dd7e83f5d370fa0a2169ad09b44039772bd52bd83993",
+          "name": "Repository"
+        }
+      ]
+    }
+  ],
+  "kind": "agentflow.conformance.resource-requirement.case",
+  "note": "port 0 is not a valid requirement port: ports are positive",
+  "resource_types": [
+    {
+      "digest_hex": "c5bd6b668689ea11cf64dd7e83f5d370fa0a2169ad09b44039772bd52bd83993",
+      "recognized_attributes": [
+        "tier"
+      ],
+      "specification_id": "agentflow.test.resources-alt@1",
+      "type_name": "Repository"
+    },
+    {
+      "digest_hex": "4e09136b7eda13f54965b348e81d7bd32f516a5d88f776d00fc4663f166c0cca",
+      "recognized_attributes": [
+        "protocol",
+        "region"
+      ],
+      "specification_id": "agentflow.test.resources@1",
+      "type_name": "QueueEndpoint"
+    },
+    {
+      "digest_hex": "c6191a141a36d4e899815bea53319dc0d7c0a05daeb072f559a1b85adca408c5",
+      "recognized_attributes": [
+        "default_branch",
+        "provider",
+        "visibility"
+      ],
+      "specification_id": "agentflow.test.resources@1",
+      "type_name": "Repository"
+    },
+    {
+      "digest_hex": "4485524cddcaa4b081c37f3025eae66f255d3690a81f481c4c16bcaaf046e134",
+      "recognized_attributes": [
+        "durability",
+        "region",
+        "storage_class"
+      ],
+      "specification_id": "agentflow.test.resources@1",
+      "type_name": "StorageBucket"
+    }
+  ],
+  "row": {
+    "requirements": [
+      {
+        "port_no": 0,
+        "required_attributes": [],
+        "resource_type": {
+          "schema": {
+            "schema_digest": {
+              "algorithm": "sha256",
+              "domain": "type-schema",
+              "hex": "c6191a141a36d4e899815bea53319dc0d7c0a05daeb072f559a1b85adca408c5"
+            },
+            "specification_id": "agentflow.test.resources@1",
+            "type_name": "Repository"
+          }
+        }
+      }
+    ]
+  }
+}
