@@ -10,8 +10,9 @@ use af_contract::{
     component_contract_digest,
 };
 use af_effect::{
-    CapabilityCatalog, EffectAtom, EffectCatalogUniverse, EffectEntry, EffectGuard,
-    EffectOperationRef, EffectRow, EffectSignature, OccurrenceBounds, ResourceSelector,
+    CapabilityCatalog, EffectAtom, EffectCatalogUniverse, EffectEntry, EffectGuard, EffectOpenRow,
+    EffectOperationRef, EffectResidual, EffectRow, EffectSignature, OccurrenceBounds,
+    OccurrenceCeiling, ResourceSelector,
 };
 use af_execution::ExecutionUniverses;
 use af_failure::{FailureRow, FailureTypeRef};
@@ -2081,4 +2082,44 @@ fn effect_bounds_weaken_conditional_lower_but_retain_all_occurrences_and_resourc
             );
         }
     }
+}
+
+#[test]
+fn open_effect_vector_is_not_mintable_as_a_checked_computation_leaf() {
+    let mut fixture = Context::new();
+    let (mut contract, _) = fixture.effectful_contract();
+    let EffectRow::Closed(mut known) = contract.effects.row else {
+        panic!("the fixture helper starts from a closed checked row")
+    };
+    let atom = known[0].atom.clone();
+    known[0].bounds = OccurrenceBounds::finite(0, 2).unwrap();
+    contract.effects.row = EffectRow::Open(EffectOpenRow {
+        known,
+        residual: vec![EffectResidual {
+            catalog: atom.operation.catalog.clone(),
+            selector: atom.resource_selector.clone(),
+            bounds: OccurrenceBounds {
+                lower: 0,
+                upper: OccurrenceCeiling::Finite(4),
+            },
+        }],
+    });
+
+    let context = fixture.view();
+    let report = af_contract::analyze_contract(&contract, &context);
+    let resource_proof = report
+        .dimensions
+        .iter()
+        .find(|item| item.dimension == "resources")
+        .expect("cross-dimension resource proof is always reported");
+    assert_eq!(resource_proof.verdict, af_contract::ProofVerdict::Unproven);
+    assert!(!report.is_proven());
+    assert!(check_contract(&contract, &context).is_err());
+
+    let vector: serde_json::Value = serde_json::from_str(include_str!(
+        "../../../spec/conformance/computation-control/proof/open-effect-row-remains-open.json"
+    ))
+    .unwrap();
+    assert_eq!(vector["expected"]["effects"]["row"], "open");
+    assert_eq!(vector["expected"]["effect_row_complete"], false);
 }
