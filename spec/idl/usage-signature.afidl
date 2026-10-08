@@ -1,0 +1,61 @@
+afidl 1;
+
+schema agentflow.usage.signature @1;
+
+// AgentFlow Static Usage Signature — Phase 4A.5A. This module is the
+// declaration-only U dimension of Computation<I, O, Phi, epsilon, R>:
+// which additive usage meters a computation may consume, split by forward
+// and recovery phase, and bounded by finite or explicitly unbounded ceilings.
+//
+// A declaration is not a measurement, estimate, receipt, billing record,
+// Budget Ledger reservation, Usage Ledger evidence or Quota Ledger state.
+// No currency, pricing, provider quota, scheduler, runtime, ledger or
+// execution object is representable here. The future ComponentContract
+// composes this signature with the other static dimensions and the runtime
+// ledgers remain separate authorities.
+//
+// This module deliberately has no UsageSignatureDigest and introduces no
+// HashV1 domain. TypeSchemaDigest remains the only schema identity; the
+// future ComponentContract hashes the complete contract under the frozen
+// component-contract domain.
+
+// Identity of a usage-meter catalog. Catalogs are explicit read-only inputs
+// to static validation; there is no latest fallback or discovery.
+alias MeterCatalogId = string;
+
+// NFC meter name within one catalog, for example model.input_tokens.
+alias MeterName = string;
+
+// One usage meter identity. Unit and aggregation semantics are resolved by
+// the static UsageMeterUniverse, not carried by this declaration.
+record UsageMeterRef {
+    1 catalog: MeterCatalogId;
+    2 name: MeterName;
+}
+
+// Forward and recovery are independent usage coordinates. Recovery usage
+// never refunds or overwrites forward usage.
+enum UsagePhase {
+    1 forward;
+    2 recovery;
+}
+
+// A declared upper bound. `unbounded` is a distinct semantic state and is
+// never encoded as UINT64_MAX; `finite(0)` is an explicit zero ceiling.
+variant UsageUpperBound {
+    1 finite: uint64;
+    2 unbounded: unit;
+}
+
+// One unique (phase, meter) usage ceiling.
+record UsageLimit {
+    1 meter: UsageMeterRef;
+    2 phase: UsagePhase;
+    3 upper: UsageUpperBound;
+}
+
+// The static Usage Signature U. Missing a meter is not a declaration of zero
+// usage; a finite zero limit is required to prove zero for that coordinate.
+record UsageSignature {
+    1 limits: list<UsageLimit>;
+}

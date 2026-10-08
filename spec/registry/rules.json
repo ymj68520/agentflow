@@ -3031,6 +3031,208 @@
       "rule_id": "AF-SPEC-0003",
       "short_statement": "A frozen specification's normative source carries no provisional status marker.",
       "source_anchor": "spec-frozen-source-not-provisional"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "SUITE-USAGE-STATIC-ONLY"
+      ],
+      "normative_source": "spec/usage/usage-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0001",
+      "short_statement": "The Usage Signature is a static declaration of additive upper bounds only: it is not a measurement, estimate, evidence, billing record, ledger reservation or runtime authorization.",
+      "source_anchor": "usage-static-scope"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "usage/golden/single-finite-meter",
+        "usage/negative/unknown-meter"
+      ],
+      "normative_source": "spec/usage/usage-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0002",
+      "short_statement": "A usage meter is resolved by the exact (catalog SpecificationId, NFC name) identity in an explicit read-only UsageMeterUniverse; unknown identities fail closed and no discovery or latest fallback exists.",
+      "source_anchor": "usage-meter-identity"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "usage/negative/unsupported-aggregation",
+        "usage/compatibility/different-meter-unit"
+      ],
+      "normative_source": "spec/usage/usage-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0003",
+      "short_statement": "This phase supports only non-negative integer additive meters with an explicit unit identity; unsupported aggregation is rejected and different units are not combined or treated as compatible.",
+      "source_anchor": "usage-additive-only"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "usage/golden/forward-recovery-separate",
+        "usage/compatibility/forward-recovery-not-interchangeable",
+        "usage/algebra/compensation-no-refund"
+      ],
+      "normative_source": "spec/usage/usage-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0004",
+      "short_statement": "Forward and recovery are independent (phase, meter) coordinates; recovery usage never refunds, overwrites or substitutes for forward usage.",
+      "source_anchor": "usage-phase-separation"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "usage/golden/explicit-zero",
+        "usage/golden/unbounded",
+        "usage/golden/empty-not-zero",
+        "usage/negative/meter-omitted-not-zero"
+      ],
+      "normative_source": "spec/usage/usage-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0005",
+      "short_statement": "finite(0), finite(n), unbounded and missing are distinct states; missing is never interpreted as finite(0), and unbounded is never encoded as UINT64_MAX.",
+      "source_anchor": "usage-bound-states"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "usage/negative/duplicate-phase-meter",
+        "usage/equivalence/limit-ordering"
+      ],
+      "normative_source": "spec/usage/usage-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0006",
+      "short_statement": "Canonical Usage Signature form resolves meters, rejects duplicate (phase, meter) keys, orders by phase number and complete meter identity bytes, and is idempotent without deleting zero limits.",
+      "source_anchor": "usage-canonical"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "usage/algebra/accumulation-associativity",
+        "usage/algebra/accumulation-zero-identity",
+        "usage/algebra/unknown-propagation",
+        "usage/negative/arithmetic-overflow"
+      ],
+      "normative_source": "spec/usage/usage-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0007",
+      "short_statement": "Additive accumulation is checked and conservative: finite bounds add, unbounded absorbs, and an unknown operand remains unknown; overflow never wraps or saturates.",
+      "source_anchor": "usage-accumulate"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "usage/algebra/branch-join-commutative",
+        "usage/algebra/branch-join-associative",
+        "usage/algebra/branch-join-idempotent"
+      ],
+      "normative_source": "spec/usage/usage-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0008",
+      "short_statement": "Mutually exclusive branch join takes the maximum possible upper bound and is commutative, associative and idempotent; absent or unknown coordinates are not zero branches.",
+      "source_anchor": "usage-branch-join"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "usage/algebra/repeat-zero",
+        "usage/algebra/repeat-one",
+        "usage/algebra/repeat-n",
+        "usage/algebra/foreach-max-inflight-not-count"
+      ],
+      "normative_source": "spec/usage/usage-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0009",
+      "short_statement": "Finite repetition uses checked multiplication; repeat(0, U) produces explicit zero only for coordinates represented by U, and an unproven count cannot produce a false finite bound.",
+      "source_anchor": "usage-repeat"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "usage/golden/empty-not-zero",
+        "usage/negative/meter-omitted-not-zero",
+        "usage/compatibility/missing-new-meter",
+        "SUITE-USAGE-STATIC-ONLY"
+      ],
+      "normative_source": "spec/usage/usage-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0010",
+      "short_statement": "Static ceiling and compatibility judgments distinguish Proven, Unproven and Violation; inability to prove a bound is never reinterpreted as compatibility or zero usage.",
+      "source_anchor": "usage-static-proof"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "SUITE-USAGE-CONTROL"
+      ],
+      "normative_source": "spec/usage/usage-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0011",
+      "short_statement": "Static control propagation is conservative: SEQUENCE and PARALLEL accumulate, SELECT joins, SCOPE preserves usage, TIMEOUT does not erase already possible usage, and AWAIT does not invent zero.",
+      "source_anchor": "usage-control-propagation"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "usage/algebra/retry-amplification",
+        "usage/algebra/race-loser-retained",
+        "usage/algebra/foreach-max-inflight-not-count"
+      ],
+      "normative_source": "spec/usage/usage-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0012",
+      "short_statement": "RETRY amplifies metered usage by maximum attempts, RACE retains loser usage, and ITERATE uses only a proven total repetition bound; max_inflight is never a total iteration count.",
+      "source_anchor": "usage-retry-race-iterate"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "usage/compatibility/same-limits",
+        "usage/compatibility/new-lower-limit",
+        "usage/compatibility/new-higher-limit",
+        "usage/compatibility/different-meter-unit",
+        "usage/compatibility/missing-new-meter"
+      ],
+      "normative_source": "spec/usage/usage-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0013",
+      "short_statement": "Usage non-increase compares the same phase, meter identity and unit; lower or equal finite ceilings and finite under old unbounded are Proven, while higher or newly unbounded ceilings are Violation and missing or incomparable coordinates are Unproven.",
+      "source_anchor": "usage-non-increase"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "SUITE-USAGE-STATIC-ONLY"
+      ],
+      "normative_source": "spec/usage/usage-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0014",
+      "short_statement": "Usage quantity is not monetary cost; this phase has no currency, price snapshot, conversion, rounding or provider-pricing ABI.",
+      "source_anchor": "usage-cost-boundary"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "usage/negative/quota-not-semantic-budget",
+        "SUITE-USAGE-STATIC-ONLY"
+      ],
+      "normative_source": "spec/usage/usage-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0015",
+      "short_statement": "A static ceiling proof is not a BudgetReservation, Reserve, Settle, Quota Ledger or cross-run quota decision; runtime ledgers remain separate authorities.",
+      "source_anchor": "usage-budget-boundary"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "SUITE-USAGE-WIRE-FREEZE"
+      ],
+      "normative_source": "spec/usage/usage-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0016",
+      "short_statement": "The Usage wire model and crate contain no receipt, ledger, runtime measurement, scheduler, worker, pricing API, policy engine or UsageSignatureDigest, and no HashV1 domain is added.",
+      "source_anchor": "usage-no-runtime"
     }
   ]
 }

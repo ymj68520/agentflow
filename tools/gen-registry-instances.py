@@ -1672,6 +1672,116 @@ INFOFLOW_RULES = [
 ]
 RULES.extend(INFOFLOW_RULES)
 
+# ---------------------------------------------------------------------------
+# Usage rules (Phase 4A.5A, area USAGE)
+# ---------------------------------------------------------------------------
+
+USAGE_SRC = "spec/usage/usage-signature.md"
+
+USAGE_RULES = [
+    rule("AF-USAGE-0001", "USAGE", USAGE_SRC, "usage-static-scope",
+         "The Usage Signature is a static declaration of additive upper "
+         "bounds only: it is not a measurement, estimate, evidence, billing "
+         "record, ledger reservation or runtime authorization.",
+         ["SUITE-USAGE-STATIC-ONLY"]),
+    rule("AF-USAGE-0002", "USAGE", USAGE_SRC, "usage-meter-identity",
+         "A usage meter is resolved by the exact (catalog SpecificationId, "
+         "NFC name) identity in an explicit read-only UsageMeterUniverse; "
+         "unknown identities fail closed and no discovery or latest fallback "
+         "exists.",
+         ["usage/golden/single-finite-meter", "usage/negative/unknown-meter"]),
+    rule("AF-USAGE-0003", "USAGE", USAGE_SRC, "usage-additive-only",
+         "This phase supports only non-negative integer additive meters with "
+         "an explicit unit identity; unsupported aggregation is rejected and "
+         "different units are not combined or treated as compatible.",
+         ["usage/negative/unsupported-aggregation",
+          "usage/compatibility/different-meter-unit"]),
+    rule("AF-USAGE-0004", "USAGE", USAGE_SRC, "usage-phase-separation",
+         "Forward and recovery are independent (phase, meter) coordinates; "
+         "recovery usage never refunds, overwrites or substitutes for forward "
+         "usage.",
+         ["usage/golden/forward-recovery-separate",
+          "usage/compatibility/forward-recovery-not-interchangeable",
+          "usage/algebra/compensation-no-refund"]),
+    rule("AF-USAGE-0005", "USAGE", USAGE_SRC, "usage-bound-states",
+         "finite(0), finite(n), unbounded and missing are distinct states; "
+         "missing is never interpreted as finite(0), and unbounded is never "
+         "encoded as UINT64_MAX.",
+         ["usage/golden/explicit-zero", "usage/golden/unbounded",
+          "usage/golden/empty-not-zero", "usage/negative/meter-omitted-not-zero"]),
+    rule("AF-USAGE-0006", "USAGE", USAGE_SRC, "usage-canonical",
+         "Canonical Usage Signature form resolves meters, rejects duplicate "
+         "(phase, meter) keys, orders by phase number and complete meter "
+         "identity bytes, and is idempotent without deleting zero limits.",
+         ["usage/negative/duplicate-phase-meter",
+          "usage/equivalence/limit-ordering"]),
+    rule("AF-USAGE-0007", "USAGE", USAGE_SRC, "usage-accumulate",
+         "Additive accumulation is checked and conservative: finite bounds "
+         "add, unbounded absorbs, and an unknown operand remains unknown; "
+         "overflow never wraps or saturates.",
+         ["usage/algebra/accumulation-associativity",
+          "usage/algebra/accumulation-zero-identity",
+          "usage/algebra/unknown-propagation",
+          "usage/negative/arithmetic-overflow"]),
+    rule("AF-USAGE-0008", "USAGE", USAGE_SRC, "usage-branch-join",
+         "Mutually exclusive branch join takes the maximum possible upper "
+         "bound and is commutative, associative and idempotent; absent or "
+         "unknown coordinates are not zero branches.",
+         ["usage/algebra/branch-join-commutative",
+          "usage/algebra/branch-join-associative",
+          "usage/algebra/branch-join-idempotent"]),
+    rule("AF-USAGE-0009", "USAGE", USAGE_SRC, "usage-repeat",
+         "Finite repetition uses checked multiplication; repeat(0, U) "
+         "produces explicit zero only for coordinates represented by U, and "
+         "an unproven count cannot produce a false finite bound.",
+         ["usage/algebra/repeat-zero", "usage/algebra/repeat-one",
+          "usage/algebra/repeat-n", "usage/algebra/foreach-max-inflight-not-count"]),
+    rule("AF-USAGE-0010", "USAGE", USAGE_SRC, "usage-static-proof",
+         "Static ceiling and compatibility judgments distinguish Proven, "
+         "Unproven and Violation; inability to prove a bound is never "
+         "reinterpreted as compatibility or zero usage.",
+         ["usage/golden/empty-not-zero", "usage/negative/meter-omitted-not-zero",
+          "usage/compatibility/missing-new-meter", "SUITE-USAGE-STATIC-ONLY"]),
+    rule("AF-USAGE-0011", "USAGE", USAGE_SRC, "usage-control-propagation",
+         "Static control propagation is conservative: SEQUENCE and PARALLEL "
+         "accumulate, SELECT joins, SCOPE preserves usage, TIMEOUT does not "
+         "erase already possible usage, and AWAIT does not invent zero.",
+         ["SUITE-USAGE-CONTROL"]),
+    rule("AF-USAGE-0012", "USAGE", USAGE_SRC, "usage-retry-race-iterate",
+         "RETRY amplifies metered usage by maximum attempts, RACE retains "
+         "loser usage, and ITERATE uses only a proven total repetition bound; "
+         "max_inflight is never a total iteration count.",
+         ["usage/algebra/retry-amplification",
+          "usage/algebra/race-loser-retained",
+          "usage/algebra/foreach-max-inflight-not-count"]),
+    rule("AF-USAGE-0013", "USAGE", USAGE_SRC, "usage-non-increase",
+         "Usage non-increase compares the same phase, meter identity and "
+         "unit; lower or equal finite ceilings and finite under old unbounded "
+         "are Proven, while higher or newly unbounded ceilings are Violation "
+         "and missing or incomparable coordinates are Unproven.",
+         ["usage/compatibility/same-limits",
+          "usage/compatibility/new-lower-limit",
+          "usage/compatibility/new-higher-limit",
+          "usage/compatibility/different-meter-unit",
+          "usage/compatibility/missing-new-meter"]),
+    rule("AF-USAGE-0014", "USAGE", USAGE_SRC, "usage-cost-boundary",
+         "Usage quantity is not monetary cost; this phase has no currency, "
+         "price snapshot, conversion, rounding or provider-pricing ABI.",
+         ["SUITE-USAGE-STATIC-ONLY"]),
+    rule("AF-USAGE-0015", "USAGE", USAGE_SRC, "usage-budget-boundary",
+         "A static ceiling proof is not a BudgetReservation, Reserve, Settle, "
+         "Quota Ledger or cross-run quota decision; runtime ledgers remain "
+         "separate authorities.",
+         ["usage/negative/quota-not-semantic-budget",
+          "SUITE-USAGE-STATIC-ONLY"]),
+    rule("AF-USAGE-0016", "USAGE", USAGE_SRC, "usage-no-runtime",
+         "The Usage wire model and crate contain no receipt, ledger, runtime "
+         "measurement, scheduler, worker, pricing API, policy engine or "
+         "UsageSignatureDigest, and no HashV1 domain is added.",
+         ["SUITE-USAGE-WIRE-FREEZE"]),
+]
+RULES.extend(USAGE_RULES)
+
 
 
 
@@ -1764,6 +1874,17 @@ SPECS = [
      "declassification/endorsement obligations, persistence without "
      "trust upgrade, unknown handling, flow non-relaxation and the "
      "static-vs-runtime boundary."),
+    ("agentflow.usage.signature@1", "schema",
+     "spec/idl/usage-signature.afidl",
+     "Normative shape of the static Usage Signature: exact additive meter "
+     "identity, forward/recovery phases, finite/unbounded upper bounds and "
+     "the closed Usage Signature declaration."),
+    ("agentflow.usage.signature.semantics@1", "schema_language",
+     "spec/usage/usage-signature.md",
+     "Static Usage semantics: explicit meter universe and units, additive "
+     "upper bounds, phase separation, canonicalization, conservative usage "
+     "algebra and control propagation, static ceiling proof, non-increase "
+     "compatibility and the runtime ledger boundary."),
     ("agentflow.registry.core@1", "registry",
      "spec/registry/registry-spec.md",
      "Registry mechanics: Specification Registry, RuleId system, Stable ABI "
@@ -1842,6 +1963,7 @@ SCHEMA_MODULES = [
     "spec/idl/failure-row.afidl",
     "spec/idl/resource-requirement.afidl",
     "spec/idl/information-flow.afidl",
+    "spec/idl/usage-signature.afidl",
 ]
 
 assignments = []
@@ -2583,6 +2705,64 @@ SUITE_LIST = [
                 "af-flow static surface audit (no flow digest)",
                 "af-ir wire-freeze audit (module/ABI/domain counts)",
                 "spec/conformance/effect-signature/, failure-row/, resource-requirement/ (revisions unchanged)",
+            ],
+        },
+        {
+            "suite_id": "SUITE-USAGE-STATIC-ONLY",
+            "description": (
+                "The Usage layer is declaration-only: explicit additive meter "
+                "identity and units, finite/unbounded upper bounds, missing "
+                "versus zero, static ceiling/non-increase proofs, and no "
+                "measurement, billing, pricing, reservation, settlement, "
+                "quota or runtime ledger. Covers Usage golden, negative and "
+                "compatibility cases plus the static absence audit."
+            ),
+            "targets": [
+                "af-usage static surface audit",
+                "spec/conformance/usage-signature/golden/",
+                "spec/conformance/usage-signature/negative/",
+                "spec/conformance/usage-signature/compatibility/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-USAGE-ALGEBRA",
+            "description": (
+                "Static Usage algebra is conservative and checked: additive "
+                "accumulation, branch maximum join, repetition, explicit zero, "
+                "unknown propagation and arithmetic overflow preserve sound "
+                "upper bounds."
+            ),
+            "targets": [
+                "af-usage algebra functions",
+                "spec/conformance/usage-signature/algebra/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-USAGE-CONTROL",
+            "description": (
+                "Control propagation accumulates all possible usage: retry "
+                "amplifies by attempts, race retains loser consumption, "
+                "compensation never refunds forward usage, and max_inflight "
+                "is not a total iteration bound."
+            ),
+            "targets": [
+                "af-usage control propagation functions",
+                "spec/conformance/usage-signature/algebra/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-USAGE-WIRE-FREEZE",
+            "description": (
+                "Phase 4A.5A adds exactly one Usage AFIDL module and additive "
+                "ABI/corpus entries but no HashV1 domain; all pre-existing "
+                "AFIDL TypeSchemaDigests, SemanticIrDigest, effect/failure/"
+                "resource/information-flow corpora and ABI assignments remain "
+                "unchanged."
+            ),
+            "targets": [
+                "af-usage static surface audit (no digest domain)",
+                "af-ir cumulative module/ABI/domain audit",
+                "spec/conformance/usage-signature/",
             ],
         },
         {

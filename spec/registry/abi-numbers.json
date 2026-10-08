@@ -3899,6 +3899,136 @@
       "status": "active",
       "symbolic_name": "withdrawn",
       "type_name": "SpecificationStatus"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c1b3fecab96032cc3861a969dcaaffbd93c65051ab07ec1851b0a9f6f9e7c47e"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.signature@1",
+      "status": "active",
+      "symbolic_name": "meter",
+      "type_name": "UsageLimit"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c1b3fecab96032cc3861a969dcaaffbd93c65051ab07ec1851b0a9f6f9e7c47e"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.signature@1",
+      "status": "active",
+      "symbolic_name": "phase",
+      "type_name": "UsageLimit"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c1b3fecab96032cc3861a969dcaaffbd93c65051ab07ec1851b0a9f6f9e7c47e"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.signature@1",
+      "status": "active",
+      "symbolic_name": "upper",
+      "type_name": "UsageLimit"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "3fcb28eb8883dd88511504743f681fc054e96a649d616601c3cbc103cdd7c0ad"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.signature@1",
+      "status": "active",
+      "symbolic_name": "catalog",
+      "type_name": "UsageMeterRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "3fcb28eb8883dd88511504743f681fc054e96a649d616601c3cbc103cdd7c0ad"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.signature@1",
+      "status": "active",
+      "symbolic_name": "name",
+      "type_name": "UsageMeterRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "8ca8abae3205561f6cc8dbbb4a4d0c00ccdd9e445b497e5c40cbce65bb945c5f"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.usage.signature@1",
+      "status": "active",
+      "symbolic_name": "forward",
+      "type_name": "UsagePhase"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "8ca8abae3205561f6cc8dbbb4a4d0c00ccdd9e445b497e5c40cbce65bb945c5f"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.usage.signature@1",
+      "status": "active",
+      "symbolic_name": "recovery",
+      "type_name": "UsagePhase"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "1b4d60843ffe64ba7d036fee34185bb7063c658be4cd0804f122b6fd1b20e77e"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.signature@1",
+      "status": "active",
+      "symbolic_name": "limits",
+      "type_name": "UsageSignature"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "406cc5c6e8f96452cd601cce92bcfac97b8bea7db965a6628d8ad4bbd27a0840"
+      },
+      "number": 1,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.usage.signature@1",
+      "status": "active",
+      "symbolic_name": "finite",
+      "type_name": "UsageUpperBound"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "406cc5c6e8f96452cd601cce92bcfac97b8bea7db965a6628d8ad4bbd27a0840"
+      },
+      "number": 2,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.usage.signature@1",
+      "status": "active",
+      "symbolic_name": "unbounded",
+      "type_name": "UsageUpperBound"
     }
   ],
   "registry_revision": 1

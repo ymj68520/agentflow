@@ -189,7 +189,7 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "a56f627517ab23613302d0bce29bf2910f4242fd5b404c46addae4e9f9df09a2"
+          "hex": "426a6f7c8555b63d1d7ba0bed9bce5df9cee1c5fc59b8a74e5d25d24d9307a80"
         },
         "logical_path": "spec/tables/rule-areas.json"
       },
@@ -285,6 +285,32 @@
         "logical_path": "spec/idl/specification-registry.afidl"
       },
       "specification_id": "agentflow.spec.registry@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Static Usage semantics: explicit meter universe and units, additive upper bounds, phase separation, canonicalization, conservative usage algebra and control propagation, static ceiling proof, non-increase compatibility and the runtime ledger boundary.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "d8fa91b7c50ff78e865357c13286d0f9584709e7337d37043e2dc6d1aa140500"
+        },
+        "logical_path": "spec/usage/usage-signature.md"
+      },
+      "specification_id": "agentflow.usage.signature.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the static Usage Signature: exact additive meter identity, forward/recovery phases, finite/unbounded upper bounds and the closed Usage Signature declaration.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "6cf26c6829f9a084e54164ccea4f4734683a8acf290e946ee388a3c545b2070d"
+        },
+        "logical_path": "spec/idl/usage-signature.afidl"
+      },
+      "specification_id": "agentflow.usage.signature@1",
       "status": "frozen"
     }
   ]

@@ -430,6 +430,41 @@
         "af-ir CheckedIrDocument::check_subflow_interfaces",
         "spec/conformance/subflow-interface/"
       ]
+    },
+    {
+      "description": "Static Usage algebra is conservative and checked: additive accumulation, branch maximum join, repetition, explicit zero, unknown propagation and arithmetic overflow preserve sound upper bounds.",
+      "suite_id": "SUITE-USAGE-ALGEBRA",
+      "targets": [
+        "af-usage algebra functions",
+        "spec/conformance/usage-signature/algebra/"
+      ]
+    },
+    {
+      "description": "Control propagation accumulates all possible usage: retry amplifies by attempts, race retains loser consumption, compensation never refunds forward usage, and max_inflight is not a total iteration bound.",
+      "suite_id": "SUITE-USAGE-CONTROL",
+      "targets": [
+        "af-usage control propagation functions",
+        "spec/conformance/usage-signature/algebra/"
+      ]
+    },
+    {
+      "description": "The Usage layer is declaration-only: explicit additive meter identity and units, finite/unbounded upper bounds, missing versus zero, static ceiling/non-increase proofs, and no measurement, billing, pricing, reservation, settlement, quota or runtime ledger. Covers Usage golden, negative and compatibility cases plus the static absence audit.",
+      "suite_id": "SUITE-USAGE-STATIC-ONLY",
+      "targets": [
+        "af-usage static surface audit",
+        "spec/conformance/usage-signature/golden/",
+        "spec/conformance/usage-signature/negative/",
+        "spec/conformance/usage-signature/compatibility/"
+      ]
+    },
+    {
+      "description": "Phase 4A.5A adds exactly one Usage AFIDL module and additive ABI/corpus entries but no HashV1 domain; all pre-existing AFIDL TypeSchemaDigests, SemanticIrDigest, effect/failure/resource/information-flow corpora and ABI assignments remain unchanged.",
+      "suite_id": "SUITE-USAGE-WIRE-FREEZE",
+      "targets": [
+        "af-usage static surface audit (no digest domain)",
+        "af-ir cumulative module/ABI/domain audit",
+        "spec/conformance/usage-signature/"
+      ]
     }
   ]
 }
