@@ -163,11 +163,37 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "fc9b03d2d7ba37ee40f16fa3807562dd4589e5505829c94f1e772a92052b5753"
+          "hex": "a055d31cb64582ace66ce48cab1a639c9b8685f98cd1ed41ddf78d2231428a61"
         },
         "logical_path": "spec/tables/rule-areas.json"
       },
       "specification_id": "agentflow.registry.rule-areas@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Resource Requirement semantics: nominal identity and exact pinning, the explicit resource-type universe, the requirement port namespace, exact-value attributes, the closed row, canonical ordering, static satisfaction, requirement non-strengthening, the Unproven result, the requirement/capability/grant distinction and the deferred binding/handle boundary.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a4c9334ba134073a53cfbf9f6335f9065855eb880904fbec834e32b3b3e8e50a"
+        },
+        "logical_path": "spec/resource/resource-requirement.md"
+      },
+      "specification_id": "agentflow.resource.requirement.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the static Resource Requirement Row: the nominal ResourceTypeRef (an exact TypeSchemaRef pin reused from the semantic core), the exact-value ResourceAttributeConstraint, the port-keyed ResourceRequirement and the closed ResourceRequirementRow. Only static need is declared here; binding, handles, adapters and authority are structurally outside.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "75c850fa5a55ef5eb1873b865b1d9f293fffb4e276bf6ec0834b0deb1d854b08"
+        },
+        "logical_path": "spec/idl/resource-requirement.afidl"
+      },
+      "specification_id": "agentflow.resource.requirement@1",
       "status": "frozen"
     },
     {

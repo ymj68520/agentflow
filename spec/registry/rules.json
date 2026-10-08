@@ -1121,6 +1121,218 @@
       "source_anchor": "registry-canonical-form"
     },
     {
+      "area": "RESOURCE",
+      "conformance_refs": [
+        "resource/golden/same-short-name-different-family",
+        "resource/negative/wrong-resource-type-digest",
+        "SUITE-RESOURCE-NOMINAL-EXACT-PIN"
+      ],
+      "normative_source": "spec/resource/resource-requirement.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RESOURCE-0001",
+      "short_statement": "A ResourceTypeRef is exact-pinned: nominal identity is the full (SpecificationId, TypeName, pinned TypeSchemaDigest) triple; an unregistered schema or a wrong digest is rejected, the same short name is never accepted.",
+      "source_anchor": "rr-exact-pinning"
+    },
+    {
+      "area": "RESOURCE",
+      "conformance_refs": [
+        "resource/negative/schema-not-recognized-as-resource-type",
+        "SUITE-RESOURCE-EXPLICIT-UNIVERSE"
+      ],
+      "normative_source": "spec/resource/resource-requirement.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RESOURCE-0002",
+      "short_statement": "A resource type must be explicitly recognized by the explicit, read-only ResourceTypeUniverse: a legal AFIDL schema alone is not a resource type, and recognition pins the type's closed attribute vocabulary.",
+      "source_anchor": "rr-universe"
+    },
+    {
+      "area": "RESOURCE",
+      "conformance_refs": [
+        "SUITE-RESOURCE-DECLARATION-NOT-AUTHORITY"
+      ],
+      "normative_source": "spec/resource/resource-requirement.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RESOURCE-0003",
+      "short_statement": "A resource requirement does not grant authority: requirement satisfaction is a static predicate, never an authorization, and no requirement-satisfied-implies-grant path exists.",
+      "source_anchor": "rr-vs-capability"
+    },
+    {
+      "area": "RESOURCE",
+      "conformance_refs": [
+        "resource/negative/invalid-port-zero"
+      ],
+      "normative_source": "spec/resource/resource-requirement.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RESOURCE-0004",
+      "short_statement": "A requirement port must be positive (port_no > 0); port 0 is rejected.",
+      "source_anchor": "rr-port-positive"
+    },
+    {
+      "area": "RESOURCE",
+      "conformance_refs": [
+        "resource/negative/duplicate-port"
+      ],
+      "normative_source": "spec/resource/resource-requirement.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RESOURCE-0005",
+      "short_statement": "Resource ports must be unique within one requirement row: one contract interface declares at most one requirement per port.",
+      "source_anchor": "rr-ports-unique"
+    },
+    {
+      "area": "RESOURCE",
+      "conformance_refs": [
+        "resource/golden/canonical-ordering",
+        "resource/equivalence/attribute-ordering"
+      ],
+      "normative_source": "spec/resource/resource-requirement.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RESOURCE-0006",
+      "short_statement": "Requirement attributes are canonical: NFC-normalized text, unsigned UTF-8 key order, and the same semantic requirements always produce the same canonical ACE1 bytes.",
+      "source_anchor": "rr-canonical-attributes"
+    },
+    {
+      "area": "RESOURCE",
+      "conformance_refs": [
+        "resource/negative/duplicate-attribute-key",
+        "resource/negative/nfc-duplicate-attribute-key"
+      ],
+      "normative_source": "spec/resource/resource-requirement.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RESOURCE-0007",
+      "short_statement": "Duplicate normalized attribute keys are rejected: two different values for one key are never silently overwritten, and NFC-equivalent spellings are the same key, not a legal equivalence input.",
+      "source_anchor": "rr-attributes-duplicates"
+    },
+    {
+      "area": "RESOURCE",
+      "conformance_refs": [
+        "resource/golden/empty-requirement-row",
+        "resource/golden/multiple-resource-ports"
+      ],
+      "normative_source": "spec/resource/resource-requirement.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RESOURCE-0008",
+      "short_statement": "The requirement row is a closed set with no open/residual/unknown wire state; canonical order is ascending port number.",
+      "source_anchor": "rr-closed-row"
+    },
+    {
+      "area": "RESOURCE",
+      "conformance_refs": [
+        "SUITE-RESOURCE-WIRE-FREEZE"
+      ],
+      "normative_source": "spec/resource/resource-requirement.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RESOURCE-0009",
+      "short_statement": "An unknown requirement upper bound is never the empty row: empty would falsely claim the computation needs nothing.",
+      "source_anchor": "rr-unknown-not-empty"
+    },
+    {
+      "area": "RESOURCE",
+      "conformance_refs": [
+        "resource/negative/unknown-resource-type",
+        "SUITE-RESOURCE-EXPLICIT-UNIVERSE"
+      ],
+      "normative_source": "spec/resource/resource-requirement.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RESOURCE-0010",
+      "short_statement": "There is no implicit latest lookup: resolution is exact against the explicitly supplied universe, with no fallback and no implicit upcast.",
+      "source_anchor": "rr-no-latest-lookup"
+    },
+    {
+      "area": "RESOURCE",
+      "conformance_refs": [
+        "resource/negative/candidate-wrong-type",
+        "resource/golden/same-short-name-different-family"
+      ],
+      "normative_source": "spec/resource/resource-requirement.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RESOURCE-0011",
+      "short_statement": "Static satisfaction requires the exact resource type: same short name, same record shape or similar provider is never accepted, and satisfaction proves nothing beyond static attribute matching.",
+      "source_anchor": "rr-satisfaction-exact-type"
+    },
+    {
+      "area": "RESOURCE",
+      "conformance_refs": [
+        "resource/compatibility/identical-rows",
+        "resource/compatibility/new-removes-attribute",
+        "resource/compatibility/new-adds-attribute",
+        "resource/compatibility/new-adds-port"
+      ],
+      "normative_source": "spec/resource/resource-requirement.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RESOURCE-0012",
+      "short_statement": "A requirement row cannot be strengthened: within one port namespace the new row's accepted candidate set must contain the old row's (per retained port, new.required_attributes subset of old.required_attributes as full (key,value) pairs); a new port or a new/changed condition proves strengthening.",
+      "source_anchor": "rr-non-strengthening"
+    },
+    {
+      "area": "RESOURCE",
+      "conformance_refs": [
+        "resource/compatibility/changed-nominal-type-same-port",
+        "resource/compatibility/same-short-name-different-digest"
+      ],
+      "normative_source": "spec/resource/resource-requirement.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RESOURCE-0013",
+      "short_statement": "No implicit ResourceType subtyping exists: a retained port with a changed nominal type (including the same short name under a different pin) is Unproven, never compatible.",
+      "source_anchor": "rr-no-subtyping"
+    },
+    {
+      "area": "RESOURCE",
+      "conformance_refs": [
+        "resource/golden/same-type-distinct-ports",
+        "resource/compatibility/cross-component-namespaces-not-merged"
+      ],
+      "normative_source": "spec/resource/resource-requirement.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RESOURCE-0014",
+      "short_statement": "Resource ports are local to one contract interface: comparing rows of two different namespaces is not a static proof and fails closed; equal port numbers across components do not name the same resource.",
+      "source_anchor": "rr-port-namespace"
+    },
+    {
+      "area": "RESOURCE",
+      "conformance_refs": [
+        "SUITE-RESOURCE-NO-CROSS-COMPONENT-MERGE"
+      ],
+      "normative_source": "spec/resource/resource-requirement.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RESOURCE-0015",
+      "short_statement": "No cross-component merge without an explicit port mapping: aggregating requirement rows by equal port numbers is forbidden and no merge operation exists in this layer.",
+      "source_anchor": "rr-no-blind-union"
+    },
+    {
+      "area": "RESOURCE",
+      "conformance_refs": [
+        "SUITE-RESOURCE-DECLARATION-NOT-AUTHORITY"
+      ],
+      "normative_source": "spec/resource/resource-requirement.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RESOURCE-0016",
+      "short_statement": "The ResourceHandle capability ceiling, EffectGrant and ResourceRequirement are distinct: declaring a requirement produces no runtime authority and no attenuation.",
+      "source_anchor": "rr-authority-distinction"
+    },
+    {
+      "area": "RESOURCE",
+      "conformance_refs": [
+        "resource/negative/unknown-attribute",
+        "resource/compatibility/unknown-attribute-implication-unproven"
+      ],
+      "normative_source": "spec/resource/resource-requirement.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RESOURCE-0017",
+      "short_statement": "Attribute constraints form a closed exact-value conjunctive predicate language: an attribute key outside the type's descriptor vocabulary has no known constraint meaning and is rejected; no glob, regex, path prefix, CIDR, policy expression or predicate script exists.",
+      "source_anchor": "rr-exact-attributes"
+    },
+    {
+      "area": "RESOURCE",
+      "conformance_refs": [
+        "resource/compatibility/cross-component-namespaces-not-merged"
+      ],
+      "normative_source": "spec/resource/resource-requirement.md",
+      "requirement_level": "must",
+      "rule_id": "AF-RESOURCE-0018",
+      "short_statement": "Unproven is a fail-closed analysis result: it never enters the wire model, is never interpreted as the empty row and is never auto-judged compatible.",
+      "source_anchor": "rr-unproven"
+    },
+    {
       "area": "SEMANTIC",
       "conformance_refs": [
         "constant/unit",

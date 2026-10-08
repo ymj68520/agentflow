@@ -9,6 +9,7 @@
     { "area": "EFFECT", "description": "Effect Signature: effect atoms, resource selectors, occurrence bounds, guards, closed/open/top rows, the effect algebra and static control propagation (spec/effect/effect-signature.md)" },
     { "area": "FAILURE", "description": "Static Typed Failure Row: nominal failure type identity, exact schema pinning, the closed failure set, failure algebra and static control propagation (spec/failure/failure-row.md)" },
     { "area": "REGISTRY", "description": "Normative rule registry and stable ABI number registry mechanics (spec/registry/registry-spec.md)" },
+    { "area": "RESOURCE", "description": "Static Resource Requirement Row: nominal resource type identity, exact schema pinning, the explicit resource-type universe, exact-value attribute constraints, the closed requirement row, static satisfaction and requirement non-strengthening (spec/resource/resource-requirement.md)" },
     { "area": "SEMANTIC", "description": "Workflow semantic core: primitive universe, semantic type DAG, value slots, pure expressions, logical resource slots (spec/semantic/core-semantic-types.md)" },
     { "area": "SPEC", "description": "Specification registry and normative-source integrity (spec/registry/registry-spec.md)" }
   ]

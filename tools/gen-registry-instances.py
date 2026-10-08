@@ -1392,6 +1392,126 @@ FAILURE_RULES = [
 ]
 RULES.extend(FAILURE_RULES)
 
+# ---------------------------------------------------------------------------
+# Resource Requirement Row rules (Phase 4A.3, area RESOURCE)
+# ---------------------------------------------------------------------------
+
+RESOURCE_SRC = "spec/resource/resource-requirement.md"
+
+RESOURCE_RULES = [
+    rule("AF-RESOURCE-0001", "RESOURCE", RESOURCE_SRC, "rr-exact-pinning",
+         "A ResourceTypeRef is exact-pinned: nominal identity is the full "
+         "(SpecificationId, TypeName, pinned TypeSchemaDigest) triple; an "
+         "unregistered schema or a wrong digest is rejected, the same "
+         "short name is never accepted.",
+         ["resource/golden/same-short-name-different-family",
+          "resource/negative/wrong-resource-type-digest",
+          "SUITE-RESOURCE-NOMINAL-EXACT-PIN"]),
+    rule("AF-RESOURCE-0002", "RESOURCE", RESOURCE_SRC, "rr-universe",
+         "A resource type must be explicitly recognized by the explicit, "
+         "read-only ResourceTypeUniverse: a legal AFIDL schema alone is "
+         "not a resource type, and recognition pins the type's closed "
+         "attribute vocabulary.",
+         ["resource/negative/schema-not-recognized-as-resource-type",
+          "SUITE-RESOURCE-EXPLICIT-UNIVERSE"]),
+    rule("AF-RESOURCE-0003", "RESOURCE", RESOURCE_SRC, "rr-vs-capability",
+         "A resource requirement does not grant authority: requirement "
+         "satisfaction is a static predicate, never an authorization, and "
+         "no requirement-satisfied-implies-grant path exists.",
+         ["SUITE-RESOURCE-DECLARATION-NOT-AUTHORITY"]),
+    rule("AF-RESOURCE-0004", "RESOURCE", RESOURCE_SRC, "rr-port-positive",
+         "A requirement port must be positive (port_no > 0); port 0 is "
+         "rejected.",
+         ["resource/negative/invalid-port-zero"]),
+    rule("AF-RESOURCE-0005", "RESOURCE", RESOURCE_SRC, "rr-ports-unique",
+         "Resource ports must be unique within one requirement row: one "
+         "contract interface declares at most one requirement per port.",
+         ["resource/negative/duplicate-port"]),
+    rule("AF-RESOURCE-0006", "RESOURCE", RESOURCE_SRC, "rr-canonical-attributes",
+         "Requirement attributes are canonical: NFC-normalized text, "
+         "unsigned UTF-8 key order, and the same semantic requirements "
+         "always produce the same canonical ACE1 bytes.",
+         ["resource/golden/canonical-ordering",
+          "resource/equivalence/attribute-ordering"]),
+    rule("AF-RESOURCE-0007", "RESOURCE", RESOURCE_SRC, "rr-attributes-duplicates",
+         "Duplicate normalized attribute keys are rejected: two different "
+         "values for one key are never silently overwritten, and "
+         "NFC-equivalent spellings are the same key, not a legal "
+         "equivalence input.",
+         ["resource/negative/duplicate-attribute-key",
+          "resource/negative/nfc-duplicate-attribute-key"]),
+    rule("AF-RESOURCE-0008", "RESOURCE", RESOURCE_SRC, "rr-closed-row",
+         "The requirement row is a closed set with no open/residual/"
+         "unknown wire state; canonical order is ascending port number.",
+         ["resource/golden/empty-requirement-row",
+          "resource/golden/multiple-resource-ports"]),
+    rule("AF-RESOURCE-0009", "RESOURCE", RESOURCE_SRC, "rr-unknown-not-empty",
+         "An unknown requirement upper bound is never the empty row: "
+         "empty would falsely claim the computation needs nothing.",
+         ["SUITE-RESOURCE-WIRE-FREEZE"]),
+    rule("AF-RESOURCE-0010", "RESOURCE", RESOURCE_SRC, "rr-no-latest-lookup",
+         "There is no implicit latest lookup: resolution is exact against "
+         "the explicitly supplied universe, with no fallback and no "
+         "implicit upcast.",
+         ["resource/negative/unknown-resource-type",
+          "SUITE-RESOURCE-EXPLICIT-UNIVERSE"]),
+    rule("AF-RESOURCE-0011", "RESOURCE", RESOURCE_SRC, "rr-satisfaction-exact-type",
+         "Static satisfaction requires the exact resource type: same "
+         "short name, same record shape or similar provider is never "
+         "accepted, and satisfaction proves nothing beyond static "
+         "attribute matching.",
+         ["resource/negative/candidate-wrong-type",
+          "resource/golden/same-short-name-different-family"]),
+    rule("AF-RESOURCE-0012", "RESOURCE", RESOURCE_SRC, "rr-non-strengthening",
+         "A requirement row cannot be strengthened: within one port "
+         "namespace the new row's accepted candidate set must contain the "
+         "old row's (per retained port, new.required_attributes subset of "
+         "old.required_attributes as full (key,value) pairs); a new port "
+         "or a new/changed condition proves strengthening.",
+         ["resource/compatibility/identical-rows",
+          "resource/compatibility/new-removes-attribute",
+          "resource/compatibility/new-adds-attribute",
+          "resource/compatibility/new-adds-port"]),
+    rule("AF-RESOURCE-0013", "RESOURCE", RESOURCE_SRC, "rr-no-subtyping",
+         "No implicit ResourceType subtyping exists: a retained port with "
+         "a changed nominal type (including the same short name under a "
+         "different pin) is Unproven, never compatible.",
+         ["resource/compatibility/changed-nominal-type-same-port",
+          "resource/compatibility/same-short-name-different-digest"]),
+    rule("AF-RESOURCE-0014", "RESOURCE", RESOURCE_SRC, "rr-port-namespace",
+         "Resource ports are local to one contract interface: comparing "
+         "rows of two different namespaces is not a static proof and "
+         "fails closed; equal port numbers across components do not name "
+         "the same resource.",
+         ["resource/golden/same-type-distinct-ports",
+          "resource/compatibility/cross-component-namespaces-not-merged"]),
+    rule("AF-RESOURCE-0015", "RESOURCE", RESOURCE_SRC, "rr-no-blind-union",
+         "No cross-component merge without an explicit port mapping: "
+         "aggregating requirement rows by equal port numbers is forbidden "
+         "and no merge operation exists in this layer.",
+         ["SUITE-RESOURCE-NO-CROSS-COMPONENT-MERGE"]),
+    rule("AF-RESOURCE-0016", "RESOURCE", RESOURCE_SRC, "rr-authority-distinction",
+         "The ResourceHandle capability ceiling, EffectGrant and "
+         "ResourceRequirement are distinct: declaring a requirement "
+         "produces no runtime authority and no attenuation.",
+         ["SUITE-RESOURCE-DECLARATION-NOT-AUTHORITY"]),
+    rule("AF-RESOURCE-0017", "RESOURCE", RESOURCE_SRC, "rr-exact-attributes",
+         "Attribute constraints form a closed exact-value conjunctive "
+         "predicate language: an attribute key outside the type's "
+         "descriptor vocabulary has no known constraint meaning and is "
+         "rejected; no glob, regex, path prefix, CIDR, policy expression "
+         "or predicate script exists.",
+         ["resource/negative/unknown-attribute",
+          "resource/compatibility/unknown-attribute-implication-unproven"]),
+    rule("AF-RESOURCE-0018", "RESOURCE", RESOURCE_SRC, "rr-unproven",
+         "Unproven is a fail-closed analysis result: it never enters the "
+         "wire model, is never interpreted as the empty row and is never "
+         "auto-judged compatible.",
+         ["resource/compatibility/cross-component-namespaces-not-merged"]),
+]
+RULES.extend(RESOURCE_RULES)
+
+
 
 
 RULES.sort(key=lambda r: r["rule_id"])
@@ -1470,6 +1590,22 @@ SPECS = [
     ("agentflow.registry.rule-areas@1", "closed_table",
      "spec/tables/rule-areas.json",
      "Closed table of RuleId areas."),
+    ("agentflow.resource.requirement@1", "schema",
+     "spec/idl/resource-requirement.afidl",
+     "Normative shape of the static Resource Requirement Row: the nominal "
+     "ResourceTypeRef (an exact TypeSchemaRef pin reused from the semantic "
+     "core), the exact-value ResourceAttributeConstraint, the port-keyed "
+     "ResourceRequirement and the closed ResourceRequirementRow. Only "
+     "static need is declared here; binding, handles, adapters and "
+     "authority are structurally outside."),
+    ("agentflow.resource.requirement.semantics@1", "schema_language",
+     "spec/resource/resource-requirement.md",
+     "Resource Requirement semantics: nominal identity and exact pinning, "
+     "the explicit resource-type universe, the requirement port namespace, "
+     "exact-value attributes, the closed row, canonical ordering, static "
+     "satisfaction, requirement non-strengthening, the Unproven result, "
+     "the requirement/capability/grant distinction and the deferred "
+     "binding/handle boundary."),
     ("agentflow.semantic.core@1", "schema",
      "spec/idl/semantic-core.afidl",
      "Normative shape of the workflow semantic core: primitive universe, "
@@ -1523,6 +1659,7 @@ SCHEMA_MODULES = [
     "spec/idl/semantic-ir.afidl",
     "spec/idl/effect-signature.afidl",
     "spec/idl/failure-row.afidl",
+    "spec/idl/resource-requirement.afidl",
 ]
 
 assignments = []
@@ -2024,6 +2161,103 @@ SUITE_LIST = [
                 "af-failure static surface audit (no FailureRowDigest)",
                 "af-ir wire-freeze audit (module/ABI/domain counts)",
                 "spec/conformance/effect-signature/ (revision 2 unchanged)",
+            ],
+        },
+        {
+            "suite_id": "SUITE-RESOURCE-DECLARATION-NOT-AUTHORITY",
+            "description": (
+                "A resource requirement is a declaration of need, never a "
+                "grant: satisfaction is a static predicate over explicit "
+                "descriptors, no requirement-satisfied-implies-grant path "
+                "exists anywhere in af-resource, and the capability "
+                "ceiling / effect grant / requirement distinction is "
+                "enforced by the static absence audit. Covers the "
+                "authority-distinction rules and the crate source audit."
+            ),
+            "targets": [
+                "af-resource static surface audit (no grant/capability symbols)",
+                "spec/conformance/resource-requirement/compatibility/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-RESOURCE-EXPLICIT-UNIVERSE",
+            "description": (
+                "Resource-type recognition is an explicit registry-level "
+                "fact: the universe is explicit, read-only, in-memory "
+                "input; a legal AFIDL schema alone is not a resource "
+                "type; there is no latest-schema lookup, no fallback and "
+                "no implicit upcast. Covers the universe corpus cases "
+                "and the static surface."
+            ),
+            "targets": [
+                "af-resource ResourceTypeUniverse (explicit descriptors)",
+                "spec/conformance/resource-requirement/negative/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-RESOURCE-NOMINAL-EXACT-PIN",
+            "description": (
+                "Resource-type matching is exact nominal identity only: "
+                "the full (SpecificationId, TypeName, pinned "
+                "TypeSchemaDigest) triple; the same short name under a "
+                "different specification or with a different digest is a "
+                "DIFFERENT resource type, in satisfaction and in "
+                "compatibility alike. No implicit subtyping exists. "
+                "Covers the same-short-name corpus cases and the "
+                "changed-type compatibility cases."
+            ),
+            "targets": [
+                "spec/conformance/resource-requirement/golden/same-short-name-different-family",
+                "spec/conformance/resource-requirement/compatibility/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-RESOURCE-NO-CROSS-COMPONENT-MERGE",
+            "description": (
+                "Requirement rows are never merged across components: "
+                "port numbers are local to one contract interface, equal "
+                "port numbers do not name the same resource, and no "
+                "union/merge operation exists in af-resource. "
+                "Aggregation requires an explicit port mapping at the "
+                "later contract-analysis stage. Covers the "
+                "cross-namespace corpus case and the static absence "
+                "audit."
+            ),
+            "targets": [
+                "af-resource static surface audit (no merge/union symbols)",
+                "spec/conformance/resource-requirement/compatibility/cross-component-namespaces-not-merged",
+            ],
+        },
+        {
+            "suite_id": "SUITE-RESOURCE-NO-RUNTIME",
+            "description": (
+                "The resource layer is static only: no af-ir, af-effect, "
+                "af-failure or af-spec dependency, no I/O, clock, "
+                "randomness, async runtime, network, credential, adapter "
+                "or binding; satisfaction and non-strengthening are pure "
+                "functions over explicit values. Covers the crate "
+                "dependency audit and the source surface."
+            ),
+            "targets": [
+                "af-resource crate dependency set (af-core, af-idl, af-semantic)",
+                "af-resource static surface audit (no runtime symbols)",
+            ],
+        },
+        {
+            "suite_id": "SUITE-RESOURCE-WIRE-FREEZE",
+            "description": (
+                "Phase 4A.3 added exactly one AFIDL module and no HashV1 "
+                "domain: no resource-requirement digest exists, "
+                "semantic-ir.afidl stays byte-identical, the effect "
+                "corpus stays at revision 2, the failure corpus at "
+                "revision 1, and every pre-existing corpus digest is "
+                "unchanged. Covers the static surface audits and the "
+                "zero-drift corpus runs."
+            ),
+            "targets": [
+                "af-resource static surface audit (no digest domains)",
+                "af-ir wire-freeze audit (module/ABI/domain counts)",
+                "spec/conformance/effect-signature/ and failure-row/ (revisions unchanged)",
             ],
         },
         {

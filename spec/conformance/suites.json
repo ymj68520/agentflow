@@ -118,6 +118,55 @@
       ]
     },
     {
+      "description": "A resource requirement is a declaration of need, never a grant: satisfaction is a static predicate over explicit descriptors, no requirement-satisfied-implies-grant path exists anywhere in af-resource, and the capability ceiling / effect grant / requirement distinction is enforced by the static absence audit. Covers the authority-distinction rules and the crate source audit.",
+      "suite_id": "SUITE-RESOURCE-DECLARATION-NOT-AUTHORITY",
+      "targets": [
+        "af-resource static surface audit (no grant/capability symbols)",
+        "spec/conformance/resource-requirement/compatibility/"
+      ]
+    },
+    {
+      "description": "Resource-type recognition is an explicit registry-level fact: the universe is explicit, read-only, in-memory input; a legal AFIDL schema alone is not a resource type; there is no latest-schema lookup, no fallback and no implicit upcast. Covers the universe corpus cases and the static surface.",
+      "suite_id": "SUITE-RESOURCE-EXPLICIT-UNIVERSE",
+      "targets": [
+        "af-resource ResourceTypeUniverse (explicit descriptors)",
+        "spec/conformance/resource-requirement/negative/"
+      ]
+    },
+    {
+      "description": "Requirement rows are never merged across components: port numbers are local to one contract interface, equal port numbers do not name the same resource, and no union/merge operation exists in af-resource. Aggregation requires an explicit port mapping at the later contract-analysis stage. Covers the cross-namespace corpus case and the static absence audit.",
+      "suite_id": "SUITE-RESOURCE-NO-CROSS-COMPONENT-MERGE",
+      "targets": [
+        "af-resource static surface audit (no merge/union symbols)",
+        "spec/conformance/resource-requirement/compatibility/cross-component-namespaces-not-merged"
+      ]
+    },
+    {
+      "description": "The resource layer is static only: no af-ir, af-effect, af-failure or af-spec dependency, no I/O, clock, randomness, async runtime, network, credential, adapter or binding; satisfaction and non-strengthening are pure functions over explicit values. Covers the crate dependency audit and the source surface.",
+      "suite_id": "SUITE-RESOURCE-NO-RUNTIME",
+      "targets": [
+        "af-resource crate dependency set (af-core, af-idl, af-semantic)",
+        "af-resource static surface audit (no runtime symbols)"
+      ]
+    },
+    {
+      "description": "Resource-type matching is exact nominal identity only: the full (SpecificationId, TypeName, pinned TypeSchemaDigest) triple; the same short name under a different specification or with a different digest is a DIFFERENT resource type, in satisfaction and in compatibility alike. No implicit subtyping exists. Covers the same-short-name corpus cases and the changed-type compatibility cases.",
+      "suite_id": "SUITE-RESOURCE-NOMINAL-EXACT-PIN",
+      "targets": [
+        "spec/conformance/resource-requirement/golden/same-short-name-different-family",
+        "spec/conformance/resource-requirement/compatibility/"
+      ]
+    },
+    {
+      "description": "Phase 4A.3 added exactly one AFIDL module and no HashV1 domain: no resource-requirement digest exists, semantic-ir.afidl stays byte-identical, the effect corpus stays at revision 2, the failure corpus at revision 1, and every pre-existing corpus digest is unchanged. Covers the static surface audits and the zero-drift corpus runs.",
+      "suite_id": "SUITE-RESOURCE-WIRE-FREEZE",
+      "targets": [
+        "af-resource static surface audit (no digest domains)",
+        "af-ir wire-freeze audit (module/ABI/domain counts)",
+        "spec/conformance/effect-signature/ and failure-row/ (revisions unchanged)"
+      ]
+    },
+    {
       "description": "The expression body set is closed to the fifteen Phase 3A expressions and to the workflow primitive universe. Covers the exhaustive match over ExpressionBody in the Rust checker and the closed SemanticPrimitiveType enum, whose ALL table and keyword round-trip are asserted in-tree.",
       "suite_id": "SUITE-SEMANTIC-CLOSED-EXPRESSION-SET",
       "targets": [
