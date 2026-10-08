@@ -1,0 +1,144 @@
+{
+  "case_id": "execution/compatibility/expands-residency",
+  "case_kind": "compatibility",
+  "catalogs": {
+    "capabilities": [
+      {
+        "attributes": [
+          {
+            "key": "api",
+            "value": "v1"
+          }
+        ],
+        "catalog": "agentflow.test.execution.capabilities@1",
+        "name": "browser.automation",
+        "version": "1"
+      },
+      {
+        "attributes": [
+          {
+            "key": "api",
+            "value": "v1"
+          }
+        ],
+        "catalog": "agentflow.test.execution.capabilities@1",
+        "name": "browser.automation",
+        "version": "2"
+      },
+      {
+        "attributes": [
+          {
+            "key": "api",
+            "value": "v1"
+          }
+        ],
+        "catalog": "agentflow.test.execution.capabilities@1",
+        "name": "gpu.compute",
+        "version": "1"
+      },
+      {
+        "attributes": [
+          {
+            "key": "api",
+            "value": "v1"
+          }
+        ],
+        "catalog": "agentflow.test.execution.capabilities@1",
+        "name": "model.inference",
+        "version": "2"
+      }
+    ],
+    "regions": [
+      {
+        "catalog": "agentflow.test.execution.regions@1",
+        "name": "us-east-1"
+      },
+      {
+        "catalog": "agentflow.test.execution.regions@1",
+        "name": "eu-west-1"
+      },
+      {
+        "catalog": "agentflow.test.execution.regions@1",
+        "name": "eu-central-1"
+      }
+    ],
+    "runtime_profiles": [
+      {
+        "catalog": "agentflow.test.execution.runtime@1",
+        "family": "python",
+        "features": [
+          "sandboxed",
+          "abi"
+        ],
+        "name": "py311"
+      },
+      {
+        "catalog": "agentflow.test.execution.runtime@1",
+        "family": "native",
+        "features": [
+          "sandboxed",
+          "abi"
+        ],
+        "name": "abi2"
+      }
+    ],
+    "trust_domains": [
+      {
+        "catalog": "agentflow.test.execution.trust@1",
+        "name": "trusted.batch"
+      },
+      {
+        "catalog": "agentflow.test.execution.trust@1",
+        "name": "isolated.batch"
+      }
+    ]
+  },
+  "corpus_revision": 1,
+  "expected": {
+    "combined": "violation",
+    "feasibility": "proven",
+    "security": "violation"
+  },
+  "kind": "agentflow.conformance.execution-requirements.case",
+  "new_requirements": {
+    "capabilities": [],
+    "implementation_abis": [],
+    "quantities": [],
+    "region_residency": {
+      "execution_regions": [],
+      "residency_regions": [
+        {
+          "catalog": "agentflow.test.execution.regions@1",
+          "name": "eu-west-1"
+        },
+        {
+          "catalog": "agentflow.test.execution.regions@1",
+          "name": "us-east-1"
+        }
+      ]
+    },
+    "runtime_profile": null,
+    "sandbox": null,
+    "soft_preferences": [],
+    "trust_domain": null
+  },
+  "note": "expanded residency is a security relaxation",
+  "old_requirements": {
+    "capabilities": [],
+    "implementation_abis": [],
+    "quantities": [],
+    "region_residency": {
+      "execution_regions": [],
+      "residency_regions": [
+        {
+          "catalog": "agentflow.test.execution.regions@1",
+          "name": "eu-west-1"
+        }
+      ]
+    },
+    "runtime_profile": null,
+    "sandbox": null,
+    "soft_preferences": [],
+    "trust_domain": null
+  }
+}

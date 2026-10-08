@@ -91,7 +91,7 @@ struct MutationCase {
 
 /// Frozen corpus revision this harness is written against.
 ///
-/// Golden revision 10 (Phase 4A.5A): additive `usage-signature` schema case. Revision 9 (Phase 4A.4) added the `information-flow` schema case; revision 8 (Phase 4A.3) added `resource-requirement`; revision 7 (Phase 4A.2) added `failure-row`; revision 6 (Phase 4A.1) added `effect-signature`; revision 5 (Phase 3B)
+/// Golden revision 13 (Phase 4A.7): additive `execution-requirements` schema case. Revision 12 (Phase 4A.6) added `recovery-contract`; revision 11 (Phase 4A.5B) added `cost-projection`; revision 10 (Phase 4A.5A) added `usage-signature`; revision 9 (Phase 4A.4) added the `information-flow` schema case; revision 8 (Phase 4A.3) added `resource-requirement`; revision 7 (Phase 4A.2) added `failure-row`; revision 6 (Phase 4A.1) added `effect-signature`; revision 5 (Phase 3B)
 /// added the `semantic-ir` schema case; revision 4
 /// (Phase 2C) added the cross-module `import-*` fixtures; revision 3
 /// (Phase 3A) the `semantic-core` case and revision 2 (Phase 2B) the `specification-registry`
@@ -99,7 +99,7 @@ struct MutationCase {
 /// unchanged. The parser-invalid manifest is a separate frozen artifact and
 /// carries its own revision (2 since Phase 2C added the import negatives and
 /// the module-set cycle cases).
-const CORPUS_REVISION: u64 = 12;
+const CORPUS_REVISION: u64 = 13;
 const PARSER_INVALID_CORPUS_REVISION: u64 = 2;
 
 fn frozen_digest_map() -> BTreeMap<(String, String), String> {

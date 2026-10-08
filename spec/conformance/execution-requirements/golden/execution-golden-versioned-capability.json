@@ -1,0 +1,180 @@
+{
+  "canonical_ace1_utf8": "{\"capabilities\":[{\"capability\":{\"catalog\":\"agentflow.test.execution.capabilities@1\",\"name\":\"model.inference\"},\"exact_version\":\"2\",\"required_attributes\":[]}],\"implementation_abis\":[],\"quantities\":[],\"region_residency\":{\"none\":null},\"runtime_profile\":{\"none\":null},\"sandbox\":{\"none\":null},\"soft_preferences\":[],\"trust_domain\":{\"none\":null}}",
+  "case_id": "execution/golden/versioned-capability",
+  "case_kind": "golden",
+  "catalogs": {
+    "capabilities": [
+      {
+        "attributes": [
+          {
+            "key": "api",
+            "value": "v1"
+          }
+        ],
+        "catalog": "agentflow.test.execution.capabilities@1",
+        "name": "browser.automation",
+        "version": "1"
+      },
+      {
+        "attributes": [
+          {
+            "key": "api",
+            "value": "v1"
+          }
+        ],
+        "catalog": "agentflow.test.execution.capabilities@1",
+        "name": "browser.automation",
+        "version": "2"
+      },
+      {
+        "attributes": [
+          {
+            "key": "api",
+            "value": "v1"
+          }
+        ],
+        "catalog": "agentflow.test.execution.capabilities@1",
+        "name": "gpu.compute",
+        "version": "1"
+      },
+      {
+        "attributes": [
+          {
+            "key": "api",
+            "value": "v1"
+          }
+        ],
+        "catalog": "agentflow.test.execution.capabilities@1",
+        "name": "model.inference",
+        "version": "2"
+      }
+    ],
+    "regions": [
+      {
+        "catalog": "agentflow.test.execution.regions@1",
+        "name": "us-east-1"
+      },
+      {
+        "catalog": "agentflow.test.execution.regions@1",
+        "name": "eu-west-1"
+      },
+      {
+        "catalog": "agentflow.test.execution.regions@1",
+        "name": "eu-central-1"
+      }
+    ],
+    "runtime_profiles": [
+      {
+        "catalog": "agentflow.test.execution.runtime@1",
+        "family": "python",
+        "features": [
+          "sandboxed",
+          "abi"
+        ],
+        "name": "py311"
+      },
+      {
+        "catalog": "agentflow.test.execution.runtime@1",
+        "family": "native",
+        "features": [
+          "sandboxed",
+          "abi"
+        ],
+        "name": "abi2"
+      }
+    ],
+    "trust_domains": [
+      {
+        "catalog": "agentflow.test.execution.trust@1",
+        "name": "trusted.batch"
+      },
+      {
+        "catalog": "agentflow.test.execution.trust@1",
+        "name": "isolated.batch"
+      }
+    ]
+  },
+  "corpus_revision": 1,
+  "expected": {
+    "outcome": "rejected",
+    "reason": "capability_missing"
+  },
+  "kind": "agentflow.conformance.execution-requirements.case",
+  "note": "exact capability version",
+  "profile": {
+    "capabilities": [
+      {
+        "attributes": [
+          {
+            "key": "api",
+            "value": "v1"
+          }
+        ],
+        "capability": {
+          "catalog": "agentflow.test.execution.capabilities@1",
+          "name": "browser.automation"
+        },
+        "version": "1"
+      }
+    ],
+    "execution_region": {
+      "catalog": "agentflow.test.execution.regions@1",
+      "name": "eu-west-1"
+    },
+    "implementation_abis": [
+      {
+        "schema_digest": {
+          "algorithm": "sha256",
+          "domain": "type-schema",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "specification_id": "agentflow.test.failures@1",
+        "type_name": "PaymentDeclined"
+      }
+    ],
+    "quantities": [
+      {
+        "amount": 4000,
+        "kind": "cpu_millicores"
+      },
+      {
+        "amount": 17179869184,
+        "kind": "memory_bytes"
+      }
+    ],
+    "residency_regions": [
+      {
+        "catalog": "agentflow.test.execution.regions@1",
+        "name": "eu-west-1"
+      }
+    ],
+    "runtime_profile": {
+      "catalog": "agentflow.test.execution.runtime@1",
+      "name": "py311"
+    },
+    "sandbox": "strong",
+    "trust_domain": {
+      "catalog": "agentflow.test.execution.trust@1",
+      "name": "trusted.batch"
+    }
+  },
+  "requirements": {
+    "capabilities": [
+      {
+        "capability": {
+          "catalog": "agentflow.test.execution.capabilities@1",
+          "name": "model.inference"
+        },
+        "exact_version": "2",
+        "required_attributes": []
+      }
+    ],
+    "implementation_abis": [],
+    "quantities": [],
+    "region_residency": null,
+    "runtime_profile": null,
+    "sandbox": null,
+    "soft_preferences": [],
+    "trust_domain": null
+  }
+}

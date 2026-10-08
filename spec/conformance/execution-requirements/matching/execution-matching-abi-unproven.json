@@ -1,0 +1,135 @@
+{
+  "case_id": "execution/matching/abi-unproven",
+  "case_kind": "matching",
+  "catalogs": {
+    "capabilities": [
+      {
+        "attributes": [
+          {
+            "key": "api",
+            "value": "v1"
+          }
+        ],
+        "catalog": "agentflow.test.execution.capabilities@1",
+        "name": "browser.automation",
+        "version": "1"
+      },
+      {
+        "attributes": [
+          {
+            "key": "api",
+            "value": "v1"
+          }
+        ],
+        "catalog": "agentflow.test.execution.capabilities@1",
+        "name": "browser.automation",
+        "version": "2"
+      },
+      {
+        "attributes": [
+          {
+            "key": "api",
+            "value": "v1"
+          }
+        ],
+        "catalog": "agentflow.test.execution.capabilities@1",
+        "name": "gpu.compute",
+        "version": "1"
+      },
+      {
+        "attributes": [
+          {
+            "key": "api",
+            "value": "v1"
+          }
+        ],
+        "catalog": "agentflow.test.execution.capabilities@1",
+        "name": "model.inference",
+        "version": "2"
+      }
+    ],
+    "regions": [
+      {
+        "catalog": "agentflow.test.execution.regions@1",
+        "name": "us-east-1"
+      },
+      {
+        "catalog": "agentflow.test.execution.regions@1",
+        "name": "eu-west-1"
+      },
+      {
+        "catalog": "agentflow.test.execution.regions@1",
+        "name": "eu-central-1"
+      }
+    ],
+    "runtime_profiles": [
+      {
+        "catalog": "agentflow.test.execution.runtime@1",
+        "family": "python",
+        "features": [
+          "sandboxed",
+          "abi"
+        ],
+        "name": "py311"
+      },
+      {
+        "catalog": "agentflow.test.execution.runtime@1",
+        "family": "native",
+        "features": [
+          "sandboxed",
+          "abi"
+        ],
+        "name": "abi2"
+      }
+    ],
+    "trust_domains": [
+      {
+        "catalog": "agentflow.test.execution.trust@1",
+        "name": "trusted.batch"
+      },
+      {
+        "catalog": "agentflow.test.execution.trust@1",
+        "name": "isolated.batch"
+      }
+    ]
+  },
+  "corpus_revision": 1,
+  "expected": {
+    "outcome": "unproven",
+    "reason": "abi_profile"
+  },
+  "kind": "agentflow.conformance.execution-requirements.case",
+  "note": "missing ABI evidence is unproven",
+  "profile": {
+    "capabilities": [],
+    "execution_region": null,
+    "implementation_abis": [],
+    "quantities": [],
+    "residency_regions": [],
+    "runtime_profile": null,
+    "sandbox": null,
+    "trust_domain": null
+  },
+  "requirements": {
+    "capabilities": [],
+    "implementation_abis": [
+      {
+        "schema": {
+          "schema_digest": {
+            "algorithm": "sha256",
+            "domain": "type-schema",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "specification_id": "agentflow.test.failures@1",
+          "type_name": "PaymentDeclined"
+        }
+      }
+    ],
+    "quantities": [],
+    "region_residency": null,
+    "runtime_profile": null,
+    "sandbox": null,
+    "soft_preferences": [],
+    "trust_domain": null
+  }
+}

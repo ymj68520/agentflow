@@ -1,0 +1,156 @@
+{
+  "canonical_ace1_utf8": "{\"capabilities\":[{\"capability\":{\"catalog\":\"agentflow.test.execution.capabilities@1\",\"name\":\"browser.automation\"},\"exact_version\":\"1\",\"required_attributes\":[]},{\"capability\":{\"catalog\":\"agentflow.test.execution.capabilities@1\",\"name\":\"model.inference\"},\"exact_version\":\"2\",\"required_attributes\":[]}],\"implementation_abis\":[],\"quantities\":[],\"region_residency\":{\"none\":null},\"runtime_profile\":{\"none\":null},\"sandbox\":{\"none\":null},\"soft_preferences\":[],\"trust_domain\":{\"none\":null}}",
+  "case_id": "execution/equivalence/capability-order",
+  "case_kind": "equivalence",
+  "catalogs": {
+    "capabilities": [
+      {
+        "attributes": [
+          {
+            "key": "api",
+            "value": "v1"
+          }
+        ],
+        "catalog": "agentflow.test.execution.capabilities@1",
+        "name": "browser.automation",
+        "version": "1"
+      },
+      {
+        "attributes": [
+          {
+            "key": "api",
+            "value": "v1"
+          }
+        ],
+        "catalog": "agentflow.test.execution.capabilities@1",
+        "name": "browser.automation",
+        "version": "2"
+      },
+      {
+        "attributes": [
+          {
+            "key": "api",
+            "value": "v1"
+          }
+        ],
+        "catalog": "agentflow.test.execution.capabilities@1",
+        "name": "gpu.compute",
+        "version": "1"
+      },
+      {
+        "attributes": [
+          {
+            "key": "api",
+            "value": "v1"
+          }
+        ],
+        "catalog": "agentflow.test.execution.capabilities@1",
+        "name": "model.inference",
+        "version": "2"
+      }
+    ],
+    "regions": [
+      {
+        "catalog": "agentflow.test.execution.regions@1",
+        "name": "us-east-1"
+      },
+      {
+        "catalog": "agentflow.test.execution.regions@1",
+        "name": "eu-west-1"
+      },
+      {
+        "catalog": "agentflow.test.execution.regions@1",
+        "name": "eu-central-1"
+      }
+    ],
+    "runtime_profiles": [
+      {
+        "catalog": "agentflow.test.execution.runtime@1",
+        "family": "python",
+        "features": [
+          "sandboxed",
+          "abi"
+        ],
+        "name": "py311"
+      },
+      {
+        "catalog": "agentflow.test.execution.runtime@1",
+        "family": "native",
+        "features": [
+          "sandboxed",
+          "abi"
+        ],
+        "name": "abi2"
+      }
+    ],
+    "trust_domains": [
+      {
+        "catalog": "agentflow.test.execution.trust@1",
+        "name": "trusted.batch"
+      },
+      {
+        "catalog": "agentflow.test.execution.trust@1",
+        "name": "isolated.batch"
+      }
+    ]
+  },
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.execution-requirements.case",
+  "members": [
+    {
+      "capabilities": [
+        {
+          "capability": {
+            "catalog": "agentflow.test.execution.capabilities@1",
+            "name": "browser.automation"
+          },
+          "exact_version": "1",
+          "required_attributes": []
+        },
+        {
+          "capability": {
+            "catalog": "agentflow.test.execution.capabilities@1",
+            "name": "model.inference"
+          },
+          "exact_version": "2",
+          "required_attributes": []
+        }
+      ],
+      "implementation_abis": [],
+      "quantities": [],
+      "region_residency": null,
+      "runtime_profile": null,
+      "sandbox": null,
+      "soft_preferences": [],
+      "trust_domain": null
+    },
+    {
+      "capabilities": [
+        {
+          "capability": {
+            "catalog": "agentflow.test.execution.capabilities@1",
+            "name": "model.inference"
+          },
+          "exact_version": "2",
+          "required_attributes": []
+        },
+        {
+          "capability": {
+            "catalog": "agentflow.test.execution.capabilities@1",
+            "name": "browser.automation"
+          },
+          "exact_version": "1",
+          "required_attributes": []
+        }
+      ],
+      "implementation_abis": [],
+      "quantities": [],
+      "region_residency": null,
+      "runtime_profile": null,
+      "sandbox": null,
+      "soft_preferences": [],
+      "trust_domain": null
+    }
+  ],
+  "note": "capability source order is canonical"
+}

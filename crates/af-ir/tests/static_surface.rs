@@ -320,11 +320,9 @@ fn the_wire_schema_is_frozen_at_its_phase_3b_identity() {
 
 #[test]
 fn module_abi_and_domain_counts_hold_at_their_frozen_values() {
-    // The cumulative module freeze: exactly ten AFIDL modules after
-    // Phase 4A.5B added the Cost Projection schema module (the earlier
-    // seven are the machine primitives, the self-hosting registry, the
-    // semantic core, the Semantic IR, the Effect Signature, the Failure
-    // Row and the Resource Requirement Row).
+    // The cumulative module freeze: exactly twelve AFIDL modules after
+    // Phase 4A.7 added the Execution Requirements schema module (and the
+    // preceding Recovery Contract module).
     fn collect_modules(directory: &Path, out: &mut Vec<String>) {
         for entry in std::fs::read_dir(directory).unwrap() {
             let path = entry.unwrap().path();
@@ -340,11 +338,11 @@ fn module_abi_and_domain_counts_hold_at_their_frozen_values() {
     modules.sort_unstable();
     assert_eq!(
         modules.len(),
-        11,
+        12,
         "an unexpected AFIDL module set: {modules:?}"
     );
 
-    // Exactly the frozen ABI rows: 335 total, 100 of them semantic IR,
+    // Exactly the frozen ABI rows: 400 total, 100 of them semantic IR,
     // 32 of them the Phase 4A.1 effect-signature family, 2 of them the
     // Phase 4A.2 failure-row family, 7 of them the Phase 4A.3
     // resource-requirement family and 27 of them the Phase 4A.4
@@ -353,7 +351,7 @@ fn module_abi_and_domain_counts_hold_at_their_frozen_values() {
     let abi: serde_json::Value =
         serde_json::from_str(&read("spec/registry/abi-numbers.json")).unwrap();
     let rows = abi["assignments"].as_array().unwrap();
-    assert_eq!(rows.len(), 361, "an ABI row was added or removed");
+    assert_eq!(rows.len(), 400, "an ABI row was added or removed");
     assert_eq!(
         rows.iter()
             .filter(|row| row["schema_family"] == "agentflow.semantic.ir@1")
@@ -409,6 +407,13 @@ fn module_abi_and_domain_counts_hold_at_their_frozen_values() {
             .count(),
         26,
         "the recovery-contract ABI block changed size"
+    );
+    assert_eq!(
+        rows.iter()
+            .filter(|row| row["schema_family"] == "agentflow.execution.requirements@1")
+            .count(),
+        39,
+        "the execution-requirements ABI block changed size"
     );
 
     // Exactly the frozen HashV1 domains.
