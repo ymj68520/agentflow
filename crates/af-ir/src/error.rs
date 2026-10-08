@@ -88,6 +88,7 @@ pub mod kind {
     // Phase 3D subflow interface checking (raised by `check_subflow_interfaces`
     // only; runs strictly after the Phase 3C analysis).
     pub const UNKNOWN_SUBFLOW_TARGET: &str = "unknown_subflow_target";
+    pub const NOT_CALL_SUBFLOW: &str = "not_call_subflow";
     pub const SUBFLOW_TARGET_COLLISION: &str = "subflow_target_collision";
     pub const SUBFLOW_INPUT_PORT_MISMATCH: &str = "subflow_input_port_mismatch";
     pub const SUBFLOW_INPUT_TYPE_MISMATCH: &str = "subflow_input_type_mismatch";

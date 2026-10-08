@@ -1,0 +1,28 @@
+[package]
+name = "af-computation"
+description = "Pure static resolution and proof summaries for Semantic IR computation leaves"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+af-core = { path = "../af-core" }
+af-semantic = { path = "../af-semantic" }
+af-ir = { path = "../af-ir" }
+af-contract = { path = "../af-contract" }
+af-effect = { path = "../af-effect" }
+af-failure = { path = "../af-failure" }
+af-flow = { path = "../af-flow" }
+af-resource = { path = "../af-resource" }
+af-usage = { path = "../af-usage" }
+af-recovery = { path = "../af-recovery" }
+af-execution = { path = "../af-execution" }
+
+[dev-dependencies]
+af-idl = { path = "../af-idl" }
+serde_json = "1"
+
+[lints]
+workspace = true

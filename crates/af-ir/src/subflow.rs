@@ -280,6 +280,7 @@ pub fn derive_subflow_interface(document: &SemanticIrDocument) -> SubflowInterfa
 pub struct SubflowTarget {
     digest: DigestRefValue,
     interface: SubflowInterface,
+    dependencies: Vec<DigestRefValue>,
     canonical_bytes: Vec<u8>,
 }
 
@@ -292,6 +293,13 @@ impl SubflowTarget {
     /// The derived interface.
     pub fn interface(&self) -> &SubflowInterface {
         &self.interface
+    }
+
+    /// Exact SemanticIrDigest pins referenced by this target's
+    /// CALL_SUBFLOW leaves, sorted and deduplicated. This derived graph edge
+    /// set is analysis metadata; it is not part of the IR wire shape.
+    pub fn dependencies(&self) -> &[DigestRefValue] {
+        &self.dependencies
     }
 }
 
@@ -352,11 +360,37 @@ impl SubflowIrUniverse {
             ));
         }
         let interface = derive_subflow_interface(target.source());
+        let contract_refs: BTreeMap<u32, &ContractRefEntry> = target
+            .source()
+            .contracts
+            .iter()
+            .map(|entry| (entry.id.raw(), entry))
+            .collect();
+        let mut dependencies: Vec<DigestRefValue> = target
+            .source()
+            .computations
+            .iter()
+            .filter_map(|computation| match &computation.body {
+                ComputationBody::CallSubflow(body) => contract_refs
+                    .get(&body.contract.raw())
+                    .map(|entry| entry.digest.clone()),
+                _ => None,
+            })
+            .collect();
+        dependencies.sort_by(|left, right| {
+            (&left.algorithm, &left.domain, &left.hex).cmp(&(
+                &right.algorithm,
+                &right.domain,
+                &right.hex,
+            ))
+        });
+        dependencies.dedup();
         self.targets.insert(
             key.clone(),
             SubflowTarget {
                 digest: key.clone(),
                 interface,
+                dependencies,
                 canonical_bytes,
             },
         );
@@ -417,13 +451,42 @@ impl CheckedIrDocument<'_> {
         universe: &SubflowIrUniverse,
     ) -> Result<(), IrError> {
         let _ = dataflow; // pass-ordering contract: 3C precedes 3D
-        check_subflows(self.source(), universe)
+        check_subflows(self.source(), universe, None)
+    }
+
+    /// Checks one exact CALL_SUBFLOW node using the same Phase 3D
+    /// interface rules as [`Self::check_subflow_interfaces`]. This permits
+    /// downstream leaf analyzers to retain a node-local proof report without
+    /// reimplementing or accidentally attributing another call's error.
+    pub fn check_subflow_interface_at(
+        &self,
+        computation_id: crate::ids::ComputationId,
+        dataflow: &SemanticDataflowAnalysis,
+        universe: &SubflowIrUniverse,
+    ) -> Result<(), IrError> {
+        let _ = dataflow;
+        let Some(computation) = self
+            .source()
+            .computations
+            .iter()
+            .find(|item| item.id == computation_id)
+        else {
+            return Err(IrError::UnknownComputation { id: computation_id });
+        };
+        if !matches!(computation.body, ComputationBody::CallSubflow(_)) {
+            return Err(IrError::rule(
+                kind::NOT_CALL_SUBFLOW,
+                format!("computation {computation_id} is not CALL_SUBFLOW"),
+            ));
+        }
+        check_subflows(self.source(), universe, Some(computation_id.raw()))
     }
 }
 
 fn check_subflows(
     document: &SemanticIrDocument,
     universe: &SubflowIrUniverse,
+    only_computation: Option<u32>,
 ) -> Result<(), IrError> {
     let types: BTreeMap<u32, &SemanticTypeNode> = document
         .types
@@ -455,6 +518,9 @@ fn check_subflows(
     let mut computations: Vec<_> = document.computations.iter().collect();
     computations.sort_by_key(|computation| computation.id);
     for computation in computations {
+        if only_computation.is_some_and(|raw| computation.id.raw() != raw) {
+            continue;
+        }
         let ComputationBody::CallSubflow(body) = &computation.body else {
             continue;
         };

@@ -3,6 +3,25 @@
 version = 4
 
 [[package]]
+name = "af-computation"
+version = "0.1.0"
+dependencies = [
+ "af-contract",
+ "af-core",
+ "af-effect",
+ "af-execution",
+ "af-failure",
+ "af-flow",
+ "af-idl",
+ "af-ir",
+ "af-recovery",
+ "af-resource",
+ "af-semantic",
+ "af-usage",
+ "serde_json",
+]
+
+[[package]]
 name = "af-contract"
 version = "0.1.0"
 dependencies = [

@@ -158,4 +158,12 @@ impl CheckedComponentContract<'_, '_> {
     pub fn proof(&self) -> &ProofReport {
         &self.proof
     }
+
+    /// The exact immutable proof context under which this checked value was
+    /// issued. Callers may compare this reference by identity; an equivalent
+    /// but distinct context requires revalidation before its proof is reused.
+    #[must_use]
+    pub fn proof_context(&self) -> &crate::validate::StaticContractProofContext<'_> {
+        self.context
+    }
 }
