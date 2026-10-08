@@ -150,7 +150,7 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "5b35c4b957212c4735fdd44eed6af128758f3d342275b6d1dfb0b0cb886770af"
+          "hex": "5e26d3101b33c41095944a794f46108aa6a226d565f47e8b69f3b7d85ac1ed87"
         },
         "logical_path": "spec/information-flow/information-flow.md"
       },

@@ -11,14 +11,15 @@ side only. Companion document: `phase-04a4-decisions.md` (D-1..D-18).
 | AFIDL module (`agentflow.information.flow@1`) | `spec/idl/information-flow.afidl` |
 | Rust crate | `crates/af-flow` |
 | Normative semantics | `spec/information-flow/information-flow.md` |
-| Conformance corpus (revision 1, 45 cases) | `spec/conformance/information-flow/` |
+| Conformance corpus (revision 2, 57 cases) | `spec/conformance/information-flow/` |
 | Independent Python oracle | `tools/gen-information-flow-corpus.py` |
 | Decision register | `docs/implementation/phase-04a4-decisions.md` |
 
 ## 2. Wire model
 
-10 types / 27 ABI rows (`agentflow.information.flow@1`): aliases
-`LabelCatalogId`, `LabelName`; records `ConfidentialityLabelRef`,
+12 declared AFIDL types = 2 aliases + 10 numbered types / 27 ABI rows
+(`agentflow.information.flow@1`): aliases `LabelCatalogId`, `LabelName`;
+numbered types records `ConfidentialityLabelRef`,
 `TaintRef`, `FlowSourceRef`, `StaticInformationSummary`,
 `FlowConstraint`, `InformationFlowContract`; enums
 `InstructionAuthority` (6 values), `FlowKind` (2 values); variants
@@ -46,41 +47,35 @@ parameters (`FlowCatalogs` = labels + effect sinks).
   NFC, duplicates rejected, deterministic orders) + canonical ACE1
   bytes + `check_flow` (the three-verdict judgment);
 - `propagation.rs` — `union_taints`, `merge_provenance_summaries`,
-  `propagate_pure_expression` (authority inherited, elevation
-  rejected), `propagate_unknown_transformation` (sticky unknown),
+  `propagate_pure_expression` (may-carry authority upper bound,
+  elevation rejected), `propagate_unknown_transformation` (sticky unknown),
   `mix_model_visible_inputs` (strong mixer: union + `model_generated`
   + unknown + max authority), `FlowProof` + `require_proven`;
 - `compatibility.rs` — `flow_not_relaxed` (per-dimension proof:
   restrictions superset, per-kind ceiling subsets, no authority
-  elevation, unknown not repaired, source capacity not narrowed);
+  elevation, unknown not repaired, taint/source capacity not narrowed);
 - `error.rs` — 11 stable kinds.
 
 ## 4. Frozen security invariants
 
-Unknown provenance ≠ trusted; unknown taint ≠ empty set; missing flow
-proof ≠ allowed; authentic source ≠ trusted instruction; sanitized ≠
-endorsed; persistence ≠ trust upgrade; declared contract ≠ runtime
-authorization. All seven are enforced structurally and audited.
+Unknown provenance ≠ trusted; unknown taint ≠ empty set; unknown source
+≠ verified clean influence; missing flow proof ≠ allowed; authentic
+source ≠ trusted instruction; sanitized ≠ endorsed; persistence ≠ trust
+upgrade; declared contract ≠ runtime authorization. All eight are
+enforced structurally and audited.
 
 ## 5. Conformance corpus
 
-45 frozen cases, revision 1: 9 golden (empty contract, single/multiple
-labels, source-taint summary, authority label, egress sink with frozen
-declassification obligation, decision-influence sink with frozen
-endorsement obligation, conservative sources, unknown influence with
-frozen Unproven verdict), 10 negative (unknown label, duplicate label,
-invalid source/sink port, unknown sink operation, label-silently-
-removed-as-rejection, unknown-taint-treated-as-clean, untrusted
-promoted to instruction, flow without proof, missing privileged
-transformation), 12 propagation (union identity/commutative/
-associative/idempotent, pure inherit, unknown remains unknown, model
-inherits every input taint, model adds model_generated, memory
-persistence retains, summarization/schema-validation never endorse,
-authority never elevated), 11 compatibility (same contract, removes /
-adds permitted sink, drops restriction, taint-narrowing Unproven,
-cross-catalog labels fail closed, unknown relationship Unproven,
-authority ok/elevated, kinds never compared across + new-kind-same-sink
-relaxed), 3 equivalence groups (label, taint, constraint ordering).
+57 frozen cases, revision 2: 12 golden (including unknown-external clean,
+high-impact decision and explicit-taint claims, all Unproven), 11 negative
+(including `require_proven` for an unknown external clean claim), 17
+propagation (including mixed user/web and platform/external authority,
+unknown-influence stickiness, model output with external source, and
+stored external content not endorsed), 14 compatibility (including
+dropped source, dropped taint, and dropped unknown source), and 3
+equivalence groups. The prior `decision-influence-sink` golden was
+explicitly revised: its old positive endorsement obligation violated the
+new unknown-source invariant and now expects `Unproven`.
 
 ## 6. Registry delta
 
@@ -109,7 +104,7 @@ unchanged (14 domains); no flow digest of any kind exists.
 - `cargo test --all`: 244 passed / 0 failed (10 in `af-flow`: 5
   conformance + 5 static-surface audits).
 - spec-check: exit 0 (numbers above).
-- All 12 generators run twice consecutively: zero diff over the 457-file
+- All 12 generators run twice consecutively: zero diff over the 469-file
   spec tree.
 
 ## 9. Boundary

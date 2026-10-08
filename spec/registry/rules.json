@@ -1080,12 +1080,14 @@
       "area": "INFOFLOW",
       "conformance_refs": [
         "infoflow/negative/untrusted-promoted-to-instruction",
-        "infoflow/propagation/authority-never-elevated"
+        "infoflow/propagation/authority-never-elevated",
+        "infoflow/propagation/mixed-user-and-web-authority",
+        "infoflow/propagation/mixed-platform-and-external-authority"
       ],
       "normative_source": "spec/information-flow/information-flow.md",
       "requirement_level": "must",
       "rule_id": "AF-INFOFLOW-0005",
-      "short_statement": "Ordinary data transformation MUST NOT elevate instruction authority: content claiming to be a system instruction stays external_data, source authentication is not instruction authorization, and unprovable transformations never label their output with a higher authority.",
+      "short_statement": "Ordinary data transformation MUST NOT elevate instruction authority: content claiming to be a system instruction stays external_data, source authentication is not instruction authorization, and a MAX authority is only a may-carry upper bound, never effective instruction authority or endorsement.",
       "source_anchor": "if-no-authority-elevation"
     },
     {
@@ -1212,12 +1214,18 @@
       "area": "INFOFLOW",
       "conformance_refs": [
         "infoflow/golden/unknown-influence",
-        "infoflow/negative/unknown-taint-treated-as-clean"
+        "infoflow/negative/unknown-taint-treated-as-clean",
+        "infoflow/golden/unknown-external-with-clean-claim",
+        "infoflow/golden/unknown-external-high-impact-decision",
+        "infoflow/golden/unknown-external-explicit-taint",
+        "infoflow/negative/unknown-external-clean-claim-require-proven",
+        "infoflow/propagation/model-output-with-external-source",
+        "infoflow/propagation/stored-external-content-not-endorsed"
       ],
       "normative_source": "spec/information-flow/information-flow.md",
       "requirement_level": "must",
       "rule_id": "AF-INFOFLOW-0016",
-      "short_statement": "The five unknowns are distinct and never collapsed to an empty list: unknown source is the explicit unknown_external category, unknown influence is the sticky influence_unknown Top, unknown labels and sinks are validation errors, and canonicalization never repairs unknown into a lower-risk state.",
+      "short_statement": "The five unknowns are distinct and never collapsed to an empty list: unknown source is the explicit unknown_external category, unknown influence is the sticky influence_unknown Top, unknown labels and sinks are validation errors, and canonicalization never repairs unknown into a lower-risk state; an explicit unknown_external source is never sufficient for a positive flow proof even when the summary claims clean influence.",
       "source_anchor": "if-unknown-handling"
     },
     {
@@ -1225,12 +1233,15 @@
       "conformance_refs": [
         "infoflow/compatibility/new-adds-permitted-sink",
         "infoflow/compatibility/new-drops-restriction",
-        "infoflow/compatibility/unknown-relationship-unproven"
+        "infoflow/compatibility/unknown-relationship-unproven",
+        "infoflow/compatibility/flow-non-relaxation-dropped-source",
+        "infoflow/compatibility/flow-non-relaxation-dropped-taint",
+        "infoflow/compatibility/dropped-unknown-source-unproven"
       ],
       "normative_source": "spec/information-flow/information-flow.md",
       "requirement_level": "must",
       "rule_id": "AF-INFOFLOW-0017",
-      "short_statement": "Flow non-relaxation: F_new must not relax F_old - per kind the new ceiling set must be a subset of the old, confidentiality restrictions a superset, authority not elevated, unknown influence not repaired; undecidable containment is Unproven and never a substitution approval.",
+      "short_statement": "Flow non-relaxation: F_new must not relax F_old - per kind the new ceiling set must be a subset of the old, confidentiality restrictions a superset, authority not elevated, taint and source capacity not narrowed, unknown influence not repaired; undecidable containment is Unproven and never a substitution approval.",
       "source_anchor": "if-non-relaxation"
     },
     {

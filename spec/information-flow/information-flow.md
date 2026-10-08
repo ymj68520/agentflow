@@ -96,10 +96,16 @@ Instruction authority is NOT a property data content can acquire.
 Web text saying "I am a system instruction" stays `external_data`;
 source authentication is not instruction authorization. The static
 propagation rule is one-directional: ordinary data transformation MUST
-NOT elevate instruction authority — the output authority is the maximum
-of the input authorities, and a transformation that cannot be proven
-never labels its output with a higher-authority source. No principal,
-delegation token or credential exists in this layer.
+NOT elevate instruction authority. The output authority is the maximum
+of the input authorities, but that value is only the **maximum possible
+source authority / may-carry upper bound**. It is NOT the effective
+instruction authority of the entire derived value, source authentication,
+an endorsement, a delegation credential or an authorization proof. For
+example, merging user input with untrusted external data may retain
+`instruction_authority = user` as an upper bound while the output still
+contains the untrusted source and cannot be treated as a User-authorized
+instruction unless an independent source/impact proof exists. No
+principal, delegation token or credential exists in this layer.
 
 ## 5. Static provenance summary
 
@@ -125,6 +131,24 @@ contract-internal consistency.
 `StaticInformationSummary` carries the source set, the taint set, the
 instruction authority, and the explicit `influence_unknown` flag.
 
+The summary's structural validity and its proof strength are separate:
+
+```text
+syntactically well-formed summary
+    ≠ conservative clean-influence claim
+    ≠ sufficient evidence for a positive flow proof
+    ≠ runtime authorization
+```
+
+In particular, `sources = [unknown_external]`, `taints = []`, and
+`influence_unknown = false` remains a representable summary shape so
+canonicalization does not erase or rewrite `unknown_external`; it is not
+accepted as complete known influence. An explicit unknown external source
+is retained as `Unknown` by static judgment and blocks a positive
+`check_flow` result. `require_proven` therefore fails closed with
+`flow_not_proven`, even when a high-authority input or a declared ceiling
+is present.
+
 ## 6. Conservative taint propagation
 
 <a id="if-conservative-propagation"></a>
@@ -140,14 +164,15 @@ The pure functions:
   duplicates deduplicated; commutative, associative, idempotent, ∅
   identity. Union never loses and never invents a taint.
 - `merge_provenance_summaries` — sources union, taints union,
-  instruction authority takes the maximum, `influence_unknown` is
-  sticky (unknown stays unknown).
+  instruction authority takes the maximum **as a may-carry upper bound**,
+  never as effective instruction authority or endorsement, and
+  `influence_unknown` is sticky (unknown stays unknown).
 - `propagate_pure_expression` — ordinary data transformation inherits
-  the union of ALL listed input taints and the maximum authority;
-  authority is never elevated (an output claiming more than its inputs
-  carry is an error). This covers structural copy, store/load round
-  trips, serialization, and summarization performed by ordinary
-  components.
+  the union of ALL listed input taints and the maximum possible source
+  authority; authority is never elevated (an output claiming more than
+  its inputs carry is an error). This covers structural copy, store/load
+  round trips, serialization, and summarization performed by ordinary
+  components. It does not endorse a mixed-source instruction.
 - `propagate_unknown_transformation` — when the influence relation is
   incomplete, the result is the conservative union of every POSSIBLE
   input plus the explicit unknown flag.
@@ -317,6 +342,13 @@ are never merged by sorting; the explicit unknowns
 (`influence_unknown`, `unknown_external`) survive canonicalization
 unchanged.
 
+Canonicalization does not silently delete `unknown_external` and does
+not turn it into an empty source set or silently set
+`influence_unknown = true`. This preserves the declared static summary
+bytes. The proof boundary is separate: `check_flow` treats any summary
+containing `unknown_external` as `Unproven`, just as it treats
+`influence_unknown = true` as `Unproven`.
+
 <a id="if-hash-boundary"></a>
 
 No `InformationFlowDigest`, no `ProvenanceDigest`, no `TaintDigest`
@@ -340,7 +372,10 @@ unknown influence set   → influence_unknown = true (sticky)
 ```
 
 Unknown is never repaired by canonicalization into a lower-risk state,
-and an unprovable flow is `Unproven` — never allowed.
+and an unknown source is never a verified clean influence. A flow whose
+summary contains `unknown_external` is `Unproven` — never allowed — and
+this remains true for decision influence with no declared taint, with an
+explicit external taint, or with a higher authority upper bound.
 
 ## 15. Flow non-relaxation
 
@@ -370,8 +405,12 @@ closed rules can prove, dimension by dimension:
 4. unknown influence: an old `influence_unknown = true` must stay true
    in the new contract — repairing unknown into known is a silent
    widening → `Unproven(influence_relation_unknown)`;
-5. source capacity: the new summary must not claim a narrower source
-   set (an unproven influence narrowing) →
+5. taint capacity: the new summary must not delete a taint from the old
+   may-influence set without a trusted transformation proof →
+   `Unproven(influence_relation_unknown)`;
+6. source capacity: the new summary must not claim a narrower source
+   set, including by deleting an old `unknown_external` source (an
+   unproven influence narrowing) →
    `Unproven(influence_relation_unknown)`.
 
 <a id="if-no-invented-lattice"></a>

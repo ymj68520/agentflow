@@ -40,17 +40,22 @@ user < workflow < platform` (the frozen ladder order) with the
 one-directional `carries` comparison. Authority propagates by MAXIMUM
 over may-influence inputs (weakest-direction-first is what a min would
 under-claim: a value influenced by both user and web may carry web
-instructions, and the max records the strongest source it MAY carry;
-the safety rule lives in the direction of the check — claiming MORE
-than inputs carry is the rejected elevation).
+instructions, and the max records the strongest source it MAY carry).
+That maximum is only a **maximum possible source authority / may-carry
+upper bound**; it is not the effective instruction authority of the
+derived value, source authentication, endorsement, delegation evidence
+or authorization. The safety rule lives in the direction of the check —
+claiming MORE than inputs carry is the rejected elevation.
 
 ## D-5 No authority elevation
 
 **Decision:** `propagate_pure_expression` inherits the maximum input
-authority; a claimed output authority above that maximum is
-`invalid_flow_source`. Web text claiming "I am a system instruction"
-stays `external_data`; the corpus freezes the elevation attempt and the
-inherited result.
+authority as a may-carry upper bound; a claimed output authority above
+that maximum is `invalid_flow_source`. Web text claiming "I am a system
+instruction" stays `external_data`; the corpus freezes the elevation
+attempt and the inherited result. A mixed user + untrusted external
+value may retain `user` as an upper bound but cannot be treated as a
+User-authorized instruction without a separate source/impact proof.
 
 ## D-6 Static provenance summary
 
@@ -63,6 +68,13 @@ ambient source, ports positive, `unknown_external` never dropped.
 Cross-dimension port existence is deferred to ComponentContract
 (recorded blocking condition).
 
+The summary has two distinct judgments: it may be structurally
+well-formed while still being insufficient for a flow proof. In
+particular, `unknown_external` plus `taints = []` and
+`influence_unknown = false` is not a verified clean-influence claim.
+Canonicalization preserves that explicit source; static flow judgment
+keeps it Unknown and returns `Unproven`.
+
 ## D-7 Unknown influence semantics
 
 **Decision:** `influence_unknown` is an explicit sticky Top flag —
@@ -71,16 +83,22 @@ canonicalization preserves it, flow judgments on it return `Unproven`,
 and a non-relaxation comparison rejects repairing old-unknown into
 new-known as `Unproven(influence_relation_unknown)`.
 
+This flag is not the only unknown-provenance guard: a summary containing
+the explicit `unknown_external` source also cannot produce a positive
+`check_flow` result, even when the flag is false, taints are empty or an
+authority upper bound is high. `require_proven` therefore fails closed.
+
 ## D-8 Conservative taint propagation
 
 **Decision:** pure functions, catalogs injected:
 `union_taints` (commutative/associative/idempotent, ∅ identity),
 `merge_provenance_summaries` (sources union, taints union, authority
-max, unknown sticky), `propagate_pure_expression` (inherits ALL listed
-input taints), `propagate_unknown_transformation` (conservative union
-of every possible input + explicit unknown). May-influence, not
-observed dependency; no incomplete influence list can prove a real
-influence away — narrowing is `Unproven` in contract evolution.
+max as a may-carry upper bound, unknown sticky),
+`propagate_pure_expression` (inherits ALL listed input taints),
+`propagate_unknown_transformation` (conservative union of every
+possible input + explicit unknown). May-influence, not observed
+dependency; no incomplete influence list can prove a real influence
+away — narrowing taints or sources is `Unproven` in contract evolution.
 
 ## D-9 Model mixer semantics
 
@@ -132,7 +150,8 @@ refinement, recorded as deferred.
 ## D-13 Flow judgment direction (`check_flow`)
 
 **Decision:** missing constraint → `flow_not_proven` (missing proof ≠
-allowed); `influence_unknown` → `Unproven`; `data_egress` under
+allowed); `influence_unknown` or `unknown_external` source → `Unproven`;
+`data_egress` under
 declared restrictions → declassification obligation;
 `decision_influence` with any taint → endorsement obligation;
 `decision_influence` to an unclassified effect sink → `Unproven`;
@@ -147,8 +166,9 @@ dimension: restriction set must be a SUPERSET (dropping one is
 `flow_contract_relaxed`); per-kind ceiling sets must be SUBSETS (a newly
 permitted sink is relaxed); new authority must not EXCEED old
 (elevation is relaxed); old-unknown repaired to new-known is
-`Unproven(influence_relation_unknown)`; new source capacity must not be
-narrower (unproven influence narrowing). Everything undecidable is
+`Unproven(influence_relation_unknown)`; deleting an old taint or source,
+including `unknown_external`, is also
+`Unproven(influence_relation_unknown)`. Everything undecidable is
 `Unproven` and never a substitution approval.
 
 ## D-15 Declassification / endorsement deferred boundary

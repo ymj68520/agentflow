@@ -1552,10 +1552,12 @@ INFOFLOW_RULES = [
          "Ordinary data transformation MUST NOT elevate instruction "
          "authority: content claiming to be a system instruction stays "
          "external_data, source authentication is not instruction "
-         "authorization, and unprovable transformations never label their "
-         "output with a higher authority.",
+         "authorization, and a MAX authority is only a may-carry upper "
+         "bound, never effective instruction authority or endorsement.",
          ["infoflow/negative/untrusted-promoted-to-instruction",
-          "infoflow/propagation/authority-never-elevated"]),
+          "infoflow/propagation/authority-never-elevated",
+          "infoflow/propagation/mixed-user-and-web-authority",
+          "infoflow/propagation/mixed-platform-and-external-authority"]),
     rule("AF-INFOFLOW-0006", "INFOFLOW", INFOFLOW_SRC,
          "if-conservative-propagation",
          "Taint propagation is may-influence conservative: the output "
@@ -1635,18 +1637,30 @@ INFOFLOW_RULES = [
          "list: unknown source is the explicit unknown_external category, "
          "unknown influence is the sticky influence_unknown Top, unknown "
          "labels and sinks are validation errors, and canonicalization "
-         "never repairs unknown into a lower-risk state.",
+         "never repairs unknown into a lower-risk state; an explicit "
+         "unknown_external source is never sufficient for a positive flow "
+         "proof even when the summary claims clean influence.",
          ["infoflow/golden/unknown-influence",
-          "infoflow/negative/unknown-taint-treated-as-clean"]),
+          "infoflow/negative/unknown-taint-treated-as-clean",
+          "infoflow/golden/unknown-external-with-clean-claim",
+          "infoflow/golden/unknown-external-high-impact-decision",
+          "infoflow/golden/unknown-external-explicit-taint",
+          "infoflow/negative/unknown-external-clean-claim-require-proven",
+          "infoflow/propagation/model-output-with-external-source",
+          "infoflow/propagation/stored-external-content-not-endorsed"]),
     rule("AF-INFOFLOW-0017", "INFOFLOW", INFOFLOW_SRC, "if-non-relaxation",
          "Flow non-relaxation: F_new must not relax F_old - per kind the "
          "new ceiling set must be a subset of the old, confidentiality "
-         "restrictions a superset, authority not elevated, unknown "
-         "influence not repaired; undecidable containment is Unproven and "
-         "never a substitution approval.",
+         "restrictions a superset, authority not elevated, taint and source "
+         "capacity not narrowed, unknown influence not repaired; "
+         "undecidable containment is Unproven and never a substitution "
+         "approval.",
          ["infoflow/compatibility/new-adds-permitted-sink",
           "infoflow/compatibility/new-drops-restriction",
-          "infoflow/compatibility/unknown-relationship-unproven"]),
+          "infoflow/compatibility/unknown-relationship-unproven",
+          "infoflow/compatibility/flow-non-relaxation-dropped-source",
+          "infoflow/compatibility/flow-non-relaxation-dropped-taint",
+          "infoflow/compatibility/dropped-unknown-source-unproven"]),
     rule("AF-INFOFLOW-0018", "INFOFLOW", INFOFLOW_SRC,
          "if-canonical-ordering",
          "Canonical flow form is deterministic: resolved nominal label "
