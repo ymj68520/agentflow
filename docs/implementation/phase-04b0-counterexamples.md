@@ -7,6 +7,10 @@ and links it to the Phase 4B.0A frozen regression cases. `Violation` means the
 closed rule proves the contract invalid; `Unproven` means no positive
 compatibility/security claim may be made.
 
+P1 labels below reflect the Phase 4B.0 discovery classification. Their model
+decisions were accepted in Phase 4B.0B; this does not mean the future
+ComponentContract checker or relation catalogs are implemented.
+
 | # | Construction | Existing API observation | Required Component-level result | Class |
 | --- | --- | --- | --- | --- |
 | 1 | ε declares `data.write` with `requirement_port_no=7`; R contains only port 1 | `EffectSignature::validate` and `ResourceRequirementRow::validate` are independent; both can succeed | Violation: ε selector port 7 is absent from R | P2 |
@@ -150,4 +154,5 @@ outside AtomKey and are independently exercised by the Effect Algebra corpus.
 [Compatibility](phase-04b0-compatibility-matrix.md) ·
 [Cross-dimension obligations](phase-04b0-cross-dimension-obligations.md) ·
 [ABI proposal](phase-04b0-abi-proposal.md) ·
-[Decisions](phase-04b0-decisions.md)
+[Decisions](phase-04b0-decisions.md) ·
+[Phase 4B.0B decision vectors](phase-04b0b-decision-vectors.md)

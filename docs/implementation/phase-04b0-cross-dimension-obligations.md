@@ -10,12 +10,12 @@ already implement that check.
 | C02 | I ↔ F | Every `workflow_input(port)` source and every ε input guard resolves to a Component I port in the I namespace | F checks positive port syntax; ε checks positive guard syntax; neither has Component I | Violation for a known absent port; Unproven if the I interface is unavailable |
 | C03 | O ↔ F | Every `workflow_output(port)` sink resolves to a Component O port | F checks positive syntax only | Violation if a closed O interface lacks the port |
 | C04 | R ↔ F | Every `resource_requirement(port)` source resolves to a declared R port | F checks positive syntax only | Violation if a closed R row lacks the port |
-| C05 | ε ↔ R | Every EffectAtom selector resolves to the correct R port, and the operation is valid for the pinned resource type and scope vocabulary | `requirement_port_no` and R `port_no` exist, but no cross-check or operation/resource relation exists | Absent R port is Violation; absent catalog relation is Unproven |
-| C06 | ε ↔ F | Each F external-effect sink resolves to the intended operation and resource selector of ε | F stores only `EffectOperationRef`; ε stores full Atom | P1: current F cannot distinguish two selectors for one operation; Unproven for selector-specific policy |
-| C07 | F ↔ X | Check residency restrictions against execution/residency regions, and influence/confidentiality against trust/sandbox | F labels and X regions/trust/sandbox are separate explicit vocabularies; no relation catalog | Unproven without a trusted, exact catalog relation; never infer by region/label names |
+| C05 | ε ↔ R | Resolve each selector to R, then separately prove exact operation/resource support, selector vocabulary/value semantics, qualifiers, and consistency with R predicates | B0B-D4 designs an exhaustive exact Operation×ResourceType catalog; checker not implemented | Missing R port or explicit denial is Violation; missing/partial catalog or open ε is Unproven |
+| C06 | ε ↔ F | Resolve selector-sensitive permissions to complete EffectAtom keys; legacy operation sink expands to every matching closed ε atom unless narrowed | B0B-D5 adds `EffectFlowPartition(operation,kind,allowed_effects)` without changing old F schema | Dangling/widening partition is Violation; missing selector-specific policy or open ε is Unproven |
+| C07 | F ↔ X | Map exact labels/taints/authority/sinks to allowed region pairs, trust policy and sandbox floor | B0B-D8 designs an explicit versioned relation catalog; checker not implemented | Exact known conflict is Violation; missing mapping, snapshot or finite region coverage is Unproven |
 | C08 | K ↔ ε | Every recoverable forward EffectAtom has exactly one K clause; no clause exists outside ε; open/unknown ε is not full coverage | Exact AtomKey coverage exists for Closed rows; the Phase 4B.0 qualifier-member omission was closed in Phase 4B.0A | Full atom equality for closed rows; Open/Unknown returns Unproven |
-| C09 | K actions ↔ ε | Reconciliation and compensation are exact declared Effect actions, including selector and qualifiers | Reconciliation is a boolean enum; compensation is only OperationRef | P1: redesign K action references and prove each action against ε |
-| C10 | K ↔ U | Derive the maximum recovery usage envelope for reconciliation/compensation/retry and compare against the recovery U coordinates | U has forward/recovery phases and control algebra; no mapping from K actions to usage profiles | P1: missing recovery meter/cost coverage is Unproven, never zero/free |
+| C09 | K actions ↔ ε | Bind `(forward Atom, action kind, full action Atom)`, require exactly the actions prescribed by K, and require all actions in closed ε | B0B-D6 accepts additive `RecoveryActionBinding`; checker not implemented | Action absent from closed ε/extra binding/cycle is Violation; open ε is Unproven |
+| C10 | K ↔ U | Compute per-action recovery usage from explicit meter profiles, activation and attempt bounds; accumulate and compare with U.recovery | B0B-D7 adds per-action profiles and a complete-meter coverage catalog; checker not implemented | Known ceiling excess is Violation; missing profile/coordinate/multiplicity is Unproven, never zero |
 | C11 | U ↔ Cost | Project every known U coordinate through an exact immutable price snapshot; check forward/recovery ceilings independently | `project_cost`, `check_static_budget`, `cost_not_increased` exist | Missing usage/price or changed snapshot returns Unproven; never infer free |
 | C12 | R ↔ X | Establish whether the chosen execution environment can bind/access the logical R resources under the required trust/residency constraints | R universe knows resource type and attribute vocabulary; X knows executor requirements; no binding/adapter relation | Unproven without deployment/adapter profile; resource satisfaction is not authorization |
 | C13 | Φ ↔ Control | Compose known failure rows through controls; preserve unknown INVOKE/CALL_SUBFLOW rows; do not treat empty as a missing summary | `af-failure` has pure row/control helpers and `StaticFailureEnvelope::Unproven`; no IR-wide resolved pass | Unproven when a callee contract or full target closure is absent |
@@ -23,8 +23,8 @@ already implement that check.
 | C15 | U ↔ Control | Compose additive/join/repeat rules; preserve loser/retry/recovery usage and unknown coordinates | Usage control helpers exist, including unknown INVOKE/CALL_SUBFLOW | Unproven for call/subflow without U; ITERATE needs total count, not `max_inflight` |
 | C16 | F ↔ dataflow | Derive may-influence sources/taints/authority from all possible input and resource reads; preserve unknown external provenance | `af-flow` propagators exist; `af-ir` has independent dataflow availability analysis; no bridge joins them | Unproven if source coverage or taint propagation is incomplete |
 | C17 | X ↔ Control | Keep X scoped to the relevant computation/attempt; do not sum sequential/parallel child requirements onto one worker absent a topology contract | Phase 4A.7 explicitly forbids blind aggregation | No group/affinity/gang claim; per-computation profile proofs only |
-| C18 | Universes ↔ proof | Bind each proof to exact, immutable, explicit universe/profile inputs and rule version; do not query latest | APIs take explicit in-memory universes, mostly keyed by SpecificationId or exact schema ref | Current result is conditional on caller-supplied facts; proof snapshot/evidence object is not materialized |
-| C19 | Semantic types ↔ ABI pins | Choose whether public schema leaves preserve exact TypeSchemaRef identity or expand aliases to their targets | Phase 3A `TypeSchemaUniverse::expand_named` collapses aliases; Phase 3D `SubflowInterface` preserves pinned schema leaves and rejects alias-vs-target | Unproven across that boundary until one comparator is normative |
+| C18 | Universes ↔ proof | Bind each proof to exact immutable universe/catalog snapshots and rules; do not query latest | Existing APIs are explicit in-memory inputs; future report carries snapshot revisions and checksums | Proof remains conditional; checksum identity is not source authentication |
+| C19 | Semantic types ↔ ABI pins | Public Component ports compare exact TypeSchemaRef pins; alias expansion is internal only | B0B-D3 accepts nominal public equality; Phase 3D is the precedent | Different pins remain Unproven; malformed/cyclic schema is Violation |
 
 ## Assembly pass order
 
@@ -86,26 +86,29 @@ unknown effect is not equivalent to that mathematical identity.
 
 ## Catalog relations needed before a full proof
 
-The minimum additional versioned, explicit relations are:
+Phase 4B.0B accepts these exact, typed analysis relations (all provisional and
+unregistered):
 
-* `OperationResourceCompatibility`: exact EffectOperationRef, exact
-  ResourceTypeRef, accepted scope-binding vocabulary, and any allowed
-  qualifier semantics. An operation name alone is not enough.
-* `FlowEffectTarget`: exact operation plus selector scope/requirement port
-  identity. F permissions need to name the destination granularity they
-  constrain.
-* `InformationHandlingProfile`: exact confidentiality/taint identities
-  and the X region/trust/sandbox requirements that satisfy them. No legal
-  inference from names or geography is allowed.
-* `RecoveryActionUsageProfile`: exact reconciliation/compensation Effect
-  identity and its maximum recovery meter envelope, including bounded
-  retries. A missing profile is Unproven.
+* `EffectResourceCompatibilityCatalog`: exact EffectOperationRef ×
+  ResourceTypeRef, closed selector-key/value rules, complete-operation
+  coverage, and exact complete qualifier allowlists.
+* `EffectFlowPartition`: complete exact-effect allowlist per legacy operation
+  sink and FlowKind; it may only narrow F.
+* `RecoveryActionBinding`: exact forward EffectAtom, action kind and recovery
+  EffectAtom; all actions must be in closed ε.
+* `RecoveryUsageCoverageCatalog`: exact RecoveryActionIdentity to exhaustive
+  meter-coordinate set; per-attempt bounds and multiplicities are declared in
+  the ComponentContract binding.
+* `InformationFlowExecutionCatalog`: exact confidentiality/taint/authority/
+  sink mappings to region pairs, trust policies and sandbox floors.
 * `ResourceExecutionCompatibility`: exact logical ResourceType and adapter
   profile relation to runtime capabilities, trust, region and residency.
 
-These relations should be immutable, exact-versioned inputs and their source
-identities should be recorded in static proof output. They must not create an
-EffectGrant, ResourceHandle, capacity permit or runtime evidence.
+All relation snapshots are immutable, exact-versioned proof inputs; their
+identities/checksums are recorded in static proof output. They must not create
+an EffectGrant, ResourceHandle, capacity permit, attestation or runtime
+evidence. C12 Resource↔X adapter/access relation remains a P2 implementation
+boundary outside the eight P1 design decisions.
 
 ## Unified Computation view
 
@@ -125,6 +128,16 @@ target, catalog relation or child summary is `Unproven`; it is not `Φ=∅`,
 constraint violation remains a Violation even if another dimension is
 Unproven.
 
+## Phase 4B.0B disposition
+
+P1-1 through P1-8 now have accepted design records. Their future validators,
+relation-catalog loaders, Semantic IR traversal, Resource↔X adapter proof,
+combined proof report, and evidence integration are not implemented here;
+those are explicit P2/P3 work. The accepted models require exact typed
+bindings and snapshots before those validators may return Proven. No
+catalog/port/selector/action identity is guessed from a matching integer or
+short name.
+
 ## Related audit documents
 
 [Audit report](phase-04b0-preassembly-audit.md) ·
@@ -133,4 +146,6 @@ Unproven.
 [Compatibility](phase-04b0-compatibility-matrix.md) ·
 [Counterexamples](phase-04b0-counterexamples.md) ·
 [ABI proposal](phase-04b0-abi-proposal.md) ·
-[Decisions](phase-04b0-decisions.md)
+[P1 register](phase-04b0b-p1-decisions.md) ·
+[Proof API](phase-04b0b-proof-api.md) ·
+[Readiness report](phase-04b0b-readiness-report.md)

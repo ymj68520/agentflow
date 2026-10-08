@@ -1,8 +1,8 @@
 # Phase 4B.0 — ComponentContract Pre-assembly Audit
 
-Status: design audit complete; the P0 identity defect is closed in Phase
-4B.0A; **not ready to enter Phase 4B.1** because the eight P1 design blockers
-remain.
+Status: the original audit findings are closed at design level: P0 in Phase
+4B.0A and all eight P1 decisions in Phase 4B.0B. **Ready to implement Phase
+4B.1, but no ComponentContract implementation or schema has been created.**
 
 Audit baseline: commit `5dc75eb` (`docs(execution): record phase 4a7 decisions`),
 clean worktree. The audit adds only design documents and a read-only audit
@@ -11,14 +11,15 @@ digest, or HashV1 value.
 
 ## Decision
 
-The eight static dimensions can be represented in one future contract, but the
-existing APIs do not yet justify a complete compatibility or cross-dimension
-proof. At this audit baseline, one verified P0 defect made EffectAtom equality
-unsound for the `natural` versus `none` qualifier; Phase 4B.0A has since
-closed it. Eight P1 design blockers remain, including selector-level Flow
-identity, complete recovery-operation identity, and a consistent public type
-comparison rule. Do not freeze the ComponentContract ABI until the P1
-resolutions are reviewed.
+At the audit baseline, one verified P0 defect made EffectAtom equality
+unsound and eight P1 design blockers prevented an unambiguous candidate ABI.
+Phase 4B.0A closed the P0. Phase 4B.0B then accepted designs for all eight
+P1s, including exact I/O/Alias policy, operation/resource relation,
+selector-grain Flow bindings, complete Recovery action/Usage bindings and the
+F/X relation. Those decisions make an additive candidate expressible without
+altering old schemas. The checker, relation catalogs and conformance
+implementation remain future work; the readiness disposition is recorded in
+[`phase-04b0b-readiness-report.md`](phase-04b0b-readiness-report.md).
 
 The detailed artifacts are:
 
@@ -132,11 +133,18 @@ The new cases freeze both mismatch directions, exact matches, distinct-row
 algebra, guard/bounds boundaries and end-to-end public Recovery rejection.
 See [Phase 4B.0A counterexamples and regression vectors](phase-04b0-counterexamples.md).
 
-This closes only the P0. The eight P1 blockers and subsequent P2/P3 boundaries
-above remain as recorded; no ComponentContract schema or Phase 4B.1 work is
-authorized by this closure.
+At the close of 4B.0A, this closed only the P0 and the eight P1s still blocked
+schema freeze. Phase 4B.0B later accepted all eight P1 designs and recorded
+the implementation readiness gate in
+[phase-04b0b-readiness-report.md](phase-04b0b-readiness-report.md). No
+ComponentContract schema was created in either design phase; readiness is not
+implementation or runtime verification.
 
-## P1 — ABI design blockers
+## P1 — Audit findings (resolved at design level in Phase 4B.0B)
+
+The numbered items below preserve the original audit inventory and wording.
+Their accepted decisions and exact candidate fields now live in the Phase
+4B.0B Decision Register; they are not claims of implemented proof APIs.
 
 1. **I/O ABI is absent.** Semantic IR inputs are run parameters; outputs are
    named workflow outputs; `SubflowInterface` is a derived view, not a
@@ -223,11 +231,10 @@ must be worded as conditional on its explicit inputs.
 ## Cross-dimension conclusion
 
 The isolated wire types can be referenced together in a future closed schema.
-The composition is not yet a safe, fully verifiable or substitutable contract.
-The two most direct boundaries are: (a) Component I/O and port namespaces are
-not formalized, and (b) ε/F/K identities do not line up at selector/action
-granularity. See the cross-dimension obligation register for exact checks and
-the 24 design vectors for distinguishing cases.
+Phase 4B.0B defines the missing identity and binding models without changing
+those isolated schemas. This is a design-readiness conclusion only; a
+ComponentContract is not yet a verified runtime artifact. See the
+cross-dimension register and the 37 Phase 4B.0B decision vectors.
 
 ## Normative consistency review
 
@@ -252,12 +259,32 @@ explicitly defer those links to ComponentContract assembly.
 The alias comparison point is likewise treated as a boundary decision rather
 than a proven contradiction between registered specs: Phase 3A value typing
 expands aliases, while Semantic IR §15 requires exact schema-leaf comparison
-for Subflow ports. Component I/O has no rule yet selecting either behavior.
+for Subflow ports. Phase 4B.0B resolves the public Component boundary to exact
+nominal TypeSchemaRef equality; it does not change either existing rule.
+
+### Phase 4B.0B design resolution
+
+The P1s are **ACCEPTED as design decisions**, not as implemented
+functionality. Component identity is hashed with the semantic body while
+release version/implementation/deployment stay separate; public I/O uses
+exact pinned types and nominal aliases; ε↔R and F↔X use exact versioned
+relation catalogs; F's old operation sink is refined only by a closed exact
+EffectAtom allowlist; K actions and recovery-meter profiles are exact
+Component-level bindings. The unchanged legacy schemas remain valid but
+cannot claim a more precise proof than they encode.
+
+The candidate ABI and proof API are explicitly non-normative. Phase 4B.1 may
+materialize the additive ComponentContract and the three typed relation
+catalog schemas together; no Phase 4B.0C is needed provided those catalogs are
+not replaced by partial, unpinned data. This audit does not implement any of
+them or compute a ComponentContractDigest.
 
 ## Zero drift and verification
 
 The audit script compares the protected wire/registry/corpus paths with the
 Phase 4B.0 baseline commit, and checks the frozen counts and required API/model
 surface. It explicitly labels code-presence checks as inventory evidence, not
-semantic proof. Final status after commit-time validation is recorded in the
-completion report.
+semantic proof. After 4B.0B, its missing-code/P1 inventory still reports
+implementation facts; it is not the design-decision status. The accepted
+design status and implementation boundary are recorded in
+[phase-04b0b-readiness-report.md](phase-04b0b-readiness-report.md).
