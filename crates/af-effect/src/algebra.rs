@@ -445,17 +445,25 @@ pub fn branch_join(
 
 /// Branch-join occurrence combination: the guaranteed lower bound across two
 /// mutually exclusive branches is zero; the ceiling covers both branches.
-/// (The `Result` return keeps the shared `ResidualMerge` signature uniform
-/// with the checked accumulation combine.)
-#[allow(clippy::unnecessary_wraps)]
 fn join_one(existing: &EffectEntry, incoming: &EffectEntry) -> EffectEntry {
     let same_guard = existing.guard == incoming.guard;
+    // A lower bound guarded by G is guaranteed only under G (zero when G
+    // fails). Case A — identical guard: whichever branch runs delivers at
+    // least its own lower bound under that same condition, so the minimum
+    // is the tightest guaranteed conditional lower. Case B — different (and
+    // not provably equivalent) guards: the merged entry widens to
+    // unconditional, and an unconditional positive lower bound would claim
+    // occurrences even when NEITHER condition holds, so the lower bound
+    // weakens to zero.
+    let lower = if same_guard {
+        existing.bounds.lower.min(incoming.bounds.lower)
+    } else {
+        0
+    };
     EffectEntry {
         atom: existing.atom.clone(),
         bounds: OccurrenceBounds {
-            // Whichever branch runs delivers at least its own lower bound,
-            // hence at least the minimum of the two.
-            lower: existing.bounds.lower.min(incoming.bounds.lower),
+            lower,
             upper: existing.bounds.upper.max(incoming.bounds.upper),
         },
         guard: if same_guard {
@@ -720,6 +728,82 @@ mod tests {
         assert_eq!(
             contains(&too_many, &wide),
             Proof::Unproven(UnprovenReason::EntryUncovered)
+        );
+    }
+
+    fn guarded_json(op: &str, port: u32, expected: &str, lower: u64, upper: u64) -> String {
+        serde_json::json!({
+            "atom": {
+                "operation": {"catalog": CATALOG, "name": op},
+                "resource_selector": {
+                    "requirement_port_no": port,
+                    "scope_bindings": []
+                },
+                "qualifiers": []
+            },
+            "bounds": {"lower": lower, "upper": {"finite": upper}},
+            "guard": {"input_equals": {
+                "port_no": 1,
+                "expected": {"string": expected}
+            }}
+        })
+        .to_string()
+    }
+
+    fn guard_of(signature: &EffectSignature) -> &EffectGuard {
+        let EffectRow::Closed(entries) = &signature.row else {
+            panic!("closed expected");
+        };
+        &entries[0].guard
+    }
+
+    #[test]
+    fn differing_guards_weaken_the_lower_bound_to_zero() {
+        // The task's key case: guard(input=="a") [1,2] joined with
+        // guard(input=="b") [1,3] must widen to unconditional [0,3]. The
+        // conditions' union is not expressible, and an unconditional
+        // positive lower bound would claim occurrences when NEITHER
+        // condition holds.
+        let a = closed(&[guarded_json("github.issue.create", 1, "a", 1, 2)]);
+        let b = closed(&[guarded_json("github.issue.create", 1, "b", 1, 3)]);
+        let joined = branch_join(&a, &b).unwrap();
+        let EffectRow::Closed(entries) = &joined.row else {
+            panic!("closed expected");
+        };
+        assert_eq!(entries[0].bounds.lower, 0);
+        assert_eq!(entries[0].bounds.upper, OccurrenceCeiling::Finite(3));
+        assert_eq!(entries[0].guard, EffectGuard::Unconditional);
+        // The unconditional-vs-conditional mix weakens the same way: the
+        // guarded branch may run with its condition false (zero effects).
+        let uncond = closed(&[entry_json("github.issue.create", 1, None, 1, 2)]);
+        let guarded = closed(&[guarded_json("github.issue.create", 1, "a", 2, 4)]);
+        let mixed = branch_join(&uncond, &guarded).unwrap();
+        let EffectRow::Closed(entries) = &mixed.row else {
+            panic!("closed expected");
+        };
+        assert_eq!(entries[0].bounds.lower, 0);
+        assert_eq!(entries[0].bounds.upper, OccurrenceCeiling::Finite(4));
+        assert_eq!(entries[0].guard, EffectGuard::Unconditional);
+    }
+
+    #[test]
+    fn identical_conditional_guards_keep_the_tight_lower_bound() {
+        // guard(input=="a") [2,4] joined with guard(input=="a") [3,5]
+        // keeps the conditional minimum [2,5] under the same condition.
+        let a = closed(&[guarded_json("github.issue.create", 1, "a", 2, 4)]);
+        let b = closed(&[guarded_json("github.issue.create", 1, "a", 3, 5)]);
+        let joined = branch_join(&a, &b).unwrap();
+        let EffectRow::Closed(entries) = &joined.row else {
+            panic!("closed expected");
+        };
+        assert_eq!(entries[0].bounds.lower, 2);
+        assert_eq!(entries[0].bounds.upper, OccurrenceCeiling::Finite(5));
+        assert_eq!(
+            guard_of(&joined),
+            &EffectGuard::InputEquals(crate::EffectGuardInputEquals {
+                port_no: 1,
+                expected: af_semantic::PrimitiveConstant::String("a".into()),
+            })
         );
     }
 
