@@ -1,0 +1,76 @@
+{
+  "case_id": "computation-leaf/subflow/exact-export-interface",
+  "expected": {
+    "body_verdict": "requires_evidence",
+    "dimensions_synthesized": false,
+    "export_verdict": "proven",
+    "interface_verdict": "proven",
+    "verdict": "requires_evidence"
+  },
+  "group": "subflow",
+  "input": {
+    "export": {
+      "full_dimensions": [
+        "Phi",
+        "Effect",
+        "Flow",
+        "Usage",
+        "Recovery",
+        "Execution"
+      ],
+      "ports": {
+        "inputs": [
+          {
+            "port": 1,
+            "public_type_ref": {
+              "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "specification_id": "agentflow.test.types@1",
+              "type_name": "RecordA"
+            },
+            "target": "input:1"
+          }
+        ],
+        "outputs": [
+          {
+            "port": 1,
+            "public_type_ref": {
+              "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "specification_id": "agentflow.test.types@1",
+              "type_name": "RecordA"
+            },
+            "target": "output:1"
+          }
+        ],
+        "resources": []
+      }
+    },
+    "operation": "subflow_interface",
+    "target": {
+      "interface": {
+        "inputs": [
+          {
+            "port": 1,
+            "public_type_ref": {
+              "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "specification_id": "agentflow.test.types@1",
+              "type_name": "RecordA"
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "port": 1,
+            "public_type_ref": {
+              "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "specification_id": "agentflow.test.types@1",
+              "type_name": "RecordA"
+            }
+          }
+        ],
+        "resources": []
+      }
+    }
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Declaration resolves, but body conformance still requires evidence."
+}

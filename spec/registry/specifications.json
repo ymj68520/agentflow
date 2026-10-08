@@ -392,6 +392,19 @@
       "status": "frozen"
     },
     {
+      "description": "Exact, source-preserving static contract resolution for INVOKE, AWAIT and CALL_SUBFLOW computation leaves; no workflow control algebra or runtime authority.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "36c0ba9434cedc68669e1cbd3300c8f6073aa1cf701aa94c8ba974232af5cfa7"
+        },
+        "logical_path": "spec/computation/leaf-contract-resolution.md"
+      },
+      "specification_id": "agentflow.semantic.leaf-contract-resolution.semantics@1",
+      "status": "frozen"
+    },
+    {
       "description": "Workflow semantic core semantics: machine vs workflow primitives, type DAG rules, exact pinning, SSA value slots, expression purity and type checking, resource slot scope.",
       "kind": "schema_language",
       "normative_source": {

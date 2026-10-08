@@ -1,0 +1,24 @@
+{
+  "case_id": "computation-leaf/invoke/missing-required-input",
+  "expected": {
+    "mappings": [],
+    "verdict": "violation"
+  },
+  "group": "negative",
+  "input": {
+    "bindings": [],
+    "operation": "map_ports",
+    "required": [
+      {
+        "port": 1,
+        "public_type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        }
+      }
+    ]
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Required inputs are not defaulted."
+}

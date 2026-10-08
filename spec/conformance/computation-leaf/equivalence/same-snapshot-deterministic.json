@@ -1,0 +1,27 @@
+{
+  "case_id": "computation-leaf/equivalence/same-snapshot-deterministic",
+  "expected": {
+    "mapping": {
+      "same_output_on_repeat": true
+    },
+    "preserved": {
+      "node": 9,
+      "snapshot": "exact-A"
+    },
+    "verdict": "proven"
+  },
+  "group": "equivalence",
+  "input": {
+    "mapping": {
+      "same_output_on_repeat": true
+    },
+    "operation": "preservation",
+    "source": {
+      "node": 9,
+      "snapshot": "exact-A"
+    },
+    "verdict": "proven"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "One exact snapshot yields one deterministic leaf result."
+}

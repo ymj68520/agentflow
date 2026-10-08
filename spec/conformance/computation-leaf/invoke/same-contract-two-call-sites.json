@@ -1,0 +1,81 @@
+{
+  "case_id": "computation-leaf/invoke/same-contract-two-call-sites",
+  "expected": {
+    "occurrences": [
+      {
+        "bounds": [
+          1,
+          2
+        ],
+        "caller_semantic_ir_digest": "semantic-ir:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "computation": 12,
+        "declared_atom": {
+          "operation": "storage/write",
+          "qualifiers": [
+            {
+              "family": "idempotency",
+              "member": "natural"
+            }
+          ],
+          "resource_port": 1
+        },
+        "guard": "unconditional",
+        "source_contract_digest": "component-contract:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "source_entry_ordinal": 0
+      },
+      {
+        "bounds": [
+          1,
+          2
+        ],
+        "caller_semantic_ir_digest": "semantic-ir:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "computation": 13,
+        "declared_atom": {
+          "operation": "storage/write",
+          "qualifiers": [
+            {
+              "family": "idempotency",
+              "member": "natural"
+            }
+          ],
+          "resource_port": 1
+        },
+        "guard": "unconditional",
+        "source_contract_digest": "component-contract:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "source_entry_ordinal": 0
+      }
+    ],
+    "occurrences_distinct": true,
+    "verdict": "proven"
+  },
+  "group": "invoke",
+  "input": {
+    "call_sites": [
+      12,
+      13
+    ],
+    "caller_digest": "semantic-ir:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "contract_digest": "component-contract:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "entries": [
+      {
+        "atom": {
+          "operation": "storage/write",
+          "qualifiers": [
+            {
+              "family": "idempotency",
+              "member": "natural"
+            }
+          ],
+          "resource_port": 1
+        },
+        "bounds": [
+          1,
+          2
+        ]
+      }
+    ],
+    "operation": "scoped_effects"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Same contract at two nodes produces two separately scoped occurrences."
+}

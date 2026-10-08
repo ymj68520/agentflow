@@ -1,0 +1,33 @@
+{
+  "case_id": "computation-leaf/mapping/missing-usage-not-zero",
+  "expected": {
+    "mapping": {
+      "provider_idempotency_evidence": false,
+      "usage_defaulted_to": null,
+      "worker_admitted": false
+    },
+    "preserved": {
+      "execution": "compatible",
+      "recovery": "keyed",
+      "usage": "missing"
+    },
+    "verdict": "proven"
+  },
+  "group": "mapping",
+  "input": {
+    "mapping": {
+      "provider_idempotency_evidence": false,
+      "usage_defaulted_to": null,
+      "worker_admitted": false
+    },
+    "operation": "preservation",
+    "source": {
+      "execution": "compatible",
+      "recovery": "keyed",
+      "usage": "missing"
+    },
+    "verdict": "proven"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Usage, recovery, and execution are copied without authority inference."
+}

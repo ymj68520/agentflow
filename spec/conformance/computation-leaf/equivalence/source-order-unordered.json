@@ -1,0 +1,93 @@
+{
+  "case_id": "computation-leaf/equivalence/source-order-unordered",
+  "expected": {
+    "mapping": {
+      "canonical_ports": [
+        {
+          "port": 1,
+          "type_ref": {
+            "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "specification_id": "agentflow.test.types@1",
+            "type_name": "RecordA"
+          }
+        },
+        {
+          "port": 2,
+          "type_ref": {
+            "schema_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "specification_id": "agentflow.test.types@1",
+            "type_name": "RecordB"
+          }
+        }
+      ]
+    },
+    "preserved": {
+      "ports": [
+        {
+          "port": 1,
+          "type_ref": {
+            "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "specification_id": "agentflow.test.types@1",
+            "type_name": "RecordA"
+          }
+        },
+        {
+          "port": 2,
+          "type_ref": {
+            "schema_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "specification_id": "agentflow.test.types@1",
+            "type_name": "RecordB"
+          }
+        }
+      ]
+    },
+    "verdict": "proven"
+  },
+  "group": "equivalence",
+  "input": {
+    "mapping": {
+      "canonical_ports": [
+        {
+          "port": 1,
+          "type_ref": {
+            "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "specification_id": "agentflow.test.types@1",
+            "type_name": "RecordA"
+          }
+        },
+        {
+          "port": 2,
+          "type_ref": {
+            "schema_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "specification_id": "agentflow.test.types@1",
+            "type_name": "RecordB"
+          }
+        }
+      ]
+    },
+    "operation": "preservation",
+    "source": {
+      "ports": [
+        {
+          "port": 1,
+          "type_ref": {
+            "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "specification_id": "agentflow.test.types@1",
+            "type_name": "RecordA"
+          }
+        },
+        {
+          "port": 2,
+          "type_ref": {
+            "schema_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "specification_id": "agentflow.test.types@1",
+            "type_name": "RecordB"
+          }
+        }
+      ]
+    },
+    "verdict": "proven"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Semantically unordered declarations keep deterministic output ordering."
+}

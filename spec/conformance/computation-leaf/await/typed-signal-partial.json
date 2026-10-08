@@ -1,0 +1,41 @@
+{
+  "case_id": "computation-leaf/await/typed-signal-partial",
+  "expected": {
+    "mapping": {
+      "implicit_timeout": false,
+      "interaction_contract": "missing",
+      "phase3c_correlation_valid": true,
+      "signal_pin_exact": true
+    },
+    "preserved": {
+      "correlation_expression": "expression:2",
+      "signal_type_ref": {
+        "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "specification_id": "agentflow.test.types@1",
+        "type_name": "RecordA"
+      }
+    },
+    "verdict": "unproven"
+  },
+  "group": "await",
+  "input": {
+    "mapping": {
+      "implicit_timeout": false,
+      "interaction_contract": "missing",
+      "phase3c_correlation_valid": true,
+      "signal_pin_exact": true
+    },
+    "operation": "preservation",
+    "source": {
+      "correlation_expression": "expression:2",
+      "signal_type_ref": {
+        "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "specification_id": "agentflow.test.types@1",
+        "type_name": "RecordA"
+      }
+    },
+    "verdict": "unproven"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "The signal type and correlation are pinned; adapter result remains partial."
+}

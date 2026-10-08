@@ -1,0 +1,83 @@
+{
+  "case_id": "computation-leaf/mapping/resource-alias-explicit",
+  "expected": {
+    "aliases": [
+      {
+        "ports": [
+          1,
+          2
+        ],
+        "resource_slot": "resource-slot:7"
+      }
+    ],
+    "mappings": [
+      {
+        "port": 1,
+        "resource_slot": "resource-slot:7",
+        "type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        }
+      },
+      {
+        "port": 2,
+        "resource_slot": "resource-slot:7",
+        "type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        }
+      }
+    ],
+    "verdict": "proven"
+  },
+  "group": "mapping",
+  "input": {
+    "bindings": [
+      {
+        "attribute_evidence": true,
+        "port": 1,
+        "resource_slot": "resource-slot:7",
+        "type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        }
+      },
+      {
+        "attribute_evidence": true,
+        "port": 2,
+        "resource_slot": "resource-slot:7",
+        "type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        }
+      }
+    ],
+    "operation": "map_resources",
+    "requirements": [
+      {
+        "attributes": [],
+        "port": 1,
+        "type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        }
+      },
+      {
+        "attributes": [],
+        "port": 2,
+        "type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        }
+      }
+    ]
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Alias group is explicit and has no bound-reduction operation."
+}

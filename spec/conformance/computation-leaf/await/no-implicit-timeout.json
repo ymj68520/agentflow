@@ -1,0 +1,27 @@
+{
+  "case_id": "computation-leaf/await/no-implicit-timeout",
+  "expected": {
+    "mapping": {
+      "timeout": "absent",
+      "timer_created": false
+    },
+    "preserved": {
+      "opcode": "AWAIT"
+    },
+    "verdict": "unproven"
+  },
+  "group": "await",
+  "input": {
+    "mapping": {
+      "timeout": "absent",
+      "timer_created": false
+    },
+    "operation": "preservation",
+    "source": {
+      "opcode": "AWAIT"
+    },
+    "verdict": "unproven"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "No timeout semantics are inferred from AWAIT."
+}

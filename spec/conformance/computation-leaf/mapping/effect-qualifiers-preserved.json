@@ -1,0 +1,55 @@
+{
+  "case_id": "computation-leaf/mapping/effect-qualifiers-preserved",
+  "expected": {
+    "mapping": {
+      "resource_slot": "resource-slot:8"
+    },
+    "preserved": {
+      "operation": "storage/write",
+      "qualifiers": [
+        {
+          "family": "idempotency",
+          "member": "natural"
+        }
+      ],
+      "resource_selector": {
+        "requirement_port_no": 1,
+        "scope_bindings": [
+          {
+            "key": "tenant",
+            "value": "t1"
+          }
+        ]
+      }
+    },
+    "verdict": "proven"
+  },
+  "group": "mapping",
+  "input": {
+    "mapping": {
+      "resource_slot": "resource-slot:8"
+    },
+    "operation": "preservation",
+    "source": {
+      "operation": "storage/write",
+      "qualifiers": [
+        {
+          "family": "idempotency",
+          "member": "natural"
+        }
+      ],
+      "resource_selector": {
+        "requirement_port_no": 1,
+        "scope_bindings": [
+          {
+            "key": "tenant",
+            "value": "t1"
+          }
+        ]
+      }
+    },
+    "verdict": "proven"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Mapping supplements rather than rewrites the full atom."
+}

@@ -1,0 +1,29 @@
+{
+  "case_id": "computation-leaf/await/unknown-signal-provenance",
+  "expected": {
+    "mapping": {
+      "authority_inferred": false,
+      "unknown_origin_retained": true
+    },
+    "preserved": {
+      "category": "unknown_external",
+      "influence_unknown": true
+    },
+    "verdict": "unproven"
+  },
+  "group": "await",
+  "input": {
+    "mapping": {
+      "authority_inferred": false,
+      "unknown_origin_retained": true
+    },
+    "operation": "preservation",
+    "source": {
+      "category": "unknown_external",
+      "influence_unknown": true
+    },
+    "verdict": "unproven"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Signal provenance is not self-elevated."
+}

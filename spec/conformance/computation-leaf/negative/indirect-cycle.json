@@ -1,0 +1,26 @@
+{
+  "case_id": "computation-leaf/subflow/indirect-cycle",
+  "expected": {
+    "cycle": true,
+    "missing": false,
+    "verdict": "violation"
+  },
+  "group": "subflow",
+  "input": {
+    "graph": {
+      "ir-A": [
+        "ir-B"
+      ],
+      "ir-B": [
+        "ir-C"
+      ],
+      "ir-C": [
+        "ir-A"
+      ]
+    },
+    "operation": "dependency_closure",
+    "root": "ir-A"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Indirect dependency cycle is a violation."
+}

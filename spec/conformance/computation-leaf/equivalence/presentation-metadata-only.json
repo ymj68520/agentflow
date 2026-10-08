@@ -1,0 +1,29 @@
+{
+  "case_id": "computation-leaf/equivalence/presentation-metadata-only",
+  "expected": {
+    "mapping": {
+      "contract_body": "body-A",
+      "digest_changed": false
+    },
+    "preserved": {
+      "contract_body": "body-A",
+      "display_metadata": "before"
+    },
+    "verdict": "proven"
+  },
+  "group": "equivalence",
+  "input": {
+    "mapping": {
+      "contract_body": "body-A",
+      "digest_changed": false
+    },
+    "operation": "preservation",
+    "source": {
+      "contract_body": "body-A",
+      "display_metadata": "before"
+    },
+    "verdict": "proven"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Presentation metadata does not alter semantic contract identity."
+}

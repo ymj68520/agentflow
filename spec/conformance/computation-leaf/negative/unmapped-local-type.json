@@ -1,0 +1,36 @@
+{
+  "case_id": "computation-leaf/invoke/unmapped-local-type",
+  "expected": {
+    "mappings": [
+      {
+        "binding": "expression:8",
+        "port": 1,
+        "type_ref": null
+      }
+    ],
+    "verdict": "unproven"
+  },
+  "group": "negative",
+  "input": {
+    "bindings": [
+      {
+        "port": 1,
+        "public_type_ref": null,
+        "target": "expression:8"
+      }
+    ],
+    "operation": "map_ports",
+    "required": [
+      {
+        "port": 1,
+        "public_type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        }
+      }
+    ]
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Local non-schema type cannot be mapped to a public pin."
+}

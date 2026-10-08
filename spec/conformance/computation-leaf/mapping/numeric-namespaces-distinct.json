@@ -1,0 +1,29 @@
+{
+  "case_id": "computation-leaf/mapping/numeric-namespaces-distinct",
+  "expected": {
+    "mapping": {
+      "input_expression": "expression:1",
+      "resource_slot": "resource-slot:1"
+    },
+    "preserved": {
+      "component_input_port": 1,
+      "resource_slot": 1
+    },
+    "verdict": "proven"
+  },
+  "group": "mapping",
+  "input": {
+    "mapping": {
+      "input_expression": "expression:1",
+      "resource_slot": "resource-slot:1"
+    },
+    "operation": "preservation",
+    "source": {
+      "component_input_port": 1,
+      "resource_slot": 1
+    },
+    "verdict": "proven"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Equal integers in port and resource namespaces remain distinct identities."
+}

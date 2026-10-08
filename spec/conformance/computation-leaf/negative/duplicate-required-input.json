@@ -1,0 +1,53 @@
+{
+  "case_id": "computation-leaf/invoke/duplicate-required-input",
+  "expected": {
+    "mappings": [
+      {
+        "binding": "expression:8",
+        "port": 1,
+        "type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        }
+      }
+    ],
+    "verdict": "violation"
+  },
+  "group": "negative",
+  "input": {
+    "bindings": [
+      {
+        "port": 1,
+        "public_type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        },
+        "target": "expression:8"
+      },
+      {
+        "port": 1,
+        "public_type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        },
+        "target": "expression:9"
+      }
+    ],
+    "operation": "map_ports",
+    "required": [
+      {
+        "port": 1,
+        "public_type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        }
+      }
+    ]
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Duplicate binding is a violation."
+}

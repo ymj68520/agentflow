@@ -1,0 +1,47 @@
+{
+  "case_id": "computation-leaf/mapping/wrong-resource-type",
+  "expected": {
+    "aliases": [],
+    "mappings": [
+      {
+        "port": 1,
+        "resource_slot": "resource-slot:3",
+        "type_ref": {
+          "schema_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordB"
+        }
+      }
+    ],
+    "verdict": "violation"
+  },
+  "group": "negative",
+  "input": {
+    "bindings": [
+      {
+        "attribute_evidence": true,
+        "port": 1,
+        "resource_slot": "resource-slot:3",
+        "type_ref": {
+          "schema_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordB"
+        }
+      }
+    ],
+    "operation": "map_resources",
+    "requirements": [
+      {
+        "attributes": [],
+        "port": 1,
+        "type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        }
+      }
+    ]
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "A resource slot requires an exact type pin."
+}

@@ -1,0 +1,26 @@
+{
+  "case_id": "computation-leaf/context/same-version-different-content",
+  "expected": {
+    "old_proof_reusable": false,
+    "semantic_digest_stable": true,
+    "verdict": "unproven"
+  },
+  "group": "context",
+  "input": {
+    "canonical_body": "canonical-contract-body-A",
+    "new_context": {
+      "canonical_body": "canonical-contract-body-A",
+      "catalog_content": "hash-B",
+      "catalog_version": "r1",
+      "identity": "ctx-B"
+    },
+    "old_context": {
+      "catalog_content": "hash-A",
+      "catalog_version": "r1",
+      "identity": "ctx-A"
+    },
+    "operation": "context_check"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "A reused revision label cannot hide changed content."
+}

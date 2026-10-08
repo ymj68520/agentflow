@@ -3642,6 +3642,186 @@
       "source_anchor": "ir-subflow-no-transitive-closure"
     },
     {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-leaf/invoke/exact-contract",
+        "computation-leaf/invoke/wrong-contract-digest",
+        "SUITE-COMPUTATION-LEAF-INVOKE"
+      ],
+      "normative_source": "spec/computation/leaf-contract-resolution.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0111",
+      "short_statement": "A component target resolves only by the complete exact digest pin in an explicit snapshot; identity comes from the checked contract, with no latest or name-only fallback.",
+      "source_anchor": "leaf-resolution-exact-pin"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-leaf/invoke/exact-contract",
+        "computation-leaf/invoke/wrong-contract-digest",
+        "SUITE-COMPUTATION-LEAF-CONTEXT"
+      ],
+      "normative_source": "spec/computation/leaf-contract-resolution.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0112",
+      "short_statement": "INVOKE requires a digest-recomputed CheckedComponentContract under the exact snapshot proof-context object; unresolved targets are never pure.",
+      "source_anchor": "leaf-resolution-checked-contract"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-leaf/invoke/exact-input-type",
+        "computation-leaf/invoke/wrong-public-input-type",
+        "computation-leaf/invoke/duplicate-required-input",
+        "computation-leaf/invoke/missing-required-input",
+        "computation-leaf/invoke/unmapped-local-type",
+        "computation-leaf/invoke/invalid-output-producer",
+        "SUITE-COMPUTATION-LEAF-INVOKE"
+      ],
+      "normative_source": "spec/computation/leaf-contract-resolution.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0113",
+      "short_statement": "Component input/output mappings require exact port numbers, exact public TypeSchemaRef pins, and existing Phase 3C scope, dominance, and producer proofs; local types are not public type evidence.",
+      "source_anchor": "leaf-resolution-public-port-types"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-leaf/mapping/resource-alias-explicit",
+        "computation-leaf/mapping/numeric-namespaces-distinct",
+        "computation-leaf/mapping/wrong-resource-type",
+        "computation-leaf/mapping/required-attributes-without-evidence",
+        "SUITE-COMPUTATION-LEAF-MAPPING"
+      ],
+      "normative_source": "spec/computation/leaf-contract-resolution.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0114",
+      "short_statement": "Component resource ports map explicitly to visible ResourceSlotIds with exact resource type pins; absent attribute evidence remains Unproven and aliases never reduce bounds or grant authority.",
+      "source_anchor": "leaf-resolution-resource-ports"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-leaf/invoke/same-contract-two-call-sites",
+        "computation-leaf/mapping/effect-qualifiers-preserved",
+        "SUITE-COMPUTATION-LEAF-SCOPED-SUMMARIES"
+      ],
+      "normative_source": "spec/computation/leaf-contract-resolution.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0115",
+      "short_statement": "Scoped effects retain exact source contract, full atom qualifiers, bounds, caller digest and node identity; distinct call sites never merge by contract digest.",
+      "source_anchor": "leaf-resolution-effect-occurrences"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-leaf/mapping/unknown-external-flow-preserved",
+        "computation-leaf/mapping/effect-qualifiers-preserved",
+        "computation-leaf/await/unknown-signal-provenance",
+        "SUITE-COMPUTATION-LEAF-SCOPED-SUMMARIES"
+      ],
+      "normative_source": "spec/computation/leaf-contract-resolution.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0116",
+      "short_statement": "Flow coordinates map only through exact I/O/R/effect mappings; unknown origins, influence, taints and authority bounds remain conservative and are never dropped or elevated.",
+      "source_anchor": "leaf-resolution-information-flow"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-leaf/mapping/missing-usage-not-zero",
+        "computation-leaf/mapping/recovery-action-full-effect-key",
+        "SUITE-COMPUTATION-LEAF-SCOPED-SUMMARIES"
+      ],
+      "normative_source": "spec/computation/leaf-contract-resolution.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0117",
+      "short_statement": "Checked Failure/Effect/Flow/Usage/Recovery/Execution declarations remain per-invocation summaries; missing dimensions are not empty, and this phase performs no scaling or workflow placement closure.",
+      "source_anchor": "leaf-resolution-dimensions"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-leaf/subflow/exact-export-interface",
+        "computation-leaf/subflow/wrong-target-version",
+        "SUITE-COMPUTATION-LEAF-SUBFLOW"
+      ],
+      "normative_source": "spec/computation/leaf-contract-resolution.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0118",
+      "short_statement": "CALL_SUBFLOW resolves its exact SemanticIrDigest in the Phase 3D universe and reuses the Phase 3D call-site interface checker.",
+      "source_anchor": "leaf-resolution-subflow-target"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-leaf/subflow/exact-export-interface",
+        "computation-leaf/subflow/derived-io-not-full-contract",
+        "SUITE-COMPUTATION-LEAF-SUBFLOW"
+      ],
+      "normative_source": "spec/computation/leaf-contract-resolution.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0119",
+      "short_statement": "A subflow export requires a complete checked ComponentContract whose exact I/O/R pins match the derived target interface; derived I/O/R never synthesizes missing dimensions.",
+      "source_anchor": "leaf-resolution-subflow-export"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-leaf/subflow/declaration-needs-body-proof",
+        "SUITE-COMPUTATION-LEAF-SUBFLOW"
+      ],
+      "normative_source": "spec/computation/leaf-contract-resolution.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0120",
+      "short_statement": "Resolving a subflow export declaration does not prove body conformance; absent a trusted complete proof the relation remains RequiresEvidence.",
+      "source_anchor": "leaf-resolution-subflow-body-proof"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-leaf/subflow/direct-cycle",
+        "computation-leaf/subflow/indirect-cycle",
+        "computation-leaf/subflow/missing-target-closure",
+        "SUITE-COMPUTATION-LEAF-SUBFLOW"
+      ],
+      "normative_source": "spec/computation/leaf-contract-resolution.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0121",
+      "short_statement": "The explicit exact-digest dependency closure fails closed on cycles and reports missing targets as Unproven without recursive expansion.",
+      "source_anchor": "leaf-resolution-subflow-closure"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-leaf/await/typed-signal-partial",
+        "computation-leaf/await/unknown-signal-provenance",
+        "computation-leaf/await/no-implicit-timeout",
+        "computation-leaf/await/cancellation-not-business-failure",
+        "SUITE-COMPUTATION-LEAF-AWAIT"
+      ],
+      "normative_source": "spec/computation/leaf-contract-resolution.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0122",
+      "short_statement": "AWAIT preserves its exact signal pin and correlation while missing adapter dimensions remain partial; it has no implicit timeout, Effect dispatch, business cancellation failure, or authority uplift.",
+      "source_anchor": "leaf-resolution-await"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-leaf/context/same-body-different-context",
+        "computation-leaf/context/changed-catalog-invalidates-proof",
+        "computation-leaf/context/same-version-different-content",
+        "computation-leaf/equivalence/presentation-metadata-only",
+        "SUITE-COMPUTATION-LEAF-CONTEXT"
+      ],
+      "normative_source": "spec/computation/leaf-contract-resolution.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0123",
+      "short_statement": "ComponentContractDigest depends on canonical semantic body, not proof context; checked positive claims remain context-bound and must be revalidated after context change.",
+      "source_anchor": "leaf-resolution-digest-stability"
+    },
+    {
       "area": "SPEC",
       "conformance_refs": [
         "spec-registry/duplicate-specification-id"

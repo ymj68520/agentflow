@@ -1,0 +1,44 @@
+{
+  "case_id": "computation-leaf/invoke/wrong-public-input-type",
+  "expected": {
+    "mappings": [
+      {
+        "binding": "expression:8",
+        "port": 1,
+        "type_ref": {
+          "schema_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordB"
+        }
+      }
+    ],
+    "verdict": "violation"
+  },
+  "group": "negative",
+  "input": {
+    "bindings": [
+      {
+        "port": 1,
+        "public_type_ref": {
+          "schema_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordB"
+        },
+        "target": "expression:8"
+      }
+    ],
+    "operation": "map_ports",
+    "required": [
+      {
+        "port": 1,
+        "public_type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        }
+      }
+    ]
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Equal local ids or names cannot replace the pinned public type."
+}

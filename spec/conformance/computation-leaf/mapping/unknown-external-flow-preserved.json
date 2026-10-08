@@ -1,0 +1,31 @@
+{
+  "case_id": "computation-leaf/mapping/unknown-external-flow-preserved",
+  "expected": {
+    "mapping": {
+      "authority_inferred": false,
+      "preserve_unknown": true
+    },
+    "preserved": {
+      "category": "unknown_external",
+      "influence_unknown": true,
+      "instruction_authority": "external_data"
+    },
+    "verdict": "proven"
+  },
+  "group": "mapping",
+  "input": {
+    "mapping": {
+      "authority_inferred": false,
+      "preserve_unknown": true
+    },
+    "operation": "preservation",
+    "source": {
+      "category": "unknown_external",
+      "influence_unknown": true,
+      "instruction_authority": "external_data"
+    },
+    "verdict": "proven"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Unknown source and may-carry authority remain conservative."
+}

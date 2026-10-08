@@ -1,0 +1,24 @@
+{
+  "case_id": "computation-leaf/context/changed-catalog-invalidates-proof",
+  "expected": {
+    "old_proof_reusable": false,
+    "semantic_digest_stable": true,
+    "verdict": "unproven"
+  },
+  "group": "context",
+  "input": {
+    "canonical_body": "canonical-contract-body-A",
+    "new_context": {
+      "canonical_body": "canonical-contract-body-A",
+      "catalog_content": "content-B",
+      "identity": "ctx-B"
+    },
+    "old_context": {
+      "catalog_content": "content-A",
+      "identity": "ctx-A"
+    },
+    "operation": "context_check"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Changed relation content requires revalidation."
+}

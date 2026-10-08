@@ -1,0 +1,20 @@
+{
+  "case_id": "computation-leaf/invoke/wrong-contract-digest",
+  "expected": {
+    "target": null,
+    "verdict": "unproven"
+  },
+  "group": "negative",
+  "input": {
+    "checked_contracts": {
+      "component-contract:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc": {
+        "catalog": "agentflow.components@1",
+        "name": "acme.transform"
+      }
+    },
+    "operation": "exact_target",
+    "pin": "component-contract:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "A stale digest does not fall back to an available target."
+}

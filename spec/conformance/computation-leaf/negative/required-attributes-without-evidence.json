@@ -1,0 +1,52 @@
+{
+  "case_id": "computation-leaf/mapping/required-attributes-without-evidence",
+  "expected": {
+    "aliases": [],
+    "mappings": [
+      {
+        "port": 1,
+        "resource_slot": "resource-slot:3",
+        "type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        }
+      }
+    ],
+    "verdict": "unproven"
+  },
+  "group": "negative",
+  "input": {
+    "bindings": [
+      {
+        "attribute_evidence": false,
+        "port": 1,
+        "resource_slot": "resource-slot:3",
+        "type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        }
+      }
+    ],
+    "operation": "map_resources",
+    "requirements": [
+      {
+        "attributes": [
+          {
+            "key": "tenant",
+            "value": "t1"
+          }
+        ],
+        "port": 1,
+        "type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        }
+      }
+    ]
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Missing attribute evidence is Unproven."
+}

@@ -1,0 +1,53 @@
+{
+  "case_id": "computation-leaf/mapping/recovery-action-full-effect-key",
+  "expected": {
+    "mapping": {
+      "source_action_identity_retained": true
+    },
+    "preserved": {
+      "action_effect": {
+        "operation": "storage/compensate",
+        "qualifiers": [],
+        "resource_port": 1
+      },
+      "forward_effect": {
+        "operation": "storage/write",
+        "qualifiers": [
+          {
+            "family": "idempotency",
+            "member": "natural"
+          }
+        ],
+        "resource_port": 1
+      }
+    },
+    "verdict": "proven"
+  },
+  "group": "mapping",
+  "input": {
+    "mapping": {
+      "source_action_identity_retained": true
+    },
+    "operation": "preservation",
+    "source": {
+      "action_effect": {
+        "operation": "storage/compensate",
+        "qualifiers": [],
+        "resource_port": 1
+      },
+      "forward_effect": {
+        "operation": "storage/write",
+        "qualifiers": [
+          {
+            "family": "idempotency",
+            "member": "natural"
+          }
+        ],
+        "resource_port": 1
+      }
+    },
+    "verdict": "proven"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Recovery retains exact full EffectAtom identities."
+}

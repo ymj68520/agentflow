@@ -1,0 +1,25 @@
+{
+  "case_id": "computation-leaf/await/cancellation-not-business-failure",
+  "expected": {
+    "mapping": {
+      "failure_row_mutated": false
+    },
+    "preserved": {
+      "control_outcome": "cancelled"
+    },
+    "verdict": "unproven"
+  },
+  "group": "await",
+  "input": {
+    "mapping": {
+      "failure_row_mutated": false
+    },
+    "operation": "preservation",
+    "source": {
+      "control_outcome": "cancelled"
+    },
+    "verdict": "unproven"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Cancellation remains outside the business Failure row."
+}

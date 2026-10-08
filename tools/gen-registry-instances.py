@@ -1140,6 +1140,129 @@ IR_RULES = [
 RULES.extend(IR_RULES)
 
 # ---------------------------------------------------------------------------
+# Phase 4B.2A computation leaf-resolution rules (area SEMANTIC)
+# ---------------------------------------------------------------------------
+
+LEAF_RESOLUTION_SRC = "spec/computation/leaf-contract-resolution.md"
+
+LEAF_RESOLUTION_RULES = [
+    rule("AF-SEMANTIC-0111", "SEMANTIC", LEAF_RESOLUTION_SRC,
+         "leaf-resolution-exact-pin",
+         "A component target resolves only by the complete exact digest pin "
+         "in an explicit snapshot; identity comes from the checked contract, "
+         "with no latest or name-only fallback.",
+         ["computation-leaf/invoke/exact-contract",
+          "computation-leaf/invoke/wrong-contract-digest",
+          "SUITE-COMPUTATION-LEAF-INVOKE"]),
+    rule("AF-SEMANTIC-0112", "SEMANTIC", LEAF_RESOLUTION_SRC,
+         "leaf-resolution-checked-contract",
+         "INVOKE requires a digest-recomputed CheckedComponentContract under "
+         "the exact snapshot proof-context object; unresolved targets are "
+         "never pure.",
+         ["computation-leaf/invoke/exact-contract",
+          "computation-leaf/invoke/wrong-contract-digest",
+          "SUITE-COMPUTATION-LEAF-CONTEXT"]),
+    rule("AF-SEMANTIC-0113", "SEMANTIC", LEAF_RESOLUTION_SRC,
+         "leaf-resolution-public-port-types",
+         "Component input/output mappings require exact port numbers, exact "
+         "public TypeSchemaRef pins, and existing Phase 3C scope, dominance, "
+         "and producer proofs; local types are not public type evidence.",
+         ["computation-leaf/invoke/exact-input-type",
+          "computation-leaf/invoke/wrong-public-input-type",
+          "computation-leaf/invoke/duplicate-required-input",
+          "computation-leaf/invoke/missing-required-input",
+          "computation-leaf/invoke/unmapped-local-type",
+          "computation-leaf/invoke/invalid-output-producer",
+          "SUITE-COMPUTATION-LEAF-INVOKE"]),
+    rule("AF-SEMANTIC-0114", "SEMANTIC", LEAF_RESOLUTION_SRC,
+         "leaf-resolution-resource-ports",
+         "Component resource ports map explicitly to visible ResourceSlotIds "
+         "with exact resource type pins; absent attribute evidence remains "
+         "Unproven and aliases never reduce bounds or grant authority.",
+         ["computation-leaf/mapping/resource-alias-explicit",
+          "computation-leaf/mapping/numeric-namespaces-distinct",
+          "computation-leaf/mapping/wrong-resource-type",
+          "computation-leaf/mapping/required-attributes-without-evidence",
+          "SUITE-COMPUTATION-LEAF-MAPPING"]),
+    rule("AF-SEMANTIC-0115", "SEMANTIC", LEAF_RESOLUTION_SRC,
+         "leaf-resolution-effect-occurrences",
+         "Scoped effects retain exact source contract, full atom qualifiers, "
+         "bounds, caller digest and node identity; distinct call sites never "
+         "merge by contract digest.",
+         ["computation-leaf/invoke/same-contract-two-call-sites",
+          "computation-leaf/mapping/effect-qualifiers-preserved",
+          "SUITE-COMPUTATION-LEAF-SCOPED-SUMMARIES"]),
+    rule("AF-SEMANTIC-0116", "SEMANTIC", LEAF_RESOLUTION_SRC,
+         "leaf-resolution-information-flow",
+         "Flow coordinates map only through exact I/O/R/effect mappings; "
+         "unknown origins, influence, taints and authority bounds remain "
+         "conservative and are never dropped or elevated.",
+         ["computation-leaf/mapping/unknown-external-flow-preserved",
+          "computation-leaf/mapping/effect-qualifiers-preserved",
+          "computation-leaf/await/unknown-signal-provenance",
+          "SUITE-COMPUTATION-LEAF-SCOPED-SUMMARIES"]),
+    rule("AF-SEMANTIC-0117", "SEMANTIC", LEAF_RESOLUTION_SRC,
+         "leaf-resolution-dimensions",
+         "Checked Failure/Effect/Flow/Usage/Recovery/Execution declarations "
+         "remain per-invocation summaries; missing dimensions are not empty, "
+         "and this phase performs no scaling or workflow placement closure.",
+         ["computation-leaf/mapping/missing-usage-not-zero",
+          "computation-leaf/mapping/recovery-action-full-effect-key",
+          "SUITE-COMPUTATION-LEAF-SCOPED-SUMMARIES"]),
+    rule("AF-SEMANTIC-0118", "SEMANTIC", LEAF_RESOLUTION_SRC,
+         "leaf-resolution-subflow-target",
+         "CALL_SUBFLOW resolves its exact SemanticIrDigest in the Phase 3D "
+         "universe and reuses the Phase 3D call-site interface checker.",
+         ["computation-leaf/subflow/exact-export-interface",
+          "computation-leaf/subflow/wrong-target-version",
+          "SUITE-COMPUTATION-LEAF-SUBFLOW"]),
+    rule("AF-SEMANTIC-0119", "SEMANTIC", LEAF_RESOLUTION_SRC,
+         "leaf-resolution-subflow-export",
+         "A subflow export requires a complete checked ComponentContract "
+         "whose exact I/O/R pins match the derived target interface; derived "
+         "I/O/R never synthesizes missing dimensions.",
+         ["computation-leaf/subflow/exact-export-interface",
+          "computation-leaf/subflow/derived-io-not-full-contract",
+          "SUITE-COMPUTATION-LEAF-SUBFLOW"]),
+    rule("AF-SEMANTIC-0120", "SEMANTIC", LEAF_RESOLUTION_SRC,
+         "leaf-resolution-subflow-body-proof",
+         "Resolving a subflow export declaration does not prove body "
+         "conformance; absent a trusted complete proof the relation remains "
+         "RequiresEvidence.",
+         ["computation-leaf/subflow/declaration-needs-body-proof",
+          "SUITE-COMPUTATION-LEAF-SUBFLOW"]),
+    rule("AF-SEMANTIC-0121", "SEMANTIC", LEAF_RESOLUTION_SRC,
+         "leaf-resolution-subflow-closure",
+         "The explicit exact-digest dependency closure fails closed on cycles "
+         "and reports missing targets as Unproven without recursive expansion.",
+         ["computation-leaf/subflow/direct-cycle",
+          "computation-leaf/subflow/indirect-cycle",
+          "computation-leaf/subflow/missing-target-closure",
+          "SUITE-COMPUTATION-LEAF-SUBFLOW"]),
+    rule("AF-SEMANTIC-0122", "SEMANTIC", LEAF_RESOLUTION_SRC,
+         "leaf-resolution-await",
+         "AWAIT preserves its exact signal pin and correlation while missing "
+         "adapter dimensions remain partial; it has no implicit timeout, "
+         "Effect dispatch, business cancellation failure, or authority uplift.",
+         ["computation-leaf/await/typed-signal-partial",
+          "computation-leaf/await/unknown-signal-provenance",
+          "computation-leaf/await/no-implicit-timeout",
+          "computation-leaf/await/cancellation-not-business-failure",
+          "SUITE-COMPUTATION-LEAF-AWAIT"]),
+    rule("AF-SEMANTIC-0123", "SEMANTIC", LEAF_RESOLUTION_SRC,
+         "leaf-resolution-digest-stability",
+         "ComponentContractDigest depends on canonical semantic body, not "
+         "proof context; checked positive claims remain context-bound and "
+         "must be revalidated after context change.",
+         ["computation-leaf/context/same-body-different-context",
+          "computation-leaf/context/changed-catalog-invalidates-proof",
+          "computation-leaf/context/same-version-different-content",
+          "computation-leaf/equivalence/presentation-metadata-only",
+          "SUITE-COMPUTATION-LEAF-CONTEXT"]),
+]
+RULES.extend(LEAF_RESOLUTION_RULES)
+
+# ---------------------------------------------------------------------------
 # Effect Signature rules (Phase 4A.1, area EFFECT)
 # ---------------------------------------------------------------------------
 
@@ -2360,6 +2483,11 @@ SPECS = [
      "Canonical Semantic IR semantics: static scope, ownership tree, value "
      "producer rules, interface equality, per-opcode static schemas, "
      "canonical ordering and the SemanticIrDigest."),
+    ("agentflow.semantic.leaf-contract-resolution.semantics@1", "schema_language",
+     "spec/computation/leaf-contract-resolution.md",
+     "Exact, source-preserving static contract resolution for INVOKE, AWAIT "
+     "and CALL_SUBFLOW computation leaves; no workflow control algebra or "
+     "runtime authority."),
     ("agentflow.semantic.types@1", "schema_language",
      "spec/semantic/core-semantic-types.md",
      "Workflow semantic core semantics: machine vs workflow primitives, "
@@ -3489,6 +3617,122 @@ SUITE_LIST.extend([
             "crates/af-contract/src/universe.rs",
             "spec/component/relation-catalogs.md",
             "spec/conformance/component-contract/relation-catalogs/",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-LEAF-INVOKE",
+        "description": (
+            "Exact INVOKE target resolution, checked contract pinning, exact "
+            "public input/output port typing, required coverage, Phase 3C "
+            "producer/scope reuse, and distinct call-site identity."
+        ),
+        "targets": [
+            "crates/af-computation/src/resolution.rs",
+            "crates/af-computation/tests/leaf_resolution.rs",
+            "spec/conformance/computation-leaf/invoke/",
+            "spec/conformance/computation-leaf/negative/",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-LEAF-MAPPING",
+        "description": (
+            "Exact resource requirement-port to ResourceSlotId mapping, "
+            "explicit alias groups, missing attribute evidence, and "
+            "source-preserving scoped Effect and Flow mappings."
+        ),
+        "targets": [
+            "crates/af-computation/src/mapping.rs",
+            "crates/af-computation/src/summary.rs",
+            "spec/conformance/computation-leaf/mapping/",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-LEAF-SCOPED-SUMMARIES",
+        "description": (
+            "Scoped leaf summaries retain full source contract dimensions, "
+            "Effect atom identity and qualifiers, flow provenance, "
+            "per-call U/K/X boundaries, and exact proof-context references."
+        ),
+        "targets": [
+            "crates/af-computation/src/summary.rs",
+            "spec/computation/leaf-contract-resolution.md",
+            "spec/conformance/computation-leaf/mapping/",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-LEAF-SUBFLOW",
+        "description": (
+            "CALL_SUBFLOW reuses exact Phase 3D targets and interface checks, "
+            "requires a complete checked export, separates declaration from "
+            "body proof, and checks exact-digest dependency closure."
+        ),
+        "targets": [
+            "crates/af-ir/src/subflow.rs",
+            "crates/af-computation/src/resolution.rs",
+            "spec/conformance/computation-leaf/subflow/",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-LEAF-AWAIT",
+        "description": (
+            "AWAIT keeps its exact signal pin and correlation, explicit "
+            "unknown external provenance, missing adapter obligations, and "
+            "the absence of implicit timeout or business failure."
+        ),
+        "targets": [
+            "crates/af-computation/src/resolution.rs",
+            "crates/af-computation/src/summary.rs",
+            "spec/conformance/computation-leaf/await/",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-LEAF-CONTEXT",
+        "description": (
+            "ComponentContract semantic digest stability is separated from "
+            "checked proof reuse, which is bound to the exact context object "
+            "and relation content."
+        ),
+        "targets": [
+            "crates/af-contract/src/digest.rs",
+            "crates/af-contract/src/proof.rs",
+            "crates/af-computation/tests/leaf_resolution.rs",
+            "spec/conformance/computation-leaf/context/",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-LEAF-PYTHON-ORACLE",
+        "description": (
+            "A standalone Python implementation computes exact target, "
+            "port/resource, scoped effect, subflow, context and verdict "
+            "expectations without calling Rust or defining a wire ABI."
+        ),
+        "targets": [
+            "tools/gen-computation-leaf-corpus.py",
+            "spec/conformance/computation-leaf/manifest.json",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-LEAF-PHASE-BOUNDARY",
+        "description": (
+            "The phase resolves only one leaf and cannot create runtime "
+            "authority or close SEQUENCE, SELECT, PARALLEL, RACE, ITERATE, "
+            "RETRY, TIMEOUT, HANDLE, SCOPE, or compensation contracts."
+        ),
+        "targets": [
+            "crates/af-computation/Cargo.toml",
+            "spec/computation/leaf-contract-resolution.md",
+            "docs/implementation/phase-04b2a-proof-boundaries.md",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-LEAF-EQUIVALENCE",
+        "description": (
+            "Analysis is deterministic for one exact snapshot and source "
+            "presentation-only metadata does not alter semantic identity."
+        ),
+        "targets": [
+            "spec/conformance/computation-leaf/equivalence/",
+            "tools/gen-computation-leaf-corpus.py",
         ],
     },
 ])

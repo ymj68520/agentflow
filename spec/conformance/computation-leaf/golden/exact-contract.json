@@ -1,0 +1,23 @@
+{
+  "case_id": "computation-leaf/invoke/exact-contract",
+  "expected": {
+    "target": {
+      "catalog": "agentflow.components@1",
+      "name": "acme.transform"
+    },
+    "verdict": "proven"
+  },
+  "group": "golden",
+  "input": {
+    "checked_contracts": {
+      "component-contract:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc": {
+        "catalog": "agentflow.components@1",
+        "name": "acme.transform"
+      }
+    },
+    "operation": "exact_target",
+    "pin": "component-contract:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Exact digest maps to identity carried by the checked contract."
+}

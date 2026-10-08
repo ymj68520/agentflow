@@ -1,0 +1,20 @@
+{
+  "case_id": "computation-leaf/subflow/missing-target-closure",
+  "expected": {
+    "cycle": false,
+    "missing": true,
+    "verdict": "unproven"
+  },
+  "group": "subflow",
+  "input": {
+    "graph": {
+      "ir-A": [
+        "ir-missing"
+      ]
+    },
+    "operation": "dependency_closure",
+    "root": "ir-A"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Missing exact dependency target is Unproven."
+}

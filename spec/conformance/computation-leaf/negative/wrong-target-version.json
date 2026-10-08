@@ -1,0 +1,19 @@
+{
+  "case_id": "computation-leaf/subflow/wrong-target-version",
+  "expected": {
+    "target": null,
+    "verdict": "unproven"
+  },
+  "group": "negative",
+  "input": {
+    "checked_contracts": {
+      "semantic-ir:0000000000000000000000000000000000000000000000000000000000000000": {
+        "version": "old"
+      }
+    },
+    "operation": "exact_target",
+    "pin": "semantic-ir:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Wrong target version is never silently followed."
+}

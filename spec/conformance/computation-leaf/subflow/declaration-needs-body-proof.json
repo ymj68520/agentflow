@@ -1,0 +1,38 @@
+{
+  "case_id": "computation-leaf/subflow/declaration-needs-body-proof",
+  "expected": {
+    "body_verdict": "requires_evidence",
+    "dimensions_synthesized": false,
+    "export_verdict": "proven",
+    "interface_verdict": "proven",
+    "verdict": "requires_evidence"
+  },
+  "group": "subflow",
+  "input": {
+    "export": {
+      "full_dimensions": [
+        "Phi",
+        "Effect",
+        "Flow",
+        "Usage",
+        "Recovery",
+        "Execution"
+      ],
+      "ports": {
+        "inputs": [],
+        "outputs": [],
+        "resources": []
+      }
+    },
+    "operation": "subflow_interface",
+    "target": {
+      "interface": {
+        "inputs": [],
+        "outputs": [],
+        "resources": []
+      }
+    }
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Export declaration match is not implementation proof."
+}

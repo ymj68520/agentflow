@@ -74,6 +74,87 @@
       ]
     },
     {
+      "description": "AWAIT keeps its exact signal pin and correlation, explicit unknown external provenance, missing adapter obligations, and the absence of implicit timeout or business failure.",
+      "suite_id": "SUITE-COMPUTATION-LEAF-AWAIT",
+      "targets": [
+        "crates/af-computation/src/resolution.rs",
+        "crates/af-computation/src/summary.rs",
+        "spec/conformance/computation-leaf/await/"
+      ]
+    },
+    {
+      "description": "ComponentContract semantic digest stability is separated from checked proof reuse, which is bound to the exact context object and relation content.",
+      "suite_id": "SUITE-COMPUTATION-LEAF-CONTEXT",
+      "targets": [
+        "crates/af-contract/src/digest.rs",
+        "crates/af-contract/src/proof.rs",
+        "crates/af-computation/tests/leaf_resolution.rs",
+        "spec/conformance/computation-leaf/context/"
+      ]
+    },
+    {
+      "description": "Analysis is deterministic for one exact snapshot and source presentation-only metadata does not alter semantic identity.",
+      "suite_id": "SUITE-COMPUTATION-LEAF-EQUIVALENCE",
+      "targets": [
+        "spec/conformance/computation-leaf/equivalence/",
+        "tools/gen-computation-leaf-corpus.py"
+      ]
+    },
+    {
+      "description": "Exact INVOKE target resolution, checked contract pinning, exact public input/output port typing, required coverage, Phase 3C producer/scope reuse, and distinct call-site identity.",
+      "suite_id": "SUITE-COMPUTATION-LEAF-INVOKE",
+      "targets": [
+        "crates/af-computation/src/resolution.rs",
+        "crates/af-computation/tests/leaf_resolution.rs",
+        "spec/conformance/computation-leaf/invoke/",
+        "spec/conformance/computation-leaf/negative/"
+      ]
+    },
+    {
+      "description": "Exact resource requirement-port to ResourceSlotId mapping, explicit alias groups, missing attribute evidence, and source-preserving scoped Effect and Flow mappings.",
+      "suite_id": "SUITE-COMPUTATION-LEAF-MAPPING",
+      "targets": [
+        "crates/af-computation/src/mapping.rs",
+        "crates/af-computation/src/summary.rs",
+        "spec/conformance/computation-leaf/mapping/"
+      ]
+    },
+    {
+      "description": "The phase resolves only one leaf and cannot create runtime authority or close SEQUENCE, SELECT, PARALLEL, RACE, ITERATE, RETRY, TIMEOUT, HANDLE, SCOPE, or compensation contracts.",
+      "suite_id": "SUITE-COMPUTATION-LEAF-PHASE-BOUNDARY",
+      "targets": [
+        "crates/af-computation/Cargo.toml",
+        "spec/computation/leaf-contract-resolution.md",
+        "docs/implementation/phase-04b2a-proof-boundaries.md"
+      ]
+    },
+    {
+      "description": "A standalone Python implementation computes exact target, port/resource, scoped effect, subflow, context and verdict expectations without calling Rust or defining a wire ABI.",
+      "suite_id": "SUITE-COMPUTATION-LEAF-PYTHON-ORACLE",
+      "targets": [
+        "tools/gen-computation-leaf-corpus.py",
+        "spec/conformance/computation-leaf/manifest.json"
+      ]
+    },
+    {
+      "description": "Scoped leaf summaries retain full source contract dimensions, Effect atom identity and qualifiers, flow provenance, per-call U/K/X boundaries, and exact proof-context references.",
+      "suite_id": "SUITE-COMPUTATION-LEAF-SCOPED-SUMMARIES",
+      "targets": [
+        "crates/af-computation/src/summary.rs",
+        "spec/computation/leaf-contract-resolution.md",
+        "spec/conformance/computation-leaf/mapping/"
+      ]
+    },
+    {
+      "description": "CALL_SUBFLOW reuses exact Phase 3D targets and interface checks, requires a complete checked export, separates declaration from body proof, and checks exact-digest dependency closure.",
+      "suite_id": "SUITE-COMPUTATION-LEAF-SUBFLOW",
+      "targets": [
+        "crates/af-ir/src/subflow.rs",
+        "crates/af-computation/src/resolution.rs",
+        "spec/conformance/computation-leaf/subflow/"
+      ]
+    },
+    {
       "description": "Fixed rational rates use checked integer arithmetic and the safe per-meter-unit ceiling rule; aggregate-once rounding is rejected because it can underestimate independently rounded requests.",
       "suite_id": "SUITE-COST-ROUNDING",
       "targets": [

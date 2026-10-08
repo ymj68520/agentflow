@@ -1,0 +1,46 @@
+{
+  "case_id": "computation-leaf/invoke/invalid-output-producer",
+  "expected": {
+    "mappings": [
+      {
+        "binding": "value-slot:4-from-sibling",
+        "port": 1,
+        "type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        }
+      }
+    ],
+    "verdict": "violation"
+  },
+  "group": "negative",
+  "input": {
+    "bindings": [
+      {
+        "port": 1,
+        "producer_computation": 10,
+        "public_type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        },
+        "target": "value-slot:4-from-sibling"
+      }
+    ],
+    "computation": 12,
+    "operation": "check_output_binding",
+    "required": [
+      {
+        "port": 1,
+        "public_type_ref": {
+          "schema_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "specification_id": "agentflow.test.types@1",
+          "type_name": "RecordA"
+        }
+      }
+    ]
+  },
+  "kind": "agentflow.conformance.computation-leaf.test-vector",
+  "note": "Output destination must be produced by this exact leaf and pass Phase 3C."
+}
