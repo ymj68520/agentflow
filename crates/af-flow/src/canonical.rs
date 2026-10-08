@@ -41,6 +41,16 @@ fn check_summary(summary: &StaticInformationSummary) -> Result<(), FlowError> {
     Ok(())
 }
 
+/// An explicit unknown external origin is a real conservative source value,
+/// not an empty source list.  It may remain in a syntactically valid summary,
+/// but it is never sufficient for a positive static flow proof.
+fn has_unknown_external_source(summary: &StaticInformationSummary) -> bool {
+    summary
+        .sources
+        .iter()
+        .any(|source| matches!(source.category, SourceCategory::UnknownExternal))
+}
+
 /// `canonicalize_information_flow_contract`: resolve against the explicit
 /// catalogs (unknown labels are errors, never dropped), normalize,
 /// deduplicate, sort. Duplicate (kind, sink) constraint pairs are
@@ -186,8 +196,8 @@ fn sink_sort_key(sink: &FlowSink) -> String {
 ///
 /// 1. no matching constraint → `flow_not_proven`: a MISSING flow proof
 ///    is never flow allowed;
-/// 2. `influence_unknown` → [`FlowProof::Unproven`] (unknown is never
-///    read as clean);
+/// 2. `influence_unknown` or an explicit `unknown_external` source →
+///    [`FlowProof::Unproven`] (unknown is never read as clean);
 /// 3. `data_egress` while the contract declares confidentiality
 ///    restrictions → the egress carries a declassification obligation;
 /// 4. `decision_influence` while the summary carries any taint → the
@@ -217,7 +227,7 @@ pub fn check_flow(
              flow proof is never flow allowed",
         ));
     }
-    if canonical.summary.influence_unknown {
+    if canonical.summary.influence_unknown || has_unknown_external_source(&canonical.summary) {
         return Ok(FlowProof::Unproven);
     }
     let requires_declassification =

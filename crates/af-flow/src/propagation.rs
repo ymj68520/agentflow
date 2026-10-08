@@ -46,10 +46,13 @@ pub fn union_taints(sets: &[Vec<TaintRef>]) -> Vec<TaintRef> {
 }
 
 /// `merge_provenance_summaries`: the conservative merge of influence
-/// summaries. Sources union, taints union, instruction authority takes
-/// the MAXIMUM (weakest direction first: a flow that may carry `user`
-/// instructions may carry `external_data` instructions, never the
-/// reverse), and influence_unknown is sticky: unknown stays unknown.
+/// summaries. Sources union, taints union, and instruction authority takes
+/// the MAXIMUM as a *may-carry upper bound* (weakest direction first: a
+/// flow that may carry `user` instructions may carry `external_data`
+/// instructions, never the reverse). This upper bound is not effective
+/// instruction authority, source authentication, endorsement, or an
+/// authorization proof. `influence_unknown` is sticky: unknown stays
+/// unknown.
 #[must_use]
 pub fn merge_provenance_summaries(
     summaries: &[&StaticInformationSummary],
@@ -82,7 +85,8 @@ pub fn merge_provenance_summaries(
 /// data transformation (pure expression, structural copy, serialization,
 /// store/load round trip, summarization-by-another-component…). The
 /// output inherits the union of ALL listed input taints and the MAXIMUM
-/// input authority — inherited, never claimed. `claimed_authority` is
+/// input authority as a may-carry upper bound — inherited, never
+/// claimed as effective authority. `claimed_authority` is
 /// the authority the caller believes the output carries; claiming MORE
 /// than the inputs carry is instruction-authority elevation and is
 /// rejected. `influence_unknown` is sticky.

@@ -19,6 +19,8 @@
 //! - Instruction authority: the new summary's authority must not EXCEED
 //!   the old one (a higher authority is a stronger claim the new
 //!   contract must prove, not inherit).
+//! - Taint capacity: the new summary must not delete a taint the old
+//!   summary carried without a trusted influence proof.
 //! - Unknown influence: `influence_unknown` must not disappear (unknown
 //!   repaired into known is a silent widening).
 //!
@@ -71,10 +73,6 @@ fn sources_not_narrowed(
     new_sources: &BTreeSet<SourceCategory>,
     old_sources: &BTreeSet<SourceCategory>,
 ) -> bool {
-    if old_sources.contains(&SourceCategory::UnknownExternal) {
-        // The old contract's source set is Top; any new set is inside it.
-        return true;
-    }
     if new_sources.contains(&SourceCategory::UnknownExternal) {
         // The new contract admits an unknown external source the old one
         // did not: that is a widening of influence capacity, but a
@@ -82,8 +80,9 @@ fn sources_not_narrowed(
         // permissions (permissions are judged per constraint below).
         return true;
     }
-    // Both concrete: the new set must be a superset of the old one —
-    // dropping a source would be a silent influence-narrowing claim.
+    // Without an explicit unknown source, the new set must be a superset of
+    // the old one — dropping a source, including unknown_external,
+    // would be a silent influence-narrowing claim.
     old_sources.is_subset(new_sources)
 }
 
@@ -179,7 +178,29 @@ pub fn flow_not_relaxed(
         ));
     }
 
-    // 5. Source capacity: the new summary may not claim a narrower source
+    // 5. Taint capacity: the new summary may not delete a taint from the
+    //    old summary without a trusted transformation proof. Taint removal
+    //    is a narrowing of the may-influence description, not evidence of
+    //    non-relaxation.
+    let new_taints: BTreeSet<_> = new
+        .summary
+        .taints
+        .iter()
+        .map(super::model::TaintRef::identity_key)
+        .collect();
+    let old_taints: BTreeSet<_> = old
+        .summary
+        .taints
+        .iter()
+        .map(super::model::TaintRef::identity_key)
+        .collect();
+    if !old_taints.is_subset(&new_taints) {
+        return Ok(FlowCompatibilityProof::Unproven(
+            UnprovenReason::InfluenceRelationUnknown,
+        ));
+    }
+
+    // 6. Source capacity: the new summary may not claim a narrower source
     //    set (that would be an unproven influence narrowing).
     let new_sources: BTreeSet<_> = new
         .summary
