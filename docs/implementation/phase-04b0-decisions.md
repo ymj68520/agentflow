@@ -31,8 +31,8 @@ and [counterexamples](phase-04b0-counterexamples.md).
 | B0-D16 | Control and Subflow | Compose known dimensions using their own algebra; do not substitute empty rows for missing INVOKE/CALL_SUBFLOW contracts. No blind X aggregation across SEQUENCE/PARALLEL. |
 | B0-D17 | Static proof | Use Proven/Violation/Unproven/RequiresEvidence per dimension and obligation. Static proof is conditional on explicit inputs, not implementation attestation or runtime authorization. |
 | B0-D18 | Digest scope | Candidate digest contains only immutable semantic contract facts and exact pins. It excludes implementation, deployment, price snapshot, diagnostics, proof, attestation and runtime state. |
-| B0-D19 | Existing qualifier key | `AtomKey` must distinguish qualifier family and member value. The current family-only key collides `natural`/`none` and led to a confirmed Recovery Proven result for mismatched effects. This P0 must be corrected before Phase 4B.1. |
-| B0-D20 | Current phase exit | Do not create component-contract.afidl or register IDs/ABI. P0 and P1 findings block schema freeze; Phase 4B.0 ends with this audit. |
+| B0-D19 | Existing qualifier key | At the Phase 4B.0 audit baseline, `AtomKey` distinguished only qualifier family, colliding `natural`/`none` and producing a Recovery Proven result for mismatched effects. Phase 4B.0A closes this P0 by keying complete typed qualifier identities; see the dated closure below. |
+| B0-D20 | Current phase exit | At the Phase 4B.0 audit, P0 and P1 findings blocked schema freeze. The P0 closed in Phase 4B.0A; the remaining P1 findings still block it. Do not create component-contract.afidl or register IDs/ABI in this phase. |
 | B0-D21 | Unified Computation projection | Component calls source all fields from an exact contract; Subflow derives I/O/R today and needs exact contract closure for the other dimensions; Control summaries compose only where a per-dimension rule exists. Any missing field stays Unproven, never an empty row. |
 
 ## Open decisions that remain blocking
@@ -48,3 +48,16 @@ and [counterexamples](phase-04b0-counterexamples.md).
   before registering any field number.
 
 These are not resolved merely by the proposed field layout.
+
+## Phase 4B.0A P0 closure (2026-10-08)
+
+The shared `af_effect::AtomKey` now retains typed qualifiers ordered by frozen
+family/member discriminants and their typed value. The independent Effect and
+Recovery oracles freeze the previously colliding cases; the public Recovery
+API regression requires a mismatched qualifier to return
+`recovery_effect_not_declared`, never `ProvenStaticConstraint`. Effect
+canonicalization, containment, `require_contained_in`, accumulation, branch
+join, repetition and control propagation now use the same exact identity.
+No AFIDL/ABI assignment, TypeSchemaDigest, SemanticIrDigest or HashV1 domain
+was changed. The eight P1 blockers above remain open; this resolution does
+not authorize Phase 4B.1.

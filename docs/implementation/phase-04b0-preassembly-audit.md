@@ -1,6 +1,8 @@
 # Phase 4B.0 — ComponentContract Pre-assembly Audit
 
-Status: design audit complete; **not ready to enter Phase 4B.1**.
+Status: design audit complete; the P0 identity defect is closed in Phase
+4B.0A; **not ready to enter Phase 4B.1** because the eight P1 design blockers
+remain.
 
 Audit baseline: commit `5dc75eb` (`docs(execution): record phase 4a7 decisions`),
 clean worktree. The audit adds only design documents and a read-only audit
@@ -11,12 +13,12 @@ digest, or HashV1 value.
 
 The eight static dimensions can be represented in one future contract, but the
 existing APIs do not yet justify a complete compatibility or cross-dimension
-proof. One verified P0 defect makes EffectAtom equality unsound for the
-`natural` versus `none` qualifier. Eight P1 design blockers also remain,
-including selector-level Flow identity, complete recovery-operation identity,
-and a consistent public type comparison rule. Do not freeze the
-ComponentContract ABI until the P0 is corrected and the P1 resolutions are
-reviewed.
+proof. At this audit baseline, one verified P0 defect made EffectAtom equality
+unsound for the `natural` versus `none` qualifier; Phase 4B.0A has since
+closed it. Eight P1 design blockers remain, including selector-level Flow
+identity, complete recovery-operation identity, and a consistent public type
+comparison rule. Do not freeze the ComponentContract ABI until the P1
+resolutions are reviewed.
 
 The detailed artifacts are:
 
@@ -84,7 +86,7 @@ The specific file/type/API details and canonical-field recommendation are in
 the field matrix. The namespace separation and proposed mappings are in the
 port matrix.
 
-## P0 — Semantic soundness defect
+## P0 — Semantic soundness defect (audit finding; closed in Phase 4B.0A)
 
 `EffectAtom` identity is defined as operation + ResourceSelector + qualifier
 list. The frozen `EffectIdempotencyQualifier` has two distinct members,
@@ -113,6 +115,26 @@ it. This is P0 because it can turn an incompatible recovery clause into a
 positive static proof.
 
 No production code was changed during this audit.
+
+### Phase 4B.0A closure record (2026-10-08)
+
+The audit-era public reproducer was rerun at starting HEAD `956e020` before
+any production edits. It confirmed both exact observations: the Recovery
+clause key and ε atom key printed with `qualifiers: [1]`, and
+`analyze_recovery_safety` returned `ProvenStaticConstraint` for a natural
+clause against a none-qualified effect with Applied evidence. The typed
+`AtomKey` fix now retains the complete `EffectQualifier`; canonical ordering,
+duplicate detection, Effect Algebra and Recovery lookup all share it.
+Revision-3 Effect corpus adds 15 cases and revision-2 Recovery corpus adds 9
+cases. All 50 prior Effect and 34 prior Recovery cases retain their semantic
+and Expected fields unchanged; only their declared corpus revision changed.
+The new cases freeze both mismatch directions, exact matches, distinct-row
+algebra, guard/bounds boundaries and end-to-end public Recovery rejection.
+See [Phase 4B.0A counterexamples and regression vectors](phase-04b0-counterexamples.md).
+
+This closes only the P0. The eight P1 blockers and subsequent P2/P3 boundaries
+above remain as recorded; no ComponentContract schema or Phase 4B.1 work is
+authorized by this closure.
 
 ## P1 — ABI design blockers
 

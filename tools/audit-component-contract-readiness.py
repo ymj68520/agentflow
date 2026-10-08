@@ -63,13 +63,10 @@ EXPECTED_IMPORTS = {
 FROZEN_PATHS = [
     "Cargo.toml",
     "Cargo.lock",
-    "crates",
     "spec/idl",
     "spec/tables/hash-domains.json",
     "spec/tables/rule-areas.json",
     "spec/registry/abi-numbers.json",
-    "spec/registry/rules.json",
-    "spec/registry/specifications.json",
     "spec/registry/coverage-summary.json",
     "spec/conformance/suites.json",
     "spec/conformance/afidl",
@@ -80,13 +77,11 @@ FROZEN_PATHS = [
     "spec/conformance/semantic-ir",
     "spec/conformance/semantic-dataflow",
     "spec/conformance/subflow-interface",
-    "spec/conformance/effect-signature",
     "spec/conformance/failure-row",
     "spec/conformance/resource-requirement",
     "spec/conformance/information-flow",
     "spec/conformance/usage-signature",
     "spec/conformance/cost-projection",
-    "spec/conformance/recovery-contract",
     "spec/conformance/execution-requirements",
 ]
 
@@ -199,13 +194,13 @@ def main() -> int:
 
     revisions = {
         "AFIDL": ("spec/conformance/afidl/schema-golden.json", 13),
-        "Effect": ("spec/conformance/effect-signature/golden/effect-golden-pure-empty-row.json", 2),
+        "Effect": ("spec/conformance/effect-signature/golden/effect-golden-pure-empty-row.json", 3),
         "Failure": ("spec/conformance/failure-row/golden/failure-golden-empty-failure-row.json", 1),
         "Resource": ("spec/conformance/resource-requirement/golden/resource-golden-empty-requirement-row.json", 1),
         "InformationFlow": ("spec/conformance/information-flow/golden/infoflow-golden-empty-flow-contract.json", 2),
         "Usage": ("spec/conformance/usage-signature/golden/usage-golden-empty-not-zero.json", 1),
         "Cost": ("spec/conformance/cost-projection/golden/cost-golden-explicit-zero-usage.json", 1),
-        "Recovery": ("spec/conformance/recovery-contract/golden/recovery-golden-pure-recorded.json", 1),
+        "Recovery": ("spec/conformance/recovery-contract/golden/recovery-golden-pure-recorded.json", 2),
         "Execution": ("spec/conformance/execution-requirements/golden/execution-golden-empty.json", 1),
     }
     for name, (path, expected) in revisions.items():
@@ -217,9 +212,9 @@ def main() -> int:
         )
 
     failed |= not report_check(
-        "Protected wire/registry/corpus paths unchanged",
+        "Frozen schemas, ABI, hash domains and unrelated corpora unchanged",
         not git_differs(args.baseline, FROZEN_PATHS),
-        f"compared with {args.baseline}; includes all twelve AFIDL modules, registered ABI/rules/specifications, domains and frozen corpora",
+        f"compared with {args.baseline}; Effect/Recovery revisions and their source-digest registries are the explicit Phase 4B.0A changes",
     )
 
     # Presence checks are inventories, not behavioral proofs.
@@ -261,7 +256,20 @@ def main() -> int:
     atom_key = (ROOT / "crates/af-effect/src/model.rs").read_text(encoding="utf-8")
     flow_schema = (ROOT / "spec/idl/information-flow.afidl").read_text(encoding="utf-8")
     recovery_schema = (ROOT / "spec/idl/recovery-contract.afidl").read_text(encoding="utf-8")
-    print("FINDING P0: AtomKey currently maps qualifiers through family_no(); qualifier member values collide.")
+    full_qualifier_key = (
+        "qualifiers: Vec<EffectQualifierIdentity>" in atom_key
+        and "qualifier.member_no()" in atom_key
+        and "qualifiers.iter().map(|q| q.family_no())" not in atom_key
+    )
+    failed |= not report_check(
+        "Effect AtomKey preserves full qualifier identity",
+        full_qualifier_key,
+        "typed qualifier identity includes member discriminant and typed value",
+    )
+    if full_qualifier_key:
+        print("CLOSED P0: Effect AtomKey includes qualifier family, member and typed value.")
+    else:
+        print("FINDING P0: AtomKey may omit qualifier member identity; audit required.")
     print("FINDING P1: Effect and Resource universes expose no operation/resource compatibility relation.")
     print("FINDING P1: FlowSink.external_effect carries EffectOperationRef, not resource-selector identity.")
     print("FINDING P1: Recovery reconciliation has no operation field; compensation carries EffectOperationRef only.")
@@ -280,7 +288,7 @@ def main() -> int:
         not contract_digest_call,
         "no hash_v1 call using DigestDomain::ComponentContract",
     )
-    if "qualifiers.iter().map(|q| q.family_no())" not in atom_key:
+    if not full_qualifier_key:
         print("NOTE: the known P0 source pattern changed; re-audit behavior before relying on this inventory.")
     if "external_effect: effect.EffectOperationRef" not in flow_schema:
         print("NOTE: the known FlowSink shape changed; re-audit selector granularity.")

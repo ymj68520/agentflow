@@ -29,6 +29,17 @@ hash-based identity (no new digest domain this phase, D-14).
 `Effect = Operation + Resource Selector + Qualifiers`; the tuple-to-field
 mapping above is this phase's materialization of that definition.
 
+**Semantic erratum (2026-10-08; Phase 4B.0A):** the phrase “sorted
+qualifier-family list” above records the original implementation decision's
+incomplete wording and is superseded for semantic identity. The canonical
+tuple uses the sorted *complete typed qualifier identities*: family case,
+member discriminant and any semantically relevant member payload. Qualifier
+family alone MUST NOT be used as EffectAtom identity. Thus
+`idempotency.natural` and `idempotency.none` are distinct atoms, while source
+declaration order remains irrelevant. Guards and occurrence bounds remain
+outside AtomKey and continue to participate in their existing entry-level
+analysis. This erratum changes no AFIDL, ACE1, HashV1 or ABI assignment.
+
 ## D-2 Capability operation representation
 
 **Decision:** `EffectOperationRef { catalog: SpecificationId-form, name:

@@ -22,6 +22,13 @@ Recovery clauses reuse the complete canonical `EffectAtom` identity, including
 operation, ResourceSelector and qualifiers. Short names are never recovery
 identity. Duplicate clauses reject; clauses not present in ε are mismatches.
 
+**Clarification (2026-10-08; Phase 4B.0A):** “complete” explicitly means
+qualifier family + member discriminant + any semantically relevant typed
+payload, in addition to the full operation catalog/name and selector port /
+scope. A family-only projection is unsound; for example, `natural` never
+matches `none`. Recovery matching, evidence lookup and Effect Algebra share
+the same canonical AtomKey.
+
 ## D-K4 Unknown and partial safety
 
 Unknown Effect state blocks blind retry. `NONE + UNKNOWN` is a static unsafe

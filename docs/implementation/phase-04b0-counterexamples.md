@@ -2,9 +2,10 @@
 
 These are design-level vectors, not production conformance fixtures. They
 record API behavior where it can be reproduced and the conservative result a
-future complete checker must return. `Violation` means the closed rule proves
-the contract invalid; `Unproven` means no positive compatibility/security
-claim may be made.
+future complete checker must return. Row 10 preserves the pre-fix observation
+and links it to the Phase 4B.0A frozen regression cases. `Violation` means the
+closed rule proves the contract invalid; `Unproven` means no positive
+compatibility/security claim may be made.
 
 | # | Construction | Existing API observation | Required Component-level result | Class |
 | --- | --- | --- | --- | --- |
@@ -17,7 +18,7 @@ claim may be made.
 | 7 | Closed ε has atom A but K has no clause for A | `analyze_recovery_safety` returns `Unproven(MissingClause)` | Unproven; do not default to replayable or recoverable | P2 |
 | 8 | K has a clause for atom B absent from closed ε | `analyze_recovery_safety` returns `RECOVERY_EFFECT_NOT_DECLARED` | Violation | P2 |
 | 9 | K requires compensation operation `data.refund`, while ε declares `data.refund` only on another resource selector | The K compensation field stores only `EffectOperationRef`; validation checks operation name membership in the operation catalog | Unproven; operation-only identity cannot prove the declared selector is available | P1 |
-| 10 | K clause uses `idempotency=natural`; ε has same operation/selector with `idempotency=none`; evidence says Applied | `AtomKey::of(natural) == AtomKey::of(none)`; the direct public-API probe made `analyze_recovery_safety` return `ProvenStaticConstraint` | Violation: the K clause's full EffectAtom is absent from ε | **P0** |
+| 10 | K clause uses `idempotency=natural`; ε has same operation/selector with `idempotency=none`; evidence says Applied | At baseline `956e020`, both AtomKeys printed `qualifiers: [1]` and the public API returned `ProvenStaticConstraint`; after 4B.0A the qualifier keys differ and analysis returns `recovery_effect_not_declared` | Violation: the K clause's full EffectAtom is absent from ε | **P0 — closed in 4B.0A** |
 | 11 | K says reconciliation is required, but does not identify the reconciliation operation/effect | Wire field is only `ReconciliationRequirement::{None,Required}`; `RecoveryOperationUniverse` recognition is not connected to the clause | Unproven; no declared effect identity can be checked against ε or R | P1 |
 | 12 | K requires reconciliation; U omits all recovery meters or contains only explicit `finite(0)` for a required recovery meter | `usage_not_increased` treats missing coordinates as Unproven; no K→usage derivation exists | Unproven unless an explicit recovery-usage relation proves the envelope; missing is never zero | P1 |
 | 13 | Old/new projections are compared under different fixed `PriceTableSnapshot` values | `cost_not_increased` returns `Unproven(DifferentPriceSnapshot)` | Unproven; lower numeric projection under a new price table is not evidence of cheaper implementation | Correct existing behavior |
@@ -34,7 +35,11 @@ claim may be made.
 | 24 | K declares KEYED but key evidence/provider honoring is absent | `analyze_recovery_safety` returns `RequiresEvidence` with key/idempotency obligations | RequiresEvidence; never a static retry permit | Correct existing behavior |
 | 25 | A public port uses `UserId = string`; another contract uses primitive `string` | Phase 3A type expansion collapses the alias; Phase 3D Subflow projection retains the exact alias TypeSchemaRef and rejects alias-vs-target | Unproven until the ABI comparison policy is reconciled | P1 |
 
-## Reproducing the P0 probe
+## Historical baseline reproducer
+
+The following probe was executed before production edits at starting HEAD
+`956e020`. Its key-equality and positive-proof assertions are expected to fail
+against the fixed implementation; they preserve the actual buggy API result.
 
 The probe used only current public model/API shapes:
 
@@ -55,10 +60,87 @@ assert_eq!(
 );
 ```
 
-The source of the collision is `AtomKey::of`, which maps each qualifier to
-`family_no()` and therefore discards the `EffectIdempotencyQualifier` member.
-The same key is used by ε containment/algebra and K coverage. The test probe
-was temporary and is not retained as a production test or wire artifact.
+Concrete baseline observation from the executed public-API probe (the effect
+entry had bounds `[1,1]` and an unconditional guard):
+
+```text
+EffectAtom {
+  operation: EffectOperationRef {
+    catalog: "agentflow.test.recovery.effects@1",
+    name: "payment.charge"
+  },
+  resource_selector: ResourceSelector {
+    requirement_port_no: 1,
+    scope_bindings: []
+  },
+  qualifiers: [Idempotency(None)]
+}
+EffectRecoveryClause {
+  effect: EffectAtom {
+    operation: EffectOperationRef {
+      catalog: "agentflow.test.recovery.effects@1",
+      name: "payment.charge"
+    },
+    resource_selector: ResourceSelector {
+      requirement_port_no: 1,
+      scope_bindings: []
+    },
+    qualifiers: [Idempotency(Natural)]
+  },
+  idempotency: Natural,
+  key_requirement: None,
+  reconciliation: None,
+  compensation: None,
+  unknown_effect_handling: Block
+}
+recovery_clause_atom_key = AtomKey {
+  catalog: "agentflow.test.recovery.effects@1",
+  name: "payment.charge",
+  port_no: 1,
+  scope: [],
+  qualifiers: [1]
+}
+effect_atom_key = AtomKey { same fields, qualifiers: [1] }
+evidence = Applied
+actual_recovery_proof = ProvenStaticConstraint
+```
+
+The source of the collision was `AtomKey::of`, which mapped each qualifier to
+`family_no()` and discarded the `EffectIdempotencyQualifier` member. The same
+key drove ε canonical duplicate detection, containment/algebra and K coverage.
+The probe was temporary and was removed after the baseline evidence was
+recorded; it changed no production file or wire artifact.
+
+## Phase 4B.0A closure vectors (2026-10-08)
+
+The independent frozen corpora now include:
+
+- Effect: `effect/golden/qualifier-natural-vs-none-distinct`,
+  `effect/golden/same-operation-different-resource-still-distinct`,
+  `effect/equivalence/qualifier-member-canonical-order`,
+  `effect/negative/same-full-qualifier-duplicate-rejected`, and algebra cases
+  for both containment directions, `require_contained_in`, accumulation,
+  branch join, repetition, SEQUENCE/PARALLEL/RACE propagation, plus separate
+  guard and occurrence-bound containment cases proving those remain entry
+  semantics rather than atom identity.
+- Recovery: `recovery/negative/recovery-natural-vs-none-mismatch`,
+  `recovery/negative/recovery-none-vs-natural-mismatch`,
+  `recovery/golden/recovery-exact-qualifier-match`,
+  `recovery/golden/recovery-natural-none-distinct-clauses`,
+  `recovery/negative/recovery-different-resource-selector`,
+  `recovery/negative/recovery-different-scope-binding`,
+  `recovery/golden/recovery-clause-complete-atom-identity`,
+  `recovery/equivalence/qualifier-member-order`, and
+  `recovery/negative/recovery-proof-no-false-proven`.
+
+The corpus delta is 15 Effect additions (50→65) and 9 Recovery additions
+(34→43). Comparing all pre-existing cases against `956e020` after ignoring
+only the revision field shows zero semantic or Expected-value drift.
+
+The public Recovery API now rejects either mismatched qualifier direction as
+`recovery_effect_not_declared`; Applied evidence cannot turn an absent exact
+clause into `ProvenStaticConstraint`. Guards and occurrence bounds remain
+outside AtomKey and are independently exercised by the Effect Algebra corpus.
 
 ## Related audit documents
 
