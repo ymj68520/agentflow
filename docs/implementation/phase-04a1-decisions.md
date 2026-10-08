@@ -241,16 +241,36 @@ exist yet, and would freeze a granularity the contract phase may not want).
 ## D-15 Branch-join lower bounds (recorded during implementation)
 
 **Decision:** in `εa ⊔ εb`, a key declared by BOTH branches keeps
-`[min(l1,l2), max(u1,u2)]` (whichever branch runs delivers at least its own
-lower, hence at least the minimum); a key declared by only ONE branch
-becomes `[0, u]` with its guard kept. Equal conditions keep their guard;
-different conditions widen to `unconditional`. Join is commutative and
-idempotent. Residual ceilings join as `[0, max(u1,u2)]`.
+`[min(l1,l2), max(u1,u2)]` ONLY when the two guards are identical (Case A:
+the minimum is the tightest bound guaranteed under that shared condition);
+a key declared by only ONE branch becomes `[0, u]` with its guard kept
+(Case C). When the guards DIFFER and their equivalence is not provable
+(Case B — the union of the trigger conditions is not expressible in the
+closed guard language), the merged entry widens to `unconditional` with
+`lower = 0` and `upper = max(u1,u2)`; `min(l1,l2)` MUST NOT survive that
+widening. Residual ceilings join as `[0, max(u1,u2)]`. Join is
+commutative, idempotent and associative over the implemented closed guard
+set.
 
 **Why recorded:** an earlier draft zeroed ALL lower bounds in joins; that
-is sound but understates guaranteed minima for both-declared keys and breaks
-idempotence. The corrected rule is the tightest sound interval and is
-frozen in `effect/algebra/join-idempotence` and `join-commutativity`.
+is sound but understates guaranteed minima for both-declared keys and
+breaks idempotence, so the rule was narrowed to identical-guard pairs.
+**Correction (Phase 4A.1B):** the first Rust implementation of that
+narrowed rule still applied `min(l1,l2)` across DIFFERING guards and
+stamped the widened entry `unconditional` — promoting a condition-
+guaranteed lower bound to an unconditional one, exactly the conversion
+this decision forbids (e.g. `guard(input=="a") [1,2] ⊔ guard(input=="b")
+[1,3]` produced `unconditional [1,3]` instead of `unconditional [0,3]`).
+The independent Python oracle already weakened to zero; the divergence went
+unnoticed because the original different-guards fixture carried lower 0 on
+one side (`min(1, 0) = 0` masked the bug). The fix weakens the lower bound
+to zero in Case B; effect corpus revision 1 → 2 freezes the eight
+guarded-join fixtures (`join-same-unconditional-guard`,
+`join-same-conditional-guard`, `join-different-input-equals-guards`,
+`join-unconditional-vs-conditional`, `join-one-sided-guarded-effect`, and
+the commutativity/idempotence/associativity-with-guards properties) that
+pin the rule. No pre-existing expected value changed; every earlier golden
+byte is identical.
 
 ## D-16 Control-propagation surface
 
