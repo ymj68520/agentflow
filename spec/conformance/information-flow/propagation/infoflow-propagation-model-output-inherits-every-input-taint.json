@@ -1,0 +1,136 @@
+{
+  "case_id": "infoflow/propagation/model-output-inherits-every-input-taint",
+  "case_kind": "propagation",
+  "catalogs": {
+    "effects": [
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "email.send"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "github.issue_comment"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "payment.refund"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "production.deploy"
+      }
+    ],
+    "labels": {
+      "confidentiality": [
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "internal.confidential"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "medical.record"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.email"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.phone"
+        }
+      ],
+      "taints": [
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "file_system"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "model_generated"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "user_input"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "web_untrusted"
+        }
+      ]
+    }
+  },
+  "corpus_revision": 1,
+  "inputs": [
+    {
+      "authority": "external_data",
+      "influence_unknown": false,
+      "sources": [
+        {
+          "category": {
+            "workflow_input": 1
+          }
+        }
+      ],
+      "taints": [
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "web_untrusted"
+        }
+      ]
+    },
+    {
+      "authority": "delegated_agent",
+      "influence_unknown": false,
+      "sources": [
+        {
+          "category": {
+            "resource_requirement": 2
+          }
+        }
+      ],
+      "taints": [
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "file_system"
+        }
+      ]
+    }
+  ],
+  "kind": "agentflow.conformance.information-flow.case",
+  "note": "the strong mixer: model output taint = union of every model-visible input taint",
+  "operation": "mix_model_visible_inputs",
+  "summary": {
+    "influence_unknown": true,
+    "instruction_authority": "delegated_agent",
+    "sources": [
+      {
+        "category": {
+          "workflow_input": 1
+        }
+      },
+      {
+        "category": {
+          "resource_requirement": 2
+        }
+      }
+    ],
+    "taints": [
+      {
+        "catalog": "agentflow.infoflow.taints@1",
+        "name": "file_system"
+      },
+      {
+        "catalog": "agentflow.infoflow.taints@1",
+        "name": "model_generated"
+      },
+      {
+        "catalog": "agentflow.infoflow.taints@1",
+        "name": "web_untrusted"
+      }
+    ]
+  }
+}

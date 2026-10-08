@@ -1,0 +1,133 @@
+{
+  "case_id": "infoflow/propagation/pure-expression-inherits-taints",
+  "case_kind": "propagation",
+  "catalogs": {
+    "effects": [
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "email.send"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "github.issue_comment"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "payment.refund"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "production.deploy"
+      }
+    ],
+    "labels": {
+      "confidentiality": [
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "internal.confidential"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "medical.record"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.email"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.phone"
+        }
+      ],
+      "taints": [
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "file_system"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "model_generated"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "user_input"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "web_untrusted"
+        }
+      ]
+    }
+  },
+  "corpus_revision": 1,
+  "inputs": [
+    {
+      "authority": "external_data",
+      "influence_unknown": false,
+      "sources": [
+        {
+          "category": {
+            "workflow_input": 1
+          }
+        }
+      ],
+      "taints": [
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "web_untrusted"
+        }
+      ]
+    },
+    {
+      "authority": "user",
+      "influence_unknown": true,
+      "sources": [
+        {
+          "category": {
+            "workflow_input": 2
+          }
+        }
+      ],
+      "taints": [
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "user_input"
+        }
+      ]
+    }
+  ],
+  "kind": "agentflow.conformance.information-flow.case",
+  "note": "a pure expression inherits the union of ALL input taints and the maximum authority; unknown stays unknown",
+  "operation": "propagate_pure_expression",
+  "output_authority": "user",
+  "summary": {
+    "influence_unknown": true,
+    "instruction_authority": "user",
+    "sources": [
+      {
+        "category": {
+          "workflow_input": 1
+        }
+      },
+      {
+        "category": {
+          "workflow_input": 2
+        }
+      }
+    ],
+    "taints": [
+      {
+        "catalog": "agentflow.infoflow.taints@1",
+        "name": "user_input"
+      },
+      {
+        "catalog": "agentflow.infoflow.taints@1",
+        "name": "web_untrusted"
+      }
+    ]
+  }
+}

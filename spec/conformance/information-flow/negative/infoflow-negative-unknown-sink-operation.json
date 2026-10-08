@@ -1,0 +1,90 @@
+{
+  "case_id": "infoflow/negative/unknown-sink-operation",
+  "case_kind": "negative",
+  "catalogs": {
+    "effects": [
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "email.send"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "github.issue_comment"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "payment.refund"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "production.deploy"
+      }
+    ],
+    "labels": {
+      "confidentiality": [
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "internal.confidential"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "medical.record"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.email"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.phone"
+        }
+      ],
+      "taints": [
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "file_system"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "model_generated"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "user_input"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "web_untrusted"
+        }
+      ]
+    }
+  },
+  "contract": {
+    "confidentiality_restrictions": [],
+    "flow_constraints": [
+      {
+        "kind": "data_egress",
+        "sink": {
+          "external_effect": {
+            "catalog": "agentflow.test.effects@1",
+            "name": "database.drop"
+          }
+        }
+      }
+    ],
+    "summary": {
+      "influence_unknown": true,
+      "instruction_authority": "none",
+      "sources": [],
+      "taints": []
+    }
+  },
+  "corpus_revision": 1,
+  "expected_kind": "unknown_flow_sink",
+  "kind": "agentflow.conformance.information-flow.case",
+  "note": "an unresolvable effect sink is rejected fail-closed: no latest fallback, no name-based classification"
+}

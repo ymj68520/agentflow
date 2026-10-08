@@ -1,0 +1,110 @@
+{
+  "canonical_ace1_utf8": "{\"confidentiality_restrictions\":[{\"catalog\":\"agentflow.infoflow.labels@1\",\"name\":\"internal.confidential\"},{\"catalog\":\"agentflow.infoflow.labels@1\",\"name\":\"pii.email\"}],\"flow_constraints\":[],\"summary\":{\"influence_unknown\":true,\"instruction_authority\":\"none\",\"sources\":[],\"taints\":[]}}",
+  "case_id": "infoflow/equivalence/label-ordering",
+  "case_kind": "equivalence",
+  "catalogs": {
+    "effects": [
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "email.send"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "github.issue_comment"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "payment.refund"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "production.deploy"
+      }
+    ],
+    "labels": {
+      "confidentiality": [
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "internal.confidential"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "medical.record"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.email"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.phone"
+        }
+      ],
+      "taints": [
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "file_system"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "model_generated"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "user_input"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "web_untrusted"
+        }
+      ]
+    }
+  },
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.information-flow.case",
+  "members": [
+    {
+      "confidentiality_restrictions": [
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.email"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "internal.confidential"
+        }
+      ],
+      "flow_constraints": [],
+      "summary": {
+        "influence_unknown": true,
+        "instruction_authority": "none",
+        "sources": [],
+        "taints": []
+      }
+    },
+    {
+      "confidentiality_restrictions": [
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "internal.confidential"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.email"
+        }
+      ],
+      "flow_constraints": [],
+      "summary": {
+        "influence_unknown": true,
+        "instruction_authority": "none",
+        "sources": [],
+        "taints": []
+      }
+    }
+  ],
+  "note": "label declaration order is not identity"
+}

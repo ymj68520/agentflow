@@ -1,0 +1,97 @@
+{
+  "canonical_ace1_utf8": "{\"confidentiality_restrictions\":[{\"catalog\":\"agentflow.infoflow.labels@1\",\"name\":\"internal.confidential\"},{\"catalog\":\"agentflow.infoflow.labels@1\",\"name\":\"pii.email\"},{\"catalog\":\"agentflow.infoflow.labels@1\",\"name\":\"pii.phone\"}],\"flow_constraints\":[],\"summary\":{\"influence_unknown\":true,\"instruction_authority\":\"none\",\"sources\":[],\"taints\":[]}}",
+  "case_id": "infoflow/golden/multiple-labels",
+  "case_kind": "golden",
+  "catalogs": {
+    "effects": [
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "email.send"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "github.issue_comment"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "payment.refund"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "production.deploy"
+      }
+    ],
+    "labels": {
+      "confidentiality": [
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "internal.confidential"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "medical.record"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.email"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.phone"
+        }
+      ],
+      "taints": [
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "file_system"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "model_generated"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "user_input"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "web_untrusted"
+        }
+      ]
+    }
+  },
+  "constraint_count": 0,
+  "contract": {
+    "confidentiality_restrictions": [
+      {
+        "catalog": "agentflow.infoflow.labels@1",
+        "name": "pii.email"
+      },
+      {
+        "catalog": "agentflow.infoflow.labels@1",
+        "name": "pii.phone"
+      },
+      {
+        "catalog": "agentflow.infoflow.labels@1",
+        "name": "internal.confidential"
+      }
+    ],
+    "flow_constraints": [],
+    "summary": {
+      "influence_unknown": true,
+      "instruction_authority": "none",
+      "sources": [],
+      "taints": []
+    }
+  },
+  "corpus_revision": 1,
+  "is_empty": false,
+  "kind": "agentflow.conformance.information-flow.case",
+  "note": "several confidentiality restrictions",
+  "restriction_count": 3,
+  "verdicts": []
+}

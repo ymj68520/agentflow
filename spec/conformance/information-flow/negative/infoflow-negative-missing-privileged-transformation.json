@@ -1,0 +1,102 @@
+{
+  "case_id": "infoflow/negative/missing-privileged-transformation",
+  "case_kind": "negative",
+  "catalogs": {
+    "effects": [
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "email.send"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "github.issue_comment"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "payment.refund"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "production.deploy"
+      }
+    ],
+    "labels": {
+      "confidentiality": [
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "internal.confidential"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "medical.record"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.email"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.phone"
+        }
+      ],
+      "taints": [
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "file_system"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "model_generated"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "user_input"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "web_untrusted"
+        }
+      ]
+    }
+  },
+  "contract": {
+    "confidentiality_restrictions": [
+      {
+        "catalog": "agentflow.infoflow.labels@1",
+        "name": "medical.record"
+      }
+    ],
+    "flow_constraints": [
+      {
+        "kind": "data_egress",
+        "sink": {
+          "workflow_output": 1
+        }
+      }
+    ],
+    "summary": {
+      "influence_unknown": false,
+      "instruction_authority": "workflow",
+      "sources": [
+        {
+          "category": {
+            "workflow_input": 1
+          }
+        }
+      ],
+      "taints": []
+    }
+  },
+  "corpus_revision": 1,
+  "expected_kind": "privileged_transformation_required",
+  "kind": "data_egress",
+  "note": "egress under a declared confidentiality restriction needs a declassification this layer cannot supply: the obligation is recorded and demanding a proven flow names the missing privileged transformation",
+  "operation": "require_proven",
+  "sink": {
+    "workflow_output": 1
+  }
+}

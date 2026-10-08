@@ -1,0 +1,120 @@
+{
+  "canonical_ace1_utf8": "{\"confidentiality_restrictions\":[{\"catalog\":\"agentflow.infoflow.labels@1\",\"name\":\"pii.email\"}],\"flow_constraints\":[{\"kind\":\"data_egress\",\"sink\":{\"external_effect\":{\"catalog\":\"agentflow.test.effects@1\",\"name\":\"email.send\"}}}],\"summary\":{\"influence_unknown\":false,\"instruction_authority\":\"user\",\"sources\":[{\"category\":{\"workflow_input\":\"1\"}}],\"taints\":[]}}",
+  "case_id": "infoflow/golden/data-egress-sink",
+  "case_kind": "golden",
+  "catalogs": {
+    "effects": [
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "email.send"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "github.issue_comment"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "payment.refund"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "production.deploy"
+      }
+    ],
+    "labels": {
+      "confidentiality": [
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "internal.confidential"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "medical.record"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.email"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.phone"
+        }
+      ],
+      "taints": [
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "file_system"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "model_generated"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "user_input"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "web_untrusted"
+        }
+      ]
+    }
+  },
+  "constraint_count": 1,
+  "contract": {
+    "confidentiality_restrictions": [
+      {
+        "catalog": "agentflow.infoflow.labels@1",
+        "name": "pii.email"
+      }
+    ],
+    "flow_constraints": [
+      {
+        "kind": "data_egress",
+        "sink": {
+          "external_effect": {
+            "catalog": "agentflow.test.effects@1",
+            "name": "email.send"
+          }
+        }
+      }
+    ],
+    "summary": {
+      "influence_unknown": false,
+      "instruction_authority": "user",
+      "sources": [
+        {
+          "category": {
+            "workflow_input": 1
+          }
+        }
+      ],
+      "taints": []
+    }
+  },
+  "corpus_revision": 1,
+  "is_empty": false,
+  "kind": "agentflow.conformance.information-flow.case",
+  "note": "a data-egress ceiling to a structured external effect: with a known summary and a declared restriction the flow carries a recorded declassification obligation",
+  "restriction_count": 1,
+  "verdicts": [
+    {
+      "expected": {
+        "outcome": "requires_trusted_transformation",
+        "requires_declassification": true,
+        "requires_endorsement": false
+      },
+      "kind": "data_egress",
+      "sink": {
+        "external_effect": {
+          "catalog": "agentflow.test.effects@1",
+          "name": "email.send"
+        }
+      }
+    }
+  ]
+}
