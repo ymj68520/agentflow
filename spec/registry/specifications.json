@@ -41,6 +41,32 @@
       "status": "frozen"
     },
     {
+      "description": "Effect Signature semantics: the declaration/authorization boundary, atom identity, fail-closed catalog resolution, occurrence bound and guard rules, the closed/open/top row distinction, the effect algebra (containment, accumulation, branch join, repetition) and static control-opcode propagation.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "393158912e1cd3cbb93f4a2c04bc60fab923b769d99ad0d115e3ef338c1a2bc3"
+        },
+        "logical_path": "spec/effect/effect-signature.md"
+      },
+      "specification_id": "agentflow.effect.signature.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the Effect Signature: effect atoms (operation identity, logical resource selector, closed qualifiers), explicit occurrence bounds, the closed guard language and the four capability row states (pure, closed, bounded-open, unknown). Reuses the semantic core's PrimitiveConstant by exact cross-module import.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "c488c3b9ff53ea709ea7eee6d80f1e001125b0153bccb4c0808f966ef614d8ab"
+        },
+        "logical_path": "spec/idl/effect-signature.afidl"
+      },
+      "specification_id": "agentflow.effect.signature@1",
+      "status": "frozen"
+    },
+    {
       "description": "ACE1: the deterministic, schema-directed, UTF-8 canonical encoding of AgentFlow values (strict JSON subset).",
       "kind": "encoding",
       "normative_source": {
@@ -111,7 +137,7 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "891da6997138a6597c30a80231687b6b2f4bb3013cf52984bd35d7faa43dac67"
+          "hex": "07a17c73beb31515a5d7e767f7c1ff5f6315fbd6335237e39b6e5a5daa5f981f"
         },
         "logical_path": "spec/tables/rule-areas.json"
       },

@@ -1139,6 +1139,136 @@ IR_RULES = [
 ]
 RULES.extend(IR_RULES)
 
+# ---------------------------------------------------------------------------
+# Effect Signature rules (Phase 4A.1, area EFFECT)
+# ---------------------------------------------------------------------------
+
+EFFECT_SRC = "spec/effect/effect-signature.md"
+
+EFFECT_RULES = [
+    rule("AF-EFFECT-0001", "EFFECT", EFFECT_SRC, "effect-declaration-not-authorization",
+         "An effect signature is a static declaration, never authorization: "
+         "Declared != Granted != Dispatched != Observed, "
+         "Dispatched ⊆ Granted ⊆ Declared is a Runtime/Effect-Gateway "
+         "invariant, and no API converts a signature into authority.",
+         ["SUITE-EFFECT-DECLARATION-NOT-AUTHORIZATION",
+          "SUITE-EFFECT-NO-RUNTIME"]),
+    rule("AF-EFFECT-0002", "EFFECT", EFFECT_SRC, "effect-atom",
+         "An effect atom is exactly operation + resource selector + closed "
+         "qualifiers, and its canonical identity is that exact structural "
+         "tuple.",
+         ["effect/golden/single-write", "effect/golden/multiple-distinct"]),
+    rule("AF-EFFECT-0003", "EFFECT", EFFECT_SRC, "effect-operation-identity",
+         "An operation identity is catalog (a SpecificationId) plus a dotted "
+         "lowercase name; resolution against the supplied explicit catalog "
+         "universe is fail-closed with no default catalog and no fallback.",
+         ["effect/golden/single-read", "effect/negative/unknown-operation",
+          "effect/negative/invalid-operation-name",
+          "effect/negative/invalid-catalog-identity",
+          "SUITE-EFFECT-CATALOG-EXPLICIT-UNIVERSE"]),
+    rule("AF-EFFECT-0004", "EFFECT", EFFECT_SRC, "effect-resource-selector",
+         "A resource selector is a >= 1 requirement port plus exact-binding "
+         "scope constraints; it never carries a raw handle, filesystem root, "
+         "database connection, secret or worker endpoint, and scope "
+         "containment is exact-binding set inclusion, never a prefix match.",
+         ["effect/golden/resource-scope", "effect/negative/zero-requirement-port",
+          "effect/negative/duplicate-scope-key"]),
+    rule("AF-EFFECT-0005", "EFFECT", EFFECT_SRC, "effect-occurrence-bounds",
+         "Occurrence bounds are explicit [lower, upper] intervals with an "
+         "explicit unbounded ceiling (never UINT64_MAX); they count logical "
+         "effect occurrences, physical attempts are tracked separately, and "
+         "impossible intervals are rejected.",
+         ["effect/golden/occurrence-bounds",
+          "effect/negative/occurrence-lower-above-upper",
+          "effect/algebra/repeat-n"]),
+    rule("AF-EFFECT-0006", "EFFECT", EFFECT_SRC, "effect-pure",
+         "Pure is exactly the closed empty row; zero-occurrence entries are "
+         "semantically pure and dropped by the canonical form.",
+         ["effect/golden/pure-empty-row", "effect/golden/zero-occurrence-entry",
+          "effect/algebra/repeat-zero"]),
+    rule("AF-EFFECT-0007", "EFFECT", EFFECT_SRC, "effect-top",
+         "The unknown row (⊤) is an unprovable-envelope analysis result: it "
+         "is not pure, contaminates compositions upward, carries no "
+         "capability material and is never authorization.",
+         ["effect/negative/top-is-not-pure",
+          "effect/negative/top-is-not-authorization"]),
+    rule("AF-EFFECT-0008", "EFFECT", EFFECT_SRC, "effect-open-row",
+         "A bounded-open row keeps known effects plus a residual ceiling "
+         "that must constrain something (a scope binding or a finite "
+         "occurrence upper); an open row that bounds nothing is pure.",
+         ["effect/golden/bounded-open-row",
+          "effect/negative/unbounded-open-row"]),
+    rule("AF-EFFECT-0009", "EFFECT", EFFECT_SRC, "effect-containment",
+         "Containment (⊑) must be PROVED per entry (exact operation, equal "
+         "qualifiers, narrower scope, contained interval, implied guard) or "
+         "returned as NOT PROVEN with a stable reason; unresolved proofs "
+         "fail closed as effect_envelope_unprovable.",
+         ["effect/algebra/containment-reflexivity",
+          "effect/algebra/containment-transitivity"]),
+    rule("AF-EFFECT-0010", "EFFECT", EFFECT_SRC, "effect-accumulation",
+         "Accumulation (⊕) adds occurrence intervals per atom key with "
+         "checked arithmetic, keeps distinct atoms, composes guards "
+         "conservatively (lower bounds only across unconditional entries), "
+         "and is the identity of the pure row.",
+         ["effect/algebra/empty-identity",
+          "effect/algebra/accumulation-associativity",
+          "effect/algebra/sequence-accumulation",
+          "effect/algebra/parallel-accumulation"]),
+    rule("AF-EFFECT-0011", "EFFECT", EFFECT_SRC, "effect-branch-join",
+         "Branch join (⊔) keeps the possible effects of both mutually "
+         "exclusive branches: both-declared keys keep the guaranteed "
+         "minimum lower bound and the covering ceiling, one-sided keys "
+         "drop to [0, u], one-sided guards are kept and different "
+         "conditions widen to unconditional.",
+         ["effect/algebra/join-commutativity",
+          "effect/algebra/join-idempotence"]),
+    rule("AF-EFFECT-0012", "EFFECT", EFFECT_SRC, "effect-race",
+         "RACE is conservative accumulation over ALL contestants: a loser "
+         "may have produced effects before cancellation, so loser effects "
+         "are never discarded and race is not a branch join.",
+         ["effect/algebra/race-loser-retained"]),
+    rule("AF-EFFECT-0013", "EFFECT", EFFECT_SRC, "effect-iterate",
+         "ITERATE scales the body envelope by the statically proven "
+         "repetition bounds; an unprovable repetition count never yields a "
+         "finite envelope, and zero repetitions are pure.",
+         ["effect/algebra/repeat-one", "effect/algebra/repeat-n"]),
+    rule("AF-EFFECT-0014", "EFFECT", EFFECT_SRC, "effect-retry",
+         "RETRY separates physical attempt bounds [1, max_attempts] from "
+         "the logical effect envelope, which stays conservatively scaled "
+         "(no idempotency assumption) and records the explicit obligation "
+         "that narrowing requires a recovery contract.",
+         ["effect/algebra/retry-amplification",
+          "SUITE-EFFECT-RETRY-BOUNDARY"]),
+    rule("AF-EFFECT-0015", "EFFECT", EFFECT_SRC, "effect-compensation",
+         "Compensation adds the counter-effect to the envelope and never "
+         "subtracts forward effects: the original effect and the "
+         "counter-effect are both facts.",
+         ["effect/algebra/compensation-no-subtraction"]),
+    rule("AF-EFFECT-0016", "EFFECT", EFFECT_SRC, "effect-canonicalization",
+         "Canonicalization is deterministic and idempotent: entry order, "
+         "scope binding order and qualifier order never change the canonical "
+         "ACE1 bytes; declared duplicates are rejected (not merged); and no "
+         "EffectSignatureDigest or new HashV1 domain is introduced.",
+         ["effect/golden/canonical-reordering",
+          "effect/equivalence/entry-reordering",
+          "effect/equivalence/scope-binding-reordering",
+          "effect/equivalence/zero-occurrence-equals-pure",
+          "effect/equivalence/residual-reordering"]),
+    rule("AF-EFFECT-0017", "EFFECT", EFFECT_SRC, "effect-guards",
+         "The guard language is closed (unconditional, typed input "
+         "equality): guards narrow when an effect may occur, their grammar "
+         "is validated, and inexpressible conditions widen to unconditional "
+         "instead of being assumed false.",
+         ["effect/golden/guarded", "effect/negative/invalid-guard-port"]),
+    rule("AF-EFFECT-0018", "EFFECT", EFFECT_SRC, "effect-overflow",
+         "Occurrence arithmetic is checked: overflow is the explicit error "
+         "effect_arithmetic_overflow, never a wrap-around and never a "
+         "silent saturation into a smaller envelope.",
+         ["effect/algebra/overflow"]),
+]
+RULES.extend(EFFECT_RULES)
+
+
 
 RULES.sort(key=lambda r: r["rule_id"])
 write_json("spec/registry/rules.json", {
@@ -1181,6 +1311,20 @@ SPECS = [
      "spec/idl/afidl1-grammar.md",
      "The canonical TypeSchema machine representation and the TypeSchemaDigest "
      "identity formula (sections 6-7 of the AFIDL1 grammar)."),
+    ("agentflow.effect.signature@1", "schema",
+     "spec/idl/effect-signature.afidl",
+     "Normative shape of the Effect Signature: effect atoms (operation "
+     "identity, logical resource selector, closed qualifiers), explicit "
+     "occurrence bounds, the closed guard language and the four capability "
+     "row states (pure, closed, bounded-open, unknown). Reuses the semantic "
+     "core's PrimitiveConstant by exact cross-module import."),
+    ("agentflow.effect.signature.semantics@1", "schema_language",
+     "spec/effect/effect-signature.md",
+     "Effect Signature semantics: the declaration/authorization boundary, "
+     "atom identity, fail-closed catalog resolution, occurrence bound and "
+     "guard rules, the closed/open/top row distinction, the effect algebra "
+     "(containment, accumulation, branch join, repetition) and static "
+     "control-opcode propagation."),
     ("agentflow.registry.core@1", "registry",
      "spec/registry/registry-spec.md",
      "Registry mechanics: Specification Registry, RuleId system, Stable ABI "
@@ -1239,6 +1383,7 @@ SCHEMA_MODULES = [
     "spec/idl/specification-registry.afidl",
     "spec/idl/semantic-core.afidl",
     "spec/idl/semantic-ir.afidl",
+    "spec/idl/effect-signature.afidl",
 ]
 
 assignments = []
@@ -1662,6 +1807,79 @@ SUITE_LIST = [
             "targets": [
                 "af-ir CheckedIrDocument::check_subflow_interfaces",
                 "spec/conformance/subflow-interface/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-EFFECT-CATALOG-EXPLICIT-UNIVERSE",
+            "description": (
+                "Effect operation resolution happens against an explicit, "
+                "immutable, in-memory catalog universe only: af-effect has "
+                "no registry lookup, no latest-version fallback, no "
+                "filesystem/network discovery and no default catalog, so "
+                "an unresolved operation can only fail closed. Covers the "
+                "crate dependency audit and the unknown-operation corpus."
+            ),
+            "targets": [
+                "af-effect crate dependency set (af-core, af-idl, af-semantic)",
+                "af_effect::EffectCatalogUniverse (explicit, immutable input)",
+                "spec/conformance/effect-signature/negative/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-EFFECT-DECLARATION-NOT-AUTHORIZATION",
+            "description": (
+                "An effect signature is never authority: the crate has no "
+                "EffectGrant/EffectIntent/EffectReceipt/Effect Gateway/"
+                "Credential Broker/Provider Dispatch symbol, no execution "
+                "surface, and the unknown row carries no capability "
+                "material. Covers the static absence audit over the crate "
+                "source and the frozen top-row corpus."
+            ),
+            "targets": [
+                "af-effect static surface audit (no grant/receipt/gateway symbols)",
+                "spec/conformance/effect-signature/negative/top-is-not-authorization",
+            ],
+        },
+        {
+            "suite_id": "SUITE-EFFECT-NO-RUNTIME",
+            "description": (
+                "The effect layer is static only: no af-ir dependency, no "
+                "I/O, clock, randomness, async runtime, policy engine, "
+                "credential broker or provider; control propagation is a "
+                "pure function over signatures. Covers the crate "
+                "dependency audit and the source surface."
+            ),
+            "targets": [
+                "af-effect crate dependency set",
+                "af-effect static surface audit (no runtime/journal/plan symbols)",
+            ],
+        },
+        {
+            "suite_id": "SUITE-EFFECT-RETRY-BOUNDARY",
+            "description": (
+                "The retry envelope conservatively scales the logical "
+                "bounds by the physical attempt ceiling and records the "
+                "obligation that narrowing requires a recovery contract: "
+                "no idempotency qualifier is exploited this phase. Covers "
+                "the retry algebra corpus and the envelope shape."
+            ),
+            "targets": [
+                "af_effect::control::retry_envelope",
+                "spec/conformance/effect-signature/algebra/retry-amplification",
+            ],
+        },
+        {
+            "suite_id": "SUITE-EFFECT-WIRE-FREEZE",
+            "description": (
+                "Phase 4A.1 added exactly one AFIDL module and no HashV1 "
+                "domain: the canonical effect signature has ACE1 bytes but "
+                "no digest, the semantic-ir module stays byte-identical, "
+                "and every pre-existing corpus digest is unchanged. Covers "
+                "the static surface audits and the zero-drift corpus runs."
+            ),
+            "targets": [
+                "af-effect static surface audit (no EffectSignatureDigest)",
+                "af-ir wire-freeze audit (module/ABI/domain counts)",
             ],
         },
 ]

@@ -594,6 +594,230 @@
       "source_anchor": "digest-domain-separation"
     },
     {
+      "area": "EFFECT",
+      "conformance_refs": [
+        "SUITE-EFFECT-DECLARATION-NOT-AUTHORIZATION",
+        "SUITE-EFFECT-NO-RUNTIME"
+      ],
+      "normative_source": "spec/effect/effect-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EFFECT-0001",
+      "short_statement": "An effect signature is a static declaration, never authorization: Declared != Granted != Dispatched != Observed, Dispatched ⊆ Granted ⊆ Declared is a Runtime/Effect-Gateway invariant, and no API converts a signature into authority.",
+      "source_anchor": "effect-declaration-not-authorization"
+    },
+    {
+      "area": "EFFECT",
+      "conformance_refs": [
+        "effect/golden/single-write",
+        "effect/golden/multiple-distinct"
+      ],
+      "normative_source": "spec/effect/effect-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EFFECT-0002",
+      "short_statement": "An effect atom is exactly operation + resource selector + closed qualifiers, and its canonical identity is that exact structural tuple.",
+      "source_anchor": "effect-atom"
+    },
+    {
+      "area": "EFFECT",
+      "conformance_refs": [
+        "effect/golden/single-read",
+        "effect/negative/unknown-operation",
+        "effect/negative/invalid-operation-name",
+        "effect/negative/invalid-catalog-identity",
+        "SUITE-EFFECT-CATALOG-EXPLICIT-UNIVERSE"
+      ],
+      "normative_source": "spec/effect/effect-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EFFECT-0003",
+      "short_statement": "An operation identity is catalog (a SpecificationId) plus a dotted lowercase name; resolution against the supplied explicit catalog universe is fail-closed with no default catalog and no fallback.",
+      "source_anchor": "effect-operation-identity"
+    },
+    {
+      "area": "EFFECT",
+      "conformance_refs": [
+        "effect/golden/resource-scope",
+        "effect/negative/zero-requirement-port",
+        "effect/negative/duplicate-scope-key"
+      ],
+      "normative_source": "spec/effect/effect-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EFFECT-0004",
+      "short_statement": "A resource selector is a >= 1 requirement port plus exact-binding scope constraints; it never carries a raw handle, filesystem root, database connection, secret or worker endpoint, and scope containment is exact-binding set inclusion, never a prefix match.",
+      "source_anchor": "effect-resource-selector"
+    },
+    {
+      "area": "EFFECT",
+      "conformance_refs": [
+        "effect/golden/occurrence-bounds",
+        "effect/negative/occurrence-lower-above-upper",
+        "effect/algebra/repeat-n"
+      ],
+      "normative_source": "spec/effect/effect-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EFFECT-0005",
+      "short_statement": "Occurrence bounds are explicit [lower, upper] intervals with an explicit unbounded ceiling (never UINT64_MAX); they count logical effect occurrences, physical attempts are tracked separately, and impossible intervals are rejected.",
+      "source_anchor": "effect-occurrence-bounds"
+    },
+    {
+      "area": "EFFECT",
+      "conformance_refs": [
+        "effect/golden/pure-empty-row",
+        "effect/golden/zero-occurrence-entry",
+        "effect/algebra/repeat-zero"
+      ],
+      "normative_source": "spec/effect/effect-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EFFECT-0006",
+      "short_statement": "Pure is exactly the closed empty row; zero-occurrence entries are semantically pure and dropped by the canonical form.",
+      "source_anchor": "effect-pure"
+    },
+    {
+      "area": "EFFECT",
+      "conformance_refs": [
+        "effect/negative/top-is-not-pure",
+        "effect/negative/top-is-not-authorization"
+      ],
+      "normative_source": "spec/effect/effect-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EFFECT-0007",
+      "short_statement": "The unknown row (⊤) is an unprovable-envelope analysis result: it is not pure, contaminates compositions upward, carries no capability material and is never authorization.",
+      "source_anchor": "effect-top"
+    },
+    {
+      "area": "EFFECT",
+      "conformance_refs": [
+        "effect/golden/bounded-open-row",
+        "effect/negative/unbounded-open-row"
+      ],
+      "normative_source": "spec/effect/effect-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EFFECT-0008",
+      "short_statement": "A bounded-open row keeps known effects plus a residual ceiling that must constrain something (a scope binding or a finite occurrence upper); an open row that bounds nothing is pure.",
+      "source_anchor": "effect-open-row"
+    },
+    {
+      "area": "EFFECT",
+      "conformance_refs": [
+        "effect/algebra/containment-reflexivity",
+        "effect/algebra/containment-transitivity"
+      ],
+      "normative_source": "spec/effect/effect-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EFFECT-0009",
+      "short_statement": "Containment (⊑) must be PROVED per entry (exact operation, equal qualifiers, narrower scope, contained interval, implied guard) or returned as NOT PROVEN with a stable reason; unresolved proofs fail closed as effect_envelope_unprovable.",
+      "source_anchor": "effect-containment"
+    },
+    {
+      "area": "EFFECT",
+      "conformance_refs": [
+        "effect/algebra/empty-identity",
+        "effect/algebra/accumulation-associativity",
+        "effect/algebra/sequence-accumulation",
+        "effect/algebra/parallel-accumulation"
+      ],
+      "normative_source": "spec/effect/effect-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EFFECT-0010",
+      "short_statement": "Accumulation (⊕) adds occurrence intervals per atom key with checked arithmetic, keeps distinct atoms, composes guards conservatively (lower bounds only across unconditional entries), and is the identity of the pure row.",
+      "source_anchor": "effect-accumulation"
+    },
+    {
+      "area": "EFFECT",
+      "conformance_refs": [
+        "effect/algebra/join-commutativity",
+        "effect/algebra/join-idempotence"
+      ],
+      "normative_source": "spec/effect/effect-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EFFECT-0011",
+      "short_statement": "Branch join (⊔) keeps the possible effects of both mutually exclusive branches: both-declared keys keep the guaranteed minimum lower bound and the covering ceiling, one-sided keys drop to [0, u], one-sided guards are kept and different conditions widen to unconditional.",
+      "source_anchor": "effect-branch-join"
+    },
+    {
+      "area": "EFFECT",
+      "conformance_refs": [
+        "effect/algebra/race-loser-retained"
+      ],
+      "normative_source": "spec/effect/effect-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EFFECT-0012",
+      "short_statement": "RACE is conservative accumulation over ALL contestants: a loser may have produced effects before cancellation, so loser effects are never discarded and race is not a branch join.",
+      "source_anchor": "effect-race"
+    },
+    {
+      "area": "EFFECT",
+      "conformance_refs": [
+        "effect/algebra/repeat-one",
+        "effect/algebra/repeat-n"
+      ],
+      "normative_source": "spec/effect/effect-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EFFECT-0013",
+      "short_statement": "ITERATE scales the body envelope by the statically proven repetition bounds; an unprovable repetition count never yields a finite envelope, and zero repetitions are pure.",
+      "source_anchor": "effect-iterate"
+    },
+    {
+      "area": "EFFECT",
+      "conformance_refs": [
+        "effect/algebra/retry-amplification",
+        "SUITE-EFFECT-RETRY-BOUNDARY"
+      ],
+      "normative_source": "spec/effect/effect-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EFFECT-0014",
+      "short_statement": "RETRY separates physical attempt bounds [1, max_attempts] from the logical effect envelope, which stays conservatively scaled (no idempotency assumption) and records the explicit obligation that narrowing requires a recovery contract.",
+      "source_anchor": "effect-retry"
+    },
+    {
+      "area": "EFFECT",
+      "conformance_refs": [
+        "effect/algebra/compensation-no-subtraction"
+      ],
+      "normative_source": "spec/effect/effect-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EFFECT-0015",
+      "short_statement": "Compensation adds the counter-effect to the envelope and never subtracts forward effects: the original effect and the counter-effect are both facts.",
+      "source_anchor": "effect-compensation"
+    },
+    {
+      "area": "EFFECT",
+      "conformance_refs": [
+        "effect/golden/canonical-reordering",
+        "effect/equivalence/entry-reordering",
+        "effect/equivalence/scope-binding-reordering",
+        "effect/equivalence/zero-occurrence-equals-pure",
+        "effect/equivalence/residual-reordering"
+      ],
+      "normative_source": "spec/effect/effect-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EFFECT-0016",
+      "short_statement": "Canonicalization is deterministic and idempotent: entry order, scope binding order and qualifier order never change the canonical ACE1 bytes; declared duplicates are rejected (not merged); and no EffectSignatureDigest or new HashV1 domain is introduced.",
+      "source_anchor": "effect-canonicalization"
+    },
+    {
+      "area": "EFFECT",
+      "conformance_refs": [
+        "effect/golden/guarded",
+        "effect/negative/invalid-guard-port"
+      ],
+      "normative_source": "spec/effect/effect-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EFFECT-0017",
+      "short_statement": "The guard language is closed (unconditional, typed input equality): guards narrow when an effect may occur, their grammar is validated, and inexpressible conditions widen to unconditional instead of being assumed false.",
+      "source_anchor": "effect-guards"
+    },
+    {
+      "area": "EFFECT",
+      "conformance_refs": [
+        "effect/algebra/overflow"
+      ],
+      "normative_source": "spec/effect/effect-signature.md",
+      "requirement_level": "must",
+      "rule_id": "AF-EFFECT-0018",
+      "short_statement": "Occurrence arithmetic is checked: overflow is the explicit error effect_arithmetic_overflow, never a wrap-around and never a silent saturation into a smaller envelope.",
+      "source_anchor": "effect-overflow"
+    },
+    {
       "area": "REGISTRY",
       "conformance_refs": [
         "spec-registry/bad-rule-id",

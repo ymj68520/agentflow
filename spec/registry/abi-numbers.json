@@ -4,6 +4,422 @@
       "first_seen_schema_digest": {
         "alg": "sha256",
         "domain": "type-schema",
+        "hex": "32b9d48632927b2c2a280893e89fe72a2dfb18a7e6cf75b81dcbe0a9a6757bc7"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "operation",
+      "type_name": "EffectAtom"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "32b9d48632927b2c2a280893e89fe72a2dfb18a7e6cf75b81dcbe0a9a6757bc7"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "resource_selector",
+      "type_name": "EffectAtom"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "32b9d48632927b2c2a280893e89fe72a2dfb18a7e6cf75b81dcbe0a9a6757bc7"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "qualifiers",
+      "type_name": "EffectAtom"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ecc868c104fee4e054f0e174cd841838dd5746a5f148ad11ba912de57fbf777f"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "atom",
+      "type_name": "EffectEntry"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ecc868c104fee4e054f0e174cd841838dd5746a5f148ad11ba912de57fbf777f"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "bounds",
+      "type_name": "EffectEntry"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ecc868c104fee4e054f0e174cd841838dd5746a5f148ad11ba912de57fbf777f"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "guard",
+      "type_name": "EffectEntry"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c2ac46373486ea59b43da4c61fd40330b69d65f55b27f6ab1bd8ba56023d6293"
+      },
+      "number": 1,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "unconditional",
+      "type_name": "EffectGuard"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c2ac46373486ea59b43da4c61fd40330b69d65f55b27f6ab1bd8ba56023d6293"
+      },
+      "number": 2,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "input_equals",
+      "type_name": "EffectGuard"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "bd6846b1c60d1783ee96f5e240261f14fffa65cb12079caafd558bcaf8dcc46f"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "port_no",
+      "type_name": "EffectGuardInputEquals"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "bd6846b1c60d1783ee96f5e240261f14fffa65cb12079caafd558bcaf8dcc46f"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "expected",
+      "type_name": "EffectGuardInputEquals"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4b5c03b25641849e4f136a4cb425fe13a1531ab1b231aa2b4ab03f82e06feebb"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "natural",
+      "type_name": "EffectIdempotencyQualifier"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4b5c03b25641849e4f136a4cb425fe13a1531ab1b231aa2b4ab03f82e06feebb"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "none",
+      "type_name": "EffectIdempotencyQualifier"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f194d138141ce680b29b9d3972bafb46926b430bce87b27fec08641d9a67632a"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "known",
+      "type_name": "EffectOpenRow"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f194d138141ce680b29b9d3972bafb46926b430bce87b27fec08641d9a67632a"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "residual",
+      "type_name": "EffectOpenRow"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "1d60a16a17218bffac205f1ef42c447ef8db39b2d4f35368e7e55e79c19c72d2"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "catalog",
+      "type_name": "EffectOperationRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "1d60a16a17218bffac205f1ef42c447ef8db39b2d4f35368e7e55e79c19c72d2"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "name",
+      "type_name": "EffectOperationRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "312ecc40abfb594136f9c61bb86a06c5ca6f4ac4be3e1b8ac0293de4146b3a12"
+      },
+      "number": 1,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "idempotency",
+      "type_name": "EffectQualifier"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ac338c7d5bdafb769ff79e489927ca6f79ec4468d1cedbfe3e9d2ef0edd6acf3"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "catalog",
+      "type_name": "EffectResidual"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ac338c7d5bdafb769ff79e489927ca6f79ec4468d1cedbfe3e9d2ef0edd6acf3"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "selector",
+      "type_name": "EffectResidual"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "ac338c7d5bdafb769ff79e489927ca6f79ec4468d1cedbfe3e9d2ef0edd6acf3"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "bounds",
+      "type_name": "EffectResidual"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "79032f60154a2329aecc7519f7198475688c7759e41c44047189ee165d942f89"
+      },
+      "number": 1,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "closed",
+      "type_name": "EffectRow"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "79032f60154a2329aecc7519f7198475688c7759e41c44047189ee165d942f89"
+      },
+      "number": 2,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "open",
+      "type_name": "EffectRow"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "79032f60154a2329aecc7519f7198475688c7759e41c44047189ee165d942f89"
+      },
+      "number": 3,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "unknown",
+      "type_name": "EffectRow"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "3544a30f7d706831eb1edcb864e791a51495225fee9cb7a3f8d8d939f636942c"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "row",
+      "type_name": "EffectSignature"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "0082777af0ee6ef307c4fdda25ccc7a4bc96f861d38d16e62a96f05895aff7d8"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "lower",
+      "type_name": "OccurrenceBounds"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "0082777af0ee6ef307c4fdda25ccc7a4bc96f861d38d16e62a96f05895aff7d8"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "upper",
+      "type_name": "OccurrenceBounds"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4cf11aba08570379078d18314fadd68438754685624089b7719210f8c7928c2f"
+      },
+      "number": 1,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "finite",
+      "type_name": "OccurrenceCeiling"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4cf11aba08570379078d18314fadd68438754685624089b7719210f8c7928c2f"
+      },
+      "number": 2,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "unbounded",
+      "type_name": "OccurrenceCeiling"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "dba0b3d3b7b0927f17ae28964c20705bf1dbf693c570f7b2b5ddef9338634f9f"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "requirement_port_no",
+      "type_name": "ResourceSelector"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "dba0b3d3b7b0927f17ae28964c20705bf1dbf693c570f7b2b5ddef9338634f9f"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "scope_bindings",
+      "type_name": "ResourceSelector"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c3dbb0575dde1c6c5a805590fdfce0f2a6fe0c8254037bc6d797f4fdf711b2e2"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "key",
+      "type_name": "ScopeBinding"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c3dbb0575dde1c6c5a805590fdfce0f2a6fe0c8254037bc6d797f4fdf711b2e2"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.effect.signature@1",
+      "status": "active",
+      "symbolic_name": "value",
+      "type_name": "ScopeBinding"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
         "hex": "1fabc442050ef8c8bf26de23e67b7ab72c785a5bd43a004a79c25f62595a64a2"
       },
       "number": 1,

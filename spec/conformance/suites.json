@@ -35,6 +35,47 @@
       ]
     },
     {
+      "description": "Effect operation resolution happens against an explicit, immutable, in-memory catalog universe only: af-effect has no registry lookup, no latest-version fallback, no filesystem/network discovery and no default catalog, so an unresolved operation can only fail closed. Covers the crate dependency audit and the unknown-operation corpus.",
+      "suite_id": "SUITE-EFFECT-CATALOG-EXPLICIT-UNIVERSE",
+      "targets": [
+        "af-effect crate dependency set (af-core, af-idl, af-semantic)",
+        "af_effect::EffectCatalogUniverse (explicit, immutable input)",
+        "spec/conformance/effect-signature/negative/"
+      ]
+    },
+    {
+      "description": "An effect signature is never authority: the crate has no EffectGrant/EffectIntent/EffectReceipt/Effect Gateway/Credential Broker/Provider Dispatch symbol, no execution surface, and the unknown row carries no capability material. Covers the static absence audit over the crate source and the frozen top-row corpus.",
+      "suite_id": "SUITE-EFFECT-DECLARATION-NOT-AUTHORIZATION",
+      "targets": [
+        "af-effect static surface audit (no grant/receipt/gateway symbols)",
+        "spec/conformance/effect-signature/negative/top-is-not-authorization"
+      ]
+    },
+    {
+      "description": "The effect layer is static only: no af-ir dependency, no I/O, clock, randomness, async runtime, policy engine, credential broker or provider; control propagation is a pure function over signatures. Covers the crate dependency audit and the source surface.",
+      "suite_id": "SUITE-EFFECT-NO-RUNTIME",
+      "targets": [
+        "af-effect crate dependency set",
+        "af-effect static surface audit (no runtime/journal/plan symbols)"
+      ]
+    },
+    {
+      "description": "The retry envelope conservatively scales the logical bounds by the physical attempt ceiling and records the obligation that narrowing requires a recovery contract: no idempotency qualifier is exploited this phase. Covers the retry algebra corpus and the envelope shape.",
+      "suite_id": "SUITE-EFFECT-RETRY-BOUNDARY",
+      "targets": [
+        "af_effect::control::retry_envelope",
+        "spec/conformance/effect-signature/algebra/retry-amplification"
+      ]
+    },
+    {
+      "description": "Phase 4A.1 added exactly one AFIDL module and no HashV1 domain: the canonical effect signature has ACE1 bytes but no digest, the semantic-ir module stays byte-identical, and every pre-existing corpus digest is unchanged. Covers the static surface audits and the zero-drift corpus runs.",
+      "suite_id": "SUITE-EFFECT-WIRE-FREEZE",
+      "targets": [
+        "af-effect static surface audit (no EffectSignatureDigest)",
+        "af-ir wire-freeze audit (module/ABI/domain counts)"
+      ]
+    },
+    {
       "description": "The expression body set is closed to the fifteen Phase 3A expressions and to the workflow primitive universe. Covers the exhaustive match over ExpressionBody in the Rust checker and the closed SemanticPrimitiveType enum, whose ALL table and keyword round-trip are asserted in-tree.",
       "suite_id": "SUITE-SEMANTIC-CLOSED-EXPRESSION-SET",
       "targets": [
