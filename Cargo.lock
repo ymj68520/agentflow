@@ -40,6 +40,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "af-flow"
+version = "0.1.0"
+dependencies = [
+ "af-core",
+ "af-effect",
+ "af-idl",
+ "af-semantic",
+ "hex",
+ "serde",
+ "serde_json",
+ "unicode-normalization",
+]
+
+[[package]]
 name = "af-idl"
 version = "0.1.0"
 dependencies = [

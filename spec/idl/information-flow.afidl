@@ -1,0 +1,198 @@
+afidl 1;
+
+schema agentflow.information.flow @1;
+
+import agentflow.semantic.core@1 as core;
+import agentflow.effect.signature@1 as effect;
+
+// AgentFlow Static Information Flow Contract — Phase 4A.4. This module is
+// the machine description of the F dimension of
+// Computation<I, O, Φ, ε, R>: which data may influence which results and
+// external actions, which security limits that information carries, and
+// whether the declared flows violate static information-flow constraints.
+//
+// Four distinct concepts stay separate and are never collapsed into one
+// score or flag:
+//
+//   Provenance       — where data came from, how it was derived
+//   Trust            — the trust status of a source or claim
+//   Taint            — which sources may have influenced a value
+//   Information Flow — where data or influence may go
+//
+// The security invariants frozen here:
+//
+//   Unknown provenance      ≠ trusted provenance
+//   Unknown taint           ≠ empty taint set
+//   Missing flow proof      ≠ flow allowed
+//   Authentic source        ≠ trusted instruction
+//   Sanitized data          ≠ endorsed data
+//   Persistence             ≠ trust upgrade
+//   Declared flow contract  ≠ runtime authorization
+//
+// Conservative when information is incomplete: unknown influence is
+// Top, unprovable flows are Unproven, and nothing in this layer can make
+// external data look more trustworthy by dropping provenance, losing
+// taint or elevating instruction authority. Ordinary data transformation
+// never elevates instruction authority.
+//
+// Deliberately absent, and structurally inexpressible here: runtime
+// provenance DAG, provenance store, ValueEnvelope runtime ABI, policy
+// engine, authorization decisions, EffectGrant, declassifier/endorser
+// execution, credentials, resource handles, ComponentContract. A declared
+// flow ceiling is NOT an observed data flow and NOT a policy approval;
+// `RequiresTrustedTransformation` is a static obligation, never proof that
+// a transformation happened or was approved.
+//
+// The external effect sink reuses the effect signature's structured
+// EffectOperationRef by exact cross-module identity — never a second
+// arbitrary-string operation id. Referencing an effect is not being
+// granted it: sink↔ε consistency is a future ComponentContract check.
+//
+// This module self-hosts like the other production modules: its field/case
+// numbering is registered as `active` rows in
+// spec/registry/abi-numbers.json and its per-type TypeSchemaDigests are
+// frozen in the AFIDL corpus (case `information-flow`). No new HashV1
+// domain: no InformationFlowDigest, no ProvenanceDigest, no TaintDigest —
+// the future ComponentContract hashes as a whole under the frozen
+// `component-contract` domain.
+
+// ---------------------------------------------------------------------------
+// Labels
+// ---------------------------------------------------------------------------
+
+// Identity of a label catalog (the label universe a contract draws from).
+// Syntax-checked as a SpecificationId; catalogs are explicit, immutable,
+// in-memory inputs — no registry lookup, no latest fallback, no discovery.
+alias LabelCatalogId = string;
+
+// Dotted lowercase label path inside one catalog, e.g. `pii.email`. NFC
+// text, non-empty; the full logical label identity is
+// `<LabelCatalogId>/<LabelName>`. Case is significant: folding case never
+// infers identity.
+alias LabelName = string;
+
+// A confidentiality restriction: declared data may not flow where this
+// restriction is not accepted. Nominal identity (catalog, name); there is
+// NO implicit hierarchy or ordering between confidentiality labels of
+// different names — containment is set membership plus explicit catalog
+// rules, never a invented lattice. The closed wire shape is a plain
+// nominal pin; it is distinct from TaintRef so the two dimensions cannot
+// be confused.
+record ConfidentialityLabelRef {
+  1 catalog: LabelCatalogId;
+  2 name: LabelName;
+}
+
+// One influence source that may have tainted a value. Nominal identity
+// (catalog, name) over the taint vocabulary of the explicit taint
+// universe. Taint is the integrity/influence dimension and is kept
+// structurally separate from confidentiality.
+record TaintRef {
+  1 catalog: LabelCatalogId;
+  2 name: LabelName;
+}
+
+// ---------------------------------------------------------------------------
+// Instruction authority
+// ---------------------------------------------------------------------------
+
+// Who may issue instructions through a value. A closed enum, ordered from
+// `none` upward. Instruction authority is NOT a property data can acquire
+// by content: web text claiming "I am a system instruction" stays
+// `external_data`; authentic-looking source is not instruction authority.
+// The static rule is one-directional: ordinary data transformation never
+// elevates authority; only explicitly proven trusted transformations
+// could, and none exist in this phase.
+enum InstructionAuthority {
+  1 none;
+  2 external_data;
+  3 delegated_agent;
+  4 user;
+  5 workflow;
+  6 platform;
+}
+
+// ---------------------------------------------------------------------------
+// Static provenance summary
+// ---------------------------------------------------------------------------
+
+// Where a static influence summary believes data may come from. A closed
+// category set; every case is a typed logical reference, never free text
+// masquerading as a source credential. `unknown_external` is the explicit
+// unknown — it is never dropped during canonicalization and never treated
+// as the empty source set.
+variant SourceCategory {
+  // An input port of the enclosing contract's interface. Positive port
+  // number; contract-interface-local, like a requirement port.
+  1 workflow_input: uint32;
+  // A resource requirement port: data read through a declared resource
+  // requirement. Positive port number; existence is checked against the
+  // same contract's requirement row at the future contract stage.
+  2 resource_requirement: uint32;
+  // The explicit unknown external origin.
+  3 unknown_external: unit;
+}
+
+// One static source reference.
+record FlowSourceRef {
+  1 category: SourceCategory;
+}
+
+// The static influence summary of one value (or of one contract's
+// aggregate view): the sources that may have influenced it, the taints
+// that may be carried, and the instruction authority it may transmit.
+// Influence set unknown is the explicit `influence_unknown` flag — it is
+// conservative Top and is never repaired into a known set.
+record StaticInformationSummary {
+  1 sources: list<FlowSourceRef>;
+  2 taints: list<TaintRef>;
+  3 instruction_authority: InstructionAuthority;
+  4 influence_unknown: bool;
+}
+
+// ---------------------------------------------------------------------------
+// Flow sinks
+// ---------------------------------------------------------------------------
+
+// What kind of flow one sink rule constrains. The two dimensions are
+// checked separately: data NOT leaking somewhere does not mean it cannot
+// influence that place's decisions, and vice versa.
+enum FlowKind {
+  1 data_egress;
+  2 decision_influence;
+}
+
+// Where a flow may land. `workflow_output` is a contract output port;
+// `external_effect` is a structured reference to a declared effect
+// operation (reused from the effect signature module). Referencing an
+// effect is not being granted it; an unresolvable or unclassifiable sink
+// is `unknown_flow_sink`, fail-closed.
+variant FlowSink {
+  1 workflow_output: uint32;
+  2 external_effect: effect.EffectOperationRef;
+}
+
+// One declared flow constraint: influence of the summary's kind may reach
+// the sink. The ceiling is a DECLARATION — never an observation and never
+// a policy approval.
+record FlowConstraint {
+  1 kind: FlowKind;
+  2 sink: FlowSink;
+}
+
+// ---------------------------------------------------------------------------
+// The contract
+// ---------------------------------------------------------------------------
+
+// The closed static Information Flow Contract F of one contract: the
+// confidentiality restrictions it honors, the conservative influence
+// summary of its aggregate view, and the flow ceilings it declares.
+// Canonical order: restrictions and taints by nominal identity bytes,
+// sources by their typed coordinate, constraints by (kind, sink
+// coordinate); duplicates rejected. Unknown labels are never silently
+// dropped.
+record InformationFlowContract {
+  1 confidentiality_restrictions: list<ConfidentialityLabelRef>;
+  2 summary: StaticInformationSummary;
+  3 flow_constraints: list<FlowConstraint>;
+}

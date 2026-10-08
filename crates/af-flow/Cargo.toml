@@ -1,0 +1,23 @@
+[package]
+name = "af-flow"
+description = "AgentFlow static information flow contract: label and taint identity, instruction authority, conservative taint propagation, the LLM strong taint mixer, flow-kind-separated ceilings and flow non-relaxation"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+af-core = { path = "../af-core" }
+af-idl = { path = "../af-idl" }
+af-semantic = { path = "../af-semantic" }
+af-effect = { path = "../af-effect" }
+serde = { version = "1", features = ["derive"] }
+unicode-normalization = "0.1"
+
+[dev-dependencies]
+serde_json = "1"
+hex = "0.4"
+
+[lints]
+workspace = true
