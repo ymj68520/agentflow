@@ -1,0 +1,73 @@
+{
+  "canonical_ace1_utf8": "{\"limits\":[{\"meter\":{\"catalog\":\"agentflow.test.usage.meters@1\",\"name\":\"model.output_tokens\"},\"phase\":\"forward\",\"upper\":{\"finite\":\"20\"}},{\"meter\":{\"catalog\":\"agentflow.test.usage.meters@1\",\"name\":\"model.output_tokens\"},\"phase\":\"recovery\",\"upper\":{\"finite\":\"3\"}}]}",
+  "case_id": "usage/golden/forward-recovery-separate",
+  "case_kind": "golden",
+  "catalogs": {
+    "meters": [
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "model.input_tokens",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "tokens"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "model.output_tokens",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "tokens"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "tool.invocations",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "calls"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "data.egress_bytes",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "bytes"
+        }
+      }
+    ]
+  },
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.usage-signature.case",
+  "limit_count": 2,
+  "note": "the same meter in forward and recovery is two coordinates",
+  "signature": {
+    "limits": [
+      {
+        "meter": {
+          "catalog": "agentflow.test.usage.meters@1",
+          "name": "model.output_tokens"
+        },
+        "phase": "recovery",
+        "upper": {
+          "finite": 3
+        }
+      },
+      {
+        "meter": {
+          "catalog": "agentflow.test.usage.meters@1",
+          "name": "model.output_tokens"
+        },
+        "phase": "forward",
+        "upper": {
+          "finite": 20
+        }
+      }
+    ]
+  }
+}

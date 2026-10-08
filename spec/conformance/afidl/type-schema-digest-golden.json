@@ -1,5 +1,5 @@
 {
-  "corpus_revision": 9,
+  "corpus_revision": 10,
   "kind": "agentflow.conformance.afidl.type-schema-digest-golden",
   "note": "Frozen TypeSchemaDigest values (SHA256(\"AF\\0type-schema\\0\" || canonical ACE1 bytes)). Mutation cases assert that semantic changes alter the digest while the equivalence groups in schema-golden.json assert that formatting does not.",
   "cases": [
@@ -1238,6 +1238,48 @@
       "file": "spec/idl/information-flow.afidl",
       "type_name": "TaintRef",
       "digest_hex": "cb7fe496ae8a81d6384ec2c15bdeae26917fb6969d53d88c96fee395f99e391f"
+    },
+    {
+      "case_id": "usage-signature",
+      "file": "spec/idl/usage-signature.afidl",
+      "type_name": "MeterCatalogId",
+      "digest_hex": "e72d756cee944772c70e6339cd680061c59e6fc3c43a85228503755929768732"
+    },
+    {
+      "case_id": "usage-signature",
+      "file": "spec/idl/usage-signature.afidl",
+      "type_name": "MeterName",
+      "digest_hex": "4d758143278ca37ec687392e6337915d2b2af4bc077e2d6040ebeccddcd52f56"
+    },
+    {
+      "case_id": "usage-signature",
+      "file": "spec/idl/usage-signature.afidl",
+      "type_name": "UsageLimit",
+      "digest_hex": "c1b3fecab96032cc3861a969dcaaffbd93c65051ab07ec1851b0a9f6f9e7c47e"
+    },
+    {
+      "case_id": "usage-signature",
+      "file": "spec/idl/usage-signature.afidl",
+      "type_name": "UsageMeterRef",
+      "digest_hex": "3fcb28eb8883dd88511504743f681fc054e96a649d616601c3cbc103cdd7c0ad"
+    },
+    {
+      "case_id": "usage-signature",
+      "file": "spec/idl/usage-signature.afidl",
+      "type_name": "UsagePhase",
+      "digest_hex": "8ca8abae3205561f6cc8dbbb4a4d0c00ccdd9e445b497e5c40cbce65bb945c5f"
+    },
+    {
+      "case_id": "usage-signature",
+      "file": "spec/idl/usage-signature.afidl",
+      "type_name": "UsageSignature",
+      "digest_hex": "1b4d60843ffe64ba7d036fee34185bb7063c658be4cd0804f122b6fd1b20e77e"
+    },
+    {
+      "case_id": "usage-signature",
+      "file": "spec/idl/usage-signature.afidl",
+      "type_name": "UsageUpperBound",
+      "digest_hex": "406cc5c6e8f96452cd601cce92bcfac97b8bea7db965a6628d8ad4bbd27a0840"
     }
   ],
   "mutation_cases": [

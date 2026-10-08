@@ -17,6 +17,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONF = ROOT / "spec" / "conformance" / "afidl"
+# Revision 10 (Phase 4A.5A): adds the `usage-signature` case for the
+# Static Usage Signature schema module (the U dimension: additive meter
+# identity, forward/recovery phases and finite/unbounded upper bounds).
 # Revision 9 (Phase 4A.4): adds the `information-flow` case for the
 # Static Information Flow Contract schema module (the F dimension:
 # confidentiality labels, taints, instruction authority, static
@@ -36,7 +39,7 @@ CONF = ROOT / "spec" / "conformance" / "afidl"
 # `semantic-core` case; revision 2 (Phase 2B) added the self-hosting
 # registry schema module. Every bump is purely additive: existing cases,
 # bytes and digests are unchanged.
-CORPUS_REVISION = 9
+CORPUS_REVISION = 10
 
 # The frozen 13-opcode case table (spec/semantic/semantic-ir.md section 4).
 OPCODE_TABLE = [
@@ -731,6 +734,9 @@ def main():
     # The Phase 4A.4 Information Flow schema module is part of the corpus.
     flow_file = ROOT / "spec" / "idl" / "information-flow.afidl"
     cases.append(case_entry(flow_file, case_id="information-flow"))
+    # The Phase 4A.5A Usage Signature schema module is part of the corpus.
+    usage_file = ROOT / "spec" / "idl" / "usage-signature.afidl"
+    cases.append(case_entry(usage_file, case_id="usage-signature"))
 
     schema_golden = {
         "kind": "agentflow.conformance.afidl.schema-golden",

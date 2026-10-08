@@ -1,0 +1,81 @@
+{
+  "case_id": "usage/algebra/repeat-n",
+  "case_kind": "algebra",
+  "catalogs": {
+    "meters": [
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "model.input_tokens",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "tokens"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "model.output_tokens",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "tokens"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "tool.invocations",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "calls"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "data.egress_bytes",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "bytes"
+        }
+      }
+    ]
+  },
+  "corpus_revision": 1,
+  "count": 3,
+  "input": {
+    "bounds": [
+      {
+        "bound": {
+          "kind": "known_finite",
+          "value": 4
+        },
+        "meter": {
+          "catalog": "agentflow.test.usage.meters@1",
+          "name": "model.input_tokens"
+        },
+        "phase": "forward"
+      }
+    ],
+    "global_unknown": false
+  },
+  "kind": "agentflow.conformance.usage-signature.case",
+  "note": "finite repetition multiplies with checked arithmetic",
+  "operation": "repeat",
+  "result": {
+    "bounds": [
+      {
+        "bound": {
+          "kind": "known_finite",
+          "value": 12
+        },
+        "meter": {
+          "catalog": "agentflow.test.usage.meters@1",
+          "name": "model.input_tokens"
+        },
+        "phase": "forward"
+      }
+    ],
+    "global_unknown": false
+  }
+}

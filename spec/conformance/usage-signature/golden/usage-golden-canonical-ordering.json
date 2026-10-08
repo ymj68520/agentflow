@@ -1,0 +1,83 @@
+{
+  "canonical_ace1_utf8": "{\"limits\":[{\"meter\":{\"catalog\":\"agentflow.test.usage.meters@1\",\"name\":\"data.egress_bytes\"},\"phase\":\"forward\",\"upper\":{\"finite\":\"5\"}},{\"meter\":{\"catalog\":\"agentflow.test.usage.meters@1\",\"name\":\"model.input_tokens\"},\"phase\":\"forward\",\"upper\":{\"finite\":\"1\"}},{\"meter\":{\"catalog\":\"agentflow.test.usage.meters@1\",\"name\":\"model.output_tokens\"},\"phase\":\"recovery\",\"upper\":{\"finite\":\"2\"}}]}",
+  "case_id": "usage/golden/canonical-ordering",
+  "case_kind": "golden",
+  "catalogs": {
+    "meters": [
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "model.input_tokens",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "tokens"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "model.output_tokens",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "tokens"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "tool.invocations",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "calls"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "data.egress_bytes",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "bytes"
+        }
+      }
+    ]
+  },
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.usage-signature.case",
+  "limit_count": 3,
+  "note": "phase then complete meter identity controls canonical order",
+  "signature": {
+    "limits": [
+      {
+        "meter": {
+          "catalog": "agentflow.test.usage.meters@1",
+          "name": "model.output_tokens"
+        },
+        "phase": "recovery",
+        "upper": {
+          "finite": 2
+        }
+      },
+      {
+        "meter": {
+          "catalog": "agentflow.test.usage.meters@1",
+          "name": "data.egress_bytes"
+        },
+        "phase": "forward",
+        "upper": {
+          "finite": 5
+        }
+      },
+      {
+        "meter": {
+          "catalog": "agentflow.test.usage.meters@1",
+          "name": "model.input_tokens"
+        },
+        "phase": "forward",
+        "upper": {
+          "finite": 1
+        }
+      }
+    ]
+  }
+}

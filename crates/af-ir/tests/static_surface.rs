@@ -320,8 +320,8 @@ fn the_wire_schema_is_frozen_at_its_phase_3b_identity() {
 
 #[test]
 fn module_abi_and_domain_counts_hold_at_their_frozen_values() {
-    // The cumulative module freeze: exactly eight AFIDL modules after
-    // Phase 4A.4 added the Information Flow schema module (the earlier
+    // The cumulative module freeze: exactly nine AFIDL modules after
+    // Phase 4A.5A added the Usage Signature schema module (the earlier
     // seven are the machine primitives, the self-hosting registry, the
     // semantic core, the Semantic IR, the Effect Signature, the Failure
     // Row and the Resource Requirement Row).
@@ -340,19 +340,19 @@ fn module_abi_and_domain_counts_hold_at_their_frozen_values() {
     modules.sort_unstable();
     assert_eq!(
         modules.len(),
-        8,
+        9,
         "an unexpected AFIDL module set: {modules:?}"
     );
 
-    // Exactly the frozen ABI rows: 300 total, 100 of them semantic IR,
+    // Exactly the frozen ABI rows: 310 total, 100 of them semantic IR,
     // 32 of them the Phase 4A.1 effect-signature family, 2 of them the
     // Phase 4A.2 failure-row family, 7 of them the Phase 4A.3
     // resource-requirement family and 27 of them the Phase 4A.4
-    // information-flow family.
+    // information-flow family and 10 of them the Phase 4A.5A usage family.
     let abi: serde_json::Value =
         serde_json::from_str(&read("spec/registry/abi-numbers.json")).unwrap();
     let rows = abi["assignments"].as_array().unwrap();
-    assert_eq!(rows.len(), 300, "an ABI row was added or removed");
+    assert_eq!(rows.len(), 310, "an ABI row was added or removed");
     assert_eq!(
         rows.iter()
             .filter(|row| row["schema_family"] == "agentflow.semantic.ir@1")
@@ -387,6 +387,13 @@ fn module_abi_and_domain_counts_hold_at_their_frozen_values() {
             .count(),
         27,
         "the information-flow ABI block changed size"
+    );
+    assert_eq!(
+        rows.iter()
+            .filter(|row| row["schema_family"] == "agentflow.usage.signature@1")
+            .count(),
+        10,
+        "the usage-signature ABI block changed size"
     );
 
     // Exactly the frozen HashV1 domains.

@@ -196,7 +196,7 @@ fn the_effect_sink_reuse_is_exact_and_directional() {
 
 #[test]
 fn the_wire_freeze_holds() {
-    // Exactly eight AFIDL modules; semantic-ir at its Phase 3B identity;
+    // Exactly nine AFIDL modules; semantic-ir at its Phase 3B identity;
     // 14 HashV1 domains; the effect, failure and resource corpora stay
     // at their frozen revisions.
     fn collect_modules(directory: &Path, out: &mut Vec<String>) {
@@ -214,7 +214,7 @@ fn the_wire_freeze_holds() {
     modules.sort_unstable();
     assert_eq!(
         modules.len(),
-        8,
+        9,
         "an unexpected AFIDL module set: {modules:?}"
     );
 

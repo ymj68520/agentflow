@@ -1,0 +1,81 @@
+{
+  "case_id": "usage/negative/arithmetic-overflow",
+  "case_kind": "negative",
+  "catalogs": {
+    "meters": [
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "model.input_tokens",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "tokens"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "model.output_tokens",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "tokens"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "tool.invocations",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "calls"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "data.egress_bytes",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "bytes"
+        }
+      }
+    ]
+  },
+  "corpus_revision": 1,
+  "expected_kind": "usage_arithmetic_overflow",
+  "kind": "agentflow.conformance.usage-signature.case",
+  "left": {
+    "bounds": [
+      {
+        "bound": {
+          "kind": "known_finite",
+          "value": 18446744073709551615
+        },
+        "meter": {
+          "catalog": "agentflow.test.usage.meters@1",
+          "name": "model.input_tokens"
+        },
+        "phase": "forward"
+      }
+    ],
+    "global_unknown": false
+  },
+  "note": "finite addition is checked",
+  "operation": "accumulate",
+  "right": {
+    "bounds": [
+      {
+        "bound": {
+          "kind": "known_finite",
+          "value": 1
+        },
+        "meter": {
+          "catalog": "agentflow.test.usage.meters@1",
+          "name": "model.input_tokens"
+        },
+        "phase": "forward"
+      }
+    ],
+    "global_unknown": false
+  }
+}

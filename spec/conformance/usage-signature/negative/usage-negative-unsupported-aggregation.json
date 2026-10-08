@@ -1,0 +1,36 @@
+{
+  "case_id": "usage/negative/unsupported-aggregation",
+  "case_kind": "negative",
+  "catalogs": {
+    "meters": [
+      {
+        "aggregation": "latency",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "model.input_tokens",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "tokens"
+        }
+      }
+    ]
+  },
+  "corpus_revision": 1,
+  "expected_kind": "unsupported_usage_aggregation",
+  "kind": "agentflow.conformance.usage-signature.case",
+  "note": "non-additive meters are rejected by the universe",
+  "operation": "canonicalize",
+  "signature": {
+    "limits": [
+      {
+        "meter": {
+          "catalog": "agentflow.test.usage.meters@1",
+          "name": "model.input_tokens"
+        },
+        "phase": "forward",
+        "upper": {
+          "finite": 1
+        }
+      }
+    ]
+  }
+}

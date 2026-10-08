@@ -1,0 +1,96 @@
+{
+  "case_id": "usage/algebra/branch-join-associative",
+  "case_kind": "algebra",
+  "catalogs": {
+    "meters": [
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "model.input_tokens",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "tokens"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "model.output_tokens",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "tokens"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "tool.invocations",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "calls"
+        }
+      },
+      {
+        "aggregation": "additive",
+        "catalog": "agentflow.test.usage.meters@1",
+        "name": "data.egress_bytes",
+        "unit": {
+          "catalog": "agentflow.test.usage.units@1",
+          "name": "bytes"
+        }
+      }
+    ]
+  },
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.usage-signature.case",
+  "left": {
+    "bounds": [
+      {
+        "bound": {
+          "kind": "known_finite",
+          "value": 6
+        },
+        "meter": {
+          "catalog": "agentflow.test.usage.meters@1",
+          "name": "model.input_tokens"
+        },
+        "phase": "forward"
+      }
+    ],
+    "global_unknown": false
+  },
+  "note": "branch join is associative over static maxima",
+  "operation": "branch_join",
+  "result": {
+    "bounds": [
+      {
+        "bound": {
+          "kind": "known_finite",
+          "value": 6
+        },
+        "meter": {
+          "catalog": "agentflow.test.usage.meters@1",
+          "name": "model.input_tokens"
+        },
+        "phase": "forward"
+      }
+    ],
+    "global_unknown": false
+  },
+  "right": {
+    "bounds": [
+      {
+        "bound": {
+          "kind": "known_finite",
+          "value": 4
+        },
+        "meter": {
+          "catalog": "agentflow.test.usage.meters@1",
+          "name": "model.input_tokens"
+        },
+        "phase": "forward"
+      }
+    ],
+    "global_unknown": false
+  }
+}
