@@ -1,0 +1,87 @@
+afidl 1;
+
+schema agentflow.resource.requirement @1;
+
+import agentflow.semantic.core@1 as core;
+
+// AgentFlow Static Resource Requirement Row — Phase 4A.3. This module is
+// the machine description of the R dimension of
+// Computation<I, O, Φ, ε, R>: which logical resources a computation needs
+// from the outside, under which statically provable exact-value attribute
+// conditions, so that it may execute at all.
+//
+// It does NOT describe what a Run obtained: no resource instances, no
+// credentials, no runtime authority. The declaration chain
+//
+//   ResourceType → ResourceSlot → ResourceBinding →
+//   Logical Resource Identity → ResourceHandle → ResourceAdapter →
+//   Physical Resource
+//
+// is frozen architecture; this phase materializes ONLY the static
+// ResourceType and Requirement Row layers. Binding, Handle, Adapter and
+// physical resolution are structurally absent.
+//
+// Three authority concepts stay strictly separate and are never collapsed:
+//
+//   Resource Requirement   — what a component NEEDS      (this module)
+//   Capability ceiling     — what it is ALLOWED to touch (frozen elsewhere)
+//   EffectGrant            — which exact action may run  (ε / Security ABI)
+//
+// A resource satisfying a requirement grants nothing: requirement
+// satisfaction is a static predicate, not an authorization. R = ∅ does
+// NOT mean the computation is pure (that is ε), succeeds (that is the
+// outcome plane) or is authorized (that is a future Security/Effect
+// Grant).
+//
+// This module self-hosts like the other production modules: its field
+// numbering is registered as `active` rows in
+// spec/registry/abi-numbers.json and its per-type TypeSchemaDigests are
+// frozen in the AFIDL corpus (case `resource-requirement`). No new HashV1
+// domain is introduced: resource type identity is TypeSchemaDigest, and
+// no ResourceRequirementDigest exists — the future ComponentContract will
+// hash as a whole under the already frozen `component-contract` domain.
+
+// One required resource type: an exact nominal pin of a named AFIDL
+// schema, reused from the semantic core by full cross-module identity.
+// Identity = (SpecificationId, TypeName, pinned TypeSchemaDigest); the
+// same short name under a different specification, or a different pinned
+// digest, is a DIFFERENT resource type — never silently compatible, no
+// latest-schema lookup, no implicit subtyping. Being a legal AFIDL schema
+// alone makes nothing a resource type: recognition is an explicit
+// registry-level fact (the analysis-side ResourceTypeUniverse).
+record ResourceTypeRef {
+  1 schema: core.TypeSchemaRef;
+}
+
+// One exact-value attribute condition on a candidate resource: the
+// candidate's attribute `key` must carry exactly `value`. Keys and values
+// are non-empty NFC text; this closed predicate language has no glob, no
+// regex, no path prefix, no CIDR containment, no dynamic policy
+// expression and no predicate script. Future dimensions with their own
+// formal semantics (residency, trust, durability, capacity) get their own
+// typed shapes, not overloaded strings.
+record ResourceAttributeConstraint {
+  1 key: string;
+  2 value: string;
+}
+
+// One resource requirement at a stable interface port. `port_no > 0` is
+// the requirement port inside ONE component's interface namespace; it is
+// not a ResourceSlotId, not a ResourceHandleId, not a logical resource
+// instance id and not a derived subflow local id — those coordinate
+// systems are related to requirement ports only by explicit future
+// binding/mapping. Two components' `port 1` are different resources by
+// default.
+record ResourceRequirement {
+  1 port_no: uint32;
+  2 resource_type: ResourceTypeRef;
+  3 required_attributes: list<ResourceAttributeConstraint>;
+}
+
+// The closed Requirement Row R = {r1, r2, ... rn} of one contract:
+// exactly the external resources this contract requires. Canonical order
+// is ascending port number, attributes in unsigned UTF-8 key order;
+// duplicate ports and duplicate normalized attribute keys are rejected.
+record ResourceRequirementRow {
+  1 requirements: list<ResourceRequirement>;
+}
