@@ -609,12 +609,27 @@
       "area": "EFFECT",
       "conformance_refs": [
         "effect/golden/single-write",
-        "effect/golden/multiple-distinct"
+        "effect/golden/multiple-distinct",
+        "effect/golden/qualifier-natural-vs-none-distinct",
+        "effect/golden/same-operation-different-resource-still-distinct",
+        "effect/negative/same-full-qualifier-duplicate-rejected",
+        "effect/algebra/qualifier-member-different-contains",
+        "effect/algebra/qualifier-identity-guard-remains-analysis",
+        "effect/algebra/qualifier-identity-bounds-remain-analysis",
+        "effect/algebra/qualifier-member-different-require-contained",
+        "effect/algebra/qualifier-member-different-accumulate",
+        "effect/algebra/qualifier-member-different-branch-join",
+        "effect/algebra/qualifier-member-different-repetition",
+        "effect/algebra/qualifier-member-sequence-propagation",
+        "effect/algebra/qualifier-member-parallel-propagation",
+        "effect/algebra/qualifier-member-race-propagation",
+        "effect/algebra/qualifier-identity-excludes-guard-and-bounds",
+        "effect/equivalence/qualifier-member-canonical-order"
       ],
       "normative_source": "spec/effect/effect-signature.md",
       "requirement_level": "must",
       "rule_id": "AF-EFFECT-0002",
-      "short_statement": "An effect atom is exactly operation + resource selector + closed qualifiers, and its canonical identity is that exact structural tuple.",
+      "short_statement": "An effect atom is exactly operation + resource selector + closed qualifiers; canonical identity includes qualifier family, member discriminant and semantic payload, never family alone.",
       "source_anchor": "effect-atom"
     },
     {
@@ -1522,12 +1537,21 @@
       "conformance_refs": [
         "recovery/golden/effect-specific-clause",
         "recovery/negative/duplicate-effect-clause",
-        "recovery/equivalence/effect-clause-order"
+        "recovery/equivalence/effect-clause-order",
+        "recovery/golden/recovery-exact-qualifier-match",
+        "recovery/golden/recovery-natural-none-distinct-clauses",
+        "recovery/golden/recovery-clause-complete-atom-identity",
+        "recovery/negative/recovery-natural-vs-none-mismatch",
+        "recovery/negative/recovery-none-vs-natural-mismatch",
+        "recovery/negative/recovery-different-resource-selector",
+        "recovery/negative/recovery-different-scope-binding",
+        "recovery/negative/recovery-proof-no-false-proven",
+        "recovery/equivalence/qualifier-member-order"
       ],
       "normative_source": "spec/recovery/recovery-contract.md",
       "requirement_level": "must",
       "rule_id": "AF-RECOVERY-0006",
-      "short_statement": "Effect recovery clauses use the complete canonical EffectAtom identity including selector and qualifiers; duplicates are rejected.",
+      "short_statement": "Effect recovery clauses use the complete canonical EffectAtom identity including the full selector and qualifier family, member discriminant and semantic payload; family alone cannot match and duplicates reject.",
       "source_anchor": "recovery-effect-identity"
     },
     {

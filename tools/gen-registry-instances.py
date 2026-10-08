@@ -1155,9 +1155,24 @@ EFFECT_RULES = [
           "SUITE-EFFECT-NO-RUNTIME"]),
     rule("AF-EFFECT-0002", "EFFECT", EFFECT_SRC, "effect-atom",
          "An effect atom is exactly operation + resource selector + closed "
-         "qualifiers, and its canonical identity is that exact structural "
-         "tuple.",
-         ["effect/golden/single-write", "effect/golden/multiple-distinct"]),
+         "qualifiers; canonical identity includes qualifier family, member "
+         "discriminant and semantic payload, never family alone.",
+         ["effect/golden/single-write", "effect/golden/multiple-distinct",
+          "effect/golden/qualifier-natural-vs-none-distinct",
+          "effect/golden/same-operation-different-resource-still-distinct",
+          "effect/negative/same-full-qualifier-duplicate-rejected",
+          "effect/algebra/qualifier-member-different-contains",
+          "effect/algebra/qualifier-identity-guard-remains-analysis",
+          "effect/algebra/qualifier-identity-bounds-remain-analysis",
+          "effect/algebra/qualifier-member-different-require-contained",
+          "effect/algebra/qualifier-member-different-accumulate",
+          "effect/algebra/qualifier-member-different-branch-join",
+          "effect/algebra/qualifier-member-different-repetition",
+          "effect/algebra/qualifier-member-sequence-propagation",
+          "effect/algebra/qualifier-member-parallel-propagation",
+          "effect/algebra/qualifier-member-race-propagation",
+          "effect/algebra/qualifier-identity-excludes-guard-and-bounds",
+          "effect/equivalence/qualifier-member-canonical-order"]),
     rule("AF-EFFECT-0003", "EFFECT", EFFECT_SRC, "effect-operation-identity",
          "An operation identity is catalog (a SpecificationId) plus a dotted "
          "lowercase name; resolution against the supplied explicit catalog "
@@ -1888,9 +1903,19 @@ RECOVERY_RULES = [
          ["recovery/golden/keyed-idempotency", "recovery/negative/keyed-without-evidence"]),
     rule("AF-RECOVERY-0006", "RECOVERY", RECOVERY_SRC, "recovery-effect-identity",
          "Effect recovery clauses use the complete canonical EffectAtom identity "
-         "including selector and qualifiers; duplicates are rejected.",
+         "including the full selector and qualifier family, member discriminant "
+         "and semantic payload; family alone cannot match and duplicates reject.",
          ["recovery/golden/effect-specific-clause", "recovery/negative/duplicate-effect-clause",
-          "recovery/equivalence/effect-clause-order"]),
+          "recovery/equivalence/effect-clause-order",
+          "recovery/golden/recovery-exact-qualifier-match",
+          "recovery/golden/recovery-natural-none-distinct-clauses",
+          "recovery/golden/recovery-clause-complete-atom-identity",
+          "recovery/negative/recovery-natural-vs-none-mismatch",
+          "recovery/negative/recovery-none-vs-natural-mismatch",
+          "recovery/negative/recovery-different-resource-selector",
+          "recovery/negative/recovery-different-scope-binding",
+          "recovery/negative/recovery-proof-no-false-proven",
+          "recovery/equivalence/qualifier-member-order"]),
     rule("AF-RECOVERY-0007", "RECOVERY", RECOVERY_SRC, "recovery-coverage",
          "Every known recoverable Effect requires an explicit matching clause; "
          "unknown/open effect coverage is not assumed safe.",

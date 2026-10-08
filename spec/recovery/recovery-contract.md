@@ -61,9 +61,13 @@ InvocationId, AttemptId or IdempotencyKey.
 <a id="recovery-effect-identity"></a>
 
 Each `EffectRecoveryClause` uses the complete `effect.EffectAtom` identity:
-operation, ResourceSelector and qualifiers. Short operation names never merge
-different scopes or qualifier sets. Clauses are sorted by the canonical
-EffectAtom key and duplicate identities are rejected.
+the full operation reference (catalog and name), ResourceSelector (port and
+exact scope bindings), and complete typed qualifier identities (family,
+member discriminant and any semantically relevant member payload). Qualifier
+family alone MUST NOT be used for matching: `idempotency.natural` does not
+match `idempotency.none`. Short operation names never merge different scopes
+or qualifier sets. Clauses are sorted by the canonical EffectAtom key and
+duplicate complete identities are rejected.
 
 <a id="recovery-coverage"></a>
 

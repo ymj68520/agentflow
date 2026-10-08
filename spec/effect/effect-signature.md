@@ -60,9 +60,18 @@ EffectAtom = (EffectOperationRef, ResourceSelector, qualifiers)
 - `qualifiers` — a closed qualifier list (section 2.1).
 
 The atom's canonical identity is the exact structural tuple of these three
-parts (operation catalog, operation name, requirement port, the sorted
-exact scope-binding set, the sorted qualifier-family list). Two entries with
-the same canonical identity declare THE SAME effect.
+parts (operation catalog, operation name, requirement port, the sorted exact
+scope-binding set, and the sorted set of complete typed qualifier identities).
+Each qualifier identity includes its family case, member discriminant and any
+semantically relevant typed member payload. Qualifier family alone MUST NOT
+be used as EffectAtom identity. In particular,
+`idempotency.natural != idempotency.none`, and the two values MUST have
+different atom keys. Qualifier declaration order is not identity; canonical
+ordering uses the frozen family/member numbers and typed payload. Two entries
+with the same complete canonical identity declare THE SAME effect.
+
+Occurrence bounds and guards are EffectEntry semantics, not EffectAtom
+identity. They remain independently relevant to containment and algebra.
 
 ### 2.1 Qualifiers
 

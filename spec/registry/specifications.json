@@ -46,7 +46,7 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "bd806541dd2616486fceee2992c5545725ac6741059d53aa8d46153ed1e263bd"
+          "hex": "667baa267e7f4d310f41bf7e10d5267b488a5d343e8e6f8d957c329adcf19c00"
         },
         "logical_path": "spec/effect/effect-signature.md"
       },
@@ -202,7 +202,7 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "66f41dd0f1b8ab3a65d47e79d967e5807dab44483eda16913d80194f0d914036"
+          "hex": "738365753c4f404563789782fa71a3e8e5f2a5d967f5f952b3411e89f20287a8"
         },
         "logical_path": "spec/recovery/recovery-contract.md"
       },
