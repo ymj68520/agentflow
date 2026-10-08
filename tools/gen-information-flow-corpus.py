@@ -25,7 +25,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONF = ROOT / "spec" / "conformance" / "information-flow"
-CORPUS_REVISION = 1
+CORPUS_REVISION = 2
 
 # Plumbing: the semantic-ir corpus module carries the ACE1 encoder and the
 # independent AFIDL1 compiler (which it loads as `afidl`).
@@ -456,9 +456,10 @@ def sink_identity(sink):
 
 def check_flow(flow_contract, kind_, sink):
     """The static flow judgment: missing ceiling fails closed, unknown
-    influence is Unproven, egress under declared restrictions carries a
-    declassification obligation, tainted decision influence carries an
-    endorsement obligation, and unclassified decision sinks are Unproven."""
+    influence or an explicit unknown external source is Unproven, egress
+    under declared restrictions carries a declassification obligation,
+    tainted decision influence carries an endorsement obligation, and
+    unclassified decision sinks are Unproven."""
     canonical = canonicalize(flow_contract)
     target = sink_identity(sink)
     if not any(c["kind"] == kind_ and sink_identity(c["sink"]) == target
@@ -467,7 +468,10 @@ def check_flow(flow_contract, kind_, sink):
             FLOW_NOT_PROVEN,
             "no declared ceiling covers this (flow kind, sink): a missing "
             "flow proof is never flow allowed")
-    if canonical["summary"]["influence_unknown"]:
+    has_unknown_source = any(
+        source["category"] == "unknown_external"
+        for source in canonical["summary"]["sources"])
+    if canonical["summary"]["influence_unknown"] or has_unknown_source:
         return {"outcome": "unproven"}
     requires_dec = (kind_ == "data_egress"
                     and bool(canonical["confidentiality_restrictions"]))
@@ -553,6 +557,11 @@ def flow_not_relaxed(new_contract, old_contract):
             not new_summary["influence_unknown"]:
         return ("unproven", "influence_relation_unknown")
 
+    new_taints = {taint_key(taint) for taint in new_summary["taints"]}
+    old_taints = {taint_key(taint) for taint in old_summary["taints"]}
+    if not old_taints <= new_taints:
+        return ("unproven", "influence_relation_unknown")
+
     def source_keys(summary):
         keys = set()
         for source in summary["sources"]:
@@ -569,13 +578,8 @@ def flow_not_relaxed(new_contract, old_contract):
 
     new_sources = source_keys(new_summary)
     old_sources = source_keys(old_summary)
-    if ("unknown",) in old_sources:
-        old_is_top = True
-    else:
-        old_is_top = False
-    if not old_is_top and ("unknown",) not in new_sources:
-        if not old_sources <= new_sources:
-            return ("unproven", "influence_relation_unknown")
+    if ("unknown",) not in new_sources and not old_sources <= new_sources:
+        return ("unproven", "influence_relation_unknown")
     return ("proven", None)
 
 
@@ -902,9 +906,9 @@ def main():
                           "requires_endorsement": False}}])
 
     golden("infoflow/golden/decision-influence-sink",
-           "a decision-influence ceiling to a decision-capable effect: "
-           "tainted influence into the decision carries an endorsement "
-           "obligation",
+           "an explicit unknown external source remains insufficient for a "
+           "positive decision-influence proof, even when an external taint "
+           "is also declared",
            contract(
                contract_summary=summary(sources=[source_unknown()],
                                         taints=[web()],
@@ -916,10 +920,45 @@ def main():
            verdicts=[{"kind": "decision_influence",
                       "sink": effect_sink(EFFECT_CATALOG,
                                           "production.deploy"),
-                      "expected": {
-                          "outcome": "requires_trusted_transformation",
-                          "requires_declassification": False,
-                          "requires_endorsement": True}}])
+                      "expected": {"outcome": "unproven"}}])
+
+    golden("infoflow/golden/unknown-external-with-clean-claim",
+           "unknown_external plus taints=[] and influence_unknown=false is "
+           "syntactically representable but cannot prove a flow",
+           contract(
+               contract_summary=summary(sources=[source_unknown()],
+                                        authority="none",
+                                        unknown=False),
+               constraints=[constraint("data_egress", output_sink(1))]),
+           verdicts=[{"kind": "data_egress", "sink": output_sink(1),
+                      "expected": {"outcome": "unproven"}}])
+
+    golden("infoflow/golden/unknown-external-high-impact-decision",
+           "a high-authority claim cannot make unknown external provenance "
+           "safe for a decision-capable sink",
+           contract(
+               contract_summary=summary(sources=[source_unknown()],
+                                        authority="platform",
+                                        unknown=False),
+               constraints=[constraint(
+                   "decision_influence",
+                   effect_sink(EFFECT_CATALOG, "production.deploy"))]),
+           verdicts=[{"kind": "decision_influence",
+                      "sink": effect_sink(EFFECT_CATALOG,
+                                          "production.deploy"),
+                      "expected": {"outcome": "unproven"}}])
+
+    golden("infoflow/golden/unknown-external-explicit-taint",
+           "an explicit external taint does not endorse an unknown source; "
+           "the source/taint summary still cannot prove a flow",
+           contract(
+               contract_summary=summary(sources=[source_unknown()],
+                                        taints=[web()],
+                                        authority="external_data",
+                                        unknown=False),
+               constraints=[constraint("data_egress", output_sink(1))]),
+           verdicts=[{"kind": "data_egress", "sink": output_sink(1),
+                      "expected": {"outcome": "unproven"}}])
 
     golden("infoflow/golden/conservative-source-influence",
            "the summary may list several sources including the explicit "
@@ -996,6 +1035,20 @@ def main():
                   constraints=[constraint("data_egress", output_sink(1))]),
               "kind": "data_egress",
               "sink": output_sink(1),
+              "expected_kind": FLOW_NOT_PROVEN})
+
+    negative("infoflow/negative/unknown-external-clean-claim-require-proven",
+             "require_proven must fail closed for unknown_external even when "
+             "the declared taint set is empty and influence_unknown is false",
+             {"operation": "require_proven",
+              "contract": contract(
+                  contract_summary=summary(sources=[source_unknown()],
+                                           taints=[], unknown=False),
+                  constraints=[constraint("decision_influence",
+                                          effect_sink(EFFECT_CATALOG,
+                                                      "production.deploy"))]),
+              "kind": "decision_influence",
+              "sink": effect_sink(EFFECT_CATALOG, "production.deploy"),
               "expected_kind": FLOW_NOT_PROVEN})
 
     negative("infoflow/negative/untrusted-promoted-to-instruction",
@@ -1089,6 +1142,63 @@ def main():
                      "instruction_authority": "user",
                      "influence_unknown": True}})
 
+    propagation("infoflow/propagation/mixed-user-and-web-authority",
+                "the merged authority is only a may-carry upper bound: a "
+                "user input mixed with unknown external web data retains "
+                "the unknown source and web taint",
+                {"operation": "propagate_pure_expression",
+                 "inputs": [
+                     {"sources": [source_workflow_input(1)],
+                      "taints": [], "authority": "user",
+                      "influence_unknown": False},
+                     {"sources": [source_unknown()],
+                      "taints": [web()], "authority": "external_data",
+                      "influence_unknown": False},
+                 ],
+                 "output_authority": "user",
+                 "summary": {
+                     "sources": [source_workflow_input(1),
+                                 source_unknown()],
+                     "taints": [web()],
+                     "instruction_authority": "user",
+                     "influence_unknown": False}})
+
+    propagation("infoflow/propagation/mixed-platform-and-external-authority",
+                "platform authority remains only a may-carry upper bound when "
+                "unknown external data is mixed into the value",
+                {"operation": "propagate_pure_expression",
+                 "inputs": [
+                     {"sources": [source_workflow_input(1)],
+                      "taints": [], "authority": "platform",
+                      "influence_unknown": False},
+                     {"sources": [source_unknown()],
+                      "taints": [web()], "authority": "external_data",
+                      "influence_unknown": False},
+                 ],
+                 "output_authority": "platform",
+                 "summary": {
+                     "sources": [source_workflow_input(1),
+                                 source_unknown()],
+                     "taints": [web()],
+                     "instruction_authority": "platform",
+                     "influence_unknown": False}})
+
+    propagation("infoflow/propagation/unknown-influence-stickiness",
+                "an already unknown influence relation stays unknown through "
+                "an ordinary transformation",
+                {"operation": "propagate_pure_expression",
+                 "inputs": [
+                     {"sources": [source_workflow_input(1)],
+                      "taints": [web()], "authority": "user",
+                      "influence_unknown": True},
+                 ],
+                 "output_authority": "user",
+                 "summary": {
+                     "sources": [source_workflow_input(1)],
+                     "taints": [web()],
+                     "instruction_authority": "user",
+                     "influence_unknown": True}})
+
     propagation("infoflow/propagation/unknown-influence-remains-unknown",
                 "an unknown transformation conservatively unions every "
                 "possible input and stays unknown",
@@ -1139,6 +1249,22 @@ def main():
                      "instruction_authority": "none",
                      "influence_unknown": True}})
 
+    propagation("infoflow/propagation/model-output-with-external-source",
+                "a model output keeps the external source and all taints; "
+                "the model-generated marker and unknown influence are added",
+                {"operation": "mix_model_visible_inputs",
+                 "inputs": [
+                     {"sources": [source_unknown()],
+                      "taints": [web()], "authority": "external_data",
+                      "influence_unknown": False},
+                 ],
+                 "summary": {
+                     "sources": [source_unknown()],
+                     "taints": [web(), taint("model_generated",
+                                             catalog=TAINT_CATALOG)],
+                     "instruction_authority": "external_data",
+                     "influence_unknown": True}})
+
     propagation("infoflow/propagation/memory-persistence-retains-taint",
                 "write memory / read memory round trip retains taint: "
                 "persistence is an ordinary transformation",
@@ -1154,6 +1280,22 @@ def main():
                      "taints": [web()],
                      "instruction_authority": "external_data",
                      "influence_unknown": True}})
+
+    propagation("infoflow/propagation/stored-external-content-not-endorsed",
+                "stored external content reload is an ordinary transformation: "
+                "taint, source and authority survive without endorsement",
+                {"operation": "propagate_pure_expression",
+                 "inputs": [
+                     {"sources": [source_unknown()],
+                      "taints": [web()], "authority": "external_data",
+                      "influence_unknown": False},
+                 ],
+                 "output_authority": "external_data",
+                 "summary": {
+                     "sources": [source_unknown()],
+                     "taints": [web()],
+                     "instruction_authority": "external_data",
+                     "influence_unknown": False}})
 
     propagation("infoflow/propagation/summarization-does-not-endorse",
                 "summarizing untrusted input does not endorse: taint "
@@ -1275,6 +1417,53 @@ def main():
                            sources=[source_workflow_input(1),
                                     source_workflow_input(2)],
                            taints=[web(), user_input()], unknown=False)),
+                   "expected": {"outcome": "unproven",
+                                "reason": "influence_relation_unknown"}})
+
+    compatibility("infoflow/compatibility/flow-non-relaxation-dropped-source",
+                  "dropping an old source, including a possible influence, "
+                  "cannot be called non-relaxing without a trusted proof",
+                  {"operation": "flow_not_relaxed",
+                   "new_contract": contract(
+                       contract_summary=summary(
+                           sources=[source_workflow_input(1)],
+                           unknown=False)),
+                   "old_contract": contract(
+                       contract_summary=summary(
+                           sources=[source_workflow_input(1),
+                                    source_workflow_input(2)],
+                           unknown=False)),
+                   "expected": {"outcome": "unproven",
+                                "reason": "influence_relation_unknown"}})
+
+    compatibility("infoflow/compatibility/flow-non-relaxation-dropped-taint",
+                  "deleting an old taint is an unproven influence narrowing, "
+                  "not evidence that the new contract is non-relaxing",
+                  {"operation": "flow_not_relaxed",
+                   "new_contract": contract(
+                       contract_summary=summary(
+                           sources=[source_workflow_input(1)],
+                           taints=[web()], unknown=False)),
+                   "old_contract": contract(
+                       contract_summary=summary(
+                           sources=[source_workflow_input(1)],
+                           taints=[web(), user_input()], unknown=False)),
+                   "expected": {"outcome": "unproven",
+                                "reason": "influence_relation_unknown"}})
+
+    compatibility("infoflow/compatibility/dropped-unknown-source-unproven",
+                  "an old unknown_external source may not be deleted to claim "
+                  "non-relaxation",
+                  {"operation": "flow_not_relaxed",
+                   "new_contract": contract(
+                       contract_summary=summary(
+                           sources=[source_workflow_input(1)],
+                           unknown=False)),
+                   "old_contract": contract(
+                       contract_summary=summary(
+                           sources=[source_workflow_input(1),
+                                    source_unknown()],
+                           unknown=False)),
                    "expected": {"outcome": "unproven",
                                 "reason": "influence_relation_unknown"}})
 

@@ -94,7 +94,7 @@
       ]
     }
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "is_empty": true,
   "kind": "agentflow.conformance.information-flow.case",
   "note": "the summary may list several sources including the explicit unknown external origin",

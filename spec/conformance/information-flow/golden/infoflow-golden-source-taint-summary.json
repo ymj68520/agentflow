@@ -103,7 +103,7 @@
       ]
     }
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "is_empty": false,
   "kind": "agentflow.conformance.information-flow.case",
   "note": "a conservative influence summary: typed sources, taints distinct from confidentiality labels, explicit authority",

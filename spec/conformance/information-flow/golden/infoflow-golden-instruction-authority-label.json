@@ -81,7 +81,7 @@
       "taints": []
     }
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "is_empty": true,
   "kind": "agentflow.conformance.information-flow.case",
   "note": "the closed instruction-authority scale in a summary",

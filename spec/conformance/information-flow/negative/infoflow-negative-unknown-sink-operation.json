@@ -83,7 +83,7 @@
       "taints": []
     }
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "expected_kind": "unknown_flow_sink",
   "kind": "agentflow.conformance.information-flow.case",
   "note": "an unresolvable effect sink is rejected fail-closed: no latest fallback, no name-based classification"

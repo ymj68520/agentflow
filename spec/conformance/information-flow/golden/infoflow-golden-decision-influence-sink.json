@@ -94,17 +94,15 @@
       ]
     }
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "is_empty": false,
   "kind": "agentflow.conformance.information-flow.case",
-  "note": "a decision-influence ceiling to a decision-capable effect: tainted influence into the decision carries an endorsement obligation",
+  "note": "an explicit unknown external source remains insufficient for a positive decision-influence proof, even when an external taint is also declared",
   "restriction_count": 0,
   "verdicts": [
     {
       "expected": {
-        "outcome": "requires_trusted_transformation",
-        "requires_declassification": false,
-        "requires_endorsement": true
+        "outcome": "unproven"
       },
       "kind": "decision_influence",
       "sink": {

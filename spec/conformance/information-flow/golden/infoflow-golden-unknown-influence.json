@@ -87,7 +87,7 @@
       ]
     }
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "is_empty": false,
   "kind": "agentflow.conformance.information-flow.case",
   "note": "influence_unknown = true is an explicit Top value, preserved by canonicalization; its flow judgment is Unproven even under a declared ceiling",

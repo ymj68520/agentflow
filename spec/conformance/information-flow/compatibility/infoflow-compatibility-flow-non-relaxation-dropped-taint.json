@@ -1,0 +1,120 @@
+{
+  "case_id": "infoflow/compatibility/flow-non-relaxation-dropped-taint",
+  "case_kind": "compatibility",
+  "catalogs": {
+    "effects": [
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "email.send"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "github.issue_comment"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "payment.refund"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "production.deploy"
+      }
+    ],
+    "labels": {
+      "confidentiality": [
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "internal.confidential"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "medical.record"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.email"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.phone"
+        }
+      ],
+      "taints": [
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "file_system"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "model_generated"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "user_input"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "web_untrusted"
+        }
+      ]
+    }
+  },
+  "corpus_revision": 2,
+  "expected": {
+    "outcome": "unproven",
+    "reason": "influence_relation_unknown"
+  },
+  "kind": "agentflow.conformance.information-flow.case",
+  "new_contract": {
+    "confidentiality_restrictions": [],
+    "flow_constraints": [],
+    "summary": {
+      "influence_unknown": false,
+      "instruction_authority": "none",
+      "sources": [
+        {
+          "category": {
+            "workflow_input": 1
+          }
+        }
+      ],
+      "taints": [
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "web_untrusted"
+        }
+      ]
+    }
+  },
+  "note": "deleting an old taint is an unproven influence narrowing, not evidence that the new contract is non-relaxing",
+  "old_contract": {
+    "confidentiality_restrictions": [],
+    "flow_constraints": [],
+    "summary": {
+      "influence_unknown": false,
+      "instruction_authority": "none",
+      "sources": [
+        {
+          "category": {
+            "workflow_input": 1
+          }
+        }
+      ],
+      "taints": [
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "web_untrusted"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "user_input"
+        }
+      ]
+    }
+  },
+  "operation": "flow_not_relaxed"
+}

@@ -63,7 +63,7 @@
       ]
     }
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "expected": {
     "outcome": "unknown_label_in_new_catalog"
   },

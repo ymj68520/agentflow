@@ -63,7 +63,7 @@
       ]
     }
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "expected": {
     "outcome": "unproven",
     "reason": "influence_relation_unknown"

@@ -1,0 +1,120 @@
+{
+  "case_id": "infoflow/propagation/mixed-user-and-web-authority",
+  "case_kind": "propagation",
+  "catalogs": {
+    "effects": [
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "email.send"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "github.issue_comment"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "payment.refund"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "production.deploy"
+      }
+    ],
+    "labels": {
+      "confidentiality": [
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "internal.confidential"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "medical.record"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.email"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.phone"
+        }
+      ],
+      "taints": [
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "file_system"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "model_generated"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "user_input"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "web_untrusted"
+        }
+      ]
+    }
+  },
+  "corpus_revision": 2,
+  "inputs": [
+    {
+      "authority": "user",
+      "influence_unknown": false,
+      "sources": [
+        {
+          "category": {
+            "workflow_input": 1
+          }
+        }
+      ],
+      "taints": []
+    },
+    {
+      "authority": "external_data",
+      "influence_unknown": false,
+      "sources": [
+        {
+          "category": "unknown_external"
+        }
+      ],
+      "taints": [
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "web_untrusted"
+        }
+      ]
+    }
+  ],
+  "kind": "agentflow.conformance.information-flow.case",
+  "note": "the merged authority is only a may-carry upper bound: a user input mixed with unknown external web data retains the unknown source and web taint",
+  "operation": "propagate_pure_expression",
+  "output_authority": "user",
+  "summary": {
+    "influence_unknown": false,
+    "instruction_authority": "user",
+    "sources": [
+      {
+        "category": {
+          "workflow_input": 1
+        }
+      },
+      {
+        "category": "unknown_external"
+      }
+    ],
+    "taints": [
+      {
+        "catalog": "agentflow.infoflow.taints@1",
+        "name": "web_untrusted"
+      }
+    ]
+  }
+}

@@ -78,7 +78,7 @@
       "taints": []
     }
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "expected_kind": "flow_not_proven",
   "kind": "data_egress",
   "note": "a flow with no declared ceiling fails closed: missing flow proof is never flow allowed",

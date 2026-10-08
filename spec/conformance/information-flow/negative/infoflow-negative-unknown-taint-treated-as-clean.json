@@ -85,7 +85,7 @@
       ]
     }
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "expected_kind": "flow_not_proven",
   "kind": "data_egress",
   "note": "an unknown influence set may not be judged clean: under a declared ceiling the verdict is Unproven, and demanding a proven flow fails closed",

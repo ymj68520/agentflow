@@ -80,7 +80,7 @@
       "taints": []
     }
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "is_empty": false,
   "kind": "agentflow.conformance.information-flow.case",
   "note": "one confidentiality restriction, nominally pinned",

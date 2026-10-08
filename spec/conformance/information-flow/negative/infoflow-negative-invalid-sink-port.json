@@ -80,7 +80,7 @@
       "taints": []
     }
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "expected_kind": "invalid_flow_sink",
   "kind": "agentflow.conformance.information-flow.case",
   "note": "output sink port 0 is invalid: ports are positive"

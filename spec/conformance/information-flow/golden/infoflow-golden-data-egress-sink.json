@@ -96,7 +96,7 @@
       "taints": []
     }
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "is_empty": false,
   "kind": "agentflow.conformance.information-flow.case",
   "note": "a data-egress ceiling to a structured external effect: with a known summary and a declared restriction the flow carries a recorded declassification obligation",

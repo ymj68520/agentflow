@@ -78,7 +78,7 @@
       ]
     }
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "expected_kind": "unknown_information_label",
   "kind": "agentflow.conformance.information-flow.case",
   "note": "a taint referencing an unregistered identity is rejected rather than silently dropped by canonicalization"

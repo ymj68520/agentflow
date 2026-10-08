@@ -63,7 +63,7 @@
       ]
     }
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "kind": "agentflow.conformance.information-flow.case",
   "note": "union is idempotent",
   "operand_sets": [

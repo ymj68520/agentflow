@@ -1,0 +1,110 @@
+{
+  "canonical_ace1_utf8": "{\"confidentiality_restrictions\":[],\"flow_constraints\":[{\"kind\":\"data_egress\",\"sink\":{\"workflow_output\":\"1\"}}],\"summary\":{\"influence_unknown\":false,\"instruction_authority\":\"external_data\",\"sources\":[{\"category\":{\"unknown_external\":null}}],\"taints\":[{\"catalog\":\"agentflow.infoflow.taints@1\",\"name\":\"web_untrusted\"}]}}",
+  "case_id": "infoflow/golden/unknown-external-explicit-taint",
+  "case_kind": "golden",
+  "catalogs": {
+    "effects": [
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "email.send"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": false,
+        "name": "github.issue_comment"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "payment.refund"
+      },
+      {
+        "catalog": "agentflow.test.effects@1",
+        "decision_capable": true,
+        "name": "production.deploy"
+      }
+    ],
+    "labels": {
+      "confidentiality": [
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "internal.confidential"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "medical.record"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.email"
+        },
+        {
+          "catalog": "agentflow.infoflow.labels@1",
+          "name": "pii.phone"
+        }
+      ],
+      "taints": [
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "file_system"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "model_generated"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "user_input"
+        },
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "web_untrusted"
+        }
+      ]
+    }
+  },
+  "constraint_count": 1,
+  "contract": {
+    "confidentiality_restrictions": [],
+    "flow_constraints": [
+      {
+        "kind": "data_egress",
+        "sink": {
+          "workflow_output": 1
+        }
+      }
+    ],
+    "summary": {
+      "influence_unknown": false,
+      "instruction_authority": "external_data",
+      "sources": [
+        {
+          "category": "unknown_external"
+        }
+      ],
+      "taints": [
+        {
+          "catalog": "agentflow.infoflow.taints@1",
+          "name": "web_untrusted"
+        }
+      ]
+    }
+  },
+  "corpus_revision": 2,
+  "is_empty": false,
+  "kind": "agentflow.conformance.information-flow.case",
+  "note": "an explicit external taint does not endorse an unknown source; the source/taint summary still cannot prove a flow",
+  "restriction_count": 0,
+  "verdicts": [
+    {
+      "expected": {
+        "outcome": "unproven"
+      },
+      "kind": "data_egress",
+      "sink": {
+        "workflow_output": 1
+      }
+    }
+  ]
+}

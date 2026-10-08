@@ -82,7 +82,7 @@
       "taints": []
     }
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "expected_kind": "duplicate_information_label",
   "kind": "agentflow.conformance.information-flow.case",
   "note": "the same nominal label declared twice is rejected: a declared list is a set"

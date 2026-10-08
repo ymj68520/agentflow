@@ -75,7 +75,7 @@
       "taints": []
     }
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "is_empty": true,
   "kind": "agentflow.conformance.information-flow.case",
   "note": "the empty contract declares no restriction and no ceiling; its summary is the conservative unknown, NOT a trusted state",

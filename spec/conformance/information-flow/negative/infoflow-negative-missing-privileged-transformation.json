@@ -91,7 +91,7 @@
       "taints": []
     }
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "expected_kind": "privileged_transformation_required",
   "kind": "data_egress",
   "note": "egress under a declared confidentiality restriction needs a declassification this layer cannot supply: the obligation is recorded and demanding a proven flow names the missing privileged transformation",
