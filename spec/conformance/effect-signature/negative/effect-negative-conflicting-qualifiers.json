@@ -1,0 +1,61 @@
+{
+  "case_id": "effect/negative/conflicting-qualifiers",
+  "case_kind": "negative",
+  "corpus_revision": 1,
+  "expected_kind": "invalid_effect_qualifier",
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    }
+  ],
+  "kind": "agentflow.conformance.effect-signature.case",
+  "note": "one qualifier family may appear at most once per atom",
+  "signature": {
+    "row": {
+      "closed": [
+        {
+          "atom": {
+            "operation": {
+              "catalog": "agentflow.test.capability-catalog@1",
+              "name": "payment.charge"
+            },
+            "qualifiers": [
+              {
+                "idempotency": "natural"
+              },
+              {
+                "idempotency": "none"
+              }
+            ],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": [
+                {
+                  "key": "merchant",
+                  "value": "acme"
+                }
+              ]
+            }
+          },
+          "bounds": {
+            "lower": 1,
+            "upper": {
+              "finite": 1
+            }
+          },
+          "guard": "unconditional"
+        }
+      ]
+    }
+  }
+}

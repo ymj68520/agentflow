@@ -1,0 +1,115 @@
+{
+  "canonical_ace1_utf8": "{\"row\":{\"open\":{\"known\":[],\"residual\":[{\"bounds\":{\"lower\":\"0\",\"upper\":{\"finite\":\"5\"}},\"catalog\":\"agentflow.test.capability-catalog@1\",\"selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[{\"key\":\"repo\",\"value\":\"foo/bar\"}]}},{\"bounds\":{\"lower\":\"0\",\"upper\":{\"finite\":\"2\"}},\"catalog\":\"agentflow.test.capability-catalog@1\",\"selector\":{\"requirement_port_no\":\"2\",\"scope_bindings\":[{\"key\":\"table\",\"value\":\"customer\"}]}}]}}}",
+  "case_id": "effect/equivalence/residual-reordering",
+  "case_kind": "equivalence",
+  "corpus_revision": 1,
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    }
+  ],
+  "kind": "agentflow.conformance.effect-signature.case",
+  "members": [
+    {
+      "row": {
+        "open": {
+          "known": [],
+          "residual": [
+            {
+              "bounds": {
+                "lower": 0,
+                "upper": {
+                  "finite": 5
+                }
+              },
+              "catalog": "agentflow.test.capability-catalog@1",
+              "selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": [
+                  {
+                    "key": "repo",
+                    "value": "foo/bar"
+                  }
+                ]
+              }
+            },
+            {
+              "bounds": {
+                "lower": 0,
+                "upper": {
+                  "finite": 2
+                }
+              },
+              "catalog": "agentflow.test.capability-catalog@1",
+              "selector": {
+                "requirement_port_no": 2,
+                "scope_bindings": [
+                  {
+                    "key": "table",
+                    "value": "customer"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "row": {
+        "open": {
+          "known": [],
+          "residual": [
+            {
+              "bounds": {
+                "lower": 0,
+                "upper": {
+                  "finite": 2
+                }
+              },
+              "catalog": "agentflow.test.capability-catalog@1",
+              "selector": {
+                "requirement_port_no": 2,
+                "scope_bindings": [
+                  {
+                    "key": "table",
+                    "value": "customer"
+                  }
+                ]
+              }
+            },
+            {
+              "bounds": {
+                "lower": 0,
+                "upper": {
+                  "finite": 5
+                }
+              },
+              "catalog": "agentflow.test.capability-catalog@1",
+              "selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": [
+                  {
+                    "key": "repo",
+                    "value": "foo/bar"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "note": "residual order never changes the canonical bytes"
+}

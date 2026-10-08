@@ -1,0 +1,56 @@
+{
+  "canonical_ace1_utf8": "{\"row\":{\"closed\":[{\"atom\":{\"operation\":{\"catalog\":\"agentflow.test.capability-catalog@1\",\"name\":\"database.row.read\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[{\"key\":\"table\",\"value\":\"customer\"}]}},\"bounds\":{\"lower\":\"1\",\"upper\":{\"finite\":\"1\"}},\"guard\":{\"unconditional\":null}}]}}",
+  "case_id": "effect/golden/single-read",
+  "case_kind": "golden",
+  "classification": "closed",
+  "corpus_revision": 1,
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    }
+  ],
+  "is_pure": false,
+  "kind": "agentflow.conformance.effect-signature.case",
+  "note": "reads are effects: one database read with an exact table scope",
+  "signature": {
+    "row": {
+      "closed": [
+        {
+          "atom": {
+            "operation": {
+              "catalog": "agentflow.test.capability-catalog@1",
+              "name": "database.row.read"
+            },
+            "qualifiers": [],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": [
+                {
+                  "key": "table",
+                  "value": "customer"
+                }
+              ]
+            }
+          },
+          "bounds": {
+            "lower": 1,
+            "upper": {
+              "finite": 1
+            }
+          },
+          "guard": "unconditional"
+        }
+      ]
+    }
+  }
+}

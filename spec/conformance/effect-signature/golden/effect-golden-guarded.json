@@ -1,0 +1,63 @@
+{
+  "canonical_ace1_utf8": "{\"row\":{\"closed\":[{\"atom\":{\"operation\":{\"catalog\":\"agentflow.test.capability-catalog@1\",\"name\":\"payment.charge\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[{\"key\":\"merchant\",\"value\":\"acme\"}]}},\"bounds\":{\"lower\":\"0\",\"upper\":{\"finite\":\"2\"}},\"guard\":{\"input_equals\":{\"expected\":{\"int64\":\"1\"},\"port_no\":\"1\"}}}]}}",
+  "case_id": "effect/golden/guarded",
+  "case_kind": "golden",
+  "classification": "closed",
+  "corpus_revision": 1,
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    }
+  ],
+  "is_pure": false,
+  "kind": "agentflow.conformance.effect-signature.case",
+  "note": "a typed input-equality guard narrows when the effect can occur",
+  "signature": {
+    "row": {
+      "closed": [
+        {
+          "atom": {
+            "operation": {
+              "catalog": "agentflow.test.capability-catalog@1",
+              "name": "payment.charge"
+            },
+            "qualifiers": [],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": [
+                {
+                  "key": "merchant",
+                  "value": "acme"
+                }
+              ]
+            }
+          },
+          "bounds": {
+            "lower": 0,
+            "upper": {
+              "finite": 2
+            }
+          },
+          "guard": {
+            "input_equals": {
+              "expected": {
+                "int64": 1
+              },
+              "port_no": 1
+            }
+          }
+        }
+      ]
+    }
+  }
+}

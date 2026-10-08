@@ -1,0 +1,84 @@
+{
+  "canonical_ace1_utf8": "{\"row\":{\"open\":{\"known\":[{\"atom\":{\"operation\":{\"catalog\":\"agentflow.test.capability-catalog@1\",\"name\":\"github.issue.read\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[{\"key\":\"repo\",\"value\":\"foo/bar\"}]}},\"bounds\":{\"lower\":\"1\",\"upper\":{\"finite\":\"2\"}},\"guard\":{\"unconditional\":null}}],\"residual\":[{\"bounds\":{\"lower\":\"0\",\"upper\":{\"finite\":\"5\"}},\"catalog\":\"agentflow.test.capability-catalog@1\",\"selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[{\"key\":\"repo\",\"value\":\"foo/bar\"}]}}]}}}",
+  "case_id": "effect/golden/bounded-open-row",
+  "case_kind": "golden",
+  "classification": "open",
+  "corpus_revision": 1,
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    },
+    {
+      "operations": [
+        "storage.object.put"
+      ],
+      "specification_id": "agentflow.test.alt-catalog@1"
+    }
+  ],
+  "is_pure": false,
+  "kind": "agentflow.conformance.effect-signature.case",
+  "note": "a bounded-open row: one known effect plus a residual ceiling from the same catalog with a scope binding and a finite upper",
+  "signature": {
+    "row": {
+      "open": {
+        "known": [
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.test.capability-catalog@1",
+                "name": "github.issue.read"
+              },
+              "qualifiers": [],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": [
+                  {
+                    "key": "repo",
+                    "value": "foo/bar"
+                  }
+                ]
+              }
+            },
+            "bounds": {
+              "lower": 1,
+              "upper": {
+                "finite": 2
+              }
+            },
+            "guard": "unconditional"
+          }
+        ],
+        "residual": [
+          {
+            "bounds": {
+              "lower": 0,
+              "upper": {
+                "finite": 5
+              }
+            },
+            "catalog": "agentflow.test.capability-catalog@1",
+            "selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": [
+                {
+                  "key": "repo",
+                  "value": "foo/bar"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "canonical_ace1_utf8": "{\"row\":{\"unknown\":null}}",
+  "case_id": "effect/negative/top-is-not-authorization",
+  "case_kind": "negative",
+  "containment_error_kind": "effect_envelope_unprovable",
+  "containment_limit": {
+    "row": {
+      "closed": [
+        {
+          "atom": {
+            "operation": {
+              "catalog": "agentflow.test.capability-catalog@1",
+              "name": "github.issue.read"
+            },
+            "qualifiers": [],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            }
+          },
+          "bounds": {
+            "lower": 0,
+            "upper": {
+              "finite": 100
+            }
+          },
+          "guard": "unconditional"
+        }
+      ]
+    }
+  },
+  "containment_proven": false,
+  "corpus_revision": 1,
+  "expect_validation": "accept",
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    }
+  ],
+  "kind": "agentflow.conformance.effect-signature.case",
+  "note": "the unknown row carries no capability material: its canonical form is the literal unknown encoding, and demanding containment inside a closed limit fails closed with effect_envelope_unprovable",
+  "signature": {
+    "row": "unknown"
+  }
+}

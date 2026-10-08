@@ -1,0 +1,30 @@
+{
+  "canonical_ace1_utf8": "{\"row\":{\"closed\":[]}}",
+  "case_id": "effect/golden/pure-empty-row",
+  "case_kind": "golden",
+  "classification": "pure",
+  "corpus_revision": 1,
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    }
+  ],
+  "is_pure": true,
+  "kind": "agentflow.conformance.effect-signature.case",
+  "note": "the closed empty row is the one representation of pure",
+  "signature": {
+    "row": {
+      "closed": []
+    }
+  }
+}

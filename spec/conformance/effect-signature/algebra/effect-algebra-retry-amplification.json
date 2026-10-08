@@ -1,0 +1,72 @@
+{
+  "case_id": "effect/algebra/retry-amplification",
+  "case_kind": "algebra",
+  "corpus_revision": 1,
+  "expected": {
+    "attempts": {
+      "lower": 1,
+      "upper": {
+        "finite": 3
+      }
+    },
+    "logical_ace1_utf8": "{\"row\":{\"closed\":[{\"atom\":{\"operation\":{\"catalog\":\"agentflow.test.capability-catalog@1\",\"name\":\"github.issue.create\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[{\"key\":\"repo\",\"value\":\"foo/bar\"}]}},\"bounds\":{\"lower\":\"1\",\"upper\":{\"finite\":\"6\"}},\"guard\":{\"unconditional\":null}}]}}",
+    "logical_narrowing_proven": false,
+    "obligations": [
+      "retry_logical_narrowing_requires_recovery_contract"
+    ]
+  },
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    }
+  ],
+  "kind": "agentflow.conformance.effect-signature.case",
+  "max_attempts": 3,
+  "note": "RETRY conservatively scales the logical bounds by the attempt ceiling ([1,3] ⊗ [1,2] = [1,6]) and records that narrowing requires a recovery contract",
+  "operands": [
+    {
+      "row": {
+        "closed": [
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.test.capability-catalog@1",
+                "name": "github.issue.create"
+              },
+              "qualifiers": [],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": [
+                  {
+                    "key": "repo",
+                    "value": "foo/bar"
+                  }
+                ]
+              }
+            },
+            "bounds": {
+              "lower": 1,
+              "upper": {
+                "finite": 2
+              }
+            },
+            "guard": "unconditional"
+          }
+        ]
+      }
+    }
+  ],
+  "operation": "retry_envelope",
+  "property": null,
+  "reps": null
+}

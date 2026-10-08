@@ -1,0 +1,58 @@
+{
+  "case_id": "effect/negative/duplicate-scope-key",
+  "case_kind": "negative",
+  "corpus_revision": 1,
+  "expected_kind": "invalid_resource_selector",
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    }
+  ],
+  "kind": "agentflow.conformance.effect-signature.case",
+  "note": "at most one exact binding per scope key",
+  "signature": {
+    "row": {
+      "closed": [
+        {
+          "atom": {
+            "operation": {
+              "catalog": "agentflow.test.capability-catalog@1",
+              "name": "github.issue.create"
+            },
+            "qualifiers": [],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": [
+                {
+                  "key": "repo",
+                  "value": "foo/bar"
+                },
+                {
+                  "key": "repo",
+                  "value": "baz/qux"
+                }
+              ]
+            }
+          },
+          "bounds": {
+            "lower": 1,
+            "upper": {
+              "finite": 1
+            }
+          },
+          "guard": "unconditional"
+        }
+      ]
+    }
+  }
+}

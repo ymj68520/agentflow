@@ -1,0 +1,56 @@
+{
+  "case_id": "effect/negative/invalid-guard-port",
+  "case_kind": "negative",
+  "corpus_revision": 1,
+  "expected_kind": "invalid_effect_guard",
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    }
+  ],
+  "kind": "agentflow.conformance.effect-signature.case",
+  "note": "guard input ports are 1-based; port 0 is invalid",
+  "signature": {
+    "row": {
+      "closed": [
+        {
+          "atom": {
+            "operation": {
+              "catalog": "agentflow.test.capability-catalog@1",
+              "name": "payment.charge"
+            },
+            "qualifiers": [],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            }
+          },
+          "bounds": {
+            "lower": 0,
+            "upper": {
+              "finite": 1
+            }
+          },
+          "guard": {
+            "input_equals": {
+              "expected": {
+                "int64": 1
+              },
+              "port_no": 0
+            }
+          }
+        }
+      ]
+    }
+  }
+}

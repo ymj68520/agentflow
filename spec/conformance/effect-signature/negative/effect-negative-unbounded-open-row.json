@@ -1,0 +1,43 @@
+{
+  "case_id": "effect/negative/unbounded-open-row",
+  "case_kind": "negative",
+  "corpus_revision": 1,
+  "expected_kind": "unbounded_open_effect_row",
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    }
+  ],
+  "kind": "agentflow.conformance.effect-signature.case",
+  "note": "a residual with no scope binding and an unbounded upper proves nothing and is rejected",
+  "signature": {
+    "row": {
+      "open": {
+        "known": [],
+        "residual": [
+          {
+            "bounds": {
+              "lower": 0,
+              "upper": "unbounded"
+            },
+            "catalog": "agentflow.test.capability-catalog@1",
+            "selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            }
+          }
+        ]
+      }
+    }
+  }
+}

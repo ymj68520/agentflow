@@ -1,0 +1,28 @@
+{
+  "case_id": "effect/negative/top-is-not-pure",
+  "case_kind": "negative",
+  "classification": "unknown",
+  "corpus_revision": 1,
+  "expect_validation": "accept",
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    }
+  ],
+  "is_pure": false,
+  "kind": "agentflow.conformance.effect-signature.case",
+  "note": "the unknown row validates as a declared state but is never pure: classification is unknown and is_pure false",
+  "signature": {
+    "row": "unknown"
+  }
+}

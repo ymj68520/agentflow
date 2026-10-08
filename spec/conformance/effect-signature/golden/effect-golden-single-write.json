@@ -1,0 +1,56 @@
+{
+  "canonical_ace1_utf8": "{\"row\":{\"closed\":[{\"atom\":{\"operation\":{\"catalog\":\"agentflow.test.capability-catalog@1\",\"name\":\"github.issue.create\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[{\"key\":\"repo\",\"value\":\"foo/bar\"}]}},\"bounds\":{\"lower\":\"1\",\"upper\":{\"finite\":\"3\"}},\"guard\":{\"unconditional\":null}}]}}",
+  "case_id": "effect/golden/single-write",
+  "case_kind": "golden",
+  "classification": "closed",
+  "corpus_revision": 1,
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    }
+  ],
+  "is_pure": false,
+  "kind": "agentflow.conformance.effect-signature.case",
+  "note": "one issue creation with an exact repo scope and [1,3] bounds",
+  "signature": {
+    "row": {
+      "closed": [
+        {
+          "atom": {
+            "operation": {
+              "catalog": "agentflow.test.capability-catalog@1",
+              "name": "github.issue.create"
+            },
+            "qualifiers": [],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": [
+                {
+                  "key": "repo",
+                  "value": "foo/bar"
+                }
+              ]
+            }
+          },
+          "bounds": {
+            "lower": 1,
+            "upper": {
+              "finite": 3
+            }
+          },
+          "guard": "unconditional"
+        }
+      ]
+    }
+  }
+}
