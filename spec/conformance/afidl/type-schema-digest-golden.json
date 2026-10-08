@@ -1,5 +1,5 @@
 {
-  "corpus_revision": 6,
+  "corpus_revision": 7,
   "kind": "agentflow.conformance.afidl.type-schema-digest-golden",
   "note": "Frozen TypeSchemaDigest values (SHA256(\"AF\\0type-schema\\0\" || canonical ACE1 bytes)). Mutation cases assert that semantic changes alter the digest while the equivalence groups in schema-golden.json assert that formatting does not.",
   "cases": [
@@ -1130,6 +1130,18 @@
       "file": "spec/idl/effect-signature.afidl",
       "type_name": "ScopeValue",
       "digest_hex": "d2f064cd78376dbf0a1f672747029270c9d80c6e7e3b7abcbe0d6fc87301be8f"
+    },
+    {
+      "case_id": "failure-row",
+      "file": "spec/idl/failure-row.afidl",
+      "type_name": "FailureRow",
+      "digest_hex": "f044f201a15d5a2bd1030b860fb1475cf2119d66b69ed99cf9a7077a3d37a3ab"
+    },
+    {
+      "case_id": "failure-row",
+      "file": "spec/idl/failure-row.afidl",
+      "type_name": "FailureTypeRef",
+      "digest_hex": "698627551a689d9248e2f5841585a540d8ec812cd017bf9840ae22141da666a6"
     }
   ],
   "mutation_cases": [
