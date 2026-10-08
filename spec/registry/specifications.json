@@ -80,6 +80,32 @@
       "status": "frozen"
     },
     {
+      "description": "Failure Row semantics: the six error planes, nominal identity and exact pinning, the closed-row and empty-not-success rules, canonical ordering, exact containment, the union algebra, HANDLE residual and handler propagation, control propagation, and the Unproven analysis result.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "37b6af04d221c82dba07136b95e98f91375adea35b1267d729b0efd699c30d84"
+        },
+        "logical_path": "spec/failure/failure-row.md"
+      },
+      "specification_id": "agentflow.failure.row.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the static Typed Failure Row: the nominal FailureTypeRef (an exact TypeSchemaRef pin reused from the semantic core) and the closed FailureRow set. Only typed business failures enter the row; control outcomes, recovery states, infrastructure facts and incidents are structurally outside it.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "2269b03fa0e19152bd7b769773fc9ffc5c4bb894fec9e657acd269c8d20e60b9"
+        },
+        "logical_path": "spec/idl/failure-row.afidl"
+      },
+      "specification_id": "agentflow.failure.row@1",
+      "status": "frozen"
+    },
+    {
       "description": "Closed normative table of the AFIDL1 builtin primitive universe.",
       "kind": "closed_table",
       "normative_source": {
@@ -137,7 +163,7 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "07a17c73beb31515a5d7e767f7c1ff5f6315fbd6335237e39b6e5a5daa5f981f"
+          "hex": "fc9b03d2d7ba37ee40f16fa3807562dd4589e5505829c94f1e772a92052b5753"
         },
         "logical_path": "spec/tables/rule-areas.json"
       },

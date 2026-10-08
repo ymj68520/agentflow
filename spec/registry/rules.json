@@ -826,6 +826,209 @@
       "source_anchor": "effect-overflow"
     },
     {
+      "area": "FAILURE",
+      "conformance_refs": [
+        "failure/golden/same-short-name-different-family",
+        "failure/equivalence/declaration-ordering",
+        "SUITE-FAILURE-NOMINAL-NO-STRING-MATCHING"
+      ],
+      "normative_source": "spec/failure/failure-row.md",
+      "requirement_level": "must",
+      "rule_id": "AF-FAILURE-0001",
+      "short_statement": "A failure type is nominal: the full (SpecificationId, TypeName, pinned TypeSchemaDigest) triple; the same short name under a different specification or with a different digest is a DIFFERENT failure type, never silently compatible.",
+      "source_anchor": "fr-nominal-identity"
+    },
+    {
+      "area": "FAILURE",
+      "conformance_refs": [
+        "failure/golden/empty-failure-row",
+        "failure/golden/multiple-failure-types"
+      ],
+      "normative_source": "spec/failure/failure-row.md",
+      "requirement_level": "must",
+      "rule_id": "AF-FAILURE-0002",
+      "short_statement": "The Failure Row is a closed set of nominal types with no open/residual/unknown wire state; unknown upper bounds are the analysis-level Unproven result, never a row variant.",
+      "source_anchor": "fr-closed-row"
+    },
+    {
+      "area": "FAILURE",
+      "conformance_refs": [
+        "failure/negative/unknown-schema",
+        "failure/negative/wrong-schema-digest"
+      ],
+      "normative_source": "spec/failure/failure-row.md",
+      "requirement_level": "must",
+      "rule_id": "AF-FAILURE-0003",
+      "short_statement": "Every payload pin resolves exactly against the explicit schema universe: the type must exist and the pinned digest must match; there is no latest-schema fallback.",
+      "source_anchor": "fr-exact-pinning"
+    },
+    {
+      "area": "FAILURE",
+      "conformance_refs": [
+        "failure/golden/empty-failure-row",
+        "failure/algebra/await-invents-nothing",
+        "SUITE-FAILURE-CONTROL-OUTCOME-ISOLATION"
+      ],
+      "normative_source": "spec/failure/failure-row.md",
+      "requirement_level": "must",
+      "rule_id": "AF-FAILURE-0004",
+      "short_statement": "The empty row is the algebra identity but does NOT mean the computation succeeds: TimedOut, Cancelled, RecoveryBlocked, TaskAttemptLost and RuntimeIncident all remain possible outside the row.",
+      "source_anchor": "fr-empty-not-success"
+    },
+    {
+      "area": "FAILURE",
+      "conformance_refs": [
+        "failure/negative/unproven-failure-containment",
+        "SUITE-FAILURE-DEFERRED-CONTRACT-RESOLUTION"
+      ],
+      "normative_source": "spec/failure/failure-row.md",
+      "requirement_level": "must",
+      "rule_id": "AF-FAILURE-0005",
+      "short_statement": "An unprovable failure upper bound is Unproven and demanding a row from it fails closed (failure_row_unproven); unknown is never interpreted as the empty row.",
+      "source_anchor": "fr-unknown-not-empty"
+    },
+    {
+      "area": "FAILURE",
+      "conformance_refs": [
+        "failure/golden/canonical-ordering",
+        "failure/equivalence/declaration-ordering"
+      ],
+      "normative_source": "spec/failure/failure-row.md",
+      "requirement_level": "must",
+      "rule_id": "AF-FAILURE-0006",
+      "short_statement": "Canonical ordering is deterministic: refs sorted by full nominal identity in byte order; declaration order and map iteration order never reach the canonical ACE1 bytes.",
+      "source_anchor": "fr-canonical-ordering"
+    },
+    {
+      "area": "FAILURE",
+      "conformance_refs": [
+        "failure/negative/duplicate-failure-type",
+        "failure/negative/ambiguous-duplicate-handled-type"
+      ],
+      "normative_source": "spec/failure/failure-row.md",
+      "requirement_level": "must",
+      "rule_id": "AF-FAILURE-0007",
+      "short_statement": "Duplicate declarations of the same nominal type are rejected; the algebra's union may deduplicate - declaration and algebra are deliberately separate.",
+      "source_anchor": "fr-duplicates-rejected"
+    },
+    {
+      "area": "FAILURE",
+      "conformance_refs": [
+        "failure/algebra/containment-reflexivity",
+        "failure/algebra/containment-transitivity",
+        "SUITE-FAILURE-NOMINAL-NO-STRING-MATCHING"
+      ],
+      "normative_source": "spec/failure/failure-row.md",
+      "requirement_level": "must",
+      "rule_id": "AF-FAILURE-0008",
+      "short_statement": "Containment is exact nominal membership: never inferred from the same short name, a similar schema or equal record fields; a future compatibility system needs an explicit proof.",
+      "source_anchor": "fr-containment-exact"
+    },
+    {
+      "area": "FAILURE",
+      "conformance_refs": [
+        "failure/algebra/union-identity",
+        "failure/algebra/union-commutativity",
+        "failure/algebra/union-associativity",
+        "failure/algebra/union-idempotence"
+      ],
+      "normative_source": "spec/failure/failure-row.md",
+      "requirement_level": "must",
+      "rule_id": "AF-FAILURE-0009",
+      "short_statement": "Union is commutative, associative and idempotent with the empty row as identity; branch composition (SELECT/PARALLEL/RACE) is exactly set union.",
+      "source_anchor": "fr-union-algebra"
+    },
+    {
+      "area": "FAILURE",
+      "conformance_refs": [
+        "failure/negative/handle-matcher-not-in-child-row"
+      ],
+      "normative_source": "spec/failure/failure-row.md",
+      "requirement_level": "must",
+      "rule_id": "AF-FAILURE-0010",
+      "short_statement": "A handled failure type must be declared by the child row: a HANDLE matcher matches an exact TypeSchemaRef the child declares, and a handled-but-undeclared type is rejected (failure_not_declared), never pretended matched.",
+      "source_anchor": "fr-handled-declared"
+    },
+    {
+      "area": "FAILURE",
+      "conformance_refs": [
+        "failure/algebra/handle-removes-exact-match",
+        "failure/algebra/unhandled-child-failure-preserved"
+      ],
+      "normative_source": "spec/failure/failure-row.md",
+      "requirement_level": "must",
+      "rule_id": "AF-FAILURE-0011",
+      "short_statement": "Unhandled failures propagate verbatim: the residual computation keeps every declared type not handled.",
+      "source_anchor": "fr-unhandled-propagate"
+    },
+    {
+      "area": "FAILURE",
+      "conformance_refs": [
+        "failure/algebra/handler-new-failure-propagated"
+      ],
+      "normative_source": "spec/failure/failure-row.md",
+      "requirement_level": "must",
+      "rule_id": "AF-FAILURE-0012",
+      "short_statement": "Handler failures propagate: handlers may fail themselves and their rows union into the result ((child minus H) union handlers), never treated as automatically handled.",
+      "source_anchor": "fr-handler-propagate"
+    },
+    {
+      "area": "FAILURE",
+      "conformance_refs": [
+        "failure/algebra/timeout-does-not-introduce-failure",
+        "SUITE-FAILURE-CONTROL-OUTCOME-ISOLATION"
+      ],
+      "normative_source": "spec/failure/failure-row.md",
+      "requirement_level": "must",
+      "rule_id": "AF-FAILURE-0013",
+      "short_statement": "TimedOut is a Control Outcome (the frozen HandleMatch::timed_out), never a failure type; TIMEOUT composition adds no type to the child row.",
+      "source_anchor": "fr-timedout-excluded"
+    },
+    {
+      "area": "FAILURE",
+      "conformance_refs": [
+        "SUITE-FAILURE-CONTROL-OUTCOME-ISOLATION"
+      ],
+      "normative_source": "spec/failure/failure-row.md",
+      "requirement_level": "must",
+      "rule_id": "AF-FAILURE-0014",
+      "short_statement": "Cancelled is a Control Outcome: parent cancellation is never a normal failure, no cancelled matcher exists, and no cancellation failure type can be introduced.",
+      "source_anchor": "fr-cancelled-excluded"
+    },
+    {
+      "area": "FAILURE",
+      "conformance_refs": [
+        "SUITE-FAILURE-CONTROL-OUTCOME-ISOLATION"
+      ],
+      "normative_source": "spec/failure/failure-row.md",
+      "requirement_level": "must",
+      "rule_id": "AF-FAILURE-0015",
+      "short_statement": "RecoveryBlocked is a Recovery State: not a Workflow failure, not catchable by an ordinary HANDLE, never mapped into a business failure type by retry or compensation logic.",
+      "source_anchor": "fr-recoveryblocked-excluded"
+    },
+    {
+      "area": "FAILURE",
+      "conformance_refs": [
+        "SUITE-FAILURE-CONTROL-OUTCOME-ISOLATION"
+      ],
+      "normative_source": "spec/failure/failure-row.md",
+      "requirement_level": "must",
+      "rule_id": "AF-FAILURE-0016",
+      "short_statement": "TaskAttemptLost is an Infrastructure Fact (never automatically Failure<WorkerLost>) and RuntimeIncident lives on the Incident Plane; operational conditions and platform degradation are likewise outside the Failure Row.",
+      "source_anchor": "fr-incidents-excluded"
+    },
+    {
+      "area": "FAILURE",
+      "conformance_refs": [
+        "failure/algebra/retry-preserves-possible-failure"
+      ],
+      "normative_source": "spec/failure/failure-row.md",
+      "requirement_level": "must",
+      "rule_id": "AF-FAILURE-0017",
+      "short_statement": "RETRY preserves the child's failure row verbatim: retry attempts are not a proof that business failure is impossible, and only a future Recovery/Replay Contract may narrow it.",
+      "source_anchor": "fr-retry-preserves"
+    },
+    {
       "area": "REGISTRY",
       "conformance_refs": [
         "spec-registry/bad-rule-id",

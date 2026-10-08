@@ -1275,7 +1275,122 @@ EFFECT_RULES = [
          "silent saturation into a smaller envelope.",
          ["effect/algebra/overflow"]),
 ]
+
 RULES.extend(EFFECT_RULES)
+
+# ---------------------------------------------------------------------------
+# Failure Row rules (Phase 4A.2, area FAILURE)
+# ---------------------------------------------------------------------------
+
+FAILURE_SRC = "spec/failure/failure-row.md"
+
+FAILURE_RULES = [
+    rule("AF-FAILURE-0001", "FAILURE", FAILURE_SRC, "fr-nominal-identity",
+         "A failure type is nominal: the full (SpecificationId, TypeName, "
+         "pinned TypeSchemaDigest) triple; the same short name under a "
+         "different specification or with a different digest is a "
+         "DIFFERENT failure type, never silently compatible.",
+         ["failure/golden/same-short-name-different-family",
+          "failure/equivalence/declaration-ordering",
+          "SUITE-FAILURE-NOMINAL-NO-STRING-MATCHING"]),
+    rule("AF-FAILURE-0002", "FAILURE", FAILURE_SRC, "fr-closed-row",
+         "The Failure Row is a closed set of nominal types with no "
+         "open/residual/unknown wire state; unknown upper bounds are the "
+         "analysis-level Unproven result, never a row variant.",
+         ["failure/golden/empty-failure-row",
+          "failure/golden/multiple-failure-types"]),
+    rule("AF-FAILURE-0003", "FAILURE", FAILURE_SRC, "fr-exact-pinning",
+         "Every payload pin resolves exactly against the explicit schema "
+         "universe: the type must exist and the pinned digest must match; "
+         "there is no latest-schema fallback.",
+         ["failure/negative/unknown-schema",
+          "failure/negative/wrong-schema-digest"]),
+    rule("AF-FAILURE-0004", "FAILURE", FAILURE_SRC, "fr-empty-not-success",
+         "The empty row is the algebra identity but does NOT mean the "
+         "computation succeeds: TimedOut, Cancelled, RecoveryBlocked, "
+         "TaskAttemptLost and RuntimeIncident all remain possible outside "
+         "the row.",
+         ["failure/golden/empty-failure-row",
+          "failure/algebra/await-invents-nothing",
+          "SUITE-FAILURE-CONTROL-OUTCOME-ISOLATION"]),
+    rule("AF-FAILURE-0005", "FAILURE", FAILURE_SRC, "fr-unknown-not-empty",
+         "An unprovable failure upper bound is Unproven and demanding a "
+         "row from it fails closed (failure_row_unproven); unknown is "
+         "never interpreted as the empty row.",
+         ["failure/negative/unproven-failure-containment",
+          "SUITE-FAILURE-DEFERRED-CONTRACT-RESOLUTION"]),
+    rule("AF-FAILURE-0006", "FAILURE", FAILURE_SRC, "fr-canonical-ordering",
+         "Canonical ordering is deterministic: refs sorted by full "
+         "nominal identity in byte order; declaration order and map "
+         "iteration order never reach the canonical ACE1 bytes.",
+         ["failure/golden/canonical-ordering",
+          "failure/equivalence/declaration-ordering"]),
+    rule("AF-FAILURE-0007", "FAILURE", FAILURE_SRC, "fr-duplicates-rejected",
+         "Duplicate declarations of the same nominal type are rejected; "
+         "the algebra's union may deduplicate - declaration and algebra "
+         "are deliberately separate.",
+         ["failure/negative/duplicate-failure-type",
+          "failure/negative/ambiguous-duplicate-handled-type"]),
+    rule("AF-FAILURE-0008", "FAILURE", FAILURE_SRC, "fr-containment-exact",
+         "Containment is exact nominal membership: never inferred from "
+         "the same short name, a similar schema or equal record fields; a "
+         "future compatibility system needs an explicit proof.",
+         ["failure/algebra/containment-reflexivity",
+          "failure/algebra/containment-transitivity",
+          "SUITE-FAILURE-NOMINAL-NO-STRING-MATCHING"]),
+    rule("AF-FAILURE-0009", "FAILURE", FAILURE_SRC, "fr-union-algebra",
+         "Union is commutative, associative and idempotent with the empty "
+         "row as identity; branch composition (SELECT/PARALLEL/RACE) is "
+         "exactly set union.",
+         ["failure/algebra/union-identity",
+          "failure/algebra/union-commutativity",
+          "failure/algebra/union-associativity",
+          "failure/algebra/union-idempotence"]),
+    rule("AF-FAILURE-0010", "FAILURE", FAILURE_SRC, "fr-handled-declared",
+         "A handled failure type must be declared by the child row: a "
+         "HANDLE matcher matches an exact TypeSchemaRef the child "
+         "declares, and a handled-but-undeclared type is rejected "
+         "(failure_not_declared), never pretended matched.",
+         ["failure/negative/handle-matcher-not-in-child-row"]),
+    rule("AF-FAILURE-0011", "FAILURE", FAILURE_SRC, "fr-unhandled-propagate",
+         "Unhandled failures propagate verbatim: the residual "
+         "computation keeps every declared type not handled.",
+         ["failure/algebra/handle-removes-exact-match",
+          "failure/algebra/unhandled-child-failure-preserved"]),
+    rule("AF-FAILURE-0012", "FAILURE", FAILURE_SRC, "fr-handler-propagate",
+         "Handler failures propagate: handlers may fail themselves and "
+         "their rows union into the result ((child minus H) union "
+         "handlers), never treated as automatically handled.",
+         ["failure/algebra/handler-new-failure-propagated"]),
+    rule("AF-FAILURE-0013", "FAILURE", FAILURE_SRC, "fr-timedout-excluded",
+         "TimedOut is a Control Outcome (the frozen HandleMatch::"
+         "timed_out), never a failure type; TIMEOUT composition adds no "
+         "type to the child row.",
+         ["failure/algebra/timeout-does-not-introduce-failure",
+          "SUITE-FAILURE-CONTROL-OUTCOME-ISOLATION"]),
+    rule("AF-FAILURE-0014", "FAILURE", FAILURE_SRC, "fr-cancelled-excluded",
+         "Cancelled is a Control Outcome: parent cancellation is never a "
+         "normal failure, no cancelled matcher exists, and no "
+         "cancellation failure type can be introduced.",
+         ["SUITE-FAILURE-CONTROL-OUTCOME-ISOLATION"]),
+    rule("AF-FAILURE-0015", "FAILURE", FAILURE_SRC, "fr-recoveryblocked-excluded",
+         "RecoveryBlocked is a Recovery State: not a Workflow failure, "
+         "not catchable by an ordinary HANDLE, never mapped into a "
+         "business failure type by retry or compensation logic.",
+         ["SUITE-FAILURE-CONTROL-OUTCOME-ISOLATION"]),
+    rule("AF-FAILURE-0016", "FAILURE", FAILURE_SRC, "fr-incidents-excluded",
+         "TaskAttemptLost is an Infrastructure Fact (never automatically "
+         "Failure<WorkerLost>) and RuntimeIncident lives on the Incident "
+         "Plane; operational conditions and platform degradation are "
+         "likewise outside the Failure Row.",
+         ["SUITE-FAILURE-CONTROL-OUTCOME-ISOLATION"]),
+    rule("AF-FAILURE-0017", "FAILURE", FAILURE_SRC, "fr-retry-preserves",
+         "RETRY preserves the child's failure row verbatim: retry "
+         "attempts are not a proof that business failure is impossible, "
+         "and only a future Recovery/Replay Contract may narrow it.",
+         ["failure/algebra/retry-preserves-possible-failure"]),
+]
+RULES.extend(FAILURE_RULES)
 
 
 
@@ -1334,6 +1449,20 @@ SPECS = [
      "guard rules, the closed/open/top row distinction, the effect algebra "
      "(containment, accumulation, branch join, repetition) and static "
      "control-opcode propagation."),
+    ("agentflow.failure.row@1", "schema",
+     "spec/idl/failure-row.afidl",
+     "Normative shape of the static Typed Failure Row: the nominal "
+     "FailureTypeRef (an exact TypeSchemaRef pin reused from the semantic "
+     "core) and the closed FailureRow set. Only typed business failures "
+     "enter the row; control outcomes, recovery states, infrastructure "
+     "facts and incidents are structurally outside it."),
+    ("agentflow.failure.row.semantics@1", "schema_language",
+     "spec/failure/failure-row.md",
+     "Failure Row semantics: the six error planes, nominal identity and "
+     "exact pinning, the closed-row and empty-not-success rules, "
+     "canonical ordering, exact containment, the union algebra, HANDLE "
+     "residual and handler propagation, control propagation, and the "
+     "Unproven analysis result."),
     ("agentflow.registry.core@1", "registry",
      "spec/registry/registry-spec.md",
      "Registry mechanics: Specification Registry, RuleId system, Stable ABI "
@@ -1393,6 +1522,7 @@ SCHEMA_MODULES = [
     "spec/idl/semantic-core.afidl",
     "spec/idl/semantic-ir.afidl",
     "spec/idl/effect-signature.afidl",
+    "spec/idl/failure-row.afidl",
 ]
 
 assignments = []
@@ -1816,6 +1946,84 @@ SUITE_LIST = [
             "targets": [
                 "af-ir CheckedIrDocument::check_subflow_interfaces",
                 "spec/conformance/subflow-interface/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-FAILURE-CONTROL-OUTCOME-ISOLATION",
+            "description": (
+                "The five non-failure planes are structurally outside the "
+                "Failure Row: no TimedOut/Cancelled/RecoveryBlocked/"
+                "TaskAttemptLost/RuntimeIncident failure type exists "
+                "anywhere in af-failure, the frozen HandleMatch carries "
+                "timed_out as a payload-less unit case beside the typed "
+                "failure matcher, and TIMEOUT/AWAIT compositions add no "
+                "type. Covers the static absence audit and the read-only "
+                "HandleMatch consistency check."
+            ),
+            "targets": [
+                "af-failure static surface audit (no control-outcome failure types)",
+                "spec/idl/semantic-ir.afidl HandleMatch (read-only model check)",
+                "spec/conformance/failure-row/algebra/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-FAILURE-DEFERRED-CONTRACT-RESOLUTION",
+            "description": (
+                "INVOKE and CALL_SUBFLOW failure propagation is deferred "
+                "to the ComponentContract stage: the analysis-level "
+                "Unproven envelope fails closed (failure_row_unproven) "
+                "and a missing explicit FailureRow is never assumed "
+                "empty. Covers the Unproven corpus case and the static "
+                "surface."
+            ),
+            "targets": [
+                "af-failure StaticFailureEnvelope::require_row",
+                "spec/conformance/failure-row/negative/unproven-failure-containment",
+            ],
+        },
+        {
+            "suite_id": "SUITE-FAILURE-NOMINAL-NO-STRING-MATCHING",
+            "description": (
+                "Failure matching is exact nominal identity only: no "
+                "error-message or error-code substring matching, no "
+                "exception class-name reflection, no provider-specific "
+                "mapping, and no same-short-name or same-shape "
+                "containment inference. Covers the static audit over the "
+                "crate source and the same-short-name corpus."
+            ),
+            "targets": [
+                "af-failure static surface audit (no string/reflection matching)",
+                "spec/conformance/failure-row/golden/same-short-name-different-family",
+            ],
+        },
+        {
+            "suite_id": "SUITE-FAILURE-NO-RUNTIME",
+            "description": (
+                "The failure layer is static only: no af-ir, af-effect "
+                "or af-spec dependency, no I/O, clock, randomness, "
+                "async runtime, worker transport or mapping adapter; "
+                "propagation is a pure function over rows. Covers the "
+                "crate dependency audit and the source surface."
+            ),
+            "targets": [
+                "af-failure crate dependency set (af-core, af-idl, af-semantic)",
+                "af-failure static surface audit (no runtime/journal/plan symbols)",
+            ],
+        },
+        {
+            "suite_id": "SUITE-FAILURE-WIRE-FREEZE",
+            "description": (
+                "Phase 4A.2 added exactly one AFIDL module and no HashV1 "
+                "domain: no FailureRowDigest exists, semantic-ir.afidl "
+                "stays byte-identical, the effect corpus stays at "
+                "revision 2, and every pre-existing corpus digest is "
+                "unchanged. Covers the static surface audits and the "
+                "zero-drift corpus runs."
+            ),
+            "targets": [
+                "af-failure static surface audit (no FailureRowDigest)",
+                "af-ir wire-freeze audit (module/ABI/domain counts)",
+                "spec/conformance/effect-signature/ (revision 2 unchanged)",
             ],
         },
         {

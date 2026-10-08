@@ -76,6 +76,48 @@
       ]
     },
     {
+      "description": "The five non-failure planes are structurally outside the Failure Row: no TimedOut/Cancelled/RecoveryBlocked/TaskAttemptLost/RuntimeIncident failure type exists anywhere in af-failure, the frozen HandleMatch carries timed_out as a payload-less unit case beside the typed failure matcher, and TIMEOUT/AWAIT compositions add no type. Covers the static absence audit and the read-only HandleMatch consistency check.",
+      "suite_id": "SUITE-FAILURE-CONTROL-OUTCOME-ISOLATION",
+      "targets": [
+        "af-failure static surface audit (no control-outcome failure types)",
+        "spec/idl/semantic-ir.afidl HandleMatch (read-only model check)",
+        "spec/conformance/failure-row/algebra/"
+      ]
+    },
+    {
+      "description": "INVOKE and CALL_SUBFLOW failure propagation is deferred to the ComponentContract stage: the analysis-level Unproven envelope fails closed (failure_row_unproven) and a missing explicit FailureRow is never assumed empty. Covers the Unproven corpus case and the static surface.",
+      "suite_id": "SUITE-FAILURE-DEFERRED-CONTRACT-RESOLUTION",
+      "targets": [
+        "af-failure StaticFailureEnvelope::require_row",
+        "spec/conformance/failure-row/negative/unproven-failure-containment"
+      ]
+    },
+    {
+      "description": "The failure layer is static only: no af-ir, af-effect or af-spec dependency, no I/O, clock, randomness, async runtime, worker transport or mapping adapter; propagation is a pure function over rows. Covers the crate dependency audit and the source surface.",
+      "suite_id": "SUITE-FAILURE-NO-RUNTIME",
+      "targets": [
+        "af-failure crate dependency set (af-core, af-idl, af-semantic)",
+        "af-failure static surface audit (no runtime/journal/plan symbols)"
+      ]
+    },
+    {
+      "description": "Failure matching is exact nominal identity only: no error-message or error-code substring matching, no exception class-name reflection, no provider-specific mapping, and no same-short-name or same-shape containment inference. Covers the static audit over the crate source and the same-short-name corpus.",
+      "suite_id": "SUITE-FAILURE-NOMINAL-NO-STRING-MATCHING",
+      "targets": [
+        "af-failure static surface audit (no string/reflection matching)",
+        "spec/conformance/failure-row/golden/same-short-name-different-family"
+      ]
+    },
+    {
+      "description": "Phase 4A.2 added exactly one AFIDL module and no HashV1 domain: no FailureRowDigest exists, semantic-ir.afidl stays byte-identical, the effect corpus stays at revision 2, and every pre-existing corpus digest is unchanged. Covers the static surface audits and the zero-drift corpus runs.",
+      "suite_id": "SUITE-FAILURE-WIRE-FREEZE",
+      "targets": [
+        "af-failure static surface audit (no FailureRowDigest)",
+        "af-ir wire-freeze audit (module/ABI/domain counts)",
+        "spec/conformance/effect-signature/ (revision 2 unchanged)"
+      ]
+    },
+    {
       "description": "The expression body set is closed to the fifteen Phase 3A expressions and to the workflow primitive universe. Covers the exhaustive match over ExpressionBody in the Rust checker and the closed SemanticPrimitiveType enum, whose ALL table and keyword round-trip are asserted in-tree.",
       "suite_id": "SUITE-SEMANTIC-CLOSED-EXPRESSION-SET",
       "targets": [

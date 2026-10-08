@@ -420,6 +420,32 @@
       "first_seen_schema_digest": {
         "alg": "sha256",
         "domain": "type-schema",
+        "hex": "f044f201a15d5a2bd1030b860fb1475cf2119d66b69ed99cf9a7077a3d37a3ab"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.failure.row@1",
+      "status": "active",
+      "symbolic_name": "failures",
+      "type_name": "FailureRow"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "698627551a689d9248e2f5841585a540d8ec812cd017bf9840ae22141da666a6"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.failure.row@1",
+      "status": "active",
+      "symbolic_name": "payload_type",
+      "type_name": "FailureTypeRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
         "hex": "1fabc442050ef8c8bf26de23e67b7ab72c785a5bd43a004a79c25f62595a64a2"
       },
       "number": 1,
