@@ -1,5 +1,5 @@
 {
-  "corpus_revision": 8,
+  "corpus_revision": 9,
   "kind": "agentflow.conformance.afidl.type-schema-digest-golden",
   "note": "Frozen TypeSchemaDigest values (SHA256(\"AF\\0type-schema\\0\" || canonical ACE1 bytes)). Mutation cases assert that semantic changes alter the digest while the equivalence groups in schema-golden.json assert that formatting does not.",
   "cases": [
@@ -1166,6 +1166,78 @@
       "file": "spec/idl/resource-requirement.afidl",
       "type_name": "ResourceTypeRef",
       "digest_hex": "60e5031167e6f20aaee09af9aafcab310023cd4a15c9176233c0056aa5328611"
+    },
+    {
+      "case_id": "information-flow",
+      "file": "spec/idl/information-flow.afidl",
+      "type_name": "ConfidentialityLabelRef",
+      "digest_hex": "e6785b35734725c7363b2288169417dc2fa83b415bb4b54c1a7c2baa240f5c20"
+    },
+    {
+      "case_id": "information-flow",
+      "file": "spec/idl/information-flow.afidl",
+      "type_name": "FlowConstraint",
+      "digest_hex": "76e6ba6ba5501f440ef7924e1086898ce7857b55650d0ab1655e15de14637aa7"
+    },
+    {
+      "case_id": "information-flow",
+      "file": "spec/idl/information-flow.afidl",
+      "type_name": "FlowKind",
+      "digest_hex": "dc464ad3303673f3287763183bebb0808ec8f1d44c90f234e6e44488d6b01cb5"
+    },
+    {
+      "case_id": "information-flow",
+      "file": "spec/idl/information-flow.afidl",
+      "type_name": "FlowSink",
+      "digest_hex": "5aff1aaf1bdd1f5516e9ba0ab7375c2fd37b8b60701048915d0be886abcf2529"
+    },
+    {
+      "case_id": "information-flow",
+      "file": "spec/idl/information-flow.afidl",
+      "type_name": "FlowSourceRef",
+      "digest_hex": "0ccdccba5d0318f3c568844c4971cf3c234a7062c4030d8d71ec9be392798c78"
+    },
+    {
+      "case_id": "information-flow",
+      "file": "spec/idl/information-flow.afidl",
+      "type_name": "InformationFlowContract",
+      "digest_hex": "c575ec5168c3070d499f8a565e710f19a219a29424d43de00385fb7b2f897281"
+    },
+    {
+      "case_id": "information-flow",
+      "file": "spec/idl/information-flow.afidl",
+      "type_name": "InstructionAuthority",
+      "digest_hex": "33e5f5dd97372e88942ea3cb918ebfef9138b6b1b60071c6edc6473e55a287d3"
+    },
+    {
+      "case_id": "information-flow",
+      "file": "spec/idl/information-flow.afidl",
+      "type_name": "LabelCatalogId",
+      "digest_hex": "a95d6f5afc863af8e1f50adbed6616bccdef54c476666c31399786505604f3e0"
+    },
+    {
+      "case_id": "information-flow",
+      "file": "spec/idl/information-flow.afidl",
+      "type_name": "LabelName",
+      "digest_hex": "6b7245750af28789721d387a44f00d1bc7f4113c4ba5bc6cd9e1cc1468e99a25"
+    },
+    {
+      "case_id": "information-flow",
+      "file": "spec/idl/information-flow.afidl",
+      "type_name": "SourceCategory",
+      "digest_hex": "973af1e454b72ca840fd53f2fc896645242f77b2b699db8bb9d75a8197adceaa"
+    },
+    {
+      "case_id": "information-flow",
+      "file": "spec/idl/information-flow.afidl",
+      "type_name": "StaticInformationSummary",
+      "digest_hex": "a800c6cc357b4f288a8d242544df258f65f0b66d6dd7ed12851fd055e8b6c9ce"
+    },
+    {
+      "case_id": "information-flow",
+      "file": "spec/idl/information-flow.afidl",
+      "type_name": "TaintRef",
+      "digest_hex": "cb7fe496ae8a81d6384ec2c15bdeae26917fb6969d53d88c96fee395f99e391f"
     }
   ],
   "mutation_cases": [
