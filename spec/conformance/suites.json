@@ -27,6 +27,33 @@
       ]
     },
     {
+      "description": "Fixed rational rates use checked integer arithmetic and the safe per-meter-unit ceiling rule; aggregate-once rounding is rejected because it can underestimate independently rounded requests.",
+      "suite_id": "SUITE-COST-ROUNDING",
+      "targets": [
+        "af-usage project_cost and checked ceil arithmetic",
+        "spec/conformance/cost-projection/pricing/"
+      ]
+    },
+    {
+      "description": "Cost Projection is static only: explicit currency and atomic money, complete by-value fixed price snapshots, meter/unit coverage, forward/recovery cost bounds and static budget proofs. Missing price is Unproven, never free, and no billing or ledger authority exists.",
+      "suite_id": "SUITE-COST-STATIC",
+      "targets": [
+        "af-usage cost/currency/pricing/budget functions",
+        "spec/conformance/cost-projection/golden/",
+        "spec/conformance/cost-projection/negative/",
+        "spec/conformance/cost-projection/budget/"
+      ]
+    },
+    {
+      "description": "Phase 4A.5B adds one additive Cost Projection AFIDL module and its ABI/corpus entries but no HashV1 domain; all prior TypeSchemaDigests, SemanticIrDigest, Usage Signature and previous corpora remain unchanged.",
+      "suite_id": "SUITE-COST-WIRE-FREEZE",
+      "targets": [
+        "af-usage cost static surface audit (no digest/ledger/runtime)",
+        "af-ir cumulative module/ABI/domain audit",
+        "spec/conformance/cost-projection/"
+      ]
+    },
+    {
       "description": "Cross-domain digest separation: the same payload hashed under every frozen HashV1 domain yields pairwise-distinct digests. Covers the af-core property test over the full registry and the frozen matrix in spec/conformance/digest/domain-separation.json.",
       "suite_id": "SUITE-DIGEST-DOMAIN-SEPARATION",
       "targets": [

@@ -3904,6 +3904,331 @@
       "first_seen_schema_digest": {
         "alg": "sha256",
         "domain": "type-schema",
+        "hex": "00def800f9441dd5f81c9a0884247905a42a355d9c78a561ac35ba69358fa485"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "catalog",
+      "type_name": "CurrencyRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "00def800f9441dd5f81c9a0884247905a42a355d9c78a561ac35ba69358fa485"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "code",
+      "type_name": "CurrencyRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f07787ceb4626c399e7b4a748fd1ba4abd67f77b4c7a594628e780a815212691"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "catalog",
+      "type_name": "MeasurementUnitRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "f07787ceb4626c399e7b4a748fd1ba4abd67f77b4c7a594628e780a815212691"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "name",
+      "type_name": "MeasurementUnitRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "3a961e5c972ab691721c00f825a27d9121b4ddd2052141ca019bbc08880870bc"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "currency",
+      "type_name": "MoneyAmount"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "3a961e5c972ab691721c00f825a27d9121b4ddd2052141ca019bbc08880870bc"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "atomic_units",
+      "type_name": "MoneyAmount"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "11ac9975e9e638626e8fc116e24a3046e5f790fd22cd632b7999c6e20eae1346"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "meter",
+      "type_name": "PriceEntry"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "11ac9975e9e638626e8fc116e24a3046e5f790fd22cd632b7999c6e20eae1346"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "phase",
+      "type_name": "PriceEntry"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "11ac9975e9e638626e8fc116e24a3046e5f790fd22cd632b7999c6e20eae1346"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "unit",
+      "type_name": "PriceEntry"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "11ac9975e9e638626e8fc116e24a3046e5f790fd22cd632b7999c6e20eae1346"
+      },
+      "number": 4,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "rate",
+      "type_name": "PriceEntry"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "11ac9975e9e638626e8fc116e24a3046e5f790fd22cd632b7999c6e20eae1346"
+      },
+      "number": 5,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "rounding",
+      "type_name": "PriceEntry"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4e627402af586da9af1535b99bce1e106192416fdc520d328d0e703e78b8f440"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "numerator",
+      "type_name": "PriceRate"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "4e627402af586da9af1535b99bce1e106192416fdc520d328d0e703e78b8f440"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "denominator",
+      "type_name": "PriceRate"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "584a0d6348a8482323289482d7effadf2143c6b0b57f48c40341f967df634858"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "currency",
+      "type_name": "PriceTableSnapshot"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "584a0d6348a8482323289482d7effadf2143c6b0b57f48c40341f967df634858"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "atomic_unit",
+      "type_name": "PriceTableSnapshot"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "584a0d6348a8482323289482d7effadf2143c6b0b57f48c40341f967df634858"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "model",
+      "type_name": "PriceTableSnapshot"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "584a0d6348a8482323289482d7effadf2143c6b0b57f48c40341f967df634858"
+      },
+      "number": 4,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "entries",
+      "type_name": "PriceTableSnapshot"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "04f67a74fe21a8c222ce9ea398b7e4061743051964052b11c294d5459c56271e"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "fixed_linear",
+      "type_name": "PricingModel"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "04f67a74fe21a8c222ce9ea398b7e4061743051964052b11c294d5459c56271e"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "tiered",
+      "type_name": "PricingModel"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "04f67a74fe21a8c222ce9ea398b7e4061743051964052b11c294d5459c56271e"
+      },
+      "number": 3,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "progressive",
+      "type_name": "PricingModel"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "80de07ddd0fb7717f72edd7afb26cc309f7170050bc5d4b9cf1214dff75c51de"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "per_meter_unit_ceil",
+      "type_name": "RoundingRule"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "80de07ddd0fb7717f72edd7afb26cc309f7170050bc5d4b9cf1214dff75c51de"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "aggregate_once_ceil",
+      "type_name": "RoundingRule"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "10f97f4853518a2d56d175ef84e7abb11556b98bf5bf351e1ab9f21b63535eb7"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "currency",
+      "type_name": "StaticCostCeiling"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "10f97f4853518a2d56d175ef84e7abb11556b98bf5bf351e1ab9f21b63535eb7"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "forward",
+      "type_name": "StaticCostCeiling"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "10f97f4853518a2d56d175ef84e7abb11556b98bf5bf351e1ab9f21b63535eb7"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.usage.cost@1",
+      "status": "active",
+      "symbolic_name": "recovery",
+      "type_name": "StaticCostCeiling"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
         "hex": "c1b3fecab96032cc3861a969dcaaffbd93c65051ab07ec1851b0a9f6f9e7c47e"
       },
       "number": 1,

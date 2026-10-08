@@ -288,6 +288,32 @@
       "status": "frozen"
     },
     {
+      "description": "Static Cost Projection semantics: currency identity, atomic units, fixed rational pricing, conservative per-meter-unit rounding, meter coverage, static cost and budget proofs, cost non-increase and the runtime billing boundary.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "0d9702482268978e43f52a3d6fe8f51db817a81a8e7aae52287a9ce318906992"
+        },
+        "logical_path": "spec/usage/cost-projection.md"
+      },
+      "specification_id": "agentflow.usage.cost.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the static Cost Projection declaration: explicit currency and atomic money, rational fixed price entries, immutable price table snapshot and forward/recovery static cost ceiling.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "b6f32783b87ca08b7f861fad697770e7e751e1cb73217a6ba4f92343348bf76a"
+        },
+        "logical_path": "spec/idl/cost-projection.afidl"
+      },
+      "specification_id": "agentflow.usage.cost@1",
+      "status": "frozen"
+    },
+    {
       "description": "Static Usage semantics: explicit meter universe and units, additive upper bounds, phase separation, canonicalization, conservative usage algebra and control propagation, static ceiling proof, non-increase compatibility and the runtime ledger boundary.",
       "kind": "schema_language",
       "normative_source": {

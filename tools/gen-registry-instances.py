@@ -1782,6 +1782,80 @@ USAGE_RULES = [
 ]
 RULES.extend(USAGE_RULES)
 
+# ---------------------------------------------------------------------------
+# Cost Projection rules (Phase 4A.5B, area USAGE)
+# ---------------------------------------------------------------------------
+
+COST_SRC = "spec/usage/cost-projection.md"
+
+COST_RULES = [
+    rule("AF-USAGE-0017", "USAGE", COST_SRC, "cost-currency-identity",
+         "Currency identity and atomic unit are explicit universe-resolved "
+         "values; currencies never imply precision or FX and incompatible "
+         "currencies cannot be combined.",
+         ["cost/golden/single-currency-meter", "cost/negative/missing-currency",
+          "cost/negative/different-currency"]),
+    rule("AF-USAGE-0018", "USAGE", COST_SRC, "cost-money-atomic",
+         "MoneyAmount is a non-negative uint64 atomic-unit count; floating "
+         "point money, negative refunds and implicit conversions are absent.",
+         ["cost/golden/single-currency-meter", "SUITE-COST-STATIC"]),
+    rule("AF-USAGE-0019", "USAGE", COST_SRC, "cost-price-snapshot",
+         "PriceTableSnapshot is complete by value, immutable for this proof, "
+         "and validates every meter and unit against explicit universes; no "
+         "latest provider lookup exists.",
+         ["cost/golden/canonical-price-order", "cost/negative/wrong-meter-unit",
+          "SUITE-COST-STATIC"]),
+    rule("AF-USAGE-0020", "USAGE", COST_SRC, "cost-price-rate",
+         "Only fixed non-negative rational rates with denominator > 0 are "
+         "supported; tiered and progressive pricing cannot be approximated as "
+         "exact cost projection.",
+         ["cost/pricing/exact-integer-rate", "cost/pricing/fractional-rate",
+          "cost/negative/zero-denominator", "cost/negative/unsupported-tiered"]),
+    rule("AF-USAGE-0021", "USAGE", COST_SRC, "cost-rounding",
+         "The supported safe rounding rule is per-meter-unit integer ceil; "
+         "aggregate-once rounding is rejected because it can underestimate "
+         "per-request upward rounding.",
+         ["cost/pricing/per-unit-conservative-rounding",
+          "cost/negative/unsupported-batch-rounding",
+          "SUITE-COST-ROUNDING"]),
+    rule("AF-USAGE-0022", "USAGE", COST_SRC, "cost-meter-coverage",
+         "Every explicit possible Usage coordinate requires a matching price "
+         "entry; missing price coverage is Unproven and never free.",
+         ["cost/negative/missing-price", "cost/negative/missing-usage-not-zero",
+          "cost/pricing/explicit-free-meter"]),
+    rule("AF-USAGE-0023", "USAGE", COST_SRC, "cost-projection-states",
+         "Static Cost Projection preserves finite, unbounded and unproven "
+         "states, forward/recovery coordinates and checked arithmetic; no "
+         "missing or unknown usage becomes zero.",
+         ["cost/golden/explicit-zero-rate", "cost/golden/explicit-zero-usage",
+          "cost/pricing/unbounded-positive", "cost/pricing/unbounded-free",
+          "cost/negative/overflow"]),
+    rule("AF-USAGE-0024", "USAGE", COST_SRC, "cost-static-budget",
+         "Forward and recovery static cost ceilings are checked independently; "
+         "forward surplus cannot subsidize recovery overspend, and the result "
+         "is not reservation or admission.",
+         ["cost/budget/forward-within", "cost/budget/forward-exceeds",
+          "cost/budget/recovery-within", "cost/budget/recovery-exceeds",
+          "cost/budget/forward-surplus-no-subsidy"]),
+    rule("AF-USAGE-0025", "USAGE", COST_SRC, "cost-non-increase",
+         "Cost non-increase is independent from Usage non-increase and is "
+         "comparable only under equal Currency and equal complete price "
+         "snapshot values.",
+         ["cost/budget/cost-non-increase",
+          "cost/budget/different-price-separated"]),
+    rule("AF-USAGE-0026", "USAGE", COST_SRC, "cost-control-propagation",
+         "Cost consumes the Phase 4A.5A Usage Envelope; it does not recount "
+         "RACE, RETRY, FOREACH, HANDLE, compensation or TIMEOUT independently "
+         "and does not invent zero for unresolved INVOKE/CALL_SUBFLOW.",
+         ["SUITE-COST-STATIC"]),
+    rule("AF-USAGE-0027", "USAGE", COST_SRC, "cost-no-runtime",
+         "Cost Projection adds no price snapshot digest, cost digest, budget "
+         "digest or HashV1 domain and contains no billing, ledger, provider, "
+         "FX, reservation, settlement, scheduler or runtime object.",
+         ["SUITE-COST-WIRE-FREEZE"]),
+]
+RULES.extend(COST_RULES)
+
 
 
 
@@ -1885,6 +1959,17 @@ SPECS = [
      "upper bounds, phase separation, canonicalization, conservative usage "
      "algebra and control propagation, static ceiling proof, non-increase "
      "compatibility and the runtime ledger boundary."),
+    ("agentflow.usage.cost@1", "schema",
+     "spec/idl/cost-projection.afidl",
+     "Normative shape of the static Cost Projection declaration: explicit "
+     "currency and atomic money, rational fixed price entries, immutable "
+     "price table snapshot and forward/recovery static cost ceiling."),
+    ("agentflow.usage.cost.semantics@1", "schema_language",
+     "spec/usage/cost-projection.md",
+     "Static Cost Projection semantics: currency identity, atomic units, "
+     "fixed rational pricing, conservative per-meter-unit rounding, meter "
+     "coverage, static cost and budget proofs, cost non-increase and the "
+     "runtime billing boundary."),
     ("agentflow.registry.core@1", "registry",
      "spec/registry/registry-spec.md",
      "Registry mechanics: Specification Registry, RuleId system, Stable ABI "
@@ -1964,6 +2049,7 @@ SCHEMA_MODULES = [
     "spec/idl/resource-requirement.afidl",
     "spec/idl/information-flow.afidl",
     "spec/idl/usage-signature.afidl",
+    "spec/idl/cost-projection.afidl",
 ]
 
 assignments = []
@@ -2763,6 +2849,49 @@ SUITE_LIST = [
                 "af-usage static surface audit (no digest domain)",
                 "af-ir cumulative module/ABI/domain audit",
                 "spec/conformance/usage-signature/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-COST-STATIC",
+            "description": (
+                "Cost Projection is static only: explicit currency and atomic "
+                "money, complete by-value fixed price snapshots, meter/unit "
+                "coverage, forward/recovery cost bounds and static budget "
+                "proofs. Missing price is Unproven, never free, and no billing "
+                "or ledger authority exists."
+            ),
+            "targets": [
+                "af-usage cost/currency/pricing/budget functions",
+                "spec/conformance/cost-projection/golden/",
+                "spec/conformance/cost-projection/negative/",
+                "spec/conformance/cost-projection/budget/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-COST-ROUNDING",
+            "description": (
+                "Fixed rational rates use checked integer arithmetic and the "
+                "safe per-meter-unit ceiling rule; aggregate-once rounding is "
+                "rejected because it can underestimate independently rounded "
+                "requests."
+            ),
+            "targets": [
+                "af-usage project_cost and checked ceil arithmetic",
+                "spec/conformance/cost-projection/pricing/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-COST-WIRE-FREEZE",
+            "description": (
+                "Phase 4A.5B adds one additive Cost Projection AFIDL module "
+                "and its ABI/corpus entries but no HashV1 domain; all prior "
+                "TypeSchemaDigests, SemanticIrDigest, Usage Signature and "
+                "previous corpora remain unchanged."
+            ),
+            "targets": [
+                "af-usage cost static surface audit (no digest/ledger/runtime)",
+                "af-ir cumulative module/ABI/domain audit",
+                "spec/conformance/cost-projection/",
             ],
         },
         {

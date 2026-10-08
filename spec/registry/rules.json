@@ -3233,6 +3233,148 @@
       "rule_id": "AF-USAGE-0016",
       "short_statement": "The Usage wire model and crate contain no receipt, ledger, runtime measurement, scheduler, worker, pricing API, policy engine or UsageSignatureDigest, and no HashV1 domain is added.",
       "source_anchor": "usage-no-runtime"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "cost/golden/single-currency-meter",
+        "cost/negative/missing-currency",
+        "cost/negative/different-currency"
+      ],
+      "normative_source": "spec/usage/cost-projection.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0017",
+      "short_statement": "Currency identity and atomic unit are explicit universe-resolved values; currencies never imply precision or FX and incompatible currencies cannot be combined.",
+      "source_anchor": "cost-currency-identity"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "cost/golden/single-currency-meter",
+        "SUITE-COST-STATIC"
+      ],
+      "normative_source": "spec/usage/cost-projection.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0018",
+      "short_statement": "MoneyAmount is a non-negative uint64 atomic-unit count; floating point money, negative refunds and implicit conversions are absent.",
+      "source_anchor": "cost-money-atomic"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "cost/golden/canonical-price-order",
+        "cost/negative/wrong-meter-unit",
+        "SUITE-COST-STATIC"
+      ],
+      "normative_source": "spec/usage/cost-projection.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0019",
+      "short_statement": "PriceTableSnapshot is complete by value, immutable for this proof, and validates every meter and unit against explicit universes; no latest provider lookup exists.",
+      "source_anchor": "cost-price-snapshot"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "cost/pricing/exact-integer-rate",
+        "cost/pricing/fractional-rate",
+        "cost/negative/zero-denominator",
+        "cost/negative/unsupported-tiered"
+      ],
+      "normative_source": "spec/usage/cost-projection.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0020",
+      "short_statement": "Only fixed non-negative rational rates with denominator > 0 are supported; tiered and progressive pricing cannot be approximated as exact cost projection.",
+      "source_anchor": "cost-price-rate"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "cost/pricing/per-unit-conservative-rounding",
+        "cost/negative/unsupported-batch-rounding",
+        "SUITE-COST-ROUNDING"
+      ],
+      "normative_source": "spec/usage/cost-projection.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0021",
+      "short_statement": "The supported safe rounding rule is per-meter-unit integer ceil; aggregate-once rounding is rejected because it can underestimate per-request upward rounding.",
+      "source_anchor": "cost-rounding"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "cost/negative/missing-price",
+        "cost/negative/missing-usage-not-zero",
+        "cost/pricing/explicit-free-meter"
+      ],
+      "normative_source": "spec/usage/cost-projection.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0022",
+      "short_statement": "Every explicit possible Usage coordinate requires a matching price entry; missing price coverage is Unproven and never free.",
+      "source_anchor": "cost-meter-coverage"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "cost/golden/explicit-zero-rate",
+        "cost/golden/explicit-zero-usage",
+        "cost/pricing/unbounded-positive",
+        "cost/pricing/unbounded-free",
+        "cost/negative/overflow"
+      ],
+      "normative_source": "spec/usage/cost-projection.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0023",
+      "short_statement": "Static Cost Projection preserves finite, unbounded and unproven states, forward/recovery coordinates and checked arithmetic; no missing or unknown usage becomes zero.",
+      "source_anchor": "cost-projection-states"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "cost/budget/forward-within",
+        "cost/budget/forward-exceeds",
+        "cost/budget/recovery-within",
+        "cost/budget/recovery-exceeds",
+        "cost/budget/forward-surplus-no-subsidy"
+      ],
+      "normative_source": "spec/usage/cost-projection.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0024",
+      "short_statement": "Forward and recovery static cost ceilings are checked independently; forward surplus cannot subsidize recovery overspend, and the result is not reservation or admission.",
+      "source_anchor": "cost-static-budget"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "cost/budget/cost-non-increase",
+        "cost/budget/different-price-separated"
+      ],
+      "normative_source": "spec/usage/cost-projection.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0025",
+      "short_statement": "Cost non-increase is independent from Usage non-increase and is comparable only under equal Currency and equal complete price snapshot values.",
+      "source_anchor": "cost-non-increase"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "SUITE-COST-STATIC"
+      ],
+      "normative_source": "spec/usage/cost-projection.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0026",
+      "short_statement": "Cost consumes the Phase 4A.5A Usage Envelope; it does not recount RACE, RETRY, FOREACH, HANDLE, compensation or TIMEOUT independently and does not invent zero for unresolved INVOKE/CALL_SUBFLOW.",
+      "source_anchor": "cost-control-propagation"
+    },
+    {
+      "area": "USAGE",
+      "conformance_refs": [
+        "SUITE-COST-WIRE-FREEZE"
+      ],
+      "normative_source": "spec/usage/cost-projection.md",
+      "requirement_level": "must",
+      "rule_id": "AF-USAGE-0027",
+      "short_statement": "Cost Projection adds no price snapshot digest, cost digest, budget digest or HashV1 domain and contains no billing, ledger, provider, FX, reservation, settlement, scheduler or runtime object.",
+      "source_anchor": "cost-no-runtime"
     }
   ]
 }

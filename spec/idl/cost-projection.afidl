@@ -1,0 +1,71 @@
+afidl 1;
+
+schema agentflow.usage.cost @1;
+
+import agentflow.usage.signature @1 as usage;
+
+// Static Cost Projection — Phase 4A.5B. This module declares an immutable,
+// by-value fixed price snapshot and a static budget ceiling. It does not
+// represent actual billing, a provider price lookup, a reservation, a
+// settlement, a quota or runtime evidence.
+//
+// Money is non-negative integer atomic units. Price rates are exact rational
+// numbers. Phase 4A.5B supports only fixed linear pricing with conservative
+// per-meter-unit ceiling rounding; tiered, progressive, minimum-charge,
+// tax, credit, refund and dynamic pricing are outside this schema's proof.
+//
+// No PriceSnapshotDigest, CostProjectionDigest, BudgetDigest or new HashV1
+// domain exists. TypeSchemaDigest remains the schema identity and the future
+// ComponentContract hashes the complete contract under component-contract.
+
+record CurrencyRef {
+    1 catalog: string;
+    2 code: string;
+}
+
+record MoneyAmount {
+    1 currency: CurrencyRef;
+    2 atomic_units: uint64;
+}
+
+record PriceRate {
+    1 numerator: uint64;
+    2 denominator: uint64;
+}
+
+record MeasurementUnitRef {
+    1 catalog: string;
+    2 name: string;
+}
+
+enum PricingModel {
+    1 fixed_linear;
+    2 tiered;
+    3 progressive;
+}
+
+enum RoundingRule {
+    1 per_meter_unit_ceil;
+    2 aggregate_once_ceil;
+}
+
+record PriceEntry {
+    1 meter: usage.UsageMeterRef;
+    2 phase: option<usage.UsagePhase>;
+    3 unit: MeasurementUnitRef;
+    4 rate: PriceRate;
+    5 rounding: RoundingRule;
+}
+
+record PriceTableSnapshot {
+    1 currency: CurrencyRef;
+    2 atomic_unit: MeasurementUnitRef;
+    3 model: PricingModel;
+    4 entries: list<PriceEntry>;
+}
+
+record StaticCostCeiling {
+    1 currency: CurrencyRef;
+    2 forward: MoneyAmount;
+    3 recovery: MoneyAmount;
+}
