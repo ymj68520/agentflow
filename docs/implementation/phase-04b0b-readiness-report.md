@@ -131,25 +131,28 @@ all other corpus revisions/Expected values unchanged
 
 ### Verification snapshot
 
-The design-only tree was checked against start HEAD `c2b570a`:
+The design-only tree was checked against start HEAD `c2b570a` and then
+committed as candidate HEAD `9ee551d` before this verification note:
 
 * `git diff --name-only c2b570a -- spec/idl spec/registry spec/tables
   spec/conformance` returned no paths. This includes all TypeSchemaDigest and
   SemanticIrDigest fixtures, ABI rows, registries, domains and corpora.
 * Frozen counts remain 12 AFIDL modules, 400 active ABI assignments, 30
   Specifications, 296 Rules, 14 HashV1 domains and 67 conformance suites.
-* `cargo fmt --all -- --check`, `cargo clippy --all-targets --all-features --
-  -D warnings`, and `cargo test --all --quiet` passed (zero failed tests).
+* In the committed candidate state, `cargo fmt --all -- --check`,
+  `cargo clippy --all-targets --all-features -- -D warnings`, and
+  `cargo test --all --quiet` passed (zero failed tests).
 * `cargo run -p af-spec --bin spec-check -- check` passed: 30 Specifications,
   296 Rules, 400 active ABI assignments, 12 AFIDL modules, zero cross-reference
   errors.
-* All 16 `gen-*.py` corpus/registry generators ran twice; both `spec/` tree
+* All 16 `gen-*.py` corpus/registry generators ran twice after commit; both `spec/` tree
   SHA-256 values were
   `f9970d58b94c9be391461fe6fccafb92972954b80c65ec21883e1a7b5a962bff`.
 
-The same gates are to be rerun on the committed documentation state before
-handoff. These tests validate the existing repository and frozen surfaces;
-they do not prove the proposed ComponentContract design or relation catalogs.
+This readiness-report verification note is itself documentation-only. The
+same gates are rerun after its commit before handoff. These tests validate the
+existing repository and frozen surfaces; they do not prove the proposed
+ComponentContract design or relation catalogs.
 
 Phase 4B.0B does not register the proposed SpecificationIds or RuleIds and
 does not change the existing audit baseline. The Phase 4B.1 gate is satisfied
