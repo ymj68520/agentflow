@@ -19,10 +19,10 @@ The same integer never establishes identity across rows or directions.
 | `FlowSource.workflow_input(port)` | F source reference to I | `SourceCategory::WorkflowInput(u32)` | Should resolve against Component I; current F canonicalizer checks positive syntax only | Exact I existence check required at contract assembly |
 | `FlowSource.resource_requirement(port)` | F source reference to R | `SourceCategory::ResourceRequirement(u32)` | Should resolve against R; not ResourceSlotId | Exact R existence check required at assembly |
 | `FlowSink.workflow_output(port)` | F sink reference to O | `FlowSink::WorkflowOutput(u32)` | Should resolve against Component O; not output name or computation-local intermediate | Exact O existence check required at assembly |
-| `FlowSink.external_effect(operation)` | F sink reference to ε | `FlowSink::ExternalEffect(EffectOperationRef)` | Current sink identity omits ε ResourceSelector and qualifiers | Cannot distinguish same operation through different R ports; P1 ABI blocker |
-| Recovery clause `effect` | K reference to ε | `EffectRecoveryClause.effect: EffectAtom` | Intended exact full identity: operation + selector + qualifiers | Canonical key currently collapses qualifier member values (P0); after repair, compare exact full atom |
-| Recovery reconciliation action | K action reference to ε | `ReconciliationRequirement::{None,Required}` | Has no operation or selector identity | P1: define an explicit Recovery Effect identity and prove it is within ε |
-| Recovery compensation action | K action reference to ε | `CompensationRequirement::Required(EffectOperationRef)` | Operation only; loses R selector and qualifier | P1: full recovery Effect identity, then validate ε coverage |
+| `FlowSink.external_effect(operation)` | F sink reference to ε | `FlowSink::ExternalEffect(EffectOperationRef)` | Frozen coarse sink remains operation-level; B0B adds a closed exact EffectAtom partition refinement | Coarse sink means all matching atoms; selector-specific narrowing requires the new partition or is Unproven |
+| Recovery clause `effect` | K reference to ε | `EffectRecoveryClause.effect: EffectAtom` | Exact operation + selector + complete typed qualifiers | Phase 4B.0A closes the qualifier-member collision; compare by full AtomKey |
+| Recovery reconciliation action | K action reference to ε | `ReconciliationRequirement::{None,Required}` | Old K flag is preserved; B0B adds exact `(forward Atom, kind, action Atom)` binding | B0B design accepted; future checker must prove the full action EffectAtom is in closed ε |
+| Recovery compensation action | K action reference to ε | `CompensationRequirement::Required(EffectOperationRef)` | Old operation pin is preserved and must equal the new full action atom's operation | B0B design accepted; selector and qualifier must match an exact ε entry |
 | `EffectGuard.input_equals(port)` | ε guard reference to I | `EffectGuardInputEquals.port_no` | Intended component input port | Positive syntax exists; exact I existence and type/constant check must be done in contract pass |
 | Parallel branch ordinal | Control namespace | `BranchOrdinal` | Not a port; distinct coordinate even if same `u32` | Current IR validates exact branch identities and mappings |
 | Semantic local IDs | Source document-local namespaces | `RunParameterId`, `ResourceSlotId`, `SemanticTypeId`, `ValueSlotId`, `ExpressionId` | Not external Component port IDs | Translate only through a derived interface/map; never copy numeric values as public identity |
@@ -55,6 +55,29 @@ documentation projection and are excluded from semantic canonical bytes.
 If later requirements need ports to survive renumbering, add a distinct stable
 port key and an explicit old→new mapping in a reviewed ABI revision. Do not
 silently make names the stable key: names are diagnostic and may be edited.
+
+## Phase 4B.0B decisions
+
+The proposed I/O fields are closed lists of `{port_no, TypeSchemaRef}`. Every
+port is required; `option<T>` only makes its value nullable. Public comparison
+uses the full TypeSchemaRef pin exactly, never a local SemanticTypeId or an
+alias-expanded target. A changed port set/pin is Unproven for general
+substitution; a known missing required input/output is a Violation. There is
+no default, implicit rename, or output-width-subtyping rule in v1.
+
+The Phase 4B.0B cross-dimension fields use the same namespace ownership:
+
+| Binding | Exact identity | Required lookup |
+| --- | --- | --- |
+| EffectFlowPartition | `(EffectOperationRef, FlowKind)` then a complete set of full EffectAtom keys | Each allowed atom resolves in ε; the partition refines an existing operation-level F sink |
+| RecoveryActionIdentity | `(forward EffectAtom, action kind, action EffectAtom)` | Both atoms resolve exactly in closed ε; K prescribes exactly the matching action kind |
+| RecoveryUsageBinding | Exact RecoveryActionIdentity | Must have one complete meter-coverage rule and explicit recovery-phase U limits |
+| EffectResource rule | `(EffectOperationRef, ResourceTypeRef)` | Exact R port maps to ResourceTypeRef; relation checks selector vocabulary separately |
+| F/X relation rule | Exact label/taint/authority and exact output/effect sink | Resolve against explicit versioned relation snapshot and exact X Region/Trust identities |
+
+None of these relations use the integer port value outside its owner
+namespace. A ComponentIdentity change creates new port identities; equal
+numbers and names do not map old to new ports.
 
 ## Which mappings are semantic ABI
 
@@ -103,4 +126,6 @@ by equal integers or matching diagnostic names.
 [Cross-dimension obligations](phase-04b0-cross-dimension-obligations.md) ·
 [Counterexamples](phase-04b0-counterexamples.md) ·
 [ABI proposal](phase-04b0-abi-proposal.md) ·
-[Decisions](phase-04b0-decisions.md)
+[Decisions](phase-04b0-decisions.md) ·
+[Type/port policy](phase-04b0b-type-and-port-policy.md) ·
+[Readiness report](phase-04b0b-readiness-report.md)
