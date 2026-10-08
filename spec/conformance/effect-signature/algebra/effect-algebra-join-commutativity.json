@@ -1,7 +1,7 @@
 {
   "case_id": "effect/algebra/join-commutativity",
   "case_kind": "algebra",
-  "corpus_revision": 2,
+  "corpus_revision": 3,
   "expected": {
     "canonical_ace1_utf8": "{\"row\":{\"closed\":[{\"atom\":{\"operation\":{\"catalog\":\"agentflow.test.capability-catalog@1\",\"name\":\"payment.charge\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[{\"key\":\"merchant\",\"value\":\"acme\"}]}},\"bounds\":{\"lower\":\"0\",\"upper\":{\"finite\":\"3\"}},\"guard\":{\"unconditional\":null}}]}}"
   },

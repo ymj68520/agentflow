@@ -2,7 +2,7 @@
   "canonical_ace1_utf8": "{\"row\":{\"open\":{\"known\":[],\"residual\":[{\"bounds\":{\"lower\":\"0\",\"upper\":{\"finite\":\"5\"}},\"catalog\":\"agentflow.test.capability-catalog@1\",\"selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[{\"key\":\"repo\",\"value\":\"foo/bar\"}]}},{\"bounds\":{\"lower\":\"0\",\"upper\":{\"finite\":\"2\"}},\"catalog\":\"agentflow.test.capability-catalog@1\",\"selector\":{\"requirement_port_no\":\"2\",\"scope_bindings\":[{\"key\":\"table\",\"value\":\"customer\"}]}}]}}}",
   "case_id": "effect/equivalence/residual-reordering",
   "case_kind": "equivalence",
-  "corpus_revision": 2,
+  "corpus_revision": 3,
   "fixture_catalogs": [
     {
       "operations": [

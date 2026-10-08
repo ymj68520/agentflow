@@ -1,0 +1,101 @@
+{
+  "case_id": "effect/algebra/qualifier-member-different-contains",
+  "case_kind": "algebra",
+  "corpus_revision": 3,
+  "expected": {
+    "unproven_pairs": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "unproven_reason": "entry_uncovered"
+  },
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    }
+  ],
+  "kind": "agentflow.conformance.effect-signature.case",
+  "max_attempts": null,
+  "note": "different members of the same qualifier family are uncovered in either containment direction",
+  "operands": [
+    {
+      "row": {
+        "closed": [
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.test.capability-catalog@1",
+                "name": "payment.charge"
+              },
+              "qualifiers": [
+                {
+                  "idempotency": "natural"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "bounds": {
+              "lower": 1,
+              "upper": {
+                "finite": 1
+              }
+            },
+            "guard": "unconditional"
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "closed": [
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.test.capability-catalog@1",
+                "name": "payment.charge"
+              },
+              "qualifiers": [
+                {
+                  "idempotency": "none"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "bounds": {
+              "lower": 1,
+              "upper": {
+                "finite": 1
+              }
+            },
+            "guard": "unconditional"
+          }
+        ]
+      }
+    }
+  ],
+  "operation": "contains",
+  "property": null,
+  "reps": null
+}

@@ -1,7 +1,7 @@
 {
   "case_id": "effect/negative/duplicate-scope-key",
   "case_kind": "negative",
-  "corpus_revision": 2,
+  "corpus_revision": 3,
   "expected_kind": "invalid_resource_selector",
   "fixture_catalogs": [
     {

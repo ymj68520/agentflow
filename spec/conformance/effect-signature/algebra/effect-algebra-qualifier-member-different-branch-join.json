@@ -1,0 +1,91 @@
+{
+  "case_id": "effect/algebra/qualifier-member-different-branch-join",
+  "case_kind": "algebra",
+  "corpus_revision": 3,
+  "expected": {
+    "canonical_ace1_utf8": "{\"row\":{\"closed\":[{\"atom\":{\"operation\":{\"catalog\":\"agentflow.test.capability-catalog@1\",\"name\":\"payment.charge\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"bounds\":{\"lower\":\"0\",\"upper\":{\"finite\":\"1\"}},\"guard\":{\"unconditional\":null}},{\"atom\":{\"operation\":{\"catalog\":\"agentflow.test.capability-catalog@1\",\"name\":\"payment.charge\"},\"qualifiers\":[{\"idempotency\":\"none\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"bounds\":{\"lower\":\"0\",\"upper\":{\"finite\":\"1\"}},\"guard\":{\"unconditional\":null}}]}}"
+  },
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    }
+  ],
+  "kind": "agentflow.conformance.effect-signature.case",
+  "max_attempts": null,
+  "note": "different qualifier members are one-sided branch entries, so both remain distinct and both lower bounds become zero",
+  "operands": [
+    {
+      "row": {
+        "closed": [
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.test.capability-catalog@1",
+                "name": "payment.charge"
+              },
+              "qualifiers": [
+                {
+                  "idempotency": "natural"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "bounds": {
+              "lower": 1,
+              "upper": {
+                "finite": 1
+              }
+            },
+            "guard": "unconditional"
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "closed": [
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.test.capability-catalog@1",
+                "name": "payment.charge"
+              },
+              "qualifiers": [
+                {
+                  "idempotency": "none"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "bounds": {
+              "lower": 1,
+              "upper": {
+                "finite": 1
+              }
+            },
+            "guard": "unconditional"
+          }
+        ]
+      }
+    }
+  ],
+  "operation": "branch_join",
+  "property": null,
+  "reps": null
+}

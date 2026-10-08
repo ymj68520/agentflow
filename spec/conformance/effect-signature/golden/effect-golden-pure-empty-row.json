@@ -3,7 +3,7 @@
   "case_id": "effect/golden/pure-empty-row",
   "case_kind": "golden",
   "classification": "pure",
-  "corpus_revision": 2,
+  "corpus_revision": 3,
   "fixture_catalogs": [
     {
       "operations": [

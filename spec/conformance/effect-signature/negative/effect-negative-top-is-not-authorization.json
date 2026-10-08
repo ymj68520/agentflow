@@ -30,7 +30,7 @@
     }
   },
   "containment_proven": false,
-  "corpus_revision": 2,
+  "corpus_revision": 3,
   "expect_validation": "accept",
   "fixture_catalogs": [
     {

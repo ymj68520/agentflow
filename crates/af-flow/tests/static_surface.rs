@@ -240,15 +240,15 @@ fn the_wire_freeze_holds() {
         "a HashV1 domain was added"
     );
 
-    // The three earlier static-contract corpora stay at their frozen
-    // revisions, untouched.
+    // Static-contract corpus revisions are pinned independently; Effect is
+    // revision 3 after Phase 4B.0A, while Failure and Resource are unchanged.
     let effect_golden: serde_json::Value = serde_json::from_str(&read(
         "spec/conformance/effect-signature/golden/effect-golden-pure-empty-row.json",
     ))
     .unwrap();
     assert_eq!(
         effect_golden["corpus_revision"].as_u64(),
-        Some(2),
+        Some(3),
         "the effect corpus revision moved"
     );
     let failure_golden: serde_json::Value = serde_json::from_str(&read(

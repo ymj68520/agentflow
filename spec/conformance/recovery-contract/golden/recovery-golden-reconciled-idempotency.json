@@ -57,7 +57,7 @@
     ],
     "replay_semantics": "reconcile"
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "effect_signature": {
     "row": {
       "closed": [

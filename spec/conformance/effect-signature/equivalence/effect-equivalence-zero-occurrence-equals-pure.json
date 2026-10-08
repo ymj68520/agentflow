@@ -2,7 +2,7 @@
   "canonical_ace1_utf8": "{\"row\":{\"closed\":[]}}",
   "case_id": "effect/equivalence/zero-occurrence-equals-pure",
   "case_kind": "equivalence",
-  "corpus_revision": 2,
+  "corpus_revision": 3,
   "fixture_catalogs": [
     {
       "operations": [

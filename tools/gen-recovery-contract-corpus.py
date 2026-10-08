@@ -11,7 +11,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONF = ROOT / "spec" / "conformance" / "recovery-contract"
-CORPUS_REVISION = 1
+# Revision 2 (Phase 4B.0A): full typed qualifier identity for clause
+# canonicalization and ε matching; includes exact matches and both mismatch
+# directions through the independent static Recovery oracle.
+CORPUS_REVISION = 2
 
 _sir_spec = importlib.util.spec_from_file_location(
     "sir", Path(__file__).resolve().parent / "gen-semantic-ir-corpus.py")
@@ -162,12 +165,28 @@ def fixture_catalogs():
     }
 
 
+QUALIFIER_FAMILY_CASES = {"idempotency": 1}
+QUALIFIER_MEMBER_CASES = {"idempotency": {"natural": 1, "none": 2}}
+
+
+def qualifier_identity(value):
+    """Full typed qualifier identity: family, member and canonical payload."""
+    identities = []
+    for qualifier in value["qualifiers"]:
+        family, member = next(iter(qualifier.items()))
+        payload = json.dumps(member, ensure_ascii=False, sort_keys=True,
+                             separators=(",", ":")).encode("utf-8")
+        identities.append((QUALIFIER_FAMILY_CASES[family],
+                           QUALIFIER_MEMBER_CASES[family][member], payload))
+    return tuple(sorted(identities))
+
+
 def atom_key(value):
     selector = value["resource_selector"]
     scope = tuple(sorted((x["key"], x["value"]) for x in selector["scope_bindings"]))
-    qualifiers = tuple(sorted(json.dumps(q, sort_keys=True) for q in value["qualifiers"]))
     return (value["operation"]["catalog"], value["operation"]["name"],
-            selector["requirement_port_no"], scope, qualifiers)
+            selector["requirement_port_no"], scope,
+            qualifier_identity(value))
 
 
 def canonicalize(value):
@@ -183,7 +202,10 @@ def canonicalize(value):
         effect["resource_selector"]["scope_bindings"] = sorted(
             effect["resource_selector"]["scope_bindings"],
             key=lambda x: (x["key"], x["value"]))
-        effect["qualifiers"] = sorted(effect["qualifiers"], key=lambda x: json.dumps(x, sort_keys=True))
+        effect["qualifiers"] = sorted(
+            effect["qualifiers"],
+            key=lambda qualifier: qualifier_identity(
+                {"qualifiers": [qualifier]}))
         key = atom_key(effect)
         if key in seen:
             raise RecoveryOracleError(DUPLICATE_EFFECT_RECOVERY_CLAUSE, "duplicate effect clause")
@@ -349,8 +371,18 @@ def main():
         for path in CONF.rglob("*.json"):
             path.unlink()
     charge = atom("payment.charge", qualifier="natural")
+    none_charge = atom("payment.charge", qualifier="none")
     keyed_atom = atom("payment.charge")
     refund = atom("payment.refund")
+    assert atom_key(charge) != atom_key(none_charge), \
+        "the independent Recovery oracle must distinguish qualifier members"
+    try:
+        analyze(contract("recompute", [clause(charge, "natural")]),
+                [none_charge], "applied")
+    except RecoveryOracleError as error:
+        assert error.kind == RECOVERY_EFFECT_NOT_DECLARED
+    else:
+        raise AssertionError("a mismatched qualifier must not be proven")
     # Golden --------------------------------------------------------------
     golden("recovery/golden/pure-recorded", "recorded replay needs durable evidence",
            contract("recorded", []), [], "unknown")
@@ -360,6 +392,24 @@ def main():
            contract("forbidden", [clause(charge, "none")]), [charge])
     golden("recovery/golden/natural-idempotency", "natural declaration remains a declaration",
            contract("recompute", [clause(charge, "natural")]), [charge], "not_applied")
+    golden("recovery/golden/recovery-exact-qualifier-match",
+           "the complete qualifier member matches exactly and Applied evidence "
+           "closes the static obligation",
+           contract("recompute", [clause(charge, "natural")]),
+           [charge], "applied")
+    golden("recovery/golden/recovery-natural-none-distinct-clauses",
+           "natural and none clauses for the same operation and selector are "
+           "distinct complete identities, not duplicate clauses",
+           contract("recompute", [clause(charge, "natural"),
+                                  clause(none_charge, "none")]),
+           [charge, none_charge], "applied")
+    scoped_charge = atom("payment.charge", qualifier="natural",
+                         scope=(("merchant", "acme"),))
+    golden("recovery/golden/recovery-clause-complete-atom-identity",
+           "exact Recovery matching includes operation, selector port, scope "
+           "bindings and full qualifier member",
+           contract("recompute", [clause(scoped_charge, "natural")]),
+           [scoped_charge], "applied")
     golden("recovery/golden/keyed-idempotency", "keyed replay records key obligations",
            contract("recompute", [clause(keyed_atom, "keyed", key_req())]), [keyed_atom], "not_applied")
     golden("recovery/golden/reconciled-idempotency", "reconciled mode needs authoritative evidence",
@@ -376,6 +426,34 @@ def main():
              contract("recompute", [clause(charge, compensation="provider.unknown")]), [charge], UNKNOWN_RECOVERY_OPERATION)
     negative("recovery/negative/undeclared-effect-identity", "clause absent from epsilon is rejected",
              contract("recompute", [clause(refund)]), [charge], RECOVERY_EFFECT_NOT_DECLARED)
+    negative("recovery/negative/recovery-natural-vs-none-mismatch",
+             "a natural Recovery clause cannot match an otherwise-identical "
+             "none EffectAtom; a positive static proof is forbidden",
+             contract("recompute", [clause(charge, "natural")]),
+             [none_charge], RECOVERY_EFFECT_NOT_DECLARED, "applied")
+    negative("recovery/negative/recovery-none-vs-natural-mismatch",
+             "a none Recovery clause cannot match an otherwise-identical "
+             "natural EffectAtom in the reverse direction",
+             contract("recompute", [clause(none_charge, "none")]),
+             [charge], RECOVERY_EFFECT_NOT_DECLARED, "applied")
+    negative("recovery/negative/recovery-different-resource-selector",
+             "matching operation and qualifier do not erase the requirement "
+             "port from EffectAtom identity",
+             contract("recompute", [clause(charge, "natural")]),
+             [atom("payment.charge", port=2, qualifier="natural")],
+             RECOVERY_EFFECT_NOT_DECLARED, "applied")
+    negative("recovery/negative/recovery-different-scope-binding",
+             "same operation, selector port and qualifier with another exact "
+             "scope binding is not a Recovery match",
+             contract("recompute", [clause(scoped_charge, "natural")]),
+             [atom("payment.charge", qualifier="natural",
+                   scope=(("merchant", "other"),))],
+             RECOVERY_EFFECT_NOT_DECLARED, "applied")
+    negative("recovery/negative/recovery-proof-no-false-proven",
+             "end-to-end public proof must reject mismatched qualifier "
+             "identity even when the Effect supplies Applied evidence",
+             contract("recompute", [clause(charge, "natural")]),
+             [none_charge], RECOVERY_EFFECT_NOT_DECLARED, "applied")
     negative("recovery/negative/unknown-effect-coverage", "unknown effect row has no guessed recovery coverage",
              contract("recompute", []), "unknown", RECOVERY_CONTRACT_UNPROVEN)
     negative("recovery/negative/none-unknown-blind-retry", "NONE plus UNKNOWN cannot blind retry",
@@ -428,6 +506,13 @@ def main():
     equivalence("recovery/equivalence/effect-clause-order", "clause declaration order is not identity",
                 [contract("recompute", [clause(charge), clause(refund)]),
                  contract("recompute", [clause(refund), clause(charge)])])
+    equivalence("recovery/equivalence/qualifier-member-order",
+                "same-operation clauses with different qualifier members "
+                "remain distinct and declaration order is canonicalized",
+                [contract("recompute", [clause(charge, "natural"),
+                                         clause(none_charge, "none")]),
+                 contract("recompute", [clause(none_charge, "none"),
+                                         clause(charge, "natural")])])
     print(f"frozen {len(CASES)} cases")
 
 

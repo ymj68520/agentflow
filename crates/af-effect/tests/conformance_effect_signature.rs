@@ -7,9 +7,9 @@
 //! generate expected values from the implementation under test.
 
 use af_effect::{
-    CapabilityCatalog, EffectCatalogUniverse, EffectError, EffectSignature, Proof, accumulate,
-    branch_join, compensation_envelope, contains, iterate_envelope, parallel_envelope,
-    race_envelope, repeat, retry_envelope, select_envelope, sequence_envelope,
+    AtomKey, CapabilityCatalog, EffectAtom, EffectCatalogUniverse, EffectError, EffectSignature,
+    Proof, accumulate, branch_join, compensation_envelope, contains, iterate_envelope,
+    parallel_envelope, race_envelope, repeat, retry_envelope, select_envelope, sequence_envelope,
 };
 use std::path::{Path, PathBuf};
 
@@ -251,14 +251,26 @@ fn algebra_cases_reproduce_the_frozen_results() {
                     signature.validate(&universe).unwrap()
                 })
                 .collect();
-            let reps: af_effect::OccurrenceBounds =
-                serde_json::from_value(case["reps"].clone()).unwrap();
-            let result = match operation {
-                "repeat" => repeat(&reps, &operands[0]),
+            match operation {
+                "repeat" => {
+                    let reps: af_effect::OccurrenceBounds =
+                        serde_json::from_value(case["reps"].clone()).unwrap();
+                    let error =
+                        repeat(&reps, &operands[0]).expect_err(&format!("{case_id}: must fail"));
+                    assert_eq!(error.kind(), error_kind, "{case_id}: error kind drifted");
+                }
+                "require_contained_in" => {
+                    for direction in expected["directions"].as_array().unwrap() {
+                        let i = usize::try_from(direction[0].as_u64().unwrap()).unwrap();
+                        let j = usize::try_from(direction[1].as_u64().unwrap()).unwrap();
+                        let error = operands[i]
+                            .require_contained_in(&operands[j])
+                            .expect_err(&format!("{case_id}: {i}->{j} must fail closed"));
+                        assert_eq!(error.kind(), error_kind, "{case_id}: error kind drifted");
+                    }
+                }
                 other => panic!("{other}: unexpected failing operation"),
-            };
-            let error = result.expect_err(&format!("{case_id}: must fail"));
-            assert_eq!(error.kind(), error_kind, "{case_id}: error kind drifted");
+            }
             continue;
         }
 
@@ -282,7 +294,24 @@ fn algebra_cases_reproduce_the_frozen_results() {
                         "{case_id}: pair {i}->{j} must be proven"
                     );
                 }
-            } else {
+            }
+            if let Some(pairs) = expected["unproven_pairs"].as_array() {
+                for pair in pairs {
+                    let i = usize::try_from(pair[0].as_u64().unwrap()).unwrap();
+                    let j = usize::try_from(pair[1].as_u64().unwrap()).unwrap();
+                    match contains(&operands[i], &operands[j]) {
+                        Proof::Unproven(reason) => assert_eq!(
+                            reason.as_str(),
+                            expected["unproven_reason"].as_str().unwrap(),
+                            "{case_id}: unproven reason drifted for {i}->{j}"
+                        ),
+                        Proof::Proven => {
+                            panic!("{case_id}: mismatched identity unexpectedly proved {i}->{j}")
+                        }
+                    }
+                }
+            }
+            if expected["proven_pairs"].is_null() && expected["unproven_pairs"].is_null() {
                 let proof = contains(&operands[0], &operands[0]);
                 assert_eq!(
                     proof.is_proven(),
@@ -417,6 +446,119 @@ fn algebra_cases_reproduce_the_frozen_results() {
             _ => {}
         }
     }
+}
+
+#[test]
+fn atom_key_uses_full_qualifier_and_selector_identity_only() {
+    fn atom(catalog: &str, name: &str, port: u32, scope: &str, qualifier: &str) -> EffectAtom {
+        serde_json::from_value(serde_json::json!({
+            "operation": {"catalog": catalog, "name": name},
+            "resource_selector": {
+                "requirement_port_no": port,
+                "scope_bindings": [{"key": "tenant", "value": scope}]
+            },
+            "qualifiers": [{"idempotency": qualifier}]
+        }))
+        .unwrap()
+    }
+
+    let natural = atom(
+        "agentflow.test.effects@1",
+        "payment.charge",
+        1,
+        "a",
+        "natural",
+    );
+    let natural_key = AtomKey::of(&natural);
+    assert_eq!(natural_key.qualifiers()[0].family_no(), 1);
+    assert_eq!(natural_key.qualifiers()[0].member_no(), 1);
+    let none_key = AtomKey::of(&atom(
+        "agentflow.test.effects@1",
+        "payment.charge",
+        1,
+        "a",
+        "none",
+    ));
+    assert_eq!(none_key.qualifiers()[0].member_no(), 2);
+    assert_ne!(natural_key, none_key);
+    assert!(
+        natural_key < none_key,
+        "frozen member numbers define key order"
+    );
+    assert_eq!(
+        natural_key,
+        AtomKey::of(&atom(
+            "agentflow.test.effects@1",
+            "payment.charge",
+            1,
+            "a",
+            "natural"
+        ))
+    );
+    assert_ne!(
+        natural_key,
+        AtomKey::of(&atom(
+            "agentflow.test.other-effects@1",
+            "payment.charge",
+            1,
+            "a",
+            "natural"
+        ))
+    );
+    assert_ne!(
+        natural_key,
+        AtomKey::of(&atom(
+            "agentflow.test.effects@1",
+            "payment.refund",
+            1,
+            "a",
+            "natural"
+        ))
+    );
+    assert_ne!(
+        natural_key,
+        AtomKey::of(&atom(
+            "agentflow.test.effects@1",
+            "payment.charge",
+            2,
+            "a",
+            "natural"
+        ))
+    );
+    assert_ne!(
+        natural_key,
+        AtomKey::of(&atom(
+            "agentflow.test.effects@1",
+            "payment.charge",
+            1,
+            "b",
+            "natural"
+        ))
+    );
+
+    let same_atom_other_entry_semantics: af_effect::EffectEntry =
+        serde_json::from_value(serde_json::json!({
+            "atom": {
+                "operation": {
+                    "catalog": "agentflow.test.effects@1",
+                    "name": "payment.charge"
+                },
+                "resource_selector": {
+                    "requirement_port_no": 1,
+                    "scope_bindings": [{"key": "tenant", "value": "a"}]
+                },
+                "qualifiers": [{"idempotency": "natural"}]
+            },
+            "bounds": {"lower": 0, "upper": {"finite": 7}},
+            "guard": {"input_equals": {
+                "port_no": 2, "expected": {"string": "enabled"}
+            }}
+        }))
+        .unwrap();
+    assert_eq!(
+        natural_key,
+        AtomKey::of(&same_atom_other_entry_semantics.atom)
+    );
 }
 
 // ---------------------------------------------------------------------------

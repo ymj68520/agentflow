@@ -2,7 +2,7 @@
   "canonical_ace1_utf8": "{\"row\":{\"closed\":[{\"atom\":{\"operation\":{\"catalog\":\"agentflow.test.capability-catalog@1\",\"name\":\"memory.append\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[{\"key\":\"scope\",\"value\":\"tenant-42\"},{\"key\":\"store\",\"value\":\"notes\"}]}},\"bounds\":{\"lower\":\"1\",\"upper\":{\"finite\":\"8\"}},\"guard\":{\"unconditional\":null}}]}}",
   "case_id": "effect/equivalence/scope-binding-reordering",
   "case_kind": "equivalence",
-  "corpus_revision": 2,
+  "corpus_revision": 3,
   "fixture_catalogs": [
     {
       "operations": [

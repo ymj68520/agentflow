@@ -61,7 +61,7 @@
     ],
     "replay_semantics": "forbidden"
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "effect_signature": {
     "row": {
       "closed": [

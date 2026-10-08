@@ -1,0 +1,77 @@
+{
+  "case_id": "effect/negative/same-full-qualifier-duplicate-rejected",
+  "case_kind": "negative",
+  "corpus_revision": 3,
+  "expected_kind": "duplicate_effect_atom",
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    }
+  ],
+  "kind": "agentflow.conformance.effect-signature.case",
+  "note": "identical complete atom identity remains a duplicate even when the qualifier member is explicit",
+  "signature": {
+    "row": {
+      "closed": [
+        {
+          "atom": {
+            "operation": {
+              "catalog": "agentflow.test.capability-catalog@1",
+              "name": "payment.charge"
+            },
+            "qualifiers": [
+              {
+                "idempotency": "natural"
+              }
+            ],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            }
+          },
+          "bounds": {
+            "lower": 1,
+            "upper": {
+              "finite": 1
+            }
+          },
+          "guard": "unconditional"
+        },
+        {
+          "atom": {
+            "operation": {
+              "catalog": "agentflow.test.capability-catalog@1",
+              "name": "payment.charge"
+            },
+            "qualifiers": [
+              {
+                "idempotency": "natural"
+              }
+            ],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            }
+          },
+          "bounds": {
+            "lower": 1,
+            "upper": {
+              "finite": 1
+            }
+          },
+          "guard": "unconditional"
+        }
+      ]
+    }
+  }
+}

@@ -26,6 +26,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONF = ROOT / "spec" / "conformance" / "effect-signature"
+# Revision 3 (Phase 4B.0A): complete qualifier family/member/payload
+# identity; freezes distinct qualifier atoms, their algebra/control behavior,
+# canonical ordering, duplicate rejection, and guard/bounds boundaries.
 # Revision 2 (Phase 4A.1B): guarded branch-join lower-bound correction.
 # The Rust join_one kept min(lower) across DIFFERING guards and stamped
 # the widened entry unconditional - promoting a condition-guaranteed
@@ -37,7 +40,7 @@ CONF = ROOT / "spec" / "conformance" / "effect-signature"
 # pre-existing expected value changed; every earlier golden byte is
 # identical.
 # Revision 1 (Phase 4A.1): initial freeze.
-CORPUS_REVISION = 2
+CORPUS_REVISION = 3
 
 # Plumbing: the semantic-ir corpus module carries the ACE1 encoder and the
 # independent AFIDL1 compiler (which it loads as `afidl`).
@@ -320,10 +323,22 @@ def scope_pairs(selector):
 
 
 def qualifier_family_list(qualifiers):
-    """The canonical (sorted by frozen family case number) family list."""
-    case_numbers = {"idempotency": 1}
-    return sorted(case_numbers[qualifier_key] for qualifier_key, _ in
-                  (next(iter(q.items())) for q in qualifiers))
+    """Complete typed qualifier identities, independent of source order.
+
+    Each identity contains the AFIDL family case number, nested member
+    discriminant and canonical member payload bytes. The family number alone
+    is never an EffectAtom identity.
+    """
+    family_numbers = {"idempotency": 1}
+    member_numbers = {"idempotency": {"natural": 1, "none": 2}}
+    identities = []
+    for qualifier in qualifiers:
+        family, member = next(iter(qualifier.items()))
+        payload = json.dumps(member, ensure_ascii=False, sort_keys=True,
+                             separators=(",", ":")).encode("utf-8")
+        identities.append((family_numbers[family],
+                           member_numbers[family][member], payload))
+    return sorted(identities)
 
 
 def atom_key(atom):
@@ -377,11 +392,11 @@ def canonical_entries(entries):
 
 def sort_key_of(key):
     """A byte-comparable form of an atom key (catalog, name, port, scope,
-    qualifier families)."""
-    catalog, name, port, scope, families = key
+    complete typed qualifiers)."""
+    catalog, name, port, scope, qualifiers = key
     return (catalog.encode("utf-8"), name.encode("utf-8"), port,
             tuple((k.encode("utf-8"), v.encode("utf-8")) for k, v in scope),
-            tuple(families))
+            tuple(qualifiers))
 
 
 def residual_sort_key(residual):
@@ -392,18 +407,27 @@ def residual_sort_key(residual):
 
 
 FAMILY_CASE_NUMBERS = {"idempotency": 1}
+MEMBER_CASE_NUMBERS = {"idempotency": {"natural": 1, "none": 2}}
+
+
+def qualifier_sort_key(qualifier):
+    family, member = next(iter(qualifier.items()))
+    payload = json.dumps(member, ensure_ascii=False, sort_keys=True,
+                         separators=(",", ":")).encode("utf-8")
+    return (FAMILY_CASE_NUMBERS[family], MEMBER_CASE_NUMBERS[family][member],
+            payload)
 
 
 def normalized_entry(entry):
     """Canonical atom internals: scope bindings by (key, value), qualifier
-    families by case number. Input order is not identity."""
+    members by family/member/payload. Input order is not identity."""
     normalized = copy.deepcopy(entry)
     selector = normalized["atom"]["resource_selector"]
     selector["scope_bindings"] = [
         {"key": k, "value": v} for k, v in scope_pairs(selector)]
     normalized["atom"]["qualifiers"] = sorted(
         normalized["atom"]["qualifiers"],
-        key=lambda q: FAMILY_CASE_NUMBERS[next(iter(q))])
+        key=qualifier_sort_key)
     return normalized
 
 
@@ -1127,6 +1151,20 @@ def main():
 
     # --- Golden ----------------------------------------------------------
 
+    qualifier_pair = sig_closed([
+        entry("payment.charge", 1, qualifier="none"),
+        entry("payment.charge", 1, qualifier="natural"),
+    ])
+    assert atom_key(atom("payment.charge", 1, qualifier="natural")) != \
+        atom_key(atom("payment.charge", 1, qualifier="none")), \
+        "complete qualifier identity must distinguish natural and none"
+    natural_row = sig_closed([entry("payment.charge", 1,
+                                    qualifier="natural")])
+    none_row = sig_closed([entry("payment.charge", 1,
+                                 qualifier="none")])
+    assert contains(natural_row, none_row) == (False, "entry_uncovered")
+    assert contains(none_row, natural_row) == (False, "entry_uncovered")
+
     golden("effect/golden/pure-empty-row",
            "the closed empty row is the one representation of pure",
            sig_closed([]))
@@ -1201,6 +1239,19 @@ def main():
                entry("database.row.read", 1, [("table", "orders")], 1, 1),
            ]))
 
+    golden("effect/golden/qualifier-natural-vs-none-distinct",
+           "same operation and selector may contain distinct natural and "
+           "none qualifier members, in stable member-number order",
+           qualifier_pair)
+
+    golden("effect/golden/same-operation-different-resource-still-distinct",
+           "the same operation and full qualifier on different requirement "
+           "ports remain distinct atoms",
+           sig_closed([
+               entry("payment.charge", 2, qualifier="natural"),
+               entry("payment.charge", 1, qualifier="natural"),
+           ]))
+
     # --- Negative --------------------------------------------------------
 
     negative("effect/negative/unknown-operation",
@@ -1266,6 +1317,15 @@ def main():
              ]),
              DUPLICATE_EFFECT_ATOM)
 
+    negative("effect/negative/same-full-qualifier-duplicate-rejected",
+             "identical complete atom identity remains a duplicate even "
+             "when the qualifier member is explicit",
+             sig_closed([
+                 entry("payment.charge", 1, qualifier="natural"),
+                 entry("payment.charge", 1, qualifier="natural"),
+             ]),
+             DUPLICATE_EFFECT_ATOM)
+
     negative("effect/negative/unbounded-open-row",
              "a residual with no scope binding and an unbounded upper "
              "proves nothing and is rejected",
@@ -1313,6 +1373,115 @@ def main():
     })
 
     # --- Algebra ---------------------------------------------------------
+
+    # Complete qualifier identity is shared by containment, merge, join,
+    # repetition and control-opcode propagation.
+    algebra("effect/algebra/qualifier-member-different-contains",
+            "different members of the same qualifier family are uncovered "
+            "in either containment direction",
+            "contains", [natural_row, none_row],
+            {"unproven_pairs": [[0, 1], [1, 0]],
+             "unproven_reason": "entry_uncovered"})
+
+    guarded_identity = sig_closed([entry(
+        "payment.charge", 1, lower=0, upper=2,
+        guard={"input_equals": {"port_no": 1, "expected": {"int64": 1}}},
+        qualifier="natural")])
+    unconditional_identity = sig_closed([entry(
+        "payment.charge", 1, lower=0, upper=2, qualifier="natural")])
+    algebra("effect/algebra/qualifier-identity-guard-remains-analysis",
+            "guard is not atom identity, but it still constrains containment: "
+            "a guarded demand fits an unconditional envelope, not vice versa",
+            "contains", [guarded_identity, unconditional_identity],
+            {"proven_pairs": [[0, 1]], "unproven_pairs": [[1, 0]],
+             "unproven_reason": "entry_uncovered"})
+
+    narrower_bounds = sig_closed([entry(
+        "payment.charge", 1, lower=1, upper=2, qualifier="natural")])
+    wider_bounds = sig_closed([entry(
+        "payment.charge", 1, lower=0, upper=3, qualifier="natural")])
+    algebra("effect/algebra/qualifier-identity-bounds-remain-analysis",
+            "occurrence bounds are not atom identity, but still constrain "
+            "containment in the ordinary direction",
+            "contains", [narrower_bounds, wider_bounds],
+            {"proven_pairs": [[0, 1]], "unproven_pairs": [[1, 0]],
+             "unproven_reason": "entry_uncovered"})
+
+    algebra("effect/algebra/qualifier-member-different-require-contained",
+            "require_contained_in fails closed for mismatched members in "
+            "both directions",
+            "require_contained_in", [natural_row, none_row],
+            {"error_kind": EFFECT_ENVELOPE_UNPROVABLE,
+             "directions": [[0, 1], [1, 0]]})
+
+    accumulated_qualifiers = accumulate(natural_row, none_row)
+    assert len(accumulated_qualifiers["row"]["closed"]) == 2
+    algebra("effect/algebra/qualifier-member-different-accumulate",
+            "accumulation preserves both qualifier identities and does not "
+            "add their occurrence bounds together",
+            "accumulate", [natural_row, none_row],
+            {"canonical_ace1_utf8": result_ace1(
+                accumulated_qualifiers["row"])})
+
+    joined_qualifiers = branch_join(natural_row, none_row)
+    assert len(joined_qualifiers["row"]["closed"]) == 2
+    assert all(item["bounds"]["lower"] == 0
+               for item in joined_qualifiers["row"]["closed"])
+    algebra("effect/algebra/qualifier-member-different-branch-join",
+            "different qualifier members are one-sided branch entries, so "
+            "both remain distinct and both lower bounds become zero",
+            "branch_join", [natural_row, none_row],
+            {"canonical_ace1_utf8": result_ace1(joined_qualifiers["row"])})
+
+    mixed_qualifiers = sig_closed([
+        entry("payment.charge", 1, lower=1, upper=2,
+              qualifier="natural"),
+        entry("payment.charge", 1, lower=2, upper=3,
+              qualifier="none"),
+    ])
+    repeated_qualifiers = repeat_op(
+        {"lower": 2, "upper": {"finite": 3}}, mixed_qualifiers)
+    algebra("effect/algebra/qualifier-member-different-repetition",
+            "repetition scales each complete qualifier identity separately",
+            "repeat", [mixed_qualifiers],
+            {"canonical_ace1_utf8": result_ace1(
+                repeated_qualifiers["row"])},
+            reps={"lower": 2, "upper": {"finite": 3}})
+
+    sequence_qualifiers = sequence_envelope(natural_row, none_row)
+    algebra("effect/algebra/qualifier-member-sequence-propagation",
+            "SEQUENCE retains distinct natural and none atoms",
+            "sequence_envelope", [natural_row, none_row],
+            {"canonical_ace1_utf8": result_ace1(
+                sequence_qualifiers["row"])})
+    parallel_qualifiers = parallel_envelope(natural_row, none_row)
+    algebra("effect/algebra/qualifier-member-parallel-propagation",
+            "PARALLEL retains distinct natural and none atoms",
+            "parallel_envelope", [natural_row, none_row],
+            {"canonical_ace1_utf8": result_ace1(
+                parallel_qualifiers["row"])})
+    race_qualifiers = race_envelope([natural_row, none_row])
+    algebra("effect/algebra/qualifier-member-race-propagation",
+            "RACE retains every contestant's distinct qualifier identity",
+            "race_envelope", [natural_row, none_row],
+            {"canonical_ace1_utf8": result_ace1(race_qualifiers["row"])})
+
+    guarded_natural = sig_closed([entry(
+        "payment.charge", 1, lower=1, upper=2,
+        guard={"input_equals": {"port_no": 1, "expected": {"int64": 1}}},
+        qualifier="natural")])
+    unguarded_natural = sig_closed([entry(
+        "payment.charge", 1, lower=0, upper=3, qualifier="natural")])
+    guard_join = branch_join(guarded_natural, unguarded_natural)
+    assert len(guard_join["row"]["closed"]) == 1
+    assert guard_join["row"]["closed"][0]["guard"] == {"unconditional": None}
+    assert guard_join["row"]["closed"][0]["bounds"] == {
+        "lower": 0, "upper": {"finite": 3}}
+    algebra("effect/algebra/qualifier-identity-excludes-guard-and-bounds",
+            "guard and occurrence bounds remain entry semantics, not atom "
+            "identity; equal atoms still join under the frozen guard rule",
+            "branch_join", [guarded_natural, unguarded_natural],
+            {"canonical_ace1_utf8": result_ace1(guard_join["row"])})
 
     write_entry = entry
     x_sig = sig_closed([write_entry("github.issue.create", 1,
@@ -1669,6 +1838,22 @@ def main():
                 "entry order never changes the canonical bytes",
                 reordered_members,
                 result_ace1(validate(reordered_members[0])["row"]))
+
+    qualifier_order_members = [
+        sig_closed([
+            entry("payment.charge", 1, qualifier="natural"),
+            entry("payment.charge", 1, qualifier="none"),
+        ]),
+        sig_closed([
+            entry("payment.charge", 1, qualifier="none"),
+            entry("payment.charge", 1, qualifier="natural"),
+        ]),
+    ]
+    equivalence("effect/equivalence/qualifier-member-canonical-order",
+                "qualifier member declaration order does not change identity "
+                "or canonical ACE1 bytes",
+                qualifier_order_members,
+                result_ace1(validate(qualifier_order_members[0])["row"]))
 
     scope_members = [
         sig_closed([write_entry("memory.append", 1,

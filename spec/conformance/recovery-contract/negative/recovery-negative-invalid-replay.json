@@ -35,7 +35,7 @@
     "effect_recovery_clauses": [],
     "replay_semantics": "invalid"
   },
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "effect_signature": {
     "row": {
       "closed": []

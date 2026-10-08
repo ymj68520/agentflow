@@ -1,0 +1,98 @@
+{
+  "case_id": "effect/algebra/qualifier-identity-excludes-guard-and-bounds",
+  "case_kind": "algebra",
+  "corpus_revision": 3,
+  "expected": {
+    "canonical_ace1_utf8": "{\"row\":{\"closed\":[{\"atom\":{\"operation\":{\"catalog\":\"agentflow.test.capability-catalog@1\",\"name\":\"payment.charge\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"bounds\":{\"lower\":\"0\",\"upper\":{\"finite\":\"3\"}},\"guard\":{\"unconditional\":null}}]}}"
+  },
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    }
+  ],
+  "kind": "agentflow.conformance.effect-signature.case",
+  "max_attempts": null,
+  "note": "guard and occurrence bounds remain entry semantics, not atom identity; equal atoms still join under the frozen guard rule",
+  "operands": [
+    {
+      "row": {
+        "closed": [
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.test.capability-catalog@1",
+                "name": "payment.charge"
+              },
+              "qualifiers": [
+                {
+                  "idempotency": "natural"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "bounds": {
+              "lower": 1,
+              "upper": {
+                "finite": 2
+              }
+            },
+            "guard": {
+              "input_equals": {
+                "expected": {
+                  "int64": 1
+                },
+                "port_no": 1
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "closed": [
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.test.capability-catalog@1",
+                "name": "payment.charge"
+              },
+              "qualifiers": [
+                {
+                  "idempotency": "natural"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "bounds": {
+              "lower": 0,
+              "upper": {
+                "finite": 3
+              }
+            },
+            "guard": "unconditional"
+          }
+        ]
+      }
+    }
+  ],
+  "operation": "branch_join",
+  "property": null,
+  "reps": null
+}

@@ -1,7 +1,7 @@
 {
   "case_id": "effect/algebra/retry-amplification",
   "case_kind": "algebra",
-  "corpus_revision": 2,
+  "corpus_revision": 3,
   "expected": {
     "attempts": {
       "lower": 1,
