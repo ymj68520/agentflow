@@ -240,7 +240,7 @@ CASES = [
 
 def write_case(item: dict) -> None:
     group = item["group"]
-    bucket = "negative" if item["expected"].get("verdict") == "violation" else "golden" if group == "golden" else group
+    bucket = "golden" if group == "golden" else group
     path = OUT / bucket / (item["case_id"].split("/")[-1] + ".json")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(item, indent=2, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
