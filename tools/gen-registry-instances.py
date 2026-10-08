@@ -1511,6 +1511,153 @@ RESOURCE_RULES = [
 ]
 RULES.extend(RESOURCE_RULES)
 
+# ---------------------------------------------------------------------------
+# Information Flow rules (Phase 4A.4, area INFOFLOW)
+# ---------------------------------------------------------------------------
+
+INFOFLOW_SRC = "spec/information-flow/information-flow.md"
+
+INFOFLOW_RULES = [
+    rule("AF-INFOFLOW-0001", "INFOFLOW", INFOFLOW_SRC, "if-four-concepts",
+         "Provenance, Trust, Taint and Information Flow stay four distinct "
+         "concepts: no trust score, no single trusted flag, and no "
+         "collapse of the influence dimensions into one value.",
+         ["infoflow/golden/source-taint-summary",
+          "SUITE-INFOFLOW-CONCEPTS-DISTINCT"]),
+    rule("AF-INFOFLOW-0002", "INFOFLOW", INFOFLOW_SRC, "if-label-identity",
+         "Label identity is nominal (catalog SpecificationId, label name) "
+         "resolved by the explicit read-only universe: unknown catalog or "
+         "label rejected, duplicates rejected, no auto-registration, no "
+         "case-insensitive matching, and label order never enters "
+         "semantic identity.",
+         ["infoflow/negative/unknown-label",
+          "infoflow/equivalence/label-ordering"]),
+    rule("AF-INFOFLOW-0003", "INFOFLOW", INFOFLOW_SRC,
+         "if-confidentiality-taint-separate",
+         "Confidentiality restrictions and taints are structurally "
+         "separate nominal types: where data may go and what may have "
+         "influenced a value are never unified into one collection.",
+         ["infoflow/golden/single-confidentiality-label",
+          "infoflow/golden/source-taint-summary",
+          "SUITE-INFOFLOW-CONCEPTS-DISTINCT"]),
+    rule("AF-INFOFLOW-0004", "INFOFLOW", INFOFLOW_SRC,
+         "if-no-label-hierarchy",
+         "No confidentiality hierarchy is invented: containment is set "
+         "membership plus explicit catalog rules; no total order over "
+         "user-defined labels exists from which downgrade flows could be "
+         "claimed.",
+         ["SUITE-INFOFLOW-NO-INVENTED-LATTICE"]),
+    rule("AF-INFOFLOW-0005", "INFOFLOW", INFOFLOW_SRC,
+         "if-no-authority-elevation",
+         "Ordinary data transformation MUST NOT elevate instruction "
+         "authority: content claiming to be a system instruction stays "
+         "external_data, source authentication is not instruction "
+         "authorization, and unprovable transformations never label their "
+         "output with a higher authority.",
+         ["infoflow/negative/untrusted-promoted-to-instruction",
+          "infoflow/propagation/authority-never-elevated"]),
+    rule("AF-INFOFLOW-0006", "INFOFLOW", INFOFLOW_SRC,
+         "if-conservative-propagation",
+         "Taint propagation is may-influence conservative: the output "
+         "taint is the union over all inputs that MAY influence it; an "
+         "incomplete influence relation yields the explicit unknown or "
+         "the conservative union of all possible inputs, and no author "
+         "can prove a real influence away with an incomplete list.",
+         ["infoflow/propagation/pure-expression-inherits-taints",
+          "infoflow/propagation/unknown-influence-remains-unknown",
+          "SUITE-INFOFLOW-CONSERVATIVE-PROPAGATION"]),
+    rule("AF-INFOFLOW-0007", "INFOFLOW", INFOFLOW_SRC, "if-model-mixer",
+         "The LLM strong taint mixer: all model-visible inputs may "
+         "influence all model outputs, so output taint is the union of "
+         "every visible input taint plus model_generated, influence "
+         "stays unknown, and authority is never elevated.",
+         ["infoflow/propagation/model-output-inherits-every-input-taint",
+          "infoflow/propagation/model-output-adds-model-generated",
+          "SUITE-INFOFLOW-MODEL-MIXER"]),
+    rule("AF-INFOFLOW-0008", "INFOFLOW", INFOFLOW_SRC,
+         "if-model-no-endorsement",
+         "A model output is never endorsed: model said verified does not "
+         "become endorsed, and summarizing untrusted web does not become "
+         "trusted knowledge.",
+         ["infoflow/propagation/summarization-does-not-endorse",
+          "infoflow/propagation/schema-validation-does-not-endorse"]),
+    rule("AF-INFOFLOW-0009", "INFOFLOW", INFOFLOW_SRC, "if-flow-kinds",
+         "Data egress and decision influence are separate flow kinds, "
+         "checked separately and never compared across: no data leak "
+         "does not imply no decision influence, and vice versa.",
+         ["infoflow/golden/data-egress-sink",
+          "infoflow/golden/decision-influence-sink",
+          "SUITE-INFOFLOW-KIND-SEPARATION"]),
+    rule("AF-INFOFLOW-0010", "INFOFLOW", INFOFLOW_SRC, "if-sinks",
+         "External-effect sinks reuse the structured EffectOperationRef "
+         "by exact cross-module identity and resolve fail-closed against "
+         "the explicit catalog; classification comes only from the "
+         "catalog, never from the operation name, and referencing an "
+         "effect is not being granted it.",
+         ["infoflow/negative/unknown-sink-operation",
+          "SUITE-INFOFLOW-SINK-NOT-GRANT"]),
+    rule("AF-INFOFLOW-0011", "INFOFLOW", INFOFLOW_SRC, "if-sink-unclassified",
+         "An unclassifiable sink yields Unproven, never an assumption of "
+         "safety; sink-port 0 is rejected.",
+         ["infoflow/negative/invalid-sink-port"]),
+    rule("AF-INFOFLOW-0012", "INFOFLOW", INFOFLOW_SRC,
+         "if-ceiling-not-authorization",
+         "A declared flow ceiling is not an observed flow and not a "
+         "policy approval: every judgment is ProvenWithinDeclaredCeiling, "
+         "RequiresTrustedTransformation (an obligation, not an event) or "
+         "Unproven - never an authorization.",
+         ["SUITE-INFOFLOW-DECLARATION-NOT-AUTHORIZATION"]),
+    rule("AF-INFOFLOW-0013", "INFOFLOW", INFOFLOW_SRC,
+         "if-declassification-endorsement",
+         "Declassification and endorsement are separate privileged "
+         "transformations; ordinary tasks cannot self-declare either, "
+         "and this phase records at most the obligations "
+         "requires_declassification / requires_endorsement.",
+         ["infoflow/negative/missing-privileged-transformation"]),
+    rule("AF-INFOFLOW-0014", "INFOFLOW", INFOFLOW_SRC,
+         "if-no-automatic-privilege",
+         "No static transformation without an authorization proof deletes "
+         "a taint or lowers a confidentiality restriction: the wire model "
+         "expresses no such operation and this phase executes no "
+         "declassifier or endorser.",
+         ["infoflow/propagation/memory-persistence-retains-taint",
+          "SUITE-INFOFLOW-NO-AUTOMATIC-PRIVILEGE"]),
+    rule("AF-INFOFLOW-0015", "INFOFLOW", INFOFLOW_SRC,
+         "if-persistence-not-trust",
+         "Persistence does not imply trust: store, load, serialize, "
+         "deserialize and summarize round-trips return data with its "
+         "original taints and provenance influence.",
+         ["infoflow/propagation/memory-persistence-retains-taint",
+          "infoflow/propagation/summarization-does-not-endorse"]),
+    rule("AF-INFOFLOW-0016", "INFOFLOW", INFOFLOW_SRC,
+         "if-unknown-handling",
+         "The five unknowns are distinct and never collapsed to an empty "
+         "list: unknown source is the explicit unknown_external category, "
+         "unknown influence is the sticky influence_unknown Top, unknown "
+         "labels and sinks are validation errors, and canonicalization "
+         "never repairs unknown into a lower-risk state.",
+         ["infoflow/golden/unknown-influence",
+          "infoflow/negative/unknown-taint-treated-as-clean"]),
+    rule("AF-INFOFLOW-0017", "INFOFLOW", INFOFLOW_SRC, "if-non-relaxation",
+         "Flow non-relaxation: F_new must not relax F_old - per kind the "
+         "new ceiling set must be a subset of the old, confidentiality "
+         "restrictions a superset, authority not elevated, unknown "
+         "influence not repaired; undecidable containment is Unproven and "
+         "never a substitution approval.",
+         ["infoflow/compatibility/new-adds-permitted-sink",
+          "infoflow/compatibility/new-drops-restriction",
+          "infoflow/compatibility/unknown-relationship-unproven"]),
+    rule("AF-INFOFLOW-0018", "INFOFLOW", INFOFLOW_SRC,
+         "if-canonical-ordering",
+         "Canonical flow form is deterministic: resolved nominal label "
+         "identities, sets sorted by identity bytes (constraints by kind "
+         "and sink coordinate), duplicates rejected, declaration order "
+         "never reaching the canonical ACE1 bytes.",
+         ["infoflow/equivalence/label-ordering",
+          "infoflow/equivalence/constraint-ordering"]),
+]
+RULES.extend(INFOFLOW_RULES)
+
 
 
 
@@ -1583,6 +1730,26 @@ SPECS = [
      "canonical ordering, exact containment, the union algebra, HANDLE "
      "residual and handler propagation, control propagation, and the "
      "Unproven analysis result."),
+    ("agentflow.information.flow@1", "schema",
+     "spec/idl/information-flow.afidl",
+     "Normative shape of the static Information Flow Contract: "
+     "confidentiality and taint labels as separate nominal types, the "
+     "closed instruction-authority scale, typed logical source "
+     "categories, the conservative static influence summary, "
+     "data-egress vs decision-influence flow kinds, workflow-output and "
+     "structured effect-operation sinks, and the closed flow contract. "
+     "The external effect sink reuses the effect signature's "
+     "EffectOperationRef by exact cross-module import."),
+    ("agentflow.information.flow.semantics@1", "schema_language",
+     "spec/information-flow/information-flow.md",
+     "Information Flow semantics: the four-concept separation "
+     "(provenance/trust/taint/flow), the frozen security invariants, "
+     "label and taint identity, instruction authority with no "
+     "self-elevation, conservative may-influence propagation, the LLM "
+     "strong taint mixer, the egress/influence split, "
+     "declassification/endorsement obligations, persistence without "
+     "trust upgrade, unknown handling, flow non-relaxation and the "
+     "static-vs-runtime boundary."),
     ("agentflow.registry.core@1", "registry",
      "spec/registry/registry-spec.md",
      "Registry mechanics: Specification Registry, RuleId system, Stable ABI "
@@ -1660,6 +1827,7 @@ SCHEMA_MODULES = [
     "spec/idl/effect-signature.afidl",
     "spec/idl/failure-row.afidl",
     "spec/idl/resource-requirement.afidl",
+    "spec/idl/information-flow.afidl",
 ]
 
 assignments = []
@@ -2258,6 +2426,149 @@ SUITE_LIST = [
                 "af-resource static surface audit (no digest domains)",
                 "af-ir wire-freeze audit (module/ABI/domain counts)",
                 "spec/conformance/effect-signature/ and failure-row/ (revisions unchanged)",
+            ],
+        },
+        {
+            "suite_id": "SUITE-INFOFLOW-CONCEPTS-DISTINCT",
+            "description": (
+                "Provenance, trust, taint and information flow stay four "
+                "distinct concepts: no trust score, no single trusted "
+                "flag; confidentiality restrictions and taints are "
+                "separate nominal types; unknown provenance is never "
+                "trusted and unknown taint is never the empty set. "
+                "Covers the static absence audit and the label/summary "
+                "corpus cases."
+            ),
+            "targets": [
+                "af-flow static surface audit (no trust-score symbols)",
+                "spec/conformance/information-flow/golden/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-INFOFLOW-CONSERVATIVE-PROPAGATION",
+            "description": (
+                "Taint propagation is may-influence conservative: union "
+                "algebra properties frozen, pure expressions inherit all "
+                "input taints, unknown influence stays unknown, and no "
+                "incomplete influence list can prove a real influence "
+                "away. Covers the propagation corpus family and the "
+                "static surface."
+            ),
+            "targets": [
+                "af-flow propagation functions (pure, catalogs injected)",
+                "spec/conformance/information-flow/propagation/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-INFOFLOW-DECLARATION-NOT-AUTHORIZATION",
+            "description": (
+                "A declared flow ceiling is not an observed flow and not "
+                "a policy approval: judgments are "
+                "ProvenWithinDeclaredCeiling / "
+                "RequiresTrustedTransformation / Unproven only, no "
+                "PolicyDecision substitute exists anywhere in af-flow, "
+                "and referencing an effect sink is not being granted it. "
+                "Covers the static absence audit and the sink corpus "
+                "cases."
+            ),
+            "targets": [
+                "af-flow static surface audit (no grant/policy symbols)",
+                "spec/conformance/information-flow/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-INFOFLOW-KIND-SEPARATION",
+            "description": (
+                "Data egress and decision influence are separate flow "
+                "kinds judged separately: the non-relaxation proof never "
+                "compares ceilings across kinds, and the two golden sink "
+                "cases freeze the distinction. Covers the flow-kind "
+                "rules and the compatibility corpus."
+            ),
+            "targets": [
+                "af-flow flow_not_relaxed (per-kind subset checks)",
+                "spec/conformance/information-flow/golden/ (egress + decision sinks)",
+            ],
+        },
+        {
+            "suite_id": "SUITE-INFOFLOW-MODEL-MIXER",
+            "description": (
+                "The LLM strong taint mixer: all model-visible inputs may "
+                "influence all model outputs; output taint is the union "
+                "of every visible input taint plus model_generated, "
+                "influence stays unknown, authority is never elevated, "
+                "and a model output is never endorsed. Covers the mixer "
+                "corpus cases and the static surface."
+            ),
+            "targets": [
+                "af-flow mix_model_visible_inputs",
+                "spec/conformance/information-flow/propagation/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-INFOFLOW-NO-AUTOMATIC-PRIVILEGE",
+            "description": (
+                "No automatic declassification, no automatic endorsement, "
+                "persistence does not imply trust: the wire model "
+                "expresses no taint-deleting or restriction-lowering "
+                "operation, ordinary transformations (store/load/"
+                "serialize/summarize) never endorse, and this phase "
+                "records at most requires_declassification / "
+                "requires_endorsement obligations. Covers the "
+                "persistence corpus cases and the static absence audit."
+            ),
+            "targets": [
+                "af-flow static surface audit (no declassify/endorse execution)",
+                "spec/conformance/information-flow/propagation/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-INFOFLOW-NO-INVENTED-LATTICE",
+            "description": (
+                "No confidentiality hierarchy is invented: containment is "
+                "set membership plus explicit catalog rules, there is no "
+                "total order over user-defined labels from which "
+                "downgrade flows could be claimed, and undecidable "
+                "containment is Unproven rather than resolved by an "
+                "invented subtyping. Covers the non-relaxation corpus "
+                "and the static surface."
+            ),
+            "targets": [
+                "af-flow flow_not_relaxed (explicit-subset proof only)",
+                "spec/conformance/information-flow/compatibility/",
+            ],
+        },
+        {
+            "suite_id": "SUITE-INFOFLOW-SINK-NOT-GRANT",
+            "description": (
+                "External-effect sinks reuse the structured "
+                "EffectOperationRef by exact cross-module identity, "
+                "resolve fail-closed against the explicit catalog, are "
+                "classified only by the catalog (never by operation "
+                "name), and referencing an effect is not being granted "
+                "it. Covers the sink corpus cases and the read-only "
+                "consistency audit over the effect module."
+            ),
+            "targets": [
+                "af-flow EffectSinkUniverse (explicit, immutable input)",
+                "spec/conformance/information-flow/negative/unknown-sink-operation",
+            ],
+        },
+        {
+            "suite_id": "SUITE-INFOFLOW-WIRE-FREEZE",
+            "description": (
+                "Phase 4A.4 added exactly one AFIDL module and no HashV1 "
+                "domain: no InformationFlowDigest exists, semantic-ir"
+                ".afidl stays byte-identical, the effect corpus stays at "
+                "revision 2, the failure corpus at revision 1, the "
+                "resource corpus at revision 1, and every pre-existing "
+                "corpus digest is unchanged. Covers the static surface "
+                "audits and the zero-drift corpus runs."
+            ),
+            "targets": [
+                "af-flow static surface audit (no flow digest)",
+                "af-ir wire-freeze audit (module/ABI/domain counts)",
+                "spec/conformance/effect-signature/, failure-row/, resource-requirement/ (revisions unchanged)",
             ],
         },
         {

@@ -145,6 +145,32 @@
       "status": "frozen"
     },
     {
+      "description": "Information Flow semantics: the four-concept separation (provenance/trust/taint/flow), the frozen security invariants, label and taint identity, instruction authority with no self-elevation, conservative may-influence propagation, the LLM strong taint mixer, the egress/influence split, declassification/endorsement obligations, persistence without trust upgrade, unknown handling, flow non-relaxation and the static-vs-runtime boundary.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "5b35c4b957212c4735fdd44eed6af128758f3d342275b6d1dfb0b0cb886770af"
+        },
+        "logical_path": "spec/information-flow/information-flow.md"
+      },
+      "specification_id": "agentflow.information.flow.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the static Information Flow Contract: confidentiality and taint labels as separate nominal types, the closed instruction-authority scale, typed logical source categories, the conservative static influence summary, data-egress vs decision-influence flow kinds, workflow-output and structured effect-operation sinks, and the closed flow contract. The external effect sink reuses the effect signature's EffectOperationRef by exact cross-module import.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a0dfccd988d0499c728da4fbc2772dd93069405aac468408747dc32152a5ece3"
+        },
+        "logical_path": "spec/idl/information-flow.afidl"
+      },
+      "specification_id": "agentflow.information.flow@1",
+      "status": "frozen"
+    },
+    {
       "description": "Registry mechanics: Specification Registry, RuleId system, Stable ABI Number Registry, ConformanceCaseId and canonical registry form.",
       "kind": "registry",
       "normative_source": {
@@ -163,7 +189,7 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "a055d31cb64582ace66ce48cab1a639c9b8685f98cd1ed41ddf78d2231428a61"
+          "hex": "a56f627517ab23613302d0bce29bf2910f4242fd5b404c46addae4e9f9df09a2"
         },
         "logical_path": "spec/tables/rule-areas.json"
       },

@@ -118,6 +118,79 @@
       ]
     },
     {
+      "description": "Provenance, trust, taint and information flow stay four distinct concepts: no trust score, no single trusted flag; confidentiality restrictions and taints are separate nominal types; unknown provenance is never trusted and unknown taint is never the empty set. Covers the static absence audit and the label/summary corpus cases.",
+      "suite_id": "SUITE-INFOFLOW-CONCEPTS-DISTINCT",
+      "targets": [
+        "af-flow static surface audit (no trust-score symbols)",
+        "spec/conformance/information-flow/golden/"
+      ]
+    },
+    {
+      "description": "Taint propagation is may-influence conservative: union algebra properties frozen, pure expressions inherit all input taints, unknown influence stays unknown, and no incomplete influence list can prove a real influence away. Covers the propagation corpus family and the static surface.",
+      "suite_id": "SUITE-INFOFLOW-CONSERVATIVE-PROPAGATION",
+      "targets": [
+        "af-flow propagation functions (pure, catalogs injected)",
+        "spec/conformance/information-flow/propagation/"
+      ]
+    },
+    {
+      "description": "A declared flow ceiling is not an observed flow and not a policy approval: judgments are ProvenWithinDeclaredCeiling / RequiresTrustedTransformation / Unproven only, no PolicyDecision substitute exists anywhere in af-flow, and referencing an effect sink is not being granted it. Covers the static absence audit and the sink corpus cases.",
+      "suite_id": "SUITE-INFOFLOW-DECLARATION-NOT-AUTHORIZATION",
+      "targets": [
+        "af-flow static surface audit (no grant/policy symbols)",
+        "spec/conformance/information-flow/"
+      ]
+    },
+    {
+      "description": "Data egress and decision influence are separate flow kinds judged separately: the non-relaxation proof never compares ceilings across kinds, and the two golden sink cases freeze the distinction. Covers the flow-kind rules and the compatibility corpus.",
+      "suite_id": "SUITE-INFOFLOW-KIND-SEPARATION",
+      "targets": [
+        "af-flow flow_not_relaxed (per-kind subset checks)",
+        "spec/conformance/information-flow/golden/ (egress + decision sinks)"
+      ]
+    },
+    {
+      "description": "The LLM strong taint mixer: all model-visible inputs may influence all model outputs; output taint is the union of every visible input taint plus model_generated, influence stays unknown, authority is never elevated, and a model output is never endorsed. Covers the mixer corpus cases and the static surface.",
+      "suite_id": "SUITE-INFOFLOW-MODEL-MIXER",
+      "targets": [
+        "af-flow mix_model_visible_inputs",
+        "spec/conformance/information-flow/propagation/"
+      ]
+    },
+    {
+      "description": "No automatic declassification, no automatic endorsement, persistence does not imply trust: the wire model expresses no taint-deleting or restriction-lowering operation, ordinary transformations (store/load/serialize/summarize) never endorse, and this phase records at most requires_declassification / requires_endorsement obligations. Covers the persistence corpus cases and the static absence audit.",
+      "suite_id": "SUITE-INFOFLOW-NO-AUTOMATIC-PRIVILEGE",
+      "targets": [
+        "af-flow static surface audit (no declassify/endorse execution)",
+        "spec/conformance/information-flow/propagation/"
+      ]
+    },
+    {
+      "description": "No confidentiality hierarchy is invented: containment is set membership plus explicit catalog rules, there is no total order over user-defined labels from which downgrade flows could be claimed, and undecidable containment is Unproven rather than resolved by an invented subtyping. Covers the non-relaxation corpus and the static surface.",
+      "suite_id": "SUITE-INFOFLOW-NO-INVENTED-LATTICE",
+      "targets": [
+        "af-flow flow_not_relaxed (explicit-subset proof only)",
+        "spec/conformance/information-flow/compatibility/"
+      ]
+    },
+    {
+      "description": "External-effect sinks reuse the structured EffectOperationRef by exact cross-module identity, resolve fail-closed against the explicit catalog, are classified only by the catalog (never by operation name), and referencing an effect is not being granted it. Covers the sink corpus cases and the read-only consistency audit over the effect module.",
+      "suite_id": "SUITE-INFOFLOW-SINK-NOT-GRANT",
+      "targets": [
+        "af-flow EffectSinkUniverse (explicit, immutable input)",
+        "spec/conformance/information-flow/negative/unknown-sink-operation"
+      ]
+    },
+    {
+      "description": "Phase 4A.4 added exactly one AFIDL module and no HashV1 domain: no InformationFlowDigest exists, semantic-ir.afidl stays byte-identical, the effect corpus stays at revision 2, the failure corpus at revision 1, the resource corpus at revision 1, and every pre-existing corpus digest is unchanged. Covers the static surface audits and the zero-drift corpus runs.",
+      "suite_id": "SUITE-INFOFLOW-WIRE-FREEZE",
+      "targets": [
+        "af-flow static surface audit (no flow digest)",
+        "af-ir wire-freeze audit (module/ABI/domain counts)",
+        "spec/conformance/effect-signature/, failure-row/, resource-requirement/ (revisions unchanged)"
+      ]
+    },
+    {
       "description": "A resource requirement is a declaration of need, never a grant: satisfaction is a static predicate over explicit descriptors, no requirement-satisfied-implies-grant path exists anywhere in af-resource, and the capability ceiling / effect grant / requirement distinction is enforced by the static absence audit. Covers the authority-distinction rules and the crate source audit.",
       "suite_id": "SUITE-RESOURCE-DECLARATION-NOT-AUTHORITY",
       "targets": [

@@ -446,6 +446,357 @@
       "first_seen_schema_digest": {
         "alg": "sha256",
         "domain": "type-schema",
+        "hex": "e6785b35734725c7363b2288169417dc2fa83b415bb4b54c1a7c2baa240f5c20"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "catalog",
+      "type_name": "ConfidentialityLabelRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "e6785b35734725c7363b2288169417dc2fa83b415bb4b54c1a7c2baa240f5c20"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "name",
+      "type_name": "ConfidentialityLabelRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "76e6ba6ba5501f440ef7924e1086898ce7857b55650d0ab1655e15de14637aa7"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "kind",
+      "type_name": "FlowConstraint"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "76e6ba6ba5501f440ef7924e1086898ce7857b55650d0ab1655e15de14637aa7"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "sink",
+      "type_name": "FlowConstraint"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "dc464ad3303673f3287763183bebb0808ec8f1d44c90f234e6e44488d6b01cb5"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "data_egress",
+      "type_name": "FlowKind"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "dc464ad3303673f3287763183bebb0808ec8f1d44c90f234e6e44488d6b01cb5"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "decision_influence",
+      "type_name": "FlowKind"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5aff1aaf1bdd1f5516e9ba0ab7375c2fd37b8b60701048915d0be886abcf2529"
+      },
+      "number": 1,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "workflow_output",
+      "type_name": "FlowSink"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "5aff1aaf1bdd1f5516e9ba0ab7375c2fd37b8b60701048915d0be886abcf2529"
+      },
+      "number": 2,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "external_effect",
+      "type_name": "FlowSink"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "0ccdccba5d0318f3c568844c4971cf3c234a7062c4030d8d71ec9be392798c78"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "category",
+      "type_name": "FlowSourceRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c575ec5168c3070d499f8a565e710f19a219a29424d43de00385fb7b2f897281"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "confidentiality_restrictions",
+      "type_name": "InformationFlowContract"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c575ec5168c3070d499f8a565e710f19a219a29424d43de00385fb7b2f897281"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "summary",
+      "type_name": "InformationFlowContract"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "c575ec5168c3070d499f8a565e710f19a219a29424d43de00385fb7b2f897281"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "flow_constraints",
+      "type_name": "InformationFlowContract"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "33e5f5dd97372e88942ea3cb918ebfef9138b6b1b60071c6edc6473e55a287d3"
+      },
+      "number": 1,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "none",
+      "type_name": "InstructionAuthority"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "33e5f5dd97372e88942ea3cb918ebfef9138b6b1b60071c6edc6473e55a287d3"
+      },
+      "number": 2,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "external_data",
+      "type_name": "InstructionAuthority"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "33e5f5dd97372e88942ea3cb918ebfef9138b6b1b60071c6edc6473e55a287d3"
+      },
+      "number": 3,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "delegated_agent",
+      "type_name": "InstructionAuthority"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "33e5f5dd97372e88942ea3cb918ebfef9138b6b1b60071c6edc6473e55a287d3"
+      },
+      "number": 4,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "user",
+      "type_name": "InstructionAuthority"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "33e5f5dd97372e88942ea3cb918ebfef9138b6b1b60071c6edc6473e55a287d3"
+      },
+      "number": 5,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "workflow",
+      "type_name": "InstructionAuthority"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "33e5f5dd97372e88942ea3cb918ebfef9138b6b1b60071c6edc6473e55a287d3"
+      },
+      "number": 6,
+      "number_kind": "enum_value",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "platform",
+      "type_name": "InstructionAuthority"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "973af1e454b72ca840fd53f2fc896645242f77b2b699db8bb9d75a8197adceaa"
+      },
+      "number": 1,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "workflow_input",
+      "type_name": "SourceCategory"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "973af1e454b72ca840fd53f2fc896645242f77b2b699db8bb9d75a8197adceaa"
+      },
+      "number": 2,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "resource_requirement",
+      "type_name": "SourceCategory"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "973af1e454b72ca840fd53f2fc896645242f77b2b699db8bb9d75a8197adceaa"
+      },
+      "number": 3,
+      "number_kind": "variant_case",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "unknown_external",
+      "type_name": "SourceCategory"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "a800c6cc357b4f288a8d242544df258f65f0b66d6dd7ed12851fd055e8b6c9ce"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "sources",
+      "type_name": "StaticInformationSummary"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "a800c6cc357b4f288a8d242544df258f65f0b66d6dd7ed12851fd055e8b6c9ce"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "taints",
+      "type_name": "StaticInformationSummary"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "a800c6cc357b4f288a8d242544df258f65f0b66d6dd7ed12851fd055e8b6c9ce"
+      },
+      "number": 3,
+      "number_kind": "field",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "instruction_authority",
+      "type_name": "StaticInformationSummary"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "a800c6cc357b4f288a8d242544df258f65f0b66d6dd7ed12851fd055e8b6c9ce"
+      },
+      "number": 4,
+      "number_kind": "field",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "influence_unknown",
+      "type_name": "StaticInformationSummary"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "cb7fe496ae8a81d6384ec2c15bdeae26917fb6969d53d88c96fee395f99e391f"
+      },
+      "number": 1,
+      "number_kind": "field",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "catalog",
+      "type_name": "TaintRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
+        "hex": "cb7fe496ae8a81d6384ec2c15bdeae26917fb6969d53d88c96fee395f99e391f"
+      },
+      "number": 2,
+      "number_kind": "field",
+      "schema_family": "agentflow.information.flow@1",
+      "status": "active",
+      "symbolic_name": "name",
+      "type_name": "TaintRef"
+    },
+    {
+      "first_seen_schema_digest": {
+        "alg": "sha256",
+        "domain": "type-schema",
         "hex": "f5bf583f3f2ad12e216733105845e1efe4427be5c4d48bd00c7785b74a52a94c"
       },
       "number": 1,
