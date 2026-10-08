@@ -2120,6 +2120,11 @@ fn open_effect_vector_is_not_mintable_as_a_checked_computation_leaf() {
         "../../../spec/conformance/computation-control/proof/open-effect-row-remains-open.json"
     ))
     .unwrap();
-    assert_eq!(vector["expected"]["effects"]["row"], "open");
-    assert_eq!(vector["expected"]["effect_row_complete"], false);
+    assert_eq!(vector["expected"]["stage"], "contract_validation");
+    assert_eq!(vector["expected"]["verdict"], "unproven");
+    assert_eq!(vector["expected"]["checked_component_produced"], false);
+    assert_eq!(
+        vector["expected"]["dimensions"][0]["rule_id"],
+        "AF-CONTRACT-0013"
+    );
 }

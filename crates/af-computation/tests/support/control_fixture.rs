@@ -1,0 +1,1945 @@
+//! Test-only abstract-fixture materializer. This is not a wire ABI, runtime
+//! model, or alternate analyzer: it builds formal ComponentContracts and
+//! Semantic IR, then calls the production validators/resolver/analyzer.
+
+use std::collections::{BTreeMap, BTreeSet};
+
+use af_computation::{
+    ControlDimensionValue, DerivedControlContractSummary, LeafVerdict,
+    StaticComputationResolutionSnapshotBuilder, derive_control_contract, resolve_computation_leaf,
+};
+use af_contract::{
+    AuthorityExecutionRule, ComponentContract, ComponentIdentity, ComponentInputPort,
+    EffectQualifierProfile, EffectResourceCompatibilityCatalog, InformationFlowExecutionCatalog,
+    RelationCatalogSnapshot, RelationSnapshots, SandboxFloor, StaticContractProofContext,
+    SupportedEffectResourcePair, TaintExecutionRule, TrustDomainPolicy, analyze_contract,
+    check_contract, component_contract_digest,
+};
+use af_effect::{
+    CapabilityCatalog, EffectAtom, EffectCatalogUniverse, EffectEntry, EffectGuard,
+    EffectGuardInputEquals, EffectIdempotencyQualifier, EffectOpenRow, EffectOperationRef,
+    EffectQualifier, EffectResidual, EffectRow, EffectSignature, OccurrenceBounds,
+    OccurrenceCeiling, ResourceSelector, ScopeBinding,
+};
+use af_execution::{
+    ExecutionRequirements, ExecutionUniverses, RuntimeProfileRef, RuntimeProfileRequirement,
+    SandboxLevel, SandboxRequirement,
+};
+use af_failure::{FailureRow, FailureTypeRef};
+use af_flow::{
+    FlowCatalogs, FlowSourceRef, InformationFlowContract, InstructionAuthority, SourceCategory,
+    StaticInformationSummary, TaintRef,
+};
+use af_idl::{CompiledModuleSet, compile_module_set};
+use af_ir::{
+    CallSubflowBody, ComputationBody, ComputationDef, ComputationId, ContractRefEntry,
+    ContractRefId, ContractRefKind, InputBinding, InvokeBody, ParallelBody, ParallelBranch,
+    ParallelMode, RaceBody, RaceBranch, ResourceUseBinding, RunParameterDecl, SelectBody,
+    SelectCase, SemanticIrDocument, SequenceBody, SubflowIrUniverse,
+};
+use af_recovery::{RecoveryContract, RecoveryOperationUniverse, ReplaySemantics};
+use af_resource::{
+    ResourceRequirement, ResourceRequirementRow, ResourceTypeDescriptor, ResourceTypeRef,
+    ResourceTypeUniverse,
+};
+use af_semantic::{
+    DigestRefValue, ExpressionBody, ExpressionDef, PrimitiveConstant, ResourceSlotId,
+    SemanticPrimitiveType, SemanticTypeNode, SemanticTypeNodeBody, TypeSchemaUniverse,
+};
+use af_usage::{
+    StaticUsageBound, StaticUsageEnvelope, UsageLimit, UsageMeterRef, UsageMeterUniverse,
+    UsagePhase, UsageSignature, UsageUnitRef, UsageUpperBound,
+};
+use serde_json::{Value, json};
+
+const LABEL_CATALOG: &str = "agentflow.test.labels@1";
+const METER_CATALOG: &str = "agentflow.meters@1";
+const RUNTIME_CATALOG: &str = "agentflow.test.runtimes@1";
+
+fn fixture_u32(value: &Value, label: &str) -> u32 {
+    u32::try_from(
+        value
+            .as_u64()
+            .unwrap_or_else(|| panic!("fixture {label} must be an unsigned integer")),
+    )
+    .unwrap_or_else(|_| panic!("fixture {label} exceeds u32"))
+}
+
+fn fixture_index(index: usize) -> u32 {
+    u32::try_from(index).expect("fixture table length fits u32")
+}
+
+/// Test-only, deterministic semantic projection. It has no wire or runtime
+/// representation and is built exclusively from a production summary.
+#[derive(Debug, Clone, PartialEq)]
+pub struct ControlConformanceProjection {
+    pub semantic_fields: Value,
+}
+
+impl ControlConformanceProjection {
+    fn into_value(self) -> Value {
+        self.semantic_fields
+    }
+}
+
+pub struct FixtureContext {
+    pub modules: CompiledModuleSet,
+    pub schemas: TypeSchemaUniverse,
+    pub effects: EffectCatalogUniverse,
+    pub resources: ResourceTypeUniverse,
+    pub flow: FlowCatalogs,
+    pub usage: UsageMeterUniverse,
+    pub recovery: RecoveryOperationUniverse,
+    pub execution: ExecutionUniverses,
+    pub relations: RelationSnapshots,
+    resource_type: ResourceTypeRef,
+}
+
+impl FixtureContext {
+    pub fn for_case(case: &Value) -> Self {
+        let modules = modules();
+        let mut schemas = TypeSchemaUniverse::new();
+        let mut resources = ResourceTypeUniverse::new();
+        for module in modules.modules() {
+            schemas.insert_compiled(module).unwrap();
+            resources.insert_compiled(module).unwrap();
+        }
+        let resource_schema = schemas
+            .get("agentflow.semantic.core@1/TypeSchemaRef")
+            .unwrap()
+            .reference();
+        resources
+            .recognize(ResourceTypeDescriptor {
+                specification_id: resource_schema.specification_id.clone(),
+                type_name: resource_schema.type_name.clone(),
+                schema_hex: resource_schema.schema_digest.hex.clone(),
+                recognized_attributes: BTreeSet::new(),
+            })
+            .unwrap();
+        let resource_type = ResourceTypeRef {
+            schema: resource_schema,
+        };
+
+        let mut effects = EffectCatalogUniverse::new();
+        let catalog = CapabilityCatalog::new("agentflow.effects@1", ["write"]).unwrap();
+        effects.insert(&catalog).unwrap();
+        let mut recovery = RecoveryOperationUniverse::new();
+        recovery.effects.insert(&catalog).unwrap();
+
+        let mut flow = FlowCatalogs::new();
+        let mut taint_names = BTreeSet::new();
+        let children = case["input"]["children"]
+            .as_array()
+            .cloned()
+            .unwrap_or_default();
+        for child in &children {
+            if let Some(taints) = child["flow"]["taints"].as_array() {
+                for taint in taints.iter().filter_map(Value::as_str) {
+                    flow.labels.recognize_taint(LABEL_CATALOG, taint);
+                    taint_names.insert(taint.to_owned());
+                }
+            }
+        }
+        flow.sinks
+            .recognize_operation("agentflow.effects@1", "write", false);
+
+        let mut usage = UsageMeterUniverse::new();
+        usage
+            .recognize_additive(
+                &UsageMeterRef {
+                    catalog: METER_CATALOG.into(),
+                    name: "api_calls".into(),
+                },
+                &UsageUnitRef::new("agentflow.units@1", "calls").unwrap(),
+            )
+            .unwrap();
+
+        let mut execution = ExecutionUniverses::default();
+        execution
+            .runtime_profiles
+            .recognize(
+                RuntimeProfileRef {
+                    catalog: RUNTIME_CATALOG.into(),
+                    name: "python".into(),
+                },
+                "language",
+                Vec::<String>::new(),
+            )
+            .unwrap();
+
+        let operation = EffectOperationRef {
+            catalog: "agentflow.effects@1".into(),
+            name: "write".into(),
+        };
+        let supported_pair = SupportedEffectResourcePair {
+            operation: operation.clone(),
+            resource_type: resource_type.clone(),
+            selector_keys: vec![],
+            allowed_qualifier_profiles: vec![
+                EffectQualifierProfile { qualifiers: vec![] },
+                EffectQualifierProfile {
+                    qualifiers: vec![EffectQualifier::Idempotency(
+                        EffectIdempotencyQualifier::Natural,
+                    )],
+                },
+                EffectQualifierProfile {
+                    qualifiers: vec![EffectQualifier::Idempotency(
+                        EffectIdempotencyQualifier::None,
+                    )],
+                },
+            ],
+        };
+        let effect_resource = Some(
+            RelationCatalogSnapshot::new(
+                "fixture-effect-resource-r1",
+                EffectResourceCompatibilityCatalog {
+                    complete_operations: vec![operation],
+                    supported_pairs: vec![supported_pair],
+                },
+                &modules,
+            )
+            .unwrap(),
+        );
+        let flow_execution = Some(
+            RelationCatalogSnapshot::new(
+                "fixture-flow-execution-r1",
+                InformationFlowExecutionCatalog {
+                    taint_rules: taint_names
+                        .into_iter()
+                        .map(|name| TaintExecutionRule {
+                            taint: TaintRef {
+                                catalog: LABEL_CATALOG.into(),
+                                name,
+                            },
+                            trust_domains: TrustDomainPolicy::NoAdditionalTrustRequirement,
+                            sandbox: SandboxFloor::NoAdditionalMinimum,
+                        })
+                        .collect(),
+                    authority_rules: vec![
+                        InstructionAuthority::None,
+                        InstructionAuthority::ExternalData,
+                        InstructionAuthority::DelegatedAgent,
+                        InstructionAuthority::User,
+                        InstructionAuthority::Workflow,
+                        InstructionAuthority::Platform,
+                    ]
+                    .into_iter()
+                    .map(|authority| AuthorityExecutionRule {
+                        authority,
+                        trust_domains: TrustDomainPolicy::NoAdditionalTrustRequirement,
+                        sandbox: SandboxFloor::NoAdditionalMinimum,
+                    })
+                    .collect(),
+                    ..InformationFlowExecutionCatalog::default()
+                },
+                &modules,
+            )
+            .unwrap(),
+        );
+        let relations = RelationSnapshots {
+            effect_resource,
+            recovery_usage: None,
+            flow_execution,
+        };
+        Self {
+            modules,
+            schemas,
+            effects,
+            resources,
+            flow,
+            usage,
+            recovery,
+            execution,
+            relations,
+            resource_type,
+        }
+    }
+
+    pub fn view(&self) -> StaticContractProofContext<'_> {
+        StaticContractProofContext {
+            modules: &self.modules,
+            schema_universe: &self.schemas,
+            effects: &self.effects,
+            resources: &self.resources,
+            flow: &self.flow,
+            usage_meters: &self.usage,
+            recovery: &self.recovery,
+            execution: &self.execution,
+            relations: &self.relations,
+        }
+    }
+
+    pub fn resource_type(&self) -> &ResourceTypeRef {
+        &self.resource_type
+    }
+}
+
+/// Materializes one ordinary structured-control case and runs all production
+/// stages. Expected JSON is never used to construct the input.
+pub fn analyze_compose_case(case: &Value) -> Result<Value, String> {
+    let input = &case["input"];
+    let children = input["children"]
+        .as_array()
+        .ok_or_else(|| "compose input has no children array".to_string())?;
+    let env = FixtureContext::for_case(case);
+    let view = env.view();
+    let mut raws = BTreeMap::<String, ComponentContract>::new();
+    let mut unresolved_aliases = BTreeSet::<String>::new();
+    let mut pin_by_alias = BTreeMap::<String, DigestRefValue>::new();
+    for child in children {
+        let alias = child["contract_digest"]
+            .as_str()
+            .ok_or_else(|| "child has no symbolic contract_digest".to_string())?
+            .to_owned();
+        let proof_source = child["proof_source"]
+            .as_str()
+            .unwrap_or("checked_component");
+        if proof_source == "unresolved_component_pin" || child["effects"].is_null() {
+            unresolved_aliases.insert(alias.clone());
+            raws.entry(alias.clone())
+                .or_insert_with(|| empty_contract(&alias));
+            let hex = alias.rsplit(':').next().unwrap_or_default().to_owned();
+            if hex.len() != 64 {
+                return Err(format!(
+                    "symbolic unresolved pin is not 64 hex chars: {alias}"
+                ));
+            }
+            pin_by_alias.insert(
+                alias,
+                DigestRefValue {
+                    algorithm: "sha256".into(),
+                    domain: "component-contract".into(),
+                    hex,
+                },
+            );
+            continue;
+        }
+        if child["effects"]["row"] == "open" || child["effects"]["row"] == "unknown" {
+            return Err(format!(
+                "{alias}: non-closed Effect rows do not mint checked component contracts"
+            ));
+        }
+        let raw = component_contract(child, &env)?;
+        raws.insert(alias.clone(), raw);
+    }
+
+    let mut checked_by_pin = BTreeMap::<String, usize>::new();
+    let mut checked_values = Vec::new();
+    let mut pin_aliases = BTreeMap::<String, String>::new();
+    for (alias, raw) in &raws {
+        if unresolved_aliases.contains(alias) {
+            continue;
+        }
+        let checked = check_contract(raw, &view).map_err(|report| {
+            let details = report
+                .dimensions
+                .iter()
+                .filter(|item| item.verdict != af_contract::ProofVerdict::Proven)
+                .map(|item| {
+                    format!(
+                        "{}={}:{}",
+                        item.dimension,
+                        item.verdict.as_str(),
+                        item.reason
+                    )
+                })
+                .collect::<Vec<_>>()
+                .join("; ");
+            format!("contract {alias} did not validate: {details}")
+        })?;
+        let digest = component_contract_digest(&checked, &view).map_err(|e| e.to_string())?;
+        let pin = DigestRefValue {
+            algorithm: "sha256".into(),
+            domain: digest.domain().as_str().into(),
+            hex: digest.hex().into(),
+        };
+        pin_aliases.insert(pin.hex.clone(), alias.clone());
+        pin_by_alias.insert(alias.clone(), pin.clone());
+        checked_by_pin.insert(pin.hex.clone(), checked_values.len());
+        checked_values.push(checked);
+    }
+    let mut subflows = SubflowIrUniverse::new();
+    let mut subflow_targets = BTreeMap::<u32, DigestRefValue>::new();
+    let mut subflow_exports = Vec::<(DigestRefValue, usize)>::new();
+    for child in children {
+        if child["proof_source"] == "subflow_body_evidence" {
+            let alias = child["contract_digest"].as_str().unwrap();
+            let pin = pin_by_alias
+                .get(alias)
+                .ok_or("subflow export contract pin missing")?;
+            let raw = raws.get(alias).unwrap();
+            let target_source = target_subflow_document(pin.clone(), raw, &env);
+            let target_ir = target_source
+                .check(&env.schemas)
+                .map_err(|e| format!("subflow target IR validation: {e}"))?;
+            let target_digest = subflows
+                .insert(&target_ir, &env.modules)
+                .map_err(|e| format!("subflow target digest: {e}"))?;
+            let node = fixture_u32(&child["node"], "node id");
+            subflow_targets.insert(node, target_digest.clone());
+            let checked_index = *checked_by_pin
+                .get(&pin.hex)
+                .ok_or("checked subflow export missing")?;
+            subflow_exports.push((target_digest, checked_index));
+        }
+    }
+    let (document, resource_alias_ids) =
+        semantic_ir(input, &raws, &pin_by_alias, &subflow_targets, &env)?;
+    let checked_ir = document
+        .check(&env.schemas)
+        .map_err(|e| format!("IR validation: {e}"))?;
+    checked_ir
+        .analyze_dataflow()
+        .map_err(|e| format!("Phase 3C dataflow: {e}"))?;
+
+    let mut snapshot_builder = StaticComputationResolutionSnapshotBuilder::new(&view, &subflows);
+    for index in checked_by_pin.values().copied() {
+        snapshot_builder = snapshot_builder
+            .component(&checked_values[index])
+            .map_err(|e| format!("snapshot: {e}"))?;
+    }
+    for (target_digest, checked_index) in &subflow_exports {
+        snapshot_builder = snapshot_builder
+            .subflow_export(target_digest, &checked_values[*checked_index])
+            .map_err(|e| format!("subflow snapshot export: {e}"))?;
+    }
+    let snapshot = snapshot_builder.build();
+    let mut resolved = Vec::new();
+    for child in children {
+        let node = ComputationId::from_raw(fixture_u32(&child["node"], "node id"));
+        let leaf = resolve_computation_leaf(&checked_ir, node, &snapshot)
+            .map_err(|e| format!("leaf resolution at {node}: {e}"))?;
+        resolved.push(leaf);
+    }
+    let summary =
+        derive_control_contract(&checked_ir, ComputationId::from_raw(1), &resolved, &view)
+            .map_err(|e| format!("control derivation: {e}"))?;
+    let first_projection = project(&summary, input, &pin_aliases, &resource_alias_ids).into_value();
+    let repeated =
+        derive_control_contract(&checked_ir, ComputationId::from_raw(1), &resolved, &view)
+            .map_err(|e| format!("repeat control derivation: {e}"))?;
+    let repeated_projection =
+        project(&repeated, input, &pin_aliases, &resource_alias_ids).into_value();
+    if first_projection != repeated_projection {
+        return Err("identical checked IR/snapshot produced different projections".into());
+    }
+    let mut projection = first_projection;
+    projection["_execution_stage"] = json!("control_derivation");
+    projection["_resolved_leaf_count"] = json!(resolved.len());
+    projection["_same_snapshot_repeat_equal"] = json!(true);
+    Ok(projection)
+}
+
+fn component_contract(child: &Value, env: &FixtureContext) -> Result<ComponentContract, String> {
+    let mut contract = empty_contract(child["contract_digest"].as_str().unwrap());
+    contract.effects = parse_effects(&child["effects"])?;
+    contract.failures = FailureRow {
+        failures: child["failures"]
+            .as_array()
+            .into_iter()
+            .flatten()
+            .map(|name| failure_ref(name.as_str().unwrap(), &env.schemas))
+            .collect::<Result<Vec<_>, _>>()?,
+    };
+    let mut input_ports = BTreeSet::new();
+    if let Some(flow) = child.get("flow").filter(|v| !v.is_null()) {
+        if let Some(sources) = flow["sources"].as_array() {
+            for source in sources.iter().filter_map(Value::as_str) {
+                if let Some(port) = source
+                    .strip_prefix("input:")
+                    .and_then(|n| n.parse::<u32>().ok())
+                {
+                    input_ports.insert(port);
+                }
+            }
+        }
+    }
+    for entry in entries(&contract.effects) {
+        if let EffectGuard::InputEquals(guard) = &entry.guard {
+            input_ports.insert(guard.port_no);
+        }
+    }
+    contract.inputs = input_ports
+        .iter()
+        .map(|port_no| ComponentInputPort {
+            port_no: *port_no,
+            type_ref: env
+                .schemas
+                .get("agentflow.semantic.core@1/TypeSchemaRef")
+                .unwrap()
+                .reference(),
+        })
+        .collect();
+    let mut resource_ports = BTreeSet::new();
+    if let Some(resources) = child["resources"].as_array() {
+        for resource in resources {
+            resource_ports.insert(fixture_u32(&resource["component_port"], "component port"));
+        }
+    }
+    for entry in entries(&contract.effects) {
+        resource_ports.insert(entry.atom.resource_selector.requirement_port_no);
+    }
+    contract.resources = ResourceRequirementRow {
+        requirements: resource_ports
+            .into_iter()
+            .map(|port_no| ResourceRequirement {
+                port_no,
+                resource_type: env.resource_type().clone(),
+                required_attributes: vec![],
+            })
+            .collect(),
+    };
+    contract.information_flow = if child.get("flow").is_none_or(Value::is_null) {
+        InformationFlowContract {
+            confidentiality_restrictions: vec![],
+            summary: StaticInformationSummary {
+                sources: vec![],
+                taints: vec![],
+                instruction_authority: InstructionAuthority::None,
+                influence_unknown: false,
+            },
+            flow_constraints: vec![],
+        }
+    } else {
+        parse_flow(child.get("flow"), &env.flow)?
+    };
+    contract.usage = parse_usage(child.get("usage"))?;
+    contract.execution = parse_execution(child.get("execution"));
+    Ok(contract)
+}
+
+pub fn validate_contract_case(case: &Value) -> Result<Value, String> {
+    let input = &case["input"];
+    let child = input
+        .get("contract")
+        .or_else(|| input["children"].as_array().and_then(|items| items.first()))
+        .ok_or_else(|| "contract-validation fixture lacks a contract object".to_string())?;
+    let env = FixtureContext::for_case(case);
+    let raw = component_contract(child, &env)?;
+    let view = env.view();
+    let report = analyze_contract(&raw, &view);
+    let checked_component_produced = check_contract(&raw, &view).is_ok();
+    let dimensions = report
+        .dimensions
+        .iter()
+        .filter(|dimension| dimension.verdict != af_contract::ProofVerdict::Proven)
+        .map(|dimension| {
+            json!({
+                "dimension": dimension.dimension,
+                "verdict": dimension.verdict.as_str(),
+                "rule_id": dimension.rule_id,
+                "reason": dimension.reason,
+                "reference": dimension.reference,
+            })
+        })
+        .collect::<Vec<_>>();
+    Ok(json!({
+        "stage": "contract_validation",
+        "verdict": report.overall().as_str(),
+        "checked_component_produced": checked_component_produced,
+        "dimensions": dimensions,
+    }))
+}
+
+pub fn open_row_algebra(case: &Value) -> Result<Value, String> {
+    let input = &case["input"];
+    let child = input
+        .get("contract")
+        .or_else(|| input["children"].as_array().and_then(|items| items.first()))
+        .ok_or_else(|| "open-row fixture lacks a contract object".to_string())?;
+    let env = FixtureContext::for_case(case);
+    let raw = component_contract(child, &env)?;
+    let closed = EffectSignature {
+        row: EffectRow::Closed(vec![]),
+    };
+    let combined = af_effect::control::sequence_envelope(&raw.effects, &closed)
+        .map_err(|error| error.to_string())?;
+    Ok(effect_json(&combined))
+}
+
+pub fn guarded_select_effect_algebra(case: &Value) -> Result<Value, String> {
+    let children = case["input"]["children"]
+        .as_array()
+        .ok_or_else(|| "SELECT fixture lacks children".to_string())?;
+    let signatures = children
+        .iter()
+        .map(|child| parse_effects(&child["effects"]))
+        .collect::<Result<Vec<_>, _>>()?;
+    let mut iter = signatures.iter();
+    let first = iter.next().ok_or("SELECT needs at least one child")?;
+    let mut result = first.clone();
+    for next in iter {
+        result = af_effect::control::select_envelope(&result, next)
+            .map_err(|error| error.to_string())?;
+    }
+    Ok(effect_json(&result))
+}
+
+fn empty_contract(alias: &str) -> ComponentContract {
+    let suffix = alias.rsplit(':').next().unwrap_or("component");
+    ComponentContract {
+        component_identity: ComponentIdentity {
+            catalog: "agentflow.components@1".into(),
+            name: format!("fixture.{}", &suffix[..suffix.len().min(12)]),
+        },
+        inputs: vec![],
+        outputs: vec![],
+        failures: FailureRow::empty(),
+        effects: EffectSignature {
+            row: EffectRow::Closed(vec![]),
+        },
+        resources: ResourceRequirementRow::empty(),
+        information_flow: InformationFlowContract::empty(),
+        usage: UsageSignature::empty(),
+        recovery: RecoveryContract {
+            replay_semantics: ReplaySemantics::Recompute,
+            effect_recovery_clauses: vec![],
+        },
+        execution: ExecutionRequirements::empty(),
+        effect_flow_partitions: vec![],
+        recovery_action_bindings: vec![],
+        recovery_usage_bindings: vec![],
+    }
+}
+
+fn parse_effects(value: &Value) -> Result<EffectSignature, String> {
+    let row = match value["row"].as_str().unwrap_or("closed") {
+        "closed" => EffectRow::Closed(parse_entries(&value["entries"])?),
+        "unknown" => EffectRow::Unknown,
+        "open" => {
+            let residual = value["residuals"]
+                .as_array()
+                .into_iter()
+                .flatten()
+                .map(|item| {
+                    Ok(EffectResidual {
+                        catalog: item["catalog"].as_str().unwrap().into(),
+                        selector: parse_selector(&item["selector"]),
+                        bounds: parse_bounds(item)?,
+                    })
+                })
+                .collect::<Result<Vec<_>, String>>()?;
+            EffectRow::Open(EffectOpenRow {
+                known: parse_entries(&value["entries"])?,
+                residual,
+            })
+        }
+        other => return Err(format!("unknown fixture effect row {other}")),
+    };
+    Ok(EffectSignature { row })
+}
+
+fn parse_entries(value: &Value) -> Result<Vec<EffectEntry>, String> {
+    value
+        .as_array()
+        .into_iter()
+        .flatten()
+        .map(|entry| {
+            Ok(EffectEntry {
+                atom: parse_atom(&entry["atom"])?,
+                bounds: parse_bounds(entry)?,
+                guard: parse_guard(&entry["guard"])?,
+            })
+        })
+        .collect()
+}
+
+fn parse_atom(value: &Value) -> Result<EffectAtom, String> {
+    let qualifiers = value["qualifiers"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .map(
+            |qualifier| match (qualifier["family"].as_str(), qualifier["member"].as_str()) {
+                (Some("idempotency"), Some("natural")) => Ok(EffectQualifier::Idempotency(
+                    EffectIdempotencyQualifier::Natural,
+                )),
+                (Some("idempotency"), Some("none")) => Ok(EffectQualifier::Idempotency(
+                    EffectIdempotencyQualifier::None,
+                )),
+                other => Err(format!("unsupported fixture qualifier {other:?}")),
+            },
+        )
+        .collect::<Result<Vec<_>, _>>()?;
+    Ok(EffectAtom {
+        operation: EffectOperationRef {
+            catalog: value["operation"]["catalog"].as_str().unwrap().into(),
+            name: value["operation"]["name"].as_str().unwrap().into(),
+        },
+        resource_selector: parse_selector(&value["resource_selector"]),
+        qualifiers,
+    })
+}
+
+fn parse_selector(value: &Value) -> ResourceSelector {
+    ResourceSelector {
+        requirement_port_no: fixture_u32(&value["requirement_port_no"], "requirement port"),
+        scope_bindings: value["scope_bindings"]
+            .as_array()
+            .into_iter()
+            .flatten()
+            .map(|binding| ScopeBinding {
+                key: binding["key"].as_str().unwrap().into(),
+                value: binding["value"].as_str().unwrap().into(),
+            })
+            .collect(),
+    }
+}
+
+fn parse_guard(value: &Value) -> Result<EffectGuard, String> {
+    if value == "unconditional" {
+        return Ok(EffectGuard::Unconditional);
+    }
+    let equals = &value["input_equals"];
+    if !equals.is_object() {
+        return Err(format!("unsupported fixture guard: {value}"));
+    }
+    let expected = match &equals["value"] {
+        Value::String(value) => PrimitiveConstant::String(value.clone()),
+        Value::Number(value) => {
+            PrimitiveConstant::Int64(value.as_i64().ok_or("guard int64 out of range")?)
+        }
+        Value::Bool(value) => PrimitiveConstant::Bool(*value),
+        _ => return Err("unsupported guard literal".into()),
+    };
+    Ok(EffectGuard::InputEquals(EffectGuardInputEquals {
+        port_no: fixture_u32(&equals["port"], "guard port"),
+        expected,
+    }))
+}
+
+fn parse_bounds(value: &Value) -> Result<OccurrenceBounds, String> {
+    let lower = value["lower"].as_u64().ok_or("missing occurrence lower")?;
+    let upper = match &value["upper"] {
+        Value::String(s) if s == "unbounded" => OccurrenceCeiling::Unbounded,
+        Value::Number(n) => OccurrenceCeiling::Finite(n.as_u64().ok_or("invalid upper")?),
+        _ => return Err("invalid occurrence upper".into()),
+    };
+    Ok(OccurrenceBounds { lower, upper })
+}
+
+fn parse_flow(
+    value: Option<&Value>,
+    catalogs: &FlowCatalogs,
+) -> Result<InformationFlowContract, String> {
+    let Some(flow) = value.filter(|flow| !flow.is_null()) else {
+        return Ok(InformationFlowContract::empty());
+    };
+    let sources = flow["sources"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .map(|source| {
+            let text = source.as_str().unwrap();
+            let category = if text == "unknown_external" {
+                SourceCategory::UnknownExternal
+            } else if let Some(port) = text
+                .strip_prefix("input:")
+                .and_then(|n| n.parse::<u32>().ok())
+            {
+                SourceCategory::WorkflowInput(port)
+            } else {
+                return Err(format!("unmaterializable fixture Flow source {text}"));
+            };
+            Ok(FlowSourceRef { category })
+        })
+        .collect::<Result<Vec<_>, String>>()?;
+    let taints = flow["taints"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .map(|item| {
+            let reference = TaintRef {
+                catalog: LABEL_CATALOG.into(),
+                name: item.as_str().unwrap().into(),
+            };
+            catalogs
+                .labels
+                .resolve_taint(&reference)
+                .map_err(|e| e.to_string())?;
+            Ok(reference)
+        })
+        .collect::<Result<Vec<_>, String>>()?;
+    let authority = match flow["authority"].as_str().unwrap_or("none") {
+        "none" => InstructionAuthority::None,
+        "external_data" => InstructionAuthority::ExternalData,
+        "delegated_agent" => InstructionAuthority::DelegatedAgent,
+        "user" => InstructionAuthority::User,
+        "workflow" => InstructionAuthority::Workflow,
+        "platform" => InstructionAuthority::Platform,
+        other => return Err(format!("unknown instruction authority {other}")),
+    };
+    Ok(InformationFlowContract {
+        confidentiality_restrictions: vec![],
+        summary: StaticInformationSummary {
+            sources,
+            taints,
+            instruction_authority: authority,
+            influence_unknown: flow["influence_unknown"].as_bool().unwrap_or(false),
+        },
+        flow_constraints: vec![],
+    })
+}
+
+fn parse_usage(value: Option<&Value>) -> Result<UsageSignature, String> {
+    let mut limits = Vec::new();
+    if let Some(coordinates) = value
+        .and_then(|v| v.get("coordinates"))
+        .and_then(Value::as_object)
+    {
+        for (coordinate, raw_upper) in coordinates {
+            let (phase, meter_name) = coordinate
+                .split_once('/')
+                .ok_or("malformed usage coordinate")?;
+            let phase = match phase {
+                "forward" => UsagePhase::Forward,
+                "recovery" => UsagePhase::Recovery,
+                other => return Err(format!("unknown usage phase {other}")),
+            };
+            let upper = match raw_upper {
+                Value::String(s) if s == "unbounded" => UsageUpperBound::Unbounded,
+                Value::Number(n) => {
+                    UsageUpperBound::Finite(n.as_u64().ok_or("invalid usage upper")?)
+                }
+                _ => return Err("invalid usage upper".into()),
+            };
+            limits.push(UsageLimit {
+                meter: UsageMeterRef {
+                    catalog: METER_CATALOG.into(),
+                    name: meter_name.into(),
+                },
+                phase,
+                upper,
+            });
+        }
+    }
+    Ok(UsageSignature { limits })
+}
+
+fn parse_execution(value: Option<&Value>) -> ExecutionRequirements {
+    let mut requirements = ExecutionRequirements::empty();
+    let Some(value) = value.filter(|v| !v.is_null()) else {
+        return requirements;
+    };
+    if value.get("sandbox").and_then(Value::as_str) == Some("strict") {
+        requirements.sandbox = Some(SandboxRequirement {
+            minimum: SandboxLevel::Strong,
+        });
+    }
+    if value.get("runtime").and_then(Value::as_str) == Some("python") {
+        requirements.runtime_profile = Some(RuntimeProfileRequirement {
+            family: "language".into(),
+            profile: RuntimeProfileRef {
+                catalog: RUNTIME_CATALOG.into(),
+                name: "python".into(),
+            },
+            required_features: vec![],
+        });
+    }
+    requirements
+}
+
+fn failure_ref(name: &str, schemas: &TypeSchemaUniverse) -> Result<FailureTypeRef, String> {
+    let schema = match name {
+        "FailureA" => "agentflow.semantic.core@1/TypeSchemaRef",
+        "FailureB" => "agentflow.semantic.core@1/DigestRefValue",
+        _ => return Err(format!("unknown fixture failure alias {name}")),
+    };
+    Ok(FailureTypeRef {
+        payload_type: schemas
+            .get(schema)
+            .ok_or_else(|| format!("missing schema {schema}"))?
+            .reference(),
+    })
+}
+
+fn target_subflow_document(
+    component_pin: DigestRefValue,
+    contract: &ComponentContract,
+    env: &FixtureContext,
+) -> SemanticIrDocument {
+    let resource_slots = contract
+        .resources
+        .requirements
+        .iter()
+        .enumerate()
+        .map(|(index, requirement)| af_semantic::ResourceSlot {
+            id: (fixture_index(index) + 1).into(),
+            requirement_type: requirement.resource_type.schema.clone(),
+        })
+        .collect::<Vec<_>>();
+    let resources = contract
+        .resources
+        .requirements
+        .iter()
+        .enumerate()
+        .map(|(index, requirement)| ResourceUseBinding {
+            port_no: requirement.port_no.into(),
+            resource_slot: ResourceSlotId::from_raw(fixture_index(index) + 1),
+        })
+        .collect::<Vec<_>>();
+    let _ = env;
+    SemanticIrDocument {
+        semantic_refs: vec![],
+        types: vec![],
+        values: vec![],
+        expressions: vec![],
+        resources: resource_slots,
+        contracts: vec![ContractRefEntry {
+            id: 1.into(),
+            kind: ContractRefKind::Component,
+            digest: component_pin,
+        }],
+        run_parameters: vec![],
+        workflow_outputs: vec![],
+        computations: vec![ComputationDef {
+            id: 1.into(),
+            outputs: vec![],
+            body: ComputationBody::Invoke(InvokeBody {
+                contract: 1.into(),
+                inputs: vec![],
+                resources,
+            }),
+        }],
+        root: 1.into(),
+    }
+}
+
+fn entries(signature: &EffectSignature) -> Vec<&EffectEntry> {
+    match &signature.row {
+        EffectRow::Closed(entries) => entries.iter().collect(),
+        EffectRow::Open(open) => open.known.iter().collect(),
+        EffectRow::Unknown => vec![],
+    }
+}
+
+fn semantic_ir(
+    input: &Value,
+    raws: &BTreeMap<String, ComponentContract>,
+    pin_by_alias: &BTreeMap<String, DigestRefValue>,
+    subflow_targets: &BTreeMap<u32, DigestRefValue>,
+    env: &FixtureContext,
+) -> Result<(SemanticIrDocument, BTreeMap<String, ResourceSlotId>), String> {
+    let children = input["children"].as_array().unwrap();
+    let mut type_nodes = vec![SemanticTypeNode {
+        id: 1.into(),
+        body: SemanticTypeNodeBody::Schema(
+            env.schemas
+                .get("agentflow.semantic.core@1/TypeSchemaRef")
+                .unwrap()
+                .reference(),
+        ),
+    }];
+    let is_select = input["operator"].as_str() == Some("select");
+    if is_select {
+        type_nodes.push(SemanticTypeNode {
+            id: 2.into(),
+            body: SemanticTypeNodeBody::Primitive(SemanticPrimitiveType::Int64),
+        });
+    }
+    let mut values = Vec::new();
+    let mut expressions = Vec::new();
+    let mut run_parameters = Vec::new();
+    let mut component_inputs = BTreeMap::<u32, (u32, u32)>::new();
+    for child in children {
+        let raw = raws
+            .get(child["contract_digest"].as_str().unwrap())
+            .unwrap();
+        for port in &raw.inputs {
+            component_inputs
+                .entry(port.port_no)
+                .or_insert((10 + port.port_no, 10 + port.port_no));
+        }
+    }
+    for (port, (slot, expression)) in &component_inputs {
+        values.push(af_semantic::ValueSlot {
+            id: (*slot).into(),
+            type_id: 1.into(),
+        });
+        expressions.push(ExpressionDef {
+            id: (*expression).into(),
+            result_type_id: 1.into(),
+            body: ExpressionBody::ValueSlot((*slot).into()),
+        });
+        run_parameters.push(RunParameterDecl {
+            id: (*port).into(),
+            name: format!("input-{port}"),
+            type_id: 1.into(),
+            value_slot: (*slot).into(),
+        });
+    }
+    if is_select {
+        let exact_child = input.get("exact_child").and_then(Value::as_u64);
+        if let Some(index) = exact_child {
+            expressions.push(ExpressionDef {
+                id: 1.into(),
+                result_type_id: 2.into(),
+                body: ExpressionBody::Constant(PrimitiveConstant::Int64(
+                    i64::try_from(index).expect("SELECT case index fits i64") + 1,
+                )),
+            });
+        } else {
+            values.push(af_semantic::ValueSlot {
+                id: 1.into(),
+                type_id: 2.into(),
+            });
+            expressions.push(ExpressionDef {
+                id: 1.into(),
+                result_type_id: 2.into(),
+                body: ExpressionBody::ValueSlot(1.into()),
+            });
+            run_parameters.push(RunParameterDecl {
+                id: 100.into(),
+                name: "selector".into(),
+                type_id: 2.into(),
+                value_slot: 1.into(),
+            });
+        }
+    }
+
+    let mut resource_alias_ids = BTreeMap::<String, ResourceSlotId>::new();
+    for child in children {
+        let mut aliases = BTreeSet::new();
+        if let Some(resources) = child["resources"].as_array() {
+            for resource in resources {
+                let alias = resource["resource_slot"].as_str().unwrap().to_owned();
+                aliases.insert((
+                    fixture_u32(&resource["component_port"], "component port"),
+                    alias,
+                ));
+            }
+        }
+        if let Some(effects) = child.get("effects") {
+            for entry in entries(&parse_effects(effects)?) {
+                let port = entry.atom.resource_selector.requirement_port_no;
+                if !aliases.iter().any(|(mapped_port, _)| *mapped_port == port) {
+                    aliases.insert((
+                        port,
+                        format!("fixture:auto:{}:{port}", child["node"].as_u64().unwrap()),
+                    ));
+                }
+            }
+        }
+        for (_, alias) in aliases {
+            let next = fixture_index(resource_alias_ids.len()) + 1;
+            resource_alias_ids
+                .entry(alias)
+                .or_insert(ResourceSlotId::from_raw(next));
+        }
+    }
+    let mut resource_slots = Vec::new();
+    for (alias, slot) in &resource_alias_ids {
+        resource_slots.push(af_semantic::ResourceSlot {
+            id: *slot,
+            requirement_type: env.resource_type().schema.clone(),
+        });
+        let _ = alias;
+    }
+    let mut effective_refs = Vec::<(DigestRefValue, ContractRefKind)>::new();
+    for child in children {
+        let node = fixture_u32(&child["node"], "node id");
+        let digest = if let Some(target) = subflow_targets.get(&node) {
+            (target.clone(), ContractRefKind::Subflow)
+        } else {
+            let alias = child["contract_digest"].as_str().unwrap();
+            (
+                pin_by_alias
+                    .get(alias)
+                    .ok_or("no checked component pin for child alias")?
+                    .clone(),
+                ContractRefKind::Component,
+            )
+        };
+        effective_refs.push(digest);
+    }
+    effective_refs.sort_by(|left, right| {
+        let kind_order = |kind: &ContractRefKind| match kind {
+            ContractRefKind::Component => 0_u8,
+            ContractRefKind::Subflow => 1_u8,
+        };
+        (&left.0.domain, &left.0.hex, kind_order(&left.1)).cmp(&(
+            &right.0.domain,
+            &right.0.hex,
+            kind_order(&right.1),
+        ))
+    });
+    effective_refs.dedup_by(|left, right| left.0 == right.0 && left.1 == right.1);
+    let ref_key = |digest: &DigestRefValue| format!("{}/{}", digest.domain, digest.hex);
+    let refs = effective_refs
+        .iter()
+        .enumerate()
+        .map(|(index, (digest, _))| {
+            (
+                ref_key(digest),
+                ContractRefId::from_raw(fixture_index(index) + 1),
+            )
+        })
+        .collect::<BTreeMap<_, _>>();
+    let contracts = effective_refs
+        .iter()
+        .enumerate()
+        .map(|(index, (digest, kind))| ContractRefEntry {
+            id: (fixture_index(index) + 1).into(),
+            kind: *kind,
+            digest: digest.clone(),
+        })
+        .collect::<Vec<_>>();
+    let root_id = ComputationId::from_raw(1);
+    let child_ids = children
+        .iter()
+        .map(|c| ComputationId::from_raw(fixture_u32(&c["node"], "node id")))
+        .collect::<Vec<_>>();
+    let operator = input["operator"].as_str().unwrap();
+    let root_body = match operator {
+        "sequence" => ComputationBody::Sequence(SequenceBody {
+            children: child_ids.clone(),
+        }),
+        "select" => ComputationBody::Select(SelectBody {
+            selector: 1.into(),
+            cases: child_ids
+                .iter()
+                .enumerate()
+                .map(|(index, child)| SelectCase {
+                    ordinal: (fixture_index(index) + 1).into(),
+                    child: *child,
+                })
+                .collect(),
+        }),
+        "parallel_all" | "parallel_fail_fast" => ComputationBody::Parallel(ParallelBody {
+            mode: if operator == "parallel_all" {
+                ParallelMode::All
+            } else {
+                ParallelMode::FailFast
+            },
+            branches: child_ids
+                .iter()
+                .enumerate()
+                .map(|(index, child)| ParallelBranch {
+                    ordinal: (fixture_index(index) + 1).into(),
+                    child: *child,
+                })
+                .collect(),
+            max_inflight: input
+                .get("max_inflight")
+                .and_then(Value::as_u64)
+                .map(|n| u32::try_from(n).expect("fixture max_inflight fits u32")),
+            output_bindings: vec![],
+        }),
+        "race" => ComputationBody::Race(RaceBody {
+            branches: child_ids
+                .iter()
+                .enumerate()
+                .map(|(index, child)| RaceBranch {
+                    ordinal: (fixture_index(index) + 1).into(),
+                    child: *child,
+                })
+                .collect(),
+        }),
+        other => return Err(format!("unsupported fixture opcode {other}")),
+    };
+    let mut computations = vec![ComputationDef {
+        id: root_id,
+        outputs: vec![],
+        body: root_body,
+    }];
+    for child in children {
+        let node = ComputationId::from_raw(fixture_u32(&child["node"], "node id"));
+        let alias = child["contract_digest"].as_str().unwrap();
+        let raw = raws.get(alias).unwrap();
+        let subflow_target = subflow_targets.get(&node.raw());
+        let pin = if let Some(target) = subflow_target {
+            target
+        } else {
+            pin_by_alias
+                .get(alias)
+                .ok_or("no checked contract pin for child alias")?
+        };
+        let input_bindings = raw
+            .inputs
+            .iter()
+            .map(|port| {
+                let expression = component_inputs
+                    .get(&port.port_no)
+                    .map(|(_, expression)| *expression)
+                    .ok_or_else(|| {
+                        format!(
+                            "missing input expression for component port {}",
+                            port.port_no
+                        )
+                    })?;
+                Ok(InputBinding {
+                    port_no: port.port_no.into(),
+                    expression: expression.into(),
+                })
+            })
+            .collect::<Result<Vec<_>, String>>()?;
+        let mut mapped_resources = BTreeMap::<u32, String>::new();
+        if let Some(resources) = child["resources"].as_array() {
+            for resource in resources {
+                mapped_resources.insert(
+                    fixture_u32(&resource["component_port"], "component port"),
+                    resource["resource_slot"].as_str().unwrap().to_owned(),
+                );
+            }
+        }
+        if let Some(effects) = child.get("effects") {
+            for entry in entries(&parse_effects(effects)?) {
+                let port = entry.atom.resource_selector.requirement_port_no;
+                mapped_resources.entry(port).or_insert_with(|| {
+                    format!("fixture:auto:{}:{port}", child["node"].as_u64().unwrap())
+                });
+            }
+        }
+        let resource_bindings = mapped_resources
+            .into_iter()
+            .map(|(port, alias)| {
+                let slot = resource_alias_ids
+                    .get(&alias)
+                    .copied()
+                    .ok_or_else(|| format!("unmaterialized resource slot {alias}"))?;
+                Ok(ResourceUseBinding {
+                    port_no: port.into(),
+                    resource_slot: slot,
+                })
+            })
+            .collect::<Result<Vec<_>, String>>()?;
+        let contract_ref = *refs
+            .get(&ref_key(pin))
+            .ok_or("contract pin not entered in IR")?;
+        let body = if subflow_target.is_some() {
+            ComputationBody::CallSubflow(CallSubflowBody {
+                contract: contract_ref,
+                inputs: input_bindings,
+                resources: resource_bindings,
+            })
+        } else {
+            ComputationBody::Invoke(InvokeBody {
+                contract: contract_ref,
+                inputs: input_bindings,
+                resources: resource_bindings,
+            })
+        };
+        computations.push(ComputationDef {
+            id: node,
+            outputs: vec![],
+            body,
+        });
+    }
+    Ok((
+        SemanticIrDocument {
+            semantic_refs: vec![],
+            types: type_nodes,
+            values,
+            expressions,
+            resources: resource_slots,
+            contracts,
+            run_parameters,
+            workflow_outputs: vec![],
+            computations,
+            root: root_id,
+        },
+        resource_alias_ids,
+    ))
+}
+
+fn project(
+    summary: &DerivedControlContractSummary<'_, '_>,
+    input: &Value,
+    pins: &BTreeMap<String, String>,
+    resource_alias_ids: &BTreeMap<String, ResourceSlotId>,
+) -> ControlConformanceProjection {
+    let effects = match summary.effects().value() {
+        ControlDimensionValue::Complete(signature) => effect_json(signature),
+        ControlDimensionValue::Partial {
+            known_contribution, ..
+        } => json!({
+            "row":"unknown",
+            "known_contributions":known_contribution.as_ref().map(effect_json).into_iter().collect::<Vec<_>>(),
+        }),
+        ControlDimensionValue::Unknown {
+            known_contributions,
+            ..
+        } => json!({
+            "row":"unknown",
+            "known_contributions":known_contributions.iter().map(|item|effect_json(item.value())).collect::<Vec<_>>(),
+        }),
+        ControlDimensionValue::PerChild { .. } | ControlDimensionValue::NotApplicable => {
+            json!({"row":"unknown"})
+        }
+    };
+    let effect_occurrences = summary.effect_occurrences().iter().map(|occurrence| json!({
+        "atom": atom_json(&occurrence.declared.atom),
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": pins.get(&occurrence.source_contract_digest.hex).cloned().unwrap_or_else(|| occurrence.source_contract_digest.hex.clone()),
+        "entry_ordinal": occurrence.source_entry_ordinal,
+        "node": occurrence.computation.raw(),
+    })).collect::<Vec<_>>();
+    let effects_complete = effects["row"] == "closed";
+    let failures = match summary.failures().value() {
+        ControlDimensionValue::Complete(row) => {
+            let mut names = row.failures.iter().map(failure_alias).collect::<Vec<_>>();
+            names.sort();
+            Some(names)
+        }
+        _ => None,
+    };
+    let usage = match summary.usage().value() {
+        ControlDimensionValue::Complete(envelope) => usage_json(envelope),
+        ControlDimensionValue::Partial {
+            known_contribution, ..
+        } => known_contribution
+            .as_ref()
+            .map(usage_json)
+            .unwrap_or(json!({"state":"unknown","coordinates":{}})),
+        _ => json!({"state":"unknown","coordinates":{}}),
+    };
+    let flow = match summary.information_flow().value() {
+        ControlDimensionValue::Complete(flow)
+        | ControlDimensionValue::Partial {
+            known_contribution: Some(flow),
+            ..
+        } => flow_json(
+            flow,
+            summary.information_flow().proofs().first().map_or(
+                LeafVerdict::Unproven,
+                af_computation::ControlDimensionProof::verdict,
+            ),
+        ),
+        _ => {
+            json!({"sources":[],"taints":[],"may_carry_authority":"none","effective_authority_inferred":false,"influence_unknown":true,"decision_dependencies":[],"constraints_by_child":[],"verdict":"unproven"})
+        }
+    };
+    let resources_by_child = resources_json(summary, resource_alias_ids);
+    let execution_by_child = execution_json(summary);
+    let recovery_sources = recovery_json(summary, pins);
+    let flow_sources = flow_sources_json(summary, pins, resource_alias_ids);
+    let resource_aliases = resource_aliases_json(summary, resource_alias_ids);
+    let resource_requirements = resource_requirements_json(summary, resource_alias_ids);
+    let recovery_sources_full = recovery_sources_full_json(summary, pins);
+    let execution_by_child_full = execution_full_json(summary);
+    let proof_dimensions = summary
+        .proof()
+        .dimensions()
+        .iter()
+        .map(|proof| {
+            json!({
+                "dimension": proof.dimension(),
+                "verdict": verdict(proof.verdict()),
+                "rule_id": proof.rule_id(),
+                "source_node": proof.source_node().raw(),
+                "reference": proof.reference(),
+                "prerequisites": proof.prerequisites(),
+            })
+        })
+        .collect::<Vec<_>>();
+    let unresolved_children = match summary.effects().value() {
+        ControlDimensionValue::Partial {
+            unresolved_sources, ..
+        }
+        | ControlDimensionValue::Unknown {
+            unresolved_sources, ..
+        }
+        | ControlDimensionValue::PerChild {
+            unresolved_sources, ..
+        } => unresolved_sources
+            .iter()
+            .map(|node| node.raw())
+            .collect::<Vec<_>>(),
+        _ => vec![],
+    };
+    ControlConformanceProjection {
+        semantic_fields: json!({
+            "effect_lower_bound_adjusted_children": summary.effect_lower_bound_adjustments().iter().map(|item| item.source_node().raw()).collect::<Vec<_>>(),
+            "effect_occurrences": effect_occurrences,
+            "effect_row_complete": effects_complete,
+            "effects": effects,
+            "execution_by_child": execution_by_child,
+            "failures": failures,
+            "flow": flow,
+            "recovery_sources": recovery_sources,
+            "resources_by_child": resources_by_child,
+            "unresolved_children": unresolved_children,
+            "usage": usage,
+            "verdict": verdict(summary.proof().overall()),
+            "identity": {"operator": summary.operator().name(), "node": summary.control_node().raw(), "children": summary.direct_children().iter().map(|id| id.raw()).collect::<Vec<_>>()},
+            "case_operator": input["operator"],
+            "_inherited_obligations": summary.inherited_obligations().iter().map(|item|json!({"source_node":item.source_node().raw(),"dimension":item.dimension(),"verdict":verdict(item.verdict()),"rule_id":item.rule_id(),"reference":item.reference()})).collect::<Vec<_>>(),
+            "_semantic_projection": {
+                "source_semantic_ir_digest": digest_ref_json(summary.source_semantic_ir_digest()),
+                "control_node": summary.control_node().raw(),
+                "operator": summary.operator().name(),
+                "direct_children_in_semantic_order": summary.direct_children().iter().map(|id|id.raw()).collect::<Vec<_>>(),
+            "interface": interface_json(summary),
+                "effects": effects,
+                "effect_occurrences": effect_occurrences,
+            "effect_occurrences_full": summary.effect_occurrences().iter().map(|occurrence|json!({"caller_semantic_ir_digest":digest_ref_json(&occurrence.caller_semantic_ir_digest),"source_contract_digest":pins.get(&occurrence.source_contract_digest.hex).cloned().unwrap_or_else(||occurrence.source_contract_digest.hex.clone()),"source_component":{"catalog":occurrence.source_component.catalog,"name":occurrence.source_component.name},"computation":occurrence.computation.raw(),"source_entry_ordinal":occurrence.source_entry_ordinal,"declared":entry_json(&occurrence.declared),"mapped_resource_slot":occurrence.mapped_resource_slot.map(|slot|resource_alias_name(slot,resource_alias_ids))})).collect::<Vec<_>>(),
+                "effect_residuals": summary.effect_residuals().iter().map(|item|json!({"caller_digest":"semantic-ir:caller","contract_digest":pins.get(&item.source_contract_digest.hex).cloned().unwrap_or_else(||item.source_contract_digest.hex.clone()),"node":item.computation.raw(),"entry_ordinal":item.source_entry_ordinal,"residual":residual_json(&item.residual),"mapped_resource_slot":item.mapped_resource_slot.map(|slot|resource_alias_ids.iter().find(|(_,value)|**value==slot).map_or_else(||format!("resource-slot:{}",slot.raw()),|(alias,_)|alias.clone()))})).collect::<Vec<_>>(),
+                "failures": failures,
+                "failure_types": failure_types_json(summary),
+            "failure_sources_by_child": summary.children().iter().map(|child|json!({"source_node":child.control_node().raw(),"failures":failure_types_json(child)})).collect::<Vec<_>>(),
+                "usage": usage,
+            "usage_by_child": summary.children().iter().map(|child|json!({"source_node":child.control_node().raw(),"usage":match child.usage().value() { ControlDimensionValue::Complete(envelope)=>usage_json(envelope),ControlDimensionValue::Partial{known_contribution,..}=>known_contribution.as_ref().map(usage_json).unwrap_or(json!({"state":"unknown","coordinates":{}})),_=>json!({"state":"unknown","coordinates":{}}) }})).collect::<Vec<_>>(),
+                "information_flow": flow,
+                "flow_contract_sources": flow_sources,
+                "recovery_sources": recovery_sources_full,
+                "resource_requirements_by_occurrence": resource_requirements,
+                "resource_aliases": resource_aliases,
+                "execution_by_child": execution_by_child_full,
+                "dimension_availability": dimension_availability(summary),
+                "per_dimension_proofs": proof_dimensions,
+                "inherited_obligations": summary.inherited_obligations().iter().map(|item|json!({"source_node":item.source_node().raw(),"dimension":item.dimension(),"verdict":verdict(item.verdict()),"rule_id":item.rule_id(),"reference":item.reference()})).collect::<Vec<_>>(),
+            },
+        }),
+    }
+}
+
+fn interface_json(summary: &DerivedControlContractSummary<'_, '_>) -> Value {
+    let outputs = match summary.interface().outputs() {
+        ControlDimensionValue::Complete(outputs) => json!({
+            "state":"complete",
+            "ports":outputs.iter().map(|port|json!({"parent_port":port.parent_port_no(),"parent_slot":port.parent_value_slot().raw(),"local_type_id":port.local_type_id().raw(),"sources":port.sources().iter().map(|source|json!({"child":source.child_node().raw(),"port":source.child_port_no(),"value_slot":source.child_value_slot().raw()})).collect::<Vec<_>>() })).collect::<Vec<_>>(),
+        }),
+        ControlDimensionValue::Partial {
+            known_contribution,
+            unresolved_sources,
+        } => {
+            json!({"state":"partial","ports":known_contribution.as_ref().map(|ports|ports.iter().map(|port|json!({"parent_port":port.parent_port_no(),"parent_slot":port.parent_value_slot().raw(),"local_type_id":port.local_type_id().raw(),"sources":port.sources().iter().map(|source|json!({"child":source.child_node().raw(),"port":source.child_port_no(),"value_slot":source.child_value_slot().raw()})).collect::<Vec<_>>() })).collect::<Vec<_>>()).unwrap_or_default(),"unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>() })
+        }
+        ControlDimensionValue::Unknown {
+            unresolved_sources, ..
+        } => {
+            json!({"state":"unknown","unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>() })
+        }
+        ControlDimensionValue::PerChild {
+            unresolved_sources, ..
+        } => {
+            json!({"state":"per_child","unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>() })
+        }
+        ControlDimensionValue::NotApplicable => json!({"state":"not_applicable"}),
+    };
+    let selector = summary.interface().selector().map(|selector|json!({
+        "expression":selector.expression().raw(),
+        "dependency_slots":selector.dependency_slots().iter().map(|slot|slot.raw()).collect::<Vec<_>>(),
+        "case_ordinals":selector.case_ordinals(),
+        "exact_case":selector.exact_case(),
+        "totality_verdict":verdict(selector.totality_verdict()),
+    }));
+    json!({"outputs":outputs,"selector":selector})
+}
+
+fn digest_ref_json(digest: &DigestRefValue) -> Value {
+    json!({"algorithm":digest.algorithm,"domain":digest.domain,"hex":digest.hex})
+}
+
+fn schema_ref_json(schema: &af_semantic::TypeSchemaRef) -> Value {
+    json!({"specification_id":schema.specification_id,"type_name":schema.type_name,"schema_digest":digest_ref_json(&schema.schema_digest)})
+}
+
+fn failure_types_json(summary: &DerivedControlContractSummary<'_, '_>) -> Value {
+    match summary.failures().value() {
+        ControlDimensionValue::Complete(row) => json!(
+            row.failures
+                .iter()
+                .map(|failure| schema_ref_json(&failure.payload_type))
+                .collect::<Vec<_>>()
+        ),
+        ControlDimensionValue::Partial { .. } => json!({"state":"partial"}),
+        ControlDimensionValue::Unknown { .. } => json!({"state":"unknown"}),
+        ControlDimensionValue::PerChild { .. } => json!({"state":"per_child"}),
+        ControlDimensionValue::NotApplicable => json!({"state":"not_applicable"}),
+    }
+}
+
+fn dimension_availability(summary: &DerivedControlContractSummary<'_, '_>) -> Value {
+    json!({
+        "failure": dimension_state(summary.failures().value()),
+        "effect": dimension_state(summary.effects().value()),
+        "resource": dimension_state(summary.resources().value()),
+        "information_flow": dimension_state(summary.information_flow().value()),
+        "usage": dimension_state(summary.usage().value()),
+        "recovery": dimension_state(summary.recovery().value()),
+        "execution": dimension_state(summary.execution().value()),
+        "typed_outputs": dimension_state(summary.interface().outputs()),
+    })
+}
+
+fn dimension_state<T>(value: &ControlDimensionValue<T>) -> &'static str {
+    match value {
+        ControlDimensionValue::Complete(_) => "complete",
+        ControlDimensionValue::Partial { .. } => "partial",
+        ControlDimensionValue::Unknown { .. } => "unknown",
+        ControlDimensionValue::PerChild { .. } => "per_child",
+        ControlDimensionValue::NotApplicable => "not_applicable",
+    }
+}
+
+fn resource_alias_name(slot: ResourceSlotId, aliases: &BTreeMap<String, ResourceSlotId>) -> String {
+    aliases
+        .iter()
+        .find(|(_, value)| **value == slot)
+        .map_or_else(
+            || format!("resource-slot:{}", slot.raw()),
+            |(alias, _)| alias.clone(),
+        )
+}
+
+fn resource_requirements_json(
+    summary: &DerivedControlContractSummary<'_, '_>,
+    aliases: &BTreeMap<String, ResourceSlotId>,
+) -> Vec<Value> {
+    let ControlDimensionValue::PerChild { contributions, .. } = summary.resources().value() else {
+        return vec![];
+    };
+    contributions
+        .iter()
+        .flat_map(|contribution| {
+            contribution.value().iter().map(|item| {
+                let mapping = item.mapping();
+                let requirement = item.requirement();
+                json!({
+                    "source_node": contribution.source_node().raw(),
+                    "component_port": mapping.component_port_no,
+                    "resource_slot": resource_alias_name(mapping.resource_slot, aliases),
+                    "required_type": requirement.map(|row|schema_ref_json(&row.resource_type.schema)),
+                    "required_attributes": requirement.map(|row|row.required_attributes.iter().map(|attribute|json!({"key":attribute.key,"value":attribute.value})).collect::<Vec<_>>()).unwrap_or_default(),
+                    "attributes_proven": mapping.required_attributes_proven,
+                })
+            })
+        })
+        .collect()
+}
+
+fn resource_aliases_json(
+    summary: &DerivedControlContractSummary<'_, '_>,
+    aliases: &BTreeMap<String, ResourceSlotId>,
+) -> Vec<Value> {
+    summary
+        .resource_aliases()
+        .iter()
+        .map(|alias| {
+            json!({
+                "resource_slot": resource_alias_name(alias.resource_slot(), aliases),
+                "occurrences": alias.occurrences().iter().map(|occurrence|json!({"source_node":occurrence.source_node().raw(),"component_port":occurrence.mapping().component_port_no,"required_type":occurrence.requirement().map(|row|schema_ref_json(&row.resource_type.schema))})).collect::<Vec<_>>(),
+            })
+        })
+        .collect()
+}
+
+fn flow_sources_json(
+    summary: &DerivedControlContractSummary<'_, '_>,
+    pins: &BTreeMap<String, String>,
+    aliases: &BTreeMap<String, ResourceSlotId>,
+) -> Vec<Value> {
+    let (ControlDimensionValue::Complete(flow)
+    | ControlDimensionValue::Partial {
+        known_contribution: Some(flow),
+        ..
+    }) = summary.information_flow().value()
+    else {
+        return vec![];
+    };
+    flow.sources()
+        .iter()
+        .map(|source| {
+            json!({
+                "source_node": source.source_node().raw(),
+                "target": target_json(source.target(), pins),
+                "contract": information_flow_contract_json(source.contract()),
+                "source_mappings": source.source_mappings().iter().map(flow_mapping_json).collect::<Vec<_>>(),
+                "effect_flow_partitions": source.effect_flow_partitions().iter().map(|partition|json!({"operation":{"catalog":partition.operation.catalog,"name":partition.operation.name},"kind":partition.kind.as_str(),"allowed_effects":partition.allowed_effects.iter().map(atom_json).collect::<Vec<_>>()})).collect::<Vec<_>>(),
+            })
+        })
+        .map(|mut value| {
+            // Resource identities in Flow source bindings are scoped aliases,
+            // not raw numeric ids.
+            if let Some(mappings) = value["source_mappings"].as_array_mut() {
+                for mapping in mappings {
+                    if mapping["source_binding"]["kind"] == "resource_slot" {
+                        let raw = u32::try_from(mapping["source_binding"]["resource_slot"].as_u64().unwrap_or_default()).unwrap_or_default();
+                        mapping["source_binding"]["resource_slot"] = json!(resource_alias_name(ResourceSlotId::from_raw(raw), aliases));
+                    }
+                }
+            }
+            value
+        })
+        .collect()
+}
+
+fn information_flow_contract_json(contract: &InformationFlowContract) -> Value {
+    json!({
+        "confidentiality_restrictions": contract.confidentiality_restrictions.iter().map(|label|json!({"catalog":label.catalog,"name":label.name})).collect::<Vec<_>>(),
+        "summary": {
+            "sources": contract.summary.sources.iter().map(|source|match source.category { SourceCategory::WorkflowInput(port)=>json!({"workflow_input":port}),SourceCategory::ResourceRequirement(port)=>json!({"resource_requirement":port}),SourceCategory::UnknownExternal=>json!("unknown_external") }).collect::<Vec<_>>(),
+            "taints": contract.summary.taints.iter().map(|taint|json!({"catalog":taint.catalog,"name":taint.name})).collect::<Vec<_>>(),
+            "instruction_authority": contract.summary.instruction_authority.as_str(),
+            "influence_unknown": contract.summary.influence_unknown,
+        },
+        "flow_constraints": contract.flow_constraints.iter().map(flow_constraint_json).collect::<Vec<_>>(),
+    })
+}
+
+fn flow_mapping_json(mapping: &af_computation::FlowPortMapping) -> Value {
+    json!({
+        "source": mapping.source.as_ref().map(|source|match source.category { SourceCategory::WorkflowInput(port)=>json!({"workflow_input":port}),SourceCategory::ResourceRequirement(port)=>json!({"resource_requirement":port}),SourceCategory::UnknownExternal=>json!("unknown_external") }),
+        "sink": mapping.sink.as_ref().map(flow_constraint_json),
+        "source_binding": mapping.source_binding.as_ref().map(|binding|match binding { af_computation::FlowSourceBinding::InputExpression(expression)=>json!({"kind":"input_expression","expression":expression.raw()}),af_computation::FlowSourceBinding::ResourceSlot(slot)=>json!({"kind":"resource_slot","resource_slot":slot.raw()}),af_computation::FlowSourceBinding::UnknownExternal=>json!({"kind":"unknown_external"}) }),
+        "sink_binding": mapping.sink_binding.as_ref().map(|binding|match binding { af_computation::FlowSinkBinding::OutputValue(slot)=>json!({"kind":"output_value","value_slot":slot.raw()}),af_computation::FlowSinkBinding::EffectOccurrences(indices)=>json!({"kind":"effect_occurrences","indices":indices}) }),
+        "matched_effect_occurrences": mapping.matched_effect_occurrences,
+    })
+}
+
+fn flow_constraint_json(constraint: &af_flow::FlowConstraint) -> Value {
+    let sink = match &constraint.sink {
+        af_flow::FlowSink::WorkflowOutput(port) => json!({"kind":"workflow_output","port":port}),
+        af_flow::FlowSink::ExternalEffect(operation) => {
+            json!({"kind":"external_effect","operation":{"catalog":operation.catalog,"name":operation.name}})
+        }
+    };
+    json!({"kind":constraint.kind.as_str(),"sink":sink})
+}
+
+fn recovery_sources_full_json(
+    summary: &DerivedControlContractSummary<'_, '_>,
+    pins: &BTreeMap<String, String>,
+) -> Vec<Value> {
+    let ControlDimensionValue::PerChild { contributions, .. } = summary.recovery().value() else {
+        return vec![];
+    };
+    contributions
+        .iter()
+        .flat_map(|contribution| {
+            contribution.value().iter().map(|source| {
+                json!({
+                    "source_node":contribution.source_node().raw(),
+                    "target":target_json(source.target(),pins),
+                    "replay_semantics":source.contract().replay_semantics.as_str(),
+                    "clauses":source.contract().effect_recovery_clauses.iter().map(|clause|json!({"effect":atom_json(&clause.effect),"idempotency":clause.idempotency.as_str(),"key_requirement":clause.key_requirement.as_ref().map(|key|json!({"stable_across_attempts":key.stable_across_attempts,"distinct_across_invocations":key.distinct_across_invocations,"bound_to_operation":key.bound_to_operation,"provider_honors":key.provider_honors})),"reconciliation":match clause.reconciliation { af_recovery::ReconciliationRequirement::None=>"none", af_recovery::ReconciliationRequirement::Required=>"required" },"compensation":match &clause.compensation { af_recovery::CompensationRequirement::None=>json!("none"),af_recovery::CompensationRequirement::Required(operation)=>json!({"required":{"catalog":operation.catalog,"name":operation.name}}) },"unknown_effect_handling":match clause.unknown_effect_handling { af_recovery::UnknownEffectHandling::Block=>"block",af_recovery::UnknownEffectHandling::ReconciliationRequired=>"reconciliation_required" }})).collect::<Vec<_>>(),
+                    "action_bindings":source.action_bindings().iter().map(|binding|json!({"forward_effect":atom_json(&binding.identity.forward_effect),"action_kind":binding.identity.action_kind.as_str(),"action_effect":atom_json(&binding.identity.action_effect)})).collect::<Vec<_>>(),
+                    "usage_bindings":source.usage_bindings().iter().map(|binding|json!({"action":{"forward_effect":atom_json(&binding.action.forward_effect),"action_kind":binding.action.action_kind.as_str(),"action_effect":atom_json(&binding.action.action_effect)},"activations_per_forward":bounds_json(&binding.activations_per_forward),"attempts_per_activation":bounds_json(&binding.attempts_per_activation),"per_attempt_usage":usage_signature_json(&binding.per_attempt_usage)})).collect::<Vec<_>>(),
+                    "effect_occurrences":source.effects().iter().map(|occurrence|json!({"node":occurrence.computation.raw(),"entry_ordinal":occurrence.source_entry_ordinal,"atom":atom_json(&occurrence.declared.atom)})).collect::<Vec<_>>(),
+                })
+            })
+        })
+        .collect()
+}
+
+fn bounds_json(bounds: &OccurrenceBounds) -> Value {
+    json!({"lower":bounds.lower,"upper":ceiling_json(bounds.upper)})
+}
+
+fn usage_signature_json(signature: &UsageSignature) -> Value {
+    json!(signature.limits.iter().map(|limit|json!({"meter":{"catalog":limit.meter.catalog,"name":limit.meter.name},"phase":limit.phase.as_str(),"upper":match limit.upper { UsageUpperBound::Finite(value)=>json!(value),UsageUpperBound::Unbounded=>json!("unbounded") }})).collect::<Vec<_>>())
+}
+
+fn execution_full_json(summary: &DerivedControlContractSummary<'_, '_>) -> Vec<Value> {
+    let ControlDimensionValue::PerChild { contributions, .. } = summary.execution().value() else {
+        return vec![];
+    };
+    contributions
+        .iter()
+        .flat_map(|contribution| contribution.value().iter().map(move |source|json!({"source_node":contribution.source_node().raw(),"requirements":execution_requirements_json(source.requirements())})))
+        .collect()
+}
+
+fn execution_requirements_json(requirements: &ExecutionRequirements) -> Value {
+    json!({
+        "capabilities":requirements.capabilities.iter().map(|item|json!({"catalog":item.capability.catalog,"name":item.capability.name,"version":item.exact_version,"attributes":item.required_attributes.iter().map(|a|json!({"key":a.key,"value":a.value})).collect::<Vec<_>>()})).collect::<Vec<_>>(),
+        "quantities":requirements.quantities.iter().map(|item|json!({"kind_no":item.kind.value_no(),"minimum":item.minimum})).collect::<Vec<_>>(),
+        "sandbox":requirements.sandbox.as_ref().map(|item|if item.minimum==SandboxLevel::Basic { "basic" } else { "strong" }),
+        "trust_domain":requirements.trust_domain.as_ref().map(|item|json!({"catalog":item.catalog,"name":item.name})),
+        "region_residency":requirements.region_residency.as_ref().map(|item|json!({"execution_regions":item.execution_regions.iter().map(|r|json!({"catalog":r.catalog,"name":r.name})).collect::<Vec<_>>(),"residency_regions":item.residency_regions.iter().map(|r|json!({"catalog":r.catalog,"name":r.name})).collect::<Vec<_>>()})),
+        "runtime_profile":requirements.runtime_profile.as_ref().map(|item|json!({"family":item.family,"profile":{"catalog":item.profile.catalog,"name":item.profile.name},"required_features":item.required_features})),
+        "implementation_abis":requirements.implementation_abis.iter().map(|item|schema_ref_json(&item.schema)).collect::<Vec<_>>(),
+        "soft_preferences":requirements.soft_preferences.iter().map(|item|item.value_no()).collect::<Vec<_>>(),
+    })
+}
+
+fn target_json(target: &af_computation::ResolvedTarget, pins: &BTreeMap<String, String>) -> Value {
+    match target {
+        af_computation::ResolvedTarget::Component {
+            identity,
+            contract_digest,
+        } => {
+            json!({"kind":"component","identity":{"catalog":identity.catalog,"name":identity.name},"contract_digest":pins.get(&contract_digest.hex).cloned().unwrap_or_else(||contract_digest.hex.clone())})
+        }
+        af_computation::ResolvedTarget::Subflow {
+            semantic_ir_digest,
+            exported_contract_digest,
+        } => {
+            json!({"kind":"subflow","semantic_ir_digest":digest_ref_json(semantic_ir_digest),"exported_contract_digest":exported_contract_digest.as_ref().map(|digest|pins.get(&digest.hex).cloned().unwrap_or_else(||digest.hex.clone()))})
+        }
+        af_computation::ResolvedTarget::AwaitSignal { signal_type } => {
+            json!({"kind":"await_signal","signal_type":schema_ref_json(signal_type)})
+        }
+    }
+}
+
+fn effect_json(signature: &EffectSignature) -> Value {
+    match &signature.row {
+        EffectRow::Unknown => json!({"row":"unknown"}),
+        EffectRow::Closed(entries) => {
+            json!({"row":"closed","entries":entries.iter().map(entry_json).collect::<Vec<_>>(),"residuals":[]})
+        }
+        EffectRow::Open(open) => {
+            json!({"row":"open","entries":open.known.iter().map(entry_json).collect::<Vec<_>>(),"residuals":open.residual.iter().map(residual_json).collect::<Vec<_>>()})
+        }
+    }
+}
+
+fn entry_json(entry: &EffectEntry) -> Value {
+    json!({"atom":atom_json(&entry.atom),"lower":entry.bounds.lower,"upper":ceiling_json(entry.bounds.upper),"guard":guard_json(&entry.guard)})
+}
+
+fn residual_json(residual: &EffectResidual) -> Value {
+    json!({"catalog":residual.catalog,"selector":selector_json(&residual.selector),"lower":residual.bounds.lower,"upper":ceiling_json(residual.bounds.upper)})
+}
+
+fn atom_json(atom: &EffectAtom) -> Value {
+    let qualifiers = atom
+        .qualifiers
+        .iter()
+        .map(|q| match q {
+            EffectQualifier::Idempotency(EffectIdempotencyQualifier::Natural) => {
+                json!({"family":"idempotency","member":"natural"})
+            }
+            EffectQualifier::Idempotency(EffectIdempotencyQualifier::None) => {
+                json!({"family":"idempotency","member":"none"})
+            }
+        })
+        .collect::<Vec<_>>();
+    json!({"operation":{"catalog":atom.operation.catalog,"name":atom.operation.name},"resource_selector":selector_json(&atom.resource_selector),"qualifiers":qualifiers})
+}
+
+fn selector_json(selector: &ResourceSelector) -> Value {
+    json!({"requirement_port_no":selector.requirement_port_no,"scope_bindings":selector.scope_bindings.iter().map(|item|json!({"key":item.key,"value":item.value})).collect::<Vec<_>>()})
+}
+
+fn guard_json(guard: &EffectGuard) -> Value {
+    match guard {
+        EffectGuard::Unconditional => json!("unconditional"),
+        EffectGuard::InputEquals(item) => {
+            json!({"input_equals":{"port":item.port_no,"value":primitive_json(&item.expected)}})
+        }
+    }
+}
+
+fn primitive_json(value: &PrimitiveConstant) -> Value {
+    match value {
+        PrimitiveConstant::String(s) => json!(s),
+        PrimitiveConstant::Int64(n) => json!(n),
+        PrimitiveConstant::Bool(b) => json!(b),
+        _ => json!(value.case_name()),
+    }
+}
+
+fn ceiling_json(value: OccurrenceCeiling) -> Value {
+    match value {
+        OccurrenceCeiling::Finite(value) => json!(value),
+        OccurrenceCeiling::Unbounded => json!("unbounded"),
+    }
+}
+
+fn usage_json(envelope: &StaticUsageEnvelope) -> Value {
+    let mut coordinates = serde_json::Map::new();
+    for (coordinate, bound) in envelope.iter() {
+        let key = format!("{}/{}", coordinate.phase.as_str(), coordinate.meter.name);
+        let value = match bound {
+            StaticUsageBound::KnownFinite(value) => json!(value),
+            StaticUsageBound::KnownUnbounded => json!("unbounded"),
+            StaticUsageBound::Unknown => json!("unknown"),
+        };
+        coordinates.insert(key, value);
+    }
+    let state = if envelope.is_globally_unknown() {
+        "unknown"
+    } else if coordinates.is_empty() {
+        "empty_without_zero_claim"
+    } else if coordinates.values().any(|v| v == "unknown") {
+        "partial_unknown"
+    } else {
+        "known"
+    };
+    json!({"state":state,"coordinates":coordinates})
+}
+
+fn flow_json(flow: &af_computation::ControlFlowSummary, verdict_value: LeafVerdict) -> Value {
+    let (sources, taints, authority, unknown) = flow
+        .known_may_influence()
+        .map(|summary| {
+            let sources = summary
+                .sources
+                .iter()
+                .map(|source| match source.category {
+                    SourceCategory::WorkflowInput(port) => format!("input:{port}"),
+                    SourceCategory::ResourceRequirement(port) => format!("resource:{port}"),
+                    SourceCategory::UnknownExternal => "unknown_external".into(),
+                })
+                .collect::<Vec<_>>();
+            let taints = summary
+                .taints
+                .iter()
+                .map(|taint| taint.name.clone())
+                .collect::<Vec<_>>();
+            (
+                sources,
+                taints,
+                summary.instruction_authority.as_str(),
+                summary.influence_unknown,
+            )
+        })
+        .unwrap_or_default();
+    let mut constraints = flow.sources().iter().map(|source| json!({"node":source.source_node().raw(),"constraints":source.contract().flow_constraints.iter().map(flow_constraint_json).collect::<Vec<_>>()})).collect::<Vec<_>>();
+    constraints.sort_by_key(|item| item["node"].as_u64().unwrap_or_default());
+    json!({"sources":sources,"taints":taints,"may_carry_authority":authority,"effective_authority_inferred":false,"influence_unknown":unknown || flow.control_decision_influence_unknown() || !flow.select_decision_dependencies().is_empty() || !flow.unresolved_children().is_empty(),"decision_dependencies":flow.select_decision_dependencies().iter().map(|slot|format!("value-slot:{}",slot.raw())).collect::<Vec<_>>(),"constraints_by_child":constraints,"verdict":verdict(verdict_value)})
+}
+
+fn resources_json(
+    summary: &DerivedControlContractSummary<'_, '_>,
+    aliases: &BTreeMap<String, ResourceSlotId>,
+) -> Vec<Value> {
+    let ControlDimensionValue::PerChild { contributions, .. } = summary.resources().value() else {
+        return vec![];
+    };
+    let reverse = aliases
+        .iter()
+        .map(|(alias, slot)| (slot.raw(), alias.clone()))
+        .collect::<BTreeMap<_, _>>();
+    contributions.iter().flat_map(|contribution| contribution.value().iter().map(|occurrence| {
+        let slot=reverse.get(&occurrence.mapping().resource_slot.raw()).cloned().unwrap_or_else(||format!("resource-slot:{}",occurrence.mapping().resource_slot.raw()));
+        json!({"node":contribution.source_node().raw(),"requirements":[{"component_port":occurrence.mapping().component_port_no,"resource_slot":slot}]})
+    })).collect()
+}
+
+fn execution_json(summary: &DerivedControlContractSummary<'_, '_>) -> Vec<Value> {
+    let ControlDimensionValue::PerChild { contributions, .. } = summary.execution().value() else {
+        return vec![];
+    };
+    contributions
+        .iter()
+        .flat_map(|contribution| {
+            contribution.value().iter().filter_map(move |source| {
+                let requirements = source.requirements();
+                let mut x = serde_json::Map::new();
+                if requirements
+                    .sandbox
+                    .as_ref()
+                    .is_some_and(|sandbox| sandbox.minimum == SandboxLevel::Strong)
+                {
+                    x.insert("sandbox".into(), json!("strict"));
+                }
+                if requirements
+                    .runtime_profile
+                    .as_ref()
+                    .is_some_and(|profile| profile.profile.name == "python")
+                {
+                    x.insert("runtime".into(), json!("python"));
+                }
+                (!x.is_empty()).then(|| json!({"node":contribution.source_node().raw(),"x":x}))
+            })
+        })
+        .collect()
+}
+
+fn recovery_json(
+    summary: &DerivedControlContractSummary<'_, '_>,
+    _pins: &BTreeMap<String, String>,
+) -> Vec<Value> {
+    let ControlDimensionValue::PerChild { contributions, .. } = summary.recovery().value() else {
+        return vec![];
+    };
+    contributions.iter().flat_map(|contribution| contribution.value().iter().filter_map(|source| {
+        if source.contract().effect_recovery_clauses.is_empty() { return None; }
+        Some(json!({"node":contribution.source_node().raw(),"contract_digest":"fixture","actions":source.action_bindings().iter().map(|binding|match binding.identity.action_kind { af_contract::RecoveryActionKind::Compensation => "compensate", af_contract::RecoveryActionKind::Reconciliation => "reconcile" }).collect::<Vec<_>>() }))
+    })).collect()
+}
+
+fn verdict(value: LeafVerdict) -> &'static str {
+    match value {
+        LeafVerdict::Proven => "proven",
+        LeafVerdict::Violation => "violation",
+        LeafVerdict::Unproven => "unproven",
+        LeafVerdict::RequiresEvidence => "requires_evidence",
+    }
+}
+
+fn failure_alias(reference: &FailureTypeRef) -> String {
+    if reference.type_name() == "TypeSchemaRef" {
+        "FailureA"
+    } else {
+        "FailureB"
+    }
+    .into()
+}
+
+fn modules() -> CompiledModuleSet {
+    let sources = vec![
+        (
+            "spec/idl/core/machine-primitives.afidl",
+            include_str!("../../../../spec/idl/core/machine-primitives.afidl"),
+        ),
+        (
+            "spec/idl/specification-registry.afidl",
+            include_str!("../../../../spec/idl/specification-registry.afidl"),
+        ),
+        (
+            "spec/idl/semantic-core.afidl",
+            include_str!("../../../../spec/idl/semantic-core.afidl"),
+        ),
+        (
+            "spec/idl/semantic-ir.afidl",
+            include_str!("../../../../spec/idl/semantic-ir.afidl"),
+        ),
+        (
+            "spec/idl/effect-signature.afidl",
+            include_str!("../../../../spec/idl/effect-signature.afidl"),
+        ),
+        (
+            "spec/idl/failure-row.afidl",
+            include_str!("../../../../spec/idl/failure-row.afidl"),
+        ),
+        (
+            "spec/idl/resource-requirement.afidl",
+            include_str!("../../../../spec/idl/resource-requirement.afidl"),
+        ),
+        (
+            "spec/idl/information-flow.afidl",
+            include_str!("../../../../spec/idl/information-flow.afidl"),
+        ),
+        (
+            "spec/idl/usage-signature.afidl",
+            include_str!("../../../../spec/idl/usage-signature.afidl"),
+        ),
+        (
+            "spec/idl/cost-projection.afidl",
+            include_str!("../../../../spec/idl/cost-projection.afidl"),
+        ),
+        (
+            "spec/idl/recovery-contract.afidl",
+            include_str!("../../../../spec/idl/recovery-contract.afidl"),
+        ),
+        (
+            "spec/idl/execution-requirements.afidl",
+            include_str!("../../../../spec/idl/execution-requirements.afidl"),
+        ),
+        (
+            "spec/idl/component-contract.afidl",
+            include_str!("../../../../spec/idl/component-contract.afidl"),
+        ),
+        (
+            "spec/idl/effect-resource-compatibility.afidl",
+            include_str!("../../../../spec/idl/effect-resource-compatibility.afidl"),
+        ),
+        (
+            "spec/idl/recovery-usage-coverage.afidl",
+            include_str!("../../../../spec/idl/recovery-usage-coverage.afidl"),
+        ),
+        (
+            "spec/idl/flow-execution-relation.afidl",
+            include_str!("../../../../spec/idl/flow-execution-relation.afidl"),
+        ),
+    ]
+    .into_iter()
+    .map(|(path, source)| (path.to_owned(), source.to_owned()))
+    .collect::<Vec<_>>();
+    compile_module_set(&sources).unwrap()
+}
