@@ -1,0 +1,66 @@
+afidl 1;
+
+schema agentflow.failure.row @1;
+
+import agentflow.semantic.core@1 as core;
+
+// AgentFlow Static Typed Failure Row — Phase 4A.2. This module is the
+// machine description of the Φ dimension of
+// Computation<I, O, Φ, ε, R>: the CLOSED, NOMINAL set of typed business
+// failures a computation may surface.
+//
+// A failure type is identified nominally: the full triple
+// (SpecificationId, TypeName, pinned TypeSchemaDigest). A type enters a
+// FailureRow exactly when this contract gives it a typed failure role;
+// being an AFIDL schema alone makes nothing a failure. No error-message
+// matching, no error codes, no exception class reflection, no
+// provider-specific mapping (later Worker Failure Mapping).
+//
+// The six error planes are strictly separate, and only the FIRST is
+// representable here:
+//
+//   Typed FailureValue      → Φ (this module)
+//   TimedOut                → Control Outcome (SemanticIr HandleMatch)
+//   Cancelled               → Control Outcome (never a Handle match)
+//   RecoveryBlocked         → Recovery State (not HANDLE-catchable)
+//   TaskAttemptLost         → Infrastructure Fact (never Failure<WorkerLost>)
+//   RuntimeIncident         → Incident Plane (blocks progression)
+//
+// Φ = ∅ does NOT mean the computation succeeds: TimedOut, Cancelled,
+// RecoveryBlocked, infrastructure facts and incidents all remain possible
+// outside the row. Unknown failure upper bounds are expressed by a
+// separate static-analysis result (Unproven), never by an empty row.
+//
+// This module deliberately does NOT copy the Effect Row's open/residual/
+// unknown wire states: the Failure Row is a closed nominal set.
+//
+// Deliberately absent: FailureValue runtime payloads, TerminalOutcome,
+// RuntimeIncident ABI, worker error transport, failure mapping adapters,
+// ComponentContract, RecoveryContract, retry policies, journal events.
+//
+// This module self-hosts like the other production modules: its field
+// numbering is registered as `active` rows in
+// spec/registry/abi-numbers.json, and its per-type TypeSchemaDigests are
+// frozen in the AFIDL corpus (case `failure-row`). No new HashV1 domain is
+// introduced: type identity is TypeSchemaDigest, and no FailureRowDigest
+// exists — the future ComponentContract will hash as a whole under the
+// already frozen `component-contract` domain.
+
+// One typed failure: an exact pin of a named AFIDL schema. The payload
+// type is reused from the semantic core by full cross-module identity —
+// never a bare string, never a redeclared reference shape. Nominal
+// identity = (specification_id, type_name, schema_digest); two refs with
+// the same short name under different specifications, or with different
+// pinned digests, are DIFFERENT failure types and are never silently
+// compatible.
+record FailureTypeRef {
+  1 payload_type: core.TypeSchemaRef;
+}
+
+// The closed Failure Row Φ = {F1, F2, ... Fn} of one contract: the set of
+// typed business failures it may surface. Canonical order is the sorted
+// nominal identity, never the source declaration order; duplicate
+// declarations are rejected.
+record FailureRow {
+  1 failures: list<FailureTypeRef>;
+}

@@ -28,6 +28,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "af-failure"
+version = "0.1.0"
+dependencies = [
+ "af-core",
+ "af-idl",
+ "af-semantic",
+ "hex",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "af-idl"
 version = "0.1.0"
 dependencies = [
