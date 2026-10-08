@@ -1,0 +1,90 @@
+{
+  "case_id": "effect/algebra/join-unconditional-vs-conditional",
+  "case_kind": "algebra",
+  "corpus_revision": 2,
+  "expected": {
+    "canonical_ace1_utf8": "{\"row\":{\"closed\":[{\"atom\":{\"operation\":{\"catalog\":\"agentflow.test.capability-catalog@1\",\"name\":\"github.issue.create\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"bounds\":{\"lower\":\"0\",\"upper\":{\"finite\":\"4\"}},\"guard\":{\"unconditional\":null}}]}}"
+  },
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    }
+  ],
+  "kind": "agentflow.conformance.effect-signature.case",
+  "max_attempts": null,
+  "note": "unconditional [1,2] ⊔ guard(input==\"a\") [2,4] = unconditional [0,4]: the guarded branch may contribute zero",
+  "operands": [
+    {
+      "row": {
+        "closed": [
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.test.capability-catalog@1",
+                "name": "github.issue.create"
+              },
+              "qualifiers": [],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "bounds": {
+              "lower": 1,
+              "upper": {
+                "finite": 2
+              }
+            },
+            "guard": "unconditional"
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "closed": [
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.test.capability-catalog@1",
+                "name": "github.issue.create"
+              },
+              "qualifiers": [],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "bounds": {
+              "lower": 2,
+              "upper": {
+                "finite": 4
+              }
+            },
+            "guard": {
+              "input_equals": {
+                "expected": {
+                  "string": "a"
+                },
+                "port_no": 1
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "operation": "branch_join",
+  "property": null,
+  "reps": null
+}

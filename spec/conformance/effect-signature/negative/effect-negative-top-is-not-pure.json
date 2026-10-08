@@ -2,7 +2,7 @@
   "case_id": "effect/negative/top-is-not-pure",
   "case_kind": "negative",
   "classification": "unknown",
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "expect_validation": "accept",
   "fixture_catalogs": [
     {

@@ -3,7 +3,7 @@
   "case_id": "effect/golden/resource-scope",
   "case_kind": "golden",
   "classification": "closed",
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "fixture_catalogs": [
     {
       "operations": [

@@ -26,7 +26,18 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONF = ROOT / "spec" / "conformance" / "effect-signature"
-CORPUS_REVISION = 1
+# Revision 2 (Phase 4A.1B): guarded branch-join lower-bound correction.
+# The Rust join_one kept min(lower) across DIFFERING guards and stamped
+# the widened entry unconditional - promoting a condition-guaranteed
+# lower bound to an unconditional one. The oracle already weakened to
+# zero; the original different-guards fixture masked the divergence (one
+# side had lower 0). Revision 2 freezes the guarded-join fixtures that
+# expose the rule: identical guards keep the conditional minimum,
+# differing guards weaken to zero, one-sided keys keep their guard. No
+# pre-existing expected value changed; every earlier golden byte is
+# identical.
+# Revision 1 (Phase 4A.1): initial freeze.
+CORPUS_REVISION = 2
 
 # Plumbing: the semantic-ir corpus module carries the ACE1 encoder and the
 # independent AFIDL1 compiler (which it loads as `afidl`).
@@ -1506,6 +1517,141 @@ def main():
             "repeat", [big],
             {"error_kind": EFFECT_ARITHMETIC_OVERFLOW},
             reps={"lower": 4, "upper": {"finite": 4}})
+
+    # --- Guarded branch join (Phase 4A.1B) --------------------------------
+    #
+    # A lower occurrence bound guarded by G is guaranteed only under G.
+    # Case A (identical guards): keep the conditional minimum.
+    # Case B (differing guards): widen to unconditional, lower -> 0.
+    # Case C (one-sided key): [0, u] with the guard kept.
+
+    def gstring(value):
+        return {"input_equals": {"port_no": 1, "expected": {"string": value}}}
+
+    # Case A, unconditional: guaranteed lower bounds add no condition.
+    ja = sig_closed([entry("github.issue.create", 1, [], 1, 2)])
+    jb = sig_closed([entry("github.issue.create", 1, [], 3, 5)])
+    j_same_uncond = branch_join(ja, jb)
+    assert j_same_uncond["row"]["closed"][0]["bounds"] == {
+        "lower": 1, "upper": {"finite": 5}}
+    assert j_same_uncond["row"]["closed"][0]["guard"] == {"unconditional": None}
+    algebra("effect/algebra/join-same-unconditional-guard",
+            "identical unconditional guards keep the tightest unconditional "
+            "lower bound [min(1,3), max(2,5)] = [1,5]",
+            "branch_join", [ja, jb],
+            {"canonical_ace1_utf8": result_ace1(j_same_uncond["row"])})
+
+    # Case A, conditional: the minimum survives AS a conditional bound.
+    jc = sig_closed([entry("github.issue.create", 1, [], 2, 4,
+                           guard=gstring("a"))])
+    jd = sig_closed([entry("github.issue.create", 1, [], 3, 5,
+                           guard=gstring("a"))])
+    j_same_cond = branch_join(jc, jd)
+    assert j_same_cond["row"]["closed"][0]["bounds"] == {
+        "lower": 2, "upper": {"finite": 5}}
+    assert j_same_cond["row"]["closed"][0]["guard"] == gstring("a")
+    algebra("effect/algebra/join-same-conditional-guard",
+            'guard(input=="a") [2,4] ⊔ guard(input=="a") [3,5] keeps guard '
+            'input_equals("a") with the conditional minimum [2,5]',
+            "branch_join", [jc, jd],
+            {"canonical_ace1_utf8": result_ace1(j_same_cond["row"])})
+
+    # Case B: the task's key case - lower bounds weaken to zero.
+    je = sig_closed([entry("github.issue.create", 1, [], 1, 2,
+                           guard=gstring("a"))])
+    jf = sig_closed([entry("github.issue.create", 1, [], 1, 3,
+                           guard=gstring("b"))])
+    j_diff = branch_join(je, jf)
+    assert j_diff["row"]["closed"][0]["bounds"] == {
+        "lower": 0, "upper": {"finite": 3}}
+    assert j_diff["row"]["closed"][0]["guard"] == {"unconditional": None}
+    algebra("effect/algebra/join-different-input-equals-guards",
+            'guard(input=="a") [1,2] ⊔ guard(input=="b") [1,3] = '
+            "unconditional [0,3]: the conditions' union is not expressible "
+            "and a positive unconditional lower would claim occurrences "
+            "when NEITHER condition holds",
+            "branch_join", [je, jf],
+            {"canonical_ace1_utf8": result_ace1(j_diff["row"])})
+
+    # Case B mix: an unconditional branch guarantees its lower only when IT
+    # runs; the guarded branch may run with its condition false.
+    jg = sig_closed([entry("github.issue.create", 1, [], 1, 2)])
+    jh = sig_closed([entry("github.issue.create", 1, [], 2, 4,
+                           guard=gstring("a"))])
+    j_mix = branch_join(jg, jh)
+    assert j_mix["row"]["closed"][0]["bounds"] == {
+        "lower": 0, "upper": {"finite": 4}}
+    assert j_mix["row"]["closed"][0]["guard"] == {"unconditional": None}
+    algebra("effect/algebra/join-unconditional-vs-conditional",
+            'unconditional [1,2] ⊔ guard(input=="a") [2,4] = unconditional '
+            "[0,4]: the guarded branch may contribute zero",
+            "branch_join", [jg, jh],
+            {"canonical_ace1_utf8": result_ace1(j_mix["row"])})
+
+    # Case C: a one-sided guarded key keeps its guard with lower 0.
+    ji = sig_closed([entry("github.issue.create", 1, [], 2, 4,
+                           guard=gstring("a"))])
+    j_one = branch_join(ji, pure())
+    assert j_one["row"]["closed"][0]["bounds"] == {
+        "lower": 0, "upper": {"finite": 4}}
+    assert j_one["row"]["closed"][0]["guard"] == gstring("a")
+    algebra("effect/algebra/join-one-sided-guarded-effect",
+            "a key present in only one branch drops to [0,u] and KEEPS its "
+            "provable guard: the other branch's absence invents no "
+            "occurrences",
+            "branch_join", [ji, pure()],
+            {"canonical_ace1_utf8": result_ace1(j_one["row"])})
+
+    # Properties over the guarded closed set.
+    jk = sig_closed([entry("github.issue.create", 1, [], 1, 2,
+                           guard=gstring("a"))])
+    jl = sig_closed([entry("github.issue.create", 1, [], 1, 3,
+                           guard=gstring("b"))])
+    j_comm = select_envelope(jk, jl)
+    j_comm_back = select_envelope(jl, jk)
+    j_comm_bytes = result_ace1(j_comm["row"])
+    assert j_comm_bytes == result_ace1(j_comm_back["row"])
+    algebra("effect/algebra/join-commutativity-with-guards",
+            "guarded branch join is commutative; differing input_equals "
+            "conditions widen to unconditional [0,3]",
+            "select_envelope", [jk, jl],
+            {"canonical_ace1_utf8": j_comm_bytes},
+            property_kind="commutativity")
+
+    jm = sig_closed([entry("github.issue.create", 1, [], 2, 4,
+                           guard=gstring("a"))])
+    j_idem = branch_join(jm, jm)
+    j_idem_bytes = result_ace1(j_idem["row"])
+    assert j_idem_bytes == result_ace1(validate(jm)["row"]), (
+        "guarded join idempotence broke")
+    algebra("effect/algebra/join-idempotence-with-guards",
+            "guarded branch join with itself reproduces the branch envelope "
+            "exactly (conditional lower bound kept)",
+            "branch_join", [jm, jm],
+            {"canonical_ace1_utf8": j_idem_bytes},
+            property_kind="idempotence")
+
+    jn = sig_closed([entry("github.issue.create", 1, [], 1, 2,
+                           guard=gstring("a"))])
+    jo = sig_closed([entry("github.issue.create", 1, [], 1, 3,
+                           guard=gstring("b"))])
+    jp = sig_closed([entry("github.issue.create", 1, [], 2, 5,
+                           guard=gstring("a"))])
+    j_assoc_left = branch_join(branch_join(jn, jo), jp)
+    j_assoc_right = branch_join(jn, branch_join(jo, jp))
+    j_assoc_bytes = result_ace1(j_assoc_left["row"])
+    assert j_assoc_bytes == result_ace1(j_assoc_right["row"]), (
+        "guarded join associativity broke")
+    assert j_assoc_left["row"]["closed"][0]["bounds"] == {
+        "lower": 0, "upper": {"finite": 5}}
+    assert j_assoc_left["row"]["closed"][0]["guard"] == {"unconditional": None}
+    algebra("effect/algebra/join-associativity-with-guards",
+            "guarded branch join is associative over the closed guard set: "
+            "both groupings of guard(a) ⊔ guard(b) ⊔ guard(a) give "
+            "unconditional [0,5]",
+            "branch_join", [jn, jo, jp],
+            {"canonical_ace1_utf8": j_assoc_bytes},
+            property_kind="associativity")
 
     # --- Equivalence -------------------------------------------------------
 

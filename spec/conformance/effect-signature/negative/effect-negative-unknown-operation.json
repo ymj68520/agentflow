@@ -1,7 +1,7 @@
 {
   "case_id": "effect/negative/unknown-operation",
   "case_kind": "negative",
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "expected_kind": "unknown_effect_operation",
   "fixture_catalogs": [
     {

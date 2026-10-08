@@ -342,18 +342,28 @@ fn algebra_cases_reproduce_the_frozen_results() {
             );
         }
 
-        // Frozen algebraic properties, re-checked across groupings.
+        // Frozen algebraic properties, re-checked across groupings. The
+        // combiner follows the case's operation so guarded-join properties
+        // are checked against branch_join exactly as accumulate properties
+        // are checked against accumulate.
+        let combine = |a: &EffectSignature, b: &EffectSignature| -> EffectSignature {
+            match case["operation"].as_str().unwrap() {
+                "accumulate" => accumulate(a, b),
+                "branch_join" | "select_envelope" => branch_join(a, b),
+                other => panic!("{other}: no algebraic property defined"),
+            }
+            .unwrap_or_else(|e| panic!("{case_id}: property combine failed: {e}"))
+        };
+        let parse = |index: usize| -> EffectSignature {
+            let raw: EffectSignature = serde_json::from_value(case["operands"][index].clone())
+                .unwrap_or_else(|e| panic!("{case_id}: operand parses: {e}"));
+            raw.validate(&universe)
+                .unwrap_or_else(|e| panic!("{case_id}: operand validates: {e}"))
+        };
         match case["property"].as_str() {
             Some("identity") => {
-                let pure: EffectSignature =
-                    serde_json::from_value(case["operands"][0].clone()).unwrap();
-                let x: EffectSignature =
-                    serde_json::from_value(case["operands"][1].clone()).unwrap();
-                let reversed = accumulate(
-                    &x.validate(&universe).unwrap(),
-                    &pure.validate(&universe).unwrap(),
-                )
-                .unwrap();
+                let (pure, x) = (parse(0), parse(1));
+                let reversed = combine(&x, &pure);
                 assert_canonical_bytes(
                     case_id,
                     &reversed,
@@ -367,8 +377,8 @@ fn algebra_cases_reproduce_the_frozen_results() {
                     raw.validate(&universe).unwrap()
                 };
                 let (a, b, c) = (parse(0), parse(1), parse(2));
-                let left = accumulate(&accumulate(&a, &b).unwrap(), &c).unwrap();
-                let right = accumulate(&a, &accumulate(&b, &c).unwrap()).unwrap();
+                let left = combine(&combine(&a, &b), &c);
+                let right = combine(&a, &combine(&b, &c));
                 assert_canonical_bytes(
                     case_id,
                     &left,
@@ -386,7 +396,7 @@ fn algebra_cases_reproduce_the_frozen_results() {
                         serde_json::from_value(case["operands"][index].clone()).unwrap();
                     raw.validate(&universe).unwrap()
                 };
-                let backwards = select_envelope(&parse(1), &parse(0)).unwrap();
+                let backwards = combine(&parse(1), &parse(0));
                 assert_canonical_bytes(
                     case_id,
                     &backwards,
@@ -397,7 +407,7 @@ fn algebra_cases_reproduce_the_frozen_results() {
                 let raw: EffectSignature = serde_json::from_value(case["operands"][0].clone())
                     .unwrap_or_else(|e| panic!("{case_id}: operand parses: {e}"));
                 let a = raw.validate(&universe).unwrap();
-                let again = branch_join(&a, &a).unwrap();
+                let again = combine(&a, &a);
                 assert_canonical_bytes(
                     case_id,
                     &again,

@@ -1,7 +1,7 @@
 {
   "case_id": "effect/negative/unbounded-open-row",
   "case_kind": "negative",
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "expected_kind": "unbounded_open_effect_row",
   "fixture_catalogs": [
     {

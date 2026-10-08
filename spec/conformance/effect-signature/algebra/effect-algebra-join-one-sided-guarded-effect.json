@@ -1,0 +1,69 @@
+{
+  "case_id": "effect/algebra/join-one-sided-guarded-effect",
+  "case_kind": "algebra",
+  "corpus_revision": 2,
+  "expected": {
+    "canonical_ace1_utf8": "{\"row\":{\"closed\":[{\"atom\":{\"operation\":{\"catalog\":\"agentflow.test.capability-catalog@1\",\"name\":\"github.issue.create\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"bounds\":{\"lower\":\"0\",\"upper\":{\"finite\":\"4\"}},\"guard\":{\"input_equals\":{\"expected\":{\"string\":\"a\"},\"port_no\":\"1\"}}}]}}"
+  },
+  "fixture_catalogs": [
+    {
+      "operations": [
+        "database.row.read",
+        "database.row.write",
+        "github.issue.create",
+        "github.issue.read",
+        "memory.append",
+        "memory.search",
+        "network.egress",
+        "payment.charge"
+      ],
+      "specification_id": "agentflow.test.capability-catalog@1"
+    }
+  ],
+  "kind": "agentflow.conformance.effect-signature.case",
+  "max_attempts": null,
+  "note": "a key present in only one branch drops to [0,u] and KEEPS its provable guard: the other branch's absence invents no occurrences",
+  "operands": [
+    {
+      "row": {
+        "closed": [
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.test.capability-catalog@1",
+                "name": "github.issue.create"
+              },
+              "qualifiers": [],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "bounds": {
+              "lower": 2,
+              "upper": {
+                "finite": 4
+              }
+            },
+            "guard": {
+              "input_equals": {
+                "expected": {
+                  "string": "a"
+                },
+                "port_no": 1
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "closed": []
+      }
+    }
+  ],
+  "operation": "branch_join",
+  "property": null,
+  "reps": null
+}
