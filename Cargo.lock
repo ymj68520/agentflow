@@ -113,6 +113,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "af-usage"
+version = "0.1.0"
+dependencies = [
+ "af-core",
+ "af-idl",
+ "hex",
+ "serde",
+ "serde_json",
+ "unicode-normalization",
+]
+
+[[package]]
 name = "base64"
 version = "0.22.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
