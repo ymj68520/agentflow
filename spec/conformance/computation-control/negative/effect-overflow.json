@@ -50,7 +50,62 @@
     ],
     "effect_row_complete": false,
     "effects": {
-      "arithmetic": "overflow",
+      "known_contributions": [
+        {
+          "entries": [
+            {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "write"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "guard": "unconditional",
+              "lower": 0,
+              "upper": 18446744073709551615
+            }
+          ],
+          "residuals": [],
+          "row": "closed"
+        },
+        {
+          "entries": [
+            {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "write"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "guard": "unconditional",
+              "lower": 0,
+              "upper": 1
+            }
+          ],
+          "residuals": [],
+          "row": "closed"
+        }
+      ],
       "row": "unknown"
     },
     "execution_by_child": [],

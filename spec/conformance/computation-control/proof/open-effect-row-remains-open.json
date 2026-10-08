@@ -1,34 +1,30 @@
 {
   "case_id": "computation-control/proof/open-effect-row-remains-open",
   "expected": {
-    "effect_lower_bound_adjusted_children": [],
-    "effect_occurrences": [
+    "checked_component_produced": false,
+    "dimensions": [
       {
-        "atom": {
-          "operation": {
-            "catalog": "agentflow.effects@1",
-            "name": "write"
-          },
-          "qualifiers": [
-            {
-              "family": "idempotency",
-              "member": "natural"
-            }
-          ],
-          "resource_selector": {
-            "requirement_port_no": 1,
-            "scope_bindings": []
-          }
-        },
-        "caller_digest": "semantic-ir:caller",
-        "contract_digest": "component-contract:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "entry_ordinal": 0,
-        "node": 2
+        "dimension": "resources",
+        "reason_code": "open_effect_row_not_complete",
+        "rule_id": "AF-CONTRACT-0013",
+        "verdict": "unproven"
+      },
+      {
+        "dimension": "cross-dimension",
+        "reason_code": "unknown_or_missing_dimension_proof",
+        "rule_id": "AF-CONTRACT-0017",
+        "verdict": "unproven"
       }
     ],
-    "effect_row_complete": false,
-    "effects": {
-      "entries": [
+    "stage": "contract_validation",
+    "verdict": "unproven"
+  },
+  "group": "proof",
+  "input": {
+    "contract": {
+      "caller_digest": "semantic-ir:caller",
+      "contract_digest": "component-contract:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "effect_entries": [
         {
           "atom": {
             "operation": {
@@ -51,47 +47,8 @@
           "upper": 2
         }
       ],
-      "residuals": [
-        {
-          "catalog": "agentflow.effects@1",
-          "lower": 0,
-          "selector": {
-            "requirement_port_no": 1,
-            "scope_bindings": []
-          },
-          "upper": 4
-        }
-      ],
-      "row": "open"
-    },
-    "execution_by_child": [],
-    "failures": null,
-    "flow": {
-      "constraints_by_child": [],
-      "decision_dependencies": [],
-      "effective_authority_inferred": false,
-      "influence_unknown": true,
-      "may_carry_authority": "none",
-      "sources": [],
-      "taints": [],
-      "verdict": "unproven"
-    },
-    "recovery_sources": [],
-    "resources_by_child": [],
-    "unresolved_children": [],
-    "usage": {
-      "known_contributions": [],
-      "state": "unknown"
-    },
-    "verdict": "unproven"
-  },
-  "group": "proof",
-  "input": {
-    "children": [
-      {
-        "caller_digest": "semantic-ir:caller",
-        "contract_digest": "component-contract:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "effect_entries": [
+      "effects": {
+        "entries": [
           {
             "atom": {
               "operation": {
@@ -114,76 +71,44 @@
             "upper": 2
           }
         ],
-        "effects": {
-          "entries": [
-            {
-              "atom": {
-                "operation": {
-                  "catalog": "agentflow.effects@1",
-                  "name": "write"
-                },
-                "qualifiers": [
-                  {
-                    "family": "idempotency",
-                    "member": "natural"
-                  }
-                ],
-                "resource_selector": {
-                  "requirement_port_no": 1,
-                  "scope_bindings": []
-                }
-              },
-              "guard": "unconditional",
-              "lower": 0,
-              "upper": 2
-            }
-          ],
-          "residuals": [
-            {
-              "catalog": "agentflow.effects@1",
-              "lower": 0,
-              "selector": {
-                "requirement_port_no": 1,
-                "scope_bindings": []
-              },
-              "upper": 4
-            }
-          ],
-          "row": "open"
-        },
-        "execution": null,
-        "failures": null,
-        "flow": null,
-        "node": 2,
-        "proof_source": "checked_component",
-        "recovery_actions": null,
-        "resolved": true,
-        "resources": null,
-        "usage": null
+        "residuals": [
+          {
+            "catalog": "agentflow.effects@1",
+            "lower": 0,
+            "selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            },
+            "upper": 4
+          }
+        ],
+        "row": "open"
       },
-      {
-        "caller_digest": "semantic-ir:caller",
-        "contract_digest": "component-contract:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-        "effect_entries": [],
-        "effects": {
-          "entries": [],
-          "residuals": [],
-          "row": "closed"
-        },
-        "execution": null,
-        "failures": null,
-        "flow": null,
-        "node": 3,
-        "proof_source": "checked_component",
-        "recovery_actions": null,
-        "resolved": true,
-        "resources": null,
-        "usage": null
+      "execution": {},
+      "failures": [],
+      "flow": {
+        "authority": "none",
+        "constraints": [],
+        "influence_unknown": false,
+        "sources": [],
+        "taints": []
+      },
+      "node": 2,
+      "proof_source": "checked_component",
+      "recovery_actions": null,
+      "resolved": true,
+      "resources": [
+        {
+          "component_port": 1,
+          "resource_slot": "slot:1"
+        }
+      ],
+      "usage": {
+        "coordinates": {}
       }
-    ],
-    "operation": "compose",
-    "operator": "sequence"
+    },
+    "operation": "contract_validation"
   },
   "kind": "agentflow.conformance.computation-control.test-vector",
-  "note": "Bounded open residuals remain open after composition; formal resolution feasibility is audited separately."
+  "note": "The exact open-row ComponentContract is rejected as non-checked before snapshot/control analysis; its lower-level Effect algebra property is covered separately."
 }

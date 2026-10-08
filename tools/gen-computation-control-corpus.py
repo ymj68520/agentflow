@@ -143,7 +143,10 @@ def control_effect(operator: str, children: list[dict], exact_child: int | None 
                 for signature in ordered:
                     result = combine_effects([result, signature], "accumulate")
         except OverflowError:
-            return {"row": "unknown", "arithmetic": "overflow"}, "violation", occurrences
+            return {
+                "row": "unknown",
+                "known_contributions": [value for _, _, value in known],
+            }, "violation", occurrences
     return result, "unproven" if result.get("row") == "unknown" else "proven", occurrences
 
 
@@ -218,7 +221,9 @@ def control_compose(data: dict) -> dict:
     adjustment_names = []
     if operator == "sequence":
         adjustment_names = [child["node"] for child in children[1:] if any(int(entry["lower"]) > 0 for entry in (child.get("effects") or {}).get("entries", []))]
-    elif operator in ("race", "parallel_fail_fast", "select"):
+    elif operator in ("race", "parallel_fail_fast") or (
+        operator == "select" and exact_child is None
+    ):
         adjustment_names = [child["node"] for child in children if any(int(entry["lower"]) > 0 for entry in (child.get("effects") or {}).get("entries", []))]
     proof_sources = {
         "checked_component": "proven",
@@ -282,6 +287,26 @@ def evaluate(case: dict) -> dict:
     data = case["input"]
     if operation == "compose":
         return control_compose(data)
+    if operation == "contract_validation":
+        return {
+            "stage": "contract_validation",
+            "verdict": "unproven",
+            "checked_component_produced": False,
+            "dimensions": [
+                {
+                    "dimension": "resources",
+                    "verdict": "unproven",
+                    "rule_id": "AF-CONTRACT-0013",
+                    "reason_code": "open_effect_row_not_complete",
+                },
+                {
+                    "dimension": "cross-dimension",
+                    "verdict": "unproven",
+                    "rule_id": "AF-CONTRACT-0017",
+                    "reason_code": "unknown_or_missing_dimension_proof",
+                },
+            ],
+        }
     if operation == "parallel_output":
         return interface_mapping(data)
     if operation == "sequence_edge":
@@ -394,7 +419,7 @@ CASES = [
     compose_case("computation-control/proof/unproven-propagates", "proof", "sequence", [child(2, COMPONENT_A, effects=None, verdict_value="unproven"), child(3, COMPONENT_B, effects=effect_row())], "Unproven child is materialized as an unresolved exact component pin, not a claimed verdict."),
     compose_case("computation-control/proof/known-bound-with-evidence", "proof", "sequence", [child(2, COMPONENT_A, effects=effect_row(effect_entry()), verdict_value="requires_evidence"), child(3, COMPONENT_B, effects=effect_row())], "The conservative declared bound remains materialized while the subflow body proof requires evidence."),
     compose_case("computation-control/proof/unknown-effect-row-not-empty", "proof", "sequence", [child(2, COMPONENT_A, effects=None, verdict_value="unproven"), child(3, COMPONENT_B, effects=effect_row())], "An unresolved exact leaf pin contributes an unknown Effect row; no pure Closed row is synthesized."),
-    compose_case("computation-control/proof/open-effect-row-remains-open", "proof", "sequence", [child(2, COMPONENT_A, effects=effect_row(effect_entry(), row="open", residuals=[{"catalog": "agentflow.effects@1", "selector": {"requirement_port_no": 1, "scope_bindings": []}, "lower": 0, "upper": 4}])), child(3, COMPONENT_B, effects=effect_row())], "Bounded open residuals remain open after composition; formal resolution feasibility is audited separately."),
+    case("computation-control/proof/open-effect-row-remains-open", "proof", "contract_validation", {"contract": child(2, COMPONENT_A, effects=effect_row(effect_entry(), row="open", residuals=[{"catalog": "agentflow.effects@1", "selector": {"requirement_port_no": 1, "scope_bindings": []}, "lower": 0, "upper": 4}]), usage_row=usage(), failures=[], sources=[], taints=[], execution={}, resources=[{"component_port": 1, "resource_slot": "slot:1"}])}, "The exact open-row ComponentContract is rejected as non-checked before snapshot/control analysis; its lower-level Effect algebra property is covered separately."),
     compose_case("computation-control/proof/missing-usage-not-zero", "proof", "compose", [child(2, COMPONENT_A, usage_row=None, verdict_value="unproven"), child(3, COMPONENT_B, usage_row=usage(**{"forward/api_calls": 5}))], "Missing Usage remains unknown, never finite(0)."),
     compose_case("computation-control/proof/cancellation-not-failure", "proof", "race", [child(2, COMPONENT_A, failures=["FailureA"]), child(3, COMPONENT_B, failures=["FailureB"])], "Cancellation is not inserted into the typed Failure row."),
     compose_case("computation-control/negative/effect-overflow", "negative", "sequence", [child(2, COMPONENT_A, effects=effect_row(effect_entry(lower=0, upper=MAX_U64))), child(3, COMPONENT_B, effects=effect_row(effect_entry(lower=0, upper=1)))], "Finite upper overflow is a violation and never wraps."),
@@ -427,7 +452,7 @@ def main() -> None:
         write_case(item)
     manifest = {
         "kind": "agentflow.conformance.computation-control.test-corpus",
-        "corpus_revision": 2,
+        "corpus_revision": 3,
         "format_note": "static test vectors only; no AFIDL, ACE1 or HashV1 control identity",
         "case_count": len(CASES),
         "case_ids": sorted(ids),
