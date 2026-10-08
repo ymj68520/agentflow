@@ -1,0 +1,97 @@
+{
+  "case_id": "recovery/reconciliation/still-unknown-blocked",
+  "case_kind": "reconciliation",
+  "catalogs": {
+    "effects": [
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "payment.charge"
+      },
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "payment.refund"
+      },
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "email.send"
+      },
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "inventory.reserve"
+      }
+    ],
+    "recovery_operations": [
+      {
+        "catalog": "agentflow.test.recovery.ops@1",
+        "name": "payment.reconcile"
+      },
+      {
+        "catalog": "agentflow.test.recovery.ops@1",
+        "name": "inventory.reconcile"
+      }
+    ]
+  },
+  "contract": {
+    "effect_recovery_clauses": [
+      {
+        "compensation": {
+          "none": null
+        },
+        "effect": {
+          "operation": {
+            "catalog": "agentflow.test.recovery.effects@1",
+            "name": "payment.charge"
+          },
+          "qualifiers": [],
+          "resource_selector": {
+            "requirement_port_no": 1,
+            "scope_bindings": []
+          }
+        },
+        "idempotency": "reconciled",
+        "key_requirement": null,
+        "reconciliation": "required",
+        "unknown_effect_handling": "reconciliation_required"
+      }
+    ],
+    "replay_semantics": "recompute"
+  },
+  "corpus_revision": 1,
+  "effect_signature": {
+    "row": {
+      "closed": [
+        {
+          "atom": {
+            "operation": {
+              "catalog": "agentflow.test.recovery.effects@1",
+              "name": "payment.charge"
+            },
+            "qualifiers": [],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            }
+          },
+          "bounds": {
+            "lower": 1,
+            "upper": {
+              "finite": 1
+            }
+          },
+          "guard": {
+            "unconditional": null
+          }
+        }
+      ]
+    }
+  },
+  "evidence": "still_unknown",
+  "expected": {
+    "obligations": [
+      "reconciliation_evidence_missing"
+    ],
+    "outcome": "requires_evidence"
+  },
+  "kind": "agentflow.conformance.recovery-contract.case",
+  "note": "still unknown remains blocked"
+}

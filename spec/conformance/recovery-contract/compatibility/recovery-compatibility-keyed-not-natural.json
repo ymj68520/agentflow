@@ -1,0 +1,95 @@
+{
+  "case_id": "recovery/compatibility/keyed-not-natural",
+  "case_kind": "compatibility",
+  "catalogs": {
+    "effects": [
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "payment.charge"
+      },
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "payment.refund"
+      },
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "email.send"
+      },
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "inventory.reserve"
+      }
+    ],
+    "recovery_operations": [
+      {
+        "catalog": "agentflow.test.recovery.ops@1",
+        "name": "payment.reconcile"
+      },
+      {
+        "catalog": "agentflow.test.recovery.ops@1",
+        "name": "inventory.reconcile"
+      }
+    ]
+  },
+  "corpus_revision": 1,
+  "expected": {
+    "outcome": "unproven"
+  },
+  "kind": "agentflow.conformance.recovery-contract.case",
+  "new_contract": {
+    "effect_recovery_clauses": [
+      {
+        "compensation": {
+          "none": null
+        },
+        "effect": {
+          "operation": {
+            "catalog": "agentflow.test.recovery.effects@1",
+            "name": "payment.charge"
+          },
+          "qualifiers": [],
+          "resource_selector": {
+            "requirement_port_no": 1,
+            "scope_bindings": []
+          }
+        },
+        "idempotency": "keyed",
+        "key_requirement": {
+          "bound_to_operation": true,
+          "distinct_across_invocations": true,
+          "provider_honors": true,
+          "stable_across_attempts": true
+        },
+        "reconciliation": "none",
+        "unknown_effect_handling": "block"
+      }
+    ],
+    "replay_semantics": "recompute"
+  },
+  "note": "keyed is not ordered above natural by enum spelling",
+  "old_contract": {
+    "effect_recovery_clauses": [
+      {
+        "compensation": {
+          "none": null
+        },
+        "effect": {
+          "operation": {
+            "catalog": "agentflow.test.recovery.effects@1",
+            "name": "payment.charge"
+          },
+          "qualifiers": [],
+          "resource_selector": {
+            "requirement_port_no": 1,
+            "scope_bindings": []
+          }
+        },
+        "idempotency": "natural",
+        "key_requirement": null,
+        "reconciliation": "none",
+        "unknown_effect_handling": "block"
+      }
+    ],
+    "replay_semantics": "recompute"
+  }
+}

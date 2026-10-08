@@ -340,7 +340,7 @@ fn module_abi_and_domain_counts_hold_at_their_frozen_values() {
     modules.sort_unstable();
     assert_eq!(
         modules.len(),
-        10,
+        11,
         "an unexpected AFIDL module set: {modules:?}"
     );
 
@@ -353,7 +353,7 @@ fn module_abi_and_domain_counts_hold_at_their_frozen_values() {
     let abi: serde_json::Value =
         serde_json::from_str(&read("spec/registry/abi-numbers.json")).unwrap();
     let rows = abi["assignments"].as_array().unwrap();
-    assert_eq!(rows.len(), 335, "an ABI row was added or removed");
+    assert_eq!(rows.len(), 361, "an ABI row was added or removed");
     assert_eq!(
         rows.iter()
             .filter(|row| row["schema_family"] == "agentflow.semantic.ir@1")
@@ -402,6 +402,13 @@ fn module_abi_and_domain_counts_hold_at_their_frozen_values() {
             .count(),
         25,
         "the cost-projection ABI block changed size"
+    );
+    assert_eq!(
+        rows.iter()
+            .filter(|row| row["schema_family"] == "agentflow.recovery.contract@1")
+            .count(),
+        26,
+        "the recovery-contract ABI block changed size"
     );
 
     // Exactly the frozen HashV1 domains.

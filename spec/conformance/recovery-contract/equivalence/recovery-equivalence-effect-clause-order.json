@@ -1,0 +1,138 @@
+{
+  "canonical_ace1_utf8": "{\"effect_recovery_clauses\":[{\"compensation\":{\"none\":null},\"effect\":{\"operation\":{\"catalog\":\"agentflow.test.recovery.effects@1\",\"name\":\"payment.charge\"},\"qualifiers\":[{\"idempotency\":\"natural\"}],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"idempotency\":\"none\",\"key_requirement\":{\"none\":null},\"reconciliation\":\"none\",\"unknown_effect_handling\":\"block\"},{\"compensation\":{\"none\":null},\"effect\":{\"operation\":{\"catalog\":\"agentflow.test.recovery.effects@1\",\"name\":\"payment.refund\"},\"qualifiers\":[],\"resource_selector\":{\"requirement_port_no\":\"1\",\"scope_bindings\":[]}},\"idempotency\":\"none\",\"key_requirement\":{\"none\":null},\"reconciliation\":\"none\",\"unknown_effect_handling\":\"block\"}],\"replay_semantics\":\"recompute\"}",
+  "case_id": "recovery/equivalence/effect-clause-order",
+  "case_kind": "equivalence",
+  "catalogs": {
+    "effects": [
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "payment.charge"
+      },
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "payment.refund"
+      },
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "email.send"
+      },
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "inventory.reserve"
+      }
+    ],
+    "recovery_operations": [
+      {
+        "catalog": "agentflow.test.recovery.ops@1",
+        "name": "payment.reconcile"
+      },
+      {
+        "catalog": "agentflow.test.recovery.ops@1",
+        "name": "inventory.reconcile"
+      }
+    ]
+  },
+  "corpus_revision": 1,
+  "kind": "agentflow.conformance.recovery-contract.case",
+  "members": [
+    {
+      "effect_recovery_clauses": [
+        {
+          "compensation": {
+            "none": null
+          },
+          "effect": {
+            "operation": {
+              "catalog": "agentflow.test.recovery.effects@1",
+              "name": "payment.charge"
+            },
+            "qualifiers": [
+              {
+                "idempotency": "natural"
+              }
+            ],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            }
+          },
+          "idempotency": "none",
+          "key_requirement": null,
+          "reconciliation": "none",
+          "unknown_effect_handling": "block"
+        },
+        {
+          "compensation": {
+            "none": null
+          },
+          "effect": {
+            "operation": {
+              "catalog": "agentflow.test.recovery.effects@1",
+              "name": "payment.refund"
+            },
+            "qualifiers": [],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            }
+          },
+          "idempotency": "none",
+          "key_requirement": null,
+          "reconciliation": "none",
+          "unknown_effect_handling": "block"
+        }
+      ],
+      "replay_semantics": "recompute"
+    },
+    {
+      "effect_recovery_clauses": [
+        {
+          "compensation": {
+            "none": null
+          },
+          "effect": {
+            "operation": {
+              "catalog": "agentflow.test.recovery.effects@1",
+              "name": "payment.refund"
+            },
+            "qualifiers": [],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            }
+          },
+          "idempotency": "none",
+          "key_requirement": null,
+          "reconciliation": "none",
+          "unknown_effect_handling": "block"
+        },
+        {
+          "compensation": {
+            "none": null
+          },
+          "effect": {
+            "operation": {
+              "catalog": "agentflow.test.recovery.effects@1",
+              "name": "payment.charge"
+            },
+            "qualifiers": [
+              {
+                "idempotency": "natural"
+              }
+            ],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            }
+          },
+          "idempotency": "none",
+          "key_requirement": null,
+          "reconciliation": "none",
+          "unknown_effect_handling": "block"
+        }
+      ],
+      "replay_semantics": "recompute"
+    }
+  ],
+  "note": "clause declaration order is not identity"
+}

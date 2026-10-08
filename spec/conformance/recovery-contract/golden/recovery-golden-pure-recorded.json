@@ -1,0 +1,54 @@
+{
+  "canonical_ace1_utf8": "{\"effect_recovery_clauses\":[],\"replay_semantics\":\"recorded\"}",
+  "case_id": "recovery/golden/pure-recorded",
+  "case_kind": "golden",
+  "catalogs": {
+    "effects": [
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "payment.charge"
+      },
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "payment.refund"
+      },
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "email.send"
+      },
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "inventory.reserve"
+      }
+    ],
+    "recovery_operations": [
+      {
+        "catalog": "agentflow.test.recovery.ops@1",
+        "name": "payment.reconcile"
+      },
+      {
+        "catalog": "agentflow.test.recovery.ops@1",
+        "name": "inventory.reconcile"
+      }
+    ]
+  },
+  "contract": {
+    "effect_recovery_clauses": [],
+    "replay_semantics": "recorded"
+  },
+  "corpus_revision": 1,
+  "effect_signature": {
+    "row": {
+      "closed": []
+    }
+  },
+  "evidence": "unknown",
+  "expected": {
+    "obligations": [
+      "durable_recorded_result"
+    ],
+    "outcome": "requires_evidence"
+  },
+  "kind": "agentflow.conformance.recovery-contract.case",
+  "note": "recorded replay needs durable evidence"
+}

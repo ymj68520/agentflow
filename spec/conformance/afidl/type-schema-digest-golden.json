@@ -1,5 +1,5 @@
 {
-  "corpus_revision": 11,
+  "corpus_revision": 12,
   "kind": "agentflow.conformance.afidl.type-schema-digest-golden",
   "note": "Frozen TypeSchemaDigest values (SHA256(\"AF\\0type-schema\\0\" || canonical ACE1 bytes)). Mutation cases assert that semantic changes alter the digest while the equivalence groups in schema-golden.json assert that formatting does not.",
   "cases": [
@@ -1334,6 +1334,54 @@
       "file": "spec/idl/cost-projection.afidl",
       "type_name": "StaticCostCeiling",
       "digest_hex": "10f97f4853518a2d56d175ef84e7abb11556b98bf5bf351e1ab9f21b63535eb7"
+    },
+    {
+      "case_id": "recovery-contract",
+      "file": "spec/idl/recovery-contract.afidl",
+      "type_name": "CompensationRequirement",
+      "digest_hex": "73cf0068a867211598da43af0a9e42c7d1ed68fc8f98bbae702c8efdb4504cf2"
+    },
+    {
+      "case_id": "recovery-contract",
+      "file": "spec/idl/recovery-contract.afidl",
+      "type_name": "EffectRecoveryClause",
+      "digest_hex": "c143556d1d637b58c9c8f1cc10f687d266ca89ca9b10afa27f5adf9443b78843"
+    },
+    {
+      "case_id": "recovery-contract",
+      "file": "spec/idl/recovery-contract.afidl",
+      "type_name": "IdempotencySemantics",
+      "digest_hex": "568a7d6c14db84ee7555b66f6a036862a568b8d2c93b5415c17989edd88eafc8"
+    },
+    {
+      "case_id": "recovery-contract",
+      "file": "spec/idl/recovery-contract.afidl",
+      "type_name": "KeyStabilityRequirement",
+      "digest_hex": "6a4929260f550f6ceaa05afd242000fc45802a659cfcd269d77380062d18d032"
+    },
+    {
+      "case_id": "recovery-contract",
+      "file": "spec/idl/recovery-contract.afidl",
+      "type_name": "ReconciliationRequirement",
+      "digest_hex": "9493c40863b7902e7cf959545ec754e95f72d9e0c7beacadc5c7d54e2c276025"
+    },
+    {
+      "case_id": "recovery-contract",
+      "file": "spec/idl/recovery-contract.afidl",
+      "type_name": "RecoveryContract",
+      "digest_hex": "64ff49b698c2856a2a79d1787a21771af33eaa657d6265aad41c5f42ae55b6e2"
+    },
+    {
+      "case_id": "recovery-contract",
+      "file": "spec/idl/recovery-contract.afidl",
+      "type_name": "ReplaySemantics",
+      "digest_hex": "796c6618d3b6a76b789bd7607d0b2d0ecec4fa50ca60fa80257cf2ce73c95026"
+    },
+    {
+      "case_id": "recovery-contract",
+      "file": "spec/idl/recovery-contract.afidl",
+      "type_name": "UnknownEffectHandling",
+      "digest_hex": "62177f73d1e720f06317f02896dbdcedc0ba511eb6743de7eda350e7df88f3c9"
     }
   ],
   "mutation_cases": [

@@ -1,0 +1,102 @@
+{
+  "case_id": "recovery/negative/partially-applied",
+  "case_kind": "negative",
+  "catalogs": {
+    "effects": [
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "payment.charge"
+      },
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "payment.refund"
+      },
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "email.send"
+      },
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "inventory.reserve"
+      }
+    ],
+    "recovery_operations": [
+      {
+        "catalog": "agentflow.test.recovery.ops@1",
+        "name": "payment.reconcile"
+      },
+      {
+        "catalog": "agentflow.test.recovery.ops@1",
+        "name": "inventory.reconcile"
+      }
+    ]
+  },
+  "contract": {
+    "effect_recovery_clauses": [
+      {
+        "compensation": {
+          "none": null
+        },
+        "effect": {
+          "operation": {
+            "catalog": "agentflow.test.recovery.effects@1",
+            "name": "payment.charge"
+          },
+          "qualifiers": [],
+          "resource_selector": {
+            "requirement_port_no": 1,
+            "scope_bindings": []
+          }
+        },
+        "idempotency": "keyed",
+        "key_requirement": {
+          "bound_to_operation": true,
+          "distinct_across_invocations": true,
+          "provider_honors": true,
+          "stable_across_attempts": true
+        },
+        "reconciliation": "none",
+        "unknown_effect_handling": "block"
+      }
+    ],
+    "replay_semantics": "recompute"
+  },
+  "corpus_revision": 1,
+  "effect_signature": {
+    "row": {
+      "closed": [
+        {
+          "atom": {
+            "operation": {
+              "catalog": "agentflow.test.recovery.effects@1",
+              "name": "payment.charge"
+            },
+            "qualifiers": [],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            }
+          },
+          "bounds": {
+            "lower": 1,
+            "upper": {
+              "finite": 1
+            }
+          },
+          "guard": {
+            "unconditional": null
+          }
+        }
+      ]
+    }
+  },
+  "expected": {
+    "obligations": [
+      "partial_state_resolution_required"
+    ],
+    "outcome": "requires_evidence"
+  },
+  "expected_kind": "__requires__",
+  "kind": "agentflow.conformance.recovery-contract.case",
+  "note": "partial state requires resolution"
+}

@@ -1,0 +1,50 @@
+{
+  "case_id": "recovery/replay/fork-fresh-admission",
+  "case_kind": "replay",
+  "catalogs": {
+    "effects": [
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "payment.charge"
+      },
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "payment.refund"
+      },
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "email.send"
+      },
+      {
+        "catalog": "agentflow.test.recovery.effects@1",
+        "name": "inventory.reserve"
+      }
+    ],
+    "recovery_operations": [
+      {
+        "catalog": "agentflow.test.recovery.ops@1",
+        "name": "payment.reconcile"
+      },
+      {
+        "catalog": "agentflow.test.recovery.ops@1",
+        "name": "inventory.reconcile"
+      }
+    ]
+  },
+  "contract": {
+    "effect_recovery_clauses": [],
+    "replay_semantics": "recompute"
+  },
+  "corpus_revision": 1,
+  "effect_signature": {
+    "row": {
+      "closed": []
+    }
+  },
+  "evidence": "unknown",
+  "expected": {
+    "outcome": "proven_static_constraint"
+  },
+  "kind": "agentflow.conformance.recovery-contract.case",
+  "note": "fork is outside this proof and remains static only"
+}
