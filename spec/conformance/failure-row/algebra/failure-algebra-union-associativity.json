@@ -1,0 +1,94 @@
+{
+  "case_id": "failure/algebra/union-associativity",
+  "case_kind": "algebra",
+  "corpus_revision": 1,
+  "expected": {
+    "canonical_ace1_utf8": "{\"failures\":[{\"payload_type\":{\"schema_digest\":{\"algorithm\":\"sha256\",\"domain\":\"type-schema\",\"hex\":\"56ea8d58a7f78f4600f4b0316b291fe67c98a1db871f1c65308cddfb1137e47e\"},\"specification_id\":\"agentflow.test.failures@1\",\"type_name\":\"PaymentDeclined\"}},{\"payload_type\":{\"schema_digest\":{\"algorithm\":\"sha256\",\"domain\":\"type-schema\",\"hex\":\"c918b9fdf3c45036bc9f6e911834b76673b653214cfe9499d9e8dced704c8c70\"},\"specification_id\":\"agentflow.test.failures@1\",\"type_name\":\"QuotaExceeded\"}},{\"payload_type\":{\"schema_digest\":{\"algorithm\":\"sha256\",\"domain\":\"type-schema\",\"hex\":\"2d4d411b79d2cad8d21b76fd2a2b14b41f94c9f1317ff886f887781d9fb6bf0e\"},\"specification_id\":\"agentflow.test.failures@1\",\"type_name\":\"ValidationRejected\"}}]}"
+  },
+  "fixture_schemas": [
+    {
+      "source": "afidl 1;\nschema agentflow.test.failures@1;\nrecord PaymentDeclined { 1 reason: string; }\nenum QuotaExceeded { 1 monthly; 2 daily; }\nvariant ValidationRejected { 1 schema_violation: string; 2 unknown_field: string; }\nrecord InsufficientPermissions { 1 required_scope: string; }\n",
+      "specification_id": "agentflow.test.failures@1",
+      "types": [
+        {
+          "digest_hex": "9c71352dac963f63ea6782d6d32c2c895592ff6ab6bde756379893e6a6d6962f",
+          "name": "InsufficientPermissions"
+        },
+        {
+          "digest_hex": "56ea8d58a7f78f4600f4b0316b291fe67c98a1db871f1c65308cddfb1137e47e",
+          "name": "PaymentDeclined"
+        },
+        {
+          "digest_hex": "c918b9fdf3c45036bc9f6e911834b76673b653214cfe9499d9e8dced704c8c70",
+          "name": "QuotaExceeded"
+        },
+        {
+          "digest_hex": "2d4d411b79d2cad8d21b76fd2a2b14b41f94c9f1317ff886f887781d9fb6bf0e",
+          "name": "ValidationRejected"
+        }
+      ]
+    },
+    {
+      "source": "afidl 1;\nschema agentflow.test.failures-alt@1;\nrecord PaymentDeclined { 1 code: int64; }\n",
+      "specification_id": "agentflow.test.failures-alt@1",
+      "types": [
+        {
+          "digest_hex": "8052f0a0d0d646ecbcf40b0adab3b6da5518dda7cf75ec9550551bb1076abea6",
+          "name": "PaymentDeclined"
+        }
+      ]
+    }
+  ],
+  "handlers": [],
+  "kind": "agentflow.conformance.failure-row.case",
+  "note": "union is associative",
+  "operands": [
+    {
+      "failures": [
+        {
+          "payload_type": {
+            "schema_digest": {
+              "algorithm": "sha256",
+              "domain": "type-schema",
+              "hex": "56ea8d58a7f78f4600f4b0316b291fe67c98a1db871f1c65308cddfb1137e47e"
+            },
+            "specification_id": "agentflow.test.failures@1",
+            "type_name": "PaymentDeclined"
+          }
+        }
+      ]
+    },
+    {
+      "failures": [
+        {
+          "payload_type": {
+            "schema_digest": {
+              "algorithm": "sha256",
+              "domain": "type-schema",
+              "hex": "c918b9fdf3c45036bc9f6e911834b76673b653214cfe9499d9e8dced704c8c70"
+            },
+            "specification_id": "agentflow.test.failures@1",
+            "type_name": "QuotaExceeded"
+          }
+        }
+      ]
+    },
+    {
+      "failures": [
+        {
+          "payload_type": {
+            "schema_digest": {
+              "algorithm": "sha256",
+              "domain": "type-schema",
+              "hex": "2d4d411b79d2cad8d21b76fd2a2b14b41f94c9f1317ff886f887781d9fb6bf0e"
+            },
+            "specification_id": "agentflow.test.failures@1",
+            "type_name": "ValidationRejected"
+          }
+        }
+      ]
+    }
+  ],
+  "operation": "union",
+  "property": "associativity"
+}
