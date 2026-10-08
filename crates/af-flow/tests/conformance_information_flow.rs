@@ -27,7 +27,7 @@ fn read(relative: &str) -> String {
     std::fs::read_to_string(&path).unwrap_or_else(|e| panic!("cannot read {}: {e}", path.display()))
 }
 
-const CORPUS_REVISION: u64 = 1;
+const CORPUS_REVISION: u64 = 2;
 
 fn case_files(subdir: &str) -> Vec<serde_json::Value> {
     let directory = repo_root()
