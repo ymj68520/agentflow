@@ -5,8 +5,8 @@
 //! authority. Its identity is the complete typed assertion input tuple.
 
 use crate::control::{
-    ControlDimensionValue, DerivedWorkflowContractSummary, ExecutionSourceSummary,
-    ResourcePortOccurrence,
+    ControlDimensionValue, ControlOperator, DerivedControlContractSummary,
+    DerivedWorkflowContractSummary, ExecutionSourceSummary, ResourcePortOccurrence,
 };
 use crate::resolution::StaticComputationResolutionSnapshot;
 use crate::root_recovery::RecoveryActionSourceIdentity;
@@ -2456,6 +2456,7 @@ fn prove_effects(
         );
     };
     let remapped_root = remap_effect_signature(root_effects, &assertion.effect_mappings);
+    let allow_guard_countermodel = !root_has_guard_sensitive_path(root.root());
     match remapped_root {
         Ok((mapped, widened)) => {
             match effect_containment_verdict(
@@ -2464,6 +2465,7 @@ fn prove_effects(
                 assertion,
                 &exported.inputs,
                 context.schema_universe,
+                allow_guard_countermodel,
             ) {
                 af_contract::ProofVerdict::Proven => {}
                 value => {
@@ -2498,6 +2500,7 @@ fn prove_effects(
             assertion,
             &exported.inputs,
             context.schema_universe,
+            allow_guard_countermodel,
         ) {
             af_contract::ProofVerdict::Proven => {}
             value => {
@@ -2511,6 +2514,7 @@ fn prove_effects(
             assertion,
             &exported.inputs,
             context.schema_universe,
+            allow_guard_countermodel,
         ) {
             af_contract::ProofVerdict::Proven => {}
             value => {
@@ -2634,6 +2638,7 @@ fn effect_containment_verdict(
     assertion: &RootExportAssertion,
     export_inputs: &[af_contract::ComponentInputPort],
     schemas: &af_semantic::TypeSchemaUniverse,
+    allow_guard_countermodel: bool,
 ) -> af_contract::ProofVerdict {
     if matches!(export.row, EffectRow::Unknown | EffectRow::Open(_))
         || matches!(root.row, EffectRow::Unknown | EffectRow::Open(_))
@@ -2674,20 +2679,31 @@ fn effect_containment_verdict(
         if guard_covered {
             continue;
         }
-        if same_operation_selector.iter().any(|entry| {
-            guard_counterexample(
-                &root_entry.guard,
-                &entry.guard,
-                export_inputs,
-                assertion,
-                schemas,
-            )
-        }) {
+        if allow_guard_countermodel
+            && same_operation_selector.iter().any(|entry| {
+                guard_counterexample(
+                    &root_entry.guard,
+                    &entry.guard,
+                    export_inputs,
+                    assertion,
+                    schemas,
+                )
+            })
+        {
             return af_contract::ProofVerdict::Violation;
         }
         return af_contract::ProofVerdict::Unproven;
     }
     af_contract::ProofVerdict::Proven
+}
+
+fn root_has_guard_sensitive_path(summary: &DerivedControlContractSummary<'_, '_>) -> bool {
+    matches!(
+        summary.operator(),
+        ControlOperator::Select
+            | ControlOperator::RaceFirstTerminal
+            | ControlOperator::Handle { .. }
+    ) || summary.children().iter().any(root_has_guard_sensitive_path)
 }
 
 fn scope_is_covered(inner: &EffectAtom, outer: &EffectAtom) -> bool {
