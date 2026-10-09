@@ -9,12 +9,12 @@
 use std::collections::{BTreeMap, BTreeSet};
 
 use af_contract::{
-    RecoveryActionBinding, RecoveryActionIdentity, RecoveryActionKind, RecoveryUsageBinding,
-    StaticContractProofContext,
+    ActionGuardCompatibility, RecoveryActionBinding, RecoveryActionIdentity, RecoveryActionKind,
+    RecoveryUsageBinding, StaticContractProofContext,
 };
 use af_effect::{
-    EffectEntry, EffectOpenRow, EffectResidual, EffectRow, EffectSignature, OccurrenceBounds,
-    OccurrenceCeiling,
+    AtomKey, EffectEntry, EffectGuard, EffectOpenRow, EffectResidual, EffectRow, EffectSignature,
+    OccurrenceBounds, OccurrenceCeiling,
 };
 use af_execution::ExecutionRequirements;
 use af_failure::FailureRow;
@@ -30,10 +30,18 @@ use af_semantic::{
     DigestRefValue, ExpressionBody, ExpressionId, PrimitiveConstant, ResourceSlotId,
     SemanticTypeId, TypeSchemaRef, ValueSlotId,
 };
+use af_usage::UsagePhase;
 use af_usage::{StaticUsageBound, StaticUsageEnvelope, UsageUpperBound};
 
 use crate::proof::LeafVerdict;
 use crate::resolution::resolve_computation_leaf;
+use crate::root_recovery::{
+    AppliedMultiplicity, ControlMultiplicityIdentity, ControlMultiplicityKind, ControlPathKind,
+    ControlPathReachability, ControlPathStep, LocalActionBound, LocalRecoveryAction,
+    RecoveryActionSourceIdentity, RecoveryActionUpper, RootActionBound,
+    RootGuardCoordinateEvidence, RootRecoveryAction, RootRecoveryOwner,
+    RootRecoverySourceClosureReport, RootRecoverySummary,
+};
 use crate::summary::{
     EffectOccurrenceFamily, EffectOccurrenceFamilyKind, FlowPortMapping, LeafKind,
     ProofContextReference, ResolvedComputationLeaf, ResolvedTarget, ScopedEffectOccurrence,
@@ -68,6 +76,11 @@ const RULE_SCOPE_RUNTIME_OBLIGATIONS: &str = "AF-SEMANTIC-0148";
 const RULE_COMPENSATION_FORWARD_HISTORY: &str = "AF-SEMANTIC-0149";
 const RULE_COMPENSATION_ACTIONS: &str = "AF-SEMANTIC-0150";
 const RULE_COMPENSATION_USAGE_ORDER: &str = "AF-SEMANTIC-0151";
+const RULE_RECOVERY_SOURCE_CLOSURE: &str = "AF-SEMANTIC-0154";
+const RULE_RECOVERY_ROOT_MULTIPLICITY: &str = "AF-SEMANTIC-0155";
+const RULE_RECOVERY_ROOT_ALGEBRA: &str = "AF-SEMANTIC-0156";
+const RULE_RECOVERY_ROOT_EFFECT_COVERAGE: &str = "AF-SEMANTIC-0157";
+const RULE_RECOVERY_ROOT_USAGE_COVERAGE: &str = "AF-SEMANTIC-0158";
 const RULE_CONTROL_TREE_CLOSURE: &str = "AF-SEMANTIC-0152";
 const RULE_ROOT_EXPORT_BOUNDARY: &str = "AF-SEMANTIC-0153";
 
@@ -180,6 +193,7 @@ pub struct ConditionalCompensationAction {
     forward_occurrence: ScopedEffectOccurrence,
     action_effect_occurrence: ScopedEffectOccurrence,
     identity: RecoveryActionIdentity,
+    local_bound: LocalActionBound,
     potential_effect: EffectEntry,
     potential_recovery_usage: StaticUsageEnvelope,
     receipt_evidence: LeafVerdict,
@@ -203,6 +217,10 @@ impl ConditionalCompensationAction {
         &self.identity
     }
     #[must_use]
+    pub fn local_bound(&self) -> &LocalActionBound {
+        &self.local_bound
+    }
+    #[must_use]
     pub fn potential_effect(&self) -> &EffectEntry {
         &self.potential_effect
     }
@@ -219,6 +237,7 @@ impl ConditionalCompensationAction {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CompensationScopeSummary {
     potential_actions: ControlDimension<Vec<ConditionalCompensationAction>>,
+    local_recovery_actions: ControlDimension<Vec<LocalRecoveryAction>>,
     compensation_order: LeafVerdict,
     recovery_blocked_outcome: LeafVerdict,
     forward_effects_retained: bool,
@@ -229,6 +248,10 @@ impl CompensationScopeSummary {
     #[must_use]
     pub fn potential_actions(&self) -> &ControlDimension<Vec<ConditionalCompensationAction>> {
         &self.potential_actions
+    }
+    #[must_use]
+    pub fn local_recovery_actions(&self) -> &ControlDimension<Vec<LocalRecoveryAction>> {
+        &self.local_recovery_actions
     }
     #[must_use]
     pub fn compensation_order(&self) -> LeafVerdict {
@@ -299,6 +322,7 @@ impl ControlTreeClosureSummary {
 pub struct DerivedWorkflowContractSummary<'context, 'universe> {
     root: DerivedControlContractSummary<'context, 'universe>,
     closure: ControlTreeClosureSummary,
+    root_recovery: RootRecoverySummary,
 }
 
 impl DerivedWorkflowContractSummary<'_, '_> {
@@ -311,8 +335,15 @@ impl DerivedWorkflowContractSummary<'_, '_> {
         &self.closure
     }
     #[must_use]
+    pub fn root_recovery(&self) -> &RootRecoverySummary {
+        &self.root_recovery
+    }
+    #[must_use]
     pub fn overall(&self) -> LeafVerdict {
-        merge_verdict(self.root.proof().overall(), self.closure.proof().overall())
+        merge_verdict(
+            merge_verdict(self.root.proof().overall(), self.closure.proof().overall()),
+            self.root_recovery.overall(),
+        )
     }
 }
 
@@ -849,6 +880,7 @@ pub struct RecoverySourceSummary {
     action_bindings: Vec<RecoveryActionBinding>,
     usage_bindings: Vec<RecoveryUsageBinding>,
     effects: Vec<ScopedEffectOccurrence>,
+    action_guard_compatibility: Vec<ActionGuardCompatibility>,
 }
 
 impl RecoverySourceSummary {
@@ -875,6 +907,10 @@ impl RecoverySourceSummary {
     #[must_use]
     pub fn effects(&self) -> &[ScopedEffectOccurrence] {
         &self.effects
+    }
+    #[must_use]
+    pub fn action_guard_compatibility(&self) -> &[ActionGuardCompatibility] {
+        &self.action_guard_compatibility
     }
 }
 
@@ -1166,6 +1202,9 @@ pub fn derive_workflow_contract_summary<'context, 'universe>(
     proof_context: &'context StaticContractProofContext<'universe>,
 ) -> Result<DerivedWorkflowContractSummary<'context, 'universe>, ControlDerivationError> {
     let document = ir.source();
+    let recovery_dataflow = ir
+        .analyze_dataflow()
+        .map_err(|error| ControlDerivationError::Dataflow(error.to_string()))?;
     if !snapshot.is_same_context(proof_context) {
         return Err(ControlDerivationError::LeafContextMismatch(document.root));
     }
@@ -1276,7 +1315,12 @@ pub fn derive_workflow_contract_summary<'context, 'universe>(
         root_export_compatibility: RootExportCompatibilityStatus::NotExpressedInSemanticIr,
         proof,
     };
-    Ok(DerivedWorkflowContractSummary { root, closure })
+    let root_recovery = derive_root_recovery_summary(&root, &recovery_dataflow, proof_context);
+    Ok(DerivedWorkflowContractSummary {
+        root,
+        closure,
+        root_recovery,
+    })
 }
 
 fn collect_owned_computations(
@@ -1340,6 +1384,1474 @@ fn collect_recovery_source_nodes(
                 .map(RecoverySourceSummary::source_node),
         ),
         ControlDimensionValue::Partial { .. } | ControlDimensionValue::NotApplicable => {}
+    }
+}
+
+struct RootRecoveryFold {
+    action_effects: ControlDimensionValue<EffectSignature>,
+    epsilon_coverage_requirement: ControlDimensionValue<EffectSignature>,
+    recovery_usage: ControlDimensionValue<StaticUsageEnvelope>,
+    violation: bool,
+}
+
+fn derive_root_recovery_summary<'context, 'universe>(
+    root: &DerivedControlContractSummary<'context, 'universe>,
+    dataflow: &SemanticDataflowAnalysis,
+    context: &'context StaticContractProofContext<'universe>,
+) -> RootRecoverySummary {
+    let root_digest = root.source_semantic_ir_digest.clone();
+    let mut builder = RootRecoveryBuilder {
+        root_digest: &root_digest,
+        root_effect_occurrences: &root.effect_occurrences,
+        dataflow,
+        context,
+        actions: Vec::new(),
+        leaf_sources: Vec::new(),
+        unresolved_sources: Vec::new(),
+        guard_verdict: LeafVerdict::Proven,
+        action_epsilon_verdict: LeafVerdict::Proven,
+        factor_verdict: LeafVerdict::Proven,
+        binding_verdict: LeafVerdict::Proven,
+        usage_profile_verdict: LeafVerdict::Proven,
+        arithmetic_violation: false,
+    };
+    let folded = derive_root_recovery_node(root, &RootRecoveryPath::default(), &mut builder);
+
+    let (root_sources, root_unresolved) = recovery_sources_from_child(root);
+    let root_sources = root_sources
+        .into_iter()
+        .flat_map(|contribution| contribution.value)
+        .collect::<Vec<_>>();
+    let source_nodes_accounted =
+        if !root_unresolved.is_empty() || !builder.unresolved_sources.is_empty() {
+            LeafVerdict::Unproven
+        } else if multiset_equal(&root_sources, &builder.leaf_sources) {
+            LeafVerdict::Proven
+        } else {
+            LeafVerdict::Violation
+        };
+
+    let mut expected_action_bindings = Vec::new();
+    let mut expected_usage_profiles = Vec::new();
+    for source in &builder.leaf_sources {
+        for binding in source.action_bindings() {
+            let matching_usage = source
+                .usage_bindings()
+                .iter()
+                .find(|candidate| candidate.action == binding.identity);
+            for forward in source
+                .effects()
+                .iter()
+                .filter(|occurrence| occurrence.declared.atom == binding.identity.forward_effect)
+            {
+                let key = (
+                    forward.caller_semantic_ir_digest.clone(),
+                    source.source_node(),
+                    forward.source_contract_digest.clone(),
+                    forward.source_entry_ordinal,
+                    binding.identity.clone(),
+                );
+                expected_action_bindings.push(key.clone());
+                if let Some(usage) = matching_usage {
+                    expected_usage_profiles.push((key, usage.clone()));
+                }
+            }
+        }
+    }
+    let actual_action_bindings = builder
+        .actions
+        .iter()
+        .map(|action| {
+            (
+                action.source.caller_semantic_ir_digest.clone(),
+                action.source.source_node,
+                action.source.source_contract_digest.clone(),
+                action.source.forward_entry_ordinal,
+                action.source.action.clone(),
+            )
+        })
+        .collect::<Vec<_>>();
+    let actual_usage_profiles = builder
+        .actions
+        .iter()
+        .map(|action| {
+            (
+                (
+                    action.source.caller_semantic_ir_digest.clone(),
+                    action.source.source_node,
+                    action.source.source_contract_digest.clone(),
+                    action.source.forward_entry_ordinal,
+                    action.source.action.clone(),
+                ),
+                action.recovery_usage_binding.clone(),
+            )
+        })
+        .collect::<Vec<_>>();
+    let closure_has_unknown = !root_unresolved.is_empty() || !builder.unresolved_sources.is_empty();
+    let action_bindings_accounted = if closure_has_unknown {
+        LeafVerdict::Unproven
+    } else if multiset_equal(&expected_action_bindings, &actual_action_bindings) {
+        builder.binding_verdict
+    } else {
+        LeafVerdict::Violation
+    };
+    let usage_profiles_accounted = if closure_has_unknown {
+        LeafVerdict::Unproven
+    } else if multiset_equal(&expected_usage_profiles, &actual_usage_profiles) {
+        builder.usage_profile_verdict
+    } else {
+        LeafVerdict::Violation
+    };
+    let root_action_totals_sound = if builder.arithmetic_violation
+        || builder.factor_verdict == LeafVerdict::Violation
+        || source_nodes_accounted == LeafVerdict::Violation
+        || action_bindings_accounted == LeafVerdict::Violation
+        || usage_profiles_accounted == LeafVerdict::Violation
+    {
+        LeafVerdict::Violation
+    } else if !matches!(&folded.action_effects, ControlDimensionValue::Complete(_))
+        || action_bindings_accounted != LeafVerdict::Proven
+        || source_nodes_accounted != LeafVerdict::Proven
+        || usage_profiles_accounted != LeafVerdict::Proven
+        || builder.factor_verdict != LeafVerdict::Proven
+    {
+        LeafVerdict::Unproven
+    } else {
+        LeafVerdict::Proven
+    };
+    let source_closure = RootRecoverySourceClosureReport {
+        source_nodes_accounted,
+        action_bindings_accounted,
+        usage_profiles_accounted,
+        multiplicity_factors_accounted: builder.factor_verdict,
+        root_action_totals_sound,
+    };
+
+    let action_state = if !root_unresolved.is_empty() || !builder.unresolved_sources.is_empty() {
+        if builder.actions.is_empty() {
+            ControlDimensionValue::Unknown {
+                known_contributions: vec![],
+                unresolved_sources: unique_nodes(
+                    root_unresolved
+                        .iter()
+                        .copied()
+                        .chain(builder.unresolved_sources.iter().copied()),
+                ),
+            }
+        } else {
+            ControlDimensionValue::Partial {
+                known_contribution: Some(builder.actions.clone()),
+                unresolved_sources: unique_nodes(
+                    root_unresolved
+                        .iter()
+                        .copied()
+                        .chain(builder.unresolved_sources.iter().copied()),
+                ),
+            }
+        }
+    } else {
+        ControlDimensionValue::Complete(builder.actions.clone())
+    };
+    let action_effect_proof = if builder.arithmetic_violation {
+        LeafVerdict::Violation
+    } else {
+        merge_verdict(
+            builder.action_epsilon_verdict,
+            root_action_effect_coverage(&folded.epsilon_coverage_requirement, root.effects.value()),
+        )
+    };
+    let recovery_usage_proof = if builder.arithmetic_violation {
+        LeafVerdict::Violation
+    } else {
+        root_recovery_usage_coverage(&folded.recovery_usage, root.usage.value())
+    };
+    let eligibility_verdict = builder
+        .actions
+        .iter()
+        .map(|action| action.eligibility_evidence)
+        .fold(
+            if source_nodes_accounted == LeafVerdict::Proven {
+                LeafVerdict::Proven
+            } else {
+                LeafVerdict::Unproven
+            },
+            merge_verdict,
+        );
+
+    let proofs = vec![
+        ControlDimensionProof::new(
+            "root-recovery-source-closure",
+            merge_verdict(
+                merge_verdict(
+                    source_nodes_accounted,
+                    merge_verdict(action_bindings_accounted, usage_profiles_accounted),
+                ),
+                root_action_totals_sound,
+            ),
+            RULE_RECOVERY_SOURCE_CLOSURE,
+            root.control_node,
+            Some(format!("computation:{}", root.control_node.raw())),
+            "the root RecoverySource/Action/Usage profile multisets are compared exactly; source-node equality alone is not accepted as action/profile closure",
+        ),
+        ControlDimensionProof::new(
+            "root-recovery-action-totals",
+            root_action_totals_sound,
+            RULE_RECOVERY_ROOT_MULTIPLICITY,
+            root.control_node,
+            Some(format!("computation:{}", root.control_node.raw())),
+            "root action totals require a complete leaf-seed fold, exact source bindings and one application of every checked factor identity",
+        ),
+        ControlDimensionProof::new(
+            "root-recovery-multiplicity",
+            builder.factor_verdict,
+            RULE_RECOVERY_ROOT_MULTIPLICITY,
+            root.control_node,
+            Some(format!("computation:{}", root.control_node.raw())),
+            "each Repeat factor is keyed by caller digest, exact control node and kind, and is applied once by the root fold",
+        ),
+        ControlDimensionProof::new(
+            "root-k-action-epsilon-coverage",
+            action_effect_proof,
+            RULE_RECOVERY_ROOT_EFFECT_COVERAGE,
+            root.control_node,
+            Some(format!("computation:{}", root.control_node.raw())),
+            "the Root K action projection is checked against the already-derived Root epsilon ceiling and is not added to it",
+        ),
+        ControlDimensionProof::new(
+            "root-k-recovery-usage-coverage",
+            recovery_usage_proof,
+            RULE_RECOVERY_ROOT_USAGE_COVERAGE,
+            root.control_node,
+            Some(format!("computation:{}", root.control_node.raw())),
+            "Root K-required Recovery Usage is compared with the recovery coordinates of Root U and is never added to U a second time",
+        ),
+        ControlDimensionProof::new(
+            "root-recovery-guard-compatibility",
+            builder.guard_verdict,
+            RULE_RECOVERY_ROOT_ALGEBRA,
+            root.control_node,
+            Some(format!("computation:{}", root.control_node.raw())),
+            "each source K action retains its validator-created component-local guard proof plus typed scoped input and control-path coordinates",
+        ),
+        ControlDimensionProof::new(
+            "root-recovery-eligibility",
+            eligibility_verdict,
+            RULE_COMPENSATION_ACTIONS,
+            root.control_node,
+            Some(format!("computation:{}", root.control_node.raw())),
+            "positive static action potential is not receipt eligibility or a recovery command; actual eligibility remains evidence-dependent",
+        ),
+    ];
+    RootRecoverySummary {
+        actions: ControlDimension {
+            value: action_state,
+            proofs: proofs.clone(),
+        },
+        action_effects: ControlDimension {
+            value: folded.action_effects,
+            proofs: vec![ControlDimensionProof::new(
+                "root-k-action-effect-envelope",
+                action_effect_proof,
+                RULE_RECOVERY_ROOT_EFFECT_COVERAGE,
+                root.control_node,
+                Some(format!("computation:{}", root.control_node.raw())),
+                "action effects are folded with the existing checked Effect algebra",
+            )],
+        },
+        epsilon_coverage_requirement: ControlDimension {
+            value: folded.epsilon_coverage_requirement,
+            proofs: vec![ControlDimensionProof::new(
+                "root-k-epsilon-coverage-requirement",
+                action_effect_proof,
+                RULE_RECOVERY_ROOT_EFFECT_COVERAGE,
+                root.control_node,
+                Some(format!("computation:{}", root.control_node.raw())),
+                "the K-only projection remains separate; same-atom Forward opportunities are added once in this comparison requirement, never to the declared epsilon envelope",
+            )],
+        },
+        recovery_usage: ControlDimension {
+            value: folded.recovery_usage,
+            proofs: vec![ControlDimensionProof::new(
+                "root-k-recovery-usage",
+                recovery_usage_proof,
+                RULE_RECOVERY_ROOT_USAGE_COVERAGE,
+                root.control_node,
+                Some(format!("computation:{}", root.control_node.raw())),
+                "per-attempt Recovery Usage is scaled at the leaf and composed by the existing checked Usage algebra exactly once",
+            )],
+        },
+        source_closure,
+        proof: ControlProofReport::new(proofs),
+    }
+}
+
+fn unique_nodes(nodes: impl IntoIterator<Item = ComputationId>) -> Vec<ComputationId> {
+    nodes
+        .into_iter()
+        .collect::<BTreeSet<_>>()
+        .into_iter()
+        .collect()
+}
+
+fn multiset_equal<T: Clone + PartialEq>(expected: &[T], actual: &[T]) -> bool {
+    if expected.len() != actual.len() {
+        return false;
+    }
+    let mut remaining = actual.to_vec();
+    for item in expected {
+        let Some(index) = remaining.iter().position(|candidate| candidate == item) else {
+            return false;
+        };
+        remaining.remove(index);
+    }
+    remaining.is_empty()
+}
+
+#[derive(Clone)]
+struct RootRecoveryPath {
+    owner_scope: Option<ComputationId>,
+    root_factors: Vec<AppliedMultiplicity>,
+    local_factors: Vec<AppliedMultiplicity>,
+    control_path: Vec<ControlPathStep>,
+    root_reachable: bool,
+    local_reachable: bool,
+    invalid_factor_identity: bool,
+}
+
+impl Default for RootRecoveryPath {
+    fn default() -> Self {
+        Self {
+            owner_scope: None,
+            root_factors: vec![],
+            local_factors: vec![],
+            control_path: vec![],
+            root_reachable: true,
+            local_reachable: true,
+            invalid_factor_identity: false,
+        }
+    }
+}
+
+struct RootRecoveryBuilder<'a, 'context, 'universe> {
+    root_digest: &'a DigestRefValue,
+    root_effect_occurrences: &'a [ScopedEffectOccurrence],
+    dataflow: &'a SemanticDataflowAnalysis,
+    context: &'context StaticContractProofContext<'universe>,
+    actions: Vec<RootRecoveryAction>,
+    leaf_sources: Vec<RecoverySourceSummary>,
+    unresolved_sources: Vec<ComputationId>,
+    guard_verdict: LeafVerdict,
+    action_epsilon_verdict: LeafVerdict,
+    factor_verdict: LeafVerdict,
+    binding_verdict: LeafVerdict,
+    usage_profile_verdict: LeafVerdict,
+    arithmetic_violation: bool,
+}
+
+fn derive_root_recovery_node(
+    summary: &DerivedControlContractSummary<'_, '_>,
+    inherited: &RootRecoveryPath,
+    builder: &mut RootRecoveryBuilder<'_, '_, '_>,
+) -> RootRecoveryFold {
+    if summary.children.is_empty() {
+        return derive_root_recovery_leaf(summary, inherited, builder);
+    }
+    let mut path = inherited.clone();
+    if matches!(&summary.operator, ControlOperator::CompensationScope) {
+        path.owner_scope = Some(summary.control_node);
+        path.local_factors.clear();
+        // A LocalActionBound is per activation of this owner, even when the
+        // entire owner is unreachable from a statically selected root branch.
+        path.local_reachable = true;
+    }
+    if let Some(family) = effect_occurrence_family(summary.control_node, &summary.operator) {
+        let applied = AppliedMultiplicity {
+            identity: ControlMultiplicityIdentity {
+                caller_semantic_ir_digest: summary.source_semantic_ir_digest.clone(),
+                control_node: family.control_node,
+                kind: match family.kind {
+                    EffectOccurrenceFamilyKind::Iterate => ControlMultiplicityKind::Iterate,
+                    EffectOccurrenceFamilyKind::Retry => ControlMultiplicityKind::Retry,
+                },
+            },
+            logical_repetitions: family.logical_repetitions,
+            physical_attempts: family.physical_attempts,
+        };
+        if path
+            .root_factors
+            .iter()
+            .any(|existing| existing.identity == applied.identity)
+        {
+            builder.factor_verdict = LeafVerdict::Violation;
+            path.invalid_factor_identity = true;
+        } else {
+            path.root_factors.push(applied.clone());
+        }
+        if path.owner_scope.is_some() {
+            if path
+                .local_factors
+                .iter()
+                .any(|existing| existing.identity == applied.identity)
+            {
+                builder.factor_verdict = LeafVerdict::Violation;
+                path.invalid_factor_identity = true;
+            } else {
+                path.local_factors.push(applied);
+            }
+        }
+    }
+    let exact_select_child = exact_select_child_index(summary);
+    let mut child_folds = Vec::with_capacity(summary.children.len());
+    for (child_index, child) in summary.children.iter().enumerate() {
+        let child_reachable = path.root_reachable
+            && exact_select_child.is_none_or(|selected| selected == child_index);
+        let child_path_reachability = if !child_reachable {
+            ControlPathReachability::ProvenUnreachable
+        } else if exact_select_child == Some(child_index) {
+            ControlPathReachability::ExactSelected
+        } else {
+            ControlPathReachability::Possible
+        };
+        let mut next = path.clone();
+        next.root_reachable = child_reachable;
+        if path.owner_scope.is_some()
+            && exact_select_child.is_some_and(|selected| selected != child_index)
+        {
+            next.local_reachable = false;
+        }
+        next.control_path.push(control_path_step(
+            summary,
+            child_index,
+            child.control_node,
+            child_path_reachability,
+        ));
+        child_folds.push(derive_root_recovery_node(child, &next, builder));
+    }
+    combine_root_recovery_children(summary, &child_folds, exact_select_child, builder)
+}
+
+fn derive_root_recovery_leaf(
+    summary: &DerivedControlContractSummary<'_, '_>,
+    path: &RootRecoveryPath,
+    builder: &mut RootRecoveryBuilder<'_, '_, '_>,
+) -> RootRecoveryFold {
+    let (contributions, unresolved) = recovery_sources_from_child(summary);
+    builder
+        .unresolved_sources
+        .extend(unresolved.iter().copied());
+    let sources = contributions
+        .into_iter()
+        .flat_map(|contribution| contribution.value)
+        .collect::<Vec<_>>();
+    builder.leaf_sources.extend(sources.iter().cloned());
+    if !unresolved.is_empty() {
+        builder
+            .unresolved_sources
+            .extend(unresolved.iter().copied());
+    }
+
+    let mut effect = EffectSignature {
+        row: EffectRow::Closed(vec![]),
+    };
+    let mut epsilon_requirement = EffectSignature {
+        row: EffectRow::Closed(vec![]),
+    };
+    let mut same_atom_forwards = Vec::<(ScopedEffectOccurrence, OccurrenceCeiling)>::new();
+    let mut usage = None::<StaticUsageEnvelope>;
+    let mut unknown = !unresolved.is_empty();
+    let mut leaf_violation = false;
+    for source in &sources {
+        for binding in source.action_bindings() {
+            let identity = &binding.identity;
+            let Some(usage_binding) = source
+                .usage_bindings()
+                .iter()
+                .find(|candidate| candidate.action == *identity)
+            else {
+                builder.binding_verdict =
+                    merge_verdict(builder.binding_verdict, LeafVerdict::Violation);
+                builder.usage_profile_verdict =
+                    merge_verdict(builder.usage_profile_verdict, LeafVerdict::Violation);
+                builder.unresolved_sources.push(source.source_node());
+                unknown = true;
+                continue;
+            };
+            let forwards = source
+                .effects()
+                .iter()
+                .filter(|occurrence| occurrence.declared.atom == identity.forward_effect)
+                .collect::<Vec<_>>();
+            if forwards.is_empty() {
+                builder.binding_verdict =
+                    merge_verdict(builder.binding_verdict, LeafVerdict::Unproven);
+                builder.usage_profile_verdict =
+                    merge_verdict(builder.usage_profile_verdict, LeafVerdict::Unproven);
+                builder.unresolved_sources.push(source.source_node());
+                unknown = true;
+                continue;
+            }
+            for forward_source in forwards {
+                let Some(forward) =
+                    find_root_occurrence(builder.root_effect_occurrences, forward_source)
+                else {
+                    builder.binding_verdict =
+                        merge_verdict(builder.binding_verdict, LeafVerdict::Unproven);
+                    builder.usage_profile_verdict =
+                        merge_verdict(builder.usage_profile_verdict, LeafVerdict::Unproven);
+                    builder.unresolved_sources.push(source.source_node());
+                    unknown = true;
+                    continue;
+                };
+                let Some(action_effect) = builder.root_effect_occurrences.iter().find(|entry| {
+                    entry.computation == source.source_node()
+                        && entry.source_contract_digest == forward.source_contract_digest
+                        && entry.declared.atom == identity.action_effect
+                }) else {
+                    builder.binding_verdict =
+                        merge_verdict(builder.binding_verdict, LeafVerdict::Unproven);
+                    builder.usage_profile_verdict =
+                        merge_verdict(builder.usage_profile_verdict, LeafVerdict::Unproven);
+                    builder.unresolved_sources.push(source.source_node());
+                    unknown = true;
+                    continue;
+                };
+                let guard_proof = source
+                    .action_guard_compatibility()
+                    .iter()
+                    .find(|proof| proof.recovery_action() == identity)
+                    .cloned();
+                let guard_coordinates = summary.leaf_summary().map_or_else(Vec::new, |leaf| {
+                    root_guard_coordinate_evidence(
+                        leaf,
+                        &forward.source_contract_digest,
+                        guard_proof.as_ref(),
+                        builder.dataflow,
+                        &mut builder.guard_verdict,
+                    )
+                });
+                let guard_verdict = guard_proof.as_ref().map_or(LeafVerdict::Unproven, |proof| {
+                    match proof.verdict() {
+                        af_contract::ProofVerdict::Proven => LeafVerdict::Proven,
+                        af_contract::ProofVerdict::Violation => LeafVerdict::Violation,
+                        af_contract::ProofVerdict::Unproven => LeafVerdict::Unproven,
+                        af_contract::ProofVerdict::RequiresEvidence => {
+                            LeafVerdict::RequiresEvidence
+                        }
+                    }
+                });
+                builder.guard_verdict = merge_verdict(builder.guard_verdict, guard_verdict);
+                let Some(forward_seed_upper) = recovery_forward_seed_upper(
+                    source,
+                    identity,
+                    forward_source.declared.bounds.lower,
+                    forward_source.declared.bounds.upper,
+                ) else {
+                    builder.binding_verdict =
+                        merge_verdict(builder.binding_verdict, LeafVerdict::Unproven);
+                    builder.action_epsilon_verdict =
+                        merge_verdict(builder.action_epsilon_verdict, LeafVerdict::Unproven);
+                    builder.unresolved_sources.push(source.source_node());
+                    unknown = true;
+                    continue;
+                };
+                let base_upper = if let Ok(value) = forward_seed_upper
+                    .checked_mul(usage_binding.activations_per_forward.upper)
+                    .and_then(|bound| {
+                        bound.checked_mul(usage_binding.attempts_per_activation.upper)
+                    }) {
+                    RecoveryActionUpper::Known(value)
+                } else {
+                    builder.arithmetic_violation = true;
+                    leaf_violation = true;
+                    RecoveryActionUpper::Overflow
+                };
+                let local_upper = if path.invalid_factor_identity {
+                    RecoveryActionUpper::InvalidMultiplicity
+                } else if !path.local_reachable {
+                    RecoveryActionUpper::Known(OccurrenceCeiling::Finite(0))
+                } else {
+                    match base_upper {
+                        RecoveryActionUpper::Known(value) => apply_multiplicity_factors(
+                            value,
+                            &path.local_factors,
+                            &mut builder.factor_verdict,
+                        )
+                        .map_or(RecoveryActionUpper::Overflow, RecoveryActionUpper::Known),
+                        other => other,
+                    }
+                };
+                let root_upper = if path.invalid_factor_identity {
+                    RecoveryActionUpper::InvalidMultiplicity
+                } else if !path.root_reachable {
+                    RecoveryActionUpper::Known(OccurrenceCeiling::Finite(0))
+                } else {
+                    match base_upper {
+                        RecoveryActionUpper::Known(value) => apply_multiplicity_factors(
+                            value,
+                            &path.root_factors,
+                            &mut builder.factor_verdict,
+                        )
+                        .map_or(RecoveryActionUpper::Overflow, RecoveryActionUpper::Known),
+                        other => other,
+                    }
+                };
+                if matches!(
+                    local_upper,
+                    RecoveryActionUpper::Overflow | RecoveryActionUpper::InvalidMultiplicity
+                ) || matches!(
+                    root_upper,
+                    RecoveryActionUpper::Overflow | RecoveryActionUpper::InvalidMultiplicity
+                ) {
+                    leaf_violation = true;
+                    builder.arithmetic_violation = true;
+                }
+                if forward.mapped_resource_slot.is_none()
+                    || action_effect.mapped_resource_slot.is_none()
+                {
+                    builder.binding_verdict =
+                        merge_verdict(builder.binding_verdict, LeafVerdict::Unproven);
+                    builder.unresolved_sources.push(source.source_node());
+                    unknown = true;
+                }
+                let forward_factors = applied_multiplicities(forward);
+                let action_factors = applied_multiplicities(action_effect);
+                if !multiset_equal(&path.root_factors, &forward_factors)
+                    || !multiset_equal(&path.root_factors, &action_factors)
+                {
+                    builder.factor_verdict =
+                        merge_verdict(builder.factor_verdict, LeafVerdict::Violation);
+                    builder.arithmetic_violation = true;
+                    leaf_violation = true;
+                }
+                let declared_action_upper =
+                    if let Ok(upper) = scoped_occurrence_upper(action_effect) {
+                        Some(upper)
+                    } else {
+                        builder.arithmetic_violation = true;
+                        builder.action_epsilon_verdict =
+                            merge_verdict(builder.action_epsilon_verdict, LeafVerdict::Violation);
+                        leaf_violation = true;
+                        None
+                    };
+                let required_epsilon_upper = match root_upper {
+                    RecoveryActionUpper::Known(action_upper)
+                        if AtomKey::of(&identity.forward_effect)
+                            == AtomKey::of(&identity.action_effect) =>
+                    {
+                        let mut factor_verdict = LeafVerdict::Proven;
+                        let forward_root_upper = if path.root_reachable {
+                            apply_multiplicity_factors(
+                                forward_seed_upper,
+                                &path.root_factors,
+                                &mut factor_verdict,
+                            )
+                        } else {
+                            Ok(OccurrenceCeiling::Finite(0))
+                        };
+                        if let Ok(required) = forward_root_upper.and_then(|forward_upper| {
+                            forward_upper.checked_add(action_upper).map_err(|_| ())
+                        }) {
+                            Some(required)
+                        } else {
+                            builder.arithmetic_violation = true;
+                            builder.action_epsilon_verdict = merge_verdict(
+                                builder.action_epsilon_verdict,
+                                LeafVerdict::Violation,
+                            );
+                            leaf_violation = true;
+                            None
+                        }
+                    }
+                    RecoveryActionUpper::Known(action_upper) => Some(action_upper),
+                    RecoveryActionUpper::Overflow
+                    | RecoveryActionUpper::InvalidMultiplicity
+                    | RecoveryActionUpper::Unknown => None,
+                };
+                match (required_epsilon_upper, declared_action_upper) {
+                    (Some(required), Some(declared)) if !declared.covers(required) => {
+                        builder.action_epsilon_verdict =
+                            merge_verdict(builder.action_epsilon_verdict, LeafVerdict::Violation);
+                        leaf_violation = true;
+                    }
+                    (Some(_), Some(_)) => {}
+                    _ => {
+                        builder.action_epsilon_verdict =
+                            merge_verdict(builder.action_epsilon_verdict, LeafVerdict::Unproven);
+                    }
+                }
+                let root_usage = match root_upper {
+                    RecoveryActionUpper::Known(upper) => conditional_recovery_usage(
+                        &usage_binding.per_attempt_usage,
+                        upper,
+                        builder.context,
+                    )
+                    .unwrap_or_else(|()| {
+                        builder.arithmetic_violation = true;
+                        StaticUsageEnvelope::unknown()
+                    }),
+                    RecoveryActionUpper::Overflow
+                    | RecoveryActionUpper::InvalidMultiplicity
+                    | RecoveryActionUpper::Unknown => StaticUsageEnvelope::unknown(),
+                };
+                let fold_seed_usage = match base_upper {
+                    RecoveryActionUpper::Known(base) => conditional_recovery_usage(
+                        &usage_binding.per_attempt_usage,
+                        base,
+                        builder.context,
+                    )
+                    .unwrap_or_else(|()| {
+                        builder.arithmetic_violation = true;
+                        StaticUsageEnvelope::unknown()
+                    }),
+                    RecoveryActionUpper::Overflow
+                    | RecoveryActionUpper::InvalidMultiplicity
+                    | RecoveryActionUpper::Unknown => StaticUsageEnvelope::unknown(),
+                };
+                if fold_seed_usage.is_globally_unknown() {
+                    unknown = true;
+                }
+                let local_usage = match local_upper {
+                    RecoveryActionUpper::Known(upper) => Some(
+                        conditional_recovery_usage(
+                            &usage_binding.per_attempt_usage,
+                            upper,
+                            builder.context,
+                        )
+                        .unwrap_or_else(|()| {
+                            builder.arithmetic_violation = true;
+                            StaticUsageEnvelope::unknown()
+                        }),
+                    ),
+                    _ => None,
+                };
+                if let RecoveryActionUpper::Known(base) = base_upper {
+                    let action_entry = EffectEntry {
+                        atom: identity.action_effect.clone(),
+                        bounds: OccurrenceBounds {
+                            lower: 0,
+                            upper: base,
+                        },
+                        guard: forward_source.declared.guard.clone(),
+                    };
+                    let singleton = EffectSignature {
+                        row: EffectRow::Closed(vec![action_entry]),
+                    };
+                    if let Ok(next) = af_effect::control::sequence_envelope(&effect, &singleton) {
+                        effect = next;
+                    } else {
+                        builder.arithmetic_violation = true;
+                        leaf_violation = true;
+                        unknown = true;
+                    }
+                    if let Ok(next) =
+                        af_effect::control::sequence_envelope(&epsilon_requirement, &singleton)
+                    {
+                        epsilon_requirement = next;
+                    } else {
+                        builder.arithmetic_violation = true;
+                        leaf_violation = true;
+                        unknown = true;
+                    }
+                    if AtomKey::of(&forward_source.declared.atom)
+                        == AtomKey::of(&identity.action_effect)
+                        && !same_atom_forwards
+                            .iter()
+                            .any(|(occurrence, _)| occurrence == forward_source)
+                    {
+                        same_atom_forwards.push((forward_source.clone(), forward_seed_upper));
+                    }
+                    if fold_seed_usage.is_globally_unknown() {
+                        unknown = true;
+                    } else {
+                        match usage.as_ref() {
+                            None => usage = Some(fold_seed_usage.clone()),
+                            Some(current) => {
+                                if let Ok(next) =
+                                    af_usage::control::sequence_envelope(current, &fold_seed_usage)
+                                {
+                                    usage = Some(next);
+                                } else {
+                                    builder.arithmetic_violation = true;
+                                    leaf_violation = true;
+                                    unknown = true;
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    unknown = true;
+                }
+                let source_identity = RecoveryActionSourceIdentity {
+                    caller_semantic_ir_digest: forward.caller_semantic_ir_digest.clone(),
+                    source_node: source.source_node(),
+                    source_contract_digest: forward.source_contract_digest.clone(),
+                    forward_entry_ordinal: forward.source_entry_ordinal,
+                    action: identity.clone(),
+                };
+                let local_bound = path.owner_scope.map(|scope| LocalActionBound {
+                    compensation_scope_node: scope,
+                    upper: local_upper,
+                    applied_families: path.local_factors.clone(),
+                });
+                builder.actions.push(RootRecoveryAction {
+                    source: source_identity,
+                    forward_seed_upper,
+                    target: source.target().clone(),
+                    owner: path.owner_scope.map_or(
+                        RootRecoveryOwner::RootRecovery,
+                        RootRecoveryOwner::CompensationScope,
+                    ),
+                    local_bound,
+                    root_bound: RootActionBound {
+                        root_semantic_ir_digest: builder.root_digest.clone(),
+                        upper: root_upper,
+                        applied_families: path.root_factors.clone(),
+                    },
+                    forward_occurrence: forward.clone(),
+                    action_effect_occurrence: action_effect.clone(),
+                    recovery_usage_binding: usage_binding.clone(),
+                    local_recovery_usage: local_usage,
+                    root_recovery_usage: root_usage,
+                    guard_compatibility: guard_proof,
+                    guard_coordinates,
+                    eligibility_evidence: match root_upper {
+                        RecoveryActionUpper::Known(OccurrenceCeiling::Finite(0)) => {
+                            LeafVerdict::Proven
+                        }
+                        RecoveryActionUpper::Known(_) => LeafVerdict::RequiresEvidence,
+                        RecoveryActionUpper::Overflow
+                        | RecoveryActionUpper::InvalidMultiplicity => LeafVerdict::Violation,
+                        RecoveryActionUpper::Unknown => LeafVerdict::Unproven,
+                    },
+                    control_path: path.control_path.clone(),
+                });
+            }
+        }
+    }
+    let usage = usage.unwrap_or_else(StaticUsageEnvelope::empty);
+    for (forward, forward_seed_upper) in same_atom_forwards {
+        let singleton = EffectSignature {
+            row: EffectRow::Closed(vec![EffectEntry {
+                atom: forward.declared.atom.clone(),
+                bounds: OccurrenceBounds {
+                    lower: 0,
+                    upper: forward_seed_upper,
+                },
+                guard: forward.declared.guard.clone(),
+            }]),
+        };
+        if let Ok(next) = af_effect::control::sequence_envelope(&epsilon_requirement, &singleton) {
+            epsilon_requirement = next;
+        } else {
+            builder.arithmetic_violation = true;
+            leaf_violation = true;
+            unknown = true;
+        }
+    }
+    builder.unresolved_sources.sort_unstable();
+    builder.unresolved_sources.dedup();
+    if unknown {
+        RootRecoveryFold {
+            action_effects: if effect.row == EffectRow::Closed(vec![]) {
+                ControlDimensionValue::Unknown {
+                    known_contributions: vec![],
+                    unresolved_sources: unique_nodes(
+                        builder
+                            .unresolved_sources
+                            .iter()
+                            .copied()
+                            .chain([summary.control_node]),
+                    ),
+                }
+            } else {
+                ControlDimensionValue::Partial {
+                    known_contribution: Some(effect),
+                    unresolved_sources: unique_nodes(
+                        builder
+                            .unresolved_sources
+                            .iter()
+                            .copied()
+                            .chain([summary.control_node]),
+                    ),
+                }
+            },
+            epsilon_coverage_requirement: if epsilon_requirement.row == EffectRow::Closed(vec![]) {
+                ControlDimensionValue::Unknown {
+                    known_contributions: vec![],
+                    unresolved_sources: unique_nodes(
+                        builder
+                            .unresolved_sources
+                            .iter()
+                            .copied()
+                            .chain([summary.control_node]),
+                    ),
+                }
+            } else {
+                ControlDimensionValue::Partial {
+                    known_contribution: Some(epsilon_requirement),
+                    unresolved_sources: unique_nodes(
+                        builder
+                            .unresolved_sources
+                            .iter()
+                            .copied()
+                            .chain([summary.control_node]),
+                    ),
+                }
+            },
+            recovery_usage: if usage.is_empty() {
+                ControlDimensionValue::Unknown {
+                    known_contributions: vec![],
+                    unresolved_sources: unique_nodes(
+                        builder
+                            .unresolved_sources
+                            .iter()
+                            .copied()
+                            .chain([summary.control_node]),
+                    ),
+                }
+            } else {
+                ControlDimensionValue::Partial {
+                    known_contribution: Some(usage),
+                    unresolved_sources: unique_nodes(
+                        builder
+                            .unresolved_sources
+                            .iter()
+                            .copied()
+                            .chain([summary.control_node]),
+                    ),
+                }
+            },
+            violation: leaf_violation,
+        }
+    } else if leaf_violation {
+        RootRecoveryFold {
+            action_effects: ControlDimensionValue::Partial {
+                known_contribution: Some(effect),
+                unresolved_sources: vec![summary.control_node],
+            },
+            epsilon_coverage_requirement: ControlDimensionValue::Partial {
+                known_contribution: Some(epsilon_requirement),
+                unresolved_sources: vec![summary.control_node],
+            },
+            recovery_usage: ControlDimensionValue::Partial {
+                known_contribution: Some(usage),
+                unresolved_sources: vec![summary.control_node],
+            },
+            violation: true,
+        }
+    } else {
+        RootRecoveryFold {
+            action_effects: ControlDimensionValue::Complete(effect),
+            epsilon_coverage_requirement: ControlDimensionValue::Complete(epsilon_requirement),
+            recovery_usage: ControlDimensionValue::Complete(usage),
+            violation: false,
+        }
+    }
+}
+
+fn root_guard_coordinate_evidence(
+    leaf: &ResolvedComputationLeaf<'_, '_>,
+    source_contract_digest: &DigestRefValue,
+    guard_proof: Option<&ActionGuardCompatibility>,
+    dataflow: &SemanticDataflowAnalysis,
+    verdict: &mut LeafVerdict,
+) -> Vec<RootGuardCoordinateEvidence> {
+    let Some(guard_proof) = guard_proof else {
+        *verdict = merge_verdict(*verdict, LeafVerdict::Unproven);
+        return vec![];
+    };
+    let mut result = Vec::new();
+    for guard in [
+        guard_proof.forward_guard(),
+        guard_proof.declared_action_guard(),
+    ]
+    .into_iter()
+    .flatten()
+    {
+        let EffectGuard::InputEquals(equals) = guard else {
+            continue;
+        };
+        if result.iter().any(|item: &RootGuardCoordinateEvidence| {
+            item.component_input_port == equals.port_no
+                && item.source_contract_digest == *source_contract_digest
+        }) {
+            continue;
+        }
+        let Some(mapping) = leaf
+            .input_mappings()
+            .iter()
+            .find(|mapping| mapping.contract_port_no == equals.port_no)
+        else {
+            *verdict = merge_verdict(*verdict, LeafVerdict::Unproven);
+            continue;
+        };
+        let ScopedPortBinding::InputExpression(expression) = mapping.binding else {
+            *verdict = merge_verdict(*verdict, LeafVerdict::Unproven);
+            continue;
+        };
+        let Some(exact_type) = mapping.exact_type.clone() else {
+            *verdict = merge_verdict(*verdict, LeafVerdict::Unproven);
+            continue;
+        };
+        let dependency_slots = dataflow
+            .expression_value_dependencies()
+            .get(&expression.raw())
+            .map(|slots| slots.iter().copied().map(ValueSlotId::from_raw).collect())
+            .unwrap_or_default();
+        result.push(RootGuardCoordinateEvidence {
+            source_contract_digest: (*source_contract_digest).clone(),
+            component_input_port: equals.port_no,
+            input_expression: expression,
+            exact_type: Some(exact_type),
+            dependency_slots,
+        });
+    }
+    result
+}
+
+fn apply_multiplicity_factors(
+    base: OccurrenceCeiling,
+    factors: &[AppliedMultiplicity],
+    verdict: &mut LeafVerdict,
+) -> Result<OccurrenceCeiling, ()> {
+    let mut seen = Vec::new();
+    let mut result = base;
+    for factor in factors {
+        if seen.contains(&factor.identity) {
+            *verdict = merge_verdict(*verdict, LeafVerdict::Violation);
+            return Err(());
+        }
+        seen.push(factor.identity.clone());
+        result = result
+            .checked_mul(factor.logical_repetitions.upper)
+            .map_err(|_| {
+                *verdict = merge_verdict(*verdict, LeafVerdict::Violation);
+            })?;
+    }
+    Ok(result)
+}
+
+fn find_root_occurrence<'a>(
+    root_occurrences: &'a [ScopedEffectOccurrence],
+    source_occurrence: &ScopedEffectOccurrence,
+) -> Option<&'a ScopedEffectOccurrence> {
+    root_occurrences.iter().find(|candidate| {
+        candidate.caller_semantic_ir_digest == source_occurrence.caller_semantic_ir_digest
+            && candidate.source_contract_digest == source_occurrence.source_contract_digest
+            && candidate.computation == source_occurrence.computation
+            && candidate.source_entry_ordinal == source_occurrence.source_entry_ordinal
+            && candidate.declared.atom == source_occurrence.declared.atom
+            && candidate.mapped_resource_slot == source_occurrence.mapped_resource_slot
+    })
+}
+
+fn combine_root_recovery_children(
+    summary: &DerivedControlContractSummary<'_, '_>,
+    children: &[RootRecoveryFold],
+    exact_select_child: Option<usize>,
+    builder: &mut RootRecoveryBuilder<'_, '_, '_>,
+) -> RootRecoveryFold {
+    let violation = children.iter().any(|child| child.violation);
+    if let Some(selected) = exact_select_child {
+        let Some(child) = children.get(selected) else {
+            builder.factor_verdict = merge_verdict(builder.factor_verdict, LeafVerdict::Violation);
+            return RootRecoveryFold {
+                action_effects: ControlDimensionValue::Unknown {
+                    known_contributions: vec![],
+                    unresolved_sources: vec![summary.control_node],
+                },
+                epsilon_coverage_requirement: ControlDimensionValue::Unknown {
+                    known_contributions: vec![],
+                    unresolved_sources: vec![summary.control_node],
+                },
+                recovery_usage: ControlDimensionValue::Unknown {
+                    known_contributions: vec![],
+                    unresolved_sources: vec![summary.control_node],
+                },
+                violation: true,
+            };
+        };
+        return RootRecoveryFold {
+            action_effects: child.action_effects.clone(),
+            epsilon_coverage_requirement: child.epsilon_coverage_requirement.clone(),
+            recovery_usage: child.recovery_usage.clone(),
+            violation,
+        };
+    }
+
+    let action_effects = combine_root_effect_children(summary, children, builder);
+    let epsilon_children = children
+        .iter()
+        .map(|child| RootRecoveryFold {
+            action_effects: child.epsilon_coverage_requirement.clone(),
+            epsilon_coverage_requirement: child.epsilon_coverage_requirement.clone(),
+            recovery_usage: child.recovery_usage.clone(),
+            violation: child.violation,
+        })
+        .collect::<Vec<_>>();
+    let epsilon_coverage_requirement =
+        combine_root_effect_children(summary, &epsilon_children, builder);
+    let recovery_usage = combine_root_usage_children(summary, children, builder);
+    RootRecoveryFold {
+        action_effects,
+        epsilon_coverage_requirement,
+        recovery_usage,
+        violation: violation || builder.arithmetic_violation,
+    }
+}
+
+fn combine_root_effect_children(
+    summary: &DerivedControlContractSummary<'_, '_>,
+    children: &[RootRecoveryFold],
+    builder: &mut RootRecoveryBuilder<'_, '_, '_>,
+) -> ControlDimensionValue<EffectSignature> {
+    let mut signatures = Vec::new();
+    let mut unresolved = Vec::new();
+    for (index, child) in children.iter().enumerate() {
+        match &child.action_effects {
+            ControlDimensionValue::Complete(signature) => {
+                signatures.push((
+                    index,
+                    summary.children[index].control_node,
+                    signature.clone(),
+                ));
+            }
+            ControlDimensionValue::Partial {
+                known_contribution: Some(signature),
+                unresolved_sources,
+            } => {
+                signatures.push((
+                    index,
+                    summary.children[index].control_node,
+                    signature.clone(),
+                ));
+                unresolved.push(summary.children[index].control_node);
+                unresolved.extend(unresolved_sources.iter().copied());
+            }
+            ControlDimensionValue::Unknown {
+                known_contributions,
+                unresolved_sources,
+            } => {
+                signatures.extend(
+                    known_contributions
+                        .iter()
+                        .map(|item| (index, item.source_node(), item.value().clone())),
+                );
+                unresolved.push(summary.children[index].control_node);
+                unresolved.extend(unresolved_sources.iter().copied());
+            }
+            ControlDimensionValue::Partial {
+                known_contribution: None,
+                unresolved_sources,
+            }
+            | ControlDimensionValue::PerChild {
+                unresolved_sources, ..
+            } => {
+                unresolved.push(summary.children[index].control_node);
+                unresolved.extend(unresolved_sources.iter().copied());
+            }
+            ControlDimensionValue::NotApplicable => {
+                unresolved.push(summary.children[index].control_node);
+            }
+        }
+    }
+    unresolved.sort_unstable();
+    unresolved.dedup();
+    match combine_effect_signatures(&summary.operator, &signatures, None) {
+        Ok(Some(signature)) if unresolved.is_empty() => ControlDimensionValue::Complete(signature),
+        Ok(Some(signature)) => ControlDimensionValue::Partial {
+            known_contribution: Some(signature),
+            unresolved_sources: unresolved,
+        },
+        Ok(None) => ControlDimensionValue::Unknown {
+            known_contributions: signatures
+                .into_iter()
+                .map(|(_, source_node, value)| DimensionContribution { source_node, value })
+                .collect(),
+            unresolved_sources: if unresolved.is_empty() {
+                vec![summary.control_node]
+            } else {
+                unresolved
+            },
+        },
+        Err(_) => {
+            builder.arithmetic_violation = true;
+            ControlDimensionValue::Unknown {
+                known_contributions: signatures
+                    .into_iter()
+                    .map(|(_, source_node, value)| DimensionContribution { source_node, value })
+                    .collect(),
+                unresolved_sources: unique_nodes(
+                    unresolved.into_iter().chain([summary.control_node]),
+                ),
+            }
+        }
+    }
+}
+
+fn combine_root_usage_children(
+    summary: &DerivedControlContractSummary<'_, '_>,
+    children: &[RootRecoveryFold],
+    builder: &mut RootRecoveryBuilder<'_, '_, '_>,
+) -> ControlDimensionValue<StaticUsageEnvelope> {
+    let mut envelopes = Vec::new();
+    let mut unresolved = Vec::new();
+    for (index, child) in children.iter().enumerate() {
+        match &child.recovery_usage {
+            ControlDimensionValue::Complete(envelope) => {
+                envelopes.push((
+                    index,
+                    summary.children[index].control_node,
+                    envelope.clone(),
+                ));
+            }
+            ControlDimensionValue::Partial {
+                known_contribution: Some(envelope),
+                unresolved_sources,
+            } => {
+                envelopes.push((
+                    index,
+                    summary.children[index].control_node,
+                    envelope.clone(),
+                ));
+                unresolved.push(summary.children[index].control_node);
+                unresolved.extend(unresolved_sources.iter().copied());
+            }
+            ControlDimensionValue::Unknown {
+                known_contributions,
+                unresolved_sources,
+            } => {
+                envelopes.extend(
+                    known_contributions
+                        .iter()
+                        .map(|item| (index, item.source_node(), item.value().clone())),
+                );
+                unresolved.push(summary.children[index].control_node);
+                unresolved.extend(unresolved_sources.iter().copied());
+            }
+            ControlDimensionValue::Partial {
+                known_contribution: None,
+                unresolved_sources,
+            }
+            | ControlDimensionValue::PerChild {
+                unresolved_sources, ..
+            } => {
+                unresolved.push(summary.children[index].control_node);
+                unresolved.extend(unresolved_sources.iter().copied());
+            }
+            ControlDimensionValue::NotApplicable => {
+                unresolved.push(summary.children[index].control_node);
+            }
+        }
+    }
+    unresolved.sort_unstable();
+    unresolved.dedup();
+    envelopes.retain(|(_, _, envelope)| !envelope.is_empty());
+    if envelopes.is_empty() && unresolved.is_empty() {
+        return ControlDimensionValue::Complete(StaticUsageEnvelope::empty());
+    }
+    match compose_usage(&summary.operator, &envelopes) {
+        Ok(Some(envelope)) if unresolved.is_empty() => ControlDimensionValue::Complete(envelope),
+        Ok(Some(envelope)) => ControlDimensionValue::Partial {
+            known_contribution: Some(envelope),
+            unresolved_sources: unresolved,
+        },
+        Ok(None) => ControlDimensionValue::Unknown {
+            known_contributions: envelopes
+                .into_iter()
+                .map(|(_, source_node, value)| DimensionContribution { source_node, value })
+                .collect(),
+            unresolved_sources: if unresolved.is_empty() {
+                vec![summary.control_node]
+            } else {
+                unresolved
+            },
+        },
+        Err(_) => {
+            builder.arithmetic_violation = true;
+            ControlDimensionValue::Unknown {
+                known_contributions: envelopes
+                    .into_iter()
+                    .map(|(_, source_node, value)| DimensionContribution { source_node, value })
+                    .collect(),
+                unresolved_sources: unique_nodes(
+                    unresolved.into_iter().chain([summary.control_node]),
+                ),
+            }
+        }
+    }
+}
+
+fn root_action_effect_coverage(
+    actions: &ControlDimensionValue<EffectSignature>,
+    root_effects: &ControlDimensionValue<EffectSignature>,
+) -> LeafVerdict {
+    let ControlDimensionValue::Complete(actions) = actions else {
+        return LeafVerdict::Unproven;
+    };
+    let action_entries = match &actions.row {
+        EffectRow::Closed(entries) => entries,
+        EffectRow::Open(open) if open.residual.is_empty() => &open.known,
+        EffectRow::Open(_) | EffectRow::Unknown => return LeafVerdict::Unproven,
+    };
+    if action_entries.is_empty() {
+        return LeafVerdict::Proven;
+    }
+    let ControlDimensionValue::Complete(root_effects) = root_effects else {
+        return LeafVerdict::Unproven;
+    };
+    let (root_entries, root_residuals) = match &root_effects.row {
+        EffectRow::Closed(entries) => (entries.as_slice(), &[][..]),
+        EffectRow::Open(open) => (open.known.as_slice(), open.residual.as_slice()),
+        EffectRow::Unknown => return LeafVerdict::Unproven,
+    };
+    let mut verdict = LeafVerdict::Proven;
+    for action in action_entries
+        .iter()
+        .filter(|entry| !entry.bounds.upper.is_zero())
+    {
+        if let Some(declared) = root_entries
+            .iter()
+            .find(|entry| AtomKey::of(&entry.atom) == AtomKey::of(&action.atom))
+        {
+            if !declared.bounds.upper.covers(action.bounds.upper) {
+                verdict = merge_verdict(verdict, LeafVerdict::Violation);
+            } else if !af_effect::guard_contained(&action.guard, &declared.guard) {
+                verdict = merge_verdict(verdict, LeafVerdict::Unproven);
+            }
+            continue;
+        }
+        if matches!(&root_effects.row, EffectRow::Closed(_)) {
+            verdict = merge_verdict(verdict, LeafVerdict::Violation);
+            continue;
+        }
+        let residual_covers = root_residuals.iter().any(|residual| {
+            residual.catalog == action.atom.operation.catalog
+                && residual.selector.requirement_port_no
+                    == action.atom.resource_selector.requirement_port_no
+                && residual.bounds.upper.covers(action.bounds.upper)
+                && scope_contains(
+                    &action.atom.resource_selector.scope_bindings,
+                    &residual.selector.scope_bindings,
+                )
+        });
+        if !residual_covers {
+            verdict = merge_verdict(verdict, LeafVerdict::Unproven);
+        }
+    }
+    verdict
+}
+
+fn scope_contains(inner: &[af_effect::ScopeBinding], outer: &[af_effect::ScopeBinding]) -> bool {
+    outer.iter().all(|binding| inner.contains(binding))
+}
+
+fn root_recovery_usage_coverage(
+    required: &ControlDimensionValue<StaticUsageEnvelope>,
+    declared: &ControlDimensionValue<StaticUsageEnvelope>,
+) -> LeafVerdict {
+    let ControlDimensionValue::Complete(required) = required else {
+        return LeafVerdict::Unproven;
+    };
+    if required.is_globally_unknown() {
+        return LeafVerdict::Unproven;
+    }
+    if required.is_empty() {
+        return LeafVerdict::Proven;
+    }
+    let ControlDimensionValue::Complete(declared) = declared else {
+        return LeafVerdict::Unproven;
+    };
+    if declared.is_globally_unknown() {
+        return LeafVerdict::Unproven;
+    }
+    let mut verdict = LeafVerdict::Proven;
+    for (coordinate, required_bound) in required.iter() {
+        if coordinate.phase != UsagePhase::Recovery {
+            verdict = merge_verdict(verdict, LeafVerdict::Violation);
+            continue;
+        }
+        let declared_bound = declared.get(coordinate);
+        match (required_bound, declared_bound) {
+            (StaticUsageBound::KnownFinite(required), StaticUsageBound::KnownFinite(declared))
+                if required > &declared =>
+            {
+                verdict = merge_verdict(verdict, LeafVerdict::Violation);
+            }
+            (
+                StaticUsageBound::KnownFinite(_),
+                StaticUsageBound::KnownFinite(_) | StaticUsageBound::KnownUnbounded,
+            )
+            | (StaticUsageBound::KnownUnbounded, StaticUsageBound::KnownUnbounded) => {}
+            (StaticUsageBound::KnownUnbounded, StaticUsageBound::KnownFinite(_)) => {
+                verdict = merge_verdict(verdict, LeafVerdict::Violation);
+            }
+            _ => verdict = merge_verdict(verdict, LeafVerdict::Unproven),
+        }
+    }
+    verdict
+}
+
+fn exact_select_child_index(summary: &DerivedControlContractSummary<'_, '_>) -> Option<usize> {
+    let selector = summary.interface.selector()?;
+    let exact_case = selector.exact_case()?;
+    selector
+        .case_ordinals()
+        .iter()
+        .position(|ordinal| *ordinal == exact_case)
+}
+
+fn control_path_step(
+    parent: &DerivedControlContractSummary<'_, '_>,
+    child_index: usize,
+    child_node: ComputationId,
+    reachability: ControlPathReachability,
+) -> ControlPathStep {
+    let kind = match &parent.operator {
+        ControlOperator::Select => {
+            let evidence = parent.interface.selector();
+            let case_ordinal = evidence
+                .and_then(|item| item.case_ordinals().get(child_index).copied())
+                .unwrap_or_else(|| u32::try_from(child_index).unwrap_or(u32::MAX));
+            ControlPathKind::SelectCase {
+                case_ordinal,
+                selector: evidence.map(SelectDecisionEvidence::expression),
+                selector_dependencies: evidence
+                    .map(|item| item.dependency_slots().to_vec())
+                    .unwrap_or_default(),
+                exact_case: evidence.and_then(SelectDecisionEvidence::exact_case),
+            }
+        }
+        ControlOperator::Parallel { .. } => ControlPathKind::ParallelBranch {
+            branch_ordinal: u32::try_from(child_index + 1).unwrap_or(u32::MAX),
+        },
+        ControlOperator::RaceFirstTerminal => ControlPathKind::RaceBranch {
+            branch_ordinal: u32::try_from(child_index + 1).unwrap_or(u32::MAX),
+        },
+        ControlOperator::Iterate { .. } => ControlPathKind::IterateBody,
+        ControlOperator::Retry { max_attempts, .. } => ControlPathKind::RetryChild {
+            max_attempts: *max_attempts,
+        },
+        ControlOperator::Timeout { .. } => ControlPathKind::TimeoutChild,
+        ControlOperator::Handle { clauses, .. } if child_index == 0 => {
+            ControlPathKind::HandleProtected
+        }
+        ControlOperator::Handle { clauses, .. } => ControlPathKind::HandleClause {
+            ordinal: clauses.get(child_index - 1).map_or_else(
+                || u32::try_from(child_index).unwrap_or(u32::MAX),
+                HandleClauseSummary::ordinal,
+            ),
+        },
+        ControlOperator::Scope => ControlPathKind::ScopeChild,
+        ControlOperator::CompensationScope => ControlPathKind::CompensationScopeChild,
+        _ => ControlPathKind::SequenceChild,
+    };
+    ControlPathStep {
+        parent_node: parent.control_node,
+        child_node,
+        child_index,
+        kind,
+        reachability,
     }
 }
 
@@ -2333,6 +3845,7 @@ fn leaf_recovery(
             action_bindings: dimensions.recovery_action_bindings.clone(),
             usage_bindings: dimensions.recovery_usage_bindings.clone(),
             effects: leaf.effect_occurrences().to_vec(),
+            action_guard_compatibility: leaf.action_guard_compatibility().to_vec(),
         })
     });
     let verdict =
@@ -4240,6 +5753,104 @@ fn derive_scope_boundary(
     (Some(summary), proofs)
 }
 
+fn nearest_scope_owner_for_action(
+    summary: &DerivedControlContractSummary<'_, '_>,
+    inherited_owner: Option<ComputationId>,
+    source_node: ComputationId,
+    identity: &RecoveryActionIdentity,
+) -> Option<ComputationId> {
+    let owner = if matches!(&summary.operator, ControlOperator::CompensationScope) {
+        Some(summary.control_node)
+    } else {
+        inherited_owner
+    };
+    if summary.control_node == source_node {
+        for contribution in recovery_sources_from_child(summary).0 {
+            for source in contribution.value() {
+                if source.source_node() == source_node
+                    && source
+                        .action_bindings()
+                        .iter()
+                        .any(|binding| binding.identity == *identity)
+                {
+                    return owner;
+                }
+            }
+        }
+    }
+    summary
+        .children
+        .iter()
+        .find_map(|child| nearest_scope_owner_for_action(child, owner, source_node, identity))
+}
+
+fn applied_multiplicities(occurrence: &ScopedEffectOccurrence) -> Vec<AppliedMultiplicity> {
+    occurrence
+        .control_families
+        .iter()
+        .map(|family| AppliedMultiplicity {
+            identity: ControlMultiplicityIdentity {
+                caller_semantic_ir_digest: occurrence.caller_semantic_ir_digest.clone(),
+                control_node: family.control_node,
+                kind: match family.kind {
+                    EffectOccurrenceFamilyKind::Iterate => ControlMultiplicityKind::Iterate,
+                    EffectOccurrenceFamilyKind::Retry => ControlMultiplicityKind::Retry,
+                },
+            },
+            logical_repetitions: family.logical_repetitions.clone(),
+            physical_attempts: family.physical_attempts.clone(),
+        })
+        .collect()
+}
+
+fn recovery_forward_seed_upper(
+    source: &RecoverySourceSummary,
+    action: &RecoveryActionIdentity,
+    declared_lower: u64,
+    declared_upper: OccurrenceCeiling,
+) -> Option<OccurrenceCeiling> {
+    let atom = AtomKey::of(&action.forward_effect);
+    if atom != AtomKey::of(&action.action_effect) {
+        return Some(declared_upper);
+    }
+    let mut action_multiplier = OccurrenceCeiling::Finite(0);
+    for binding in source.action_bindings() {
+        let identity = &binding.identity;
+        if AtomKey::of(&identity.action_effect) != atom {
+            continue;
+        }
+        if AtomKey::of(&identity.forward_effect) != atom {
+            return None;
+        }
+        let usage = source
+            .usage_bindings()
+            .iter()
+            .find(|candidate| candidate.action == *identity)?;
+        let multiplier = usage
+            .activations_per_forward
+            .upper
+            .checked_mul(usage.attempts_per_activation.upper)
+            .ok()?;
+        action_multiplier = action_multiplier.checked_add(multiplier).ok()?;
+    }
+    let divisor = OccurrenceCeiling::Finite(1)
+        .checked_add(action_multiplier)
+        .ok()?;
+    let forward_upper = match (declared_upper, divisor) {
+        (OccurrenceCeiling::Unbounded, _) => OccurrenceCeiling::Unbounded,
+        (OccurrenceCeiling::Finite(_), OccurrenceCeiling::Unbounded) => {
+            OccurrenceCeiling::Finite(0)
+        }
+        (OccurrenceCeiling::Finite(ceiling), OccurrenceCeiling::Finite(divisor)) => {
+            OccurrenceCeiling::Finite(ceiling / divisor)
+        }
+    };
+    if matches!(forward_upper, OccurrenceCeiling::Finite(upper) if upper < declared_lower) {
+        return None;
+    }
+    Some(forward_upper)
+}
+
 fn derive_compensation_scope(
     node: ComputationId,
     operator: &ControlOperator,
@@ -4267,6 +5878,13 @@ fn derive_compensation_scope(
                     },
                     proofs: vec![proof.clone()],
                 },
+                local_recovery_actions: ControlDimension {
+                    value: ControlDimensionValue::Unknown {
+                        known_contributions: vec![],
+                        unresolved_sources: vec![node],
+                    },
+                    proofs: vec![proof.clone()],
+                },
                 compensation_order: LeafVerdict::Unproven,
                 recovery_blocked_outcome: LeafVerdict::Unproven,
                 forward_effects_retained: true,
@@ -4278,17 +5896,21 @@ fn derive_compensation_scope(
 
     let (recovery_sources, mut unresolved) = recovery_sources_from_child(child);
     let mut actions = Vec::new();
+    let mut local_actions = Vec::new();
     let mut action_verdict = if unresolved.is_empty() {
         LeafVerdict::Proven
     } else {
         LeafVerdict::Unproven
     };
+    let mut local_action_verdict = action_verdict;
     let mut arithmetic_violation = false;
     for contribution in &recovery_sources {
         for source in contribution.value() {
             for binding in source.action_bindings() {
                 let identity = &binding.identity;
-                if identity.action_kind != RecoveryActionKind::Compensation {
+                if nearest_scope_owner_for_action(child, Some(node), source.source_node(), identity)
+                    != Some(node)
+                {
                     continue;
                 }
                 let usage_binding = source
@@ -4320,6 +5942,16 @@ fn derive_compensation_scope(
                         unresolved.push(source.source_node());
                         continue;
                     };
+                    let Some(forward_seed_upper) = recovery_forward_seed_upper(
+                        source,
+                        identity,
+                        scoped_occurrence.declared.bounds.lower,
+                        scoped_occurrence.declared.bounds.upper,
+                    ) else {
+                        action_verdict = merge_verdict(action_verdict, LeafVerdict::Unproven);
+                        unresolved.push(source.source_node());
+                        continue;
+                    };
                     found_forward = true;
                     let Some(action_effect_occurrence) =
                         child.effect_occurrences.iter().find(|candidate| {
@@ -4333,9 +5965,11 @@ fn derive_compensation_scope(
                         unresolved.push(source.source_node());
                         continue;
                     };
-                    let Ok(bounds) =
-                        conditional_compensation_bounds(scoped_occurrence, usage_binding)
-                    else {
+                    let Ok(bounds) = conditional_compensation_bounds(
+                        scoped_occurrence,
+                        usage_binding,
+                        forward_seed_upper,
+                    ) else {
                         action_verdict = merge_verdict(action_verdict, LeafVerdict::Violation);
                         arithmetic_violation = true;
                         unresolved.push(source.source_node());
@@ -4356,21 +5990,68 @@ fn derive_compensation_scope(
                         unresolved.push(source.source_node());
                         continue;
                     };
-                    actions.push(ConditionalCompensationAction {
+                    let guard_compatibility = source
+                        .action_guard_compatibility()
+                        .iter()
+                        .find(|proof| proof.recovery_action() == identity)
+                        .cloned();
+                    let guard_verdict =
+                        guard_compatibility
+                            .as_ref()
+                            .map_or(LeafVerdict::Unproven, |proof| match proof.verdict() {
+                                af_contract::ProofVerdict::Proven => LeafVerdict::Proven,
+                                af_contract::ProofVerdict::Violation => LeafVerdict::Violation,
+                                af_contract::ProofVerdict::Unproven => LeafVerdict::Unproven,
+                                af_contract::ProofVerdict::RequiresEvidence => {
+                                    LeafVerdict::RequiresEvidence
+                                }
+                            });
+                    local_action_verdict = merge_verdict(local_action_verdict, guard_verdict);
+                    let local_bound = LocalActionBound {
+                        compensation_scope_node: node,
+                        upper: crate::root_recovery::RecoveryActionUpper::Known(bounds.upper),
+                        applied_families: applied_multiplicities(scoped_occurrence),
+                    };
+                    let source_identity = RecoveryActionSourceIdentity {
+                        caller_semantic_ir_digest: scoped_occurrence
+                            .caller_semantic_ir_digest
+                            .clone(),
                         source_node: source.source_node(),
+                        source_contract_digest: scoped_occurrence.source_contract_digest.clone(),
+                        forward_entry_ordinal: scoped_occurrence.source_entry_ordinal,
+                        action: identity.clone(),
+                    };
+                    local_actions.push(LocalRecoveryAction {
+                        source: source_identity,
+                        forward_seed_upper,
+                        owner_scope: node,
+                        action_kind: identity.action_kind,
+                        local_bound: local_bound.clone(),
                         forward_occurrence: scoped_occurrence.clone(),
                         action_effect_occurrence: action_effect_occurrence.clone(),
-                        identity: identity.clone(),
-                        potential_effect: EffectEntry {
-                            atom: identity.action_effect.clone(),
-                            bounds,
-                            // The declared forward guard still gates whether
-                            // this recovery route can become relevant.
-                            guard: scoped_occurrence.declared.guard.clone(),
-                        },
-                        potential_recovery_usage: usage,
-                        receipt_evidence,
+                        recovery_usage_binding: usage_binding.clone(),
+                        recovery_usage: usage.clone(),
+                        guard_compatibility,
+                        eligibility_evidence: receipt_evidence,
                     });
+                    if identity.action_kind == RecoveryActionKind::Compensation {
+                        actions.push(ConditionalCompensationAction {
+                            source_node: source.source_node(),
+                            forward_occurrence: scoped_occurrence.clone(),
+                            action_effect_occurrence: action_effect_occurrence.clone(),
+                            identity: identity.clone(),
+                            local_bound,
+                            potential_effect: EffectEntry {
+                                atom: identity.action_effect.clone(),
+                                bounds,
+                                // The declared forward guard still gates whether
+                                // this recovery route can become relevant.
+                                guard: scoped_occurrence.declared.guard.clone(),
+                            },
+                            potential_recovery_usage: usage,
+                            receipt_evidence,
+                        });
+                    }
                 }
                 if !found_forward {
                     action_verdict = merge_verdict(action_verdict, LeafVerdict::Unproven);
@@ -4384,51 +6065,86 @@ fn derive_compensation_scope(
         DigestRefValue,
         af_effect::EffectAtom,
         OccurrenceCeiling,
+        OccurrenceCeiling,
+        BTreeSet<usize>,
     )>::new();
-    for action in &actions {
-        let occurrence = action.action_effect_occurrence();
-        let mut required = action.potential_effect.bounds.upper;
-        if action.identity.forward_effect == action.identity.action_effect {
-            let Ok(forward_upper) = scoped_occurrence_upper(action.forward_occurrence()) else {
+    for action in &local_actions {
+        let occurrence = &action.action_effect_occurrence;
+        let crate::root_recovery::RecoveryActionUpper::Known(action_upper) =
+            action.local_bound.upper
+        else {
+            action_verdict = merge_verdict(action_verdict, LeafVerdict::Violation);
+            arithmetic_violation = true;
+            unresolved.push(action.source.source_node);
+            continue;
+        };
+        let same_atom_forward =
+            action.source.action.forward_effect == action.source.action.action_effect;
+        let forward_upper = if same_atom_forward {
+            let Ok(upper) = scoped_occurrence_upper_from_seed(
+                &action.forward_occurrence,
+                action.forward_seed_upper,
+            ) else {
                 action_verdict = merge_verdict(action_verdict, LeafVerdict::Violation);
                 arithmetic_violation = true;
-                unresolved.push(action.source_node());
+                unresolved.push(action.source.source_node);
                 continue;
             };
-            let Ok(total) = required.checked_add(forward_upper) else {
-                action_verdict = merge_verdict(action_verdict, LeafVerdict::Violation);
-                arithmetic_violation = true;
-                unresolved.push(action.source_node());
-                continue;
-            };
-            required = total;
-        }
-        if let Some((_, _, _, total)) =
-            required_action_rows
-                .iter_mut()
-                .find(|(node, digest, atom, _)| {
-                    *node == occurrence.computation
-                        && *digest == occurrence.source_contract_digest
-                        && *atom == occurrence.declared.atom
-                })
-        {
-            let Ok(sum) = total.checked_add(required) else {
-                action_verdict = merge_verdict(action_verdict, LeafVerdict::Violation);
-                arithmetic_violation = true;
-                unresolved.push(action.source_node());
-                continue;
-            };
-            *total = sum;
+            upper
         } else {
+            OccurrenceCeiling::Finite(0)
+        };
+        if let Some((_, _, _, action_total, forward_total, forward_ordinals)) = required_action_rows
+            .iter_mut()
+            .find(|(node, digest, atom, _, _, _)| {
+                *node == occurrence.computation
+                    && *digest == occurrence.source_contract_digest
+                    && *atom == occurrence.declared.atom
+            })
+        {
+            let Ok(total) = action_total.checked_add(action_upper) else {
+                action_verdict = merge_verdict(action_verdict, LeafVerdict::Violation);
+                arithmetic_violation = true;
+                unresolved.push(action.source.source_node);
+                continue;
+            };
+            *action_total = total;
+            if same_atom_forward
+                && forward_ordinals.insert(action.forward_occurrence.source_entry_ordinal)
+            {
+                if let Ok(total) = forward_total.checked_add(forward_upper) {
+                    *forward_total = total;
+                } else {
+                    action_verdict = merge_verdict(action_verdict, LeafVerdict::Violation);
+                    arithmetic_violation = true;
+                    unresolved.push(action.source.source_node);
+                }
+            }
+        } else {
+            let mut forward_ordinals = BTreeSet::new();
+            let mut forward_total = OccurrenceCeiling::Finite(0);
+            if same_atom_forward {
+                forward_ordinals.insert(action.forward_occurrence.source_entry_ordinal);
+                forward_total = forward_upper;
+            }
             required_action_rows.push((
                 occurrence.computation,
                 occurrence.source_contract_digest.clone(),
                 occurrence.declared.atom.clone(),
-                required,
+                action_upper,
+                forward_total,
+                forward_ordinals,
             ));
         }
     }
-    for (source_node, contract_digest, atom, required) in required_action_rows {
+    for (source_node, contract_digest, atom, action_total, forward_total, _) in required_action_rows
+    {
+        let Ok(required) = action_total.checked_add(forward_total) else {
+            action_verdict = merge_verdict(action_verdict, LeafVerdict::Violation);
+            arithmetic_violation = true;
+            unresolved.push(source_node);
+            continue;
+        };
         let Some(declared) = child.effect_occurrences.iter().find(|occurrence| {
             occurrence.computation == source_node
                 && occurrence.source_contract_digest == contract_digest
@@ -4475,6 +6191,42 @@ fn derive_compensation_scope(
             known_contributions: vec![],
             unresolved_sources: unresolved.clone(),
         }
+    };
+    local_action_verdict = merge_verdict(local_action_verdict, action_verdict);
+    let local_actions_value = if unresolved.is_empty() {
+        ControlDimensionValue::Complete(local_actions.clone())
+    } else if !local_actions.is_empty() {
+        ControlDimensionValue::Partial {
+            known_contribution: Some(local_actions.clone()),
+            unresolved_sources: unresolved.clone(),
+        }
+    } else {
+        ControlDimensionValue::Unknown {
+            known_contributions: vec![],
+            unresolved_sources: unresolved.clone(),
+        }
+    };
+    let local_receipt_required = local_actions
+        .iter()
+        .any(|action| action.eligibility_evidence == LeafVerdict::RequiresEvidence);
+    let local_proof_verdict = if arithmetic_violation {
+        LeafVerdict::Violation
+    } else if local_receipt_required && local_action_verdict == LeafVerdict::Proven {
+        LeafVerdict::RequiresEvidence
+    } else {
+        local_action_verdict
+    };
+    let local_actions_proof = ControlDimensionProof::new(
+        "local-k-action-bounds",
+        local_proof_verdict,
+        RULE_RECOVERY_ROOT_MULTIPLICITY,
+        node,
+        Some(format!("computation:{}", node.raw())),
+        "each locally owned K action is expressed per activation of this exact CompensationScope, with descendant Repeat identities applied once and nested owners excluded",
+    );
+    let local_recovery_actions = ControlDimension {
+        value: local_actions_value,
+        proofs: vec![local_actions_proof.clone()],
     };
     let receipt_required = actions
         .iter()
@@ -4531,12 +6283,19 @@ fn derive_compensation_scope(
     );
     let summary = CompensationScopeSummary {
         potential_actions: action_dimension,
+        local_recovery_actions,
         compensation_order,
         recovery_blocked_outcome: blocked_verdict,
         forward_effects_retained: true,
         forward_outcome_retained: true,
     };
-    let mut proofs = vec![forward_proof, actions_proof, order_proof, blocked_proof];
+    let mut proofs = vec![
+        forward_proof,
+        actions_proof,
+        local_actions_proof,
+        order_proof,
+        blocked_proof,
+    ];
     if recovery_sources.is_empty()
         && matches!(
             &child.recovery.value,
@@ -4599,8 +6358,9 @@ fn recovery_sources_from_child(
 fn conditional_compensation_bounds(
     forward: &ScopedEffectOccurrence,
     binding: &RecoveryUsageBinding,
+    forward_seed_upper: OccurrenceCeiling,
 ) -> Result<OccurrenceBounds, ()> {
-    let forward_upper = scoped_occurrence_upper(forward)?;
+    let forward_upper = scoped_occurrence_upper_from_seed(forward, forward_seed_upper)?;
     let upper = forward_upper
         .checked_mul(binding.activations_per_forward.upper)
         .and_then(|bound| bound.checked_mul(binding.attempts_per_activation.upper))
@@ -4609,14 +6369,25 @@ fn conditional_compensation_bounds(
 }
 
 fn scoped_occurrence_upper(occurrence: &ScopedEffectOccurrence) -> Result<OccurrenceCeiling, ()> {
-    occurrence.control_families.iter().try_fold(
-        occurrence.declared.bounds.upper,
-        |upper, family| {
-            upper
-                .checked_mul(family.logical_repetitions.upper)
-                .map_err(|_| ())
-        },
-    )
+    scoped_occurrence_upper_from_seed(occurrence, occurrence.declared.bounds.upper)
+}
+
+fn scoped_occurrence_upper_from_seed(
+    occurrence: &ScopedEffectOccurrence,
+    seed_upper: OccurrenceCeiling,
+) -> Result<OccurrenceCeiling, ()> {
+    let mut upper = seed_upper;
+    let mut seen = Vec::new();
+    for factor in applied_multiplicities(occurrence) {
+        if seen.contains(&factor.identity) {
+            return Err(());
+        }
+        seen.push(factor.identity);
+        upper = upper
+            .checked_mul(factor.logical_repetitions.upper)
+            .map_err(|_| ())?;
+    }
+    Ok(upper)
 }
 
 fn conditional_recovery_usage(

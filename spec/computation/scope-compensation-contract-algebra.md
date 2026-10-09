@@ -138,6 +138,18 @@ after applying the same enclosing occurrence-family bounds. Undercoverage is a
 static `Violation`; checked sum/product overflow is fail-closed. This prevents a
 known K action ceiling from exceeding the Effect row that claims to cover it.
 
+When the exact full Forward and action atoms are equal, the one closed epsilon
+entry is an aggregate ceiling, not two separately declared entries. If its
+upper is `C` and the complete same-atom K binding set has checked multipliers
+`m_i = activation_i.upper × attempts_i.upper`, the greatest Forward seed
+compatible with the shared ceiling is `floor(C / (1 + sum(m_i)))`; each K
+action contribution is that seed times its own `m_i`. A known Forward lower
+bound greater than the inferred maximum is a `Violation`. If a different
+Forward atom contributes to the same action atom and its count cannot be
+isolated from the shared ceiling, the proof is `Unproven`. The analyzer MUST
+not use the aggregate epsilon upper as the Forward seed and then multiply it
+again as K, nor collapse the Forward and K occurrence into one event.
+
 This is a conservative possibility envelope, not an instruction to execute
 each action. It includes every resolved action source in the owned subtree,
 including possible loser-branch Effects; it does not select a RACE winner or
@@ -208,6 +220,103 @@ workflow digest is invented. Full structural closure means every node and
 known source was accounted for; it does not mean every dimension is Proven or
 the workflow is authorized or executable.
 
+<a id="root-recovery-source-closure"></a>
+
+## 4.1 Root-relative Recovery proof
+
+The workflow-root Recovery analysis MUST begin with each checked leaf's exact
+`RecoveryActionBinding`, matching `RecoveryUsageBinding`, Forward occurrence,
+action Effect occurrence, source component pin, source computation node, and
+full action identity. It MUST retain both `Reconciliation` and `Compensation`
+actions. A source without a `COMPENSATION_SCOPE` ancestor is owned by the
+typed `RootRecovery` coordinate. The nearest enclosing `COMPENSATION_SCOPE`
+owns a local projection; an outer scope may expose an inner contribution but
+MUST NOT register it as a second locally owned action.
+
+The source-closure proof compares multisets, not only sets of computation
+nodes. It separately reports source-node, action-binding, complete
+Recovery-Usage-profile, and multiplicity-factor accounting. An action profile
+includes the exact phase/meter/unit/bound tuple; two sources with the same
+action atom remain distinct until after closure and aggregation. Missing
+source-level facts remain in a partial/unknown projection and MUST NOT be
+replaced with an empty K set or finite zero.
+
+<a id="root-recovery-multiplicity"></a>
+
+`LocalActionBound` is the potential upper for one activation of one exact
+`COMPENSATION_SCOPE`. It includes only unique `ITERATE`/`RETRY` factors inside
+that scope's child. `RootActionBound` is the potential upper over the complete
+checked root control tree. These are distinct typed coordinates and MUST NOT
+be implicitly converted. Each applied factor identity is the tuple
+`(caller SemanticIrDigest, control ComputationId, control kind)` and retains
+logical repetitions and, for `RETRY`, physical attempts separately. Logical
+repetition upper is applied exactly once; physical attempts are not a second
+multiplier. Duplicate or inconsistent factor identities fail closed.
+
+<a id="root-recovery-operator-algebra"></a>
+
+The root fold starts with factor-free leaf seeds and applies each checked
+control node once. It MUST use the existing operator algebra:
+The fold preserves component-validator-created K/epsilon guard verdicts and
+records typed control-path coordinates separately; it MUST NOT synthesize a
+conjunction or another unsupported EffectGuard to encode branch reachability.
+
+| Operator | Root Recovery aggregation |
+| --- | --- |
+| `SEQUENCE` | Checked accumulation of all possible child contributions |
+| `SELECT` | Exclusive join/max; an exact selected child is used only with checked selector evidence |
+| `PARALLEL` | Accumulate all possible branches |
+| `RACE` | Retain winner and loser possibilities; no static winner is chosen |
+| `ITERATE` | Apply the total logical iteration upper once; `max_inflight` is not total work |
+| `RETRY` | Apply maximum logical attempts once; keep physical attempts descriptive only |
+| `TIMEOUT` | Preserve child Effect/K possibility |
+| `HANDLE` | Protected contribution plus a conditional join of handlers |
+| `SCOPE` | Preserve exact child source and mapping |
+| `COMPENSATION_SCOPE` | Assign nearest local owner; add no occurrence multiplier |
+
+Checked arithmetic overflow is a `Violation`; absent finite-factor or source
+evidence remains `Unproven`/unbounded. Idempotency, reconciliation labels,
+cancellation, timeout, and race-winner assumptions MUST NOT reduce a static
+upper bound.
+
+<a id="root-recovery-epsilon-coverage"></a>
+
+The root K action projection is a proof input, not a new epsilon row. The
+analyzer MUST compare the aggregate K action potential against the already
+derived root epsilon envelope using full atom and qualifier identity, source
+mapping, guard, upper, and closed/open state. When Forward and K action use the
+same exact atom, the comparison requirement contains the Forward opportunity
+once plus the K opportunity; it MUST NOT compare K alone or add K a second time
+to the declared epsilon envelope. A known insufficient closed ceiling is a
+`Violation`; an unknown/open residual or unresolved resource/guard mapping is
+`Unproven`.
+
+<a id="root-recovery-usage-coverage"></a>
+
+Root K-required Recovery Usage is derived from the exact per-attempt profile
+and root action upper, then composed once with the existing checked Usage
+algebra. The result MUST be compared at the exact `(Recovery phase, meter,
+unit)` coordinate against the already derived root `U.recovery`. It is a
+coverage projection, not an extra charge: the analyzer MUST NOT add it to root
+U or mix it with Forward Usage. Missing active-source meter coverage is not
+zero; unknown units are not compatible; checked overflow is a `Violation`.
+A fully closed leaf with no K action is an empty contribution and need not
+invent zero entries for every meter. This exception applies only when the
+exact source/action multiset proves the leaf has no K action; it never fills a
+missing coordinate for an active action profile.
+
+<a id="root-recovery-proof-boundary"></a>
+
+Guard compatibility, control-path evidence, root epsilon/usage coverage, and
+action eligibility are separate proof obligations. A static guard proof does
+not prove that a receipt is `APPLIED`, that reconciliation succeeded, that an
+action is eligible now, or that runtime dispatch is authorized. Positive
+action potential therefore keeps its `RequiresEvidence` obligation. The root
+Recovery summary is not a RootExportAssertion checker; export maps and
+export-specific F/I/O/R/epsilon/K/U/X comparisons remain outside this phase.
+It creates no plan, journal, reducer, scheduler, worker, grant, reservation,
+receipt, command, or execution result.
+
 ## 5. Status vocabulary
 
 * **Static Proven Facts:** checked ownership/tree order; Phase 3C resource
@@ -235,10 +344,16 @@ the workflow is authorized or executable.
 - `AF-SEMANTIC-0151` — [compensation-receipt-usage-and-order](#compensation-receipt-usage-and-order).
 - `AF-SEMANTIC-0152` — [workflow-control-tree-closure](#workflow-control-tree-closure).
 - `AF-SEMANTIC-0153` — [workflow-root-export-boundary](#workflow-root-export-boundary).
+- `AF-SEMANTIC-0154` — [root-recovery-source-closure](#root-recovery-source-closure).
+- `AF-SEMANTIC-0155` — [root-recovery-multiplicity](#root-recovery-multiplicity).
+- `AF-SEMANTIC-0156` — [root-recovery-operator-algebra](#root-recovery-operator-algebra).
+- `AF-SEMANTIC-0157` — [root-recovery-epsilon-coverage](#root-recovery-epsilon-coverage).
+- `AF-SEMANTIC-0158` — [root-recovery-usage-coverage](#root-recovery-usage-coverage).
 
-Each rule is covered by the independent production differential suite
-`SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE` and the CaseIds recorded in
-the rule registry.
+Rules 0147–0153 are covered by the independent production differential suite
+`SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE`. Rules 0154–0158 are covered by
+`SUITE-COMPUTATION-ROOT-RECOVERY-PYTHON-ORACLE`; exact CaseIds are in the rule
+registry.
 
 This phase adds derived-only Rust types and tests. It changes no AFIDL module,
 ABI row, existing opcode, ACE1 encoding, HashV1 domain, digest semantics, or

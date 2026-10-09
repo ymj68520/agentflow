@@ -1,8 +1,8 @@
 //! Derived-only leaf summaries. None of these types is a wire or runtime ABI.
 
 use af_contract::{
-    ComponentIdentity, EffectFlowPartition, RecoveryActionBinding, RecoveryUsageBinding,
-    RelationCatalogPin, StaticContractProofContext,
+    ActionGuardCompatibility, ComponentIdentity, EffectFlowPartition, RecoveryActionBinding,
+    RecoveryUsageBinding, RelationCatalogPin, StaticContractProofContext,
 };
 use af_effect::{EffectEntry, EffectResidual, EffectSignature, OccurrenceBounds};
 use af_execution::ExecutionRequirements;
@@ -237,6 +237,7 @@ pub struct ResolvedComputationLeaf<'context, 'universe> {
     pub(crate) effect_residuals: Vec<ScopedEffectResidual>,
     pub(crate) flow_mappings: Vec<FlowPortMapping>,
     pub(crate) dimensions: Option<ComponentDimensionSummary>,
+    pub(crate) action_guard_compatibility: Vec<ActionGuardCompatibility>,
     pub(crate) await_summary: Option<AwaitLeafSummary>,
     pub(crate) proof: LeafProofReport,
     pub(crate) proof_context: ProofContextReference<'context, 'universe>,
@@ -290,6 +291,10 @@ impl ResolvedComputationLeaf<'_, '_> {
     #[must_use]
     pub fn dimensions(&self) -> Option<&ComponentDimensionSummary> {
         self.dimensions.as_ref()
+    }
+    #[must_use]
+    pub fn action_guard_compatibility(&self) -> &[ActionGuardCompatibility] {
+        &self.action_guard_compatibility
     }
     #[must_use]
     pub fn await_summary(&self) -> Option<&AwaitLeafSummary> {

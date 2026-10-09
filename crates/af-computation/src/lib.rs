@@ -14,6 +14,7 @@ mod control;
 mod mapping;
 mod proof;
 mod resolution;
+mod root_recovery;
 mod summary;
 
 pub use control::{
@@ -32,6 +33,13 @@ pub use proof::{LeafDimensionProof, LeafProofReport, LeafVerdict};
 pub use resolution::{
     LeafResolutionError, SnapshotError, StaticComputationResolutionSnapshot,
     StaticComputationResolutionSnapshotBuilder, resolve_computation_leaf,
+};
+pub use root_recovery::{
+    AppliedMultiplicity, ControlMultiplicityIdentity, ControlMultiplicityKind, ControlPathKind,
+    ControlPathReachability, ControlPathStep, LocalActionBound, LocalRecoveryAction,
+    RecoveryActionSourceIdentity, RecoveryActionUpper, RootActionBound,
+    RootGuardCoordinateEvidence, RootRecoveryAction, RootRecoveryOwner,
+    RootRecoverySourceClosureReport, RootRecoverySummary,
 };
 pub use summary::{
     AwaitAuthorityStatus, AwaitInteractionStatus, AwaitLeafSummary, AwaitProvenanceStatus,

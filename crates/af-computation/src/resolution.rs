@@ -3,8 +3,8 @@
 use std::collections::{BTreeMap, BTreeSet, HashMap};
 
 use af_contract::{
-    CheckedComponentContract, ComponentContract, StaticContractProofContext,
-    component_contract_digest,
+    ActionGuardCompatibility, CheckedComponentContract, ComponentContract,
+    StaticContractProofContext, component_contract_digest,
 };
 use af_effect::{EffectRow, EffectSignature};
 use af_flow::{FlowSink, SourceCategory};
@@ -322,6 +322,7 @@ struct EmptyLeaf {
     effect_residuals: Vec<ScopedEffectResidual>,
     flows: Vec<FlowPortMapping>,
     dimensions: Option<ComponentDimensionSummary>,
+    action_guard_compatibility: Vec<ActionGuardCompatibility>,
     await_summary: Option<AwaitLeafSummary>,
     proofs: Vec<LeafDimensionProof>,
 }
@@ -345,6 +346,7 @@ impl EmptyLeaf {
             effect_residuals: vec![],
             flows: vec![],
             dimensions: None,
+            action_guard_compatibility: vec![],
             await_summary: None,
             proofs: vec![],
         }
@@ -369,6 +371,7 @@ impl EmptyLeaf {
             effect_residuals: self.effect_residuals,
             flow_mappings: self.flows,
             dimensions: self.dimensions,
+            action_guard_compatibility: self.action_guard_compatibility,
             await_summary: self.await_summary,
             proof: LeafProofReport::new(self.proofs),
             proof_context: crate::summary::ProofContextReference::new(context),
@@ -428,6 +431,9 @@ fn resolve_invoke<'context, 'universe>(
     result.push(LeafDimensionProof::new("reference-resolution", LeafVerdict::Proven, RULE_TARGET_PIN, Some(format!("contract-ref:{}", entry.id.raw())), "the IR's exact component-contract digest resolves to a checked contract; identity comes from that checked body"));
     result.push(LeafDimensionProof::new("contract-pin-validation", LeafVerdict::Proven, RULE_INVOKE_CONTRACT, Some(entry.digest.hex.clone()), "snapshot insertion recomputed the contract digest and verified the exact checked proof context"));
     result.dimensions = Some(copy_dimensions(checked.contract()));
+    result
+        .action_guard_compatibility
+        .clone_from(&checked.proof().action_guard_compatibility);
     map_component_contract(
         document,
         computation,
@@ -610,6 +616,9 @@ fn resolve_subflow<'context, 'universe>(
         Err((verdict, reason)) => result.push(LeafDimensionProof::new("subflow-export-contract", verdict, RULE_SUBFLOW_EXPORT, Some(export.digest.hex.clone()), reason)),
     }
     result.dimensions = Some(copy_dimensions(contract));
+    result
+        .action_guard_compatibility
+        .clone_from(&export.checked.proof().action_guard_compatibility);
     map_component_contract(
         document,
         computation,
