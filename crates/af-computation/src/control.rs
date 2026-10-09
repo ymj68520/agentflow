@@ -1,16 +1,20 @@
-//! Static, bottom-up composition for the Phase 4B.2B.1/2 control operators.
+//! Static, bottom-up composition for the Phase 4B structured-control operators.
 //!
 //! The derived values here are analysis summaries, never a ComponentContract
 //! or a durable identity. Sequence/Select/Parallel/Race and
-//! Iterate/Retry/Timeout/Handle have static propagation rules. Operators
-//! outside that set remain explicit as unsupported; they are not treated as
-//! empty.
+//! Iterate/Retry/Timeout/Handle/Scope/CompensationScope have static
+//! propagation rules. Operators outside the frozen set remain explicit as
+//! unsupported; they are not treated as empty.
 
 use std::collections::{BTreeMap, BTreeSet};
 
-use af_contract::{RecoveryActionBinding, RecoveryUsageBinding, StaticContractProofContext};
+use af_contract::{
+    RecoveryActionBinding, RecoveryActionIdentity, RecoveryActionKind, RecoveryUsageBinding,
+    StaticContractProofContext,
+};
 use af_effect::{
     EffectEntry, EffectOpenRow, EffectResidual, EffectRow, EffectSignature, OccurrenceBounds,
+    OccurrenceCeiling,
 };
 use af_execution::ExecutionRequirements;
 use af_failure::FailureRow;
@@ -26,9 +30,10 @@ use af_semantic::{
     DigestRefValue, ExpressionBody, ExpressionId, PrimitiveConstant, ResourceSlotId,
     SemanticTypeId, TypeSchemaRef, ValueSlotId,
 };
-use af_usage::StaticUsageEnvelope;
+use af_usage::{StaticUsageBound, StaticUsageEnvelope, UsageUpperBound};
 
 use crate::proof::LeafVerdict;
+use crate::resolution::resolve_computation_leaf;
 use crate::summary::{
     EffectOccurrenceFamily, EffectOccurrenceFamilyKind, FlowPortMapping, LeafKind,
     ProofContextReference, ResolvedComputationLeaf, ResolvedTarget, ScopedEffectOccurrence,
@@ -58,6 +63,13 @@ const RULE_ITERATION_ENVELOPE: &str = "AF-SEMANTIC-0143";
 const RULE_RETRY_ENVELOPE: &str = "AF-SEMANTIC-0144";
 const RULE_TIMEOUT_OUTCOMES: &str = "AF-SEMANTIC-0145";
 const RULE_HANDLE_RESIDUAL: &str = "AF-SEMANTIC-0146";
+const RULE_SCOPE_RESOURCE_BOUNDARY: &str = "AF-SEMANTIC-0147";
+const RULE_SCOPE_RUNTIME_OBLIGATIONS: &str = "AF-SEMANTIC-0148";
+const RULE_COMPENSATION_FORWARD_HISTORY: &str = "AF-SEMANTIC-0149";
+const RULE_COMPENSATION_ACTIONS: &str = "AF-SEMANTIC-0150";
+const RULE_COMPENSATION_USAGE_ORDER: &str = "AF-SEMANTIC-0151";
+const RULE_CONTROL_TREE_CLOSURE: &str = "AF-SEMANTIC-0152";
+const RULE_ROOT_EXPORT_BOUNDARY: &str = "AF-SEMANTIC-0153";
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum IterateMode {
@@ -104,6 +116,206 @@ impl HandleClauseSummary {
     }
 }
 
+/// Derived evidence for the frozen SCOPE resource-visibility boundary. The
+/// authority, budget, and settle-before-terminal properties are obligations,
+/// not runtime facts supplied by Semantic IR.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ScopeBoundarySummary {
+    control_node: ComputationId,
+    child: ComputationId,
+    parent_visible_resources: Vec<ResourceSlotId>,
+    declared_resources: Vec<ResourceSlotId>,
+    child_visible_resources: Vec<ResourceSlotId>,
+    resource_attenuation: LeafVerdict,
+    authority_attenuation: LeafVerdict,
+    budget_attenuation: LeafVerdict,
+    owned_children_settle_before_terminal: LeafVerdict,
+}
+
+impl ScopeBoundarySummary {
+    #[must_use]
+    pub fn control_node(&self) -> ComputationId {
+        self.control_node
+    }
+    #[must_use]
+    pub fn child(&self) -> ComputationId {
+        self.child
+    }
+    #[must_use]
+    pub fn parent_visible_resources(&self) -> &[ResourceSlotId] {
+        &self.parent_visible_resources
+    }
+    #[must_use]
+    pub fn declared_resources(&self) -> &[ResourceSlotId] {
+        &self.declared_resources
+    }
+    #[must_use]
+    pub fn child_visible_resources(&self) -> &[ResourceSlotId] {
+        &self.child_visible_resources
+    }
+    #[must_use]
+    pub fn resource_attenuation(&self) -> LeafVerdict {
+        self.resource_attenuation
+    }
+    #[must_use]
+    pub fn authority_attenuation(&self) -> LeafVerdict {
+        self.authority_attenuation
+    }
+    #[must_use]
+    pub fn budget_attenuation(&self) -> LeafVerdict {
+        self.budget_attenuation
+    }
+    #[must_use]
+    pub fn owned_children_settle_before_terminal(&self) -> LeafVerdict {
+        self.owned_children_settle_before_terminal
+    }
+}
+
+/// One possible compensation Action reconstructed from exact K bindings and
+/// scoped forward/action Effect occurrences. Its upper must fit the declared
+/// source Effect row. This is never an EffectReceipt or dispatch instruction.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ConditionalCompensationAction {
+    source_node: ComputationId,
+    forward_occurrence: ScopedEffectOccurrence,
+    action_effect_occurrence: ScopedEffectOccurrence,
+    identity: RecoveryActionIdentity,
+    potential_effect: EffectEntry,
+    potential_recovery_usage: StaticUsageEnvelope,
+    receipt_evidence: LeafVerdict,
+}
+
+impl ConditionalCompensationAction {
+    #[must_use]
+    pub fn source_node(&self) -> ComputationId {
+        self.source_node
+    }
+    #[must_use]
+    pub fn forward_occurrence(&self) -> &ScopedEffectOccurrence {
+        &self.forward_occurrence
+    }
+    #[must_use]
+    pub fn action_effect_occurrence(&self) -> &ScopedEffectOccurrence {
+        &self.action_effect_occurrence
+    }
+    #[must_use]
+    pub fn identity(&self) -> &RecoveryActionIdentity {
+        &self.identity
+    }
+    #[must_use]
+    pub fn potential_effect(&self) -> &EffectEntry {
+        &self.potential_effect
+    }
+    #[must_use]
+    pub fn potential_recovery_usage(&self) -> &StaticUsageEnvelope {
+        &self.potential_recovery_usage
+    }
+    #[must_use]
+    pub fn receipt_evidence(&self) -> LeafVerdict {
+        self.receipt_evidence
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct CompensationScopeSummary {
+    potential_actions: ControlDimension<Vec<ConditionalCompensationAction>>,
+    compensation_order: LeafVerdict,
+    recovery_blocked_outcome: LeafVerdict,
+    forward_effects_retained: bool,
+    forward_outcome_retained: bool,
+}
+
+impl CompensationScopeSummary {
+    #[must_use]
+    pub fn potential_actions(&self) -> &ControlDimension<Vec<ConditionalCompensationAction>> {
+        &self.potential_actions
+    }
+    #[must_use]
+    pub fn compensation_order(&self) -> LeafVerdict {
+        self.compensation_order
+    }
+    #[must_use]
+    pub fn recovery_blocked_outcome(&self) -> LeafVerdict {
+        self.recovery_blocked_outcome
+    }
+    #[must_use]
+    pub fn forward_effects_retained(&self) -> bool {
+        self.forward_effects_retained
+    }
+    #[must_use]
+    pub fn forward_outcome_retained(&self) -> bool {
+        self.forward_outcome_retained
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum RootExportCompatibilityStatus {
+    NotExpressedInSemanticIr,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ControlTreeClosureSummary {
+    computation_order: Vec<ComputationId>,
+    leaf_order: Vec<ComputationId>,
+    known_effect_occurrences_accounted: bool,
+    known_effect_residuals_accounted: bool,
+    known_recovery_sources_accounted: bool,
+    root_export_compatibility: RootExportCompatibilityStatus,
+    proof: ControlProofReport,
+}
+
+impl ControlTreeClosureSummary {
+    #[must_use]
+    pub fn computation_order(&self) -> &[ComputationId] {
+        &self.computation_order
+    }
+    #[must_use]
+    pub fn leaf_order(&self) -> &[ComputationId] {
+        &self.leaf_order
+    }
+    #[must_use]
+    pub fn known_effect_occurrences_accounted(&self) -> bool {
+        self.known_effect_occurrences_accounted
+    }
+    #[must_use]
+    pub fn known_effect_residuals_accounted(&self) -> bool {
+        self.known_effect_residuals_accounted
+    }
+    #[must_use]
+    pub fn known_recovery_sources_accounted(&self) -> bool {
+        self.known_recovery_sources_accounted
+    }
+    #[must_use]
+    pub fn root_export_compatibility(&self) -> RootExportCompatibilityStatus {
+        self.root_export_compatibility
+    }
+    #[must_use]
+    pub fn proof(&self) -> &ControlProofReport {
+        &self.proof
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct DerivedWorkflowContractSummary<'context, 'universe> {
+    root: DerivedControlContractSummary<'context, 'universe>,
+    closure: ControlTreeClosureSummary,
+}
+
+impl DerivedWorkflowContractSummary<'_, '_> {
+    #[must_use]
+    pub fn root(&self) -> &DerivedControlContractSummary<'_, '_> {
+        &self.root
+    }
+    #[must_use]
+    pub fn closure(&self) -> &ControlTreeClosureSummary {
+        &self.closure
+    }
+    #[must_use]
+    pub fn overall(&self) -> LeafVerdict {
+        merge_verdict(self.root.proof().overall(), self.closure.proof().overall())
+    }
+}
+
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ControlDerivationError {
     UnknownComputation(ComputationId),
@@ -113,6 +325,8 @@ pub enum ControlDerivationError {
     CallerDigestMismatch(ComputationId),
     SemanticDigest(String),
     Dataflow(String),
+    LeafResolution(String),
+    ClosureMismatch(String),
     ArithmeticOverflow(&'static str),
 }
 
@@ -137,6 +351,8 @@ impl std::fmt::Display for ControlDerivationError {
                 write!(f, "cannot compute caller SemanticIrDigest: {detail}")
             }
             Self::Dataflow(detail) => write!(f, "Phase 3C dataflow analysis failed: {detail}"),
+            Self::LeafResolution(detail) => write!(f, "leaf resolution failed: {detail}"),
+            Self::ClosureMismatch(detail) => write!(f, "control-tree closure failed: {detail}"),
             Self::ArithmeticOverflow(dimension) => {
                 write!(f, "static {dimension} cardinality overflows u64")
             }
@@ -176,6 +392,8 @@ pub enum ControlOperator {
         handled: FailureRow,
         clauses: Vec<HandleClauseSummary>,
     },
+    Scope,
+    CompensationScope,
     Unsupported {
         opcode: String,
     },
@@ -196,6 +414,8 @@ impl ControlOperator {
             Self::Retry { .. } => "retry",
             Self::Timeout { .. } => "timeout",
             Self::Handle { .. } => "handle",
+            Self::Scope => "scope",
+            Self::CompensationScope => "compensation_scope",
             Self::Unsupported { .. } => "unsupported",
         }
     }
@@ -729,6 +949,8 @@ pub struct DerivedControlContractSummary<'context, 'universe> {
     children: Vec<DerivedControlContractSummary<'context, 'universe>>,
     leaf_summary: Option<ResolvedComputationLeaf<'context, 'universe>>,
     interface: ControlInterfaceSummary,
+    scope_boundary: Option<ScopeBoundarySummary>,
+    compensation_scope: Option<CompensationScopeSummary>,
     failures: ControlDimension<FailureRow>,
     effects: ControlDimension<EffectSignature>,
     resources: ControlDimension<Vec<ResourcePortOccurrence>>,
@@ -791,6 +1013,14 @@ impl DerivedControlContractSummary<'_, '_> {
     #[must_use]
     pub fn interface(&self) -> &ControlInterfaceSummary {
         &self.interface
+    }
+    #[must_use]
+    pub fn scope_boundary(&self) -> Option<&ScopeBoundarySummary> {
+        self.scope_boundary.as_ref()
+    }
+    #[must_use]
+    pub fn compensation_scope(&self) -> Option<&CompensationScopeSummary> {
+        self.compensation_scope.as_ref()
     }
     #[must_use]
     pub fn failures(&self) -> &ControlDimension<FailureRow> {
@@ -924,6 +1154,193 @@ pub fn derive_control_contract<'context, 'universe>(
         proof_context,
         control_node,
     )
+}
+
+/// Resolves every reachable leaf in a checked Semantic IR and derives one
+/// bottom-up root summary plus an explicit static tree-closure report.
+/// `RootExportCompatibilityStatus::NotExpressedInSemanticIr` is intentional:
+/// the frozen document has root outputs, but no root ComponentContract pin.
+pub fn derive_workflow_contract_summary<'context, 'universe>(
+    ir: &CheckedIrDocument<'_>,
+    snapshot: &crate::resolution::StaticComputationResolutionSnapshot<'_, 'context, 'universe>,
+    proof_context: &'context StaticContractProofContext<'universe>,
+) -> Result<DerivedWorkflowContractSummary<'context, 'universe>, ControlDerivationError> {
+    let document = ir.source();
+    if !snapshot.is_same_context(proof_context) {
+        return Err(ControlDerivationError::LeafContextMismatch(document.root));
+    }
+    let computations = document
+        .computations
+        .iter()
+        .map(|computation| (computation.id, computation))
+        .collect::<BTreeMap<_, _>>();
+    let mut computation_order = Vec::new();
+    let mut visiting = BTreeSet::new();
+    collect_owned_computations(
+        &computations,
+        document.root,
+        &mut visiting,
+        &mut computation_order,
+    )?;
+    let all_declared = computations.keys().copied().collect::<BTreeSet<_>>();
+    let visited = computation_order.iter().copied().collect::<BTreeSet<_>>();
+    if all_declared != visited || computation_order.len() != visited.len() {
+        return Err(ControlDerivationError::ClosureMismatch(
+            "checked root walk did not account for every declared computation exactly once".into(),
+        ));
+    }
+    let leaf_order = computation_order
+        .iter()
+        .copied()
+        .filter(|node| {
+            computations.get(node).is_some_and(|computation| {
+                matches!(
+                    computation.body,
+                    ComputationBody::Invoke(_)
+                        | ComputationBody::Await(_)
+                        | ComputationBody::CallSubflow(_)
+                )
+            })
+        })
+        .collect::<Vec<_>>();
+    let leaves = leaf_order
+        .iter()
+        .map(|node| {
+            resolve_computation_leaf(ir, *node, snapshot)
+                .map_err(|error| ControlDerivationError::LeafResolution(error.to_string()))
+        })
+        .collect::<Result<Vec<_>, _>>()?;
+    let root = derive_control_contract(ir, document.root, &leaves, proof_context)?;
+
+    let mut derived_order = Vec::new();
+    collect_derived_control_order(&root, &mut derived_order);
+    if derived_order != computation_order {
+        return Err(ControlDerivationError::ClosureMismatch(
+            "bottom-up contract derivation did not visit nodes in checked owned-child order".into(),
+        ));
+    }
+    let mut expected_occurrences = leaves
+        .iter()
+        .flat_map(|leaf| leaf.effect_occurrences().iter().cloned())
+        .collect::<Vec<_>>();
+    let mut actual_occurrences = root.effect_occurrences.clone();
+    for occurrence in &mut expected_occurrences {
+        occurrence.control_families.clear();
+    }
+    for occurrence in &mut actual_occurrences {
+        occurrence.control_families.clear();
+    }
+    let effects_accounted = expected_occurrences == actual_occurrences;
+    let expected_residuals = leaves
+        .iter()
+        .flat_map(|leaf| leaf.effect_residuals().iter().cloned())
+        .collect::<Vec<_>>();
+    let residuals_accounted = expected_residuals == root.effect_residuals;
+    let expected_recovery_sources = leaves
+        .iter()
+        .filter(|leaf| leaf.dimensions().is_some() && leaf.target().is_some())
+        .map(ResolvedComputationLeaf::computation)
+        .collect::<Vec<_>>();
+    let mut actual_recovery_sources = Vec::new();
+    collect_recovery_source_nodes(root.recovery.value(), &mut actual_recovery_sources);
+    let recovery_sources_accounted = expected_recovery_sources == actual_recovery_sources;
+    if !effects_accounted || !residuals_accounted || !recovery_sources_accounted {
+        return Err(ControlDerivationError::ClosureMismatch(format!(
+            "source coverage mismatch: occurrences={effects_accounted}, residuals={residuals_accounted}, recovery={recovery_sources_accounted}"
+        )));
+    }
+    let proof = ControlProofReport::new(vec![
+        ControlDimensionProof::new(
+            "control-tree-closure",
+            LeafVerdict::Proven,
+            RULE_CONTROL_TREE_CLOSURE,
+            document.root,
+            Some(format!("computation:{}", document.root.raw())),
+            "every checked owned computation and reachable INVOKE/AWAIT/CALL_SUBFLOW leaf was visited exactly once in semantic order; known ε occurrences/residuals and K sources match the resolved leaves",
+        ),
+        ControlDimensionProof::new(
+            "root-export-compatibility",
+            LeafVerdict::Unproven,
+            RULE_ROOT_EXPORT_BOUNDARY,
+            document.root,
+            Some(format!("computation:{}", document.root.raw())),
+            "SemanticIrDocument expresses typed root outputs but has no root ComponentContract pin or frozen cross-coordinate mapping; no export compatibility assertion is invented",
+        ),
+    ]);
+    let closure = ControlTreeClosureSummary {
+        computation_order,
+        leaf_order,
+        known_effect_occurrences_accounted: effects_accounted,
+        known_effect_residuals_accounted: residuals_accounted,
+        known_recovery_sources_accounted: recovery_sources_accounted,
+        root_export_compatibility: RootExportCompatibilityStatus::NotExpressedInSemanticIr,
+        proof,
+    };
+    Ok(DerivedWorkflowContractSummary { root, closure })
+}
+
+fn collect_owned_computations(
+    computations: &BTreeMap<ComputationId, &ComputationDef>,
+    node: ComputationId,
+    visiting: &mut BTreeSet<ComputationId>,
+    order: &mut Vec<ComputationId>,
+) -> Result<(), ControlDerivationError> {
+    if !visiting.insert(node) {
+        return Err(ControlDerivationError::ClosureMismatch(format!(
+            "computation {node} occurs more than once in the checked owned-child traversal"
+        )));
+    }
+    let Some(computation) = computations.get(&node) else {
+        return Err(ControlDerivationError::UnknownComputation(node));
+    };
+    order.push(node);
+    for child in computation.owned_children() {
+        collect_owned_computations(computations, child, visiting, order)?;
+    }
+    Ok(())
+}
+
+fn collect_derived_control_order(
+    summary: &DerivedControlContractSummary<'_, '_>,
+    order: &mut Vec<ComputationId>,
+) {
+    order.push(summary.control_node);
+    for child in &summary.children {
+        collect_derived_control_order(child, order);
+    }
+}
+
+fn collect_recovery_source_nodes(
+    value: &ControlDimensionValue<Vec<RecoverySourceSummary>>,
+    output: &mut Vec<ComputationId>,
+) {
+    match value {
+        ControlDimensionValue::Complete(sources) => {
+            output.extend(sources.iter().map(RecoverySourceSummary::source_node));
+        }
+        ControlDimensionValue::PerChild { contributions, .. } => {
+            output.extend(
+                contributions
+                    .iter()
+                    .flat_map(|contribution| contribution.value.iter())
+                    .map(RecoverySourceSummary::source_node),
+            );
+        }
+        ControlDimensionValue::Partial {
+            known_contribution: Some(sources),
+            ..
+        } => output.extend(sources.iter().map(RecoverySourceSummary::source_node)),
+        ControlDimensionValue::Unknown {
+            known_contributions,
+            ..
+        } => output.extend(
+            known_contributions
+                .iter()
+                .flat_map(|contribution| contribution.value.iter())
+                .map(RecoverySourceSummary::source_node),
+        ),
+        ControlDimensionValue::Partial { .. } | ControlDimensionValue::NotApplicable => {}
+    }
 }
 
 fn semantic_ir_ref(
@@ -1095,6 +1512,10 @@ fn derive_node<'context, 'universe>(
             children.extend(body.clauses.iter().map(|clause| clause.handler));
             (ControlOperator::Handle { handled, clauses }, children, None)
         }
+        ComputationBody::Scope(body) => (ControlOperator::Scope, vec![body.child], None),
+        ComputationBody::CompensationScope(body) => {
+            (ControlOperator::CompensationScope, vec![body.child], None)
+        }
         _ => (
             ControlOperator::Unsupported {
                 opcode: computation.body.case_name().to_owned(),
@@ -1124,9 +1545,12 @@ fn derive_node<'context, 'universe>(
         &children,
         select_body,
     );
+    let (scope_boundary, scope_proofs) =
+        derive_scope_boundary(computation, &operator, &children, dataflow);
     let own_proofs = base_proofs(node_id, digest);
     let mut proofs = own_proofs;
     proofs.extend(output_proofs);
+    proofs.extend(scope_proofs);
     if let ControlOperator::Timeout {
         possible_outcomes, ..
     } = &operator
@@ -1204,6 +1628,9 @@ fn derive_node<'context, 'universe>(
         context,
     );
     proofs.extend(recovery_proofs);
+    let (compensation_scope, compensation_proofs) =
+        derive_compensation_scope(node_id, &operator, &children, context);
+    proofs.extend(compensation_proofs);
     let (execution, execution_proofs) = derive_execution_dimension(node_id, &children);
     proofs.extend(execution_proofs);
     proofs.push(ControlDimensionProof::new(
@@ -1228,6 +1655,8 @@ fn derive_node<'context, 'universe>(
         children,
         leaf_summary: None,
         interface,
+        scope_boundary,
+        compensation_scope,
         failures: failure_result,
         effects: effect_result.dimension,
         resources,
@@ -1463,6 +1892,8 @@ fn derive_leaf_node<'context, 'universe>(
         children: vec![],
         leaf_summary: Some(leaf.clone()),
         interface,
+        scope_boundary: None,
+        compensation_scope: None,
         failures: ControlDimension {
             value: failures,
             proofs: failure_proofs,
@@ -1590,6 +2021,8 @@ fn derive_missing_leaf<'context, 'universe>(
         children: vec![],
         leaf_summary: None,
         interface,
+        scope_boundary: None,
+        compensation_scope: None,
         failures: unknown(ControlDimensionProof::new(
             "failure-row",
             LeafVerdict::Unproven,
@@ -2122,7 +2555,9 @@ fn derive_control_interface(
             }
         }
         (ComputationBody::Retry(_), ControlOperator::Retry { .. })
-        | (ComputationBody::Timeout(_), ControlOperator::Timeout { .. }) => {
+        | (ComputationBody::Timeout(_), ControlOperator::Timeout { .. })
+        | (ComputationBody::Scope(_), ControlOperator::Scope)
+        | (ComputationBody::CompensationScope(_), ControlOperator::CompensationScope) => {
             let Some(child) = children.first() else {
                 proof = downgrade(
                     proof,
@@ -2635,6 +3070,8 @@ fn effect_rule(operator: &ControlOperator) -> &'static str {
         ControlOperator::Retry { .. } => RULE_RETRY_ENVELOPE,
         ControlOperator::Timeout { .. } => RULE_TIMEOUT_OUTCOMES,
         ControlOperator::Handle { .. } => RULE_HANDLE_RESIDUAL,
+        ControlOperator::Scope => RULE_SCOPE_RESOURCE_BOUNDARY,
+        ControlOperator::CompensationScope => RULE_COMPENSATION_FORWARD_HISTORY,
         _ => RULE_UNSUPPORTED_CONTROL,
     }
 }
@@ -2693,6 +3130,9 @@ fn combine_effect_signatures(
             })
             .transpose(),
         ControlOperator::Timeout { .. } => Ok(signatures
+            .first()
+            .map(|(_, _, signature)| signature.clone())),
+        ControlOperator::Scope | ControlOperator::CompensationScope => Ok(signatures
             .first()
             .map(|(_, _, signature)| signature.clone())),
         ControlOperator::Handle { .. } => {
@@ -2958,6 +3398,10 @@ fn compose_failure_rows(
         ControlOperator::Iterate { .. } => Ok(rows.first().map(af_failure::control::iterate_row)),
         ControlOperator::Retry { .. } => Ok(rows.first().map(af_failure::control::retry_row)),
         ControlOperator::Timeout { .. } => Ok(rows.first().map(af_failure::control::timeout_row)),
+        ControlOperator::Scope => Ok(rows.first().map(af_failure::control::scope_row)),
+        ControlOperator::CompensationScope => Ok(rows
+            .first()
+            .map(af_failure::control::compensation_scope_row)),
         ControlOperator::Handle { handled, .. } => {
             let Some((_, _, protected)) = indexed_rows.iter().find(|(index, _, _)| *index == 0)
             else {
@@ -2980,6 +3424,8 @@ fn failure_rule(operator: &ControlOperator) -> &'static str {
         ControlOperator::Retry { .. } => RULE_RETRY_ENVELOPE,
         ControlOperator::Timeout { .. } => RULE_TIMEOUT_OUTCOMES,
         ControlOperator::Handle { .. } => RULE_HANDLE_RESIDUAL,
+        ControlOperator::Scope => RULE_SCOPE_RUNTIME_OBLIGATIONS,
+        ControlOperator::CompensationScope => RULE_COMPENSATION_FORWARD_HISTORY,
         _ => RULE_FAILURE_PLANE,
     }
 }
@@ -3130,6 +3576,10 @@ fn compose_usage(
         ControlOperator::Timeout { .. } => Ok(ordered
             .first()
             .map(|(_, _, body)| af_usage::control::timeout_envelope(body))),
+        ControlOperator::Scope => Ok(ordered
+            .first()
+            .map(|(_, _, body)| af_usage::control::scope_envelope(body))),
+        ControlOperator::CompensationScope => Ok(ordered.first().map(|(_, _, body)| body.clone())),
         ControlOperator::Handle { .. } => {
             let Some((_, _, protected)) = ordered.iter().find(|(index, _, _)| *index == 0) else {
                 return Ok(None);
@@ -3176,6 +3626,8 @@ fn usage_rule(operator: &ControlOperator) -> &'static str {
         ControlOperator::Retry { .. } => RULE_RETRY_ENVELOPE,
         ControlOperator::Timeout { .. } => RULE_TIMEOUT_OUTCOMES,
         ControlOperator::Handle { .. } => RULE_HANDLE_RESIDUAL,
+        ControlOperator::Scope => RULE_SCOPE_RUNTIME_OBLIGATIONS,
+        ControlOperator::CompensationScope => RULE_COMPENSATION_USAGE_ORDER,
         _ => RULE_USAGE_PROPAGATION,
     }
 }
@@ -3664,6 +4116,8 @@ fn flow_rule(operator: &ControlOperator) -> &'static str {
         ControlOperator::Retry { .. } => RULE_RETRY_ENVELOPE,
         ControlOperator::Timeout { .. } => RULE_TIMEOUT_OUTCOMES,
         ControlOperator::Handle { .. } => RULE_HANDLE_RESIDUAL,
+        ControlOperator::Scope => RULE_SCOPE_RUNTIME_OBLIGATIONS,
+        ControlOperator::CompensationScope => RULE_COMPENSATION_FORWARD_HISTORY,
         _ => RULE_FLOW_PROPAGATION,
     }
 }
@@ -3685,6 +4139,521 @@ fn group_resource_aliases(occurrences: &[ResourcePortOccurrence]) -> Vec<Control
             })
         })
         .collect()
+}
+
+fn derive_scope_boundary(
+    computation: &ComputationDef,
+    operator: &ControlOperator,
+    children: &[DerivedControlContractSummary<'_, '_>],
+    dataflow: &SemanticDataflowAnalysis,
+) -> (Option<ScopeBoundarySummary>, Vec<ControlDimensionProof>) {
+    let (ComputationBody::Scope(body), ControlOperator::Scope) = (&computation.body, operator)
+    else {
+        return (None, vec![]);
+    };
+    let parent = dataflow
+        .entry_resources()
+        .get(&computation.id.raw())
+        .cloned()
+        .unwrap_or_default()
+        .into_iter()
+        .map(ResourceSlotId::from_raw)
+        .collect::<Vec<_>>();
+    let declared = body.resources.clone();
+    let child_visible = dataflow
+        .entry_resources()
+        .get(&body.child.raw())
+        .cloned()
+        .unwrap_or_default()
+        .into_iter()
+        .map(ResourceSlotId::from_raw)
+        .collect::<Vec<_>>();
+    let parent_set = parent.iter().copied().collect::<BTreeSet<_>>();
+    let declared_set = declared.iter().copied().collect::<BTreeSet<_>>();
+    let child_set = child_visible.iter().copied().collect::<BTreeSet<_>>();
+    let resource_attenuation = if parent_set.is_superset(&declared_set) && declared_set == child_set
+    {
+        LeafVerdict::Proven
+    } else {
+        LeafVerdict::Violation
+    };
+    let summary = ScopeBoundarySummary {
+        control_node: computation.id,
+        child: body.child,
+        parent_visible_resources: parent,
+        declared_resources: declared,
+        child_visible_resources: child_visible,
+        resource_attenuation,
+        // The frozen ScopeBody contains no authority or budget ceiling.
+        authority_attenuation: LeafVerdict::Unproven,
+        budget_attenuation: LeafVerdict::Unproven,
+        // Phase 3B proves ownership, not actual child terminal state.
+        owned_children_settle_before_terminal: LeafVerdict::RequiresEvidence,
+    };
+    let child_available = children
+        .iter()
+        .any(|child| child.control_node == body.child);
+    let mut proofs = vec![
+        ControlDimensionProof::new(
+            "scope-resource-attenuation",
+            resource_attenuation,
+            RULE_SCOPE_RESOURCE_BOUNDARY,
+            computation.id,
+            Some(format!("computation:{}", body.child.raw())),
+            "the checked Phase 3C entry-resource environment is compared with the exact frozen SCOPE.resources set; this proves lexical visibility only, not a ResourceHandle",
+        ),
+        ControlDimensionProof::new(
+            "scope-authority-attenuation",
+            LeafVerdict::Unproven,
+            RULE_SCOPE_RUNTIME_OBLIGATIONS,
+            computation.id,
+            Some(format!("computation:{}", computation.id.raw())),
+            "ScopeBody has no authority ceiling and no RunAuthorityEnvelope or DelegationGrant is an input; no effective grant is inferred",
+        ),
+        ControlDimensionProof::new(
+            "scope-budget-attenuation",
+            LeafVerdict::Unproven,
+            RULE_SCOPE_RUNTIME_OBLIGATIONS,
+            computation.id,
+            Some(format!("computation:{}", computation.id.raw())),
+            "ScopeBody has no budget ceiling; child Usage remains an upper-bound declaration, not a reservation or ledger balance",
+        ),
+        ControlDimensionProof::new(
+            "scope-owned-child-settlement",
+            LeafVerdict::RequiresEvidence,
+            RULE_SCOPE_RUNTIME_OBLIGATIONS,
+            computation.id,
+            Some(format!("computation:{}", body.child.raw())),
+            "the checked ownership edge is retained, but this static pass cannot observe that every owned child has settled before owner terminal",
+        ),
+    ];
+    if !child_available {
+        proofs.push(ControlDimensionProof::new(
+            "scope-child-summary",
+            LeafVerdict::Unproven,
+            RULE_PROOF_PROPAGATION,
+            computation.id,
+            Some(format!("computation:{}", body.child.raw())),
+            "the owned Scope child has no recursively derived summary",
+        ));
+    }
+    (Some(summary), proofs)
+}
+
+fn derive_compensation_scope(
+    node: ComputationId,
+    operator: &ControlOperator,
+    children: &[DerivedControlContractSummary<'_, '_>],
+    context: &StaticContractProofContext<'_>,
+) -> (Option<CompensationScopeSummary>, Vec<ControlDimensionProof>) {
+    if !matches!(operator, ControlOperator::CompensationScope) {
+        return (None, vec![]);
+    }
+    let Some(child) = children.first() else {
+        let proof = ControlDimensionProof::new(
+            "compensation-forward-history",
+            LeafVerdict::Unproven,
+            RULE_COMPENSATION_FORWARD_HISTORY,
+            node,
+            None,
+            "the checked COMPENSATION_SCOPE child summary is unavailable",
+        );
+        return (
+            Some(CompensationScopeSummary {
+                potential_actions: ControlDimension {
+                    value: ControlDimensionValue::Unknown {
+                        known_contributions: vec![],
+                        unresolved_sources: vec![node],
+                    },
+                    proofs: vec![proof.clone()],
+                },
+                compensation_order: LeafVerdict::Unproven,
+                recovery_blocked_outcome: LeafVerdict::Unproven,
+                forward_effects_retained: true,
+                forward_outcome_retained: true,
+            }),
+            vec![proof],
+        );
+    };
+
+    let (recovery_sources, mut unresolved) = recovery_sources_from_child(child);
+    let mut actions = Vec::new();
+    let mut action_verdict = if unresolved.is_empty() {
+        LeafVerdict::Proven
+    } else {
+        LeafVerdict::Unproven
+    };
+    let mut arithmetic_violation = false;
+    for contribution in &recovery_sources {
+        for source in contribution.value() {
+            for binding in source.action_bindings() {
+                let identity = &binding.identity;
+                if identity.action_kind != RecoveryActionKind::Compensation {
+                    continue;
+                }
+                let usage_binding = source
+                    .usage_bindings()
+                    .iter()
+                    .find(|candidate| candidate.action == *identity);
+                let Some(usage_binding) = usage_binding else {
+                    action_verdict = merge_verdict(action_verdict, LeafVerdict::Violation);
+                    unresolved.push(source.source_node());
+                    continue;
+                };
+                let mut found_forward = false;
+                for leaf_occurrence in source
+                    .effects()
+                    .iter()
+                    .filter(|occurrence| occurrence.declared.atom == identity.forward_effect)
+                {
+                    let Some(scoped_occurrence) =
+                        child.effect_occurrences.iter().find(|candidate| {
+                            candidate.computation == leaf_occurrence.computation
+                                && candidate.source_contract_digest
+                                    == leaf_occurrence.source_contract_digest
+                                && candidate.source_entry_ordinal
+                                    == leaf_occurrence.source_entry_ordinal
+                                && candidate.declared.atom == identity.forward_effect
+                        })
+                    else {
+                        action_verdict = merge_verdict(action_verdict, LeafVerdict::Unproven);
+                        unresolved.push(source.source_node());
+                        continue;
+                    };
+                    found_forward = true;
+                    let Some(action_effect_occurrence) =
+                        child.effect_occurrences.iter().find(|candidate| {
+                            candidate.computation == source.source_node()
+                                && candidate.source_contract_digest
+                                    == scoped_occurrence.source_contract_digest
+                                && candidate.declared.atom == identity.action_effect
+                        })
+                    else {
+                        action_verdict = merge_verdict(action_verdict, LeafVerdict::Unproven);
+                        unresolved.push(source.source_node());
+                        continue;
+                    };
+                    let Ok(bounds) =
+                        conditional_compensation_bounds(scoped_occurrence, usage_binding)
+                    else {
+                        action_verdict = merge_verdict(action_verdict, LeafVerdict::Violation);
+                        arithmetic_violation = true;
+                        unresolved.push(source.source_node());
+                        continue;
+                    };
+                    let receipt_evidence = if bounds.upper.is_zero() {
+                        LeafVerdict::Proven
+                    } else {
+                        LeafVerdict::RequiresEvidence
+                    };
+                    let Ok(usage) = conditional_recovery_usage(
+                        &usage_binding.per_attempt_usage,
+                        bounds.upper,
+                        context,
+                    ) else {
+                        action_verdict = merge_verdict(action_verdict, LeafVerdict::Violation);
+                        arithmetic_violation = true;
+                        unresolved.push(source.source_node());
+                        continue;
+                    };
+                    actions.push(ConditionalCompensationAction {
+                        source_node: source.source_node(),
+                        forward_occurrence: scoped_occurrence.clone(),
+                        action_effect_occurrence: action_effect_occurrence.clone(),
+                        identity: identity.clone(),
+                        potential_effect: EffectEntry {
+                            atom: identity.action_effect.clone(),
+                            bounds,
+                            // The declared forward guard still gates whether
+                            // this recovery route can become relevant.
+                            guard: scoped_occurrence.declared.guard.clone(),
+                        },
+                        potential_recovery_usage: usage,
+                        receipt_evidence,
+                    });
+                }
+                if !found_forward {
+                    action_verdict = merge_verdict(action_verdict, LeafVerdict::Unproven);
+                    unresolved.push(source.source_node());
+                }
+            }
+        }
+    }
+    let mut required_action_rows = Vec::<(
+        ComputationId,
+        DigestRefValue,
+        af_effect::EffectAtom,
+        OccurrenceCeiling,
+    )>::new();
+    for action in &actions {
+        let occurrence = action.action_effect_occurrence();
+        let mut required = action.potential_effect.bounds.upper;
+        if action.identity.forward_effect == action.identity.action_effect {
+            let Ok(forward_upper) = scoped_occurrence_upper(action.forward_occurrence()) else {
+                action_verdict = merge_verdict(action_verdict, LeafVerdict::Violation);
+                arithmetic_violation = true;
+                unresolved.push(action.source_node());
+                continue;
+            };
+            let Ok(total) = required.checked_add(forward_upper) else {
+                action_verdict = merge_verdict(action_verdict, LeafVerdict::Violation);
+                arithmetic_violation = true;
+                unresolved.push(action.source_node());
+                continue;
+            };
+            required = total;
+        }
+        if let Some((_, _, _, total)) =
+            required_action_rows
+                .iter_mut()
+                .find(|(node, digest, atom, _)| {
+                    *node == occurrence.computation
+                        && *digest == occurrence.source_contract_digest
+                        && *atom == occurrence.declared.atom
+                })
+        {
+            let Ok(sum) = total.checked_add(required) else {
+                action_verdict = merge_verdict(action_verdict, LeafVerdict::Violation);
+                arithmetic_violation = true;
+                unresolved.push(action.source_node());
+                continue;
+            };
+            *total = sum;
+        } else {
+            required_action_rows.push((
+                occurrence.computation,
+                occurrence.source_contract_digest.clone(),
+                occurrence.declared.atom.clone(),
+                required,
+            ));
+        }
+    }
+    for (source_node, contract_digest, atom, required) in required_action_rows {
+        let Some(declared) = child.effect_occurrences.iter().find(|occurrence| {
+            occurrence.computation == source_node
+                && occurrence.source_contract_digest == contract_digest
+                && occurrence.declared.atom == atom
+        }) else {
+            action_verdict = merge_verdict(action_verdict, LeafVerdict::Unproven);
+            unresolved.push(source_node);
+            continue;
+        };
+        match scoped_occurrence_upper(declared) {
+            Ok(declared_upper) if declared_upper.covers(required) => {}
+            Ok(_) => {
+                action_verdict = merge_verdict(action_verdict, LeafVerdict::Violation);
+                unresolved.push(source_node);
+            }
+            Err(()) => {
+                action_verdict = merge_verdict(action_verdict, LeafVerdict::Violation);
+                arithmetic_violation = true;
+                unresolved.push(source_node);
+            }
+        }
+    }
+    unresolved.sort_unstable();
+    unresolved.dedup();
+    let possible_events = actions
+        .iter()
+        .try_fold(OccurrenceCeiling::Finite(0), |total, action| {
+            total.checked_add(action.potential_effect.bounds.upper)
+        });
+    let compensation_order = match possible_events {
+        Ok(OccurrenceCeiling::Finite(0 | 1)) => LeafVerdict::Proven,
+        Ok(_) => LeafVerdict::RequiresEvidence,
+        Err(_) => LeafVerdict::Violation,
+    };
+    let actions_value = if unresolved.is_empty() {
+        ControlDimensionValue::Complete(actions.clone())
+    } else if !actions.is_empty() {
+        ControlDimensionValue::Partial {
+            known_contribution: Some(actions.clone()),
+            unresolved_sources: unresolved.clone(),
+        }
+    } else {
+        ControlDimensionValue::Unknown {
+            known_contributions: vec![],
+            unresolved_sources: unresolved.clone(),
+        }
+    };
+    let receipt_required = actions
+        .iter()
+        .any(|action| action.receipt_evidence == LeafVerdict::RequiresEvidence);
+    let actions_proof_verdict = if arithmetic_violation {
+        LeafVerdict::Violation
+    } else if receipt_required && action_verdict == LeafVerdict::Proven {
+        LeafVerdict::RequiresEvidence
+    } else {
+        action_verdict
+    };
+    let actions_proof = ControlDimensionProof::new(
+        "conditional-compensation-actions",
+        actions_proof_verdict,
+        RULE_COMPENSATION_ACTIONS,
+        node,
+        Some(format!("computation:{}", node.raw())),
+        "exact compensation K bindings and activation/attempt bounds are retained as conditional new Effect and Recovery-Usage possibilities; EffectReceipt state is required to know eligibility",
+    );
+    let action_dimension = ControlDimension {
+        value: actions_value,
+        proofs: vec![actions_proof.clone()],
+    };
+    let order_proof = ControlDimensionProof::new(
+        "compensation-commit-order",
+        compensation_order,
+        RULE_COMPENSATION_USAGE_ORDER,
+        node,
+        Some(format!("computation:{}", node.raw())),
+        "static source order does not establish actual committed Effect order for compensation; a multi-event reverse order requires committed receipt evidence",
+    );
+    let blocked_verdict = if !unresolved.is_empty() {
+        LeafVerdict::Unproven
+    } else if receipt_required {
+        LeafVerdict::RequiresEvidence
+    } else {
+        LeafVerdict::Unproven
+    };
+    let blocked_proof = ControlDimensionProof::new(
+        "recovery-blocked-outcome",
+        blocked_verdict,
+        RULE_COMPENSATION_ACTIONS,
+        node,
+        Some(format!("computation:{}", node.raw())),
+        "RecoveryBlocked is a possible recovery outcome distinct from typed Failure; this summary has no runtime reconciliation/compensation result and reports no actual blocked state",
+    );
+    let forward_proof = ControlDimensionProof::new(
+        "compensation-forward-history",
+        LeafVerdict::Proven,
+        RULE_COMPENSATION_FORWARD_HISTORY,
+        node,
+        Some(format!("computation:{}", child.control_node.raw())),
+        "the child's forward Effect envelope and typed Failure outcome are propagated unchanged; potential compensation is a separate conditional projection and never subtracts/refunds forward history",
+    );
+    let summary = CompensationScopeSummary {
+        potential_actions: action_dimension,
+        compensation_order,
+        recovery_blocked_outcome: blocked_verdict,
+        forward_effects_retained: true,
+        forward_outcome_retained: true,
+    };
+    let mut proofs = vec![forward_proof, actions_proof, order_proof, blocked_proof];
+    if recovery_sources.is_empty()
+        && matches!(
+            &child.recovery.value,
+            ControlDimensionValue::PerChild { .. }
+        )
+    {
+        proofs.push(ControlDimensionProof::new(
+            "compensation-recovery-coverage",
+            LeafVerdict::Unproven,
+            RULE_COMPENSATION_ACTIONS,
+            node,
+            Some(format!("computation:{}", child.control_node.raw())),
+            "no resolved K Recovery source was available from the owned child",
+        ));
+    }
+    (Some(summary), proofs)
+}
+
+fn recovery_sources_from_child(
+    child: &DerivedControlContractSummary<'_, '_>,
+) -> (
+    Vec<DimensionContribution<Vec<RecoverySourceSummary>>>,
+    Vec<ComputationId>,
+) {
+    match &child.recovery.value {
+        ControlDimensionValue::PerChild {
+            contributions,
+            unresolved_sources,
+        } => (contributions.clone(), unresolved_sources.clone()),
+        ControlDimensionValue::Complete(sources) => (
+            vec![DimensionContribution {
+                source_node: child.control_node,
+                value: sources.clone(),
+            }],
+            vec![],
+        ),
+        ControlDimensionValue::Partial {
+            known_contribution,
+            unresolved_sources,
+        } => (
+            known_contribution
+                .as_ref()
+                .map(|sources| {
+                    vec![DimensionContribution {
+                        source_node: child.control_node,
+                        value: sources.clone(),
+                    }]
+                })
+                .unwrap_or_default(),
+            unresolved_sources.clone(),
+        ),
+        ControlDimensionValue::Unknown {
+            known_contributions,
+            unresolved_sources,
+        } => (known_contributions.clone(), unresolved_sources.clone()),
+        ControlDimensionValue::NotApplicable => (vec![], vec![child.control_node]),
+    }
+}
+
+fn conditional_compensation_bounds(
+    forward: &ScopedEffectOccurrence,
+    binding: &RecoveryUsageBinding,
+) -> Result<OccurrenceBounds, ()> {
+    let forward_upper = scoped_occurrence_upper(forward)?;
+    let upper = forward_upper
+        .checked_mul(binding.activations_per_forward.upper)
+        .and_then(|bound| bound.checked_mul(binding.attempts_per_activation.upper))
+        .map_err(|_| ())?;
+    Ok(OccurrenceBounds { lower: 0, upper })
+}
+
+fn scoped_occurrence_upper(occurrence: &ScopedEffectOccurrence) -> Result<OccurrenceCeiling, ()> {
+    occurrence.control_families.iter().try_fold(
+        occurrence.declared.bounds.upper,
+        |upper, family| {
+            upper
+                .checked_mul(family.logical_repetitions.upper)
+                .map_err(|_| ())
+        },
+    )
+}
+
+fn conditional_recovery_usage(
+    per_attempt: &af_usage::UsageSignature,
+    action_upper: OccurrenceCeiling,
+    context: &StaticContractProofContext<'_>,
+) -> Result<StaticUsageEnvelope, ()> {
+    let envelope =
+        af_usage::declared_usage_envelope(per_attempt, context.usage_meters).map_err(|_| ())?;
+    if envelope.is_globally_unknown() {
+        return Ok(StaticUsageEnvelope::unknown());
+    }
+    let mut result = StaticUsageEnvelope::empty();
+    for (coordinate, bound) in envelope.iter() {
+        let scaled = match (action_upper, bound) {
+            (OccurrenceCeiling::Finite(0), _) => StaticUsageBound::KnownFinite(0),
+            (OccurrenceCeiling::Finite(count), StaticUsageBound::KnownFinite(value)) => {
+                let scaled = UsageUpperBound::Finite(*value)
+                    .checked_mul(count)
+                    .map_err(|_| ())?;
+                StaticUsageBound::from_declared(scaled)
+            }
+            (OccurrenceCeiling::Unbounded, StaticUsageBound::KnownFinite(0)) => {
+                StaticUsageBound::KnownFinite(0)
+            }
+            (
+                OccurrenceCeiling::Finite(_) | OccurrenceCeiling::Unbounded,
+                StaticUsageBound::KnownUnbounded,
+            )
+            | (OccurrenceCeiling::Unbounded, StaticUsageBound::KnownFinite(_)) => {
+                StaticUsageBound::KnownUnbounded
+            }
+            (_, StaticUsageBound::Unknown) => StaticUsageBound::Unknown,
+        };
+        result.insert(coordinate.clone(), scaled).map_err(|_| ())?;
+    }
+    Ok(result)
 }
 
 fn derive_recovery_dimension(

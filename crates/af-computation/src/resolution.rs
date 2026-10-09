@@ -104,6 +104,15 @@ pub struct StaticComputationResolutionSnapshot<'a, 'context, 'universe> {
     exports: HashMap<DigestRefValue, ExportedContract<'a, 'context, 'universe>>,
 }
 
+impl StaticComputationResolutionSnapshot<'_, '_, '_> {
+    /// Whether this immutable resolver snapshot uses the exact proof-context
+    /// object supplied to the analysis (not merely equal catalog contents).
+    #[must_use]
+    pub fn is_same_context(&self, context: &StaticContractProofContext<'_>) -> bool {
+        std::ptr::eq(self.proof_context, context)
+    }
+}
+
 impl<'a, 'context, 'universe> StaticComputationResolutionSnapshotBuilder<'a, 'context, 'universe> {
     #[must_use]
     pub fn new(

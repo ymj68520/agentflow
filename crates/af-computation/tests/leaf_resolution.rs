@@ -1595,7 +1595,7 @@ fn child_requires_evidence_propagates_without_erasing_a_known_parent_effect_enve
 }
 
 #[test]
-fn advanced_timeout_is_known_and_scope_stays_unsupported() {
+fn advanced_timeout_is_known_and_scope_uses_its_static_boundary() {
     let fixture = Context::new();
     let context = fixture.view();
     let checked = check_contract(&empty_contract(), &context).unwrap();
@@ -1688,16 +1688,33 @@ fn advanced_timeout_is_known_and_scope_stays_unsupported() {
     .unwrap();
     assert_eq!(
         scope_summary.operator(),
-        &af_computation::ControlOperator::Unsupported {
-            opcode: "scope".into()
-        }
+        &af_computation::ControlOperator::Scope
     );
-    assert_eq!(scope_summary.proof().overall(), LeafVerdict::Unproven);
+    assert_eq!(
+        scope_summary.proof().overall(),
+        LeafVerdict::RequiresEvidence
+    );
     assert!(matches!(
         scope_summary.effects().value(),
-        ControlDimensionValue::Unknown { unresolved_sources, .. }
-            if unresolved_sources.contains(&ComputationId::from_raw(1))
+        ControlDimensionValue::Complete(EffectSignature { row: EffectRow::Closed(entries) })
+            if entries.is_empty()
     ));
+    let scope_boundary = scope_summary
+        .scope_boundary()
+        .expect("Scope boundary summary");
+    assert!(scope_boundary.parent_visible_resources().is_empty());
+    assert!(scope_boundary.declared_resources().is_empty());
+    assert!(scope_boundary.child_visible_resources().is_empty());
+    assert_eq!(scope_boundary.resource_attenuation(), LeafVerdict::Proven);
+    assert_eq!(
+        scope_boundary.authority_attenuation(),
+        LeafVerdict::Unproven
+    );
+    assert_eq!(scope_boundary.budget_attenuation(), LeafVerdict::Unproven);
+    assert_eq!(
+        scope_boundary.owned_children_settle_before_terminal(),
+        LeafVerdict::RequiresEvidence
+    );
 }
 
 #[test]

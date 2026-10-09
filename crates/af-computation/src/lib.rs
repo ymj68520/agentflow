@@ -1,11 +1,12 @@
 //! Pure, explicit static analysis for Semantic IR computation leaves and
-//! selected structured/advanced control nodes.
+//! selected structured/advanced control nodes and workflow-root closure.
 //!
 //! Leaf resolution handles `INVOKE`, `AWAIT`, and `CALL_SUBFLOW`. The
 //! control algebra composes `SEQUENCE`, `SELECT`, `PARALLEL`, `RACE`,
-//! `ITERATE`, `RETRY`, `TIMEOUT`, and `HANDLE`, consuming the checked IR,
-//! Phase 3C dataflow, resolved leaves, and the same immutable proof context.
-//! `SCOPE` and `COMPENSATION_SCOPE` remain explicitly unsupported/Unproven.
+//! `ITERATE`, `RETRY`, `TIMEOUT`, `HANDLE`, `SCOPE`, and
+//! `COMPENSATION_SCOPE`, consuming the checked IR, Phase 3C dataflow, resolved
+//! leaves, and the same immutable proof context. Workflow-root closure accounts
+//! for every owned node but never promotes unresolved dimensions to Proven.
 //! No summary is a ComponentContract, digest input, runtime binding, grant,
 //! handle, plan, or workflow attestation.
 
@@ -16,14 +17,16 @@ mod resolution;
 mod summary;
 
 pub use control::{
-    ControlDerivationError, ControlDimension, ControlDimensionProof, ControlDimensionValue,
-    ControlFlowContractSource, ControlFlowSummary, ControlInterfaceSummary, ControlOperator,
-    ControlOutputPort, ControlOutputSource, ControlProofReport, ControlResourceAlias,
-    DerivedControlContractSummary, DimensionContribution, EffectLowerBoundAdjustment,
-    EffectLowerBoundAdjustmentReason, ExecutionSourceSummary, HandleClauseSummary,
-    HandleMatcherSummary, InheritedControlObligation, IterateMode, RecoverySourceSummary,
-    ResourcePortOccurrence, SelectDecisionEvidence, SequenceDataflowDependency, TimeoutOutcome,
-    derive_control_contract,
+    CompensationScopeSummary, ConditionalCompensationAction, ControlDerivationError,
+    ControlDimension, ControlDimensionProof, ControlDimensionValue, ControlFlowContractSource,
+    ControlFlowSummary, ControlInterfaceSummary, ControlOperator, ControlOutputPort,
+    ControlOutputSource, ControlProofReport, ControlResourceAlias, ControlTreeClosureSummary,
+    DerivedControlContractSummary, DerivedWorkflowContractSummary, DimensionContribution,
+    EffectLowerBoundAdjustment, EffectLowerBoundAdjustmentReason, ExecutionSourceSummary,
+    HandleClauseSummary, HandleMatcherSummary, InheritedControlObligation, IterateMode,
+    RecoverySourceSummary, ResourcePortOccurrence, RootExportCompatibilityStatus,
+    ScopeBoundarySummary, SelectDecisionEvidence, SequenceDataflowDependency, TimeoutOutcome,
+    derive_control_contract, derive_workflow_contract_summary,
 };
 pub use proof::{LeafDimensionProof, LeafProofReport, LeafVerdict};
 pub use resolution::{

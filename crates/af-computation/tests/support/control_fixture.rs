@@ -5,9 +5,10 @@
 use std::collections::{BTreeMap, BTreeSet};
 
 use af_computation::{
-    ControlDimensionValue, ControlOperator, DerivedControlContractSummary, HandleMatcherSummary,
-    IterateMode, LeafVerdict, StaticComputationResolutionSnapshotBuilder, derive_control_contract,
-    resolve_computation_leaf,
+    ControlDimensionValue, ControlOperator, DerivedControlContractSummary,
+    DerivedWorkflowContractSummary, HandleMatcherSummary, IterateMode, LeafVerdict,
+    StaticComputationResolutionSnapshotBuilder, derive_control_contract,
+    derive_workflow_contract_summary, resolve_computation_leaf,
 };
 use af_contract::{
     AuthorityExecutionRule, ComponentContract, ComponentIdentity, ComponentInputPort,
@@ -36,7 +37,7 @@ use af_flow::{
 use af_idl::{CompiledModuleSet, compile_module_set};
 use af_ir::model::ComputationOutputBinding;
 use af_ir::{
-    CallSubflowBody, ComputationBody, ComputationDef, ComputationId, ContractRefEntry,
+    AwaitBody, CallSubflowBody, ComputationBody, ComputationDef, ComputationId, ContractRefEntry,
     ContractRefId, ContractRefKind, FailureMatch, ForeachBody, HandleBody, HandleClause,
     HandleMatch, InputBinding, InvokeBody, IterateBody, LoopCarryBinding, ParallelBody,
     ParallelBranch, ParallelMode, ParallelOutputBinding, RaceBody, RaceBranch, ResourceUseBinding,
@@ -77,6 +78,20 @@ fn fixture_u32(value: &Value, label: &str) -> u32 {
 
 fn fixture_index(index: usize) -> u32 {
     u32::try_from(index).expect("fixture table length fits u32")
+}
+
+fn scope_resource_ids<'a>(
+    aliases: impl Iterator<Item = &'a Value>,
+    slots: &BTreeMap<String, ResourceSlotId>,
+) -> Result<Vec<ResourceSlotId>, String> {
+    aliases
+        .map(|alias| {
+            slots
+                .get(alias.as_str().unwrap())
+                .copied()
+                .ok_or_else(|| format!("unmaterialized Scope ResourceSlot {alias}"))
+        })
+        .collect()
 }
 
 /// Test-only, deterministic semantic projection. It has no wire or runtime
@@ -455,6 +470,18 @@ pub fn analyze_compose_case(case: &Value) -> Result<Value, String> {
     let summary =
         derive_control_contract(&checked_ir, ComputationId::from_raw(1), &resolved, &view)
             .map_err(|e| format!("control derivation: {e}"))?;
+    let workflow = if input["include_workflow_closure"] == true {
+        let workflow = derive_workflow_contract_summary(&checked_ir, &snapshot, &view)
+            .map_err(|e| format!("workflow closure: {e}"))?;
+        if &summary != workflow.root() {
+            return Err(
+                "subtree and workflow-root derivations disagree for the checked root".into(),
+            );
+        }
+        Some(workflow)
+    } else {
+        None
+    };
     let first_projection = project(&summary, input, &pin_aliases, &resource_alias_ids).into_value();
     let repeated =
         derive_control_contract(&checked_ir, ComputationId::from_raw(1), &resolved, &view)
@@ -464,11 +491,36 @@ pub fn analyze_compose_case(case: &Value) -> Result<Value, String> {
     if first_projection != repeated_projection {
         return Err("identical checked IR/snapshot produced different projections".into());
     }
+    if workflow.is_some() {
+        let repeated_workflow = derive_workflow_contract_summary(&checked_ir, &snapshot, &view)
+            .map_err(|e| format!("repeat workflow closure: {e}"))?;
+        if workflow.as_ref() != Some(&repeated_workflow) {
+            return Err("identical checked IR/snapshot produced different workflow closure".into());
+        }
+    }
     let mut projection = first_projection;
+    if let Some(workflow) = workflow.as_ref() {
+        let closure_projection = workflow_closure_json(workflow);
+        projection["workflow_closure"] = closure_projection.clone();
+        projection["_workflow_closure"] = closure_projection;
+    }
     projection["_execution_stage"] = json!("control_derivation");
     projection["_resolved_leaf_count"] = json!(resolved.len());
     projection["_same_snapshot_repeat_equal"] = json!(true);
     Ok(projection)
+}
+
+fn workflow_closure_json(summary: &DerivedWorkflowContractSummary<'_, '_>) -> Value {
+    json!({
+        "computation_order":summary.closure().computation_order().iter().map(|node|node.raw()).collect::<Vec<_>>(),
+        "leaf_order":summary.closure().leaf_order().iter().map(|node|node.raw()).collect::<Vec<_>>(),
+        "known_effect_occurrences_accounted":summary.closure().known_effect_occurrences_accounted(),
+        "known_effect_residuals_accounted":summary.closure().known_effect_residuals_accounted(),
+        "known_recovery_sources_accounted":summary.closure().known_recovery_sources_accounted(),
+        "root_export_compatibility":match summary.closure().root_export_compatibility() {af_computation::RootExportCompatibilityStatus::NotExpressedInSemanticIr=>"not_expressed_in_semantic_ir"},
+        "closure_verdict":verdict(summary.closure().proof().overall()),
+        "overall_verdict":verdict(summary.overall()),
+    })
 }
 
 /// Materialize typed Sequence/PARALLEL output fixtures through checked IR,
@@ -1737,6 +1789,41 @@ fn semantic_ir(
         })
         .collect::<Result<Vec<_>, String>>()?;
 
+    let await_children = children
+        .iter()
+        .filter(|child| child["leaf_kind"] == "await")
+        .collect::<Vec<_>>();
+    if !await_children.is_empty() {
+        type_nodes.push(SemanticTypeNode {
+            id: 90_000.into(),
+            body: SemanticTypeNodeBody::Primitive(SemanticPrimitiveType::String),
+        });
+        for child in &await_children {
+            let node = fixture_u32(&child["node"], "Await computation id");
+            let value_slot = 70_000_u32
+                .checked_add(node)
+                .ok_or("Await correlation ValueSlotId overflow")?;
+            let expression = 80_000_u32
+                .checked_add(node)
+                .ok_or("Await correlation ExpressionId overflow")?;
+            values.push(af_semantic::ValueSlot {
+                id: value_slot.into(),
+                type_id: 90_000.into(),
+            });
+            expressions.push(ExpressionDef {
+                id: expression.into(),
+                result_type_id: 90_000.into(),
+                body: ExpressionBody::ValueSlot(value_slot.into()),
+            });
+            run_parameters.push(RunParameterDecl {
+                id: value_slot.into(),
+                name: format!("await-correlation-{node}"),
+                type_id: 90_000.into(),
+                value_slot: value_slot.into(),
+            });
+        }
+    }
+
     let mut resource_alias_ids = BTreeMap::<String, ResourceSlotId>::new();
     for child in children {
         let mut aliases = BTreeSet::new();
@@ -1766,6 +1853,50 @@ fn semantic_ir(
                 .entry(alias)
                 .or_insert(ResourceSlotId::from_raw(next));
         }
+    }
+    let scope_resource_names = input["scope_resources"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .filter_map(Value::as_str)
+        .chain(
+            input["additional_resources"]
+                .as_array()
+                .into_iter()
+                .flatten()
+                .filter_map(Value::as_str),
+        )
+        .chain(
+            input["additional_resources"]
+                .as_array()
+                .into_iter()
+                .flatten()
+                .filter_map(Value::as_str),
+        )
+        .chain(
+            input["nested_nodes"]
+                .as_array()
+                .into_iter()
+                .flatten()
+                .flat_map(|nested| nested["resources"].as_array().into_iter().flatten())
+                .chain(
+                    input["nested_nodes"]
+                        .as_array()
+                        .into_iter()
+                        .flatten()
+                        .flat_map(|nested| {
+                            nested["scope_resources"].as_array().into_iter().flatten()
+                        }),
+                )
+                .filter_map(Value::as_str),
+        )
+        .map(str::to_owned)
+        .collect::<BTreeSet<_>>();
+    for alias in scope_resource_names {
+        let next = fixture_index(resource_alias_ids.len()) + 1;
+        resource_alias_ids
+            .entry(alias)
+            .or_insert(ResourceSlotId::from_raw(next));
     }
     let mut resource_slots = Vec::new();
     for (alias, slot) in &resource_alias_ids {
@@ -1947,9 +2078,21 @@ fn semantic_ir(
                 clauses,
             })
         }
-        "scope" => ComputationBody::Scope(ScopeBody {
-            child: *root_child_ids.first().ok_or("SCOPE needs one child")?,
-            resources: vec![],
+        "scope" => {
+            let mut resources = scope_resource_ids(
+                input["scope_resources"].as_array().into_iter().flatten(),
+                &resource_alias_ids,
+            )?;
+            resources.sort_unstable();
+            ComputationBody::Scope(ScopeBody {
+                child: *root_child_ids.first().ok_or("SCOPE needs one child")?,
+                resources,
+            })
+        }
+        "compensation_scope" => ComputationBody::CompensationScope(af_ir::CompensationScopeBody {
+            child: *root_child_ids
+                .first()
+                .ok_or("COMPENSATION_SCOPE needs one child")?,
         }),
         other => return Err(format!("unsupported fixture opcode {other}")),
     };
@@ -2034,7 +2177,20 @@ fn semantic_ir(
         let contract_ref = *refs
             .get(&ref_key(pin))
             .ok_or("contract pin not entered in IR")?;
-        let body = if subflow_target.is_some() {
+        let body = if child["leaf_kind"] == "await" {
+            let node = fixture_u32(&child["node"], "Await computation id");
+            let expression = 80_000_u32
+                .checked_add(node)
+                .ok_or("Await correlation ExpressionId overflow")?;
+            ComputationBody::Await(AwaitBody {
+                signal_type: env
+                    .schemas
+                    .get("agentflow.semantic.core@1/TypeSchemaRef")
+                    .ok_or("Await signal schema is unavailable")?
+                    .reference(),
+                correlation: expression.into(),
+            })
+        } else if subflow_target.is_some() {
             ComputationBody::CallSubflow(CallSubflowBody {
                 contract: contract_ref,
                 inputs: input_bindings,
@@ -2078,6 +2234,113 @@ fn semantic_ir(
                     .as_u64()
                     .map(|value| u32::try_from(value).expect("nested max_inflight fits u32")),
             })),
+            "sequence" => ComputationBody::Sequence(SequenceBody {
+                children: nested["children"]
+                    .as_array()
+                    .into_iter()
+                    .flatten()
+                    .map(|child| {
+                        ComputationId::from_raw(fixture_u32(child, "nested sequence child"))
+                    })
+                    .collect(),
+            }),
+            "parallel_all" | "parallel_fail_fast" => ComputationBody::Parallel(ParallelBody {
+                mode: if nested["operator"] == "parallel_all" {
+                    ParallelMode::All
+                } else {
+                    ParallelMode::FailFast
+                },
+                branches: nested["children"]
+                    .as_array()
+                    .into_iter()
+                    .flatten()
+                    .enumerate()
+                    .map(|(index, child)| ParallelBranch {
+                        ordinal: (fixture_index(index) + 1).into(),
+                        child: ComputationId::from_raw(fixture_u32(child, "nested parallel child")),
+                    })
+                    .collect(),
+                max_inflight: nested["max_inflight"]
+                    .as_u64()
+                    .map(|value| u32::try_from(value).expect("nested max_inflight fits u32")),
+                output_bindings: vec![],
+            }),
+            "race" => ComputationBody::Race(RaceBody {
+                branches: nested["children"]
+                    .as_array()
+                    .into_iter()
+                    .flatten()
+                    .enumerate()
+                    .map(|(index, child)| RaceBranch {
+                        ordinal: (fixture_index(index) + 1).into(),
+                        child: ComputationId::from_raw(fixture_u32(child, "nested race child")),
+                    })
+                    .collect(),
+            }),
+            "retry" => ComputationBody::Retry(RetryBody {
+                child: ComputationId::from_raw(fixture_u32(&nested["child"], "nested retry child")),
+                delays: nested["delays_micros"]
+                    .as_array()
+                    .into_iter()
+                    .flatten()
+                    .map(|delay| af_core::Duration::new(delay.as_i64().unwrap()))
+                    .collect(),
+            }),
+            "scope" => {
+                let mut resources = scope_resource_ids(
+                    nested["scope_resources"].as_array().into_iter().flatten(),
+                    &resource_alias_ids,
+                )?;
+                resources.sort_unstable();
+                ComputationBody::Scope(ScopeBody {
+                    child: ComputationId::from_raw(fixture_u32(
+                        &nested["child"],
+                        "nested Scope child",
+                    )),
+                    resources,
+                })
+            }
+            "compensation_scope" => {
+                ComputationBody::CompensationScope(af_ir::CompensationScopeBody {
+                    child: ComputationId::from_raw(fixture_u32(
+                        &nested["child"],
+                        "nested CompensationScope child",
+                    )),
+                })
+            }
+            "handle" => {
+                let clauses = nested["clauses"]
+                    .as_array()
+                    .into_iter()
+                    .flatten()
+                    .map(|clause| {
+                        let matcher = if clause["match"] == "timed_out" {
+                            HandleMatch::TimedOut(())
+                        } else {
+                            let alias = clause["match"]["failure"].as_str().unwrap();
+                            HandleMatch::Failure(FailureMatch {
+                                failure_type: failure_ref(alias, &env.schemas)?.payload_type,
+                            })
+                        };
+                        Ok(HandleClause {
+                            ordinal: fixture_u32(&clause["ordinal"], "nested handler ordinal")
+                                .into(),
+                            matcher,
+                            handler: ComputationId::from_raw(fixture_u32(
+                                &clause["handler"],
+                                "nested handler node",
+                            )),
+                        })
+                    })
+                    .collect::<Result<Vec<_>, String>>()?;
+                ComputationBody::Handle(HandleBody {
+                    child: ComputationId::from_raw(fixture_u32(
+                        &nested["child"],
+                        "nested Handle child",
+                    )),
+                    clauses,
+                })
+            }
             other => return Err(format!("unsupported nested fixture opcode {other}")),
         };
         computations.push(ComputationDef {
@@ -2210,70 +2473,85 @@ fn project(
             .collect::<Vec<_>>(),
         _ => vec![],
     };
-    ControlConformanceProjection {
-        semantic_fields: json!({
-            "effect_lower_bound_adjusted_children": summary.effect_lower_bound_adjustments().iter().map(|item| item.source_node().raw()).collect::<Vec<_>>(),
-            "effect_occurrences": effect_occurrences,
-            "effect_row_complete": effects_complete,
+    let mut semantic_fields = json!({
+        "effect_lower_bound_adjusted_children": summary.effect_lower_bound_adjustments().iter().map(|item| item.source_node().raw()).collect::<Vec<_>>(),
+        "effect_occurrences": effect_occurrences,
+        "effect_row_complete": effects_complete,
+        "effects": effects,
+        "execution_by_child": execution_by_child,
+        "failures": failures,
+        "flow": flow,
+        "recovery_sources": recovery_sources,
+        "resources_by_child": resources_by_child,
+        "unresolved_children": unresolved_children,
+        "usage": usage,
+        "verdict": verdict(summary.proof().overall()),
+        "identity": {"operator": summary.operator().name(), "node": summary.control_node().raw(), "children": summary.direct_children().iter().map(|id| id.raw()).collect::<Vec<_>>()},
+        "sequence_dataflow_dependencies": summary.sequence_dataflow_dependencies().iter().map(|dependency|json!({"producer_child":dependency.producer_child().raw(),"producer_node":dependency.producer_node().raw(),"value_slot":dependency.value_slot().raw(),"consumer_child":dependency.consumer_child().raw(),"consumer_node":dependency.consumer_node().raw(),"expression":dependency.expression().raw()})).collect::<Vec<_>>(),
+        "case_operator": input["operator"],
+        "control_semantics": control_semantics_json(summary.operator()),
+        "control_decision_dependencies": match summary.information_flow().value() {
+            ControlDimensionValue::Complete(flow) | ControlDimensionValue::Partial { known_contribution: Some(flow), .. } => flow.control_decision_dependencies().iter().map(|slot|slot.raw()).collect::<Vec<_>>(),
+            _ => Vec::<u32>::new(),
+        },
+        "control_decision_influence_unknown": match summary.information_flow().value() {
+            ControlDimensionValue::Complete(flow) | ControlDimensionValue::Partial { known_contribution: Some(flow), .. } => flow.control_decision_influence_unknown(),
+            _ => true,
+        },
+        "dimension_availability": dimension_availability(summary),
+        "typed_outputs": match summary.interface().outputs() {
+            ControlDimensionValue::Complete(ports) => json!({"state":"complete","port_count":ports.len()}),
+            ControlDimensionValue::Partial { known_contribution, unresolved_sources } => json!({"state":"partial","port_count":known_contribution.as_ref().map_or(0,Vec::len),"unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>()}),
+            ControlDimensionValue::Unknown { unresolved_sources, .. } => json!({"state":"unknown","unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>()}),
+            ControlDimensionValue::PerChild { unresolved_sources, .. } => json!({"state":"per_child","unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>()}),
+            ControlDimensionValue::NotApplicable => json!({"state":"not_applicable"}),
+        },
+        "output_interface": interface_json(summary)["outputs"].clone(),
+        "control_effect_families": summary.effect_occurrences().iter().enumerate().filter(|(_,occurrence)|!occurrence.control_families.is_empty()).map(|(occurrence_index,occurrence)|json!({"occurrence_index":occurrence_index,"source_node":occurrence.computation.raw(),"families":occurrence.control_families.iter().map(|family|json!({"control_node":family.control_node.raw(),"kind":match family.kind {af_computation::EffectOccurrenceFamilyKind::Iterate=>"iterate",af_computation::EffectOccurrenceFamilyKind::Retry=>"retry"},"logical_repetitions":{"lower":family.logical_repetitions.lower,"upper":occurrence_ceiling_json(family.logical_repetitions.upper)},"physical_attempts":family.physical_attempts.as_ref().map(|bounds|json!({"lower":bounds.lower,"upper":occurrence_ceiling_json(bounds.upper)}))})).collect::<Vec<_>>()})).collect::<Vec<_>>(),
+        "_inherited_obligations": summary.inherited_obligations().iter().map(|item|json!({"source_node":item.source_node().raw(),"dimension":item.dimension(),"verdict":verdict(item.verdict()),"rule_id":item.rule_id(),"reference":item.reference()})).collect::<Vec<_>>(),
+        "_semantic_projection": {
+            "source_semantic_ir_digest": digest_ref_json(summary.source_semantic_ir_digest()),
+            "control_node": summary.control_node().raw(),
+            "operator": summary.operator().name(),
+            "direct_children_in_semantic_order": summary.direct_children().iter().map(|id|id.raw()).collect::<Vec<_>>(),
+        "interface": interface_json(summary),
             "effects": effects,
-            "execution_by_child": execution_by_child,
+            "effect_occurrences": effect_occurrences,
+        "effect_occurrences_full": summary.effect_occurrences().iter().map(|occurrence|json!({"caller_semantic_ir_digest":digest_ref_json(&occurrence.caller_semantic_ir_digest),"source_contract_digest":pins.get(&occurrence.source_contract_digest.hex).cloned().unwrap_or_else(||occurrence.source_contract_digest.hex.clone()),"source_component":{"catalog":occurrence.source_component.catalog,"name":occurrence.source_component.name},"computation":occurrence.computation.raw(),"source_entry_ordinal":occurrence.source_entry_ordinal,"declared":entry_json(&occurrence.declared),"mapped_resource_slot":occurrence.mapped_resource_slot.map(|slot|resource_alias_name(slot,resource_alias_ids))})).collect::<Vec<_>>(),
+            "effect_residuals": summary.effect_residuals().iter().map(|item|json!({"caller_digest":"semantic-ir:caller","contract_digest":pins.get(&item.source_contract_digest.hex).cloned().unwrap_or_else(||item.source_contract_digest.hex.clone()),"node":item.computation.raw(),"entry_ordinal":item.source_entry_ordinal,"residual":residual_json(&item.residual),"mapped_resource_slot":item.mapped_resource_slot.map(|slot|resource_alias_ids.iter().find(|(_,value)|**value==slot).map_or_else(||format!("resource-slot:{}",slot.raw()),|(alias,_)|alias.clone()))})).collect::<Vec<_>>(),
             "failures": failures,
-            "flow": flow,
-            "recovery_sources": recovery_sources,
-            "resources_by_child": resources_by_child,
-            "unresolved_children": unresolved_children,
+            "failure_types": failure_types_json(summary),
+        "failure_sources_by_child": summary.children().iter().map(|child|json!({"source_node":child.control_node().raw(),"failures":failure_types_json(child)})).collect::<Vec<_>>(),
             "usage": usage,
-            "verdict": verdict(summary.proof().overall()),
-            "identity": {"operator": summary.operator().name(), "node": summary.control_node().raw(), "children": summary.direct_children().iter().map(|id| id.raw()).collect::<Vec<_>>()},
-            "sequence_dataflow_dependencies": summary.sequence_dataflow_dependencies().iter().map(|dependency|json!({"producer_child":dependency.producer_child().raw(),"producer_node":dependency.producer_node().raw(),"value_slot":dependency.value_slot().raw(),"consumer_child":dependency.consumer_child().raw(),"consumer_node":dependency.consumer_node().raw(),"expression":dependency.expression().raw()})).collect::<Vec<_>>(),
-            "case_operator": input["operator"],
-            "control_semantics": control_semantics_json(summary.operator()),
-            "control_decision_dependencies": match summary.information_flow().value() {
-                ControlDimensionValue::Complete(flow) | ControlDimensionValue::Partial { known_contribution: Some(flow), .. } => flow.control_decision_dependencies().iter().map(|slot|slot.raw()).collect::<Vec<_>>(),
-                _ => Vec::<u32>::new(),
-            },
-            "control_decision_influence_unknown": match summary.information_flow().value() {
-                ControlDimensionValue::Complete(flow) | ControlDimensionValue::Partial { known_contribution: Some(flow), .. } => flow.control_decision_influence_unknown(),
-                _ => true,
-            },
+        "usage_by_child": summary.children().iter().map(|child|json!({"source_node":child.control_node().raw(),"usage":match child.usage().value() { ControlDimensionValue::Complete(envelope)=>usage_json(envelope),ControlDimensionValue::Partial{known_contribution,..}=>known_contribution.as_ref().map(usage_json).unwrap_or(json!({"state":"unknown","coordinates":{}})),_=>json!({"state":"unknown","coordinates":{}}) }})).collect::<Vec<_>>(),
+            "information_flow": flow,
+            "flow_contract_sources": flow_sources,
+            "recovery_sources": recovery_sources_full,
+            "resource_requirements_by_occurrence": resource_requirements,
+            "resource_aliases": resource_aliases,
+            "execution_by_child": execution_by_child_full,
             "dimension_availability": dimension_availability(summary),
-            "typed_outputs": match summary.interface().outputs() {
-                ControlDimensionValue::Complete(ports) => json!({"state":"complete","port_count":ports.len()}),
-                ControlDimensionValue::Partial { known_contribution, unresolved_sources } => json!({"state":"partial","port_count":known_contribution.as_ref().map_or(0,Vec::len),"unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>()}),
-                ControlDimensionValue::Unknown { unresolved_sources, .. } => json!({"state":"unknown","unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>()}),
-                ControlDimensionValue::PerChild { unresolved_sources, .. } => json!({"state":"per_child","unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>()}),
-                ControlDimensionValue::NotApplicable => json!({"state":"not_applicable"}),
-            },
-            "output_interface": interface_json(summary)["outputs"].clone(),
-            "control_effect_families": summary.effect_occurrences().iter().enumerate().filter(|(_,occurrence)|!occurrence.control_families.is_empty()).map(|(occurrence_index,occurrence)|json!({"occurrence_index":occurrence_index,"source_node":occurrence.computation.raw(),"families":occurrence.control_families.iter().map(|family|json!({"control_node":family.control_node.raw(),"kind":match family.kind {af_computation::EffectOccurrenceFamilyKind::Iterate=>"iterate",af_computation::EffectOccurrenceFamilyKind::Retry=>"retry"},"logical_repetitions":{"lower":family.logical_repetitions.lower,"upper":occurrence_ceiling_json(family.logical_repetitions.upper)},"physical_attempts":family.physical_attempts.as_ref().map(|bounds|json!({"lower":bounds.lower,"upper":occurrence_ceiling_json(bounds.upper)}))})).collect::<Vec<_>>()})).collect::<Vec<_>>(),
-            "_inherited_obligations": summary.inherited_obligations().iter().map(|item|json!({"source_node":item.source_node().raw(),"dimension":item.dimension(),"verdict":verdict(item.verdict()),"rule_id":item.rule_id(),"reference":item.reference()})).collect::<Vec<_>>(),
-            "_semantic_projection": {
-                "source_semantic_ir_digest": digest_ref_json(summary.source_semantic_ir_digest()),
-                "control_node": summary.control_node().raw(),
-                "operator": summary.operator().name(),
-                "direct_children_in_semantic_order": summary.direct_children().iter().map(|id|id.raw()).collect::<Vec<_>>(),
-            "interface": interface_json(summary),
-                "effects": effects,
-                "effect_occurrences": effect_occurrences,
-            "effect_occurrences_full": summary.effect_occurrences().iter().map(|occurrence|json!({"caller_semantic_ir_digest":digest_ref_json(&occurrence.caller_semantic_ir_digest),"source_contract_digest":pins.get(&occurrence.source_contract_digest.hex).cloned().unwrap_or_else(||occurrence.source_contract_digest.hex.clone()),"source_component":{"catalog":occurrence.source_component.catalog,"name":occurrence.source_component.name},"computation":occurrence.computation.raw(),"source_entry_ordinal":occurrence.source_entry_ordinal,"declared":entry_json(&occurrence.declared),"mapped_resource_slot":occurrence.mapped_resource_slot.map(|slot|resource_alias_name(slot,resource_alias_ids))})).collect::<Vec<_>>(),
-                "effect_residuals": summary.effect_residuals().iter().map(|item|json!({"caller_digest":"semantic-ir:caller","contract_digest":pins.get(&item.source_contract_digest.hex).cloned().unwrap_or_else(||item.source_contract_digest.hex.clone()),"node":item.computation.raw(),"entry_ordinal":item.source_entry_ordinal,"residual":residual_json(&item.residual),"mapped_resource_slot":item.mapped_resource_slot.map(|slot|resource_alias_ids.iter().find(|(_,value)|**value==slot).map_or_else(||format!("resource-slot:{}",slot.raw()),|(alias,_)|alias.clone()))})).collect::<Vec<_>>(),
-                "failures": failures,
-                "failure_types": failure_types_json(summary),
-            "failure_sources_by_child": summary.children().iter().map(|child|json!({"source_node":child.control_node().raw(),"failures":failure_types_json(child)})).collect::<Vec<_>>(),
-                "usage": usage,
-            "usage_by_child": summary.children().iter().map(|child|json!({"source_node":child.control_node().raw(),"usage":match child.usage().value() { ControlDimensionValue::Complete(envelope)=>usage_json(envelope),ControlDimensionValue::Partial{known_contribution,..}=>known_contribution.as_ref().map(usage_json).unwrap_or(json!({"state":"unknown","coordinates":{}})),_=>json!({"state":"unknown","coordinates":{}}) }})).collect::<Vec<_>>(),
-                "information_flow": flow,
-                "flow_contract_sources": flow_sources,
-                "recovery_sources": recovery_sources_full,
-                "resource_requirements_by_occurrence": resource_requirements,
-                "resource_aliases": resource_aliases,
-                "execution_by_child": execution_by_child_full,
-                "dimension_availability": dimension_availability(summary),
-                "per_dimension_proofs": proof_dimensions,
-                "inherited_obligations": summary.inherited_obligations().iter().map(|item|json!({"source_node":item.source_node().raw(),"dimension":item.dimension(),"verdict":verdict(item.verdict()),"rule_id":item.rule_id(),"reference":item.reference()})).collect::<Vec<_>>(),
-            },
-        }),
+            "per_dimension_proofs": proof_dimensions,
+            "inherited_obligations": summary.inherited_obligations().iter().map(|item|json!({"source_node":item.source_node().raw(),"dimension":item.dimension(),"verdict":verdict(item.verdict()),"rule_id":item.rule_id(),"reference":item.reference()})).collect::<Vec<_>>(),
+        },
+    });
+    let scope_boundaries = scope_boundaries_json(summary);
+    let compensation_scopes = compensation_scopes_json(summary, pins, resource_alias_ids);
+    if input["include_scope_details"] == true
+        || !scope_boundaries.is_empty()
+        || !compensation_scopes.is_empty()
+    {
+        semantic_fields["scope_boundary"] = summary
+            .scope_boundary()
+            .map_or(Value::Null, scope_boundary_json);
+        semantic_fields["compensation_scope"] =
+            summary.compensation_scope().map_or(Value::Null, |scope| {
+                compensation_scope_json(scope, pins, resource_alias_ids)
+            });
+        semantic_fields["scope_boundaries_by_node"] = json!(scope_boundaries);
+        semantic_fields["compensation_scopes_by_node"] = json!(compensation_scopes);
     }
+    ControlConformanceProjection { semantic_fields }
 }
 
 fn occurrence_ceiling_json(ceiling: af_effect::OccurrenceCeiling) -> Value {
@@ -2348,6 +2626,112 @@ fn control_semantics_json(operator: &ControlOperator) -> Value {
         }),
         other => json!({"kind":other.name()}),
     }
+}
+
+fn scope_boundary_json(scope: &af_computation::ScopeBoundarySummary) -> Value {
+    json!({
+        "control_node":scope.control_node().raw(),
+        "child":scope.child().raw(),
+        "parent_visible_resources":scope.parent_visible_resources().iter().map(|slot|slot.raw()).collect::<Vec<_>>(),
+        "declared_resources":scope.declared_resources().iter().map(|slot|slot.raw()).collect::<Vec<_>>(),
+        "child_visible_resources":scope.child_visible_resources().iter().map(|slot|slot.raw()).collect::<Vec<_>>(),
+        "resource_attenuation":verdict(scope.resource_attenuation()),
+        "authority_attenuation":verdict(scope.authority_attenuation()),
+        "budget_attenuation":verdict(scope.budget_attenuation()),
+        "owned_children_settle_before_terminal":verdict(scope.owned_children_settle_before_terminal()),
+    })
+}
+
+fn compensation_scope_json(
+    scope: &af_computation::CompensationScopeSummary,
+    pins: &BTreeMap<String, String>,
+    resource_alias_ids: &BTreeMap<String, ResourceSlotId>,
+) -> Value {
+    let actions = match scope.potential_actions().value() {
+        ControlDimensionValue::Complete(actions) => json!({
+            "state":"complete",
+            "actions":actions.iter().map(|action|conditional_compensation_action_json(action,pins,resource_alias_ids)).collect::<Vec<_>>(),
+        }),
+        ControlDimensionValue::Partial {
+            known_contribution,
+            unresolved_sources,
+        } => json!({
+            "state":"partial",
+            "actions":known_contribution.as_ref().map(|actions|actions.iter().map(|action|conditional_compensation_action_json(action,pins,resource_alias_ids)).collect::<Vec<_>>()).unwrap_or_default(),
+            "unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>(),
+        }),
+        ControlDimensionValue::Unknown {
+            known_contributions,
+            unresolved_sources,
+        } => json!({
+            "state":"unknown",
+            "known_contributions":known_contributions.iter().flat_map(|item|item.value().iter().map(|action|conditional_compensation_action_json(action,pins,resource_alias_ids))).collect::<Vec<_>>(),
+            "unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>(),
+        }),
+        ControlDimensionValue::PerChild {
+            unresolved_sources, ..
+        } => json!({
+            "state":"per_child",
+            "unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>(),
+        }),
+        ControlDimensionValue::NotApplicable => json!({"state":"not_applicable"}),
+    };
+    json!({
+        "potential_actions":actions,
+        "compensation_order":verdict(scope.compensation_order()),
+        "recovery_blocked_outcome":verdict(scope.recovery_blocked_outcome()),
+        "forward_effects_retained":scope.forward_effects_retained(),
+        "forward_outcome_retained":scope.forward_outcome_retained(),
+    })
+}
+
+fn scope_boundaries_json(summary: &DerivedControlContractSummary<'_, '_>) -> Vec<Value> {
+    let mut result = Vec::new();
+    if let Some(scope) = summary.scope_boundary() {
+        result.push(scope_boundary_json(scope));
+    }
+    for child in summary.children() {
+        result.extend(scope_boundaries_json(child));
+    }
+    result
+}
+
+fn compensation_scopes_json(
+    summary: &DerivedControlContractSummary<'_, '_>,
+    pins: &BTreeMap<String, String>,
+    resource_alias_ids: &BTreeMap<String, ResourceSlotId>,
+) -> Vec<Value> {
+    let mut result = Vec::new();
+    if let Some(scope) = summary.compensation_scope() {
+        result.push(json!({
+            "control_node":summary.control_node().raw(),
+            "summary":compensation_scope_json(scope,pins,resource_alias_ids),
+        }));
+    }
+    for child in summary.children() {
+        result.extend(compensation_scopes_json(child, pins, resource_alias_ids));
+    }
+    result
+}
+
+fn conditional_compensation_action_json(
+    action: &af_computation::ConditionalCompensationAction,
+    pins: &BTreeMap<String, String>,
+    resource_alias_ids: &BTreeMap<String, ResourceSlotId>,
+) -> Value {
+    let forward = action.forward_occurrence();
+    let action_effect = action.action_effect_occurrence();
+    let identity = action.identity();
+    json!({
+        "source_node":action.source_node().raw(),
+        "source_contract":pins.get(&forward.source_contract_digest.hex).cloned().unwrap_or_else(||forward.source_contract_digest.hex.clone()),
+        "forward_occurrence":{"node":forward.computation.raw(),"entry_ordinal":forward.source_entry_ordinal,"atom":atom_json(&forward.declared.atom),"families":forward.control_families.iter().map(|family|json!({"control_node":family.control_node.raw(),"kind":match family.kind {af_computation::EffectOccurrenceFamilyKind::Iterate=>"iterate",af_computation::EffectOccurrenceFamilyKind::Retry=>"retry"},"logical_repetitions":{"lower":family.logical_repetitions.lower,"upper":occurrence_ceiling_json(family.logical_repetitions.upper)},"physical_attempts":family.physical_attempts.as_ref().map(|bounds|json!({"lower":bounds.lower,"upper":occurrence_ceiling_json(bounds.upper)}))})).collect::<Vec<_>>()},
+        "action_effect_occurrence":{"node":action_effect.computation.raw(),"entry_ordinal":action_effect.source_entry_ordinal,"atom":atom_json(&action_effect.declared.atom),"declared_upper":occurrence_ceiling_json(action_effect.declared.bounds.upper),"mapped_resource_slot":action_effect.mapped_resource_slot.map(|slot|resource_alias_name(slot,resource_alias_ids))},
+        "identity":{"forward_effect":atom_json(&identity.forward_effect),"action_kind":identity.action_kind.as_str(),"action_effect":atom_json(&identity.action_effect)},
+        "potential_effect":entry_json(action.potential_effect()),
+        "potential_recovery_usage":usage_json(action.potential_recovery_usage()),
+        "receipt_evidence":verdict(action.receipt_evidence()),
+    })
 }
 
 fn interface_json(summary: &DerivedControlContractSummary<'_, '_>) -> Value {
