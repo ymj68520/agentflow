@@ -1279,8 +1279,8 @@ CONTROL_ALGEBRA_RULES = [
          ["computation-control/equivalence/same-snapshot-deterministic", "computation-control/sequence/typed-cross-sibling-edge", "SUITE-COMPUTATION-CONTROL-DIMENSIONS"]),
     rule("AF-SEMANTIC-0126", "SEMANTIC", CONTROL_ALGEBRA_SRC,
          "control-unsupported-not-empty",
-         "ITERATE/RETRY/TIMEOUT/HANDLE/SCOPE/COMPENSATION_SCOPE remain unsupported and Unproven; known descendants are not discarded and no row defaults empty.",
-         ["computation-control/proof/unsupported-timeout-not-empty", "SUITE-COMPUTATION-CONTROL-PHASE-BOUNDARY"]),
+         "SCOPE and COMPENSATION_SCOPE remain unsupported and Unproven; known descendants are not discarded and no row defaults empty. ITERATE/RETRY/TIMEOUT/HANDLE use the additive Phase 4B.2B.2 specification.",
+         ["computation-advanced-control/negative/scope-unsupported", "SUITE-COMPUTATION-CONTROL-PHASE-BOUNDARY"]),
     rule("AF-SEMANTIC-0127", "SEMANTIC", CONTROL_ALGEBRA_SRC,
          "control-sequence-effect",
          "SEQUENCE preserves semantic child order, uses existing Effect accumulation, weakens later-child lower bounds when prior success is not proven, and retains upper bounds/occurrences.",
@@ -1347,6 +1347,28 @@ CONTROL_ALGEBRA_RULES = [
          ["computation-control/proof/requires-evidence-propagates", "computation-control/proof/unproven-propagates", "computation-control/proof/known-bound-with-evidence", "computation-control/proof/unknown-effect-row-not-empty", "computation-control/proof/open-effect-row-remains-open", "SUITE-COMPUTATION-CONTROL-PROOF"]),
 ]
 RULES.extend(CONTROL_ALGEBRA_RULES)
+
+ADVANCED_CONTROL_ALGEBRA_SRC = "spec/computation/advanced-control-contract-algebra.md"
+
+ADVANCED_CONTROL_ALGEBRA_RULES = [
+    rule("AF-SEMANTIC-0143", "SEMANTIC", ADVANCED_CONTROL_ALGEBRA_SRC,
+         "advanced-control-iterate-bounds",
+         "ITERATE uses conservative bounded repetition; dynamic FOREACH has no proven total count, max_inflight is not total work, and carry outputs require exact checked mapping.",
+         ["computation-advanced-control/iterate/foreach-03", "computation-advanced-control/iterate/foreach-06", "computation-advanced-control/iterate/while-05", "SUITE-COMPUTATION-ADVANCED-CONTROL-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0144", "SEMANTIC", ADVANCED_CONTROL_ALGEBRA_SRC,
+         "advanced-control-retry-envelope-and-recovery",
+         "RETRY preserves ordered finite delays and separate physical-attempt bounds, conservatively amplifies logical Effect/Usage, and evaluates existing K without runtime evidence or inferred retry policy.",
+         ["computation-advanced-control/retry/schedule-04", "computation-advanced-control/negative/retry-effect-overflow", "computation-advanced-control/negative/retry-forbidden-replay", "computation-advanced-control/negative/retry-usage-overflow", "SUITE-COMPUTATION-ADVANCED-CONTROL-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0145", "SEMANTIC", ADVANCED_CONTROL_ALGEBRA_SRC,
+         "advanced-control-timeout-outcomes",
+         "TIMEOUT preserves child contracts and represents child completion and TimedOut separately; timeout never proves successful cancellation or zero incurred Effect/Usage.",
+         ["computation-advanced-control/timeout/boundary-04", "computation-advanced-control/timeout/dynamic-duration", "SUITE-COMPUTATION-ADVANCED-CONTROL-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0146", "SEMANTIC", ADVANCED_CONTROL_ALGEBRA_SRC,
+         "advanced-control-handle-residual",
+         "HANDLE matches exact Failure schema pins, preserves unmatched residual failures, keeps TimedOut outside Phi, and composes handler Effect/Usage as conditional alternatives.",
+         ["computation-advanced-control/handle/typed-clause-03", "computation-advanced-control/negative/handle-unmatched-type", "SUITE-COMPUTATION-ADVANCED-CONTROL-PYTHON-ORACLE"]),
+]
+RULES.extend(ADVANCED_CONTROL_ALGEBRA_RULES)
 
 # ---------------------------------------------------------------------------
 # Effect Signature rules (Phase 4A.1, area EFFECT)
@@ -2578,6 +2600,9 @@ SPECS = [
      "spec/computation/control-contract-algebra.md",
      "Conservative, provenance-preserving static composition for SEQUENCE, "
      "SELECT, PARALLEL and RACE without workflow ABI or runtime authority."),
+    ("agentflow.semantic.advanced-control-contract-algebra.semantics@1", "schema_language",
+     "spec/computation/advanced-control-contract-algebra.md",
+     "Derived-only static propagation for existing ITERATE, RETRY, TIMEOUT and HANDLE opcodes without changing Semantic IR or ComponentContract ABI."),
     ("agentflow.semantic.types@1", "schema_language",
      "spec/semantic/core-semantic-types.md",
      "Workflow semantic core semantics: machine vs workflow primitives, "
@@ -3945,6 +3970,24 @@ SUITE_LIST.extend([
         "targets": [
             "spec/conformance/computation-control/equivalence/",
             "tools/gen-computation-control-corpus.py",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-ADVANCED-CONTROL-PYTHON-ORACLE",
+        "description": (
+            "A standalone Python oracle generates 72 vectors for the four "
+            "existing advanced control opcodes, nested propagation, typed "
+            "carry/output interfaces, unsupported-scope boundary, "
+            "and boundary failures. "
+            "Every vector runs through checked Semantic IR, Phase 3C, leaf "
+            "resolution and the production analyzer; output, static "
+            "multiplicity, Flow dependencies, Recovery proof state and "
+            "overflow are compared without runtime simulation."
+        ),
+        "targets": [
+            "tools/gen-advanced-control-corpus.py",
+            "spec/conformance/computation-advanced-control/manifest.json",
+            "crates/af-computation/tests/advanced_control_conformance.rs",
         ],
     },
 ])

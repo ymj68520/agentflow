@@ -8,6 +8,12 @@ Phase 3C dataflow, exact Phase 4B.2A leaf summaries, and the same exact proof
 context. The result is a `DerivedControlContractSummary`, not a
 `CheckedComponentContract`, implementation proof, or durable identity.
 
+This file records the Phase 4B.2B.1 algebra. For the additive Phase 4B.2B.2
+rules for `ITERATE`, `RETRY`, `TIMEOUT`, and `HANDLE`,
+`spec/computation/advanced-control-contract-algebra.md` is normative and
+supersedes only the corresponding historical unsupported-operator statements
+below. No frozen IR or contract schema changes.
+
 ## Summary, context, and unsupported operators
 
 <a id="control-summary-is-derived-only"></a>
@@ -29,11 +35,12 @@ reject duplicate or mismatched leaf identities. A missing leaf summary is
 
 <a id="control-unsupported-not-empty"></a>
 
-`ITERATE`, `RETRY`, `TIMEOUT`, `HANDLE`, `SCOPE`, and
-`COMPENSATION_SCOPE` have no 4B.2B.1 contract propagation rule. They MUST be
-reported as unsupported/`Unproven`; known descendant summaries and
-obligations remain traceable. No unsupported node may silently become an
-empty row.
+As of Phase 4B.2B.2, `SCOPE` and `COMPENSATION_SCOPE` still have no
+control-contract propagation rule and MUST be reported as
+unsupported/`Unproven`; known descendant summaries and obligations remain
+traceable. The former Phase 4B.2B.1 status of `ITERATE`, `RETRY`, `TIMEOUT`,
+and `HANDLE` is historical and is superseded by the advanced-control
+specification. No unsupported node may silently become an empty row.
 
 ## SEQUENCE
 
@@ -219,6 +226,5 @@ is produced.
 All control analysis is pure and deterministic over explicit checked inputs.
 It creates no ControlContractDigest, WorkflowContractDigest, AFIDL/ACE1
 object, HashV1 domain, plan, journal, reducer, runtime state, actual branch
-selection, cancellation, or recovery execution. This phase does not
-propagate ITERATE/RETRY/TIMEOUT/HANDLE/SCOPE/COMPENSATION_SCOPE and does not
-start Phase 4B.2B.2.
+selection, cancellation, or recovery execution. This specification adds no
+SCOPE or COMPENSATION_SCOPE propagation rule; it does not start Phase 4B.2B.3.

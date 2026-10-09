@@ -1230,7 +1230,7 @@ fn full_58_case_production_differential_conformance() {
     let manifest: Value =
         serde_json::from_slice(&std::fs::read(corpus_root().join("manifest.json")).unwrap())
             .unwrap();
-    assert_eq!(manifest["corpus_revision"], 4);
+    assert_eq!(manifest["corpus_revision"], 5);
     let ids = manifest_case_ids(&manifest);
     assert_eq!(ids.len(), 58);
     assert_eq!(ids, discovered_case_ids());

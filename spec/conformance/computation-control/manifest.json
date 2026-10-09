@@ -60,7 +60,7 @@
     "computation-control/sequence/unknown-first-child",
     "computation-control/sequence/usage-checked-sum"
   ],
-  "corpus_revision": 4,
+  "corpus_revision": 5,
   "format_note": "static test vectors only; no AFIDL, ACE1 or HashV1 control identity",
   "kind": "agentflow.conformance.computation-control.test-corpus"
 }

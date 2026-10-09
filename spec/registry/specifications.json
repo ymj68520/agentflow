@@ -353,12 +353,25 @@
       "status": "frozen"
     },
     {
+      "description": "Derived-only static propagation for existing ITERATE, RETRY, TIMEOUT and HANDLE opcodes without changing Semantic IR or ComponentContract ABI.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "93a17e4db04661007e52888c9e6722723d889b09a92dec38ca1f714b3bdc3213"
+        },
+        "logical_path": "spec/computation/advanced-control-contract-algebra.md"
+      },
+      "specification_id": "agentflow.semantic.advanced-control-contract-algebra.semantics@1",
+      "status": "frozen"
+    },
+    {
       "description": "Conservative, provenance-preserving static composition for SEQUENCE, SELECT, PARALLEL and RACE without workflow ABI or runtime authority.",
       "kind": "schema_language",
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "a3547a0a662cc21131b55f2340938e12b7079e4a3f35b5a6b8a3404eeb525901"
+          "hex": "09b7b88168ab656e22bf2d59ab170bd2dbf1252b2e1656ae82ed7bbe33aaced3"
         },
         "logical_path": "spec/computation/control-contract-algebra.md"
       },

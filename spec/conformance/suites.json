@@ -74,6 +74,15 @@
       ]
     },
     {
+      "description": "A standalone Python oracle generates 72 vectors for the four existing advanced control opcodes, nested propagation, typed carry/output interfaces, unsupported-scope boundary, and boundary failures. Every vector runs through checked Semantic IR, Phase 3C, leaf resolution and the production analyzer; output, static multiplicity, Flow dependencies, Recovery proof state and overflow are compared without runtime simulation.",
+      "suite_id": "SUITE-COMPUTATION-ADVANCED-CONTROL-PYTHON-ORACLE",
+      "targets": [
+        "tools/gen-advanced-control-corpus.py",
+        "spec/conformance/computation-advanced-control/manifest.json",
+        "crates/af-computation/tests/advanced_control_conformance.rs"
+      ]
+    },
+    {
       "description": "Failure, Effect, Flow, Usage, Resource, Recovery and Execution use their separate frozen algebras or source-scoped summaries; unknown is never treated as empty.",
       "suite_id": "SUITE-COMPUTATION-CONTROL-DIMENSIONS",
       "targets": [

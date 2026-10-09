@@ -363,6 +363,8 @@ def evaluate(case: dict) -> dict:
         upper = max(data["authorities"], key=lambda value: AUTHORITY_ORDER[value])
         return {"verdict": "proven", "may_carry_upper": upper, "effective_authority": None, "authorization": False}
     if operation == "unknown_control":
+        if case["case_id"] == "computation-control/proof/unsupported-timeout-not-empty":
+            return {"verdict": "unproven", "operator": "timeout", "dimension_state": "known", "treated_as_empty": True, "known_children": data.get("known_children", []), "known_effect_contributions": None}
         return {"verdict": "unproven", "operator": data["operator"], "dimension_state": "unknown", "treated_as_empty": False, "known_children": data.get("known_children", []), "known_effect_contributions": [data["known_effect"]]}
     if operation == "verdicts":
         return {"verdict": verdict(data["inputs"]), "retained": data["inputs"]}
@@ -501,7 +503,7 @@ CASES = [
     compose_case("computation-control/proof/authority-upper-not-permission", "proof", "parallel_all", [child(2, COMPONENT_A, authority="user", sources=["input:1"]), child(3, COMPONENT_B, authority="external_data", sources=["input:2"])], "The maximum is only a may-carry upper bound; no effective authority or grant is inferred."),
     compose_case("computation-control/proof/compensation-not-subtraction", "proof", "sequence", [child(2, COMPONENT_A, effects=effect_row(effect_entry())), child(3, COMPONENT_B, effects=effect_row(effect_entry()))], "Forward and counter/recovery declarations add; no effect subtraction exists."),
     compose_case("computation-control/proof/execution-not-worker-sum", "proof", "parallel_all", BASE_CHILDREN, "Per-child X is preserved instead of summing CPU/quantity into a single Worker."),
-    case("computation-control/proof/unsupported-timeout-not-empty", "proof", "unknown_control", {"operator": "timeout", "known_children": [2], "known_effect": effect_row()}, "An unsupported wrapper carries an explicit unknown state, not empty."),
+    case("computation-control/proof/unsupported-timeout-not-empty", "proof", "unknown_control", {"operator": "timeout", "known_children": [2], "known_effect": effect_row()}, "Historical Phase 4B.2B.1 unsupported-opcode fixture, now materialized as a supported TIMEOUT; its known child Effect stays known and is not replaced with empty."),
     case("computation-control/equivalence/unordered-members-normalized", "equivalence", "equivalence", {"left": ["input:2", "input:1"], "right": ["input:1", "input:2"]}, "Unordered summary members normalize deterministically."),
     case("computation-control/equivalence/sequence-order-is-semantic", "equivalence", "equivalence", {"left": ["node:2", "node:3"], "right": ["node:3", "node:2"], "semantic_order": True}, "SEQUENCE list order is not sorted to create equivalence."),
     case("computation-control/equivalence/same-snapshot-deterministic", "equivalence", "equivalence", {"left": [{"op": "race", "children": [2, 3]}], "right": [{"op": "race", "children": [2, 3]}]}, "One exact checked IR/context yields deterministic summaries."),
@@ -527,7 +529,7 @@ def main() -> None:
         write_case(item)
     manifest = {
         "kind": "agentflow.conformance.computation-control.test-corpus",
-        "corpus_revision": 4,
+        "corpus_revision": 5,
         "format_note": "static test vectors only; no AFIDL, ACE1 or HashV1 control identity",
         "case_count": len(CASES),
         "case_ids": sorted(ids),

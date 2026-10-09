@@ -3849,13 +3849,13 @@
     {
       "area": "SEMANTIC",
       "conformance_refs": [
-        "computation-control/proof/unsupported-timeout-not-empty",
+        "computation-advanced-control/negative/scope-unsupported",
         "SUITE-COMPUTATION-CONTROL-PHASE-BOUNDARY"
       ],
       "normative_source": "spec/computation/control-contract-algebra.md",
       "requirement_level": "must",
       "rule_id": "AF-SEMANTIC-0126",
-      "short_statement": "ITERATE/RETRY/TIMEOUT/HANDLE/SCOPE/COMPENSATION_SCOPE remain unsupported and Unproven; known descendants are not discarded and no row defaults empty.",
+      "short_statement": "SCOPE and COMPENSATION_SCOPE remain unsupported and Unproven; known descendants are not discarded and no row defaults empty. ITERATE/RETRY/TIMEOUT/HANDLE use the additive Phase 4B.2B.2 specification.",
       "source_anchor": "control-unsupported-not-empty"
     },
     {
@@ -4087,6 +4087,61 @@
       "rule_id": "AF-SEMANTIC-0142",
       "short_statement": "Child Violation/Unproven/RequiresEvidence facts remain per-dimension obligations; a computed envelope cannot downgrade child evidence or be issued as a checked ComponentContract.",
       "source_anchor": "control-proof-obligation-propagation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-advanced-control/iterate/foreach-03",
+        "computation-advanced-control/iterate/foreach-06",
+        "computation-advanced-control/iterate/while-05",
+        "SUITE-COMPUTATION-ADVANCED-CONTROL-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/advanced-control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0143",
+      "short_statement": "ITERATE uses conservative bounded repetition; dynamic FOREACH has no proven total count, max_inflight is not total work, and carry outputs require exact checked mapping.",
+      "source_anchor": "advanced-control-iterate-bounds"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-advanced-control/retry/schedule-04",
+        "computation-advanced-control/negative/retry-effect-overflow",
+        "computation-advanced-control/negative/retry-forbidden-replay",
+        "computation-advanced-control/negative/retry-usage-overflow",
+        "SUITE-COMPUTATION-ADVANCED-CONTROL-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/advanced-control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0144",
+      "short_statement": "RETRY preserves ordered finite delays and separate physical-attempt bounds, conservatively amplifies logical Effect/Usage, and evaluates existing K without runtime evidence or inferred retry policy.",
+      "source_anchor": "advanced-control-retry-envelope-and-recovery"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-advanced-control/timeout/boundary-04",
+        "computation-advanced-control/timeout/dynamic-duration",
+        "SUITE-COMPUTATION-ADVANCED-CONTROL-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/advanced-control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0145",
+      "short_statement": "TIMEOUT preserves child contracts and represents child completion and TimedOut separately; timeout never proves successful cancellation or zero incurred Effect/Usage.",
+      "source_anchor": "advanced-control-timeout-outcomes"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-advanced-control/handle/typed-clause-03",
+        "computation-advanced-control/negative/handle-unmatched-type",
+        "SUITE-COMPUTATION-ADVANCED-CONTROL-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/advanced-control-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0146",
+      "short_statement": "HANDLE matches exact Failure schema pins, preserves unmatched residual failures, keeps TimedOut outside Phi, and composes handler Effect/Usage as conditional alternatives.",
+      "source_anchor": "advanced-control-handle-residual"
     },
     {
       "area": "SPEC",
