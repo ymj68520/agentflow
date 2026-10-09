@@ -17,21 +17,26 @@ CORPUS = ROOT / "spec/conformance/computation-advanced-control"
 U64_MAX = (1 << 64) - 1
 
 
-def effect_entry(lower: int, upper: int | str) -> dict:
+def effect_atom(member: str = "natural") -> dict:
+    qualifiers = [] if member == "none" else [{"family": "idempotency", "member": member}]
     return {
-        "atom": {
-            "operation": {"catalog": "agentflow.effects@1", "name": "write"},
-            "qualifiers": [{"family": "idempotency", "member": "natural"}],
-            "resource_selector": {"requirement_port_no": 1, "scope_bindings": []},
-        },
+        "operation": {"catalog": "agentflow.effects@1", "name": "write"},
+        "qualifiers": qualifiers,
+        "resource_selector": {"requirement_port_no": 1, "scope_bindings": []},
+    }
+
+
+def effect_entry(lower: int, upper: int | str, member: str = "natural") -> dict:
+    return {
+        "atom": effect_atom(member),
         "guard": "unconditional",
         "lower": lower,
         "upper": upper,
     }
 
 
-def child(node: int, *, effect: tuple[int, int | str] | None, failures: list[str], usage: int, execution: str | None = None, replay_semantics: str = "recompute", outputs: list[dict] | None = None) -> dict:
-    entries = [] if effect is None else [effect_entry(*effect)]
+def child(node: int, *, effect: tuple[int, int | str] | None, failures: list[str], usage: int, execution: str | None = None, replay_semantics: str = "recompute", outputs: list[dict] | None = None, recovery_actions: list[dict] | None = None, effect_entries: list[dict] | None = None, recovery_usage: int | None = None) -> dict:
+    entries = effect_entries if effect_entries is not None else ([] if effect is None else [effect_entry(*effect)])
     return {
         "caller_digest": "semantic-ir:caller",
         "contract_digest": f"component-contract:{node + 100:064x}",
@@ -43,11 +48,11 @@ def child(node: int, *, effect: tuple[int, int | str] | None, failures: list[str
         "node": node,
         "outputs": outputs or [],
         "proof_source": "checked_component",
-        "recovery_actions": None,
+        "recovery_actions": recovery_actions,
         "replay_semantics": replay_semantics,
         "resolved": True,
         "resources": None,
-        "usage": {"coordinates": {"forward/api_calls": usage, "recovery/api_calls": usage // 2}},
+        "usage": {"coordinates": {"forward/api_calls": usage, "recovery/api_calls": usage // 2 if recovery_usage is None else recovery_usage}},
     }
 
 
@@ -211,19 +216,20 @@ def generated_cases() -> list[dict]:
         "timeout",
         make_input("timeout", [dynamic_timeout], timeout_dynamic=True),
     ))
-    unsupported_scope = child(2, effect=None, failures=[], usage=1)
+    scope_child = child(2, effect=None, failures=[], usage=1)
     cases.append(vector(
         "computation-advanced-control/negative/scope-unsupported",
         "negative",
-        make_input("scope", [unsupported_scope]),
+        make_input("scope", [scope_child], scope_resources=[]),
     ))
     return cases
 
 
 def vector(case_id: str, group: str, input_value: dict) -> dict:
+    expected = oracle_projection(input_value)
     return {
         "case_id": case_id,
-        "expected": oracle_projection(input_value),
+        "expected": expected,
         "group": group,
         "input": input_value,
         "kind": "agentflow.conformance.computation-advanced-control.test-vector",
@@ -246,20 +252,41 @@ def oracle_projection(input_value: dict) -> dict:
     root_children = input_value.get("root_child_nodes", nodes)
     if operator == "scope":
         return {
-            "identity": {"operator": "unsupported", "node": 1, "children": nodes},
-            "control_semantics": {"kind": "unsupported"},
-            "effects": {"row": "unknown"},
-            "effect_row_complete": False,
+            "identity": {"operator": "scope", "node": 1, "children": nodes},
+            "control_semantics": {"kind": "scope"},
+            "effects": {"entries": [], "residuals": [], "row": "closed"},
+            "effect_row_complete": True,
             "control_decision_dependencies": [],
             "control_decision_influence_unknown": False,
             "dimension_availability": {
-                "failure": "unknown", "effect": "unknown", "resource": "per_child",
-                "information_flow": "partial", "usage": "unknown", "recovery": "per_child",
-                "execution": "per_child", "typed_outputs": "unknown",
+                "failure": "complete", "effect": "complete", "resource": "per_child",
+                "information_flow": "complete", "usage": "complete", "recovery": "per_child",
+                "execution": "per_child", "typed_outputs": "complete",
             },
-            "typed_outputs": {"state": "unknown", "unresolved_sources": [1]},
-            "output_interface": {"state": "unknown", "unresolved_sources": [1]},
-            "verdict": "unproven",
+            "typed_outputs": {"state": "complete", "port_count": 0},
+            "output_interface": {"state": "complete", "ports": []},
+            "scope_boundaries_by_node": [{
+                "control_node": 1, "child": 2, "parent_visible_resources": [],
+                "declared_resources": [], "child_visible_resources": [],
+                "resource_attenuation": "proven", "authority_attenuation": "unproven",
+                "budget_attenuation": "unproven", "owned_children_settle_before_terminal": "requires_evidence",
+            }],
+            "compensation_scopes_by_node": [],
+            "scope_boundary": {
+                "control_node": 1, "child": 2, "parent_visible_resources": [],
+                "declared_resources": [], "child_visible_resources": [],
+                "resource_attenuation": "proven", "authority_attenuation": "unproven",
+                "budget_attenuation": "unproven", "owned_children_settle_before_terminal": "requires_evidence",
+            },
+            "failures": [],
+            "usage": {"state": "known", "coordinates": {"forward/api_calls": 1, "recovery/api_calls": 0}},
+            "recovery_sources": [],
+            "execution_by_child": [],
+            "resources_by_child": [],
+            "effect_occurrences": [],
+            "effect_lower_bound_adjusted_children": [],
+            "unresolved_children": [],
+            "verdict": "requires_evidence",
         }
     effect_occurrences = []
     family_projection = []
@@ -604,7 +631,7 @@ def main() -> None:
     write_json(CORPUS / "manifest.json", {
         "case_count": len(cases),
         "case_ids": case_ids,
-        "corpus_revision": 1,
+        "corpus_revision": 2,
         "format_note": "independent static vectors only; no ABI, control digest, runtime identity, timer, cancellation, retry policy, grant or execution evidence",
         "kind": "agentflow.conformance.computation-advanced-control.test-corpus",
     })

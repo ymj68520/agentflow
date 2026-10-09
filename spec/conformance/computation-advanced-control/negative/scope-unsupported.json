@@ -1,45 +1,82 @@
 {
   "case_id": "computation-advanced-control/negative/scope-unsupported",
   "expected": {
+    "compensation_scopes_by_node": [],
     "control_decision_dependencies": [],
     "control_decision_influence_unknown": false,
     "control_semantics": {
-      "kind": "unsupported"
+      "kind": "scope"
     },
     "dimension_availability": {
-      "effect": "unknown",
+      "effect": "complete",
       "execution": "per_child",
-      "failure": "unknown",
-      "information_flow": "partial",
+      "failure": "complete",
+      "information_flow": "complete",
       "recovery": "per_child",
       "resource": "per_child",
-      "typed_outputs": "unknown",
-      "usage": "unknown"
+      "typed_outputs": "complete",
+      "usage": "complete"
     },
-    "effect_row_complete": false,
+    "effect_lower_bound_adjusted_children": [],
+    "effect_occurrences": [],
+    "effect_row_complete": true,
     "effects": {
-      "row": "unknown"
+      "entries": [],
+      "residuals": [],
+      "row": "closed"
     },
+    "execution_by_child": [],
+    "failures": [],
     "identity": {
       "children": [
         2
       ],
       "node": 1,
-      "operator": "unsupported"
+      "operator": "scope"
     },
     "output_interface": {
-      "state": "unknown",
-      "unresolved_sources": [
-        1
-      ]
+      "ports": [],
+      "state": "complete"
+    },
+    "recovery_sources": [],
+    "resources_by_child": [],
+    "scope_boundaries_by_node": [
+      {
+        "authority_attenuation": "unproven",
+        "budget_attenuation": "unproven",
+        "child": 2,
+        "child_visible_resources": [],
+        "control_node": 1,
+        "declared_resources": [],
+        "owned_children_settle_before_terminal": "requires_evidence",
+        "parent_visible_resources": [],
+        "resource_attenuation": "proven"
+      }
+    ],
+    "scope_boundary": {
+      "authority_attenuation": "unproven",
+      "budget_attenuation": "unproven",
+      "child": 2,
+      "child_visible_resources": [],
+      "control_node": 1,
+      "declared_resources": [],
+      "owned_children_settle_before_terminal": "requires_evidence",
+      "parent_visible_resources": [],
+      "resource_attenuation": "proven"
     },
     "typed_outputs": {
-      "state": "unknown",
-      "unresolved_sources": [
-        1
-      ]
+      "port_count": 0,
+      "state": "complete"
     },
-    "verdict": "unproven"
+    "unresolved_children": [],
+    "usage": {
+      "coordinates": {
+        "forward/api_calls": 1,
+        "recovery/api_calls": 0
+      },
+      "state": "known"
+    },
+    "verdict": "requires_evidence"
   },
   "group": "negative",
   "input": {
@@ -78,7 +115,8 @@
       }
     ],
     "operation": "compose",
-    "operator": "scope"
+    "operator": "scope",
+    "scope_resources": []
   },
   "kind": "agentflow.conformance.computation-advanced-control.test-vector",
   "note": "Independent static algebra oracle; this vector is executed through checked Semantic IR, Phase 3C, leaf resolution, and the production control analyzer."

@@ -1,0 +1,112 @@
+{
+  "case_id": "computation-scope-closure/scope/resource-boundary-16",
+  "expected": {
+    "compensation_scope": null,
+    "compensation_scopes_by_node": [],
+    "effect_occurrences": [],
+    "effect_row_complete": true,
+    "effects": {
+      "row": "closed"
+    },
+    "execution_by_child": [],
+    "failures": [],
+    "recovery_sources": [],
+    "scope_boundaries_by_node": [
+      {
+        "authority_attenuation": "unproven",
+        "budget_attenuation": "unproven",
+        "child": 2,
+        "child_visible_resources": [],
+        "control_node": 1,
+        "declared_resources": [],
+        "owned_children_settle_before_terminal": "requires_evidence",
+        "parent_visible_resources": [
+          1
+        ],
+        "resource_attenuation": "proven"
+      }
+    ],
+    "scope_boundary": {
+      "authority_attenuation": "unproven",
+      "budget_attenuation": "unproven",
+      "child": 2,
+      "child_visible_resources": [],
+      "control_node": 1,
+      "declared_resources": [],
+      "owned_children_settle_before_terminal": "requires_evidence",
+      "parent_visible_resources": [
+        1
+      ],
+      "resource_attenuation": "proven"
+    },
+    "usage": {
+      "coordinates": {
+        "forward/api_calls": 1,
+        "recovery/api_calls": 0
+      },
+      "state": "known"
+    },
+    "verdict": "requires_evidence",
+    "workflow_closure": {
+      "closure_verdict": "unproven",
+      "computation_order": [
+        1,
+        2
+      ],
+      "known_effect_occurrences_accounted": true,
+      "known_effect_residuals_accounted": true,
+      "known_recovery_sources_accounted": true,
+      "leaf_order": [
+        2
+      ],
+      "overall_verdict": "requires_evidence",
+      "root_export_compatibility": "not_expressed_in_semantic_ir"
+    }
+  },
+  "group": "scope",
+  "input": {
+    "additional_resources": [
+      "unused-resource-16"
+    ],
+    "children": [
+      {
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:0000000000000000000000000000000000000000000000000000000000000066",
+        "effect_entries": [],
+        "effects": {
+          "entries": [],
+          "residuals": [],
+          "row": "closed"
+        },
+        "execution": null,
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
+        "node": 2,
+        "outputs": [],
+        "proof_source": "checked_component",
+        "recovery_actions": null,
+        "resolved": true,
+        "resources": null,
+        "usage": {
+          "coordinates": {
+            "forward/api_calls": 1,
+            "recovery/api_calls": 0
+          }
+        }
+      }
+    ],
+    "include_scope_details": true,
+    "include_workflow_closure": true,
+    "operation": "compose",
+    "operator": "scope",
+    "scope_resources": []
+  },
+  "kind": "agentflow.conformance.computation-scope-closure.test-vector",
+  "note": "Python-only oracle over frozen Semantic IR fields; no runtime grant, budget reservation, receipt state, compensation dispatch or commit order is inferred."
+}

@@ -74,7 +74,7 @@
     "computation-advanced-control/timeout/child-output-interface",
     "computation-advanced-control/timeout/dynamic-duration"
   ],
-  "corpus_revision": 1,
+  "corpus_revision": 2,
   "format_note": "independent static vectors only; no ABI, control digest, runtime identity, timer, cancellation, retry policy, grant or execution evidence",
   "kind": "agentflow.conformance.computation-advanced-control.test-corpus"
 }

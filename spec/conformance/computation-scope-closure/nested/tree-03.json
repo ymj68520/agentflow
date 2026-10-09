@@ -1,0 +1,106 @@
+{
+  "case_id": "computation-scope-closure/nested/tree-03",
+  "expected": {
+    "compensation_scope": null,
+    "compensation_scopes_by_node": [],
+    "scope_boundaries_by_node": [
+      {
+        "authority_attenuation": "unproven",
+        "budget_attenuation": "unproven",
+        "child": 2,
+        "child_visible_resources": [],
+        "control_node": 1,
+        "declared_resources": [],
+        "owned_children_settle_before_terminal": "requires_evidence",
+        "parent_visible_resources": [],
+        "resource_attenuation": "proven"
+      }
+    ],
+    "scope_boundary": {
+      "authority_attenuation": "unproven",
+      "budget_attenuation": "unproven",
+      "child": 2,
+      "child_visible_resources": [],
+      "control_node": 1,
+      "declared_resources": [],
+      "owned_children_settle_before_terminal": "requires_evidence",
+      "parent_visible_resources": [],
+      "resource_attenuation": "proven"
+    },
+    "verdict": "requires_evidence",
+    "workflow_closure": {
+      "closure_verdict": "unproven",
+      "computation_order": [
+        1,
+        2,
+        3
+      ],
+      "known_effect_occurrences_accounted": true,
+      "known_effect_residuals_accounted": true,
+      "known_recovery_sources_accounted": true,
+      "leaf_order": [
+        3
+      ],
+      "overall_verdict": "requires_evidence",
+      "root_export_compatibility": "not_expressed_in_semantic_ir"
+    }
+  },
+  "group": "nested",
+  "input": {
+    "additional_resources": [],
+    "children": [
+      {
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:0000000000000000000000000000000000000000000000000000000000000067",
+        "effect_entries": [],
+        "effects": {
+          "entries": [],
+          "residuals": [],
+          "row": "closed"
+        },
+        "execution": null,
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
+        "node": 3,
+        "outputs": [],
+        "proof_source": "checked_component",
+        "recovery_actions": null,
+        "resolved": true,
+        "resources": null,
+        "usage": {
+          "coordinates": {
+            "forward/api_calls": 0,
+            "recovery/api_calls": 0
+          }
+        }
+      }
+    ],
+    "include_scope_details": true,
+    "include_workflow_closure": true,
+    "nested_nodes": [
+      {
+        "child": 3,
+        "delays_micros": [
+          0,
+          2
+        ],
+        "node": 2,
+        "operator": "retry"
+      }
+    ],
+    "operation": "compose",
+    "operator": "scope",
+    "root_child_nodes": [
+      2
+    ],
+    "scope_resources": []
+  },
+  "kind": "agentflow.conformance.computation-scope-closure.test-vector",
+  "note": "Python-only oracle over frozen Semantic IR fields; no runtime grant, budget reservation, receipt state, compensation dispatch or commit order is inferred."
+}
