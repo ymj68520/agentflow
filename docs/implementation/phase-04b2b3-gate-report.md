@@ -1,8 +1,8 @@
 # Phase 4B.2B.3 — Gate report
 
-Status: three categorized implementation/conformance/normative commits are
-complete. Their post-commit gates and generator runs pass. This report-only
-update will be committed separately, followed by the final confirmation run.
+Status: implementation, conformance, and normative commits are complete. The
+post-commit gates and generator runs pass; the final report-only commit is
+followed by the confirmation run recorded below.
 
 Baseline HEAD: `96ebbc149f68598abe872698495c133ac657a694`.
 
@@ -44,8 +44,8 @@ does not establish body conformance or export compatibility. A separate
 Closure Audit is recommended before making that stronger claim. Runtime/Plan/
 Journal/Reducer work was not started.
 
-At the time of this report update, the post-commit worktree was clean. A final
-post-report-commit gate confirmation remains.
+Final post-report-commit confirmation: fmt, clippy, all tests, spec-check, and
+the two-round generator hash above all pass. The worktree is clean at delivery.
 
 **Static Proven Facts:** the post-commit compile, test, registry, and
 generator-idempotence results above.
