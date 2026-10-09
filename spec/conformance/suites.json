@@ -249,6 +249,17 @@
       ]
     },
     {
+      "description": "An independent Python oracle differentially checks typed K-to-epsilon guards, LocalActionBound/RootActionBound, exact source/action/profile multisets, operator-specific root folds, root epsilon/Recovery-Usage coverage, and stage-gated counterexamples without implementing RootExportAssertion.",
+      "suite_id": "SUITE-COMPUTATION-ROOT-RECOVERY-PYTHON-ORACLE",
+      "targets": [
+        "tools/gen-computation-root-recovery-corpus.py",
+        "spec/conformance/computation-root-recovery/manifest.json",
+        "crates/af-contract/src/recovery_guard.rs",
+        "crates/af-computation/src/root_recovery.rs",
+        "crates/af-computation/tests/root_recovery_conformance.rs"
+      ]
+    },
+    {
       "description": "An independent Python oracle generates 55 Scope, exact K-derived conditional compensation, and nested control-tree vectors. Every case runs through checked IR, Phase 3C, production leaf resolution, the production algebra, and root closure; mutations cover resource proof, compensation bound, traversal order, and source accounting.",
       "suite_id": "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE",
       "targets": [

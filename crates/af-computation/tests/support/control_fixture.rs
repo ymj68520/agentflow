@@ -34,7 +34,10 @@ use af_flow::{
     FlowCatalogs, FlowSourceRef, InformationFlowContract, InstructionAuthority, SourceCategory,
     StaticInformationSummary, TaintRef,
 };
-use af_idl::{CompiledModuleSet, compile_module_set};
+use af_idl::{
+    CanonicalBody, CanonicalTypeExpr, CanonicalTypeSchema, CompiledModuleSet, Primitive,
+    compile_module_set,
+};
 use af_ir::model::ComputationOutputBinding;
 use af_ir::{
     AwaitBody, CallSubflowBody, ComputationBody, ComputationDef, ComputationId, ContractRefEntry,
@@ -55,7 +58,8 @@ use af_resource::{
 };
 use af_semantic::{
     DigestRefValue, ExpressionBody, ExpressionDef, PrimitiveConstant, ResourceSlotId,
-    SemanticPrimitiveType, SemanticTypeNode, SemanticTypeNodeBody, TypeSchemaUniverse, ValueSlotId,
+    SemanticPrimitiveType, SemanticTypeNode, SemanticTypeNodeBody, TypeSchemaRef,
+    TypeSchemaUniverse, ValueSlotId,
 };
 use af_usage::{
     StaticUsageBound, StaticUsageEnvelope, UsageLimit, UsageMeterRef, UsageMeterUniverse,
@@ -78,6 +82,16 @@ fn fixture_u32(value: &Value, label: &str) -> u32 {
 
 fn fixture_index(index: usize) -> u32 {
     u32::try_from(index).expect("fixture table length fits u32")
+}
+
+fn guard_type_schema_name(primitive: &str) -> String {
+    let mut chars = primitive.chars();
+    let first = chars
+        .next()
+        .unwrap_or_else(|| panic!("empty fixture guard primitive"))
+        .to_uppercase()
+        .collect::<String>();
+    format!("Guard{first}{}", chars.as_str())
 }
 
 fn scope_resource_ids<'a>(
@@ -129,6 +143,36 @@ impl FixtureContext {
             schemas.insert_compiled(module).unwrap();
             resources.insert_compiled(module).unwrap();
         }
+        let children = case["input"]["children"]
+            .as_array()
+            .cloned()
+            .or_else(|| {
+                case["input"]
+                    .get("contract")
+                    .cloned()
+                    .map(|contract| vec![contract])
+            })
+            .unwrap_or_default();
+        let mut guard_primitives = BTreeSet::new();
+        for child in &children {
+            for input_type in child["input_types"].as_array().into_iter().flatten() {
+                if let Some(primitive) = input_type["primitive"].as_str() {
+                    guard_primitives.insert(primitive.to_owned());
+                }
+            }
+        }
+        for name in guard_primitives {
+            let primitive = Primitive::from_keyword(&name)
+                .unwrap_or_else(|| panic!("unsupported fixture guard primitive {name}"));
+            let schema_name = guard_type_schema_name(&name);
+            schemas
+                .insert_type(&CanonicalTypeSchema {
+                    schema: "agentflow.test.guard-types@1".into(),
+                    name: schema_name,
+                    body: CanonicalBody::Alias(CanonicalTypeExpr::Primitive(primitive)),
+                })
+                .unwrap();
+        }
         let resource_schema = schemas
             .get("agentflow.semantic.core@1/TypeSchemaRef")
             .unwrap()
@@ -153,10 +197,6 @@ impl FixtureContext {
 
         let mut flow = FlowCatalogs::new();
         let mut taint_names = BTreeSet::new();
-        let children = case["input"]["children"]
-            .as_array()
-            .cloned()
-            .unwrap_or_default();
         for child in &children {
             if let Some(taints) = child["flow"]["taints"].as_array() {
                 for taint in taints.iter().filter_map(Value::as_str) {
@@ -261,27 +301,34 @@ impl FixtureContext {
             )
             .unwrap(),
         );
-        let recovery_rules = children
+        let mut recovery_rules = Vec::<RecoveryUsageCoverageRule>::new();
+        for item in children
             .iter()
             .flat_map(|child| child["recovery_actions"].as_array().into_iter().flatten())
-            .map(|item| {
-                let identity =
-                    recovery_action_identity(item).expect("well-formed test recovery action");
-                let complete_meters = item["coverage_meters"]
-                    .as_array()
-                    .expect("recovery fixture declares exact complete meters")
-                    .iter()
-                    .map(|meter| UsageMeterRef {
-                        catalog: METER_CATALOG.into(),
-                        name: meter.as_str().unwrap().into(),
-                    })
-                    .collect();
-                RecoveryUsageCoverageRule {
+        {
+            let identity =
+                recovery_action_identity(item).expect("well-formed test recovery action");
+            let complete_meters = item["coverage_meters"]
+                .as_array()
+                .expect("recovery fixture declares exact complete meters")
+                .iter()
+                .map(|meter| UsageMeterRef {
+                    catalog: METER_CATALOG.into(),
+                    name: meter.as_str().unwrap().into(),
+                })
+                .collect::<Vec<_>>();
+            if let Some(existing) = recovery_rules.iter().find(|rule| rule.action == identity) {
+                assert_eq!(
+                    existing.complete_meters, complete_meters,
+                    "one exact K identity cannot have two fixture meter profiles"
+                );
+            } else {
+                recovery_rules.push(RecoveryUsageCoverageRule {
                     action: identity,
                     complete_meters,
-                }
-            })
-            .collect::<Vec<_>>();
+                });
+            }
+        }
         let recovery_usage = (!recovery_rules.is_empty()).then(|| {
             RelationCatalogSnapshot::new(
                 "fixture-recovery-usage-r1",
@@ -500,7 +547,7 @@ pub fn analyze_compose_case(case: &Value) -> Result<Value, String> {
     }
     let mut projection = first_projection;
     if let Some(workflow) = workflow.as_ref() {
-        let closure_projection = workflow_closure_json(workflow);
+        let closure_projection = workflow_closure_json(workflow, &pin_aliases, &resource_alias_ids);
         projection["workflow_closure"] = closure_projection.clone();
         projection["_workflow_closure"] = closure_projection;
     }
@@ -510,7 +557,11 @@ pub fn analyze_compose_case(case: &Value) -> Result<Value, String> {
     Ok(projection)
 }
 
-fn workflow_closure_json(summary: &DerivedWorkflowContractSummary<'_, '_>) -> Value {
+fn workflow_closure_json(
+    summary: &DerivedWorkflowContractSummary<'_, '_>,
+    pins: &BTreeMap<String, String>,
+    resource_alias_ids: &BTreeMap<String, ResourceSlotId>,
+) -> Value {
     json!({
         "computation_order":summary.closure().computation_order().iter().map(|node|node.raw()).collect::<Vec<_>>(),
         "leaf_order":summary.closure().leaf_order().iter().map(|node|node.raw()).collect::<Vec<_>>(),
@@ -520,7 +571,270 @@ fn workflow_closure_json(summary: &DerivedWorkflowContractSummary<'_, '_>) -> Va
         "root_export_compatibility":match summary.closure().root_export_compatibility() {af_computation::RootExportCompatibilityStatus::NotExpressedInSemanticIr=>"not_expressed_in_semantic_ir"},
         "closure_verdict":verdict(summary.closure().proof().overall()),
         "overall_verdict":verdict(summary.overall()),
+        "root_recovery":root_recovery_json(summary.root_recovery(),pins,resource_alias_ids),
     })
+}
+
+fn root_recovery_json(
+    summary: &af_computation::RootRecoverySummary,
+    pins: &BTreeMap<String, String>,
+    resource_alias_ids: &BTreeMap<String, ResourceSlotId>,
+) -> Value {
+    let actions = match summary.actions().value() {
+        ControlDimensionValue::Complete(actions) => json!({
+            "state":"complete",
+            "actions":actions.iter().map(|action|root_recovery_action_json(action,pins,resource_alias_ids)).collect::<Vec<_>>(),
+        }),
+        ControlDimensionValue::Partial {
+            known_contribution,
+            unresolved_sources,
+        } => json!({
+            "state":"partial",
+            "actions":known_contribution.as_ref().map(|actions|actions.iter().map(|action|root_recovery_action_json(action,pins,resource_alias_ids)).collect::<Vec<_>>()).unwrap_or_default(),
+            "unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>(),
+        }),
+        ControlDimensionValue::Unknown {
+            known_contributions,
+            unresolved_sources,
+        } => json!({
+            "state":"unknown",
+            "actions":known_contributions.iter().flat_map(|item|item.value().iter().map(|action|root_recovery_action_json(action,pins,resource_alias_ids))).collect::<Vec<_>>(),
+            "unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>(),
+        }),
+        ControlDimensionValue::PerChild {
+            unresolved_sources, ..
+        } => json!({
+            "state":"per_child",
+            "unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>(),
+        }),
+        ControlDimensionValue::NotApplicable => json!({"state":"not_applicable"}),
+    };
+    let proof = summary
+        .proof()
+        .dimensions()
+        .iter()
+        .map(|item| {
+            json!({
+                "dimension":item.dimension(),
+                "verdict":verdict(item.verdict()),
+                "rule_id":item.rule_id(),
+                "source_node":item.source_node().raw(),
+                "reference":item.reference(),
+                "prerequisites":item.prerequisites(),
+            })
+        })
+        .collect::<Vec<_>>();
+    json!({
+        "actions":actions,
+        "action_effects":effect_dimension_json(summary.action_effects()),
+        "epsilon_coverage_requirement":effect_dimension_json(summary.epsilon_coverage_requirement()),
+        "recovery_usage":usage_dimension_json(summary.recovery_usage()),
+        "source_closure":{
+            "source_nodes_accounted":verdict(summary.source_closure().source_nodes_accounted),
+            "action_bindings_accounted":verdict(summary.source_closure().action_bindings_accounted),
+            "usage_profiles_accounted":verdict(summary.source_closure().usage_profiles_accounted),
+            "multiplicity_factors_accounted":verdict(summary.source_closure().multiplicity_factors_accounted),
+            "root_action_totals_sound":verdict(summary.source_closure().root_action_totals_sound),
+        },
+        "overall_verdict":verdict(summary.overall()),
+        "proof_dimensions":proof,
+    })
+}
+
+fn root_recovery_action_json(
+    action: &af_computation::RootRecoveryAction,
+    pins: &BTreeMap<String, String>,
+    resource_alias_ids: &BTreeMap<String, ResourceSlotId>,
+) -> Value {
+    let owner = match action.owner {
+        af_computation::RootRecoveryOwner::CompensationScope(node) => {
+            json!({"kind":"compensation_scope","node":node.raw()})
+        }
+        af_computation::RootRecoveryOwner::RootRecovery => json!({"kind":"root_recovery"}),
+    };
+    let usage_binding = &action.recovery_usage_binding;
+    json!({
+        "source":{
+            "caller_semantic_ir_digest":digest_ref_json(&action.source.caller_semantic_ir_digest),
+            "source_node":action.source.source_node.raw(),
+            "source_contract_digest":pins.get(&action.source.source_contract_digest.hex).cloned().unwrap_or_else(||action.source.source_contract_digest.hex.clone()),
+            "forward_entry_ordinal":action.source.forward_entry_ordinal,
+            "action":recovery_action_identity_json(&action.source.action),
+        },
+        "forward_seed_upper":ceiling_json(action.forward_seed_upper),
+        "target":target_json(&action.target,pins),
+        "owner":owner,
+        "local_action_bound":action.local_bound.as_ref().map(local_action_bound_json),
+        "root_action_bound":{
+            "root_semantic_ir_digest":digest_ref_json(&action.root_bound.root_semantic_ir_digest),
+            "upper":recovery_action_upper_json(action.root_bound.upper),
+            "applied_families":action.root_bound.applied_families.iter().map(applied_multiplicity_json).collect::<Vec<_>>(),
+        },
+        "forward_occurrence":scoped_effect_occurrence_json(&action.forward_occurrence,resource_alias_ids),
+        "action_effect_occurrence":scoped_effect_occurrence_json(&action.action_effect_occurrence,resource_alias_ids),
+        "recovery_usage_binding":{
+            "action":recovery_action_identity_json(&usage_binding.action),
+            "activations_per_forward":bounds_json(&usage_binding.activations_per_forward),
+            "attempts_per_activation":bounds_json(&usage_binding.attempts_per_activation),
+            "per_attempt_usage":usage_signature_json(&usage_binding.per_attempt_usage),
+        },
+        "local_recovery_usage":action.local_recovery_usage.as_ref().map(usage_json),
+        "root_recovery_usage":usage_json(&action.root_recovery_usage),
+        "guard_compatibility":action.guard_compatibility.as_ref().map(guard_compatibility_json),
+        "guard_coordinates":action.guard_coordinates.iter().map(|coordinate|json!({
+            "source_contract_digest":pins.get(&coordinate.source_contract_digest.hex).cloned().unwrap_or_else(||coordinate.source_contract_digest.hex.clone()),
+            "component_input_port":coordinate.component_input_port,
+            "input_expression":coordinate.input_expression.raw(),
+            "exact_type":coordinate.exact_type.as_ref().map(schema_ref_json),
+            "dependency_slots":coordinate.dependency_slots.iter().map(|slot|slot.raw()).collect::<Vec<_>>(),
+        })).collect::<Vec<_>>(),
+        "eligibility_evidence":verdict(action.eligibility_evidence),
+        "control_path":action.control_path.iter().map(control_path_step_json).collect::<Vec<_>>(),
+    })
+}
+
+fn local_action_bound_json(bound: &af_computation::LocalActionBound) -> Value {
+    json!({
+        "coordinate":"one_compensation_scope_activation",
+        "compensation_scope_node":bound.compensation_scope_node.raw(),
+        "upper":recovery_action_upper_json(bound.upper),
+        "applied_families":bound.applied_families.iter().map(applied_multiplicity_json).collect::<Vec<_>>(),
+    })
+}
+
+fn recovery_action_upper_json(upper: af_computation::RecoveryActionUpper) -> Value {
+    match upper {
+        af_computation::RecoveryActionUpper::Known(upper) => {
+            json!({"state":"known","upper":ceiling_json(upper)})
+        }
+        af_computation::RecoveryActionUpper::Overflow => json!({"state":"overflow"}),
+        af_computation::RecoveryActionUpper::InvalidMultiplicity => {
+            json!({"state":"invalid_multiplicity"})
+        }
+        af_computation::RecoveryActionUpper::Unknown => json!({"state":"unknown"}),
+    }
+}
+
+fn applied_multiplicity_json(factor: &af_computation::AppliedMultiplicity) -> Value {
+    json!({
+        "identity":{
+            "caller_semantic_ir_digest":digest_ref_json(&factor.identity.caller_semantic_ir_digest),
+            "control_node":factor.identity.control_node.raw(),
+            "kind":match factor.identity.kind {af_computation::ControlMultiplicityKind::Iterate=>"iterate",af_computation::ControlMultiplicityKind::Retry=>"retry"},
+        },
+        "logical_repetitions":bounds_json(&factor.logical_repetitions),
+        "physical_attempts":factor.physical_attempts.as_ref().map(bounds_json),
+    })
+}
+
+fn scoped_effect_occurrence_json(
+    occurrence: &af_computation::ScopedEffectOccurrence,
+    resource_alias_ids: &BTreeMap<String, ResourceSlotId>,
+) -> Value {
+    json!({
+        "caller_semantic_ir_digest":digest_ref_json(&occurrence.caller_semantic_ir_digest),
+        "source_contract_digest":occurrence.source_contract_digest.hex,
+        "source_node":occurrence.computation.raw(),
+        "entry_ordinal":occurrence.source_entry_ordinal,
+        "declared":entry_json(&occurrence.declared),
+        "mapped_resource_slot":occurrence.mapped_resource_slot.map(|slot|resource_alias_name(slot,resource_alias_ids)),
+    })
+}
+
+fn control_path_step_json(step: &af_computation::ControlPathStep) -> Value {
+    let (kind, detail) = match &step.kind {
+        af_computation::ControlPathKind::SequenceChild => ("sequence_child", json!({})),
+        af_computation::ControlPathKind::SelectCase {
+            case_ordinal,
+            selector,
+            selector_dependencies,
+            exact_case,
+        } => (
+            "select_case",
+            json!({"case_ordinal":case_ordinal,"selector":selector.map(af_semantic::ExpressionId::raw),"selector_dependencies":selector_dependencies.iter().map(|id|id.raw()).collect::<Vec<_>>(),"exact_case":exact_case}),
+        ),
+        af_computation::ControlPathKind::ParallelBranch { branch_ordinal } => {
+            ("parallel_branch", json!({"branch_ordinal":branch_ordinal}))
+        }
+        af_computation::ControlPathKind::RaceBranch { branch_ordinal } => {
+            ("race_branch", json!({"branch_ordinal":branch_ordinal}))
+        }
+        af_computation::ControlPathKind::IterateBody => ("iterate_body", json!({})),
+        af_computation::ControlPathKind::RetryChild { max_attempts } => {
+            ("retry_child", json!({"max_attempts":max_attempts}))
+        }
+        af_computation::ControlPathKind::TimeoutChild => ("timeout_child", json!({})),
+        af_computation::ControlPathKind::HandleProtected => ("handle_protected", json!({})),
+        af_computation::ControlPathKind::HandleClause { ordinal } => {
+            ("handle_clause", json!({"ordinal":ordinal}))
+        }
+        af_computation::ControlPathKind::ScopeChild => ("scope_child", json!({})),
+        af_computation::ControlPathKind::CompensationScopeChild => {
+            ("compensation_scope_child", json!({}))
+        }
+    };
+    json!({
+        "parent_node":step.parent_node.raw(),
+        "child_node":step.child_node.raw(),
+        "child_index":step.child_index,
+        "kind":kind,
+        "detail":detail,
+        "reachability":match step.reachability {af_computation::ControlPathReachability::Possible=>"possible",af_computation::ControlPathReachability::ExactSelected=>"exact_selected",af_computation::ControlPathReachability::ProvenUnreachable=>"proven_unreachable"},
+    })
+}
+
+fn effect_dimension_json(dimension: &af_computation::ControlDimension<EffectSignature>) -> Value {
+    match dimension.value() {
+        ControlDimensionValue::Complete(value) => {
+            json!({"state":"complete","value":effect_json(value)})
+        }
+        ControlDimensionValue::Partial {
+            known_contribution,
+            unresolved_sources,
+        } => {
+            json!({"state":"partial","value":known_contribution.as_ref().map(effect_json),"unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>()})
+        }
+        ControlDimensionValue::Unknown {
+            known_contributions,
+            unresolved_sources,
+        } => {
+            json!({"state":"unknown","known_contributions":known_contributions.iter().map(|item|effect_json(item.value())).collect::<Vec<_>>(),"unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>()})
+        }
+        ControlDimensionValue::PerChild {
+            unresolved_sources, ..
+        } => {
+            json!({"state":"per_child","unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>()})
+        }
+        ControlDimensionValue::NotApplicable => json!({"state":"not_applicable"}),
+    }
+}
+
+fn usage_dimension_json(
+    dimension: &af_computation::ControlDimension<StaticUsageEnvelope>,
+) -> Value {
+    match dimension.value() {
+        ControlDimensionValue::Complete(value) => {
+            json!({"state":"complete","value":usage_json(value)})
+        }
+        ControlDimensionValue::Partial {
+            known_contribution,
+            unresolved_sources,
+        } => {
+            json!({"state":"partial","value":known_contribution.as_ref().map(usage_json),"unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>()})
+        }
+        ControlDimensionValue::Unknown {
+            known_contributions,
+            unresolved_sources,
+        } => {
+            json!({"state":"unknown","known_contributions":known_contributions.iter().map(|item|usage_json(item.value())).collect::<Vec<_>>(),"unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>()})
+        }
+        ControlDimensionValue::PerChild {
+            unresolved_sources, ..
+        } => {
+            json!({"state":"per_child","unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>()})
+        }
+        ControlDimensionValue::NotApplicable => json!({"state":"not_applicable"}),
+    }
 }
 
 /// Materialize typed Sequence/PARALLEL output fixtures through checked IR,
@@ -864,6 +1178,18 @@ fn component_contract(child: &Value, env: &FixtureContext) -> Result<ComponentCo
             .collect::<Result<Vec<_>, _>>()?,
     };
     let mut input_ports = BTreeSet::new();
+    let input_types = child["input_types"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .map(|item| {
+            (
+                fixture_u32(&item["port"], "component input port"),
+                item["primitive"].as_str().unwrap_or_default().to_owned(),
+            )
+        })
+        .collect::<BTreeMap<_, _>>();
+    input_ports.extend(input_types.keys().copied());
     if let Some(flow) = child.get("flow").filter(|v| !v.is_null()) {
         if let Some(sources) = flow["sources"].as_array() {
             for source in sources.iter().filter_map(Value::as_str) {
@@ -885,11 +1211,23 @@ fn component_contract(child: &Value, env: &FixtureContext) -> Result<ComponentCo
         .iter()
         .map(|port_no| ComponentInputPort {
             port_no: *port_no,
-            type_ref: env
-                .schemas
-                .get("agentflow.semantic.core@1/TypeSchemaRef")
-                .unwrap()
-                .reference(),
+            type_ref: input_types.get(port_no).map_or_else(
+                || {
+                    env.schemas
+                        .get("agentflow.semantic.core@1/TypeSchemaRef")
+                        .unwrap()
+                        .reference()
+                },
+                |primitive| {
+                    env.schemas
+                        .get(&format!(
+                            "agentflow.test.guard-types@1/{}",
+                            guard_type_schema_name(primitive)
+                        ))
+                        .unwrap_or_else(|| panic!("missing fixture guard schema {primitive}"))
+                        .reference()
+                },
+            ),
         })
         .collect();
     let mut resource_ports = BTreeSet::new();
@@ -1006,12 +1344,14 @@ fn component_contract(child: &Value, env: &FixtureContext) -> Result<ComponentCo
         actions.push(RecoveryActionBinding {
             identity: identity.clone(),
         });
-        usage_bindings.push(RecoveryUsageBinding {
-            action: identity,
-            activations_per_forward: parse_bounds(&item["activations_per_forward"])?,
-            attempts_per_activation: parse_bounds(&item["attempts_per_activation"])?,
-            per_attempt_usage: parse_usage(item.get("per_attempt_usage"))?,
-        });
+        if child["omit_usage_binding"] != true {
+            usage_bindings.push(RecoveryUsageBinding {
+                action: identity,
+                activations_per_forward: parse_bounds(&item["activations_per_forward"])?,
+                attempts_per_activation: parse_bounds(&item["attempts_per_activation"])?,
+                per_attempt_usage: parse_usage(item.get("per_attempt_usage"))?,
+            });
+        }
     }
     contract.recovery_action_bindings = actions;
     contract.recovery_usage_bindings = usage_bindings;
@@ -1056,12 +1396,85 @@ pub fn validate_contract_case(case: &Value) -> Result<Value, String> {
             })
         })
         .collect::<Vec<_>>();
+    let action_guard_compatibility = report
+        .action_guard_compatibility
+        .iter()
+        .map(guard_compatibility_json)
+        .collect::<Vec<_>>();
     Ok(json!({
         "stage": "contract_validation",
         "verdict": report.overall().as_str(),
         "checked_component_produced": checked_component_produced,
         "dimensions": dimensions,
+        "action_guard_compatibility": action_guard_compatibility,
     }))
+}
+
+fn guard_compatibility_json(proof: &af_contract::ActionGuardCompatibility) -> Value {
+    let basis = match proof.basis() {
+        af_contract::GuardCompatibilityBasis::FrozenGuardContainment => "frozen_guard_containment",
+        af_contract::GuardCompatibilityBasis::ZeroPossibleActions => "zero_possible_actions",
+        af_contract::GuardCompatibilityBasis::TypedCountermodel => "typed_countermodel",
+        af_contract::GuardCompatibilityBasis::InsufficientEvidence => "insufficient_evidence",
+    };
+    let countermodel = proof.countermodel().map(|witness| {
+        json!({
+            "source_component":{"catalog":witness.source_component().catalog,"name":witness.source_component().name},
+            "recovery_action":recovery_action_identity_json(witness.recovery_action()),
+            "forward_entry_ordinal":witness.forward_entry_ordinal(),
+            "action_entry_ordinal":witness.action_entry_ordinal(),
+            "forward_guard":guard_json(witness.forward_guard()),
+            "declared_action_guard":guard_json(witness.declared_action_guard()),
+            "forward_bounds":bounds_json(witness.forward_bounds()),
+            "activation_upper":ceiling_json(witness.activation_upper()),
+            "attempt_upper":ceiling_json(witness.attempt_upper()),
+            "action_upper":ceiling_json(witness.action_upper()),
+            "assignments":witness.assignments().iter().map(|assignment|json!({
+                "port":assignment.port_no(),
+                "exact_type":schema_ref_json(assignment.type_ref()),
+                "value":primitive_constant_json(assignment.value()),
+            })).collect::<Vec<_>>(),
+            "reachability":match witness.reachability() {
+                af_contract::GuardCountermodelReachability::WellTypedComponentInputDomain => "well_typed_component_input_domain",
+            },
+            "related_rule_id":witness.related_rule_id(),
+            "source_contract_identity":{"catalog":witness.source_contract().component_identity.catalog,"name":witness.source_contract().component_identity.name},
+        })
+    });
+    json!({
+        "source_component":{"catalog":proof.source_component().catalog,"name":proof.source_component().name},
+        "recovery_action":recovery_action_identity_json(proof.recovery_action()),
+        "forward_entry_ordinal":proof.forward_entry_ordinal(),
+        "action_entry_ordinal":proof.action_entry_ordinal(),
+        "forward_guard":proof.forward_guard().map(guard_json),
+        "declared_action_guard":proof.declared_action_guard().map(guard_json),
+        "action_upper":proof.action_upper().map(ceiling_json),
+        "verdict":proof.verdict().as_str(),
+        "basis":basis,
+        "countermodel":countermodel,
+        "reason":proof.reason(),
+    })
+}
+
+fn recovery_action_identity_json(identity: &RecoveryActionIdentity) -> Value {
+    json!({
+        "forward_effect":atom_json(&identity.forward_effect),
+        "action_kind":identity.action_kind.as_str(),
+        "action_effect":atom_json(&identity.action_effect),
+    })
+}
+
+fn primitive_constant_json(value: &PrimitiveConstant) -> Value {
+    match value {
+        PrimitiveConstant::Unit => json!("unit"),
+        PrimitiveConstant::Null => json!("null"),
+        PrimitiveConstant::Bool(value) => json!(value),
+        PrimitiveConstant::Int64(value) => json!(value),
+        PrimitiveConstant::Decimal(value) => json!(value.to_string()),
+        PrimitiveConstant::String(value) | PrimitiveConstant::Bytes(value) => json!(value),
+        PrimitiveConstant::Timestamp(value) => json!({"timestamp_micros":value.as_micros()}),
+        PrimitiveConstant::Duration(value) => json!({"duration_micros":value.as_micros()}),
+    }
 }
 
 pub fn open_row_algebra(case: &Value) -> Result<Value, String> {
@@ -1218,6 +1631,8 @@ fn parse_guard(value: &Value) -> Result<EffectGuard, String> {
         return Err(format!("unsupported fixture guard: {value}"));
     }
     let expected = match &equals["value"] {
+        Value::Object(value) if value.contains_key("unit") => PrimitiveConstant::Unit,
+        Value::Object(value) if value.contains_key("null") => PrimitiveConstant::Null,
         Value::String(value) => PrimitiveConstant::String(value.clone()),
         Value::Number(value) => {
             PrimitiveConstant::Int64(value.as_i64().ok_or("guard int64 out of range")?)
@@ -1502,6 +1917,34 @@ fn semantic_ir(
             body: SemanticTypeNodeBody::Primitive(SemanticPrimitiveType::Bool),
         });
     }
+    let mut input_schema_by_port = BTreeMap::<u32, TypeSchemaRef>::new();
+    for child in children {
+        let raw = raws
+            .get(child["contract_digest"].as_str().unwrap())
+            .unwrap();
+        for port in &raw.inputs {
+            if input_schema_by_port
+                .insert(port.port_no, port.type_ref.clone())
+                .is_some_and(|previous| previous != port.type_ref)
+            {
+                return Err(format!(
+                    "fixture reuses component input port {} with different exact TypeSchemaRefs",
+                    port.port_no
+                ));
+            }
+        }
+    }
+    let mut input_type_ids = BTreeMap::<u32, u32>::new();
+    for (index, (port_no, schema)) in input_schema_by_port.iter().enumerate() {
+        let type_id = 1000_u32
+            .checked_add(fixture_index(index))
+            .ok_or("fixture input type id overflow")?;
+        type_nodes.push(SemanticTypeNode {
+            id: type_id.into(),
+            body: SemanticTypeNodeBody::Schema(schema.clone()),
+        });
+        input_type_ids.insert(*port_no, type_id);
+    }
     let mut values = Vec::new();
     let mut expressions = Vec::new();
     let mut run_parameters = Vec::new();
@@ -1570,13 +2013,14 @@ fn semantic_ir(
         }
     }
     for (port, (slot, expression)) in &component_inputs {
+        let type_id = input_type_ids.get(port).copied().unwrap_or(1);
         values.push(af_semantic::ValueSlot {
             id: (*slot).into(),
-            type_id: 1.into(),
+            type_id: type_id.into(),
         });
         expressions.push(ExpressionDef {
             id: (*expression).into(),
-            result_type_id: 1.into(),
+            result_type_id: type_id.into(),
             body: input
                 .get("edge")
                 .filter(|edge| {
@@ -1595,7 +2039,7 @@ fn semantic_ir(
         run_parameters.push(RunParameterDecl {
             id: (*port).into(),
             name: format!("input-{port}"),
-            type_id: 1.into(),
+            type_id: type_id.into(),
             value_slot: (*slot).into(),
         });
     }
@@ -2676,12 +3120,68 @@ fn compensation_scope_json(
         }),
         ControlDimensionValue::NotApplicable => json!({"state":"not_applicable"}),
     };
+    let local_actions = match scope.local_recovery_actions().value() {
+        ControlDimensionValue::Complete(actions) => json!({
+            "state":"complete",
+            "actions":actions.iter().map(local_recovery_action_json).collect::<Vec<_>>(),
+        }),
+        ControlDimensionValue::Partial {
+            known_contribution,
+            unresolved_sources,
+        } => json!({
+            "state":"partial",
+            "actions":known_contribution.as_ref().map(|actions|actions.iter().map(local_recovery_action_json).collect::<Vec<_>>()).unwrap_or_default(),
+            "unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>(),
+        }),
+        ControlDimensionValue::Unknown {
+            known_contributions,
+            unresolved_sources,
+        } => json!({
+            "state":"unknown",
+            "actions":known_contributions.iter().flat_map(|item|item.value().iter().map(local_recovery_action_json)).collect::<Vec<_>>(),
+            "unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>(),
+        }),
+        ControlDimensionValue::PerChild {
+            unresolved_sources, ..
+        } => {
+            json!({"state":"per_child","unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>()})
+        }
+        ControlDimensionValue::NotApplicable => json!({"state":"not_applicable"}),
+    };
     json!({
         "potential_actions":actions,
+        "local_recovery_actions":local_actions,
         "compensation_order":verdict(scope.compensation_order()),
         "recovery_blocked_outcome":verdict(scope.recovery_blocked_outcome()),
         "forward_effects_retained":scope.forward_effects_retained(),
         "forward_outcome_retained":scope.forward_outcome_retained(),
+    })
+}
+
+fn local_recovery_action_json(action: &af_computation::LocalRecoveryAction) -> Value {
+    json!({
+        "source":{
+            "caller_semantic_ir_digest":digest_ref_json(&action.source.caller_semantic_ir_digest),
+            "source_node":action.source.source_node.raw(),
+            "source_contract_digest":action.source.source_contract_digest.hex,
+            "forward_entry_ordinal":action.source.forward_entry_ordinal,
+            "action":recovery_action_identity_json(&action.source.action),
+        },
+        "forward_seed_upper":ceiling_json(action.forward_seed_upper),
+        "owner_scope":action.owner_scope.raw(),
+        "action_kind":action.action_kind.as_str(),
+        "local_action_bound":local_action_bound_json(&action.local_bound),
+        "forward_occurrence":entry_json(&action.forward_occurrence.declared),
+        "action_effect_occurrence":entry_json(&action.action_effect_occurrence.declared),
+        "recovery_usage_binding":{
+            "action":recovery_action_identity_json(&action.recovery_usage_binding.action),
+            "activations_per_forward":bounds_json(&action.recovery_usage_binding.activations_per_forward),
+            "attempts_per_activation":bounds_json(&action.recovery_usage_binding.attempts_per_activation),
+            "per_attempt_usage":usage_signature_json(&action.recovery_usage_binding.per_attempt_usage),
+        },
+        "recovery_usage":usage_json(&action.recovery_usage),
+        "guard_compatibility":action.guard_compatibility.as_ref().map(guard_compatibility_json),
+        "eligibility_evidence":verdict(action.eligibility_evidence),
     })
 }
 

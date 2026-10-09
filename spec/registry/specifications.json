@@ -2,12 +2,12 @@
   "registry_revision": 1,
   "specifications": [
     {
-      "description": "Component identity and digest scope, exact public port ABI, cross-dimension static proof and substitution limits.",
+      "description": "Component identity and digest scope, exact public port ABI, cross-dimension static proof, typed K-to-epsilon guard compatibility, and substitution limits.",
       "kind": "schema_language",
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "eb7f964eefd47f42ca62408c2e0c1219ebe2074c499d37708455bdb7711336f4"
+          "hex": "7f847a770dd0d92c289a06a6133e55bd239e5247d7eea63e1c9bc98bcf231f22"
         },
         "logical_path": "spec/component/component-contract.md"
       },
@@ -431,12 +431,12 @@
       "status": "frozen"
     },
     {
-      "description": "Derived-only SCOPE and COMPENSATION_SCOPE algebra plus checked full control-tree closure, with runtime authority, receipts, reservations, and execution explicitly outside the static proof boundary.",
+      "description": "Derived-only SCOPE and COMPENSATION_SCOPE algebra, checked full control-tree closure, and root-relative K action/Recovery-Usage proof with runtime authority, receipts, export assertions, reservations, and execution explicitly outside this static proof boundary.",
       "kind": "schema_language",
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "9479484780c49c215e5e82956800b7043000a551442f898b3ffa031dcc4fdb5e"
+          "hex": "1b4d631fe24cd9ea0c3462dcb875f5d0d2f13f2b4d99ab9135347d58a9a61537"
         },
         "logical_path": "spec/computation/scope-compensation-contract-algebra.md"
       },

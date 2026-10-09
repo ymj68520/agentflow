@@ -1,0 +1,196 @@
+{
+  "case_id": "computation-root-recovery/audit/AUDIT-10",
+  "expected": {
+    "action_guard_compatibility": [
+      {
+        "basis": "typed_countermodel",
+        "countermodel": {
+          "assignments": [
+            {
+              "exact_type": {
+                "type_name": "GuardInt64"
+              },
+              "port": 1,
+              "value": 1
+            }
+          ],
+          "reachability": "well_typed_component_input_domain",
+          "related_rule_id": "AF-CONTRACT-0022"
+        },
+        "declared_action_guard": {
+          "input_equals": {
+            "port": 1,
+            "value": 0
+          }
+        },
+        "forward_guard": "unconditional",
+        "verdict": "violation"
+      }
+    ],
+    "checked_component_produced": false,
+    "stage": "contract_validation",
+    "verdict": "violation"
+  },
+  "input": {
+    "contract": {
+      "caller_digest": "semantic-ir:caller",
+      "contract_digest": "component-contract:audit-10",
+      "effects": {
+        "entries": [
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.effects@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "family": "idempotency",
+                  "member": "natural"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "guard": "unconditional",
+            "lower": 0,
+            "upper": 1
+          },
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.effects@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "family": "idempotency",
+                  "member": "none"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "guard": {
+              "input_equals": {
+                "port": 1,
+                "value": 0
+              }
+            },
+            "lower": 0,
+            "upper": 18
+          }
+        ],
+        "residuals": [],
+        "row": "closed"
+      },
+      "execution": null,
+      "failures": [],
+      "flow": {
+        "authority": "none",
+        "constraints": [],
+        "influence_unknown": false,
+        "sources": [],
+        "taints": []
+      },
+      "input_types": [
+        {
+          "port": 1,
+          "primitive": "int64"
+        }
+      ],
+      "node": 2,
+      "outputs": [],
+      "proof_source": "checked_component",
+      "recovery_actions": [
+        {
+          "_forward_upper": 1,
+          "action": "compensate",
+          "action_atom": {
+            "operation": {
+              "catalog": "agentflow.effects@1",
+              "name": "write"
+            },
+            "qualifiers": [
+              {
+                "family": "idempotency",
+                "member": "none"
+              }
+            ],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            }
+          },
+          "activations_per_forward": {
+            "lower": 0,
+            "upper": 3
+          },
+          "attempts_per_activation": {
+            "lower": 1,
+            "upper": 3
+          },
+          "clause": {
+            "compensation": {
+              "required": {
+                "catalog": "agentflow.effects@1",
+                "name": "write"
+              }
+            },
+            "idempotency": "natural",
+            "key_requirement": null,
+            "reconciliation": "none",
+            "unknown_effect_handling": "block"
+          },
+          "coverage_meters": [
+            "api_calls"
+          ],
+          "forward_atom": {
+            "operation": {
+              "catalog": "agentflow.effects@1",
+              "name": "write"
+            },
+            "qualifiers": [
+              {
+                "family": "idempotency",
+                "member": "natural"
+              }
+            ],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            }
+          },
+          "per_attempt_usage": {
+            "coordinates": {
+              "recovery/api_calls": 2
+            }
+          }
+        }
+      ],
+      "resolved": true,
+      "resources": [
+        {
+          "component_port": 1,
+          "resource_slot": "shared-resource:2"
+        }
+      ],
+      "usage": {
+        "coordinates": {
+          "forward/api_calls": 0,
+          "recovery/api_calls": 18
+        }
+      }
+    },
+    "operation": "validate_contract"
+  },
+  "oracle": {
+    "origin": "Phase 4B.2C AUDIT-10",
+    "shape": "Forward F=1 unconditional; K action uses A=3,T=3,q=2; declared action epsilon guard p1=0"
+  },
+  "stage": "component_validation"
+}

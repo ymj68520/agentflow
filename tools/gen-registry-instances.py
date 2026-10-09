@@ -1401,6 +1401,26 @@ SCOPE_CLOSURE_ALGEBRA_RULES = [
          "workflow-root-export-boundary",
          "A root derived summary is not an exported ComponentContract; without a frozen root pin and cross-coordinate mapping, export compatibility remains NotExpressedInSemanticIr and Unproven.",
          ["computation-scope-closure/nested/tree-15", "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0154", "SEMANTIC", SCOPE_CLOSURE_ALGEBRA_SRC,
+         "root-recovery-source-closure",
+         "Root Recovery closure compares the complete source, action-binding, forward-occurrence, and exact Usage-profile multisets; source-node coverage alone cannot prove action/profile accounting.",
+         ["computation-root-recovery/root/K07", "computation-root-recovery/root/K13", "computation-root-recovery/root/K22", "SUITE-COMPUTATION-ROOT-RECOVERY-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0155", "SEMANTIC", SCOPE_CLOSURE_ALGEBRA_SRC,
+         "root-recovery-multiplicity",
+         "LocalActionBound and RootActionBound are distinct coordinates; exact caller/control-node/kind multiplicity identities are applied once with checked arithmetic and physical attempts are not multiplied twice.",
+         ["computation-root-recovery/root/K01", "computation-root-recovery/root/K02", "computation-root-recovery/root/K03", "computation-root-recovery/root/K04", "computation-root-recovery/root/K05", "computation-root-recovery/root/K19", "SUITE-COMPUTATION-ROOT-RECOVERY-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0156", "SEMANTIC", SCOPE_CLOSURE_ALGEBRA_SRC,
+         "root-recovery-operator-algebra",
+         "Root Recovery uses operator-specific Effect/Usage algebra, retains typed control-path and validator-created guard evidence separately, keeps both action kinds and RACE losers, and assigns each action to its nearest CompensationScope or typed RootRecovery owner.",
+         ["computation-root-recovery/root/K08", "computation-root-recovery/root/K09", "computation-root-recovery/root/K10", "computation-root-recovery/root/K11", "computation-root-recovery/root/K12", "computation-root-recovery/root/K13", "computation-root-recovery/root/K14", "computation-root-recovery/root/K15", "SUITE-COMPUTATION-ROOT-RECOVERY-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0157", "SEMANTIC", SCOPE_CLOSURE_ALGEBRA_SRC,
+         "root-recovery-epsilon-coverage",
+         "The root K action projection, including a same-atom Forward opportunity exactly once, must fit the already derived root epsilon ceiling and is never added as a second epsilon declaration.",
+         ["computation-root-recovery/root/K06", "computation-root-recovery/root/K06-underdeclared", "computation-root-recovery/root/K07", "computation-root-recovery/root/K20", "SUITE-COMPUTATION-ROOT-RECOVERY-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0158", "SEMANTIC", SCOPE_CLOSURE_ALGEBRA_SRC,
+         "root-recovery-usage-coverage",
+         "Root K-required Recovery Usage must fit exact root U.recovery meter coordinates without double addition; missing active-source meters are not zero, overflow is a Violation, and runtime eligibility remains evidence-dependent.",
+         ["computation-root-recovery/root/K16", "computation-root-recovery/root/K17", "computation-root-recovery/root/K18", "computation-root-recovery/root/K20", "computation-root-recovery/root/K21", "computation-root-recovery/root/K22", "computation-root-recovery/root/K24", "computation-root-recovery/root/K25-overflow", "SUITE-COMPUTATION-ROOT-RECOVERY-PYTHON-ORACLE"]),
 ]
 RULES.extend(SCOPE_CLOSURE_ALGEBRA_RULES)
 
@@ -2428,6 +2448,9 @@ COMPONENT_RULES = [
     rule("AF-CONTRACT-0021", "CONTRACT", COMPONENT_SRC, "component-contract-static-authority-boundary",
          "Static compatibility and relation proofs never create runtime authority, worker attestation or execution authorization.",
          ["SUITE-COMPONENT-CONTRACT-WIRE-FREEZE"]),
+    rule("AF-CONTRACT-0022", "CONTRACT", COMPONENT_SRC, "component-contract-recovery-action-guard",
+         "Each K action possibility must be contained by the exact declared action epsilon guard under frozen containment; a Violation requires a validator-created type-valid reachable countermodel, otherwise the relation remains Unproven, and no guard proof creates receipt eligibility.",
+         ["computation-root-recovery/audit/AUDIT-10", "computation-root-recovery/guard/G03", "computation-root-recovery/guard/G05", "computation-root-recovery/guard/G06", "computation-root-recovery/guard/G15", "computation-root-recovery/guard/G16", "SUITE-COMPONENT-CONTRACT-STATIC", "SUITE-COMPUTATION-ROOT-RECOVERY-PYTHON-ORACLE"]),
 ]
 RULES.extend(COMPONENT_RULES)
 
@@ -2455,7 +2478,7 @@ SPECS = [
      "Closed thirteen-field ComponentContract ABI using exact pins to the existing semantic dimension schemas."),
     ("agentflow.component.contract.semantics@1", "schema_language",
      "spec/component/component-contract.md",
-     "Component identity and digest scope, exact public port ABI, cross-dimension static proof and substitution limits."),
+     "Component identity and digest scope, exact public port ABI, cross-dimension static proof, typed K-to-epsilon guard compatibility, and substitution limits."),
     ("agentflow.component.relation-catalogs.semantics@1", "schema_language",
      "spec/component/relation-catalogs.md",
      "Exact versioned relation catalog snapshots and content-bound static proof assumptions."),
@@ -2639,7 +2662,7 @@ SPECS = [
      "Derived-only static propagation for existing ITERATE, RETRY, TIMEOUT and HANDLE opcodes without changing Semantic IR or ComponentContract ABI."),
     ("agentflow.semantic.scope-compensation-contract-algebra.semantics@1", "schema_language",
      "spec/computation/scope-compensation-contract-algebra.md",
-     "Derived-only SCOPE and COMPENSATION_SCOPE algebra plus checked full control-tree closure, with runtime authority, receipts, reservations, and execution explicitly outside the static proof boundary."),
+     "Derived-only SCOPE and COMPENSATION_SCOPE algebra, checked full control-tree closure, and root-relative K action/Recovery-Usage proof with runtime authority, receipts, export assertions, reservations, and execution explicitly outside this static proof boundary."),
     ("agentflow.semantic.types@1", "schema_language",
      "spec/semantic/core-semantic-types.md",
      "Workflow semantic core semantics: machine vs workflow primitives, "
@@ -4041,6 +4064,23 @@ SUITE_LIST.extend([
             "tools/gen-computation-scope-closure-corpus.py",
             "spec/conformance/computation-scope-closure/manifest.json",
             "crates/af-computation/tests/scope_closure_conformance.rs",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-ROOT-RECOVERY-PYTHON-ORACLE",
+        "description": (
+            "An independent Python oracle differentially checks typed K-to-"
+            "epsilon guards, LocalActionBound/RootActionBound, exact source/"
+            "action/profile multisets, operator-specific root folds, root "
+            "epsilon/Recovery-Usage coverage, and stage-gated counterexamples "
+            "without implementing RootExportAssertion."
+        ),
+        "targets": [
+            "tools/gen-computation-root-recovery-corpus.py",
+            "spec/conformance/computation-root-recovery/manifest.json",
+            "crates/af-contract/src/recovery_guard.rs",
+            "crates/af-computation/src/root_recovery.rs",
+            "crates/af-computation/tests/root_recovery_conformance.rs",
         ],
     },
 ])

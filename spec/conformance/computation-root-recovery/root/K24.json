@@ -1,0 +1,165 @@
+{
+  "case_id": "computation-root-recovery/root/K24",
+  "expected": {
+    "action_guard_compatibility": [
+      {
+        "basis": "insufficient_evidence",
+        "verdict": "unproven"
+      }
+    ],
+    "checked_component_produced": false,
+    "stage": "contract_validation",
+    "verdict": "violation"
+  },
+  "input": {
+    "contract": {
+      "caller_digest": "semantic-ir:caller",
+      "contract_digest": "component-contract:k24",
+      "effects": {
+        "entries": [
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.effects@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "family": "idempotency",
+                  "member": "natural"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "guard": "unconditional",
+            "lower": 0,
+            "upper": 1
+          },
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.effects@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "family": "idempotency",
+                  "member": "none"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "guard": "unconditional",
+            "lower": 0,
+            "upper": 1
+          }
+        ],
+        "residuals": [],
+        "row": "closed"
+      },
+      "execution": null,
+      "failures": [],
+      "flow": {
+        "authority": "none",
+        "constraints": [],
+        "influence_unknown": false,
+        "sources": [],
+        "taints": []
+      },
+      "node": 2,
+      "omit_usage_binding": true,
+      "outputs": [],
+      "proof_source": "checked_component",
+      "recovery_actions": [
+        {
+          "_forward_upper": 1,
+          "action": "compensate",
+          "action_atom": {
+            "operation": {
+              "catalog": "agentflow.effects@1",
+              "name": "write"
+            },
+            "qualifiers": [
+              {
+                "family": "idempotency",
+                "member": "none"
+              }
+            ],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            }
+          },
+          "activations_per_forward": {
+            "lower": 0,
+            "upper": 1
+          },
+          "attempts_per_activation": {
+            "lower": 1,
+            "upper": 1
+          },
+          "clause": {
+            "compensation": {
+              "required": {
+                "catalog": "agentflow.effects@1",
+                "name": "write"
+              }
+            },
+            "idempotency": "natural",
+            "key_requirement": null,
+            "reconciliation": "none",
+            "unknown_effect_handling": "block"
+          },
+          "coverage_meters": [
+            "api_calls"
+          ],
+          "forward_atom": {
+            "operation": {
+              "catalog": "agentflow.effects@1",
+              "name": "write"
+            },
+            "qualifiers": [
+              {
+                "family": "idempotency",
+                "member": "natural"
+              }
+            ],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            }
+          },
+          "per_attempt_usage": {
+            "coordinates": {
+              "recovery/api_calls": 1
+            }
+          }
+        }
+      ],
+      "resolved": true,
+      "resources": [
+        {
+          "component_port": 1,
+          "resource_slot": "shared-resource:2"
+        }
+      ],
+      "usage": {
+        "coordinates": {
+          "forward/api_calls": 0,
+          "recovery/api_calls": 1
+        }
+      }
+    },
+    "operation": "validate_contract"
+  },
+  "oracle": {
+    "reason": "complete source lacks the exact matching usage profile"
+  },
+  "stage": "component_validation"
+}

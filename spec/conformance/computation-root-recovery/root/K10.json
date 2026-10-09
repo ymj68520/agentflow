@@ -1,0 +1,821 @@
+{
+  "case_id": "computation-root-recovery/root/K10",
+  "expected": {
+    "stage": "control_derivation",
+    "workflow_closure": {
+      "root_recovery": {
+        "action_effects": {
+          "state": "complete",
+          "value": {
+            "entries": [
+              {
+                "atom": {
+                  "operation": {
+                    "catalog": "agentflow.effects@1",
+                    "name": "write"
+                  },
+                  "qualifiers": [
+                    {
+                      "family": "idempotency",
+                      "member": "none"
+                    }
+                  ],
+                  "resource_selector": {
+                    "requirement_port_no": 1,
+                    "scope_bindings": []
+                  }
+                },
+                "guard": "unconditional",
+                "lower": 0,
+                "upper": 7
+              }
+            ],
+            "row": "closed"
+          }
+        },
+        "actions": {
+          "actions": [
+            {
+              "action_effect_occurrence": {
+                "mapped_resource_slot": "shared-r"
+              },
+              "control_path": [
+                {
+                  "child_node": 2,
+                  "kind": "parallel_branch",
+                  "parent_node": 1,
+                  "reachability": "possible"
+                }
+              ],
+              "eligibility_evidence": "requires_evidence",
+              "forward_occurrence": {
+                "mapped_resource_slot": "shared-r"
+              },
+              "forward_seed_upper": 2,
+              "guard_compatibility": {
+                "basis": "frozen_guard_containment",
+                "verdict": "proven"
+              },
+              "guard_coordinates": [],
+              "local_action_bound": null,
+              "owner": {
+                "kind": "root_recovery"
+              },
+              "recovery_usage_binding": {
+                "action": {
+                  "action_effect": {
+                    "operation": {
+                      "catalog": "agentflow.effects@1",
+                      "name": "write"
+                    },
+                    "qualifiers": [
+                      {
+                        "family": "idempotency",
+                        "member": "none"
+                      }
+                    ],
+                    "resource_selector": {
+                      "requirement_port_no": 1,
+                      "scope_bindings": []
+                    }
+                  },
+                  "action_kind": "compensation",
+                  "forward_effect": {
+                    "operation": {
+                      "catalog": "agentflow.effects@1",
+                      "name": "write"
+                    },
+                    "qualifiers": [
+                      {
+                        "family": "idempotency",
+                        "member": "natural"
+                      }
+                    ],
+                    "resource_selector": {
+                      "requirement_port_no": 1,
+                      "scope_bindings": []
+                    }
+                  }
+                },
+                "activations_per_forward": {
+                  "lower": 0,
+                  "upper": 1
+                },
+                "attempts_per_activation": {
+                  "lower": 1,
+                  "upper": 1
+                },
+                "per_attempt_usage": {
+                  "limits": [
+                    {
+                      "meter": {
+                        "catalog": "agentflow.meters@1",
+                        "name": "api_calls"
+                      },
+                      "phase": "recovery",
+                      "upper": 1
+                    }
+                  ]
+                }
+              },
+              "root_action_bound": {
+                "applied_families": [],
+                "upper": {
+                  "state": "known",
+                  "upper": 2
+                }
+              },
+              "root_recovery_usage": {
+                "coordinates": {
+                  "recovery/api_calls": 2
+                },
+                "state": "known"
+              },
+              "source": {
+                "action": {
+                  "action_effect": {
+                    "operation": {
+                      "catalog": "agentflow.effects@1",
+                      "name": "write"
+                    },
+                    "qualifiers": [
+                      {
+                        "family": "idempotency",
+                        "member": "none"
+                      }
+                    ],
+                    "resource_selector": {
+                      "requirement_port_no": 1,
+                      "scope_bindings": []
+                    }
+                  },
+                  "action_kind": "compensation",
+                  "forward_effect": {
+                    "operation": {
+                      "catalog": "agentflow.effects@1",
+                      "name": "write"
+                    },
+                    "qualifiers": [
+                      {
+                        "family": "idempotency",
+                        "member": "natural"
+                      }
+                    ],
+                    "resource_selector": {
+                      "requirement_port_no": 1,
+                      "scope_bindings": []
+                    }
+                  }
+                },
+                "forward_entry_ordinal": 0,
+                "source_contract_digest": "component-contract:k10-a",
+                "source_node": 2
+              }
+            },
+            {
+              "action_effect_occurrence": {
+                "mapped_resource_slot": "shared-r"
+              },
+              "control_path": [
+                {
+                  "child_node": 3,
+                  "kind": "parallel_branch",
+                  "parent_node": 1,
+                  "reachability": "possible"
+                }
+              ],
+              "eligibility_evidence": "requires_evidence",
+              "forward_occurrence": {
+                "mapped_resource_slot": "shared-r"
+              },
+              "forward_seed_upper": 5,
+              "guard_compatibility": {
+                "basis": "frozen_guard_containment",
+                "verdict": "proven"
+              },
+              "guard_coordinates": [],
+              "local_action_bound": null,
+              "owner": {
+                "kind": "root_recovery"
+              },
+              "recovery_usage_binding": {
+                "action": {
+                  "action_effect": {
+                    "operation": {
+                      "catalog": "agentflow.effects@1",
+                      "name": "write"
+                    },
+                    "qualifiers": [
+                      {
+                        "family": "idempotency",
+                        "member": "none"
+                      }
+                    ],
+                    "resource_selector": {
+                      "requirement_port_no": 1,
+                      "scope_bindings": []
+                    }
+                  },
+                  "action_kind": "compensation",
+                  "forward_effect": {
+                    "operation": {
+                      "catalog": "agentflow.effects@1",
+                      "name": "write"
+                    },
+                    "qualifiers": [
+                      {
+                        "family": "idempotency",
+                        "member": "natural"
+                      }
+                    ],
+                    "resource_selector": {
+                      "requirement_port_no": 1,
+                      "scope_bindings": []
+                    }
+                  }
+                },
+                "activations_per_forward": {
+                  "lower": 0,
+                  "upper": 1
+                },
+                "attempts_per_activation": {
+                  "lower": 1,
+                  "upper": 1
+                },
+                "per_attempt_usage": {
+                  "limits": [
+                    {
+                      "meter": {
+                        "catalog": "agentflow.meters@1",
+                        "name": "api_calls"
+                      },
+                      "phase": "recovery",
+                      "upper": 1
+                    }
+                  ]
+                }
+              },
+              "root_action_bound": {
+                "applied_families": [],
+                "upper": {
+                  "state": "known",
+                  "upper": 5
+                }
+              },
+              "root_recovery_usage": {
+                "coordinates": {
+                  "recovery/api_calls": 5
+                },
+                "state": "known"
+              },
+              "source": {
+                "action": {
+                  "action_effect": {
+                    "operation": {
+                      "catalog": "agentflow.effects@1",
+                      "name": "write"
+                    },
+                    "qualifiers": [
+                      {
+                        "family": "idempotency",
+                        "member": "none"
+                      }
+                    ],
+                    "resource_selector": {
+                      "requirement_port_no": 1,
+                      "scope_bindings": []
+                    }
+                  },
+                  "action_kind": "compensation",
+                  "forward_effect": {
+                    "operation": {
+                      "catalog": "agentflow.effects@1",
+                      "name": "write"
+                    },
+                    "qualifiers": [
+                      {
+                        "family": "idempotency",
+                        "member": "natural"
+                      }
+                    ],
+                    "resource_selector": {
+                      "requirement_port_no": 1,
+                      "scope_bindings": []
+                    }
+                  }
+                },
+                "forward_entry_ordinal": 0,
+                "source_contract_digest": "component-contract:k10-b",
+                "source_node": 3
+              }
+            }
+          ],
+          "state": "complete"
+        },
+        "epsilon_coverage_requirement": {
+          "state": "complete",
+          "value": {
+            "entries": [
+              {
+                "atom": {
+                  "operation": {
+                    "catalog": "agentflow.effects@1",
+                    "name": "write"
+                  },
+                  "qualifiers": [
+                    {
+                      "family": "idempotency",
+                      "member": "none"
+                    }
+                  ],
+                  "resource_selector": {
+                    "requirement_port_no": 1,
+                    "scope_bindings": []
+                  }
+                },
+                "guard": "unconditional",
+                "lower": 0,
+                "upper": 7
+              }
+            ],
+            "row": "closed"
+          }
+        },
+        "overall_verdict": "requires_evidence",
+        "proof_dimensions": [
+          {
+            "dimension": "root-recovery-source-closure",
+            "rule_id": "AF-SEMANTIC-0154",
+            "verdict": "proven"
+          },
+          {
+            "dimension": "root-recovery-action-totals",
+            "rule_id": "AF-SEMANTIC-0155",
+            "verdict": "proven"
+          },
+          {
+            "dimension": "root-recovery-multiplicity",
+            "rule_id": "AF-SEMANTIC-0155",
+            "verdict": "proven"
+          },
+          {
+            "dimension": "root-k-action-epsilon-coverage",
+            "rule_id": "AF-SEMANTIC-0157",
+            "verdict": "proven"
+          },
+          {
+            "dimension": "root-k-recovery-usage-coverage",
+            "rule_id": "AF-SEMANTIC-0158",
+            "verdict": "proven"
+          },
+          {
+            "dimension": "root-recovery-guard-compatibility",
+            "rule_id": "AF-SEMANTIC-0156",
+            "verdict": "proven"
+          },
+          {
+            "dimension": "root-recovery-eligibility",
+            "rule_id": "AF-SEMANTIC-0150",
+            "verdict": "requires_evidence"
+          }
+        ],
+        "recovery_usage": {
+          "state": "complete",
+          "value": {
+            "coordinates": {
+              "recovery/api_calls": 7
+            },
+            "state": "known"
+          }
+        },
+        "source_closure": {
+          "action_bindings_accounted": "proven",
+          "multiplicity_factors_accounted": "proven",
+          "root_action_totals_sound": "proven",
+          "source_nodes_accounted": "proven",
+          "usage_profiles_accounted": "proven"
+        }
+      }
+    }
+  },
+  "input": {
+    "children": [
+      {
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:k10-a",
+        "effects": {
+          "entries": [
+            {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "write"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "guard": "unconditional",
+              "lower": 0,
+              "upper": 2
+            },
+            {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "write"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "none"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "guard": "unconditional",
+              "lower": 0,
+              "upper": 2
+            }
+          ],
+          "residuals": [],
+          "row": "closed"
+        },
+        "execution": null,
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
+        "node": 2,
+        "outputs": [],
+        "proof_source": "checked_component",
+        "recovery_actions": [
+          {
+            "_forward_upper": 2,
+            "action": "compensate",
+            "action_atom": {
+              "operation": {
+                "catalog": "agentflow.effects@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "family": "idempotency",
+                  "member": "none"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "activations_per_forward": {
+              "lower": 0,
+              "upper": 1
+            },
+            "attempts_per_activation": {
+              "lower": 1,
+              "upper": 1
+            },
+            "clause": {
+              "compensation": {
+                "required": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "write"
+                }
+              },
+              "idempotency": "natural",
+              "key_requirement": null,
+              "reconciliation": "none",
+              "unknown_effect_handling": "block"
+            },
+            "coverage_meters": [
+              "api_calls"
+            ],
+            "forward_atom": {
+              "operation": {
+                "catalog": "agentflow.effects@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "family": "idempotency",
+                  "member": "natural"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "per_attempt_usage": {
+              "coordinates": {
+                "recovery/api_calls": 1
+              }
+            }
+          }
+        ],
+        "resolved": true,
+        "resources": [
+          {
+            "component_port": 1,
+            "resource_slot": "shared-r"
+          }
+        ],
+        "usage": {
+          "coordinates": {
+            "forward/api_calls": 0,
+            "recovery/api_calls": 2
+          }
+        }
+      },
+      {
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:k10-b",
+        "effects": {
+          "entries": [
+            {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "write"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "guard": "unconditional",
+              "lower": 0,
+              "upper": 5
+            },
+            {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "write"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "none"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "guard": "unconditional",
+              "lower": 0,
+              "upper": 5
+            }
+          ],
+          "residuals": [],
+          "row": "closed"
+        },
+        "execution": null,
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
+        "node": 3,
+        "outputs": [],
+        "proof_source": "checked_component",
+        "recovery_actions": [
+          {
+            "_forward_upper": 5,
+            "action": "compensate",
+            "action_atom": {
+              "operation": {
+                "catalog": "agentflow.effects@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "family": "idempotency",
+                  "member": "none"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "activations_per_forward": {
+              "lower": 0,
+              "upper": 1
+            },
+            "attempts_per_activation": {
+              "lower": 1,
+              "upper": 1
+            },
+            "clause": {
+              "compensation": {
+                "required": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "write"
+                }
+              },
+              "idempotency": "natural",
+              "key_requirement": null,
+              "reconciliation": "none",
+              "unknown_effect_handling": "block"
+            },
+            "coverage_meters": [
+              "api_calls"
+            ],
+            "forward_atom": {
+              "operation": {
+                "catalog": "agentflow.effects@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "family": "idempotency",
+                  "member": "natural"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "per_attempt_usage": {
+              "coordinates": {
+                "recovery/api_calls": 1
+              }
+            }
+          }
+        ],
+        "resolved": true,
+        "resources": [
+          {
+            "component_port": 1,
+            "resource_slot": "shared-r"
+          }
+        ],
+        "usage": {
+          "coordinates": {
+            "forward/api_calls": 0,
+            "recovery/api_calls": 5
+          }
+        }
+      }
+    ],
+    "include_scope_details": true,
+    "include_workflow_closure": true,
+    "nested_nodes": [],
+    "operation": "compose",
+    "operator": "parallel_all",
+    "root_child_nodes": [
+      2,
+      3
+    ]
+  },
+  "oracle": {
+    "sources": [
+      {
+        "action": {
+          "operation": {
+            "catalog": "agentflow.effects@1",
+            "name": "write"
+          },
+          "qualifiers": [
+            {
+              "family": "idempotency",
+              "member": "none"
+            }
+          ],
+          "resource_selector": {
+            "requirement_port_no": 1,
+            "scope_bindings": []
+          }
+        },
+        "activation": 1,
+        "alias": "component-contract:k10-a",
+        "attempts": 1,
+        "base": 2,
+        "epsilon_upper": 2,
+        "failures": null,
+        "forward": {
+          "operation": {
+            "catalog": "agentflow.effects@1",
+            "name": "write"
+          },
+          "qualifiers": [
+            {
+              "family": "idempotency",
+              "member": "natural"
+            }
+          ],
+          "resource_selector": {
+            "requirement_port_no": 1,
+            "scope_bindings": []
+          }
+        },
+        "forward_lower": 0,
+        "forward_upper": 2,
+        "guards": [
+          "unconditional",
+          "unconditional"
+        ],
+        "input_types": [],
+        "node": 2,
+        "per_attempt": 1,
+        "resource_alias": "shared-r",
+        "usage_declaration": null
+      },
+      {
+        "action": {
+          "operation": {
+            "catalog": "agentflow.effects@1",
+            "name": "write"
+          },
+          "qualifiers": [
+            {
+              "family": "idempotency",
+              "member": "none"
+            }
+          ],
+          "resource_selector": {
+            "requirement_port_no": 1,
+            "scope_bindings": []
+          }
+        },
+        "activation": 1,
+        "alias": "component-contract:k10-b",
+        "attempts": 1,
+        "base": 5,
+        "epsilon_upper": 5,
+        "failures": null,
+        "forward": {
+          "operation": {
+            "catalog": "agentflow.effects@1",
+            "name": "write"
+          },
+          "qualifiers": [
+            {
+              "family": "idempotency",
+              "member": "natural"
+            }
+          ],
+          "resource_selector": {
+            "requirement_port_no": 1,
+            "scope_bindings": []
+          }
+        },
+        "forward_lower": 0,
+        "forward_upper": 5,
+        "guards": [
+          "unconditional",
+          "unconditional"
+        ],
+        "input_types": [],
+        "node": 3,
+        "per_attempt": 1,
+        "resource_alias": "shared-r",
+        "usage_declaration": null
+      }
+    ],
+    "tree": {
+      "children": [
+        {
+          "node": 2,
+          "operator": "leaf"
+        },
+        {
+          "node": 3,
+          "operator": "leaf"
+        }
+      ],
+      "node": 1,
+      "operator": "parallel_all"
+    }
+  },
+  "stage": "root_recovery"
+}

@@ -1,0 +1,926 @@
+{
+  "case_count": 44,
+  "case_ids": [
+    "computation-root-recovery/audit/AUDIT-10",
+    "computation-root-recovery/guard/G01",
+    "computation-root-recovery/guard/G02",
+    "computation-root-recovery/guard/G03",
+    "computation-root-recovery/guard/G04",
+    "computation-root-recovery/guard/G05",
+    "computation-root-recovery/guard/G06",
+    "computation-root-recovery/guard/G07",
+    "computation-root-recovery/guard/G08",
+    "computation-root-recovery/guard/G09",
+    "computation-root-recovery/guard/G10",
+    "computation-root-recovery/guard/G11",
+    "computation-root-recovery/guard/G12",
+    "computation-root-recovery/guard/G13",
+    "computation-root-recovery/guard/G14",
+    "computation-root-recovery/guard/G14-root-path",
+    "computation-root-recovery/guard/G15",
+    "computation-root-recovery/guard/G16",
+    "computation-root-recovery/root/K01",
+    "computation-root-recovery/root/K02",
+    "computation-root-recovery/root/K03",
+    "computation-root-recovery/root/K04",
+    "computation-root-recovery/root/K05",
+    "computation-root-recovery/root/K06",
+    "computation-root-recovery/root/K06-underdeclared",
+    "computation-root-recovery/root/K07",
+    "computation-root-recovery/root/K08",
+    "computation-root-recovery/root/K09",
+    "computation-root-recovery/root/K10",
+    "computation-root-recovery/root/K11",
+    "computation-root-recovery/root/K12",
+    "computation-root-recovery/root/K13",
+    "computation-root-recovery/root/K14",
+    "computation-root-recovery/root/K15",
+    "computation-root-recovery/root/K16",
+    "computation-root-recovery/root/K17",
+    "computation-root-recovery/root/K18",
+    "computation-root-recovery/root/K19",
+    "computation-root-recovery/root/K20",
+    "computation-root-recovery/root/K21",
+    "computation-root-recovery/root/K22",
+    "computation-root-recovery/root/K23",
+    "computation-root-recovery/root/K24",
+    "computation-root-recovery/root/K25-overflow"
+  ],
+  "cases": [
+    {
+      "case_id": "computation-root-recovery/audit/AUDIT-10",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "action_guard_compatibility",
+        "checked_component_produced",
+        "stage",
+        "verdict"
+      ],
+      "expected_stage": "component_validation",
+      "oracle": "independent-python",
+      "production_api": "validate_contract_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "not_reached_by_case",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/guard/G01",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "action_guard_compatibility",
+        "checked_component_produced",
+        "stage",
+        "verdict"
+      ],
+      "expected_stage": "component_validation",
+      "oracle": "independent-python",
+      "production_api": "validate_contract_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "not_reached_by_case",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/guard/G02",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "action_guard_compatibility",
+        "checked_component_produced",
+        "stage",
+        "verdict"
+      ],
+      "expected_stage": "component_validation",
+      "oracle": "independent-python",
+      "production_api": "validate_contract_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "not_reached_by_case",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/guard/G03",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "action_guard_compatibility",
+        "checked_component_produced",
+        "stage",
+        "verdict"
+      ],
+      "expected_stage": "component_validation",
+      "oracle": "independent-python",
+      "production_api": "validate_contract_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "not_reached_by_case",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/guard/G04",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "action_guard_compatibility",
+        "checked_component_produced",
+        "stage",
+        "verdict"
+      ],
+      "expected_stage": "component_validation",
+      "oracle": "independent-python",
+      "production_api": "validate_contract_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "not_reached_by_case",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/guard/G05",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "action_guard_compatibility",
+        "checked_component_produced",
+        "stage",
+        "verdict"
+      ],
+      "expected_stage": "component_validation",
+      "oracle": "independent-python",
+      "production_api": "validate_contract_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "not_reached_by_case",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/guard/G06",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "action_guard_compatibility",
+        "checked_component_produced",
+        "stage",
+        "verdict"
+      ],
+      "expected_stage": "component_validation",
+      "oracle": "independent-python",
+      "production_api": "validate_contract_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "not_reached_by_case",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/guard/G07",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "action_guard_compatibility",
+        "checked_component_produced",
+        "stage",
+        "verdict"
+      ],
+      "expected_stage": "component_validation",
+      "oracle": "independent-python",
+      "production_api": "validate_contract_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "not_reached_by_case",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/guard/G08",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "action_guard_compatibility",
+        "checked_component_produced",
+        "stage",
+        "verdict"
+      ],
+      "expected_stage": "component_validation",
+      "oracle": "independent-python",
+      "production_api": "validate_contract_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "not_reached_by_case",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/guard/G09",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/guard/G10",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/guard/G11",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/guard/G12",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "action_guard_compatibility",
+        "checked_component_produced",
+        "stage",
+        "verdict"
+      ],
+      "expected_stage": "component_validation",
+      "oracle": "independent-python",
+      "production_api": "validate_contract_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "not_reached_by_case",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/guard/G13",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/guard/G14",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "action_guard_compatibility",
+        "checked_component_produced",
+        "stage",
+        "verdict"
+      ],
+      "expected_stage": "component_validation",
+      "oracle": "independent-python",
+      "production_api": "validate_contract_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "not_reached_by_case",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/guard/G14-root-path",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/guard/G15",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "action_guard_compatibility",
+        "checked_component_produced",
+        "stage",
+        "verdict"
+      ],
+      "expected_stage": "component_validation",
+      "oracle": "independent-python",
+      "production_api": "validate_contract_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "not_reached_by_case",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/guard/G16",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "action_guard_compatibility",
+        "checked_component_produced",
+        "stage",
+        "verdict"
+      ],
+      "expected_stage": "component_validation",
+      "oracle": "independent-python",
+      "production_api": "validate_contract_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "not_reached_by_case",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K01",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K02",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K03",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K04",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K05",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K06",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K06-underdeclared",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "action_guard_compatibility",
+        "checked_component_produced",
+        "stage",
+        "verdict"
+      ],
+      "expected_stage": "component_validation",
+      "oracle": "independent-python",
+      "production_api": "validate_contract_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "not_reached_by_case",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K07",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K08",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K09",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K10",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K11",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K12",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K13",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K14",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K15",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K16",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K17",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "action_guard_compatibility",
+        "checked_component_produced",
+        "stage",
+        "verdict"
+      ],
+      "expected_stage": "component_validation",
+      "oracle": "independent-python",
+      "production_api": "validate_contract_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "not_reached_by_case",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K18",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "action_guard_compatibility",
+        "checked_component_produced",
+        "stage",
+        "verdict"
+      ],
+      "expected_stage": "component_validation",
+      "oracle": "independent-python",
+      "production_api": "validate_contract_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "not_reached_by_case",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K19",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage"
+      ],
+      "expected_stage": "ir_rejection",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "executed",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K20",
+      "d3_export_assertion": "deferred",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K21",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K22",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K23",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "stage",
+        "workflow_closure"
+      ],
+      "expected_stage": "root_recovery",
+      "oracle": "independent-python",
+      "production_api": "analyze_compose_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "executed",
+        "IRValidation": "executed",
+        "LeafResolution": "executed",
+        "LowerLevelEffectAlgebra": "reused_by_root_fold",
+        "RootRecoveryValidation": "executed"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K24",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "action_guard_compatibility",
+        "checked_component_produced",
+        "stage",
+        "verdict"
+      ],
+      "expected_stage": "component_validation",
+      "oracle": "independent-python",
+      "production_api": "validate_contract_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "not_reached_by_case",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    },
+    {
+      "case_id": "computation-root-recovery/root/K25-overflow",
+      "d3_export_assertion": "not_in_case",
+      "expected_fields": [
+        "action_guard_compatibility",
+        "checked_component_produced",
+        "stage",
+        "verdict"
+      ],
+      "expected_stage": "component_validation",
+      "oracle": "independent-python",
+      "production_api": "validate_contract_case",
+      "stage_reachability": {
+        "ComponentValidation": "executed",
+        "ControlDerivation": "not_reached_by_case",
+        "IRValidation": "not_reached_by_case",
+        "LeafResolution": "not_reached_by_case",
+        "LowerLevelEffectAlgebra": "not_reached_by_case",
+        "RootRecoveryValidation": "not_reached_by_case"
+      }
+    }
+  ],
+  "d3_export_assertions_deferred": [
+    "K20 export epsilon ceiling; only internal root K/E/U facts execute in this phase"
+  ],
+  "revision": "phase-04b2e1-v1"
+}
