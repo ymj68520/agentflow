@@ -48,7 +48,7 @@ pub struct UsageMeterDescriptor {
 
 /// Explicit in-memory meter vocabulary. It performs no registry lookup,
 /// discovery, network access, pricing lookup or runtime measurement.
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct UsageMeterUniverse {
     descriptors: BTreeMap<UsageMeterRef, UsageMeterDescriptor>,
 }

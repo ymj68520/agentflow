@@ -928,7 +928,7 @@ impl<T: RelationCatalogWire> RelationCatalogSnapshot<T> {
     }
 }
 
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct RelationSnapshots {
     pub effect_resource: Option<RelationCatalogSnapshot<EffectResourceCompatibilityCatalog>>,
     pub recovery_usage: Option<RelationCatalogSnapshot<RecoveryUsageCoverageCatalog>>,

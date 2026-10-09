@@ -41,6 +41,19 @@
       "status": "frozen"
     },
     {
+      "description": "Pure in-process RootExportAssertion proof: exact typed coordinates and nine-dimension static root/export compatibility, with body, publisher, authority, budget and runtime evidence kept separate.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "b264b384c37f61055ddbaee70d38ed2d66c8dc2ac81d25fd52d0a3271b2294b5"
+        },
+        "logical_path": "spec/computation/root-export-contract-proof.md"
+      },
+      "specification_id": "agentflow.computation.root-export-contract-proof.semantics@1",
+      "status": "frozen"
+    },
+    {
       "description": "The AFIDL1 builtin machine primitive universe expressed as a parseable nominal-alias module; its 13 alias digests are frozen in the AFIDL corpus.",
       "kind": "schema",
       "normative_source": {

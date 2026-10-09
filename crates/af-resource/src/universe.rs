@@ -46,7 +46,7 @@ impl ResourceTypeDescriptor {
 
 /// The explicit resource-type universe: exact schema resolution plus an
 /// explicit recognition table.
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct ResourceTypeUniverse {
     schemas: af_semantic::TypeSchemaUniverse,
     descriptors: BTreeMap<(String, String), ResourceTypeDescriptor>,

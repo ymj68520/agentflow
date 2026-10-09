@@ -14,6 +14,7 @@ mod control;
 mod mapping;
 mod proof;
 mod resolution;
+mod root_export;
 mod root_recovery;
 mod summary;
 
@@ -33,6 +34,20 @@ pub use proof::{LeafDimensionProof, LeafProofReport, LeafVerdict};
 pub use resolution::{
     LeafResolutionError, SnapshotError, StaticComputationResolutionSnapshot,
     StaticComputationResolutionSnapshotBuilder, resolve_computation_leaf,
+};
+pub use root_export::{
+    CheckedRootExportCompatibility, CompilerSemanticsIdentity, ComponentInputPortIdentity,
+    ComponentOutputPortIdentity, ProofContextManifest, ROOT_EXPORT_ANALYSIS_SEMANTICS_VERSION,
+    RelationSnapshotContent, ResolverDependencyManifest, ResourceRequirementPortIdentity,
+    RootEffectCoordinateBinding, RootEffectOccurrenceIdentity, RootExecutionChildProof,
+    RootExecutionCoordinateBinding, RootExportAssertion, RootExportAssertionIdentity,
+    RootExportCoordinateWitness, RootExportDimension, RootExportDimensionProof,
+    RootExportProofReport, RootExportSourceReference, RootFlowCoordinateBinding,
+    RootInputPortBinding, RootInputUseSite, RootOutputPortBinding, RootOutputProducerEvidence,
+    RootRecoveryCoordinateBinding, RootResourcePortBinding, RootResourceSourceCoordinate,
+    RuntimeAuthorityStatus, SpecificationContentIdentity, SubflowProofDependency,
+    SubflowTargetContextPin, SubflowTargetIdentity, analyze_root_export_assertion,
+    check_root_export_assertion, current_compiler_semantics_identity,
 };
 pub use root_recovery::{
     AppliedMultiplicity, ControlMultiplicityIdentity, ControlMultiplicityKind, ControlPathKind,

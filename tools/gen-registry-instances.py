@@ -1424,6 +1424,67 @@ SCOPE_CLOSURE_ALGEBRA_RULES = [
 ]
 RULES.extend(SCOPE_CLOSURE_ALGEBRA_RULES)
 
+ROOT_EXPORT_PROOF_SRC = "spec/computation/root-export-contract-proof.md"
+ROOT_EXPORT_PROOF_RULES = [
+    rule("AF-SEMANTIC-0159", "SEMANTIC", ROOT_EXPORT_PROOF_SRC,
+         "exact-assertion-pins",
+         "The assertion pins the exact SemanticIrDigest and checked exported ComponentContractDigest.",
+         ["computation-root-export/positive/exact-empty-static-envelope", "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0160", "SEMANTIC", ROOT_EXPORT_PROOF_SRC,
+         "proof-context-manifest",
+         "The proof-context manifest commits the complete typed static universes, relation content, and resolver pins.",
+         ["computation-root-export/context/relation-content-change", "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0161", "SEMANTIC", ROOT_EXPORT_PROOF_SRC,
+         "compiler-semantics-identity",
+         "Compiler semantics identity includes exact normative content, applied RuleIds, and checker semantics version.",
+         ["computation-root-export/context/compiler-semantics-change", "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0162", "SEMANTIC", ROOT_EXPORT_PROOF_SRC,
+         "root-input-mapping",
+         "Root inputs require a complete bijection to exported input ports with exact nominal types and checked use sites.",
+         ["computation-root-export/positive/exact-input-output", "computation-root-export/negative/input-source-alias", "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0163", "SEMANTIC", ROOT_EXPORT_PROOF_SRC,
+         "root-output-mapping",
+         "Every exported output maps to an exact named WorkflowOutput with checked producer and nominal type evidence.",
+         ["computation-root-export/positive/exact-input-output", "computation-root-export/negative/output-map-missing", "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0164", "SEMANTIC", ROOT_EXPORT_PROOF_SRC,
+         "root-resource-mapping",
+         "Root resources map through exact ResourceSlot and exported requirement-port identities.",
+         ["computation-root-export/negative/resource-slot-map-change", "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0165", "SEMANTIC", ROOT_EXPORT_PROOF_SRC,
+         "failure-containment",
+         "Possible root business failures are contained by the exact exported nominal failure row.",
+         ["computation-root-export/positive/exact-empty-static-envelope", "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0166", "SEMANTIC", ROOT_EXPORT_PROOF_SRC,
+         "effect-containment",
+         "Root effects and K action possibilities fit the exported epsilon ceiling after exact coordinate mapping.",
+         ["computation-root-export/negative/effect-upper-underdeclared", "computation-root-export/negative/effect-qualifier-map-change", "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0167", "SEMANTIC", ROOT_EXPORT_PROOF_SRC,
+         "information-flow-non-relaxation",
+         "Root information flow does not relax the exported flow restrictions; unknown influence is retained.",
+         ["computation-root-export/negative/flow-map-missing", "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0168", "SEMANTIC", ROOT_EXPORT_PROOF_SRC,
+         "usage-containment",
+         "Root forward and recovery usage remain within separate exact exported phase, meter, unit, and bound coordinates.",
+         ["computation-root-export/negative/recovery-usage-underdeclared", "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0169", "SEMANTIC", ROOT_EXPORT_PROOF_SRC,
+         "recovery-compatibility",
+         "Root recovery sources, actions, profiles, and safety declarations are compared without invented enum ordering.",
+         ["computation-root-export/negative/recovery-map-missing", "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0170", "SEMANTIC", ROOT_EXPORT_PROOF_SRC,
+         "execution-compatibility",
+         "Every child execution source meets exported feasibility and security constraints independently.",
+         ["computation-root-export/positive/exact-input-output", "computation-root-export/negative/execution-security", "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0171", "SEMANTIC", ROOT_EXPORT_PROOF_SRC,
+         "subflow-body-separation",
+         "Subflow target pins do not prove implementation or body conformance.",
+         ["computation-root-export/subflow/body-evidence-absent", "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0172", "SEMANTIC", ROOT_EXPORT_PROOF_SRC,
+         "static-runtime-boundary",
+         "Static compatibility does not establish authority, budget reservation, or runtime authorization.",
+         ["computation-root-export/positive/exact-empty-static-envelope", "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"]),
+]
+RULES.extend(ROOT_EXPORT_PROOF_RULES)
+
 # ---------------------------------------------------------------------------
 # Effect Signature rules (Phase 4A.1, area EFFECT)
 # ---------------------------------------------------------------------------
@@ -2663,6 +2724,9 @@ SPECS = [
     ("agentflow.semantic.scope-compensation-contract-algebra.semantics@1", "schema_language",
      "spec/computation/scope-compensation-contract-algebra.md",
      "Derived-only SCOPE and COMPENSATION_SCOPE algebra, checked full control-tree closure, and root-relative K action/Recovery-Usage proof with runtime authority, receipts, export assertions, reservations, and execution explicitly outside this static proof boundary."),
+    ("agentflow.computation.root-export-contract-proof.semantics@1", "schema_language",
+     "spec/computation/root-export-contract-proof.md",
+     "Pure in-process RootExportAssertion proof: exact typed coordinates and nine-dimension static root/export compatibility, with body, publisher, authority, budget and runtime evidence kept separate."),
     ("agentflow.semantic.types@1", "schema_language",
      "spec/semantic/core-semantic-types.md",
      "Workflow semantic core semantics: machine vs workflow primitives, "
@@ -4081,6 +4145,23 @@ SUITE_LIST.extend([
             "crates/af-contract/src/recovery_guard.rs",
             "crates/af-computation/src/root_recovery.rs",
             "crates/af-computation/tests/root_recovery_conformance.rs",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE",
+        "description": (
+            "An independent Python oracle differentially checks the exact "
+            "non-wire RootExportAssertion pins, typed I/O/R/E/F/K/X maps, "
+            "nine static dimensions, proof-context invalidation and "
+            "subflow/body separation. Every declared case executes checked "
+            "Semantic IR, Phase 3C, leaf resolution, root derivation, "
+            "RootRecoverySummary, and the production RootExport checker."
+        ),
+        "targets": [
+            "tools/gen-computation-root-export-corpus.py",
+            "spec/conformance/computation-root-export/manifest.json",
+            "crates/af-computation/src/root_export.rs",
+            "crates/af-computation/tests/root_export_conformance.rs",
         ],
     },
 ])

@@ -4337,6 +4337,178 @@
       "source_anchor": "root-recovery-usage-coverage"
     },
     {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-root-export/positive/exact-empty-static-envelope",
+        "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/root-export-contract-proof.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0159",
+      "short_statement": "The assertion pins the exact SemanticIrDigest and checked exported ComponentContractDigest.",
+      "source_anchor": "exact-assertion-pins"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-root-export/context/relation-content-change",
+        "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/root-export-contract-proof.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0160",
+      "short_statement": "The proof-context manifest commits the complete typed static universes, relation content, and resolver pins.",
+      "source_anchor": "proof-context-manifest"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-root-export/context/compiler-semantics-change",
+        "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/root-export-contract-proof.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0161",
+      "short_statement": "Compiler semantics identity includes exact normative content, applied RuleIds, and checker semantics version.",
+      "source_anchor": "compiler-semantics-identity"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-root-export/positive/exact-input-output",
+        "computation-root-export/negative/input-source-alias",
+        "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/root-export-contract-proof.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0162",
+      "short_statement": "Root inputs require a complete bijection to exported input ports with exact nominal types and checked use sites.",
+      "source_anchor": "root-input-mapping"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-root-export/positive/exact-input-output",
+        "computation-root-export/negative/output-map-missing",
+        "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/root-export-contract-proof.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0163",
+      "short_statement": "Every exported output maps to an exact named WorkflowOutput with checked producer and nominal type evidence.",
+      "source_anchor": "root-output-mapping"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-root-export/negative/resource-slot-map-change",
+        "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/root-export-contract-proof.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0164",
+      "short_statement": "Root resources map through exact ResourceSlot and exported requirement-port identities.",
+      "source_anchor": "root-resource-mapping"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-root-export/positive/exact-empty-static-envelope",
+        "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/root-export-contract-proof.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0165",
+      "short_statement": "Possible root business failures are contained by the exact exported nominal failure row.",
+      "source_anchor": "failure-containment"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-root-export/negative/effect-upper-underdeclared",
+        "computation-root-export/negative/effect-qualifier-map-change",
+        "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/root-export-contract-proof.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0166",
+      "short_statement": "Root effects and K action possibilities fit the exported epsilon ceiling after exact coordinate mapping.",
+      "source_anchor": "effect-containment"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-root-export/negative/flow-map-missing",
+        "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/root-export-contract-proof.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0167",
+      "short_statement": "Root information flow does not relax the exported flow restrictions; unknown influence is retained.",
+      "source_anchor": "information-flow-non-relaxation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-root-export/negative/recovery-usage-underdeclared",
+        "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/root-export-contract-proof.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0168",
+      "short_statement": "Root forward and recovery usage remain within separate exact exported phase, meter, unit, and bound coordinates.",
+      "source_anchor": "usage-containment"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-root-export/negative/recovery-map-missing",
+        "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/root-export-contract-proof.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0169",
+      "short_statement": "Root recovery sources, actions, profiles, and safety declarations are compared without invented enum ordering.",
+      "source_anchor": "recovery-compatibility"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-root-export/positive/exact-input-output",
+        "computation-root-export/negative/execution-security",
+        "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/root-export-contract-proof.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0170",
+      "short_statement": "Every child execution source meets exported feasibility and security constraints independently.",
+      "source_anchor": "execution-compatibility"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-root-export/subflow/body-evidence-absent",
+        "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/root-export-contract-proof.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0171",
+      "short_statement": "Subflow target pins do not prove implementation or body conformance.",
+      "source_anchor": "subflow-body-separation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-root-export/positive/exact-empty-static-envelope",
+        "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/root-export-contract-proof.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0172",
+      "short_statement": "Static compatibility does not establish authority, budget reservation, or runtime authorization.",
+      "source_anchor": "static-runtime-boundary"
+    },
+    {
       "area": "SPEC",
       "conformance_refs": [
         "spec-registry/duplicate-specification-id"

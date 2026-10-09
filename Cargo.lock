@@ -18,7 +18,9 @@ dependencies = [
  "af-resource",
  "af-semantic",
  "af-usage",
+ "hex",
  "serde_json",
+ "sha2",
 ]
 
 [[package]]

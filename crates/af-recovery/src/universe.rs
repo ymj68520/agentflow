@@ -4,7 +4,7 @@ use crate::error::{RecoveryError, kind};
 use af_effect::EffectCatalogUniverse;
 use std::collections::BTreeSet;
 
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct RecoveryOperationUniverse {
     pub effects: EffectCatalogUniverse,
     reconciliation_operations: BTreeSet<(String, String)>,

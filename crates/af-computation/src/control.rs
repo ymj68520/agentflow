@@ -1021,7 +1021,7 @@ impl<T> ControlDimension<T> {
     }
 }
 
-impl DerivedControlContractSummary<'_, '_> {
+impl<'context, 'universe> DerivedControlContractSummary<'context, 'universe> {
     #[must_use]
     pub fn source_semantic_ir_digest(&self) -> &DigestRefValue {
         &self.source_semantic_ir_digest
@@ -1039,11 +1039,11 @@ impl DerivedControlContractSummary<'_, '_> {
         &self.direct_children
     }
     #[must_use]
-    pub fn children(&self) -> &[DerivedControlContractSummary<'_, '_>] {
+    pub fn children(&self) -> &[DerivedControlContractSummary<'context, 'universe>] {
         &self.children
     }
     #[must_use]
-    pub fn leaf_summary(&self) -> Option<&ResolvedComputationLeaf<'_, '_>> {
+    pub fn leaf_summary(&self) -> Option<&ResolvedComputationLeaf<'context, 'universe>> {
         self.leaf_summary.as_ref()
     }
     #[must_use]
@@ -1115,7 +1115,7 @@ impl DerivedControlContractSummary<'_, '_> {
         &self.proof
     }
     #[must_use]
-    pub fn proof_context_reference(&self) -> &ProofContextReference<'_, '_> {
+    pub fn proof_context_reference(&self) -> &ProofContextReference<'context, 'universe> {
         &self.proof_context
     }
 }

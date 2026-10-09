@@ -44,7 +44,7 @@ pub fn check_label(catalog: &str, name: &str) -> Result<(), FlowError> {
 /// (confidentiality restrictions and taints), each a set of
 /// `(catalog, name)` identities. Membership is exact — case-sensitive,
 /// NFC-normalized; unknown labels are rejected, never created.
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct InformationLabelUniverse {
     confidentiality: BTreeSet<(String, String)>,
     taints: BTreeSet<(String, String)>,
@@ -132,7 +132,7 @@ impl InformationLabelUniverse {
 /// external-effect sinks may reference. Resolution is exact; an
 /// unresolvable sink is `unknown_flow_sink`, fail-closed. This proves
 /// sink DECLARATION consistency only — never a grant.
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct EffectSinkUniverse {
     operations: BTreeSet<(String, String)>,
     /// Operations explicitly classified as decision-capable by the
@@ -187,7 +187,7 @@ impl EffectSinkUniverse {
 
 /// The combined explicit-catalog parameter of every pure analysis entry
 /// point: labels + effect sinks. All inputs, no ambient state.
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct FlowCatalogs {
     /// The label vocabulary.
     pub labels: InformationLabelUniverse,

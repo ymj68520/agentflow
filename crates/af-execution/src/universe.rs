@@ -6,7 +6,7 @@ use crate::model::{
 use std::collections::{BTreeMap, BTreeSet};
 use unicode_normalization::UnicodeNormalization;
 
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct ExecutionCapabilityUniverse {
     pub capabilities: BTreeMap<ExecutionCapabilityRef, CapabilityDescriptor>,
 }
@@ -89,7 +89,7 @@ impl ExecutionCapabilityUniverse {
     }
 }
 
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct TrustDomainUniverse {
     domains: BTreeSet<TrustDomainRef>,
 }
@@ -107,7 +107,7 @@ impl TrustDomainUniverse {
     }
 }
 
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct RegionUniverse {
     regions: BTreeSet<RegionRef>,
     compatibility: BTreeSet<(RegionRef, RegionRef)>,
@@ -149,7 +149,7 @@ pub struct RuntimeProfileDescriptor {
     pub family: String,
     pub features: BTreeSet<String>,
 }
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct RuntimeProfileUniverse {
     profiles: BTreeMap<RuntimeProfileRef, RuntimeProfileDescriptor>,
 }
@@ -196,7 +196,7 @@ impl RuntimeProfileUniverse {
     }
 }
 
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct ExecutionUniverses {
     pub capabilities: ExecutionCapabilityUniverse,
     pub trust_domains: TrustDomainUniverse,

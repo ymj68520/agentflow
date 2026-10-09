@@ -111,7 +111,7 @@ impl CapabilityCatalog {
 /// The explicit universe of catalogs an effect signature is validated
 /// against. Insertion is idempotent for identical catalogs and a collision
 /// error for a different catalog under the same identity.
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct EffectCatalogUniverse {
     catalogs: BTreeMap<String, CapabilityCatalog>,
 }
@@ -157,6 +157,11 @@ impl EffectCatalogUniverse {
     /// The registered catalog identities, in canonical order.
     pub fn catalog_ids(&self) -> impl Iterator<Item = &str> {
         self.catalogs.keys().map(String::as_str)
+    }
+
+    /// Every complete catalog, in exact identity order.
+    pub fn catalogs(&self) -> impl Iterator<Item = &CapabilityCatalog> {
+        self.catalogs.values()
     }
 
     /// Number of registered catalogs.

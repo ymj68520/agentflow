@@ -111,6 +111,38 @@ impl StaticComputationResolutionSnapshot<'_, '_, '_> {
     pub fn is_same_context(&self, context: &StaticContractProofContext<'_>) -> bool {
         std::ptr::eq(self.proof_context, context)
     }
+
+    /// Exact checked component pins retained by this immutable resolver.
+    #[must_use]
+    pub fn component_contract_pins(&self) -> Vec<DigestRefValue> {
+        let mut pins = self.components.keys().cloned().collect::<Vec<_>>();
+        pins.sort_by(|left, right| digest_key(left).cmp(&digest_key(right)));
+        pins
+    }
+
+    /// Exact target SemanticIrDigest pins retained by this immutable resolver.
+    #[must_use]
+    pub fn subflow_target_pins(&self) -> Vec<DigestRefValue> {
+        self.subflows.digests().into_iter().cloned().collect()
+    }
+
+    /// Exact exported ComponentContractDigest associated with one target, if any.
+    #[must_use]
+    pub fn subflow_export_pin(&self, target: &DigestRefValue) -> Option<&DigestRefValue> {
+        self.exports.get(target).map(|entry| &entry.digest)
+    }
+
+    /// Exact direct dependencies recorded for one validated target.
+    #[must_use]
+    pub fn subflow_dependencies(&self, target: &DigestRefValue) -> Option<&[DigestRefValue]> {
+        self.subflows
+            .target(target)
+            .map(af_ir::SubflowTarget::dependencies)
+    }
+}
+
+fn digest_key(value: &DigestRefValue) -> (&str, &str, &str) {
+    (&value.algorithm, &value.domain, &value.hex)
 }
 
 impl<'a, 'context, 'universe> StaticComputationResolutionSnapshotBuilder<'a, 'context, 'universe> {
