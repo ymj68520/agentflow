@@ -1,8 +1,10 @@
-//! Static, bottom-up composition for the Phase 4B.2B.1 control operators.
+//! Static, bottom-up composition for the Phase 4B.2B.1/2 control operators.
 //!
 //! The derived values here are analysis summaries, never a ComponentContract
-//! or a durable identity. Operators outside Sequence/Select/Parallel/Race are
-//! kept explicit as unsupported; they are not treated as empty.
+//! or a durable identity. Sequence/Select/Parallel/Race and
+//! Iterate/Retry/Timeout/Handle have static propagation rules. Operators
+//! outside that set remain explicit as unsupported; they are not treated as
+//! empty.
 
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -15,20 +17,22 @@ use af_failure::FailureRow;
 use af_flow::{InformationFlowContract, SourceCategory, StaticInformationSummary};
 use af_ir::{
     AwaitBody, CallSubflowBody, CheckedIrDocument, ComputationBody, ComputationDef, ComputationId,
-    InvokeBody, ParallelMode, ProducerLocation, SemanticDataflowAnalysis, SemanticIrDocument,
+    HandleMatch, InvokeBody, IterateBody, ParallelMode, ProducerLocation, SemanticDataflowAnalysis,
+    SemanticIrDocument,
 };
 use af_recovery::RecoveryContract;
 use af_resource::ResourceRequirement;
 use af_semantic::{
     DigestRefValue, ExpressionBody, ExpressionId, PrimitiveConstant, ResourceSlotId,
-    SemanticTypeId, ValueSlotId,
+    SemanticTypeId, TypeSchemaRef, ValueSlotId,
 };
 use af_usage::StaticUsageEnvelope;
 
 use crate::proof::LeafVerdict;
 use crate::summary::{
-    FlowPortMapping, LeafKind, ProofContextReference, ResolvedComputationLeaf, ResolvedTarget,
-    ScopedEffectOccurrence, ScopedEffectResidual, ScopedPortBinding, ScopedResourcePortMapping,
+    EffectOccurrenceFamily, EffectOccurrenceFamilyKind, FlowPortMapping, LeafKind,
+    ProofContextReference, ResolvedComputationLeaf, ResolvedTarget, ScopedEffectOccurrence,
+    ScopedEffectResidual, ScopedPortBinding, ScopedResourcePortMapping,
 };
 
 const RULE_CONTROL_BOUNDARY: &str = "AF-SEMANTIC-0124";
@@ -50,6 +54,55 @@ const RULE_RESOURCE_PROVENANCE: &str = "AF-SEMANTIC-0139";
 const RULE_EXECUTION_PER_CHILD: &str = "AF-SEMANTIC-0140";
 const RULE_OCCURRENCE_IDENTITY: &str = "AF-SEMANTIC-0141";
 const RULE_PROOF_PROPAGATION: &str = "AF-SEMANTIC-0142";
+const RULE_ITERATION_ENVELOPE: &str = "AF-SEMANTIC-0143";
+const RULE_RETRY_ENVELOPE: &str = "AF-SEMANTIC-0144";
+const RULE_TIMEOUT_OUTCOMES: &str = "AF-SEMANTIC-0145";
+const RULE_HANDLE_RESIDUAL: &str = "AF-SEMANTIC-0146";
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum IterateMode {
+    Foreach {
+        statically_known_item_count: Option<u64>,
+        max_inflight: Option<u32>,
+    },
+    While {
+        max_iterations: u32,
+    },
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum HandleMatcherSummary {
+    Failure(TypeSchemaRef),
+    TimedOut,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum TimeoutOutcome {
+    ChildCompleted,
+    TimedOut,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct HandleClauseSummary {
+    ordinal: u32,
+    matcher: HandleMatcherSummary,
+    handler: ComputationId,
+}
+
+impl HandleClauseSummary {
+    #[must_use]
+    pub fn ordinal(&self) -> u32 {
+        self.ordinal
+    }
+    #[must_use]
+    pub fn matcher(&self) -> &HandleMatcherSummary {
+        &self.matcher
+    }
+    #[must_use]
+    pub fn handler(&self) -> ComputationId {
+        self.handler
+    }
+}
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ControlDerivationError {
@@ -60,6 +113,7 @@ pub enum ControlDerivationError {
     CallerDigestMismatch(ComputationId),
     SemanticDigest(String),
     Dataflow(String),
+    ArithmeticOverflow(&'static str),
 }
 
 impl std::fmt::Display for ControlDerivationError {
@@ -83,6 +137,9 @@ impl std::fmt::Display for ControlDerivationError {
                 write!(f, "cannot compute caller SemanticIrDigest: {detail}")
             }
             Self::Dataflow(detail) => write!(f, "Phase 3C dataflow analysis failed: {detail}"),
+            Self::ArithmeticOverflow(dimension) => {
+                write!(f, "static {dimension} cardinality overflows u64")
+            }
         }
     }
 }
@@ -101,6 +158,24 @@ pub enum ControlOperator {
         max_inflight: Option<u32>,
     },
     RaceFirstTerminal,
+    Iterate {
+        mode: IterateMode,
+        effect_repetitions: OccurrenceBounds,
+        usage_repetitions: Option<u64>,
+    },
+    Retry {
+        delays: Vec<af_core::Duration>,
+        max_attempts: u64,
+    },
+    Timeout {
+        expression: ExpressionId,
+        static_duration: Option<af_core::Duration>,
+        possible_outcomes: [TimeoutOutcome; 2],
+    },
+    Handle {
+        handled: FailureRow,
+        clauses: Vec<HandleClauseSummary>,
+    },
     Unsupported {
         opcode: String,
     },
@@ -117,6 +192,10 @@ impl ControlOperator {
             Self::Select => "select",
             Self::Parallel { .. } => "parallel",
             Self::RaceFirstTerminal => "race",
+            Self::Iterate { .. } => "iterate",
+            Self::Retry { .. } => "retry",
+            Self::Timeout { .. } => "timeout",
+            Self::Handle { .. } => "handle",
             Self::Unsupported { .. } => "unsupported",
         }
     }
@@ -458,6 +537,7 @@ pub struct ControlFlowSummary {
     sources: Vec<ControlFlowContractSource>,
     sequence_dependencies: Vec<SequenceDataflowDependency>,
     select_decision_dependencies: Vec<ValueSlotId>,
+    control_decision_dependencies: Vec<ValueSlotId>,
     control_decision_influence_unknown: bool,
     unknown_external_children: Vec<ComputationId>,
 }
@@ -482,6 +562,10 @@ impl ControlFlowSummary {
     #[must_use]
     pub fn select_decision_dependencies(&self) -> &[ValueSlotId] {
         &self.select_decision_dependencies
+    }
+    #[must_use]
+    pub fn control_decision_dependencies(&self) -> &[ValueSlotId] {
+        &self.control_decision_dependencies
     }
     #[must_use]
     pub fn control_decision_influence_unknown(&self) -> bool {
@@ -904,6 +988,113 @@ fn derive_node<'context, 'universe>(
             body.branches.iter().map(|branch| branch.child).collect(),
             None,
         ),
+        ComputationBody::Iterate(IterateBody::Foreach(body)) => {
+            let known_count = document
+                .expressions
+                .iter()
+                .find(|expression| expression.id == body.source)
+                .and_then(|expression| match &expression.body {
+                    ExpressionBody::ListConstruct { elements, .. } => {
+                        u64::try_from(elements.len()).ok()
+                    }
+                    _ => None,
+                });
+            let upper = known_count.map_or(
+                af_effect::OccurrenceCeiling::Unbounded,
+                af_effect::OccurrenceCeiling::Finite,
+            );
+            (
+                ControlOperator::Iterate {
+                    mode: IterateMode::Foreach {
+                        statically_known_item_count: known_count,
+                        max_inflight: body.max_inflight,
+                    },
+                    effect_repetitions: OccurrenceBounds { lower: 0, upper },
+                    usage_repetitions: known_count,
+                },
+                vec![body.body],
+                None,
+            )
+        }
+        ComputationBody::Iterate(IterateBody::While(body)) => (
+            ControlOperator::Iterate {
+                mode: IterateMode::While {
+                    max_iterations: body.max_iterations,
+                },
+                effect_repetitions: OccurrenceBounds {
+                    lower: 0,
+                    upper: af_effect::OccurrenceCeiling::Finite(u64::from(body.max_iterations)),
+                },
+                usage_repetitions: Some(u64::from(body.max_iterations)),
+            },
+            vec![body.body],
+            None,
+        ),
+        ComputationBody::Retry(body) => {
+            let retry_count = u64::try_from(body.delays.len())
+                .map_err(|_| ControlDerivationError::ArithmeticOverflow("retry"))?;
+            let max_attempts = retry_count
+                .checked_add(1)
+                .ok_or(ControlDerivationError::ArithmeticOverflow("retry"))?;
+            (
+                ControlOperator::Retry {
+                    delays: body.delays.clone(),
+                    max_attempts,
+                },
+                vec![body.child],
+                None,
+            )
+        }
+        ComputationBody::Timeout(body) => {
+            let duration = document
+                .expressions
+                .iter()
+                .find(|expression| expression.id == body.timeout)
+                .and_then(|expression| match &expression.body {
+                    ExpressionBody::Constant(PrimitiveConstant::Duration(value)) => Some(*value),
+                    _ => None,
+                });
+            (
+                ControlOperator::Timeout {
+                    expression: body.timeout,
+                    static_duration: duration,
+                    possible_outcomes: [TimeoutOutcome::ChildCompleted, TimeoutOutcome::TimedOut],
+                },
+                vec![body.child],
+                None,
+            )
+        }
+        ComputationBody::Handle(body) => {
+            let clauses = body
+                .clauses
+                .iter()
+                .map(|clause| HandleClauseSummary {
+                    ordinal: clause.ordinal.raw(),
+                    matcher: match &clause.matcher {
+                        HandleMatch::Failure(failure) => {
+                            HandleMatcherSummary::Failure(failure.failure_type.clone())
+                        }
+                        HandleMatch::TimedOut(()) => HandleMatcherSummary::TimedOut,
+                    },
+                    handler: clause.handler,
+                })
+                .collect::<Vec<_>>();
+            let handled = FailureRow {
+                failures: body
+                    .clauses
+                    .iter()
+                    .filter_map(|clause| match &clause.matcher {
+                        HandleMatch::Failure(failure) => Some(af_failure::FailureTypeRef {
+                            payload_type: failure.failure_type.clone(),
+                        }),
+                        HandleMatch::TimedOut(()) => None,
+                    })
+                    .collect(),
+            };
+            let mut children = vec![body.child];
+            children.extend(body.clauses.iter().map(|clause| clause.handler));
+            (ControlOperator::Handle { handled, clauses }, children, None)
+        }
         _ => (
             ControlOperator::Unsupported {
                 opcode: computation.body.case_name().to_owned(),
@@ -936,6 +1127,21 @@ fn derive_node<'context, 'universe>(
     let own_proofs = base_proofs(node_id, digest);
     let mut proofs = own_proofs;
     proofs.extend(output_proofs);
+    if let ControlOperator::Timeout {
+        possible_outcomes, ..
+    } = &operator
+    {
+        proofs.push(ControlDimensionProof::new(
+            "timeout-control-outcomes",
+            LeafVerdict::Proven,
+            RULE_TIMEOUT_OUTCOMES,
+            node_id,
+            Some(format!("computation:{}", node_id.raw())),
+            format!(
+                "the child-completed and timed-out outcomes are represented separately from the typed Failure row; no successful cancellation or zero-effect conclusion is inferred ({possible_outcomes:?})"
+            ),
+        ));
+    }
     if let ControlOperator::Unsupported { opcode } = &operator {
         proofs.push(ControlDimensionProof::new(
             "unsupported-control", LeafVerdict::Unproven, RULE_UNSUPPORTED_CONTROL, node_id,
@@ -982,6 +1188,7 @@ fn derive_node<'context, 'universe>(
         &children,
         &sequence_dependencies,
         select_body.map(|body| body.selector),
+        &control_decision_expressions(&computation.body),
         document,
         dataflow,
     );
@@ -989,8 +1196,13 @@ fn derive_node<'context, 'universe>(
     let (resources, resource_aliases, resource_proofs) =
         derive_resource_dimension(node_id, &children);
     proofs.extend(resource_proofs);
-    let (recovery, recovery_proofs) =
-        derive_recovery_dimension(node_id, &operator, &children, &effect_result.occurrences);
+    let (recovery, recovery_proofs) = derive_recovery_dimension(
+        node_id,
+        &operator,
+        &children,
+        &effect_result.occurrences,
+        context,
+    );
     proofs.extend(recovery_proofs);
     let (execution, execution_proofs) = derive_execution_dimension(node_id, &children);
     proofs.extend(execution_proofs);
@@ -1661,6 +1873,7 @@ fn leaf_flow_summary(leaf: &ResolvedComputationLeaf<'_, '_>) -> Option<ControlFl
         sources,
         sequence_dependencies: vec![],
         select_decision_dependencies: vec![],
+        control_decision_dependencies: vec![],
         control_decision_influence_unknown: false,
         unknown_external_children: if dimensions
             .information_flow
@@ -1855,6 +2068,114 @@ fn derive_control_interface(
                             proof,
                             LeafVerdict::Unproven,
                             "a RACE contestant output proof is unavailable",
+                        );
+                    }
+                }
+            }
+        }
+        (ComputationBody::Iterate(body), ControlOperator::Iterate { .. }) => {
+            let (body_node, carry) = match body {
+                IterateBody::Foreach(body) => (body.body, &body.carry),
+                IterateBody::While(body) => (body.body, &body.carry),
+            };
+            if let Some(child) = children
+                .iter()
+                .find(|child| child.control_node == body_node)
+            {
+                for parent in &computation.outputs {
+                    let Some(binding) = carry
+                        .iter()
+                        .find(|binding| binding.body_output_port.raw() == parent.port_no.raw())
+                    else {
+                        proof = downgrade(
+                            proof,
+                            LeafVerdict::Unproven,
+                            "no exact carry/body-output binding matches this Iterate output port",
+                        );
+                        continue;
+                    };
+                    if let Some(child_port) =
+                        interface_output(child, binding.body_output_port.raw())
+                    {
+                        output_sources
+                            .entry(parent.port_no.raw())
+                            .or_default()
+                            .push(ControlOutputSource {
+                                node: child.control_node,
+                                port_no: child_port.parent_port_no,
+                                value_slot: child_port.parent_value_slot,
+                            });
+                    } else {
+                        proof = downgrade(
+                            proof,
+                            LeafVerdict::Unproven,
+                            "the carry's loop-body output interface is unavailable",
+                        );
+                    }
+                }
+            } else {
+                proof = downgrade(
+                    proof,
+                    LeafVerdict::Unproven,
+                    "the owned loop body summary is unavailable",
+                );
+            }
+        }
+        (ComputationBody::Retry(_), ControlOperator::Retry { .. })
+        | (ComputationBody::Timeout(_), ControlOperator::Timeout { .. }) => {
+            let Some(child) = children.first() else {
+                proof = downgrade(
+                    proof,
+                    LeafVerdict::Unproven,
+                    "the wrapper's owned child summary is unavailable",
+                );
+                return (
+                    ControlInterfaceSummary {
+                        outputs: ControlDimensionValue::Unknown {
+                            known_contributions: vec![],
+                            unresolved_sources: vec![computation.id],
+                        },
+                        selector: None,
+                    },
+                    vec![proof],
+                );
+            };
+            for parent in &computation.outputs {
+                if let Some(child_port) = interface_output(child, parent.port_no.raw()) {
+                    output_sources
+                        .entry(parent.port_no.raw())
+                        .or_default()
+                        .push(ControlOutputSource {
+                            node: child.control_node,
+                            port_no: child_port.parent_port_no,
+                            value_slot: child_port.parent_value_slot,
+                        });
+                } else {
+                    proof = downgrade(
+                        proof,
+                        LeafVerdict::Unproven,
+                        "the wrapper child output evidence is unavailable",
+                    );
+                }
+            }
+        }
+        (ComputationBody::Handle(_), ControlOperator::Handle { .. }) => {
+            for child in children {
+                for parent in &computation.outputs {
+                    if let Some(child_port) = interface_output(child, parent.port_no.raw()) {
+                        output_sources
+                            .entry(parent.port_no.raw())
+                            .or_default()
+                            .push(ControlOutputSource {
+                                node: child.control_node,
+                                port_no: child_port.parent_port_no,
+                                value_slot: child_port.parent_value_slot,
+                            });
+                    } else {
+                        proof = downgrade(
+                            proof,
+                            LeafVerdict::Unproven,
+                            "a protected or handler output proof is unavailable",
                         );
                     }
                 }
@@ -2087,7 +2408,13 @@ fn derive_effect_dimension(
     let mut available = Vec::<(usize, ComputationId, EffectSignature)>::new();
     let mut unresolved = Vec::new();
     for (index, child) in children.iter().enumerate() {
-        occurrences.extend(child.effect_occurrences.iter().cloned());
+        let mut child_occurrences = child.effect_occurrences.clone();
+        if let Some(family) = effect_occurrence_family(node, operator) {
+            for occurrence in &mut child_occurrences {
+                occurrence.control_families.push(family.clone());
+            }
+        }
+        occurrences.extend(child_occurrences);
         residuals.extend(child.effect_residuals.iter().cloned());
         match &child.effects.value {
             ControlDimensionValue::Complete(signature) => {
@@ -2253,6 +2580,24 @@ fn derive_effect_dimension(
             "all contestant upper bounds remain in the conservative accumulation; cancellation is not evidence of no Effect",
         ));
     }
+    if let ControlOperator::Retry { .. } = operator {
+        let needs_narrowing_evidence = match &value {
+            ControlDimensionValue::Complete(signature) => signature_has_possible_effects(signature),
+            _ => true,
+        };
+        proofs.push(ControlDimensionProof::new(
+            "retry-logical-effect-narrowing",
+            if needs_narrowing_evidence {
+                LeafVerdict::RequiresEvidence
+            } else {
+                LeafVerdict::Proven
+            },
+            RULE_RETRY_ENVELOPE,
+            node,
+            Some(format!("computation:{}", node.raw())),
+            "the logical Effect upper envelope is conservatively scaled by the maximum physical attempts; declared idempotency alone does not narrow it, and replay/recovery evidence is required for a smaller logical bound",
+        ));
+    }
     let _ = reason;
     EffectDimensionResult {
         dimension: ControlDimension {
@@ -2266,13 +2611,60 @@ fn derive_effect_dimension(
     }
 }
 
+fn signature_has_possible_effects(signature: &EffectSignature) -> bool {
+    match &signature.row {
+        EffectRow::Closed(entries) => entries.iter().any(|entry| !entry.bounds.upper.is_zero()),
+        EffectRow::Open(open) => {
+            open.known.iter().any(|entry| !entry.bounds.upper.is_zero())
+                || open
+                    .residual
+                    .iter()
+                    .any(|entry| !entry.bounds.upper.is_zero())
+        }
+        EffectRow::Unknown => true,
+    }
+}
+
 fn effect_rule(operator: &ControlOperator) -> &'static str {
     match operator {
         ControlOperator::Sequence => RULE_SEQUENCE_EFFECT,
         ControlOperator::Select => RULE_SELECT_EFFECT,
         ControlOperator::Parallel { .. } => RULE_PARALLEL_EFFECT_USAGE,
         ControlOperator::RaceFirstTerminal => RULE_RACE_EFFECT_USAGE,
+        ControlOperator::Iterate { .. } => RULE_ITERATION_ENVELOPE,
+        ControlOperator::Retry { .. } => RULE_RETRY_ENVELOPE,
+        ControlOperator::Timeout { .. } => RULE_TIMEOUT_OUTCOMES,
+        ControlOperator::Handle { .. } => RULE_HANDLE_RESIDUAL,
         _ => RULE_UNSUPPORTED_CONTROL,
+    }
+}
+
+fn effect_occurrence_family(
+    node: ComputationId,
+    operator: &ControlOperator,
+) -> Option<EffectOccurrenceFamily> {
+    match operator {
+        ControlOperator::Iterate {
+            effect_repetitions, ..
+        } => Some(EffectOccurrenceFamily {
+            control_node: node,
+            kind: EffectOccurrenceFamilyKind::Iterate,
+            logical_repetitions: effect_repetitions.clone(),
+            physical_attempts: None,
+        }),
+        ControlOperator::Retry { max_attempts, .. } => {
+            let attempts = OccurrenceBounds {
+                lower: 1,
+                upper: af_effect::OccurrenceCeiling::Finite(*max_attempts),
+            };
+            Some(EffectOccurrenceFamily {
+                control_node: node,
+                kind: EffectOccurrenceFamilyKind::Retry,
+                logical_repetitions: attempts.clone(),
+                physical_attempts: Some(attempts),
+            })
+        }
+        _ => None,
     }
 }
 
@@ -2285,6 +2677,49 @@ fn combine_effect_signatures(
         return Ok(None);
     }
     match operator {
+        ControlOperator::Iterate {
+            effect_repetitions, ..
+        } => signatures
+            .first()
+            .map(|(_, _, signature)| {
+                af_effect::control::iterate_envelope(effect_repetitions, signature)
+            })
+            .transpose(),
+        ControlOperator::Retry { max_attempts, .. } => signatures
+            .first()
+            .map(|(_, _, signature)| {
+                af_effect::control::retry_envelope(signature, *max_attempts)
+                    .map(|envelope| envelope.logical)
+            })
+            .transpose(),
+        ControlOperator::Timeout { .. } => Ok(signatures
+            .first()
+            .map(|(_, _, signature)| signature.clone())),
+        ControlOperator::Handle { .. } => {
+            let Some(protected) = signatures.iter().find(|(index, _, _)| *index == 0) else {
+                return Ok(None);
+            };
+            let mut handlers = signatures
+                .iter()
+                .filter(|(index, _, _)| *index > 0)
+                .map(|(_, _, signature)| signature.clone())
+                .collect::<Vec<_>>();
+            handlers.push(EffectSignature {
+                row: EffectRow::Closed(Vec::new()),
+            });
+            let mut iter = handlers.into_iter();
+            let Some(first) = iter.next() else {
+                return Ok(Some(protected.2.clone()));
+            };
+            let mut handler_join = first;
+            for next in iter {
+                handler_join = af_effect::control::select_envelope(&handler_join, &next)?;
+            }
+            Ok(Some(af_effect::control::sequence_envelope(
+                &protected.2,
+                &handler_join,
+            )?))
+        }
         ControlOperator::Sequence => {
             let mut ordered = signatures.to_vec();
             ordered.sort_by_key(|(index, _, _)| *index);
@@ -2429,11 +2864,9 @@ fn derive_failure_dimension(
     }
     unresolved.sort_unstable();
     unresolved.dedup();
-    let known_rows = rows
-        .iter()
-        .map(|(_, _, row)| row.clone())
-        .collect::<Vec<_>>();
-    let composed = compose_failure_rows(operator, &known_rows);
+    let composed = compose_failure_rows(operator, &rows);
+    let composition_failed = composed.is_err();
+    let known_composed = composed.ok().flatten();
     let (value, verdict, reason) = if matches!(operator, ControlOperator::Unsupported { .. }) {
         (
             ControlDimensionValue::Unknown {
@@ -2449,13 +2882,28 @@ fn derive_failure_dimension(
             LeafVerdict::Unproven,
             "the operator has no supported Failure propagation rule; known child rows remain available below",
         )
+    } else if composition_failed {
+        (
+            ControlDimensionValue::Unknown {
+                known_contributions: rows
+                    .iter()
+                    .map(|(_, source_node, value)| DimensionContribution {
+                        source_node: *source_node,
+                        value: value.clone(),
+                    })
+                    .collect(),
+                unresolved_sources: vec![node],
+            },
+            LeafVerdict::Violation,
+            "HANDLE names an exact Failure type absent from the protected child's closed Failure row; the invalid removal is not applied",
+        )
     } else if unresolved.is_empty() && rows.len() == children.len() {
         (
-            ControlDimensionValue::Complete(composed.unwrap_or_else(FailureRow::empty)),
+            ControlDimensionValue::Complete(known_composed.unwrap_or_else(FailureRow::empty)),
             LeafVerdict::Proven,
             "the existing Failure control algebra conservatively unions all child rows that may contribute; an empty row does not guarantee success",
         )
-    } else if let Some(known) = composed {
+    } else if let Some(known) = known_composed {
         (
             ControlDimensionValue::Partial {
                 known_contribution: Some(known),
@@ -2483,7 +2931,7 @@ fn derive_failure_dimension(
     let proof = ControlDimensionProof::new(
         "failure-row",
         verdict,
-        RULE_FAILURE_PLANE,
+        failure_rule(operator),
         node,
         Some(format!("computation:{}", node.raw())),
         reason,
@@ -2494,13 +2942,45 @@ fn derive_failure_dimension(
     }
 }
 
-fn compose_failure_rows(operator: &ControlOperator, rows: &[FailureRow]) -> Option<FailureRow> {
+fn compose_failure_rows(
+    operator: &ControlOperator,
+    indexed_rows: &[(usize, ComputationId, FailureRow)],
+) -> Result<Option<FailureRow>, af_failure::FailureError> {
+    let rows = indexed_rows
+        .iter()
+        .map(|(_, _, row)| row.clone())
+        .collect::<Vec<_>>();
     match operator {
-        ControlOperator::Sequence => Some(af_failure::control::sequence_row(rows)),
-        ControlOperator::Select => Some(af_failure::control::select_row(rows)),
-        ControlOperator::Parallel { .. } => Some(af_failure::control::parallel_row(rows)),
-        ControlOperator::RaceFirstTerminal => Some(af_failure::control::race_row(rows)),
-        _ => None,
+        ControlOperator::Sequence => Ok(Some(af_failure::control::sequence_row(&rows))),
+        ControlOperator::Select => Ok(Some(af_failure::control::select_row(&rows))),
+        ControlOperator::Parallel { .. } => Ok(Some(af_failure::control::parallel_row(&rows))),
+        ControlOperator::RaceFirstTerminal => Ok(Some(af_failure::control::race_row(&rows))),
+        ControlOperator::Iterate { .. } => Ok(rows.first().map(af_failure::control::iterate_row)),
+        ControlOperator::Retry { .. } => Ok(rows.first().map(af_failure::control::retry_row)),
+        ControlOperator::Timeout { .. } => Ok(rows.first().map(af_failure::control::timeout_row)),
+        ControlOperator::Handle { handled, .. } => {
+            let Some((_, _, protected)) = indexed_rows.iter().find(|(index, _, _)| *index == 0)
+            else {
+                return Ok(None);
+            };
+            let handlers = indexed_rows
+                .iter()
+                .filter(|(index, _, _)| *index > 0)
+                .map(|(_, _, row)| row.clone())
+                .collect::<Vec<_>>();
+            af_failure::control::handle_row(protected, handled, &handlers).map(Some)
+        }
+        _ => Ok(None),
+    }
+}
+
+fn failure_rule(operator: &ControlOperator) -> &'static str {
+    match operator {
+        ControlOperator::Iterate { .. } => RULE_ITERATION_ENVELOPE,
+        ControlOperator::Retry { .. } => RULE_RETRY_ENVELOPE,
+        ControlOperator::Timeout { .. } => RULE_TIMEOUT_OUTCOMES,
+        ControlOperator::Handle { .. } => RULE_HANDLE_RESIDUAL,
+        _ => RULE_FAILURE_PLANE,
     }
 }
 
@@ -2603,7 +3083,7 @@ fn derive_usage_dimension(
     let proof = ControlDimensionProof::new(
         "usage",
         verdict,
-        RULE_USAGE_PROPAGATION,
+        usage_rule(operator),
         node,
         Some(format!("computation:{}", node.raw())),
         reason,
@@ -2632,6 +3112,45 @@ fn compose_usage(
         .map(|(_, _, value)| value.clone())
         .collect::<Vec<_>>();
     match operator {
+        ControlOperator::Iterate {
+            usage_repetitions, ..
+        } => {
+            let Some((_, _, body)) = ordered.first() else {
+                return Ok(None);
+            };
+            af_usage::control::iterate_envelope(*usage_repetitions, body).map(Some)
+        }
+        ControlOperator::Retry { max_attempts, .. } => {
+            let Some((_, _, body)) = ordered.first() else {
+                return Ok(None);
+            };
+            af_usage::control::retry_envelope(body, *max_attempts)
+                .map(|envelope| Some(envelope.logical))
+        }
+        ControlOperator::Timeout { .. } => Ok(ordered
+            .first()
+            .map(|(_, _, body)| af_usage::control::timeout_envelope(body))),
+        ControlOperator::Handle { .. } => {
+            let Some((_, _, protected)) = ordered.iter().find(|(index, _, _)| *index == 0) else {
+                return Ok(None);
+            };
+            let mut handlers = ordered
+                .iter()
+                .filter(|(index, _, _)| *index > 0)
+                .map(|(_, _, envelope)| envelope.clone())
+                .collect::<Vec<_>>();
+            let handler_coordinates = handlers
+                .iter()
+                .flat_map(StaticUsageEnvelope::coordinates)
+                .collect::<BTreeSet<_>>();
+            let mut no_handler = StaticUsageEnvelope::empty();
+            for coordinate in handler_coordinates {
+                no_handler.insert(coordinate, af_usage::StaticUsageBound::KnownFinite(0))?;
+            }
+            handlers.push(no_handler);
+            let handler_join = af_usage::control::select_envelope(&handlers)?;
+            af_usage::control::sequence_envelope(protected, &handler_join).map(Some)
+        }
         ControlOperator::Sequence => {
             let Some((_, _, first)) = ordered.first() else {
                 return Ok(None);
@@ -2648,6 +3167,16 @@ fn compose_usage(
         }
         ControlOperator::RaceFirstTerminal => Ok(Some(af_usage::control::race_envelope(&values)?)),
         _ => Ok(None),
+    }
+}
+
+fn usage_rule(operator: &ControlOperator) -> &'static str {
+    match operator {
+        ControlOperator::Iterate { .. } => RULE_ITERATION_ENVELOPE,
+        ControlOperator::Retry { .. } => RULE_RETRY_ENVELOPE,
+        ControlOperator::Timeout { .. } => RULE_TIMEOUT_OUTCOMES,
+        ControlOperator::Handle { .. } => RULE_HANDLE_RESIDUAL,
+        _ => RULE_USAGE_PROPAGATION,
     }
 }
 
@@ -2770,10 +3299,10 @@ fn expression_uses(body: &ComputationBody) -> Vec<ExpressionId> {
         }
         ComputationBody::Await(AwaitBody { correlation, .. }) => vec![*correlation],
         ComputationBody::Select(body) => vec![body.selector],
-        ComputationBody::Iterate(af_ir::IterateBody::Foreach(body)) => std::iter::once(body.source)
+        ComputationBody::Iterate(IterateBody::Foreach(body)) => std::iter::once(body.source)
             .chain(body.carry.iter().map(|carry| carry.initial))
             .collect(),
-        ComputationBody::Iterate(af_ir::IterateBody::While(body)) => std::iter::once(body.guard)
+        ComputationBody::Iterate(IterateBody::While(body)) => std::iter::once(body.guard)
             .chain(body.carry.iter().map(|carry| carry.initial))
             .collect(),
         ComputationBody::Timeout(body) => vec![body.timeout],
@@ -2781,12 +3310,23 @@ fn expression_uses(body: &ComputationBody) -> Vec<ExpressionId> {
     }
 }
 
+fn control_decision_expressions(body: &ComputationBody) -> Vec<ExpressionId> {
+    match body {
+        ComputationBody::Iterate(IterateBody::Foreach(body)) => vec![body.source],
+        ComputationBody::Iterate(IterateBody::While(body)) => vec![body.guard],
+        ComputationBody::Timeout(body) => vec![body.timeout],
+        _ => vec![],
+    }
+}
+
+#[allow(clippy::too_many_arguments)]
 fn derive_flow_dimension(
     node: ComputationId,
     operator: &ControlOperator,
     children: &[DerivedControlContractSummary<'_, '_>],
     sequence_dependencies: &[SequenceDataflowDependency],
     select_selector: Option<ExpressionId>,
+    control_decision_expressions: &[ExpressionId],
     document: &SemanticIrDocument,
     dataflow: &SemanticDataflowAnalysis,
 ) -> ControlDimension<ControlFlowSummary> {
@@ -2804,6 +3344,13 @@ fn derive_flow_dimension(
                 ..
             }
         );
+    control_decision_unknown |= matches!(
+        operator,
+        ControlOperator::Iterate { .. }
+            | ControlOperator::Retry { .. }
+            | ControlOperator::Timeout { .. }
+            | ControlOperator::Handle { .. }
+    );
     let mut child_has_unknown = matches!(operator, ControlOperator::Unsupported { .. });
     if matches!(operator, ControlOperator::Unsupported { .. }) {
         unresolved.push(node);
@@ -2924,6 +3471,35 @@ fn derive_flow_dimension(
     } else {
         vec![]
     };
+    let mut control_decision_dependencies = control_decision_expressions
+        .iter()
+        .filter_map(|expression| {
+            dataflow
+                .expression_value_dependencies()
+                .get(&expression.raw())
+        })
+        .flatten()
+        .copied()
+        .map(ValueSlotId::from_raw)
+        .collect::<Vec<_>>();
+    control_decision_dependencies.extend(
+        children
+            .iter()
+            .filter_map(|child| match &child.information_flow.value {
+                ControlDimensionValue::Complete(flow)
+                | ControlDimensionValue::Partial {
+                    known_contribution: Some(flow),
+                    ..
+                } => Some(flow.control_decision_dependencies.iter().copied()),
+                _ => None,
+            })
+            .flatten(),
+    );
+    control_decision_dependencies.sort_unstable();
+    control_decision_dependencies.dedup();
+    control_decision_dependencies.extend(select_decision_dependencies.iter().copied());
+    control_decision_dependencies.sort_unstable();
+    control_decision_dependencies.dedup();
     selector_edges.extend(select_decision_dependencies.iter().copied());
     selector_edges.sort_unstable();
     selector_edges.dedup();
@@ -2948,6 +3524,7 @@ fn derive_flow_dimension(
         sources,
         sequence_dependencies: child_sequence_edges,
         select_decision_dependencies: selector_edges,
+        control_decision_dependencies,
         control_decision_influence_unknown: control_decision_unknown,
         unknown_external_children,
     };
@@ -2968,14 +3545,14 @@ fn derive_flow_dimension(
     } else if sequence_flow_unknown {
         "Phase 3C producer-to-use edges are retained and child may-influence facts are unioned, but this model has no per-value taint transfer proof"
     } else if control_decision_unknown {
-        "PARALLEL fail-fast cancellation/terminal cause or RACE first-terminal winner may influence outcomes; all child F summaries remain and no winner/primary cause is selected"
+        "iteration guards/items, retry failure decisions, timeout completion, handler matches, fail-fast cancellation or race winner may influence outcomes; value dependencies and all child may-influence facts remain, with no physical outcome selected"
     } else {
         "child may-influence summaries are conservatively merged; per-child Flow constraints and EffectFlowPartitions remain source-scoped"
     };
     let proof = ControlDimensionProof::new(
         "information-flow",
         verdict,
-        RULE_FLOW_PROPAGATION,
+        flow_rule(operator),
         node,
         Some(format!("computation:{}", node.raw())),
         reason,
@@ -3081,6 +3658,16 @@ fn derive_resource_dimension(
     (dimension, aliases, vec![proof])
 }
 
+fn flow_rule(operator: &ControlOperator) -> &'static str {
+    match operator {
+        ControlOperator::Iterate { .. } => RULE_ITERATION_ENVELOPE,
+        ControlOperator::Retry { .. } => RULE_RETRY_ENVELOPE,
+        ControlOperator::Timeout { .. } => RULE_TIMEOUT_OUTCOMES,
+        ControlOperator::Handle { .. } => RULE_HANDLE_RESIDUAL,
+        _ => RULE_FLOW_PROPAGATION,
+    }
+}
+
 fn group_resource_aliases(occurrences: &[ResourcePortOccurrence]) -> Vec<ControlResourceAlias> {
     let mut by_slot = BTreeMap::<ResourceSlotId, Vec<ResourcePortOccurrence>>::new();
     for occurrence in occurrences {
@@ -3105,6 +3692,7 @@ fn derive_recovery_dimension(
     operator: &ControlOperator,
     children: &[DerivedControlContractSummary<'_, '_>],
     occurrences: &[ScopedEffectOccurrence],
+    context: &StaticContractProofContext<'_>,
 ) -> (
     ControlDimension<Vec<RecoverySourceSummary>>,
     Vec<ControlDimensionProof>,
@@ -3173,14 +3761,103 @@ fn derive_recovery_dimension(
             "recovery declarations and bindings for every possible Effect occurrence are retained per source child; RACE losers are not removed and compensation never subtracts forward effects"
         },
     );
+    let mut dimension_proofs = vec![proof.clone()];
+    let mut all_proofs = vec![proof.clone()];
+    let retry_effect_possible = children.iter().any(|child| match &child.effects.value {
+        ControlDimensionValue::Complete(signature)
+        | ControlDimensionValue::Partial {
+            known_contribution: Some(signature),
+            ..
+        } => signature_has_possible_effects(signature),
+        ControlDimensionValue::Unknown { .. }
+        | ControlDimensionValue::Partial { .. }
+        | ControlDimensionValue::PerChild { .. }
+        | ControlDimensionValue::NotApplicable => true,
+    });
+    if retry_effect_possible
+        && matches!(operator, ControlOperator::Retry { max_attempts, .. } if *max_attempts > 1)
+    {
+        let retry_verdict = retry_recovery_safety(&contributions, context);
+        let retry_proof = ControlDimensionProof::new(
+            "retry-recovery-safety",
+            retry_verdict,
+            RULE_RETRY_ENVELOPE,
+            node,
+            Some(format!("computation:{}", node.raw())),
+            match retry_verdict {
+                LeafVerdict::Proven => {
+                    "the child's exact K declaration is statically compatible with retry, but it does not narrow the conservative logical Effect envelope or create runtime evidence"
+                }
+                LeafVerdict::RequiresEvidence => {
+                    "the child's exact K declaration requires provider/application evidence across attempts; no runtime evidence or retry permit is created"
+                }
+                LeafVerdict::Unproven => {
+                    "the child's exact K declaration is retained, but missing or unknown recovery coverage prevents a static retry-safety proof"
+                }
+                LeafVerdict::Violation => {
+                    "the child's K declaration conflicts with retry or is statically unsafe; the violation is retained and no retry permit is created"
+                }
+            },
+        );
+        dimension_proofs.push(retry_proof.clone());
+        all_proofs.push(retry_proof);
+    }
     let dimension = ControlDimension {
         value: ControlDimensionValue::PerChild {
             contributions,
             unresolved_sources: unresolved,
         },
-        proofs: vec![proof.clone()],
+        proofs: dimension_proofs,
     };
-    (dimension, vec![proof])
+    (dimension, all_proofs)
+}
+
+fn retry_recovery_safety(
+    contributions: &[DimensionContribution<Vec<RecoverySourceSummary>>],
+    context: &StaticContractProofContext<'_>,
+) -> LeafVerdict {
+    let mut found_source = false;
+    let mut verdict = LeafVerdict::Proven;
+    for source in contributions
+        .iter()
+        .flat_map(|contribution| contribution.value.iter())
+    {
+        found_source = true;
+        if source.contract.replay_semantics == af_recovery::ReplaySemantics::Forbidden {
+            return LeafVerdict::Violation;
+        }
+        let effect = EffectSignature {
+            row: EffectRow::Closed(
+                source
+                    .effects
+                    .iter()
+                    .map(|occurrence| occurrence.declared.clone())
+                    .collect(),
+            ),
+        };
+        let evidence = BTreeMap::new();
+        let result = af_recovery::analyze_recovery_safety(
+            &source.contract,
+            &effect,
+            context.recovery,
+            &evidence,
+        );
+        let source_verdict = match result {
+            Ok(af_recovery::RecoveryProof::ProvenStaticConstraint) => LeafVerdict::Proven,
+            Ok(af_recovery::RecoveryProof::RequiresEvidence(_)) => LeafVerdict::RequiresEvidence,
+            Ok(af_recovery::RecoveryProof::Unproven(_)) => LeafVerdict::Unproven,
+            Ok(af_recovery::RecoveryProof::Violation(_)) | Err(_) => LeafVerdict::Violation,
+        };
+        verdict = merge_verdict(verdict, source_verdict);
+        if verdict == LeafVerdict::Violation {
+            return verdict;
+        }
+    }
+    if found_source {
+        verdict
+    } else {
+        LeafVerdict::Unproven
+    }
 }
 
 fn derive_execution_dimension(

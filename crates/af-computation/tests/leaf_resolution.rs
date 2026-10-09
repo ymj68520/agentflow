@@ -24,8 +24,8 @@ use af_ir::{
     AwaitBody, CallSubflowBody, ComputationBody, ComputationDef, ComputationId, ContractRefEntry,
     ContractRefId, ContractRefKind, InputBinding, InvokeBody, ParallelBody, ParallelBranch,
     ParallelMode, ParallelOutputBinding, RaceBody, RaceBranch, ResourceUseBinding,
-    RunParameterDecl, SelectBody, SelectCase, SemanticIrDocument, SequenceBody, SubflowIrUniverse,
-    TimeoutBody,
+    RunParameterDecl, ScopeBody, SelectBody, SelectCase, SemanticIrDocument, SequenceBody,
+    SubflowIrUniverse, TimeoutBody,
 };
 use af_recovery::{
     CompensationRequirement, EffectRecoveryClause, IdempotencySemantics, ReconciliationRequirement,
@@ -1595,7 +1595,7 @@ fn child_requires_evidence_propagates_without_erasing_a_known_parent_effect_enve
 }
 
 #[test]
-fn unsupported_control_remains_unknown_instead_of_becoming_an_empty_child() {
+fn advanced_timeout_is_known_and_scope_stays_unsupported() {
     let fixture = Context::new();
     let context = fixture.view();
     let checked = check_contract(&empty_contract(), &context).unwrap();
@@ -1654,17 +1654,50 @@ fn unsupported_control_remains_unknown_instead_of_becoming_an_empty_child() {
         derive_control_contract(&ir, ComputationId::from_raw(1), &[leaf], &context).unwrap();
     assert_eq!(
         summary.operator(),
-        &af_computation::ControlOperator::Unsupported {
-            opcode: "timeout".into()
+        &af_computation::ControlOperator::Timeout {
+            expression: 1.into(),
+            static_duration: Some(af_core::Duration::new(10)),
+            possible_outcomes: [
+                af_computation::TimeoutOutcome::ChildCompleted,
+                af_computation::TimeoutOutcome::TimedOut,
+            ],
         }
     );
     assert_eq!(summary.proof().overall(), LeafVerdict::Unproven);
     assert!(
-        matches!(summary.effects().value(), ControlDimensionValue::Unknown { unresolved_sources, .. } if unresolved_sources.contains(&ComputationId::from_raw(1)))
+        matches!(summary.effects().value(), ControlDimensionValue::Complete(EffectSignature { row: EffectRow::Closed(entries) }) if entries.is_empty())
     );
     assert!(
         matches!(summary.children()[0].effects().value(), ControlDimensionValue::Complete(EffectSignature { row: EffectRow::Closed(entries) }) if entries.is_empty())
     );
+
+    let mut scope_source = source;
+    scope_source.computations[0].body = ComputationBody::Scope(ScopeBody {
+        child: 2.into(),
+        resources: vec![],
+    });
+    let scope_ir = scope_source.check(&fixture.schemas).unwrap();
+    let scope_leaf =
+        resolve_computation_leaf(&scope_ir, ComputationId::from_raw(2), &snapshot).unwrap();
+    let scope_summary = derive_control_contract(
+        &scope_ir,
+        ComputationId::from_raw(1),
+        &[scope_leaf],
+        &context,
+    )
+    .unwrap();
+    assert_eq!(
+        scope_summary.operator(),
+        &af_computation::ControlOperator::Unsupported {
+            opcode: "scope".into()
+        }
+    );
+    assert_eq!(scope_summary.proof().overall(), LeafVerdict::Unproven);
+    assert!(matches!(
+        scope_summary.effects().value(),
+        ControlDimensionValue::Unknown { unresolved_sources, .. }
+            if unresolved_sources.contains(&ComputationId::from_raw(1))
+    ));
 }
 
 #[test]

@@ -975,6 +975,7 @@ fn scoped_effects(
             source_entry_ordinal: index,
             declared: entry.clone(),
             mapped_resource_slot: mapped,
+            control_families: Vec::new(),
         });
     };
     match &signature.row {

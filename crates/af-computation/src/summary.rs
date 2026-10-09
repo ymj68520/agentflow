@@ -4,7 +4,7 @@ use af_contract::{
     ComponentIdentity, EffectFlowPartition, RecoveryActionBinding, RecoveryUsageBinding,
     RelationCatalogPin, StaticContractProofContext,
 };
-use af_effect::{EffectEntry, EffectResidual, EffectSignature};
+use af_effect::{EffectEntry, EffectResidual, EffectSignature, OccurrenceBounds};
 use af_execution::ExecutionRequirements;
 use af_failure::FailureRow;
 use af_flow::{FlowConstraint, FlowSourceRef, InformationFlowContract};
@@ -78,6 +78,27 @@ pub struct ScopedEffectOccurrence {
     /// This is an explicit coordinate translation only. The declared atom
     /// and its full qualifier identity remain unchanged.
     pub mapped_resource_slot: Option<ResourceSlotId>,
+    /// Static cardinality scopes introduced by enclosing ITERATE/RETRY nodes.
+    /// These are analysis provenance only; they are not invocation or attempt
+    /// identifiers and never alter the declared leaf occurrence identity.
+    pub control_families: Vec<EffectOccurrenceFamily>,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum EffectOccurrenceFamilyKind {
+    Iterate,
+    Retry,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct EffectOccurrenceFamily {
+    pub control_node: ComputationId,
+    pub kind: EffectOccurrenceFamilyKind,
+    /// Conservative logical multiplicity applied by this control node.
+    pub logical_repetitions: OccurrenceBounds,
+    /// Physical attempts are distinct from the logical effect envelope and
+    /// are present only for RETRY.
+    pub physical_attempts: Option<OccurrenceBounds>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
