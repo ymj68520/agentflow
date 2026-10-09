@@ -112,6 +112,35 @@ An action binding without the corresponding required recovery clause is an
 extra action and is rejected; required reconciliation and compensation
 actions are matched separately by full identity.
 
+<a id="component-contract-recovery-action-guard"></a>
+
+For every exact `RecoveryActionIdentity`, the Forward `EffectGuard` defines
+the static input possibility that can trigger its reconciliation or
+compensation K action. The `EffectGuard` on the exact action `epsilon`
+`EffectEntry` is the public ceiling for that action possibility. The checker
+MUST prove the Forward guard is contained by the declared action Effect guard
+using the frozen `af-effect::guard_contained` relation. It MUST NOT reverse
+the relation or treat a failed containment result by itself as a counterexample.
+
+When frozen containment does not prove the relation, a `Violation` requires a
+validator-created typed countermodel: the exact source `ComponentContract`,
+full K identity and EffectEntry ordinals, a real input port, its exact
+`TypeSchemaRef`, a primitive value assignment in that schema's domain, and an
+evaluation where K is possible and the declared action Effect is false. A
+missing port or a constant whose type does not match the exact schema is a
+`Violation`; missing type/domain evidence or a failed attempt to construct a
+valid countermodel is `Unproven`. Arbitrary caller assertions of reachability
+or incompatibility are not evidence. The current primitive schema language
+has no refinement predicate; only its well-typed primitive input domain may
+be used for a component-local assignment.
+
+A checked zero K-action upper makes the guard-coverage obligation vacuous;
+it does not prove a receipt or runtime eligibility. Any positive static
+action possibility remains conditional: actual compensation or
+reconciliation eligibility requires `EffectReceipt`, applied/unknown state,
+and any required recovery evidence. Guard compatibility MUST NOT create a
+receipt, recovery permit, command, or dispatch authority.
+
 <a id="component-contract-recovery-usage"></a>
 
 Each action has exactly one usage binding and an exhaustive rule in the
@@ -128,6 +157,26 @@ this contract.
 
 Forward occurrence, activation, attempt, and per-meter upper bounds use
 checked multiplication and addition before comparison with `U.recovery`.
+
+If a full Forward `EffectAtom` is also the exact K action `EffectAtom`, its
+single epsilon entry is an aggregate ceiling for two independent occurrence
+opportunities: the Forward and every same-atom K action. With a complete
+exact binding/profile set and no unrelated Forward source contributing to
+that same atom, the greatest Forward seed compatible with ceiling `C` is
+`floor(C / (1 + sum(activation_upper * attempt_upper)))`. Each K action then
+uses that seed times its own checked activation and attempt multipliers. A
+seed below the entry's declared lower bound is a `Violation`; an unbounded or
+overflowing multiplier fails closed. If another Forward identity contributes
+to the shared action atom and the contribution cannot be isolated, the proof
+is `Unproven`, not a guessed finite bound. The later computation-root proof
+retains the Forward and K occurrences separately and compares their required
+total with the already-derived epsilon ceiling exactly once.
+
+<a id="component-contract-recovery-static-boundary"></a>
+
+The K/epsilon guard relation and K/Usage ceiling are static consistency
+proofs. They do not establish an applied effect, successful reconciliation,
+safe runtime recovery, or workflow/export conformance.
 
 <a id="component-contract-cross-dimension"></a>
 

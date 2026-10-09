@@ -167,6 +167,7 @@ fn invalid_contract_report(
     ProofReport {
         dimensions,
         relation_catalogs: context.relations.pins(),
+        action_guard_compatibility: vec![],
     }
 }
 
@@ -250,7 +251,18 @@ fn prove_canonical_contract(
         &mut dimensions,
     );
     check_effect_flow(contract, &mut dimensions);
-    check_recovery_effects(contract, &mut dimensions);
+    let action_guard_compatibility = check_recovery_effects(contract, context, &mut dimensions);
+    for relation in &action_guard_compatibility {
+        if relation.verdict() != ProofVerdict::Proven {
+            set_dimension(
+                &mut dimensions,
+                "recovery",
+                relation.verdict(),
+                "AF-CONTRACT-0022",
+                relation.reason(),
+            );
+        }
+    }
     check_recovery_usage(contract, context, &mut dimensions);
     check_flow_execution(
         contract,
@@ -304,6 +316,7 @@ fn prove_canonical_contract(
     ProofReport {
         dimensions,
         relation_catalogs: context.relations.pins(),
+        action_guard_compatibility,
     }
 }
 
@@ -718,7 +731,11 @@ fn check_effect_flow(contract: &ComponentContract, dimensions: &mut [DimensionPr
     }
 }
 
-fn check_recovery_effects(contract: &ComponentContract, dimensions: &mut [DimensionProof]) {
+fn check_recovery_effects(
+    contract: &ComponentContract,
+    context: &StaticContractProofContext<'_>,
+    dimensions: &mut [DimensionProof],
+) -> Vec<crate::recovery_guard::ActionGuardCompatibility> {
     let clauses = &contract.recovery.effect_recovery_clauses;
     let bindings = &contract.recovery_action_bindings;
     let (declared, closed) = declared_effects(&contract.effects);
@@ -779,7 +796,13 @@ fn check_recovery_effects(contract: &ComponentContract, dimensions: &mut [Dimens
                 "recovery action effect is not in the declared closed effect set",
             );
         }
-        graph.entry(forward).or_default().push(action);
+        // A same-atom Forward/Action relation is one atom with two distinct
+        // occurrence opportunities, not a dependency edge back into the
+        // recovery graph. Its count is checked against the shared epsilon
+        // ceiling by the computation recovery fold.
+        if forward != action {
+            graph.entry(forward).or_default().push(action);
+        }
         if !clauses
             .iter()
             .any(|clause| AtomKey::of(&clause.effect) == AtomKey::of(&identity.forward_effect))
@@ -899,6 +922,7 @@ fn check_recovery_effects(contract: &ComponentContract, dimensions: &mut [Dimens
             "open/unknown epsilon cannot prove exact recovery action coverage",
         );
     }
+    crate::recovery_guard::analyze_action_guard_compatibility(contract, context)
 }
 
 fn graph_has_cycle(graph: &BTreeMap<AtomKey, Vec<AtomKey>>) -> bool {
@@ -1090,8 +1114,8 @@ fn check_recovery_usage(
                 "per_attempt_usage may contain recovery phase only",
             );
         }
-        let forward_upper = find_effect_upper(&contract.effects, &action.forward_effect);
-        let Some(forward_upper) = forward_upper else {
+        let declared_forward_bounds = find_effect_bounds(&contract.effects, &action.forward_effect);
+        let Some(declared_forward_bounds) = declared_forward_bounds else {
             set_dimension(
                 dimensions,
                 "usage",
@@ -1100,6 +1124,30 @@ fn check_recovery_usage(
                 "forward effect bound is not explicitly known",
             );
             continue;
+        };
+        let forward_upper = match recovery_forward_upper(contract, action, &declared_forward_bounds)
+        {
+            Ok(Some(upper)) => upper,
+            Ok(None) => {
+                set_dimension(
+                    dimensions,
+                    "usage",
+                    ProofVerdict::Unproven,
+                    "AF-CONTRACT-0016",
+                    "same-atom Recovery action contribution cannot be isolated from the exact epsilon ceiling",
+                );
+                continue;
+            }
+            Err(()) => {
+                set_dimension(
+                    dimensions,
+                    "usage",
+                    ProofVerdict::Violation,
+                    "AF-CONTRACT-0016",
+                    "same-atom Forward/Action bounds conflict with the shared epsilon ceiling or overflow",
+                );
+                continue;
+            }
         };
         for limit in &binding.per_attempt_usage.limits {
             if context.usage_meters.resolve(&limit.meter).is_err() {
@@ -1172,22 +1220,80 @@ fn check_recovery_usage(
     }
 }
 
-fn find_effect_upper(
+fn find_effect_bounds(
     signature: &EffectSignature,
     wanted: &EffectAtom,
-) -> Option<OccurrenceCeiling> {
+) -> Option<af_effect::OccurrenceBounds> {
     match &signature.row {
         EffectRow::Closed(entries) => entries
             .iter()
             .find(|entry| AtomKey::of(&entry.atom) == AtomKey::of(wanted))
-            .map(|entry| entry.bounds.upper),
+            .map(|entry| entry.bounds.clone()),
         EffectRow::Open(open) => open
             .known
             .iter()
             .find(|entry| AtomKey::of(&entry.atom) == AtomKey::of(wanted))
-            .map(|entry| entry.bounds.upper),
+            .map(|entry| entry.bounds.clone()),
         EffectRow::Unknown => None,
     }
+}
+
+/// When Forward and K Action use the same full atom, the single epsilon entry
+/// is a ceiling for both occurrence opportunities. Recover the greatest
+/// finite Forward seed compatible with that shared ceiling and every exact
+/// same-atom K multiplier; do not reinterpret the combined ceiling as the
+/// Forward count itself.
+pub(crate) fn recovery_forward_upper(
+    contract: &ComponentContract,
+    action: &RecoveryActionIdentity,
+    declared_bounds: &af_effect::OccurrenceBounds,
+) -> Result<Option<OccurrenceCeiling>, ()> {
+    let atom = AtomKey::of(&action.forward_effect);
+    if atom != AtomKey::of(&action.action_effect) {
+        return Ok(Some(declared_bounds.upper));
+    }
+    let mut multiplier = OccurrenceCeiling::Finite(0);
+    for binding in &contract.recovery_action_bindings {
+        let identity = &binding.identity;
+        if AtomKey::of(&identity.action_effect) != atom {
+            continue;
+        }
+        if AtomKey::of(&identity.forward_effect) != atom {
+            // Another source K action consumes the same shared epsilon
+            // ceiling but is based on a different Forward atom. Its exact
+            // contribution cannot be subtracted from this local equation.
+            return Ok(None);
+        }
+        let Some(usage) = contract
+            .recovery_usage_bindings
+            .iter()
+            .find(|candidate| candidate.action == *identity)
+        else {
+            return Ok(None);
+        };
+        let action_multiplier = usage
+            .activations_per_forward
+            .upper
+            .checked_mul(usage.attempts_per_activation.upper)
+            .map_err(|_| ())?;
+        multiplier = multiplier.checked_add(action_multiplier).map_err(|_| ())?;
+    }
+    let divisor = OccurrenceCeiling::Finite(1)
+        .checked_add(multiplier)
+        .map_err(|_| ())?;
+    let forward_upper = match (declared_bounds.upper, divisor) {
+        (OccurrenceCeiling::Unbounded, _) => OccurrenceCeiling::Unbounded,
+        (OccurrenceCeiling::Finite(_), OccurrenceCeiling::Unbounded) => {
+            OccurrenceCeiling::Finite(0)
+        }
+        (OccurrenceCeiling::Finite(ceiling), OccurrenceCeiling::Finite(divisor)) => {
+            OccurrenceCeiling::Finite(ceiling / divisor)
+        }
+    };
+    if matches!(forward_upper, OccurrenceCeiling::Finite(upper) if upper < declared_bounds.lower) {
+        return Err(());
+    }
+    Ok(Some(forward_upper))
 }
 
 fn multiply_usage(

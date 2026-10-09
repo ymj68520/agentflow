@@ -14,6 +14,7 @@ pub mod model;
 pub mod ports;
 pub mod proof;
 pub mod recovery_effect;
+pub mod recovery_guard;
 pub mod recovery_usage;
 pub mod universe;
 pub mod validate;
@@ -30,6 +31,10 @@ pub use model::{
 pub use proof::CheckedComponentContract;
 pub use proof::{
     CatalogContentChecksum, DimensionProof, ProofReport, ProofVerdict, RelationCatalogPin,
+};
+pub use recovery_guard::{
+    ActionGuardCompatibility, GuardCompatibilityBasis, GuardCountermodelReachability,
+    GuardInputAssignment, TypedGuardCountermodel, analyze_action_guard_compatibility,
 };
 pub use universe::{
     AuthorityExecutionRule, ConfidentialityExecutionRule, EffectQualifierProfile,

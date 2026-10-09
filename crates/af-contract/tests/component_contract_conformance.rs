@@ -4,20 +4,23 @@ use af_contract::{
     RecoveryActionKind, RecoveryUsageBinding, RecoveryUsageCoverageCatalog,
     RecoveryUsageCoverageRule, RegionPair, RegionPairPolicy, RelationCatalogSnapshot,
     RelationSnapshots, SandboxFloor, ScopeValueRule, SelectorKeyRule, StaticContractProofContext,
-    SupportedEffectResourcePair, TaintExecutionRule, TrustDomainPolicy, check_contract,
-    component_contract_digest,
+    SupportedEffectResourcePair, TaintExecutionRule, TrustDomainPolicy, analyze_contract,
+    check_contract, component_contract_digest,
 };
 use af_effect::{
     CapabilityCatalog, EffectAtom, EffectCatalogUniverse, EffectEntry, EffectGuard,
-    EffectIdempotencyQualifier, EffectOperationRef, EffectQualifier, EffectRow, EffectSignature,
-    OccurrenceBounds, ResourceSelector, ScopeBinding,
+    EffectGuardInputEquals, EffectIdempotencyQualifier, EffectOperationRef, EffectQualifier,
+    EffectRow, EffectSignature, OccurrenceBounds, ResourceSelector, ScopeBinding,
 };
 use af_execution::ExecutionUniverses;
 use af_failure::FailureRow;
 use af_flow::{
     FlowCatalogs, InformationFlowContract, InstructionAuthority, StaticInformationSummary,
 };
-use af_idl::{CompiledModuleSet, compile_module_set};
+use af_idl::{
+    CanonicalBody, CanonicalTypeExpr, CanonicalTypeSchema, CompiledModuleSet, Primitive,
+    compile_module_set,
+};
 use af_recovery::{
     CompensationRequirement, EffectRecoveryClause, IdempotencySemantics, ReconciliationRequirement,
     RecoveryContract, RecoveryOperationUniverse, ReplaySemantics, UnknownEffectHandling,
@@ -26,7 +29,7 @@ use af_resource::{
     ResourceAttributeConstraint, ResourceRequirement, ResourceRequirementRow,
     ResourceTypeDescriptor, ResourceTypeRef, ResourceTypeUniverse,
 };
-use af_semantic::{DigestRefValue, TypeSchemaRef, TypeSchemaUniverse};
+use af_semantic::{DigestRefValue, PrimitiveConstant, TypeSchemaRef, TypeSchemaUniverse};
 use af_usage::{
     UsageLimit, UsageMeterRef, UsageMeterUniverse, UsagePhase, UsageSignature, UsageUnitRef,
     UsageUpperBound,
@@ -349,6 +352,180 @@ fn empty_contract(influence_unknown: bool) -> ComponentContract {
         recovery_action_bindings: vec![],
         recovery_usage_bindings: vec![],
     }
+}
+
+fn guard_input_type(
+    fixture: &mut FixtureContext,
+    name: &str,
+    primitive: Primitive,
+) -> TypeSchemaRef {
+    let schema = CanonicalTypeSchema {
+        schema: "agentflow.test.guard-types@1".into(),
+        name: name.into(),
+        body: CanonicalBody::Alias(CanonicalTypeExpr::Primitive(primitive)),
+    };
+    fixture.schemas.insert_type(&schema).unwrap();
+    fixture
+        .schemas
+        .get(&format!("agentflow.test.guard-types@1/{name}"))
+        .unwrap()
+        .reference()
+}
+
+fn recovery_contract_with_guards(
+    fixture: &mut FixtureContext,
+    forward_guard: EffectGuard,
+    action_guard: EffectGuard,
+    input_types: Vec<(u32, TypeSchemaRef)>,
+) -> ComponentContract {
+    let mut contract = recovery_contract_with_usage(fixture, Some(12));
+    contract.inputs = input_types
+        .into_iter()
+        .map(|(port_no, type_ref)| af_contract::ComponentInputPort { port_no, type_ref })
+        .collect();
+    let EffectRow::Closed(entries) = &mut contract.effects.row else {
+        unreachable!("guard fixture starts from a closed row")
+    };
+    entries[0].guard = forward_guard;
+    entries[1].guard = action_guard;
+    contract
+}
+
+#[test]
+fn recovery_action_guard_compatibility_uses_frozen_direction_and_typed_witnesses() {
+    let guard =
+        |port_no, expected| EffectGuard::InputEquals(EffectGuardInputEquals { port_no, expected });
+
+    let mut unconditional_fixture = FixtureContext::new();
+    let unconditional = recovery_contract_with_guards(
+        &mut unconditional_fixture,
+        EffectGuard::Unconditional,
+        EffectGuard::Unconditional,
+        vec![],
+    );
+    let report = analyze_contract(&unconditional, &unconditional_fixture.view());
+    let relation = report.action_guard_compatibility.first().unwrap();
+    assert_eq!(relation.verdict(), af_contract::ProofVerdict::Proven);
+    assert!(relation.countermodel().is_none());
+    assert!(check_contract(&unconditional, &unconditional_fixture.view()).is_ok());
+
+    let mut wider_fixture = FixtureContext::new();
+    let wider_int64 = guard_input_type(&mut wider_fixture, "GuardInt64", Primitive::Int64);
+    let forward_narrower = recovery_contract_with_guards(
+        &mut wider_fixture,
+        guard(1, PrimitiveConstant::Int64(0)),
+        EffectGuard::Unconditional,
+        vec![(1, wider_int64.clone())],
+    );
+    let report = analyze_contract(&forward_narrower, &wider_fixture.view());
+    let relation = report.action_guard_compatibility.first().unwrap();
+    assert_eq!(relation.verdict(), af_contract::ProofVerdict::Proven);
+    assert!(relation.countermodel().is_none());
+    assert!(check_contract(&forward_narrower, &wider_fixture.view()).is_ok());
+
+    let mut equal_fixture = FixtureContext::new();
+    let equal_int64 = guard_input_type(&mut equal_fixture, "GuardInt64", Primitive::Int64);
+    let equal = recovery_contract_with_guards(
+        &mut equal_fixture,
+        guard(1, PrimitiveConstant::Int64(0)),
+        guard(1, PrimitiveConstant::Int64(0)),
+        vec![(1, equal_int64)],
+    );
+    let report = analyze_contract(&equal, &equal_fixture.view());
+    let relation = report.action_guard_compatibility.first().unwrap();
+    assert_eq!(relation.verdict(), af_contract::ProofVerdict::Proven);
+    assert!(relation.countermodel().is_none());
+    assert!(check_contract(&equal, &equal_fixture.view()).is_ok());
+
+    let mut outside_fixture = FixtureContext::new();
+    let int64 = guard_input_type(&mut outside_fixture, "GuardInt64", Primitive::Int64);
+    let unconditional_outside = recovery_contract_with_guards(
+        &mut outside_fixture,
+        EffectGuard::Unconditional,
+        guard(1, PrimitiveConstant::Int64(0)),
+        vec![(1, int64)],
+    );
+    let report = analyze_contract(&unconditional_outside, &outside_fixture.view());
+    let relation = report.action_guard_compatibility.first().unwrap();
+    assert_eq!(relation.verdict(), af_contract::ProofVerdict::Violation);
+    let witness = relation.countermodel().unwrap();
+    assert_eq!(witness.source_contract(), &unconditional_outside);
+    assert_eq!(
+        witness.reachability(),
+        af_contract::GuardCountermodelReachability::WellTypedComponentInputDomain
+    );
+    assert_eq!(witness.related_rule_id(), "AF-CONTRACT-0022");
+    assert_eq!(witness.assignments().len(), 1);
+    assert_eq!(witness.assignments()[0].port_no(), 1);
+    assert_eq!(witness.assignments()[0].type_ref().type_name, "GuardInt64");
+    assert_eq!(
+        witness.assignments()[0].value(),
+        &PrimitiveConstant::Int64(1)
+    );
+    assert!(check_contract(&unconditional_outside, &outside_fixture.view()).is_err());
+
+    let mut same_port_fixture = FixtureContext::new();
+    let same_port_int64 = guard_input_type(&mut same_port_fixture, "GuardInt64", Primitive::Int64);
+    let conflicting_same_port = recovery_contract_with_guards(
+        &mut same_port_fixture,
+        guard(1, PrimitiveConstant::Int64(0)),
+        guard(1, PrimitiveConstant::Int64(1)),
+        vec![(1, same_port_int64)],
+    );
+    let relation = analyze_contract(&conflicting_same_port, &same_port_fixture.view())
+        .action_guard_compatibility
+        .remove(0);
+    assert_eq!(relation.verdict(), af_contract::ProofVerdict::Violation);
+    assert_eq!(
+        relation.countermodel().unwrap().assignments()[0].value(),
+        &PrimitiveConstant::Int64(0)
+    );
+
+    let mut different_ports_fixture = FixtureContext::new();
+    let different_ports_int64 =
+        guard_input_type(&mut different_ports_fixture, "GuardInt64", Primitive::Int64);
+    let conflicting_ports = recovery_contract_with_guards(
+        &mut different_ports_fixture,
+        guard(1, PrimitiveConstant::Int64(0)),
+        guard(2, PrimitiveConstant::Int64(0)),
+        vec![
+            (1, different_ports_int64.clone()),
+            (2, different_ports_int64),
+        ],
+    );
+    let relation = analyze_contract(&conflicting_ports, &different_ports_fixture.view())
+        .action_guard_compatibility
+        .remove(0);
+    assert_eq!(relation.verdict(), af_contract::ProofVerdict::Violation);
+    let values = relation
+        .countermodel()
+        .unwrap()
+        .assignments()
+        .iter()
+        .map(|assignment| (assignment.port_no(), assignment.value().clone()))
+        .collect::<std::collections::BTreeMap<u32, PrimitiveConstant>>();
+    assert_eq!(values[&1], PrimitiveConstant::Int64(0));
+    assert_eq!(values[&2], PrimitiveConstant::Int64(1));
+}
+
+#[test]
+fn guard_mismatch_without_a_primitive_countermodel_stays_unproven() {
+    let mut fixture = FixtureContext::new();
+    let unit = guard_input_type(&mut fixture, "GuardUnit", Primitive::Unit);
+    let contract = recovery_contract_with_guards(
+        &mut fixture,
+        EffectGuard::Unconditional,
+        EffectGuard::InputEquals(EffectGuardInputEquals {
+            port_no: 1,
+            expected: PrimitiveConstant::Unit,
+        }),
+        vec![(1, unit)],
+    );
+    let report = analyze_contract(&contract, &fixture.view());
+    let relation = report.action_guard_compatibility.first().unwrap();
+    assert_eq!(relation.verdict(), af_contract::ProofVerdict::Unproven);
+    assert!(relation.countermodel().is_none());
+    assert!(check_contract(&contract, &fixture.view()).is_err());
 }
 
 #[test]

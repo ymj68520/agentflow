@@ -99,6 +99,9 @@ pub struct RelationCatalogPin {
 pub struct ProofReport {
     pub dimensions: Vec<DimensionProof>,
     pub relation_catalogs: Vec<RelationCatalogPin>,
+    /// Typed D1 evidence for each RecoveryActionBinding checked against its
+    /// exact Forward and action EffectEntry guards.
+    pub action_guard_compatibility: Vec<crate::recovery_guard::ActionGuardCompatibility>,
 }
 
 impl ProofReport {
