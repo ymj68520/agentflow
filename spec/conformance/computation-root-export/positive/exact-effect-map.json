@@ -1,0 +1,420 @@
+{
+  "case_id": "computation-root-export/positive/exact-effect-map",
+  "group": "positive",
+  "kind": "agentflow.conformance.computation-root-export.test-vector",
+  "note": "Independent static root/export assertion vector; no runtime behavior is simulated.",
+  "input": {
+    "operation": "compose",
+    "operator": "sequence",
+    "include_workflow_closure": true,
+    "children": [
+      {
+        "node": 2,
+        "contract_digest": "component-contract:fixture",
+        "effects": {
+          "row": "closed",
+          "entries": [
+            {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "write"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "lower": 0,
+              "upper": 2,
+              "guard": "unconditional"
+            }
+          ]
+        },
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
+        "usage": {
+          "coordinates": {
+            "forward/api_calls": 0,
+            "recovery/api_calls": 0
+          }
+        },
+        "execution": null,
+        "outputs": [],
+        "resources": [],
+        "input_types": [],
+        "recovery_actions": [],
+        "effect_flow_partitions": [],
+        "proof_source": "checked_component"
+      }
+    ],
+    "root_child_nodes": [
+      2
+    ],
+    "parent_outputs": [],
+    "workflow_outputs": [],
+    "nested_nodes": [],
+    "scope_resources": [],
+    "additional_resources": [],
+    "export_overrides": {}
+  },
+  "design_vectors": [],
+  "expected": {
+    "assertion_identity": {
+      "semantic_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir"
+      },
+      "export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract"
+      },
+      "compiler_semantics_version": "agentflow.root-export-checker@1",
+      "specifications": [
+        {
+          "id": "agentflow.component.contract.semantics@1",
+          "path": "spec/component/component-contract.md",
+          "content_sha256": "7f847a770dd0d92c289a06a6133e55bd239e5247d7eea63e1c9bc98bcf231f22",
+          "content_bytes": 11466
+        },
+        {
+          "id": "agentflow.component.relation-catalogs.semantics@1",
+          "path": "spec/component/relation-catalogs.md",
+          "content_sha256": "742027e8b8c60312a7a6b0a4a39d3469be22cba71b02b5d92e726e4814c0a7db",
+          "content_bytes": 2522
+        },
+        {
+          "id": "agentflow.computation.root-export-contract-proof.semantics@1",
+          "path": "spec/computation/root-export-contract-proof.md",
+          "content_sha256": "b264b384c37f61055ddbaee70d38ed2d66c8dc2ac81d25fd52d0a3271b2294b5",
+          "content_bytes": 8537
+        },
+        {
+          "id": "agentflow.effect.signature.semantics@1",
+          "path": "spec/effect/effect-signature.md",
+          "content_sha256": "667baa267e7f4d310f41bf7e10d5267b488a5d343e8e6f8d957c329adcf19c00",
+          "content_bytes": 20504
+        },
+        {
+          "id": "agentflow.execution.requirements.semantics@1",
+          "path": "spec/execution/execution-requirements.md",
+          "content_sha256": "44717f9e878564e2a7aba4eaef878e65d51db14d8834654285a9bc688d95c911",
+          "content_bytes": 9586
+        },
+        {
+          "id": "agentflow.failure.row.semantics@1",
+          "path": "spec/failure/failure-row.md",
+          "content_sha256": "37b6af04d221c82dba07136b95e98f91375adea35b1267d729b0efd699c30d84",
+          "content_bytes": 11339
+        },
+        {
+          "id": "agentflow.information.flow.semantics@1",
+          "path": "spec/information-flow/information-flow.md",
+          "content_sha256": "5e26d3101b33c41095944a794f46108aa6a226d565f47e8b69f3b7d85ac1ed87",
+          "content_bytes": 19552
+        },
+        {
+          "id": "agentflow.recovery.contract.semantics@1",
+          "path": "spec/recovery/recovery-contract.md",
+          "content_sha256": "738365753c4f404563789782fa71a3e8e5f2a5d967f5f952b3411e89f20287a8",
+          "content_bytes": 5499
+        },
+        {
+          "id": "agentflow.resource.requirement.semantics@1",
+          "path": "spec/resource/resource-requirement.md",
+          "content_sha256": "a4c9334ba134073a53cfbf9f6335f9065855eb880904fbec834e32b3b3e8e50a",
+          "content_bytes": 14021
+        },
+        {
+          "id": "agentflow.semantic.advanced-control-contract-algebra.semantics@1",
+          "path": "spec/computation/advanced-control-contract-algebra.md",
+          "content_sha256": "615eeae850e47cf01f72791eaeba570ac075c65a8abae8439d3130bde5ce7b3b",
+          "content_bytes": 8039
+        },
+        {
+          "id": "agentflow.semantic.control-contract-algebra.semantics@1",
+          "path": "spec/computation/control-contract-algebra.md",
+          "content_sha256": "14c4cb7b8e6311e91fe63fcf091fb496e41681bb64d28c7fbbef0a47a2601bc9",
+          "content_bytes": 10678
+        },
+        {
+          "id": "agentflow.semantic.ir.semantics@1",
+          "path": "spec/semantic/semantic-ir.md",
+          "content_sha256": "8e92214da8df308a81775e1910727f4d9f0985555e0170f757777ca22949a48f",
+          "content_bytes": 39337
+        },
+        {
+          "id": "agentflow.semantic.leaf-contract-resolution.semantics@1",
+          "path": "spec/computation/leaf-contract-resolution.md",
+          "content_sha256": "36c0ba9434cedc68669e1cbd3300c8f6073aa1cf701aa94c8ba974232af5cfa7",
+          "content_bytes": 6499
+        },
+        {
+          "id": "agentflow.semantic.scope-compensation-contract-algebra.semantics@1",
+          "path": "spec/computation/scope-compensation-contract-algebra.md",
+          "content_sha256": "1b4d631fe24cd9ea0c3462dcb875f5d0d2f13f2b4d99ab9135347d58a9a61537",
+          "content_bytes": 19587
+        },
+        {
+          "id": "agentflow.semantic.types@1",
+          "path": "spec/semantic/core-semantic-types.md",
+          "content_sha256": "cf389a50fe8dbc553973f98422dc5603c421bfb75cfeb6db915458b85ea1597b",
+          "content_bytes": 12124
+        },
+        {
+          "id": "agentflow.usage.signature.semantics@1",
+          "path": "spec/usage/usage-signature.md",
+          "content_sha256": "d8fa91b7c50ff78e865357c13286d0f9584709e7337d37043e2dc6d1aa140500",
+          "content_bytes": 8011
+        }
+      ],
+      "rules": [
+        "AF-CONTRACT-0001",
+        "AF-CONTRACT-0002",
+        "AF-CONTRACT-0003",
+        "AF-CONTRACT-0004",
+        "AF-CONTRACT-0005",
+        "AF-CONTRACT-0006",
+        "AF-CONTRACT-0007",
+        "AF-CONTRACT-0008",
+        "AF-CONTRACT-0009",
+        "AF-CONTRACT-0010",
+        "AF-CONTRACT-0011",
+        "AF-CONTRACT-0012",
+        "AF-CONTRACT-0013",
+        "AF-CONTRACT-0014",
+        "AF-CONTRACT-0015",
+        "AF-CONTRACT-0016",
+        "AF-CONTRACT-0017",
+        "AF-CONTRACT-0018",
+        "AF-CONTRACT-0019",
+        "AF-CONTRACT-0020",
+        "AF-CONTRACT-0021",
+        "AF-CONTRACT-0022",
+        "AF-SEMANTIC-0111",
+        "AF-SEMANTIC-0112",
+        "AF-SEMANTIC-0113",
+        "AF-SEMANTIC-0114",
+        "AF-SEMANTIC-0115",
+        "AF-SEMANTIC-0116",
+        "AF-SEMANTIC-0117",
+        "AF-SEMANTIC-0118",
+        "AF-SEMANTIC-0119",
+        "AF-SEMANTIC-0120",
+        "AF-SEMANTIC-0121",
+        "AF-SEMANTIC-0122",
+        "AF-SEMANTIC-0123",
+        "AF-SEMANTIC-0124",
+        "AF-SEMANTIC-0125",
+        "AF-SEMANTIC-0126",
+        "AF-SEMANTIC-0127",
+        "AF-SEMANTIC-0128",
+        "AF-SEMANTIC-0129",
+        "AF-SEMANTIC-0130",
+        "AF-SEMANTIC-0131",
+        "AF-SEMANTIC-0132",
+        "AF-SEMANTIC-0133",
+        "AF-SEMANTIC-0134",
+        "AF-SEMANTIC-0135",
+        "AF-SEMANTIC-0136",
+        "AF-SEMANTIC-0137",
+        "AF-SEMANTIC-0138",
+        "AF-SEMANTIC-0139",
+        "AF-SEMANTIC-0140",
+        "AF-SEMANTIC-0141",
+        "AF-SEMANTIC-0142",
+        "AF-SEMANTIC-0143",
+        "AF-SEMANTIC-0144",
+        "AF-SEMANTIC-0145",
+        "AF-SEMANTIC-0146",
+        "AF-SEMANTIC-0147",
+        "AF-SEMANTIC-0148",
+        "AF-SEMANTIC-0149",
+        "AF-SEMANTIC-0150",
+        "AF-SEMANTIC-0151",
+        "AF-SEMANTIC-0152",
+        "AF-SEMANTIC-0153",
+        "AF-SEMANTIC-0154",
+        "AF-SEMANTIC-0155",
+        "AF-SEMANTIC-0156",
+        "AF-SEMANTIC-0157",
+        "AF-SEMANTIC-0158",
+        "AF-SEMANTIC-0159",
+        "AF-SEMANTIC-0160",
+        "AF-SEMANTIC-0161",
+        "AF-SEMANTIC-0162",
+        "AF-SEMANTIC-0163",
+        "AF-SEMANTIC-0164",
+        "AF-SEMANTIC-0165",
+        "AF-SEMANTIC-0166",
+        "AF-SEMANTIC-0167",
+        "AF-SEMANTIC-0168",
+        "AF-SEMANTIC-0169",
+        "AF-SEMANTIC-0170",
+        "AF-SEMANTIC-0171",
+        "AF-SEMANTIC-0172"
+      ],
+      "mapping_counts": {
+        "inputs": 0,
+        "outputs": 0,
+        "resources": 1,
+        "effects": 1,
+        "flow": 0,
+        "recovery": 0,
+        "execution": 1,
+        "subflows": 0
+      },
+      "manifest": {
+        "module_count": 16,
+        "schema_count": 206,
+        "effect_catalogs": [
+          {
+            "id": "agentflow.effects@1",
+            "operations": [
+              "write"
+            ]
+          }
+        ],
+        "resource_type_count": 1,
+        "flow_label_count": 0,
+        "flow_sink_count": 1,
+        "usage_meter_count": 1,
+        "subflow_target_count": 0
+      }
+    },
+    "preflight": [
+      {
+        "dimension": "assertion-inputs",
+        "verdict": "proven",
+        "rule_id": "AF-SEMANTIC-0159"
+      },
+      {
+        "dimension": "exact-ir-export-pins",
+        "verdict": "proven",
+        "rule_id": "AF-SEMANTIC-0159"
+      },
+      {
+        "dimension": "proof-context",
+        "verdict": "proven",
+        "rule_id": "AF-SEMANTIC-0160"
+      },
+      {
+        "dimension": "compiler-semantics",
+        "verdict": "proven",
+        "rule_id": "AF-SEMANTIC-0161"
+      },
+      {
+        "dimension": "subflow-dependency-pins",
+        "verdict": "proven",
+        "rule_id": "AF-SEMANTIC-0171"
+      }
+    ],
+    "dimensions": [
+      {
+        "dimension": "I",
+        "mapped_coordinate_count": 0,
+        "proof": {
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0162"
+        }
+      },
+      {
+        "dimension": "O",
+        "mapped_coordinate_count": 0,
+        "proof": {
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0163"
+        }
+      },
+      {
+        "dimension": "Phi",
+        "mapped_coordinate_count": 0,
+        "proof": {
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0165"
+        }
+      },
+      {
+        "dimension": "epsilon",
+        "mapped_coordinate_count": 1,
+        "proof": {
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0166"
+        }
+      },
+      {
+        "dimension": "R",
+        "mapped_coordinate_count": 1,
+        "proof": {
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0164"
+        }
+      },
+      {
+        "dimension": "F",
+        "mapped_coordinate_count": 0,
+        "proof": {
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0167"
+        }
+      },
+      {
+        "dimension": "U",
+        "mapped_coordinate_count": 4,
+        "proof": {
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0168"
+        }
+      },
+      {
+        "dimension": "K",
+        "mapped_coordinate_count": 0,
+        "proof": {
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0169"
+        }
+      },
+      {
+        "dimension": "X",
+        "mapped_coordinate_count": 1,
+        "proof": {
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0170"
+        }
+      }
+    ],
+    "execution_children": [
+      {
+        "source_node": 2,
+        "feasibility": "proven",
+        "security": "proven"
+      }
+    ],
+    "static_compatibility": "proven",
+    "checked_static_compatibility_capability_issued": true,
+    "body_conformance": "requires_evidence",
+    "implementation_conformance": "requires_evidence",
+    "scope_authority_attenuation": "unproven",
+    "scope_budget_attenuation": "unproven",
+    "runtime_authority": "not_established",
+    "runtime_authority_evidence": "requires_evidence",
+    "publisher_authentication": "not_established"
+  },
+  "oracle": {
+    "model": "independent-declarative-root-export-v1",
+    "inputs": "case input + frozen typed relation directions",
+    "not_from_production": true
+  }
+}

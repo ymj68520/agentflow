@@ -6,15 +6,15 @@ use std::collections::{BTreeMap, BTreeSet};
 
 use af_computation::{
     ControlDimensionValue, ControlOperator, DerivedControlContractSummary,
-    DerivedWorkflowContractSummary, HandleMatcherSummary, IterateMode, LeafVerdict,
-    StaticComputationResolutionSnapshotBuilder, derive_control_contract,
-    derive_workflow_contract_summary, resolve_computation_leaf,
+    DerivedWorkflowContractSummary, FlowSinkBinding, FlowSourceBinding, HandleMatcherSummary,
+    IterateMode, LeafVerdict, ScopedPortBinding, StaticComputationResolutionSnapshotBuilder,
+    derive_control_contract, derive_workflow_contract_summary, resolve_computation_leaf,
 };
 use af_contract::{
     AuthorityExecutionRule, ComponentContract, ComponentIdentity, ComponentInputPort,
     ComponentOutputPort, EffectQualifierProfile, EffectResourceCompatibilityCatalog,
-    InformationFlowExecutionCatalog, RecoveryActionBinding, RecoveryActionIdentity,
-    RecoveryActionKind, RecoveryUsageBinding, RecoveryUsageCoverageCatalog,
+    FlowExecutionRule, FlowExecutionSink, InformationFlowExecutionCatalog, RecoveryActionBinding,
+    RecoveryActionIdentity, RecoveryActionKind, RecoveryUsageBinding, RecoveryUsageCoverageCatalog,
     RecoveryUsageCoverageRule, RelationCatalogSnapshot, RelationSnapshots, SandboxFloor,
     StaticContractProofContext, SupportedEffectResourcePair, TaintExecutionRule, TrustDomainPolicy,
     analyze_contract, check_contract, component_contract_digest,
@@ -31,8 +31,8 @@ use af_execution::{
 };
 use af_failure::{FailureRow, FailureTypeRef};
 use af_flow::{
-    FlowCatalogs, FlowSourceRef, InformationFlowContract, InstructionAuthority, SourceCategory,
-    StaticInformationSummary, TaintRef,
+    FlowCatalogs, FlowSink, FlowSourceRef, InformationFlowContract, InstructionAuthority,
+    SourceCategory, StaticInformationSummary, TaintRef,
 };
 use af_idl::{
     CanonicalBody, CanonicalTypeExpr, CanonicalTypeSchema, CompiledModuleSet, Primitive,
@@ -53,12 +53,12 @@ use af_recovery::{
     UnknownEffectHandling,
 };
 use af_resource::{
-    ResourceRequirement, ResourceRequirementRow, ResourceTypeDescriptor, ResourceTypeRef,
-    ResourceTypeUniverse,
+    ResourceAttributeConstraint, ResourceRequirement, ResourceRequirementRow,
+    ResourceTypeDescriptor, ResourceTypeRef, ResourceTypeUniverse,
 };
 use af_semantic::{
     DigestRefValue, ExpressionBody, ExpressionDef, PrimitiveConstant, ResourceSlotId,
-    SemanticPrimitiveType, SemanticTypeNode, SemanticTypeNodeBody, TypeSchemaRef,
+    SemanticPrimitiveType, SemanticTypeNode, SemanticTypeNodeBody, StructuralType, TypeSchemaRef,
     TypeSchemaUniverse, ValueSlotId,
 };
 use af_usage::{
@@ -161,6 +161,15 @@ impl FixtureContext {
                 }
             }
         }
+        for input_type in case["input"]["export_overrides"]["input_types"]
+            .as_array()
+            .into_iter()
+            .flatten()
+        {
+            if let Some(primitive) = input_type["primitive"].as_str() {
+                guard_primitives.insert(primitive.to_owned());
+            }
+        }
         for name in guard_primitives {
             let primitive = Primitive::from_keyword(&name)
                 .unwrap_or_else(|| panic!("unsupported fixture guard primitive {name}"));
@@ -177,12 +186,29 @@ impl FixtureContext {
             .get("agentflow.semantic.core@1/TypeSchemaRef")
             .unwrap()
             .reference();
+        let mut recognized_attributes = BTreeSet::new();
+        for resource in children
+            .iter()
+            .flat_map(|child| child["resources"].as_array().into_iter().flatten())
+            .chain(
+                case["input"]["export_overrides"]["resources"]
+                    .as_array()
+                    .into_iter()
+                    .flatten(),
+            )
+        {
+            for attribute in resource["attributes"].as_array().into_iter().flatten() {
+                if let Some(key) = attribute["key"].as_str() {
+                    recognized_attributes.insert(key.to_owned());
+                }
+            }
+        }
         resources
             .recognize(ResourceTypeDescriptor {
                 specification_id: resource_schema.specification_id.clone(),
                 type_name: resource_schema.type_name.clone(),
                 schema_hex: resource_schema.schema_digest.hex.clone(),
-                recognized_attributes: BTreeSet::new(),
+                recognized_attributes,
             })
             .unwrap();
         let resource_type = ResourceTypeRef {
@@ -265,6 +291,78 @@ impl FixtureContext {
             )
             .unwrap(),
         );
+        let mut flow_sink_rules = Vec::new();
+        if case["case_id"]
+            .as_str()
+            .is_some_and(|id| id.starts_with("computation-root-export/"))
+        {
+            let flow_values = children
+                .iter()
+                .map(|child| &child["flow"])
+                .chain(std::iter::once(&case["input"]["export_overrides"]["flow"]));
+            let partitions = children
+                .iter()
+                .map(|child| &child["effect_flow_partitions"])
+                .chain(std::iter::once(
+                    &case["input"]["export_overrides"]["effect_flow_partitions"],
+                ));
+            let partitions = partitions
+                .flat_map(|value| value.as_array().into_iter().flatten().collect::<Vec<_>>());
+            let partitions = partitions.collect::<Vec<_>>();
+            for flow_value in flow_values {
+                for constraint in flow_value["constraints"].as_array().into_iter().flatten() {
+                    let kind = match constraint["kind"].as_str().unwrap_or_default() {
+                        "data_egress" => af_flow::FlowKind::DataEgress,
+                        "decision_influence" => af_flow::FlowKind::DecisionInfluence,
+                        _ => continue,
+                    };
+                    let sink_value = &constraint["sink"];
+                    if let Some(port) = sink_value["workflow_output"].as_u64() {
+                        let rule = FlowExecutionRule {
+                            kind,
+                            sink: FlowExecutionSink::WorkflowOutput(
+                                u32::try_from(port).expect("fixture output port fits u32"),
+                            ),
+                            trust_domains: TrustDomainPolicy::NoAdditionalTrustRequirement,
+                            sandbox: SandboxFloor::NoAdditionalMinimum,
+                        };
+                        if !flow_sink_rules.contains(&rule) {
+                            flow_sink_rules.push(rule);
+                        }
+                    } else if let Some(effect) = sink_value.get("external_effect") {
+                        let operation = EffectOperationRef {
+                            catalog: effect["catalog"].as_str().unwrap_or_default().into(),
+                            name: effect["name"].as_str().unwrap_or_default().into(),
+                        };
+                        for partition in &partitions {
+                            if partition["operation"]["catalog"] != operation.catalog
+                                || partition["operation"]["name"] != operation.name
+                                || partition["kind"].as_str() != Some(kind.as_str())
+                            {
+                                continue;
+                            }
+                            for atom_value in partition["allowed_effects"]
+                                .as_array()
+                                .into_iter()
+                                .flatten()
+                            {
+                                let atom =
+                                    parse_atom(atom_value).expect("valid fixture partition atom");
+                                let rule = FlowExecutionRule {
+                                    kind,
+                                    sink: FlowExecutionSink::ExactEffect(atom),
+                                    trust_domains: TrustDomainPolicy::NoAdditionalTrustRequirement,
+                                    sandbox: SandboxFloor::NoAdditionalMinimum,
+                                };
+                                if !flow_sink_rules.contains(&rule) {
+                                    flow_sink_rules.push(rule);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         let flow_execution = Some(
             RelationCatalogSnapshot::new(
                 "fixture-flow-execution-r1",
@@ -295,6 +393,7 @@ impl FixtureContext {
                         sandbox: SandboxFloor::NoAdditionalMinimum,
                     })
                     .collect(),
+                    sink_rules: flow_sink_rules,
                     ..InformationFlowExecutionCatalog::default()
                 },
                 &modules,
@@ -555,6 +654,1119 @@ pub fn analyze_compose_case(case: &Value) -> Result<Value, String> {
     projection["_resolved_leaf_count"] = json!(resolved.len());
     projection["_same_snapshot_repeat_equal"] = json!(true);
     Ok(projection)
+}
+
+/// Runs the complete production pipeline and RootExportAssertion checker for
+/// a formal JSON fixture. Assertion coordinates are materialized from the
+/// fixture's exact checked IR/source/export declarations; no proof verdict is
+/// injected by this helper.
+pub fn analyze_root_export_case(case: &Value) -> Result<Value, String> {
+    let input = &case["input"];
+    let children = input["children"]
+        .as_array()
+        .ok_or("root-export fixture has no children")?;
+    if children.is_empty() {
+        return Err("root-export fixture has no leaf source".into());
+    }
+    let env = FixtureContext::for_case(case);
+    let view = env.view();
+    let child = &children[0];
+    let alias = child["contract_digest"]
+        .as_str()
+        .ok_or("root-export child has no contract alias")?;
+    let raw = component_contract(child, &env)?;
+    let checked = match check_contract(&raw, &view) {
+        Ok(checked) => checked,
+        Err(report) if input["expected_stage"] == "component_validation_rejected" => {
+            return Ok(json!({
+                "stage":"component_validation_rejected",
+                "checked_component_produced":false,
+                "verdict":report.overall().as_str(),
+                "dimensions":report.dimensions.iter().map(|item|json!({"dimension":item.dimension,"verdict":item.verdict.as_str(),"rule_id":item.rule_id})).collect::<Vec<_>>(),
+            }));
+        }
+        Err(report) => {
+            let details = report
+                .dimensions
+                .iter()
+                .filter(|item| item.verdict != af_contract::ProofVerdict::Proven)
+                .map(|item| {
+                    format!(
+                        "{}={}:{}",
+                        item.dimension,
+                        item.verdict.as_str(),
+                        item.reason
+                    )
+                })
+                .collect::<Vec<_>>()
+                .join("; ");
+            return Err(format!(
+                "source ComponentContract rejected: {:?}: {details}",
+                report.overall()
+            ));
+        }
+    };
+    let source_digest =
+        component_contract_digest(&checked, &view).map_err(|error| error.to_string())?;
+    let source_pin = DigestRefValue {
+        algorithm: "sha256".into(),
+        domain: "component-contract".into(),
+        hex: source_digest.hex().into(),
+    };
+    let mut export_raw = raw.clone();
+    apply_export_overrides(&mut export_raw, &input["export_overrides"], &env)?;
+    let checked_export = check_contract(&export_raw, &view)
+        .map_err(|report| format!("export ComponentContract rejected: {:?}", report.overall()))?;
+    let export_digest =
+        component_contract_digest(&checked_export, &view).map_err(|error| error.to_string())?;
+    let export_pin = DigestRefValue {
+        algorithm: "sha256".into(),
+        domain: "component-contract".into(),
+        hex: export_digest.hex().into(),
+    };
+    let mut pin_by_alias = BTreeMap::new();
+    pin_by_alias.insert(alias.to_owned(), source_pin.clone());
+    let mut raws = BTreeMap::new();
+    raws.insert(alias.to_owned(), raw.clone());
+    let mut subflows = SubflowIrUniverse::new();
+    let mut subflow_targets = BTreeMap::new();
+    if child["proof_source"] == "subflow_body_evidence" {
+        let target_source = target_subflow_document(source_pin.clone(), &raw, &env);
+        let target_ir = target_source
+            .check(&env.schemas)
+            .map_err(|error| format!("subflow target IR: {error}"))?;
+        let target_digest = subflows
+            .insert(&target_ir, &env.modules)
+            .map_err(|error| format!("subflow target pin: {error}"))?;
+        subflow_targets.insert(
+            fixture_u32(&child["node"], "subflow call node"),
+            target_digest,
+        );
+    }
+    let (document, _) = semantic_ir(input, &raws, &pin_by_alias, &subflow_targets, &env)?;
+    let checked_ir = document
+        .check(&env.schemas)
+        .map_err(|error| format!("IR validation: {error}"))?;
+    let dataflow = checked_ir
+        .analyze_dataflow()
+        .map_err(|error| format!("Phase 3C: {error}"))?;
+    let mut snapshot_builder = StaticComputationResolutionSnapshotBuilder::new(&view, &subflows);
+    if let Some(target_digest) = subflow_targets.values().next() {
+        snapshot_builder = snapshot_builder
+            .subflow_export(target_digest, &checked_export)
+            .map_err(|error| format!("subflow export snapshot: {error}"))?;
+    } else {
+        snapshot_builder = snapshot_builder
+            .component(&checked)
+            .map_err(|error| format!("resolution snapshot: {error}"))?;
+    }
+    let snapshot = snapshot_builder.build();
+    let root = derive_workflow_contract_summary(&checked_ir, &snapshot, &view)
+        .map_err(|error| format!("workflow-root derivation: {error}"))?;
+    let ir_digest = document
+        .digest(&env.modules)
+        .map_err(|error| error.to_string())?;
+    let ir_pin = DigestRefValue {
+        algorithm: "sha256".into(),
+        domain: "semantic-ir".into(),
+        hex: ir_digest.hex().into(),
+    };
+    let assertion = build_root_export_assertion(
+        input,
+        &document,
+        &checked_export,
+        &snapshot,
+        &root,
+        &dataflow,
+        &view,
+        ir_pin,
+        export_pin,
+    )?;
+    let mut assertion = assertion;
+    apply_root_export_mutation(input["mutation"].as_str(), &mut assertion, &env);
+    let report = af_computation::analyze_root_export_assertion(
+        &checked_ir,
+        &checked_export,
+        &snapshot,
+        &view,
+        &root,
+        &assertion,
+    );
+    let checked_capability = af_computation::check_root_export_assertion(
+        &checked_ir,
+        &checked_export,
+        &snapshot,
+        &view,
+        &root,
+        &assertion,
+    )
+    .is_ok();
+    Ok(root_export_projection(&report, checked_capability))
+}
+
+fn apply_export_overrides(
+    contract: &mut ComponentContract,
+    overrides: &Value,
+    env: &FixtureContext,
+) -> Result<(), String> {
+    if overrides.is_null() {
+        return Ok(());
+    }
+    if let Some(effects) = overrides.get("effects") {
+        contract.effects = parse_effects(effects)?;
+    }
+    if let Some(usage) = overrides.get("usage") {
+        contract.usage = parse_usage(Some(usage))?;
+    }
+    if let Some(flow) = overrides.get("flow") {
+        contract.information_flow = parse_flow(Some(flow), &env.flow)?;
+    }
+    if overrides.get("effect_flow_partitions").is_some() {
+        contract.effect_flow_partitions =
+            parse_effect_flow_partitions(overrides.get("effect_flow_partitions"))?;
+    }
+    if let Some(execution) = overrides.get("execution") {
+        contract.execution = parse_execution(Some(execution));
+    }
+    if let Some(upper) = overrides
+        .get("recovery_usage_upper")
+        .and_then(Value::as_u64)
+    {
+        for binding in &mut contract.recovery_usage_bindings {
+            for limit in &mut binding.per_attempt_usage.limits {
+                if limit.phase == UsagePhase::Recovery {
+                    limit.upper = UsageUpperBound::Finite(upper);
+                }
+            }
+        }
+    }
+    if let Some(failures) = overrides.get("failures").and_then(Value::as_array) {
+        contract.failures = FailureRow {
+            failures: failures
+                .iter()
+                .map(|item| failure_ref(item.as_str().unwrap(), &env.schemas))
+                .collect::<Result<Vec<_>, _>>()?,
+        };
+    }
+    if let Some(ports) = overrides
+        .get("remove_input_ports")
+        .and_then(Value::as_array)
+    {
+        contract.inputs.retain(|port| {
+            !ports
+                .iter()
+                .any(|item| item.as_u64() == Some(u64::from(port.port_no)))
+        });
+    }
+    if let Some(ports) = overrides.get("add_input_ports").and_then(Value::as_array) {
+        for item in ports {
+            let port_no = fixture_u32(&item["port"], "added export input port");
+            let type_ref = fixture_type_schema(&item["type_id"], &env.schemas)?;
+            if contract.inputs.iter().any(|port| port.port_no == port_no) {
+                return Err("duplicate added export input port".into());
+            }
+            contract
+                .inputs
+                .push(ComponentInputPort { port_no, type_ref });
+        }
+        contract.inputs.sort_by_key(|port| port.port_no);
+    }
+    if let Some(ports) = overrides
+        .get("remove_output_ports")
+        .and_then(Value::as_array)
+    {
+        contract.outputs.retain(|port| {
+            !ports
+                .iter()
+                .any(|item| item.as_u64() == Some(u64::from(port.port_no)))
+        });
+    }
+    if let Some(types) = overrides.get("input_types").and_then(Value::as_array) {
+        for item in types {
+            let port = fixture_u32(&item["port"], "export input port");
+            let primitive = item["primitive"]
+                .as_str()
+                .ok_or("export input type lacks primitive")?;
+            let schema = env
+                .schemas
+                .get(&format!(
+                    "agentflow.test.guard-types@1/{}",
+                    guard_type_schema_name(primitive)
+                ))
+                .ok_or("export input type schema missing")?
+                .reference();
+            let target = contract
+                .inputs
+                .iter_mut()
+                .find(|candidate| candidate.port_no == port)
+                .ok_or("export input port to change is absent")?;
+            target.type_ref = schema;
+        }
+    }
+    if let Some(types) = overrides.get("output_types").and_then(Value::as_array) {
+        for item in types {
+            let port = fixture_u32(&item["port"], "export output port");
+            let type_ref = fixture_type_schema(&item["type_id"], &env.schemas)?;
+            let target = contract
+                .outputs
+                .iter_mut()
+                .find(|candidate| candidate.port_no == port)
+                .ok_or("export output port to change is absent")?;
+            target.type_ref = type_ref;
+        }
+    }
+    if let Some(resources) = overrides.get("resources").and_then(Value::as_array) {
+        for item in resources {
+            let port = fixture_u32(&item["port"], "export resource port");
+            let requirement = contract
+                .resources
+                .requirements
+                .iter_mut()
+                .find(|entry| entry.port_no == port)
+                .ok_or("export resource port to change is absent")?;
+            requirement.required_attributes = item["attributes"]
+                .as_array()
+                .into_iter()
+                .flatten()
+                .map(|attribute| {
+                    Ok(ResourceAttributeConstraint {
+                        key: attribute["key"]
+                            .as_str()
+                            .ok_or("export resource attribute key missing")?
+                            .into(),
+                        value: attribute["value"]
+                            .as_str()
+                            .ok_or("export resource attribute value missing")?
+                            .into(),
+                    })
+                })
+                .collect::<Result<Vec<_>, String>>()?;
+        }
+    }
+    Ok(())
+}
+
+#[allow(clippy::too_many_arguments)]
+fn build_root_export_assertion(
+    input: &Value,
+    document: &SemanticIrDocument,
+    exported: &af_contract::CheckedComponentContract<'_, '_>,
+    snapshot: &af_computation::StaticComputationResolutionSnapshot<'_, '_, '_>,
+    root: &af_computation::DerivedWorkflowContractSummary<'_, '_>,
+    dataflow: &af_ir::SemanticDataflowAnalysis,
+    context: &StaticContractProofContext<'_>,
+    ir_pin: DigestRefValue,
+    export_pin: DigestRefValue,
+) -> Result<af_computation::RootExportAssertion, String> {
+    let input_port_map = input["input_port_map"]
+        .as_array()
+        .cloned()
+        .unwrap_or_default();
+    let export_input_for_root = |root_port: u32| -> u32 {
+        input_port_map
+            .iter()
+            .find(|item| item["root_port"].as_u64() == Some(u64::from(root_port)))
+            .and_then(|item| item["export_port"].as_u64())
+            .map_or(root_port, |port| {
+                u32::try_from(port).expect("fixture export input port fits u32")
+            })
+    };
+    let output_port_map = input["output_port_map"]
+        .as_array()
+        .cloned()
+        .unwrap_or_default();
+    let export_output_for_root = |root_port: u32| -> u32 {
+        output_port_map
+            .iter()
+            .find(|item| item["root_port"].as_u64() == Some(u64::from(root_port)))
+            .and_then(|item| item["export_port"].as_u64())
+            .map_or(root_port, |port| {
+                u32::try_from(port).expect("fixture export output port fits u32")
+            })
+    };
+    let resource_port_map = input["resource_port_map"]
+        .as_array()
+        .cloned()
+        .unwrap_or_default();
+    let export_resource_for_root = |root_port: u32| -> u32 {
+        resource_port_map
+            .iter()
+            .find(|item| item["root_port"].as_u64() == Some(u64::from(root_port)))
+            .and_then(|item| item["export_port"].as_u64())
+            .map_or(root_port, |port| {
+                u32::try_from(port).expect("fixture export resource port fits u32")
+            })
+    };
+
+    let mut leaves = Vec::new();
+    collect_fixture_leaves(root.root(), &mut leaves);
+    let mut input_mappings = Vec::new();
+    for parameter in &document.run_parameters {
+        let export_port = export_input_for_root(parameter.id.raw());
+        let type_ref = document
+            .types
+            .iter()
+            .find(|node| node.id == parameter.type_id)
+            .and_then(|node| match &node.body {
+                SemanticTypeNodeBody::Schema(reference) => Some(reference.clone()),
+                _ => None,
+            })
+            .ok_or("fixture input has no nominal TypeSchemaRef")?;
+        let export_type = exported
+            .contract()
+            .inputs
+            .iter()
+            .find(|port| port.port_no == export_port)
+            .map_or_else(|| type_ref.clone(), |port| port.type_ref.clone());
+        let use_sites = leaves
+            .iter()
+            .flat_map(|leaf| {
+                let source_contract = leaf.target().and_then(fixture_target_contract_digest);
+                leaf.input_mappings().iter().filter_map(move |mapping| {
+                    let ScopedPortBinding::InputExpression(expression) = mapping.binding else {
+                        return None;
+                    };
+                    let source_contract_digest = source_contract.clone()?;
+                    let exact_type = mapping.exact_type.clone()?;
+                    let definition = document
+                        .expressions
+                        .iter()
+                        .find(|item| item.id == expression)?;
+                    if definition.body != ExpressionBody::ValueSlot(parameter.value_slot) {
+                        return None;
+                    }
+                    let dependency_slots = dataflow
+                        .expression_value_dependencies()
+                        .get(&expression.raw())
+                        .map(|items| {
+                            items
+                                .iter()
+                                .copied()
+                                .map(ValueSlotId::from_raw)
+                                .collect::<Vec<_>>()
+                        })
+                        .unwrap_or_default();
+                    Some(af_computation::RootInputUseSite {
+                        computation: leaf.computation(),
+                        source_contract_digest,
+                        source_component_port: mapping.contract_port_no,
+                        input_expression: expression,
+                        exact_type,
+                        dependency_slots,
+                    })
+                })
+            })
+            .collect::<Vec<_>>();
+        input_mappings.push(af_computation::RootInputPortBinding {
+            export_input_port: af_computation::ComponentInputPortIdentity {
+                exported_contract_digest: export_pin.clone(),
+                port_no: export_port,
+            },
+            run_parameter_id: parameter.id,
+            root_value_slot: parameter.value_slot,
+            root_type: StructuralType::Schema(type_ref),
+            export_type,
+            use_sites,
+        });
+    }
+
+    let mut output_mappings = Vec::new();
+    for output in &document.workflow_outputs {
+        let input_output = input["workflow_outputs"]
+            .as_array()
+            .into_iter()
+            .flatten()
+            .find(|item| item["name"] == output.name);
+        let root_port = input_output
+            .and_then(|item| item["root_port"].as_u64())
+            .map_or_else(
+                || u32::try_from(output_mappings.len() + 1).expect("fixture output port fits u32"),
+                |port| u32::try_from(port).expect("fixture root output port fits u32"),
+            );
+        let export_port = input_output
+            .and_then(|item| item["export_port"].as_u64())
+            .map_or_else(
+                || export_output_for_root(root_port),
+                |port| u32::try_from(port).expect("fixture export output port fits u32"),
+            );
+        let expression = document
+            .expressions
+            .iter()
+            .find(|item| item.id == output.expression)
+            .ok_or("fixture output expression absent")?;
+        let type_ref = document
+            .types
+            .iter()
+            .find(|node| node.id == expression.result_type_id)
+            .and_then(|node| match &node.body {
+                SemanticTypeNodeBody::Schema(reference) => Some(reference.clone()),
+                _ => None,
+            })
+            .ok_or("fixture output has no nominal TypeSchemaRef")?;
+        let dependency_slots = dataflow
+            .expression_value_dependencies()
+            .get(&output.expression.raw())
+            .map(|items| {
+                items
+                    .iter()
+                    .copied()
+                    .map(ValueSlotId::from_raw)
+                    .collect::<Vec<_>>()
+            })
+            .unwrap_or_default();
+        output_mappings.push(af_computation::RootOutputPortBinding {
+            export_output_port: af_computation::ComponentOutputPortIdentity {
+                exported_contract_digest: export_pin.clone(),
+                port_no: export_port,
+            },
+            workflow_output_name: output.name.clone(),
+            workflow_output_expression: output.expression,
+            root_result_type: StructuralType::Schema(type_ref.clone()),
+            producer_evidence: af_computation::RootOutputProducerEvidence {
+                exact_result_type: type_ref,
+                dependency_slots,
+            },
+        });
+        let _ = root_port;
+    }
+
+    let mut resource_mappings = Vec::new();
+    for requirement in &exported.contract().resources.requirements {
+        let root_slot = leaves
+            .iter()
+            .flat_map(|leaf| leaf.resource_mappings().iter())
+            .find(|mapping| {
+                export_resource_for_root(mapping.component_port_no) == requirement.port_no
+            })
+            .map_or_else(
+                || ResourceSlotId::from_raw(999_999),
+                |mapping| mapping.resource_slot,
+            );
+        let type_ref = document
+            .resources
+            .iter()
+            .find(|slot| slot.id == root_slot)
+            .map_or_else(
+                || requirement.resource_type.schema.clone(),
+                |slot| slot.requirement_type.clone(),
+            );
+        let source_coordinates = leaves
+            .iter()
+            .flat_map(|leaf| {
+                let source_contract_digest = leaf.target().and_then(fixture_target_contract_digest);
+                leaf.resource_mappings().iter().filter_map(move |source| {
+                    if source.resource_slot != root_slot {
+                        return None;
+                    }
+                    let mut alias_component_ports = leaf
+                        .resource_aliases()
+                        .iter()
+                        .find(|group| group.resource_slot == source.resource_slot)
+                        .map_or_else(
+                            || vec![source.component_port_no],
+                            |group| group.component_ports.clone(),
+                        );
+                    alias_component_ports.sort_unstable();
+                    alias_component_ports.dedup();
+                    Some(af_computation::RootResourceSourceCoordinate {
+                        source_node: leaf.computation(),
+                        source_contract_digest: source_contract_digest.clone()?,
+                        component_resource_port: source.component_port_no,
+                        resource_slot: source.resource_slot,
+                        alias_component_ports,
+                    })
+                })
+            })
+            .collect::<Vec<_>>();
+        resource_mappings.push(af_computation::RootResourcePortBinding {
+            export_resource_port: af_computation::ResourceRequirementPortIdentity {
+                exported_contract_digest: export_pin.clone(),
+                port_no: requirement.port_no,
+            },
+            root_resource_slot: root_slot,
+            root_resource_type: type_ref,
+            export_resource_type: requirement.resource_type.clone(),
+            source_coordinates,
+        });
+    }
+
+    let mut effect_mappings = Vec::new();
+    for occurrence in root.root().effect_occurrences() {
+        let source = af_computation::RootEffectOccurrenceIdentity {
+            caller_semantic_ir_digest: occurrence.caller_semantic_ir_digest.clone(),
+            source_node: occurrence.computation,
+            source_contract_digest: occurrence.source_contract_digest.clone(),
+            source_entry_ordinal: occurrence.source_entry_ordinal,
+            atom: occurrence.declared.atom.clone(),
+            guard: occurrence.declared.guard.clone(),
+        };
+        let slot = occurrence.mapped_resource_slot;
+        let mut atom = occurrence.declared.atom.clone();
+        if let Some(slot) = slot {
+            let root_port = resource_mappings
+                .iter()
+                .find(|item| item.root_resource_slot == slot)
+                .map(|item| item.export_resource_port.port_no)
+                .or_else(|| {
+                    leaves
+                        .iter()
+                        .find(|leaf| leaf.computation() == occurrence.computation)
+                        .and_then(|leaf| {
+                            leaf.resource_mappings()
+                                .iter()
+                                .find(|item| item.resource_slot == slot)
+                        })
+                        .map(|item| export_resource_for_root(item.component_port_no))
+                })
+                .ok_or("effect selector has no export resource coordinate")?;
+            atom.resource_selector.requirement_port_no = root_port;
+        }
+        let export_guard = match &occurrence.declared.guard {
+            af_effect::EffectGuard::Unconditional => af_effect::EffectGuard::Unconditional,
+            af_effect::EffectGuard::InputEquals(input_guard) => {
+                let leaf = leaves
+                    .iter()
+                    .find(|leaf| leaf.computation() == occurrence.computation)
+                    .ok_or("effect leaf missing")?;
+                let port_mapping = leaf
+                    .input_mappings()
+                    .iter()
+                    .find(|item| item.contract_port_no == input_guard.port_no)
+                    .ok_or("effect guard input map missing")?;
+                let export_port = export_input_for_root(port_mapping.contract_port_no);
+                af_effect::EffectGuard::InputEquals(af_effect::EffectGuardInputEquals {
+                    port_no: export_port,
+                    expected: input_guard.expected.clone(),
+                })
+            }
+        };
+        effect_mappings.push(af_computation::RootEffectCoordinateBinding {
+            source,
+            root_resource_slot: slot,
+            export_atom: atom,
+            export_guard,
+        });
+    }
+
+    let mut flow_mappings = Vec::new();
+    if let ControlDimensionValue::Complete(summary) = root.root().information_flow().value() {
+        for source in summary.sources() {
+            let source_contract_digest = fixture_target_contract_digest(source.target())
+                .ok_or("Flow target digest missing")?;
+            for (ordinal, mapping) in source.source_mappings().iter().enumerate() {
+                let mut export_source = mapping.source.clone();
+                if let (Some(source_ref), Some(binding)) =
+                    (&mut export_source, &mapping.source_binding)
+                {
+                    match (&mut source_ref.category, binding) {
+                        (
+                            SourceCategory::WorkflowInput(port),
+                            FlowSourceBinding::InputExpression(_),
+                        ) => *port = export_input_for_root(*port),
+                        (
+                            SourceCategory::ResourceRequirement(port),
+                            FlowSourceBinding::ResourceSlot(slot),
+                        ) => {
+                            if let Some(resource) = resource_mappings
+                                .iter()
+                                .find(|item| item.root_resource_slot == *slot)
+                            {
+                                *port = resource.export_resource_port.port_no;
+                            }
+                        }
+                        _ => {}
+                    }
+                }
+                let mut export_sink = mapping.sink.clone();
+                if let (Some(sink), Some(FlowSinkBinding::OutputValue(slot))) =
+                    (&mut export_sink, &mapping.sink_binding)
+                {
+                    if let FlowSink::WorkflowOutput(port) = &mut sink.sink {
+                        if let Some(output) = output_mappings
+                            .iter()
+                            .find(|item| item.producer_evidence.dependency_slots.contains(slot))
+                        {
+                            *port = output.export_output_port.port_no;
+                        }
+                    }
+                }
+                let source_effect_partition = source
+                    .effect_flow_partitions()
+                    .iter()
+                    .find(|partition| {
+                        mapping.sink.as_ref().is_some_and(|sink| match &sink.sink {
+                            FlowSink::ExternalEffect(op) => {
+                                op == &partition.operation && sink.kind == partition.kind
+                            }
+                            FlowSink::WorkflowOutput(_) => false,
+                        })
+                    })
+                    .cloned();
+                let export_effect_partition =
+                    source_effect_partition.as_ref().and_then(|partition| {
+                        exported
+                            .contract()
+                            .effect_flow_partitions
+                            .iter()
+                            .find(|target| {
+                                target.operation == partition.operation
+                                    && target.kind == partition.kind
+                            })
+                            .cloned()
+                    });
+                flow_mappings.push(af_computation::RootFlowCoordinateBinding {
+                    source_node: source.source_node(),
+                    source_contract_digest: source_contract_digest.clone(),
+                    flow_mapping_ordinal: ordinal as u64,
+                    source: mapping.source.clone(),
+                    sink: mapping.sink.clone(),
+                    source_binding: mapping.source_binding.clone(),
+                    sink_binding: mapping.sink_binding.clone(),
+                    export_source,
+                    export_sink,
+                    source_effect_partition,
+                    export_effect_partition,
+                });
+            }
+        }
+    }
+
+    let mut recovery_mappings = Vec::new();
+    if let ControlDimensionValue::Complete(actions) = root.root_recovery().actions().value() {
+        for action in actions {
+            let forward = effect_mappings.iter().find(|item| {
+                item.source.source_node == action.source.source_node
+                    && item.source.source_contract_digest == action.source.source_contract_digest
+                    && item.source.source_entry_ordinal
+                        == action.forward_occurrence.source_entry_ordinal
+            });
+            let action_effect = effect_mappings.iter().find(|item| {
+                item.source.source_node == action.source.source_node
+                    && item.source.source_contract_digest == action.source.source_contract_digest
+                    && item.source.atom == action.source.action.action_effect
+            });
+            let forward_effect = forward.map_or_else(
+                || action.source.action.forward_effect.clone(),
+                |item| item.export_atom.clone(),
+            );
+            let action_effect = action_effect.map_or_else(
+                || action.source.action.action_effect.clone(),
+                |item| item.export_atom.clone(),
+            );
+            recovery_mappings.push(af_computation::RootRecoveryCoordinateBinding {
+                source: action.source.clone(),
+                export_action_identity: RecoveryActionIdentity {
+                    forward_effect,
+                    action_kind: action.source.action.action_kind,
+                    action_effect,
+                },
+                exact_usage_binding: action.recovery_usage_binding.clone(),
+            });
+        }
+    }
+
+    let mut execution_mappings = Vec::new();
+    match root.root().execution().value() {
+        ControlDimensionValue::Complete(items) => {
+            for item in items {
+                let digest = fixture_target_contract_digest(item.target())
+                    .ok_or("execution target digest missing")?;
+                execution_mappings.push(af_computation::RootExecutionCoordinateBinding {
+                    source_node: item.source_node(),
+                    source_contract_digest: digest,
+                    exact_execution_requirements: item.requirements().clone(),
+                });
+            }
+        }
+        ControlDimensionValue::PerChild { contributions, .. } => {
+            for contribution in contributions {
+                for item in contribution.value() {
+                    let digest = fixture_target_contract_digest(item.target())
+                        .ok_or("execution target digest missing")?;
+                    execution_mappings.push(af_computation::RootExecutionCoordinateBinding {
+                        source_node: item.source_node(),
+                        source_contract_digest: digest,
+                        exact_execution_requirements: item.requirements().clone(),
+                    });
+                }
+            }
+        }
+        _ => {}
+    }
+
+    let mut subflow_dependencies = Vec::new();
+    for computation in &document.computations {
+        let ComputationBody::CallSubflow(body) = &computation.body else {
+            continue;
+        };
+        let contract_ref = document
+            .contracts
+            .iter()
+            .find(|item| item.id == body.contract)
+            .ok_or("subflow contract ref missing")?;
+        let export_pin = snapshot.subflow_export_pin(&contract_ref.digest).cloned();
+        subflow_dependencies.push(af_computation::SubflowProofDependency {
+            call_site: computation.id,
+            target_semantic_ir_digest: contract_ref.digest.clone(),
+            target_exported_contract_digest: export_pin,
+            target_root_assertion_identity: None,
+            transitive_targets: fixture_transitive_subflows(snapshot, &contract_ref.digest)?,
+        });
+    }
+
+    Ok(af_computation::RootExportAssertion {
+        exact_semantic_ir_digest: ir_pin,
+        exact_exported_component_contract_digest: export_pin,
+        compiler_semantics_identity: af_computation::current_compiler_semantics_identity(),
+        proof_context_manifest: af_computation::ProofContextManifest::capture(context, snapshot),
+        input_mappings,
+        output_mappings,
+        resource_mappings,
+        effect_mappings,
+        flow_mappings,
+        recovery_mappings,
+        execution_mappings,
+        subflow_dependencies,
+    }
+    .canonicalized())
+}
+
+fn fixture_transitive_subflows(
+    snapshot: &af_computation::StaticComputationResolutionSnapshot<'_, '_, '_>,
+    direct: &DigestRefValue,
+) -> Result<Vec<af_computation::SubflowTargetIdentity>, String> {
+    fn visit(
+        snapshot: &af_computation::StaticComputationResolutionSnapshot<'_, '_, '_>,
+        current: &DigestRefValue,
+        path: &mut Vec<DigestRefValue>,
+        seen: &mut Vec<DigestRefValue>,
+    ) -> Result<(), String> {
+        if path.contains(current) {
+            return Err("subflow dependency cycle in fixture".into());
+        }
+        if seen.contains(current) {
+            return Ok(());
+        }
+        let dependencies = snapshot
+            .subflow_dependencies(current)
+            .ok_or("subflow dependency target unresolved")?;
+        path.push(current.clone());
+        for dependency in dependencies {
+            visit(snapshot, dependency, path, seen)?;
+        }
+        path.pop();
+        seen.push(current.clone());
+        Ok(())
+    }
+    let mut seen = Vec::new();
+    let mut path = vec![direct.clone()];
+    for dependency in snapshot
+        .subflow_dependencies(direct)
+        .ok_or("direct subflow target unresolved")?
+    {
+        visit(snapshot, dependency, &mut path, &mut seen)?;
+    }
+    let mut result = seen
+        .into_iter()
+        .map(|semantic_ir_digest| af_computation::SubflowTargetIdentity {
+            exported_contract_digest: snapshot.subflow_export_pin(&semantic_ir_digest).cloned(),
+            semantic_ir_digest,
+        })
+        .collect::<Vec<_>>();
+    result.sort_by(|left, right| {
+        (
+            &left.semantic_ir_digest.algorithm,
+            &left.semantic_ir_digest.domain,
+            &left.semantic_ir_digest.hex,
+        )
+            .cmp(&(
+                &right.semantic_ir_digest.algorithm,
+                &right.semantic_ir_digest.domain,
+                &right.semantic_ir_digest.hex,
+            ))
+    });
+    Ok(result)
+}
+
+fn collect_fixture_leaves<'context, 'universe>(
+    node: &af_computation::DerivedControlContractSummary<'context, 'universe>,
+    result: &mut Vec<af_computation::ResolvedComputationLeaf<'context, 'universe>>,
+) {
+    if let Some(leaf) = node.leaf_summary() {
+        result.push(leaf.clone());
+    }
+    for child in node.children() {
+        collect_fixture_leaves(child, result);
+    }
+}
+
+fn fixture_target_contract_digest(
+    target: &af_computation::ResolvedTarget,
+) -> Option<DigestRefValue> {
+    match target {
+        af_computation::ResolvedTarget::Component {
+            contract_digest, ..
+        } => Some(contract_digest.clone()),
+        af_computation::ResolvedTarget::Subflow {
+            exported_contract_digest,
+            ..
+        } => exported_contract_digest.clone(),
+        af_computation::ResolvedTarget::AwaitSignal { .. } => None,
+    }
+}
+
+fn apply_root_export_mutation(
+    mutation: Option<&str>,
+    assertion: &mut af_computation::RootExportAssertion,
+    env: &FixtureContext,
+) {
+    match mutation.unwrap_or("") {
+        "change_ir_digest" => assertion.exact_semantic_ir_digest.hex = "00".repeat(32),
+        "change_export_digest" => {
+            assertion.exact_exported_component_contract_digest.hex = "00".repeat(32);
+        }
+        "delete_input_mapping" => {
+            assertion.input_mappings.pop();
+        }
+        "duplicate_input_source" if assertion.input_mappings.len() > 1 => {
+            let first = assertion.input_mappings[0].clone();
+            assertion.input_mappings[1].run_parameter_id = first.run_parameter_id;
+            assertion.input_mappings[1].root_value_slot = first.root_value_slot;
+        }
+        "delete_output_mapping" => {
+            assertion.output_mappings.pop();
+        }
+        "change_output_type" => {
+            if let Some(mapping) = assertion.output_mappings.first_mut() {
+                let other = env
+                    .schemas
+                    .get("agentflow.semantic.core@1/DigestRefValue")
+                    .unwrap()
+                    .reference();
+                mapping.root_result_type = StructuralType::Schema(other.clone());
+            }
+        }
+        "change_resource_slot" => {
+            if let Some(mapping) = assertion.resource_mappings.first_mut() {
+                mapping.root_resource_slot = ResourceSlotId::from_raw(999_999);
+            }
+        }
+        "change_resource_type" => {
+            if let Some(mapping) = assertion.resource_mappings.first_mut() {
+                mapping.export_resource_type.schema.schema_digest.hex = "00".repeat(32);
+            }
+        }
+        "change_effect_qualifier" => {
+            if let Some(mapping) = assertion.effect_mappings.first_mut() {
+                mapping
+                    .export_atom
+                    .qualifiers
+                    .push(EffectQualifier::Idempotency(
+                        EffectIdempotencyQualifier::None,
+                    ));
+            }
+        }
+        "delete_flow_mapping" => {
+            assertion.flow_mappings.pop();
+        }
+        "delete_recovery_mapping" => {
+            assertion.recovery_mappings.pop();
+        }
+        "delete_recovery_profile" => {
+            if let Some(mapping) = assertion.recovery_mappings.first_mut() {
+                mapping.exact_usage_binding.per_attempt_usage.limits.clear();
+            }
+        }
+        "delete_execution_mapping" => {
+            assertion.execution_mappings.pop();
+        }
+        "change_execution_requirement" => {
+            if let Some(mapping) = assertion.execution_mappings.first_mut() {
+                mapping.exact_execution_requirements.sandbox = Some(SandboxRequirement {
+                    minimum: SandboxLevel::Strong,
+                });
+            }
+        }
+        "change_compiler_semantics" => assertion
+            .compiler_semantics_identity
+            .analysis_semantics_version
+            .push_str("-stale"),
+        "change_relation_content" => {
+            if let Some(relation) = assertion
+                .proof_context_manifest
+                .relation_snapshots
+                .first_mut()
+            {
+                relation.canonical_content.push(0);
+            }
+        }
+        "delete_subflow_dependency" => {
+            assertion.subflow_dependencies.pop();
+        }
+        "narrow_action_guard" => {
+            if let Some(mapping) = assertion
+                .effect_mappings
+                .iter_mut()
+                .find(|item| matches!(item.source.guard, af_effect::EffectGuard::Unconditional))
+            {
+                mapping.export_guard =
+                    af_effect::EffectGuard::InputEquals(af_effect::EffectGuardInputEquals {
+                        port_no: 1,
+                        expected: PrimitiveConstant::Int64(0),
+                    });
+            }
+        }
+        _ => {}
+    }
+}
+
+fn root_export_witness_json(witness: &af_computation::RootExportCoordinateWitness) -> Value {
+    match witness {
+        af_computation::RootExportCoordinateWitness::Input(item) => {
+            json!({"kind":"input","export_port":item.export_input_port.port_no,"run_parameter":item.run_parameter_id.raw(),"root_value_slot":item.root_value_slot.raw(),"root_type":item.root_type.canonical_string(),"export_type":schema_ref_json(&item.export_type)})
+        }
+        af_computation::RootExportCoordinateWitness::Output(item) => {
+            json!({"kind":"output","export_port":item.export_output_port.port_no,"name":item.workflow_output_name,"expression":item.workflow_output_expression.raw(),"root_type":item.root_result_type.canonical_string()})
+        }
+        af_computation::RootExportCoordinateWitness::Resource(item) => {
+            json!({"kind":"resource","export_port":item.export_resource_port.port_no,"root_slot":item.root_resource_slot.raw(),"root_type":schema_ref_json(&item.root_resource_type),"export_type":schema_ref_json(&item.export_resource_type.schema),"source_coordinates":item.source_coordinates.iter().map(|source|json!({"node":source.source_node.raw(),"source_contract":digest_ref_json(&source.source_contract_digest),"component_port":source.component_resource_port,"resource_slot":source.resource_slot.raw(),"alias_component_ports":source.alias_component_ports})).collect::<Vec<_>>()})
+        }
+        af_computation::RootExportCoordinateWitness::Effect(item) => {
+            json!({"kind":"effect","node":item.source.source_node.raw(),"source_contract":digest_ref_json(&item.source.source_contract_digest),"ordinal":item.source.source_entry_ordinal,"atom":atom_json(&item.source.atom),"export_atom":atom_json(&item.export_atom),"guard":guard_json(&item.source.guard),"mapped_guard":guard_json(&item.export_guard)})
+        }
+        af_computation::RootExportCoordinateWitness::Flow(item) => {
+            json!({"kind":"flow","node":item.source_node.raw(),"source_contract":digest_ref_json(&item.source_contract_digest),"ordinal":item.flow_mapping_ordinal,"source":item.source.as_ref().map(flow_source_ref_json),"sink":item.sink.as_ref().map(flow_constraint_json),"export_source":item.export_source.as_ref().map(flow_source_ref_json),"export_sink":item.export_sink.as_ref().map(flow_constraint_json)})
+        }
+        af_computation::RootExportCoordinateWitness::Recovery(item) => {
+            json!({"kind":"recovery","node":item.source.source_node.raw(),"source_contract":digest_ref_json(&item.source.source_contract_digest),"forward_ordinal":item.source.forward_entry_ordinal,"export_action":recovery_action_identity_json(&item.export_action_identity),"usage_binding":recovery_usage_binding_json(&item.exact_usage_binding)})
+        }
+        af_computation::RootExportCoordinateWitness::Execution(item) => {
+            json!({"kind":"execution","node":item.source_node.raw(),"source_contract":digest_ref_json(&item.source_contract_digest),"requirements":execution_requirements_json(&item.exact_execution_requirements)})
+        }
+    }
+}
+
+fn flow_source_ref_json(source: &FlowSourceRef) -> Value {
+    match source.category {
+        SourceCategory::WorkflowInput(port) => json!({"workflow_input":port}),
+        SourceCategory::ResourceRequirement(port) => json!({"resource_requirement":port}),
+        SourceCategory::UnknownExternal => json!("unknown_external"),
+    }
+}
+
+fn flow_source_binding_json(binding: &FlowSourceBinding) -> Value {
+    match binding {
+        FlowSourceBinding::InputExpression(expression) => {
+            json!({"input_expression":expression.raw()})
+        }
+        FlowSourceBinding::ResourceSlot(slot) => json!({"resource_slot":slot.raw()}),
+        FlowSourceBinding::UnknownExternal => json!("unknown_external"),
+    }
+}
+
+fn flow_sink_binding_json(binding: &FlowSinkBinding) -> Value {
+    match binding {
+        FlowSinkBinding::OutputValue(slot) => json!({"output_value":slot.raw()}),
+        FlowSinkBinding::EffectOccurrences(indices) => json!({"effect_occurrences":indices}),
+    }
+}
+
+fn effect_partition_json(partition: &af_contract::EffectFlowPartition) -> Value {
+    json!({"operation":{"catalog":partition.operation.catalog,"name":partition.operation.name},"kind":partition.kind.as_str(),"allowed_effects":partition.allowed_effects.iter().map(atom_json).collect::<Vec<_>>()})
+}
+
+fn recovery_usage_binding_json(binding: &RecoveryUsageBinding) -> Value {
+    json!({"action":recovery_action_identity_json(&binding.action),"activations_per_forward":bounds_json(&binding.activations_per_forward),"attempts_per_activation":bounds_json(&binding.attempts_per_activation),"per_attempt_usage":usage_signature_json(&binding.per_attempt_usage)})
+}
+
+fn root_export_projection(
+    report: &af_computation::RootExportProofReport,
+    checked_capability_issued: bool,
+) -> Value {
+    let assertion = report.assertion_identity.assertion();
+    let proof = |item: &af_contract::DimensionProof| {
+        json!({
+            "dimension":item.dimension, "verdict":item.verdict.as_str(), "rule_id":item.rule_id,
+            "reason":item.reason, "reference":item.reference, "prerequisites":item.prerequisites,
+        })
+    };
+    let digest = |value: &DigestRefValue| json!({"algorithm":value.algorithm,"domain":value.domain,"hex":value.hex});
+    json!({
+        "stage":"root_export_checker",
+        "assertion_identity":{
+            "semantic_ir_digest":digest(&assertion.exact_semantic_ir_digest),
+            "export_digest":digest(&assertion.exact_exported_component_contract_digest),
+            "compiler_semantics_version":assertion.compiler_semantics_identity.analysis_semantics_version,
+            "specifications":assertion.compiler_semantics_identity.specifications.iter().map(|item|json!({"id":item.specification_id,"path":item.logical_path,"content_sha256":item.content_sha256,"content_bytes":item.content.len()})).collect::<Vec<_>>(),
+            "rules":assertion.compiler_semantics_identity.rules.iter().map(|item|item.rule_id.clone()).collect::<Vec<_>>(),
+            "manifest":{
+                "module_count":assertion.proof_context_manifest.compiled_modules.len(),
+                "schema_count":assertion.proof_context_manifest.type_schemas.len(),
+                "effect_catalogs":assertion.proof_context_manifest.effect_catalogs.catalogs().map(|catalog|json!({"id":catalog.specification_id(),"operations":catalog.operations().collect::<Vec<_>>()})).collect::<Vec<_>>(),
+                "resource_type_count":assertion.proof_context_manifest.resource_types.len(),
+                "flow_label_count":assertion.proof_context_manifest.flow_catalogs.labels.len(),
+                "flow_sink_count":assertion.proof_context_manifest.flow_catalogs.sinks.len(),
+                "usage_meter_count":assertion.proof_context_manifest.usage_meters.len(),
+                "relation_snapshots":assertion.proof_context_manifest.relation_snapshots.iter().map(|item|json!({"schema":item.pin.schema,"revision":item.pin.revision,"checksum":item.pin.canonical_content_checksum.hex,"content_bytes":item.canonical_content.len()})).collect::<Vec<_>>(),
+                "component_contract_pins":assertion.proof_context_manifest.resolver_dependencies.component_contract_digests.iter().map(digest).collect::<Vec<_>>(),
+                "subflow_target_count":assertion.proof_context_manifest.resolver_dependencies.subflow_targets.len(),
+            },
+            "mapping_counts":{"inputs":assertion.input_mappings.len(),"outputs":assertion.output_mappings.len(),"resources":assertion.resource_mappings.len(),"effects":assertion.effect_mappings.len(),"flow":assertion.flow_mappings.len(),"recovery":assertion.recovery_mappings.len(),"execution":assertion.execution_mappings.len(),"subflows":assertion.subflow_dependencies.len()},
+            "typed_mappings":{
+                "inputs":assertion.input_mappings.iter().map(|item|json!({
+                    "export_port":{"contract":digest(&item.export_input_port.exported_contract_digest),"port":item.export_input_port.port_no},
+                    "run_parameter":item.run_parameter_id.raw(),"root_value_slot":item.root_value_slot.raw(),
+                    "root_type":item.root_type.canonical_string(),"export_type":schema_ref_json(&item.export_type),
+                    "use_sites":item.use_sites.iter().map(|site|json!({"computation":site.computation.raw(),"source_contract":digest(&site.source_contract_digest),"source_port":site.source_component_port,"expression":site.input_expression.raw(),"type":schema_ref_json(&site.exact_type),"dependencies":site.dependency_slots.iter().copied().map(af_semantic::ValueSlotId::raw).collect::<Vec<_>>()})).collect::<Vec<_>>(),
+                })).collect::<Vec<_>>(),
+                "outputs":assertion.output_mappings.iter().map(|item|json!({
+                    "export_port":{"contract":digest(&item.export_output_port.exported_contract_digest),"port":item.export_output_port.port_no},
+                    "name":item.workflow_output_name,"expression":item.workflow_output_expression.raw(),"root_type":item.root_result_type.canonical_string(),
+                    "producer_type":schema_ref_json(&item.producer_evidence.exact_result_type),"dependencies":item.producer_evidence.dependency_slots.iter().copied().map(af_semantic::ValueSlotId::raw).collect::<Vec<_>>(),
+                })).collect::<Vec<_>>(),
+                "resources":assertion.resource_mappings.iter().map(|item|json!({
+                    "export_port":{"contract":digest(&item.export_resource_port.exported_contract_digest),"port":item.export_resource_port.port_no},
+                    "root_slot":item.root_resource_slot.raw(),"root_type":schema_ref_json(&item.root_resource_type),"export_type":schema_ref_json(&item.export_resource_type.schema),
+                    "source_coordinates":item.source_coordinates.iter().map(|source|json!({"node":source.source_node.raw(),"source_contract":digest(&source.source_contract_digest),"component_port":source.component_resource_port,"resource_slot":source.resource_slot.raw(),"alias_component_ports":source.alias_component_ports})).collect::<Vec<_>>(),
+                })).collect::<Vec<_>>(),
+                "effects":assertion.effect_mappings.iter().map(|item|json!({
+                    "source":{"ir":digest(&item.source.caller_semantic_ir_digest),"node":item.source.source_node.raw(),"contract":digest(&item.source.source_contract_digest),"ordinal":item.source.source_entry_ordinal,"atom":atom_json(&item.source.atom),"guard":guard_json(&item.source.guard)},
+                    "root_resource_slot":item.root_resource_slot.map(ResourceSlotId::raw),"export_atom":atom_json(&item.export_atom),"mapped_guard":guard_json(&item.export_guard),
+                })).collect::<Vec<_>>(),
+                "flow":assertion.flow_mappings.iter().map(|item|json!({
+                    "node":item.source_node.raw(),"contract":digest(&item.source_contract_digest),"ordinal":item.flow_mapping_ordinal,
+                    "source":item.source.as_ref().map(flow_source_ref_json),"sink":item.sink.as_ref().map(flow_constraint_json),
+                    "source_binding":item.source_binding.as_ref().map(flow_source_binding_json),"sink_binding":item.sink_binding.as_ref().map(flow_sink_binding_json),
+                    "export_source":item.export_source.as_ref().map(flow_source_ref_json),"export_sink":item.export_sink.as_ref().map(flow_constraint_json),
+                    "source_partition":item.source_effect_partition.as_ref().map(effect_partition_json),"export_partition":item.export_effect_partition.as_ref().map(effect_partition_json),
+                })).collect::<Vec<_>>(),
+                "recovery":assertion.recovery_mappings.iter().map(|item|json!({
+                    "source":{"ir":digest(&item.source.caller_semantic_ir_digest),"node":item.source.source_node.raw(),"contract":digest(&item.source.source_contract_digest),"forward_ordinal":item.source.forward_entry_ordinal,"action":recovery_action_identity_json(&item.source.action)},
+                    "export_action":recovery_action_identity_json(&item.export_action_identity),"usage_binding":recovery_usage_binding_json(&item.exact_usage_binding),
+                })).collect::<Vec<_>>(),
+                "execution":assertion.execution_mappings.iter().map(|item|json!({"node":item.source_node.raw(),"contract":digest(&item.source_contract_digest),"requirements":execution_requirements_json(&item.exact_execution_requirements)})).collect::<Vec<_>>(),
+                "subflows":assertion.subflow_dependencies.iter().map(|item|json!({"call_site":item.call_site.raw(),"target_ir":digest(&item.target_semantic_ir_digest),"export":item.target_exported_contract_digest.as_ref().map(digest),"has_target_assertion":item.target_root_assertion_identity.is_some(),"transitive_targets":item.transitive_targets.iter().map(|target|json!({"ir":digest(&target.semantic_ir_digest),"export":target.exported_contract_digest.as_ref().map(digest)})).collect::<Vec<_>>()})).collect::<Vec<_>>(),
+            },
+        },
+        "preflight":report.preflight.iter().map(proof).collect::<Vec<_>>(),
+        "dimensions":report.dimensions.iter().map(|item|json!({
+            "dimension":item.dimension.as_str(), "proof":proof(&item.proof),
+            "source_facts":item.source_facts.iter().map(|source|json!({"semantic_ir_digest":digest(&source.semantic_ir_digest),"computation":source.computation.map(ComputationId::raw),"contract_digest":source.contract_digest.as_ref().map(digest),"ordinal":source.source_ordinal})).collect::<Vec<_>>(),
+            "mapped_coordinates":item.mapped_coordinates.iter().map(root_export_witness_json).collect::<Vec<_>>(),
+            "mapped_coordinate_count":item.mapped_coordinate_count,
+        })).collect::<Vec<_>>(),
+        "execution_children":report.execution_children.iter().map(|item|json!({"source_node":item.source_node.raw(),"source_contract_digest":digest(&item.source_contract_digest),"feasibility":item.feasibility.as_str(),"security":item.security.as_str()})).collect::<Vec<_>>(),
+        "static_compatibility":report.static_compatibility.as_str(),
+        "checked_static_compatibility_capability_issued":checked_capability_issued,
+        "body_conformance":report.body_conformance.as_str(),
+        "implementation_conformance":report.implementation_conformance.as_str(),
+        "scope_authority_attenuation":report.scope_authority_attenuation.as_str(),
+        "scope_budget_attenuation":report.scope_budget_attenuation.as_str(),
+        "runtime_authority":match report.runtime_authority { af_computation::RuntimeAuthorityStatus::NotEstablished=>"not_established" },
+        "runtime_authority_evidence":report.runtime_authority_evidence.as_str(),
+        "publisher_authentication":match report.publisher_authentication { af_computation::RuntimeAuthorityStatus::NotEstablished=>"not_established" },
+        "unresolved_obligations":report.unresolved_obligations,
+    })
 }
 
 fn workflow_closure_json(
@@ -1242,10 +2454,27 @@ fn component_contract(child: &Value, env: &FixtureContext) -> Result<ComponentCo
     contract.resources = ResourceRequirementRow {
         requirements: resource_ports
             .into_iter()
-            .map(|port_no| ResourceRequirement {
-                port_no,
-                resource_type: env.resource_type().clone(),
-                required_attributes: vec![],
+            .map(|port_no| {
+                let required_attributes = child["resources"]
+                    .as_array()
+                    .into_iter()
+                    .flatten()
+                    .find(|resource| {
+                        resource["component_port"].as_u64() == Some(u64::from(port_no))
+                    })
+                    .and_then(|resource| resource["attributes"].as_array())
+                    .into_iter()
+                    .flatten()
+                    .map(|attribute| ResourceAttributeConstraint {
+                        key: attribute["key"].as_str().unwrap().into(),
+                        value: attribute["value"].as_str().unwrap().into(),
+                    })
+                    .collect();
+                ResourceRequirement {
+                    port_no,
+                    resource_type: env.resource_type().clone(),
+                    required_attributes,
+                }
             })
             .collect(),
     };
@@ -1265,6 +2494,8 @@ fn component_contract(child: &Value, env: &FixtureContext) -> Result<ComponentCo
     };
     contract.usage = parse_usage(child.get("usage"))?;
     contract.execution = parse_execution(child.get("execution"));
+    contract.effect_flow_partitions =
+        parse_effect_flow_partitions(child.get("effect_flow_partitions"))?;
     if let Some(replay_semantics) = child.get("replay_semantics").and_then(Value::as_str) {
         contract.recovery.replay_semantics = match replay_semantics {
             "recompute" => ReplaySemantics::Recompute,
@@ -1707,6 +2938,36 @@ fn parse_flow(
         "platform" => InstructionAuthority::Platform,
         other => return Err(format!("unknown instruction authority {other}")),
     };
+    let flow_constraints = flow["constraints"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .map(|constraint| {
+            let kind = match constraint["kind"].as_str() {
+                Some("data_egress") => af_flow::FlowKind::DataEgress,
+                Some("decision_influence") => af_flow::FlowKind::DecisionInfluence,
+                other => return Err(format!("unknown fixture FlowKind {other:?}")),
+            };
+            let sink_value = &constraint["sink"];
+            let sink = if let Some(port) = sink_value["workflow_output"].as_u64() {
+                FlowSink::WorkflowOutput(u32::try_from(port).map_err(|error| error.to_string())?)
+            } else if let Some(effect) = sink_value.get("external_effect") {
+                FlowSink::ExternalEffect(EffectOperationRef {
+                    catalog: effect["catalog"]
+                        .as_str()
+                        .ok_or("external-effect sink lacks catalog")?
+                        .into(),
+                    name: effect["name"]
+                        .as_str()
+                        .ok_or("external-effect sink lacks name")?
+                        .into(),
+                })
+            } else {
+                return Err("unsupported fixture FlowSink".into());
+            };
+            Ok(af_flow::FlowConstraint { kind, sink })
+        })
+        .collect::<Result<Vec<_>, String>>()?;
     Ok(InformationFlowContract {
         confidentiality_restrictions: vec![],
         summary: StaticInformationSummary {
@@ -1715,8 +2976,46 @@ fn parse_flow(
             instruction_authority: authority,
             influence_unknown: flow["influence_unknown"].as_bool().unwrap_or(false),
         },
-        flow_constraints: vec![],
+        flow_constraints,
     })
+}
+
+fn parse_effect_flow_partitions(
+    value: Option<&Value>,
+) -> Result<Vec<af_contract::EffectFlowPartition>, String> {
+    value
+        .into_iter()
+        .filter_map(Value::as_array)
+        .flatten()
+        .map(|partition| {
+            let operation = EffectOperationRef {
+                catalog: partition["operation"]["catalog"]
+                    .as_str()
+                    .ok_or("partition operation catalog missing")?
+                    .into(),
+                name: partition["operation"]["name"]
+                    .as_str()
+                    .ok_or("partition operation name missing")?
+                    .into(),
+            };
+            let kind = match partition["kind"].as_str() {
+                Some("data_egress") => af_flow::FlowKind::DataEgress,
+                Some("decision_influence") => af_flow::FlowKind::DecisionInfluence,
+                other => return Err(format!("unknown partition FlowKind {other:?}")),
+            };
+            let allowed_effects = partition["allowed_effects"]
+                .as_array()
+                .into_iter()
+                .flatten()
+                .map(parse_atom)
+                .collect::<Result<Vec<_>, _>>()?;
+            Ok(af_contract::EffectFlowPartition {
+                operation,
+                kind,
+                allowed_effects,
+            })
+        })
+        .collect()
 }
 
 fn parse_usage(value: Option<&Value>) -> Result<UsageSignature, String> {
@@ -2793,6 +4092,43 @@ fn semantic_ir(
             body,
         });
     }
+    let workflow_outputs = input["workflow_outputs"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .map(|output| {
+            let name = output["name"]
+                .as_str()
+                .ok_or("workflow output lacks name")?
+                .to_owned();
+            let expression = fixture_u32(&output["expression"], "workflow output expression");
+            let slot_alias = output["slot"]
+                .as_str()
+                .ok_or("workflow output lacks value slot")?;
+            let slot_raw = slot_alias
+                .rsplit(':')
+                .next()
+                .ok_or("malformed workflow output slot")?
+                .parse::<u32>()
+                .map_err(|error| error.to_string())?;
+            let type_id = output["type_id"]
+                .as_str()
+                .ok_or("workflow output lacks type id")?
+                .strip_prefix("semantic-type:")
+                .ok_or("malformed workflow output type id")?
+                .parse::<u32>()
+                .map_err(|error| error.to_string())?;
+            expressions.push(ExpressionDef {
+                id: expression.into(),
+                result_type_id: type_id.into(),
+                body: ExpressionBody::ValueSlot(ValueSlotId::from_raw(slot_raw)),
+            });
+            Ok(af_ir::WorkflowOutputDecl {
+                name,
+                expression: expression.into(),
+            })
+        })
+        .collect::<Result<Vec<_>, String>>()?;
     Ok((
         SemanticIrDocument {
             semantic_refs: vec![],
@@ -2802,7 +4138,7 @@ fn semantic_ir(
             resources: resource_slots,
             contracts,
             run_parameters,
-            workflow_outputs: vec![],
+            workflow_outputs,
             computations,
             root: root_id,
         },

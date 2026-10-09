@@ -1,0 +1,67 @@
+{
+  "case_id": "computation-root-export/negative/unknown-flow-preserved",
+  "group": "negative",
+  "kind": "agentflow.conformance.computation-root-export.test-vector",
+  "note": "Independent static root/export assertion vector; no runtime behavior is simulated.",
+  "input": {
+    "operation": "compose",
+    "operator": "sequence",
+    "include_workflow_closure": true,
+    "children": [
+      {
+        "node": 2,
+        "contract_digest": "component-contract:fixture",
+        "effects": {
+          "row": "closed",
+          "entries": []
+        },
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": true,
+          "sources": [
+            "unknown_external"
+          ],
+          "taints": []
+        },
+        "usage": {
+          "coordinates": {
+            "forward/api_calls": 0,
+            "recovery/api_calls": 0
+          }
+        },
+        "execution": null,
+        "outputs": [],
+        "resources": [],
+        "input_types": [],
+        "recovery_actions": [],
+        "effect_flow_partitions": [],
+        "proof_source": "checked_component"
+      }
+    ],
+    "root_child_nodes": [
+      2
+    ],
+    "parent_outputs": [],
+    "workflow_outputs": [],
+    "nested_nodes": [],
+    "scope_resources": [],
+    "additional_resources": [],
+    "export_overrides": {},
+    "expected_stage": "component_validation_rejected"
+  },
+  "design_vectors": [
+    "X17"
+  ],
+  "expected": {
+    "stage": "component_validation_rejected",
+    "checked_component_produced": false,
+    "verdict": "requires_evidence"
+  },
+  "oracle": {
+    "model": "independent-declarative-root-export-v1",
+    "inputs": "case input + frozen typed relation directions",
+    "not_from_production": true
+  }
+}

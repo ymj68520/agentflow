@@ -249,6 +249,16 @@
       ]
     },
     {
+      "description": "An independent Python oracle differentially checks the exact non-wire RootExportAssertion pins, typed I/O/R/E/F/K/X maps, nine static dimensions, proof-context invalidation and subflow/body separation. Every declared case executes checked Semantic IR, Phase 3C, leaf resolution, root derivation, RootRecoverySummary, and the production RootExport checker.",
+      "suite_id": "SUITE-COMPUTATION-ROOT-EXPORT-PYTHON-ORACLE",
+      "targets": [
+        "tools/gen-computation-root-export-corpus.py",
+        "spec/conformance/computation-root-export/manifest.json",
+        "crates/af-computation/src/root_export.rs",
+        "crates/af-computation/tests/root_export_conformance.rs"
+      ]
+    },
+    {
       "description": "An independent Python oracle differentially checks typed K-to-epsilon guards, LocalActionBound/RootActionBound, exact source/action/profile multisets, operator-specific root folds, root epsilon/Recovery-Usage coverage, and stage-gated counterexamples without implementing RootExportAssertion.",
       "suite_id": "SUITE-COMPUTATION-ROOT-RECOVERY-PYTHON-ORACLE",
       "targets": [
