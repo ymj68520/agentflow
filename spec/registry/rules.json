@@ -3850,12 +3850,12 @@
       "area": "SEMANTIC",
       "conformance_refs": [
         "computation-advanced-control/negative/scope-unsupported",
-        "SUITE-COMPUTATION-CONTROL-PHASE-BOUNDARY"
+        "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE"
       ],
       "normative_source": "spec/computation/control-contract-algebra.md",
       "requirement_level": "must",
       "rule_id": "AF-SEMANTIC-0126",
-      "short_statement": "SCOPE and COMPENSATION_SCOPE remain unsupported and Unproven; known descendants are not discarded and no row defaults empty. ITERATE/RETRY/TIMEOUT/HANDLE use the additive Phase 4B.2B.2 specification.",
+      "short_statement": "Unknown or unsupported control operators remain Unproven; known descendants are not discarded and no row defaults empty. The formerly unsupported SCOPE and COMPENSATION_SCOPE now use the additive Phase 4B.2B.3 rules.",
       "source_anchor": "control-unsupported-not-empty"
     },
     {
@@ -4142,6 +4142,97 @@
       "rule_id": "AF-SEMANTIC-0146",
       "short_statement": "HANDLE matches exact Failure schema pins, preserves unmatched residual failures, keeps TimedOut outside Phi, and composes handler Effect/Usage as conditional alternatives.",
       "source_anchor": "advanced-control-handle-residual"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-scope-closure/scope/resource-boundary-01",
+        "computation-scope-closure/nested/tree-10",
+        "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/scope-compensation-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0147",
+      "short_statement": "SCOPE compares exact Phase 3C parent, declared, and child ResourceSlot sets; child visibility is exactly the declared subset and does not imply a ResourceHandle or authorization.",
+      "source_anchor": "scope-resource-attenuation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-scope-closure/scope/resource-boundary-04",
+        "computation-advanced-control/negative/scope-unsupported",
+        "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/scope-compensation-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0148",
+      "short_statement": "SCOPE preserves child dimensions and ownership; missing authority/budget ceilings remain Unproven and child settlement before owner terminal RequiresEvidence.",
+      "source_anchor": "scope-static-obligations"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-scope-closure/compensation/action-bound-01",
+        "computation-scope-closure/nested/tree-04",
+        "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/scope-compensation-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0149",
+      "short_statement": "COMPENSATION_SCOPE preserves Forward Effects, typed outcomes, and Forward Usage; potential compensation is additional and never refunds or rewrites the Forward history.",
+      "source_anchor": "compensation-forward-history"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-scope-closure/compensation/action-bound-06",
+        "computation-scope-closure/compensation/action-bound-18",
+        "computation-scope-closure/negative/action-row-underdeclared",
+        "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/scope-compensation-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0150",
+      "short_statement": "Only exact full RecoveryActionIdentity and RecoveryUsageBinding sources contribute; checked forward-occurrence, activation, and attempt bounds produce a conditional new Effect with zero lower bound, and the summed K upper must fit the exact declared action Effect occurrence.",
+      "source_anchor": "compensation-exact-action-envelope"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-scope-closure/compensation/action-bound-06",
+        "computation-scope-closure/nested/tree-05",
+        "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/scope-compensation-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0151",
+      "short_statement": "Recovery Usage remains separate and is checked against potential action bounds; receipt eligibility and multi-event committed order require evidence, and RecoveryBlocked is not a business Failure.",
+      "source_anchor": "compensation-receipt-usage-and-order"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-scope-closure/nested/tree-01",
+        "computation-scope-closure/nested/tree-15",
+        "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/scope-compensation-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0152",
+      "short_statement": "Workflow-root derivation resolves all reachable leaves and accounts for every checked owned computation, known Effect occurrence/residual, and Recovery source exactly once in semantic order without promoting child obligations.",
+      "source_anchor": "workflow-control-tree-closure"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "computation-scope-closure/nested/tree-15",
+        "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE"
+      ],
+      "normative_source": "spec/computation/scope-compensation-contract-algebra.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0153",
+      "short_statement": "A root derived summary is not an exported ComponentContract; without a frozen root pin and cross-coordinate mapping, export compatibility remains NotExpressedInSemanticIr and Unproven.",
+      "source_anchor": "workflow-root-export-boundary"
     },
     {
       "area": "SPEC",

@@ -358,7 +358,7 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "93a17e4db04661007e52888c9e6722723d889b09a92dec38ca1f714b3bdc3213"
+          "hex": "615eeae850e47cf01f72791eaeba570ac075c65a8abae8439d3130bde5ce7b3b"
         },
         "logical_path": "spec/computation/advanced-control-contract-algebra.md"
       },
@@ -371,7 +371,7 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "09b7b88168ab656e22bf2d59ab170bd2dbf1252b2e1656ae82ed7bbe33aaced3"
+          "hex": "14c4cb7b8e6311e91fe63fcf091fb496e41681bb64d28c7fbbef0a47a2601bc9"
         },
         "logical_path": "spec/computation/control-contract-algebra.md"
       },
@@ -428,6 +428,19 @@
         "logical_path": "spec/computation/leaf-contract-resolution.md"
       },
       "specification_id": "agentflow.semantic.leaf-contract-resolution.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Derived-only SCOPE and COMPENSATION_SCOPE algebra plus checked full control-tree closure, with runtime authority, receipts, reservations, and execution explicitly outside the static proof boundary.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "9479484780c49c215e5e82956800b7043000a551442f898b3ffa031dcc4fdb5e"
+        },
+        "logical_path": "spec/computation/scope-compensation-contract-algebra.md"
+      },
+      "specification_id": "agentflow.semantic.scope-compensation-contract-algebra.semantics@1",
       "status": "frozen"
     },
     {

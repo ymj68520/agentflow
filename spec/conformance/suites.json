@@ -74,7 +74,7 @@
       ]
     },
     {
-      "description": "A standalone Python oracle generates 72 vectors for the four existing advanced control opcodes, nested propagation, typed carry/output interfaces, unsupported-scope boundary, and boundary failures. Every vector runs through checked Semantic IR, Phase 3C, leaf resolution and the production analyzer; output, static multiplicity, Flow dependencies, Recovery proof state and overflow are compared without runtime simulation.",
+      "description": "A standalone Python oracle generates 72 vectors for the four existing advanced control opcodes, nested propagation, typed carry/output interfaces, the preserved Scope CaseId, and boundary failures. Scope is now supported by Phase 4B.2B.3; only its formerly unsupported Expected changed under revision 2. Every vector runs through checked Semantic IR, Phase 3C, leaf resolution and the production analyzer; output, static multiplicity, Flow dependencies, Recovery proof state and overflow are compared without runtime simulation.",
       "suite_id": "SUITE-COMPUTATION-ADVANCED-CONTROL-PYTHON-ORACLE",
       "targets": [
         "tools/gen-advanced-control-corpus.py",
@@ -246,6 +246,15 @@
         "crates/af-ir/src/subflow.rs",
         "crates/af-computation/src/resolution.rs",
         "spec/conformance/computation-leaf/subflow/"
+      ]
+    },
+    {
+      "description": "An independent Python oracle generates 55 Scope, exact K-derived conditional compensation, and nested control-tree vectors. Every case runs through checked IR, Phase 3C, production leaf resolution, the production algebra, and root closure; mutations cover resource proof, compensation bound, traversal order, and source accounting.",
+      "suite_id": "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE",
+      "targets": [
+        "tools/gen-computation-scope-closure-corpus.py",
+        "spec/conformance/computation-scope-closure/manifest.json",
+        "crates/af-computation/tests/scope_closure_conformance.rs"
       ]
     },
     {

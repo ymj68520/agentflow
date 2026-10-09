@@ -1279,8 +1279,8 @@ CONTROL_ALGEBRA_RULES = [
          ["computation-control/equivalence/same-snapshot-deterministic", "computation-control/sequence/typed-cross-sibling-edge", "SUITE-COMPUTATION-CONTROL-DIMENSIONS"]),
     rule("AF-SEMANTIC-0126", "SEMANTIC", CONTROL_ALGEBRA_SRC,
          "control-unsupported-not-empty",
-         "SCOPE and COMPENSATION_SCOPE remain unsupported and Unproven; known descendants are not discarded and no row defaults empty. ITERATE/RETRY/TIMEOUT/HANDLE use the additive Phase 4B.2B.2 specification.",
-         ["computation-advanced-control/negative/scope-unsupported", "SUITE-COMPUTATION-CONTROL-PHASE-BOUNDARY"]),
+         "Unknown or unsupported control operators remain Unproven; known descendants are not discarded and no row defaults empty. The formerly unsupported SCOPE and COMPENSATION_SCOPE now use the additive Phase 4B.2B.3 rules.",
+         ["computation-advanced-control/negative/scope-unsupported", "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE"]),
     rule("AF-SEMANTIC-0127", "SEMANTIC", CONTROL_ALGEBRA_SRC,
          "control-sequence-effect",
          "SEQUENCE preserves semantic child order, uses existing Effect accumulation, weakens later-child lower bounds when prior success is not proven, and retains upper bounds/occurrences.",
@@ -1369,6 +1369,40 @@ ADVANCED_CONTROL_ALGEBRA_RULES = [
          ["computation-advanced-control/handle/typed-clause-03", "computation-advanced-control/negative/handle-unmatched-type", "SUITE-COMPUTATION-ADVANCED-CONTROL-PYTHON-ORACLE"]),
 ]
 RULES.extend(ADVANCED_CONTROL_ALGEBRA_RULES)
+
+SCOPE_CLOSURE_ALGEBRA_SRC = "spec/computation/scope-compensation-contract-algebra.md"
+
+SCOPE_CLOSURE_ALGEBRA_RULES = [
+    rule("AF-SEMANTIC-0147", "SEMANTIC", SCOPE_CLOSURE_ALGEBRA_SRC,
+         "scope-resource-attenuation",
+         "SCOPE compares exact Phase 3C parent, declared, and child ResourceSlot sets; child visibility is exactly the declared subset and does not imply a ResourceHandle or authorization.",
+         ["computation-scope-closure/scope/resource-boundary-01", "computation-scope-closure/nested/tree-10", "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0148", "SEMANTIC", SCOPE_CLOSURE_ALGEBRA_SRC,
+         "scope-static-obligations",
+         "SCOPE preserves child dimensions and ownership; missing authority/budget ceilings remain Unproven and child settlement before owner terminal RequiresEvidence.",
+         ["computation-scope-closure/scope/resource-boundary-04", "computation-advanced-control/negative/scope-unsupported", "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0149", "SEMANTIC", SCOPE_CLOSURE_ALGEBRA_SRC,
+         "compensation-forward-history",
+         "COMPENSATION_SCOPE preserves Forward Effects, typed outcomes, and Forward Usage; potential compensation is additional and never refunds or rewrites the Forward history.",
+         ["computation-scope-closure/compensation/action-bound-01", "computation-scope-closure/nested/tree-04", "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0150", "SEMANTIC", SCOPE_CLOSURE_ALGEBRA_SRC,
+         "compensation-exact-action-envelope",
+         "Only exact full RecoveryActionIdentity and RecoveryUsageBinding sources contribute; checked forward-occurrence, activation, and attempt bounds produce a conditional new Effect with zero lower bound, and the summed K upper must fit the exact declared action Effect occurrence.",
+         ["computation-scope-closure/compensation/action-bound-06", "computation-scope-closure/compensation/action-bound-18", "computation-scope-closure/negative/action-row-underdeclared", "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0151", "SEMANTIC", SCOPE_CLOSURE_ALGEBRA_SRC,
+         "compensation-receipt-usage-and-order",
+         "Recovery Usage remains separate and is checked against potential action bounds; receipt eligibility and multi-event committed order require evidence, and RecoveryBlocked is not a business Failure.",
+         ["computation-scope-closure/compensation/action-bound-06", "computation-scope-closure/nested/tree-05", "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0152", "SEMANTIC", SCOPE_CLOSURE_ALGEBRA_SRC,
+         "workflow-control-tree-closure",
+         "Workflow-root derivation resolves all reachable leaves and accounts for every checked owned computation, known Effect occurrence/residual, and Recovery source exactly once in semantic order without promoting child obligations.",
+         ["computation-scope-closure/nested/tree-01", "computation-scope-closure/nested/tree-15", "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE"]),
+    rule("AF-SEMANTIC-0153", "SEMANTIC", SCOPE_CLOSURE_ALGEBRA_SRC,
+         "workflow-root-export-boundary",
+         "A root derived summary is not an exported ComponentContract; without a frozen root pin and cross-coordinate mapping, export compatibility remains NotExpressedInSemanticIr and Unproven.",
+         ["computation-scope-closure/nested/tree-15", "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE"]),
+]
+RULES.extend(SCOPE_CLOSURE_ALGEBRA_RULES)
 
 # ---------------------------------------------------------------------------
 # Effect Signature rules (Phase 4A.1, area EFFECT)
@@ -2603,6 +2637,9 @@ SPECS = [
     ("agentflow.semantic.advanced-control-contract-algebra.semantics@1", "schema_language",
      "spec/computation/advanced-control-contract-algebra.md",
      "Derived-only static propagation for existing ITERATE, RETRY, TIMEOUT and HANDLE opcodes without changing Semantic IR or ComponentContract ABI."),
+    ("agentflow.semantic.scope-compensation-contract-algebra.semantics@1", "schema_language",
+     "spec/computation/scope-compensation-contract-algebra.md",
+     "Derived-only SCOPE and COMPENSATION_SCOPE algebra plus checked full control-tree closure, with runtime authority, receipts, reservations, and execution explicitly outside the static proof boundary."),
     ("agentflow.semantic.types@1", "schema_language",
      "spec/semantic/core-semantic-types.md",
      "Workflow semantic core semantics: machine vs workflow primitives, "
@@ -3977,8 +4014,9 @@ SUITE_LIST.extend([
         "description": (
             "A standalone Python oracle generates 72 vectors for the four "
             "existing advanced control opcodes, nested propagation, typed "
-            "carry/output interfaces, unsupported-scope boundary, "
-            "and boundary failures. "
+            "carry/output interfaces, the preserved Scope CaseId, and "
+            "boundary failures. Scope is now supported by Phase 4B.2B.3; "
+            "only its formerly unsupported Expected changed under revision 2. "
             "Every vector runs through checked Semantic IR, Phase 3C, leaf "
             "resolution and the production analyzer; output, static "
             "multiplicity, Flow dependencies, Recovery proof state and "
@@ -3988,6 +4026,21 @@ SUITE_LIST.extend([
             "tools/gen-advanced-control-corpus.py",
             "spec/conformance/computation-advanced-control/manifest.json",
             "crates/af-computation/tests/advanced_control_conformance.rs",
+        ],
+    },
+    {
+        "suite_id": "SUITE-COMPUTATION-SCOPE-CLOSURE-PYTHON-ORACLE",
+        "description": (
+            "An independent Python oracle generates 55 Scope, exact K-derived "
+            "conditional compensation, and nested control-tree vectors. Every "
+            "case runs through checked IR, Phase 3C, production leaf resolution, "
+            "the production algebra, and root closure; mutations cover resource "
+            "proof, compensation bound, traversal order, and source accounting."
+        ),
+        "targets": [
+            "tools/gen-computation-scope-closure-corpus.py",
+            "spec/conformance/computation-scope-closure/manifest.json",
+            "crates/af-computation/tests/scope_closure_conformance.rs",
         ],
     },
 ])

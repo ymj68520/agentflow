@@ -8,10 +8,12 @@ Phase 3C dataflow, exact Phase 4B.2A leaf summaries, and the same exact proof
 context. The result is a `DerivedControlContractSummary`, not a
 `CheckedComponentContract`, implementation proof, or durable identity.
 
-This file records the Phase 4B.2B.1 algebra. For the additive Phase 4B.2B.2
-rules for `ITERATE`, `RETRY`, `TIMEOUT`, and `HANDLE`,
-`spec/computation/advanced-control-contract-algebra.md` is normative and
-supersedes only the corresponding historical unsupported-operator statements
+This file records the Phase 4B.2B.1 algebra. The additive Phase 4B.2B.2 rules
+for `ITERATE`, `RETRY`, `TIMEOUT`, and `HANDLE` are in
+`spec/computation/advanced-control-contract-algebra.md`. Phase 4B.2B.3 adds
+`SCOPE`, `COMPENSATION_SCOPE`, and workflow-root closure in
+`spec/computation/scope-compensation-contract-algebra.md`. Those specifications
+supersede only the corresponding historical unsupported-operator statements
 below. No frozen IR or contract schema changes.
 
 ## Summary, context, and unsupported operators
@@ -35,12 +37,11 @@ reject duplicate or mismatched leaf identities. A missing leaf summary is
 
 <a id="control-unsupported-not-empty"></a>
 
-As of Phase 4B.2B.2, `SCOPE` and `COMPENSATION_SCOPE` still have no
-control-contract propagation rule and MUST be reported as
-unsupported/`Unproven`; known descendant summaries and obligations remain
-traceable. The former Phase 4B.2B.1 status of `ITERATE`, `RETRY`, `TIMEOUT`,
-and `HANDLE` is historical and is superseded by the advanced-control
-specification. No unsupported node may silently become an empty row.
+Before Phase 4B.2B.3, `SCOPE` and `COMPENSATION_SCOPE` had no propagation rule.
+They now use the explicit static algebra in
+`scope-compensation-contract-algebra.md`. Any future unknown or unsupported
+operator remains `Unproven`; known descendants and obligations remain
+traceable, and no unsupported node may silently become an empty row.
 
 ## SEQUENCE
 

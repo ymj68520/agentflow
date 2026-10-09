@@ -1,7 +1,9 @@
 # Advanced Control Contract Algebra (Phase 4B.2B.2)
 
 Status: frozen static-analysis semantics for the existing `ITERATE`, `RETRY`,
-`TIMEOUT`, and `HANDLE` Semantic IR opcodes. This specification adds no IR or
+`TIMEOUT`, and `HANDLE` Semantic IR opcodes. Phase 4B.2B.3 adds the separate
+Scope/CompensationScope and workflow-root rules in
+`scope-compensation-contract-algebra.md`. This specification adds no IR or
 AFIDL field, opcode, ABI assignment, digest domain, runtime identity, execution
 state, timer, cancellation protocol, retry policy, grant, plan, or journal.
 
