@@ -1,0 +1,250 @@
+{
+  "case_id": "computation-advanced-control/retry/schedule-06",
+  "expected": {
+    "control_decision_dependencies": [],
+    "control_decision_influence_unknown": true,
+    "control_effect_families": [
+      {
+        "families": [
+          {
+            "control_node": 1,
+            "kind": "retry",
+            "logical_repetitions": {
+              "lower": 1,
+              "upper": 3
+            },
+            "physical_attempts": {
+              "lower": 1,
+              "upper": 3
+            }
+          }
+        ],
+        "occurrence_index": 0,
+        "source_node": 2
+      }
+    ],
+    "control_semantics": {
+      "delays_micros_in_semantic_order": [
+        7,
+        2
+      ],
+      "kind": "retry",
+      "logical_narrowing_proven": false,
+      "maximum_attempts": 3,
+      "physical_attempt_bounds": {
+        "lower": 1,
+        "upper": 3
+      },
+      "retryable_failure_policy": "not_present_in_frozen_ir"
+    },
+    "dimension_availability": {
+      "effect": "complete",
+      "execution": "per_child",
+      "failure": "complete",
+      "information_flow": "partial",
+      "recovery": "per_child",
+      "resource": "per_child",
+      "typed_outputs": "complete",
+      "usage": "complete"
+    },
+    "effect_lower_bound_adjusted_children": [],
+    "effect_occurrences": [
+      {
+        "atom": {
+          "operation": {
+            "catalog": "agentflow.effects@1",
+            "name": "write"
+          },
+          "qualifiers": [
+            {
+              "family": "idempotency",
+              "member": "natural"
+            }
+          ],
+          "resource_selector": {
+            "requirement_port_no": 1,
+            "scope_bindings": []
+          }
+        },
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:0000000000000000000000000000000000000000000000000000000000000066",
+        "entry_ordinal": 0,
+        "node": 2
+      }
+    ],
+    "effect_row_complete": true,
+    "effects": {
+      "entries": [
+        {
+          "atom": {
+            "operation": {
+              "catalog": "agentflow.effects@1",
+              "name": "write"
+            },
+            "qualifiers": [
+              {
+                "family": "idempotency",
+                "member": "natural"
+              }
+            ],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            }
+          },
+          "guard": "unconditional",
+          "lower": 1,
+          "upper": 18
+        }
+      ],
+      "residuals": [],
+      "row": "closed"
+    },
+    "execution_by_child": [],
+    "failures": [
+      "FailureB"
+    ],
+    "flow": {
+      "constraints_by_child": [
+        {
+          "constraints": [],
+          "node": 2
+        }
+      ],
+      "decision_dependencies": [],
+      "effective_authority_inferred": false,
+      "influence_unknown": true,
+      "may_carry_authority": "none",
+      "sources": [],
+      "taints": [],
+      "verdict": "unproven"
+    },
+    "identity": {
+      "children": [
+        2
+      ],
+      "node": 1,
+      "operator": "retry"
+    },
+    "output_interface": {
+      "ports": [],
+      "state": "complete"
+    },
+    "recovery_sources": [],
+    "resources_by_child": [
+      {
+        "node": 2,
+        "requirements": [
+          {
+            "component_port": 1,
+            "resource_slot": "fixture:auto:2:1"
+          }
+        ]
+      }
+    ],
+    "typed_outputs": {
+      "port_count": 0,
+      "state": "complete"
+    },
+    "unresolved_children": [],
+    "usage": {
+      "coordinates": {
+        "forward/api_calls": 3,
+        "recovery/api_calls": 0
+      },
+      "state": "known"
+    },
+    "verdict": "requires_evidence"
+  },
+  "group": "retry",
+  "input": {
+    "children": [
+      {
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:0000000000000000000000000000000000000000000000000000000000000066",
+        "effect_entries": [
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.effects@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "family": "idempotency",
+                  "member": "natural"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "guard": "unconditional",
+            "lower": 1,
+            "upper": 6
+          }
+        ],
+        "effects": {
+          "entries": [
+            {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "write"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "guard": "unconditional",
+              "lower": 1,
+              "upper": 6
+            }
+          ],
+          "residuals": [],
+          "row": "closed"
+        },
+        "execution": null,
+        "failures": [
+          "FailureB"
+        ],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
+        "node": 2,
+        "outputs": [],
+        "proof_source": "checked_component",
+        "recovery_actions": null,
+        "replay_semantics": "recompute",
+        "resolved": true,
+        "resources": null,
+        "usage": {
+          "coordinates": {
+            "forward/api_calls": 1,
+            "recovery/api_calls": 0
+          }
+        }
+      }
+    ],
+    "delays_micros": [
+      7,
+      2
+    ],
+    "operation": "compose",
+    "operator": "retry"
+  },
+  "kind": "agentflow.conformance.computation-advanced-control.test-vector",
+  "note": "Independent static algebra oracle; this vector is executed through checked Semantic IR, Phase 3C, leaf resolution, and the production control analyzer."
+}

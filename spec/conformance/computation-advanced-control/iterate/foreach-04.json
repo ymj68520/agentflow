@@ -1,0 +1,241 @@
+{
+  "case_id": "computation-advanced-control/iterate/foreach-04",
+  "expected": {
+    "control_decision_dependencies": [],
+    "control_decision_influence_unknown": true,
+    "control_effect_families": [
+      {
+        "families": [
+          {
+            "control_node": 1,
+            "kind": "iterate",
+            "logical_repetitions": {
+              "lower": 0,
+              "upper": 3
+            },
+            "physical_attempts": null
+          }
+        ],
+        "occurrence_index": 0,
+        "source_node": 2
+      }
+    ],
+    "control_semantics": {
+      "effect_repetitions": {
+        "lower": 0,
+        "upper": 3
+      },
+      "kind": "iterate",
+      "max_inflight_is_not_total_count": true,
+      "mode": {
+        "kind": "foreach",
+        "max_inflight": 3,
+        "statically_known_item_count": 3
+      },
+      "usage_repetitions": 3
+    },
+    "dimension_availability": {
+      "effect": "complete",
+      "execution": "per_child",
+      "failure": "complete",
+      "information_flow": "partial",
+      "recovery": "per_child",
+      "resource": "per_child",
+      "typed_outputs": "complete",
+      "usage": "complete"
+    },
+    "effect_lower_bound_adjusted_children": [],
+    "effect_occurrences": [
+      {
+        "atom": {
+          "operation": {
+            "catalog": "agentflow.effects@1",
+            "name": "write"
+          },
+          "qualifiers": [
+            {
+              "family": "idempotency",
+              "member": "natural"
+            }
+          ],
+          "resource_selector": {
+            "requirement_port_no": 1,
+            "scope_bindings": []
+          }
+        },
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:0000000000000000000000000000000000000000000000000000000000000066",
+        "entry_ordinal": 0,
+        "node": 2
+      }
+    ],
+    "effect_row_complete": true,
+    "effects": {
+      "entries": [
+        {
+          "atom": {
+            "operation": {
+              "catalog": "agentflow.effects@1",
+              "name": "write"
+            },
+            "qualifiers": [
+              {
+                "family": "idempotency",
+                "member": "natural"
+              }
+            ],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            }
+          },
+          "guard": "unconditional",
+          "lower": 0,
+          "upper": 12
+        }
+      ],
+      "residuals": [],
+      "row": "closed"
+    },
+    "execution_by_child": [],
+    "failures": [],
+    "flow": {
+      "constraints_by_child": [
+        {
+          "constraints": [],
+          "node": 2
+        }
+      ],
+      "decision_dependencies": [],
+      "effective_authority_inferred": false,
+      "influence_unknown": true,
+      "may_carry_authority": "none",
+      "sources": [],
+      "taints": [],
+      "verdict": "unproven"
+    },
+    "identity": {
+      "children": [
+        2
+      ],
+      "node": 1,
+      "operator": "iterate"
+    },
+    "output_interface": {
+      "ports": [],
+      "state": "complete"
+    },
+    "recovery_sources": [],
+    "resources_by_child": [
+      {
+        "node": 2,
+        "requirements": [
+          {
+            "component_port": 1,
+            "resource_slot": "fixture:auto:2:1"
+          }
+        ]
+      }
+    ],
+    "typed_outputs": {
+      "port_count": 0,
+      "state": "complete"
+    },
+    "unresolved_children": [],
+    "usage": {
+      "coordinates": {
+        "forward/api_calls": 27,
+        "recovery/api_calls": 12
+      },
+      "state": "known"
+    },
+    "verdict": "unproven"
+  },
+  "group": "iterate",
+  "input": {
+    "children": [
+      {
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:0000000000000000000000000000000000000000000000000000000000000066",
+        "effect_entries": [
+          {
+            "atom": {
+              "operation": {
+                "catalog": "agentflow.effects@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "family": "idempotency",
+                  "member": "natural"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "guard": "unconditional",
+            "lower": 1,
+            "upper": 4
+          }
+        ],
+        "effects": {
+          "entries": [
+            {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects@1",
+                  "name": "write"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "guard": "unconditional",
+              "lower": 1,
+              "upper": 4
+            }
+          ],
+          "residuals": [],
+          "row": "closed"
+        },
+        "execution": null,
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
+        "node": 2,
+        "outputs": [],
+        "proof_source": "checked_component",
+        "recovery_actions": null,
+        "replay_semantics": "recompute",
+        "resolved": true,
+        "resources": null,
+        "usage": {
+          "coordinates": {
+            "forward/api_calls": 9,
+            "recovery/api_calls": 4
+          }
+        }
+      }
+    ],
+    "item_count": 3,
+    "max_inflight": 3,
+    "operation": "compose",
+    "operator": "iterate_foreach"
+  },
+  "kind": "agentflow.conformance.computation-advanced-control.test-vector",
+  "note": "Independent static algebra oracle; this vector is executed through checked Semantic IR, Phase 3C, leaf resolution, and the production control analyzer."
+}

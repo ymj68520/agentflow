@@ -1,0 +1,85 @@
+{
+  "case_id": "computation-advanced-control/negative/scope-unsupported",
+  "expected": {
+    "control_decision_dependencies": [],
+    "control_decision_influence_unknown": false,
+    "control_semantics": {
+      "kind": "unsupported"
+    },
+    "dimension_availability": {
+      "effect": "unknown",
+      "execution": "per_child",
+      "failure": "unknown",
+      "information_flow": "partial",
+      "recovery": "per_child",
+      "resource": "per_child",
+      "typed_outputs": "unknown",
+      "usage": "unknown"
+    },
+    "effect_row_complete": false,
+    "effects": {
+      "row": "unknown"
+    },
+    "identity": {
+      "children": [
+        2
+      ],
+      "node": 1,
+      "operator": "unsupported"
+    },
+    "output_interface": {
+      "state": "unknown",
+      "unresolved_sources": [
+        1
+      ]
+    },
+    "typed_outputs": {
+      "state": "unknown",
+      "unresolved_sources": [
+        1
+      ]
+    },
+    "verdict": "unproven"
+  },
+  "group": "negative",
+  "input": {
+    "children": [
+      {
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:0000000000000000000000000000000000000000000000000000000000000066",
+        "effect_entries": [],
+        "effects": {
+          "entries": [],
+          "residuals": [],
+          "row": "closed"
+        },
+        "execution": null,
+        "failures": [],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
+        "node": 2,
+        "outputs": [],
+        "proof_source": "checked_component",
+        "recovery_actions": null,
+        "replay_semantics": "recompute",
+        "resolved": true,
+        "resources": null,
+        "usage": {
+          "coordinates": {
+            "forward/api_calls": 1,
+            "recovery/api_calls": 0
+          }
+        }
+      }
+    ],
+    "operation": "compose",
+    "operator": "scope"
+  },
+  "kind": "agentflow.conformance.computation-advanced-control.test-vector",
+  "note": "Independent static algebra oracle; this vector is executed through checked Semantic IR, Phase 3C, leaf resolution, and the production control analyzer."
+}

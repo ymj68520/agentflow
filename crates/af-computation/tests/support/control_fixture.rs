@@ -5,8 +5,9 @@
 use std::collections::{BTreeMap, BTreeSet};
 
 use af_computation::{
-    ControlDimensionValue, DerivedControlContractSummary, LeafVerdict,
-    StaticComputationResolutionSnapshotBuilder, derive_control_contract, resolve_computation_leaf,
+    ControlDimensionValue, ControlOperator, DerivedControlContractSummary, HandleMatcherSummary,
+    IterateMode, LeafVerdict, StaticComputationResolutionSnapshotBuilder, derive_control_contract,
+    resolve_computation_leaf,
 };
 use af_contract::{
     AuthorityExecutionRule, ComponentContract, ComponentIdentity, ComponentInputPort,
@@ -36,10 +37,11 @@ use af_idl::{CompiledModuleSet, compile_module_set};
 use af_ir::model::ComputationOutputBinding;
 use af_ir::{
     CallSubflowBody, ComputationBody, ComputationDef, ComputationId, ContractRefEntry,
-    ContractRefId, ContractRefKind, InputBinding, InvokeBody, ParallelBody, ParallelBranch,
-    ParallelMode, ParallelOutputBinding, RaceBody, RaceBranch, ResourceUseBinding,
-    RunParameterDecl, SelectBody, SelectCase, SemanticIrDocument, SequenceBody, SubflowIrUniverse,
-    TimeoutBody,
+    ContractRefId, ContractRefKind, FailureMatch, ForeachBody, HandleBody, HandleClause,
+    HandleMatch, InputBinding, InvokeBody, IterateBody, LoopCarryBinding, ParallelBody,
+    ParallelBranch, ParallelMode, ParallelOutputBinding, RaceBody, RaceBranch, ResourceUseBinding,
+    RetryBody, RunParameterDecl, ScopeBody, SelectBody, SelectCase, SemanticIrDocument,
+    SequenceBody, SubflowIrUniverse, TimeoutBody, WhileBody,
 };
 use af_recovery::{
     CompensationRequirement, EffectRecoveryClause, IdempotencySemantics, KeyStabilityRequirement,
@@ -873,6 +875,15 @@ fn component_contract(child: &Value, env: &FixtureContext) -> Result<ComponentCo
     };
     contract.usage = parse_usage(child.get("usage"))?;
     contract.execution = parse_execution(child.get("execution"));
+    if let Some(replay_semantics) = child.get("replay_semantics").and_then(Value::as_str) {
+        contract.recovery.replay_semantics = match replay_semantics {
+            "recompute" => ReplaySemantics::Recompute,
+            "recorded" => ReplaySemantics::Recorded,
+            "reconcile" => ReplaySemantics::Reconcile,
+            "forbidden" => ReplaySemantics::Forbidden,
+            other => return Err(format!("unsupported fixture replay semantics {other}")),
+        };
+    }
     let mut actions = Vec::new();
     let mut usage_bindings = Vec::new();
     for item in child["recovery_actions"].as_array().into_iter().flatten() {
@@ -1407,6 +1418,13 @@ fn semantic_ir(
     }];
     let is_select = input["operator"].as_str() == Some("select");
     let is_timeout = input["operator"].as_str() == Some("timeout");
+    let is_foreach = input["operator"].as_str() == Some("iterate_foreach");
+    let is_while = input["operator"].as_str() == Some("iterate_while");
+    let has_nested_foreach = input["nested_nodes"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .any(|node| node["operator"] == "iterate_foreach");
     if is_select {
         type_nodes.push(SemanticTypeNode {
             id: 2.into(),
@@ -1416,6 +1434,20 @@ fn semantic_ir(
         type_nodes.push(SemanticTypeNode {
             id: 2.into(),
             body: SemanticTypeNodeBody::Primitive(SemanticPrimitiveType::Duration),
+        });
+    } else if is_foreach || has_nested_foreach {
+        type_nodes.push(SemanticTypeNode {
+            id: 2.into(),
+            body: SemanticTypeNodeBody::Primitive(SemanticPrimitiveType::Int64),
+        });
+        type_nodes.push(SemanticTypeNode {
+            id: 3.into(),
+            body: SemanticTypeNodeBody::List(2.into()),
+        });
+    } else if is_while {
+        type_nodes.push(SemanticTypeNode {
+            id: 2.into(),
+            body: SemanticTypeNodeBody::Primitive(SemanticPrimitiveType::Bool),
         });
     }
     let mut values = Vec::new();
@@ -1449,6 +1481,31 @@ fn semantic_ir(
                 type_id: type_id.into(),
             });
         }
+    }
+    let mut root_output_values = BTreeMap::<u32, ValueSlotId>::new();
+    for output in input["parent_outputs"].as_array().into_iter().flatten() {
+        let alias = output["slot"]
+            .as_str()
+            .ok_or("parent output lacks a value-slot alias")?;
+        let raw = alias
+            .rsplit(':')
+            .next()
+            .ok_or("malformed parent output value-slot alias")?
+            .parse::<u32>()
+            .map_err(|error| error.to_string())?;
+        let slot = ValueSlotId::from_raw(raw);
+        let type_id = output["type_id"]
+            .as_str()
+            .unwrap()
+            .strip_prefix("semantic-type:")
+            .ok_or("malformed parent output type id")?
+            .parse::<u32>()
+            .map_err(|error| error.to_string())?;
+        values.push(af_semantic::ValueSlot {
+            id: slot,
+            type_id: type_id.into(),
+        });
+        root_output_values.insert(fixture_u32(&output["port"], "parent output port"), slot);
     }
     for child in children {
         let raw = raws
@@ -1518,12 +1575,167 @@ fn semantic_ir(
             });
         }
     } else if is_timeout {
+        if input["timeout_dynamic"].as_bool() == Some(true) {
+            values.push(af_semantic::ValueSlot {
+                id: 201.into(),
+                type_id: 2.into(),
+            });
+            expressions.push(ExpressionDef {
+                id: 1.into(),
+                result_type_id: 2.into(),
+                body: ExpressionBody::ValueSlot(201.into()),
+            });
+            run_parameters.push(RunParameterDecl {
+                id: 201.into(),
+                name: "timeout".into(),
+                type_id: 2.into(),
+                value_slot: 201.into(),
+            });
+        } else {
+            expressions.push(ExpressionDef {
+                id: 1.into(),
+                result_type_id: 2.into(),
+                body: ExpressionBody::Constant(PrimitiveConstant::Duration(
+                    af_core::Duration::new(input["timeout_micros"].as_i64().unwrap_or(1)),
+                )),
+            });
+        }
+    } else if is_foreach {
+        let item_count = input["item_count"].as_u64().unwrap_or(0);
+        if input["item_count"].is_null() {
+            values.push(af_semantic::ValueSlot {
+                id: 200.into(),
+                type_id: 3.into(),
+            });
+            expressions.push(ExpressionDef {
+                id: 1.into(),
+                result_type_id: 3.into(),
+                body: ExpressionBody::ValueSlot(200.into()),
+            });
+            run_parameters.push(RunParameterDecl {
+                id: 200.into(),
+                name: "items".into(),
+                type_id: 3.into(),
+                value_slot: 200.into(),
+            });
+        } else {
+            let element_expressions = (0..item_count)
+                .map(|index| {
+                    let expression = u32::try_from(1000_u64 + index)
+                        .expect("fixture list expression IDs fit u32");
+                    expressions.push(ExpressionDef {
+                        id: expression.into(),
+                        result_type_id: 2.into(),
+                        body: ExpressionBody::Constant(PrimitiveConstant::Int64(
+                            i64::try_from(index).expect("fixture list element fits i64"),
+                        )),
+                    });
+                    expression.into()
+                })
+                .collect::<Vec<_>>();
+            expressions.push(ExpressionDef {
+                id: 1.into(),
+                result_type_id: 3.into(),
+                body: ExpressionBody::ListConstruct {
+                    element_type: 2.into(),
+                    elements: element_expressions,
+                },
+            });
+        }
+        values.push(af_semantic::ValueSlot {
+            id: 40_000.into(),
+            type_id: 2.into(),
+        });
+    } else if is_while {
         expressions.push(ExpressionDef {
             id: 1.into(),
             result_type_id: 2.into(),
-            body: ExpressionBody::Constant(PrimitiveConstant::Duration(af_core::Duration::new(1))),
+            body: ExpressionBody::Constant(PrimitiveConstant::Bool(
+                input["guard_value"].as_bool().unwrap_or(true),
+            )),
         });
     }
+    if has_nested_foreach && !is_foreach {
+        for nested in input["nested_nodes"].as_array().into_iter().flatten() {
+            if nested["operator"] != "iterate_foreach" {
+                continue;
+            }
+            let item_count = fixture_u32(&nested["item_count"], "nested foreach item_count");
+            let source_expression = fixture_u32(
+                &nested["source_expression"],
+                "nested foreach source expression",
+            );
+            let item_slot = fixture_u32(&nested["item_slot"], "nested foreach item slot");
+            let element_expressions = (0..item_count)
+                .map(|index| {
+                    let expression = 30_000_u32
+                        .checked_add(index)
+                        .expect("nested foreach expression IDs fit u32");
+                    expressions.push(ExpressionDef {
+                        id: expression.into(),
+                        result_type_id: 2.into(),
+                        body: ExpressionBody::Constant(PrimitiveConstant::Int64(i64::from(index))),
+                    });
+                    expression.into()
+                })
+                .collect::<Vec<_>>();
+            expressions.push(ExpressionDef {
+                id: source_expression.into(),
+                result_type_id: 3.into(),
+                body: ExpressionBody::ListConstruct {
+                    element_type: 2.into(),
+                    elements: element_expressions,
+                },
+            });
+            values.push(af_semantic::ValueSlot {
+                id: item_slot.into(),
+                type_id: 2.into(),
+            });
+        }
+    }
+    let carry_bindings = input["carry"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .map(|carry| {
+            let slot = fixture_u32(&carry["slot"], "carry slot");
+            let initial_slot = fixture_u32(&carry["initial_slot"], "carry initial slot");
+            let type_id = carry["type_id"]
+                .as_str()
+                .unwrap()
+                .strip_prefix("semantic-type:")
+                .ok_or("malformed carry type id")?
+                .parse::<u32>()
+                .map_err(|error| error.to_string())?;
+            let initial_expression =
+                fixture_u32(&carry["initial_expression"], "carry initial expression");
+            values.push(af_semantic::ValueSlot {
+                id: slot.into(),
+                type_id: type_id.into(),
+            });
+            values.push(af_semantic::ValueSlot {
+                id: initial_slot.into(),
+                type_id: type_id.into(),
+            });
+            expressions.push(ExpressionDef {
+                id: initial_expression.into(),
+                result_type_id: type_id.into(),
+                body: ExpressionBody::ValueSlot(initial_slot.into()),
+            });
+            run_parameters.push(RunParameterDecl {
+                id: initial_slot.into(),
+                name: format!("carry-initial-{slot}"),
+                type_id: type_id.into(),
+                value_slot: initial_slot.into(),
+            });
+            Ok(LoopCarryBinding {
+                slot: slot.into(),
+                initial: initial_expression.into(),
+                body_output_port: fixture_u32(&carry["body_output_port"], "carry body output port")
+                    .into(),
+            })
+        })
+        .collect::<Result<Vec<_>, String>>()?;
 
     let mut resource_alias_ids = BTreeMap::<String, ResourceSlotId>::new();
     for child in children {
@@ -1617,14 +1829,23 @@ fn semantic_ir(
         .iter()
         .map(|c| ComputationId::from_raw(fixture_u32(&c["node"], "node id")))
         .collect::<Vec<_>>();
+    let root_child_ids = input["root_child_nodes"].as_array().map_or_else(
+        || child_ids.clone(),
+        |nodes| {
+            nodes
+                .iter()
+                .map(|node| ComputationId::from_raw(fixture_u32(node, "root child node")))
+                .collect::<Vec<_>>()
+        },
+    );
     let operator = input["operator"].as_str().unwrap();
     let root_body = match operator {
         "sequence" => ComputationBody::Sequence(SequenceBody {
-            children: child_ids.clone(),
+            children: root_child_ids.clone(),
         }),
         "select" => ComputationBody::Select(SelectBody {
             selector: 1.into(),
-            cases: child_ids
+            cases: root_child_ids
                 .iter()
                 .enumerate()
                 .map(|(index, child)| SelectCase {
@@ -1639,7 +1860,7 @@ fn semantic_ir(
             } else {
                 ParallelMode::FailFast
             },
-            branches: child_ids
+            branches: root_child_ids
                 .iter()
                 .enumerate()
                 .map(|(index, child)| ParallelBranch {
@@ -1654,7 +1875,7 @@ fn semantic_ir(
             output_bindings: vec![],
         }),
         "race" => ComputationBody::Race(RaceBody {
-            branches: child_ids
+            branches: root_child_ids
                 .iter()
                 .enumerate()
                 .map(|(index, child)| RaceBranch {
@@ -1664,14 +1885,89 @@ fn semantic_ir(
                 .collect(),
         }),
         "timeout" => ComputationBody::Timeout(TimeoutBody {
-            child: *child_ids.first().ok_or("TIMEOUT needs one child")?,
+            child: *root_child_ids.first().ok_or("TIMEOUT needs one child")?,
             timeout: 1.into(),
+        }),
+        "iterate_foreach" => ComputationBody::Iterate(IterateBody::Foreach(ForeachBody {
+            source: 1.into(),
+            item_slot: 40_000.into(),
+            body: *root_child_ids
+                .first()
+                .ok_or("ITERATE FOREACH needs one body")?,
+            carry: carry_bindings,
+            max_inflight: input["max_inflight"]
+                .as_u64()
+                .map(|value| u32::try_from(value).expect("fixture max_inflight fits u32")),
+        })),
+        "iterate_while" => ComputationBody::Iterate(IterateBody::While(WhileBody {
+            guard: 1.into(),
+            body: *root_child_ids
+                .first()
+                .ok_or("ITERATE WHILE needs one body")?,
+            carry: carry_bindings,
+            max_iterations: fixture_u32(&input["max_iterations"], "max_iterations"),
+        })),
+        "retry" => ComputationBody::Retry(RetryBody {
+            child: *root_child_ids.first().ok_or("RETRY needs one child")?,
+            delays: input["delays_micros"]
+                .as_array()
+                .into_iter()
+                .flatten()
+                .map(|delay| af_core::Duration::new(delay.as_i64().unwrap()))
+                .collect(),
+        }),
+        "handle" => {
+            let clauses = input["clauses"]
+                .as_array()
+                .into_iter()
+                .flatten()
+                .map(|clause| {
+                    let matcher = if clause["match"] == "timed_out" {
+                        HandleMatch::TimedOut(())
+                    } else {
+                        let failure_name = clause["match"]["failure"].as_str().unwrap();
+                        HandleMatch::Failure(FailureMatch {
+                            failure_type: failure_ref(failure_name, &env.schemas)?.payload_type,
+                        })
+                    };
+                    Ok(HandleClause {
+                        ordinal: fixture_u32(&clause["ordinal"], "handler ordinal").into(),
+                        matcher,
+                        handler: ComputationId::from_raw(fixture_u32(
+                            &clause["handler"],
+                            "handler node",
+                        )),
+                    })
+                })
+                .collect::<Result<Vec<_>, String>>()?;
+            ComputationBody::Handle(HandleBody {
+                child: *root_child_ids
+                    .first()
+                    .ok_or("HANDLE needs a protected child")?,
+                clauses,
+            })
+        }
+        "scope" => ComputationBody::Scope(ScopeBody {
+            child: *root_child_ids.first().ok_or("SCOPE needs one child")?,
+            resources: vec![],
         }),
         other => return Err(format!("unsupported fixture opcode {other}")),
     };
+    let root_outputs = input["parent_outputs"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .map(|output| {
+            let port = fixture_u32(&output["port"], "parent output port");
+            ComputationOutputBinding {
+                port_no: port.into(),
+                value_slot: root_output_values[&port],
+            }
+        })
+        .collect();
     let mut computations = vec![ComputationDef {
         id: root_id,
-        outputs: vec![],
+        outputs: root_outputs,
         body: root_body,
     }];
     for child in children {
@@ -1766,6 +2062,27 @@ fn semantic_ir(
         computations.push(ComputationDef {
             id: node,
             outputs: output_bindings,
+            body,
+        });
+    }
+    for nested in input["nested_nodes"].as_array().into_iter().flatten() {
+        let node = ComputationId::from_raw(fixture_u32(&nested["node"], "nested node"));
+        let body = match nested["operator"].as_str().unwrap() {
+            "iterate_foreach" => ComputationBody::Iterate(IterateBody::Foreach(ForeachBody {
+                source: fixture_u32(&nested["source_expression"], "nested source expression")
+                    .into(),
+                item_slot: fixture_u32(&nested["item_slot"], "nested item slot").into(),
+                body: ComputationId::from_raw(fixture_u32(&nested["body"], "nested body")),
+                carry: vec![],
+                max_inflight: nested["max_inflight"]
+                    .as_u64()
+                    .map(|value| u32::try_from(value).expect("nested max_inflight fits u32")),
+            })),
+            other => return Err(format!("unsupported nested fixture opcode {other}")),
+        };
+        computations.push(ComputationDef {
+            id: node,
+            outputs: vec![],
             body,
         });
     }
@@ -1910,6 +2227,25 @@ fn project(
             "identity": {"operator": summary.operator().name(), "node": summary.control_node().raw(), "children": summary.direct_children().iter().map(|id| id.raw()).collect::<Vec<_>>()},
             "sequence_dataflow_dependencies": summary.sequence_dataflow_dependencies().iter().map(|dependency|json!({"producer_child":dependency.producer_child().raw(),"producer_node":dependency.producer_node().raw(),"value_slot":dependency.value_slot().raw(),"consumer_child":dependency.consumer_child().raw(),"consumer_node":dependency.consumer_node().raw(),"expression":dependency.expression().raw()})).collect::<Vec<_>>(),
             "case_operator": input["operator"],
+            "control_semantics": control_semantics_json(summary.operator()),
+            "control_decision_dependencies": match summary.information_flow().value() {
+                ControlDimensionValue::Complete(flow) | ControlDimensionValue::Partial { known_contribution: Some(flow), .. } => flow.control_decision_dependencies().iter().map(|slot|slot.raw()).collect::<Vec<_>>(),
+                _ => Vec::<u32>::new(),
+            },
+            "control_decision_influence_unknown": match summary.information_flow().value() {
+                ControlDimensionValue::Complete(flow) | ControlDimensionValue::Partial { known_contribution: Some(flow), .. } => flow.control_decision_influence_unknown(),
+                _ => true,
+            },
+            "dimension_availability": dimension_availability(summary),
+            "typed_outputs": match summary.interface().outputs() {
+                ControlDimensionValue::Complete(ports) => json!({"state":"complete","port_count":ports.len()}),
+                ControlDimensionValue::Partial { known_contribution, unresolved_sources } => json!({"state":"partial","port_count":known_contribution.as_ref().map_or(0,Vec::len),"unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>()}),
+                ControlDimensionValue::Unknown { unresolved_sources, .. } => json!({"state":"unknown","unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>()}),
+                ControlDimensionValue::PerChild { unresolved_sources, .. } => json!({"state":"per_child","unresolved_sources":unresolved_sources.iter().map(|node|node.raw()).collect::<Vec<_>>()}),
+                ControlDimensionValue::NotApplicable => json!({"state":"not_applicable"}),
+            },
+            "output_interface": interface_json(summary)["outputs"].clone(),
+            "control_effect_families": summary.effect_occurrences().iter().enumerate().filter(|(_,occurrence)|!occurrence.control_families.is_empty()).map(|(occurrence_index,occurrence)|json!({"occurrence_index":occurrence_index,"source_node":occurrence.computation.raw(),"families":occurrence.control_families.iter().map(|family|json!({"control_node":family.control_node.raw(),"kind":match family.kind {af_computation::EffectOccurrenceFamilyKind::Iterate=>"iterate",af_computation::EffectOccurrenceFamilyKind::Retry=>"retry"},"logical_repetitions":{"lower":family.logical_repetitions.lower,"upper":occurrence_ceiling_json(family.logical_repetitions.upper)},"physical_attempts":family.physical_attempts.as_ref().map(|bounds|json!({"lower":bounds.lower,"upper":occurrence_ceiling_json(bounds.upper)}))})).collect::<Vec<_>>()})).collect::<Vec<_>>(),
             "_inherited_obligations": summary.inherited_obligations().iter().map(|item|json!({"source_node":item.source_node().raw(),"dimension":item.dimension(),"verdict":verdict(item.verdict()),"rule_id":item.rule_id(),"reference":item.reference()})).collect::<Vec<_>>(),
             "_semantic_projection": {
                 "source_semantic_ir_digest": digest_ref_json(summary.source_semantic_ir_digest()),
@@ -1937,6 +2273,80 @@ fn project(
                 "inherited_obligations": summary.inherited_obligations().iter().map(|item|json!({"source_node":item.source_node().raw(),"dimension":item.dimension(),"verdict":verdict(item.verdict()),"rule_id":item.rule_id(),"reference":item.reference()})).collect::<Vec<_>>(),
             },
         }),
+    }
+}
+
+fn occurrence_ceiling_json(ceiling: af_effect::OccurrenceCeiling) -> Value {
+    match ceiling {
+        af_effect::OccurrenceCeiling::Finite(value) => json!(value),
+        af_effect::OccurrenceCeiling::Unbounded => json!("unbounded"),
+    }
+}
+
+fn control_semantics_json(operator: &ControlOperator) -> Value {
+    match operator {
+        ControlOperator::Iterate {
+            mode,
+            effect_repetitions,
+            usage_repetitions,
+        } => {
+            let mode = match mode {
+                IterateMode::Foreach {
+                    statically_known_item_count,
+                    max_inflight,
+                } => json!({
+                    "kind":"foreach",
+                    "statically_known_item_count":statically_known_item_count,
+                    "max_inflight":max_inflight,
+                }),
+                IterateMode::While { max_iterations } => json!({
+                    "kind":"while",
+                    "max_iterations":max_iterations,
+                }),
+            };
+            json!({
+                "kind":"iterate",
+                "mode":mode,
+                "effect_repetitions":{"lower":effect_repetitions.lower,"upper":occurrence_ceiling_json(effect_repetitions.upper)},
+                "usage_repetitions":usage_repetitions,
+                "max_inflight_is_not_total_count":true,
+            })
+        }
+        ControlOperator::Retry {
+            delays,
+            max_attempts,
+        } => json!({
+            "kind":"retry",
+            "delays_micros_in_semantic_order":delays.iter().map(af_core::Duration::as_micros).collect::<Vec<_>>(),
+            "maximum_attempts":max_attempts,
+            "physical_attempt_bounds":{"lower":1,"upper":max_attempts},
+            "logical_narrowing_proven":false,
+            "retryable_failure_policy":"not_present_in_frozen_ir",
+        }),
+        ControlOperator::Timeout {
+            expression,
+            static_duration,
+            possible_outcomes,
+        } => json!({
+            "kind":"timeout",
+            "timeout_expression":expression.raw(),
+            "static_duration_micros":static_duration.map(|duration|duration.as_micros()),
+            "possible_outcomes":possible_outcomes.iter().map(|outcome|match outcome {af_computation::TimeoutOutcome::ChildCompleted=>"child_completed",af_computation::TimeoutOutcome::TimedOut=>"timed_out"}).collect::<Vec<_>>(),
+            "timed_out_is_typed_failure":false,
+            "successful_cancellation_inferred":false,
+        }),
+        ControlOperator::Handle { handled, clauses } => json!({
+            "kind":"handle",
+            "handled_failure_types":handled.failures.iter().map(failure_alias).collect::<Vec<_>>(),
+            "clauses":clauses.iter().map(|clause|json!({
+                "ordinal":clause.ordinal(),
+                "matcher":match clause.matcher() {HandleMatcherSummary::Failure(schema)=>json!({"failure_type":schema.type_name}),HandleMatcherSummary::TimedOut=>json!({"timed_out":null})},
+                "handler":clause.handler().raw(),
+            })).collect::<Vec<_>>(),
+            "handler_paths_are_conditional":true,
+            "unmatched_failures_remain_in_residual":true,
+        }),
+        other => json!({"kind":other.name()}),
     }
 }
 

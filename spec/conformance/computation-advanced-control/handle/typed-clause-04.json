@@ -1,0 +1,160 @@
+{
+  "case_id": "computation-advanced-control/handle/typed-clause-04",
+  "expected": {
+    "control_decision_dependencies": [],
+    "control_decision_influence_unknown": true,
+    "control_effect_families": [],
+    "control_semantics": {
+      "clauses": [
+        {
+          "handler": 3,
+          "matcher": {
+            "failure_type": "TypeSchemaRef"
+          },
+          "ordinal": 1
+        }
+      ],
+      "handled_failure_types": [
+        "FailureA"
+      ],
+      "handler_paths_are_conditional": true,
+      "kind": "handle",
+      "unmatched_failures_remain_in_residual": true
+    },
+    "dimension_availability": {
+      "effect": "complete",
+      "execution": "per_child",
+      "failure": "complete",
+      "information_flow": "partial",
+      "recovery": "per_child",
+      "resource": "per_child",
+      "typed_outputs": "complete",
+      "usage": "complete"
+    },
+    "effect_lower_bound_adjusted_children": [],
+    "effect_occurrences": [],
+    "effect_row_complete": true,
+    "effects": {
+      "entries": [],
+      "residuals": [],
+      "row": "closed"
+    },
+    "execution_by_child": [],
+    "failures": [
+      "FailureB"
+    ],
+    "identity": {
+      "children": [
+        2,
+        3
+      ],
+      "node": 1,
+      "operator": "handle"
+    },
+    "output_interface": {
+      "ports": [],
+      "state": "complete"
+    },
+    "recovery_sources": [],
+    "resources_by_child": [],
+    "typed_outputs": {
+      "port_count": 0,
+      "state": "complete"
+    },
+    "unresolved_children": [],
+    "usage": {
+      "coordinates": {
+        "forward/api_calls": 12,
+        "recovery/api_calls": 5
+      },
+      "state": "known"
+    },
+    "verdict": "unproven"
+  },
+  "group": "handle",
+  "input": {
+    "children": [
+      {
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:0000000000000000000000000000000000000000000000000000000000000066",
+        "effect_entries": [],
+        "effects": {
+          "entries": [],
+          "residuals": [],
+          "row": "closed"
+        },
+        "execution": null,
+        "failures": [
+          "FailureA"
+        ],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
+        "node": 2,
+        "outputs": [],
+        "proof_source": "checked_component",
+        "recovery_actions": null,
+        "replay_semantics": "recompute",
+        "resolved": true,
+        "resources": null,
+        "usage": {
+          "coordinates": {
+            "forward/api_calls": 9,
+            "recovery/api_calls": 4
+          }
+        }
+      },
+      {
+        "caller_digest": "semantic-ir:caller",
+        "contract_digest": "component-contract:0000000000000000000000000000000000000000000000000000000000000067",
+        "effect_entries": [],
+        "effects": {
+          "entries": [],
+          "residuals": [],
+          "row": "closed"
+        },
+        "execution": null,
+        "failures": [
+          "FailureB"
+        ],
+        "flow": {
+          "authority": "none",
+          "constraints": [],
+          "influence_unknown": false,
+          "sources": [],
+          "taints": []
+        },
+        "node": 3,
+        "outputs": [],
+        "proof_source": "checked_component",
+        "recovery_actions": null,
+        "replay_semantics": "recompute",
+        "resolved": true,
+        "resources": null,
+        "usage": {
+          "coordinates": {
+            "forward/api_calls": 3,
+            "recovery/api_calls": 1
+          }
+        }
+      }
+    ],
+    "clauses": [
+      {
+        "handler": 3,
+        "match": {
+          "failure": "FailureA"
+        },
+        "ordinal": 1
+      }
+    ],
+    "operation": "compose",
+    "operator": "handle"
+  },
+  "kind": "agentflow.conformance.computation-advanced-control.test-vector",
+  "note": "Independent static algebra oracle; this vector is executed through checked Semantic IR, Phase 3C, leaf resolution, and the production control analyzer."
+}
