@@ -9,7 +9,7 @@
 
 use crate::error::{EffectError, kind};
 use af_semantic::PrimitiveConstant;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
 // ---------------------------------------------------------------------------
 // Effect atom
@@ -18,7 +18,7 @@ use serde::Deserialize;
 /// The operation half of an effect atom. `catalog` + `name` is the full
 /// logical identity `<catalog>/<name>`; validation resolves it fail-closed
 /// against an explicit catalog universe.
-#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct EffectOperationRef {
     pub catalog: String,

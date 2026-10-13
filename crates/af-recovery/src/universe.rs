@@ -41,4 +41,12 @@ impl RecoveryOperationUniverse {
         self.reconciliation_operations
             .contains(&(catalog.to_string(), name.to_string()))
     }
+
+    /// Every explicitly recognized reconciliation operation in exact
+    /// identity order.
+    pub fn reconciliation_operations(&self) -> impl Iterator<Item = (&str, &str)> {
+        self.reconciliation_operations
+            .iter()
+            .map(|(catalog, name)| (catalog.as_str(), name.as_str()))
+    }
 }

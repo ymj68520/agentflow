@@ -1,7 +1,7 @@
 mod content;
 mod refs;
 
-pub(crate) use content::validate_d3;
+pub(crate) use content::{parse_schema, validate_d3};
 pub(crate) use refs::validate_d2;
 
 use crate::codec::CanonicalPortableBundle;

@@ -135,6 +135,11 @@ impl UsageMeterUniverse {
     pub fn is_empty(&self) -> bool {
         self.descriptors.is_empty()
     }
+
+    /// Every exact meter descriptor in canonical meter identity order.
+    pub fn descriptors(&self) -> impl Iterator<Item = &UsageMeterDescriptor> {
+        self.descriptors.values()
+    }
 }
 
 /// Validates and NFC-normalizes a meter identity.

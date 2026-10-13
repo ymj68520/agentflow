@@ -19,7 +19,7 @@ fn rust_sources(root: &Path) -> Vec<PathBuf> {
 }
 
 #[test]
-fn portable_runtime_is_closed_and_stops_at_d4() {
+fn portable_static_reconstruction_is_closed_and_stops_at_d8() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR"));
     let sources = rust_sources(&root.join("src"));
     assert!(!sources.is_empty());
@@ -28,6 +28,18 @@ fn portable_runtime_is_closed_and_stops_at_d4() {
         .map(|path| std::fs::read_to_string(path).unwrap())
         .collect::<String>();
 
+    for required in [
+        "check_contract",
+        "SemanticIrDocument",
+        "analyze_dataflow",
+        "StaticComputationResolutionSnapshotBuilder",
+    ] {
+        assert!(
+            source.contains(required),
+            "portable static reconstruction is missing required D6-D8 path: {required}"
+        );
+    }
+
     for forbidden in [
         "std::fs",
         "std::net",
@@ -35,8 +47,6 @@ fn portable_runtime_is_closed_and_stops_at_d4() {
         "SystemTime",
         "Instant",
         "current_dir()",
-        "CheckedComponentContract",
-        "CheckedIrDocument",
         "CheckedRootExportCompatibility",
         "check_root_export_assertion",
         "derive_workflow_contract_summary",

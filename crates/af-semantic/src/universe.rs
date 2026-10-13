@@ -102,6 +102,14 @@ impl TypeSchemaUniverse {
         self.entries.get(identity)
     }
 
+    /// Every exact named schema entry in full-identity order.
+    ///
+    /// This is a read-only projection for reconstructing explicit snapshots;
+    /// callers cannot mutate the universe through it.
+    pub fn entries(&self) -> impl Iterator<Item = &SchemaEntry> {
+        self.entries.values()
+    }
+
     /// Resolves and fully validates a [`TypeSchemaRef`]: the identity must
     /// exist in the universe and the pinned digest must equal the schema's
     /// actual canonical digest. The pinned digest reference must itself be

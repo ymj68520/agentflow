@@ -1,6 +1,6 @@
 [package]
 name = "af-portable"
-description = "Registered portable proof input codec and D0-D4 validation"
+description = "Registered portable proof input codec and exact D0-D8 static reconstruction"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
@@ -12,6 +12,15 @@ af-core = { path = "../af-core" }
 af-idl = { path = "../af-idl" }
 af-spec = { path = "../af-spec" }
 af-semantic = { path = "../af-semantic" }
+af-computation = { path = "../af-computation" }
+af-contract = { path = "../af-contract" }
+af-effect = { path = "../af-effect" }
+af-execution = { path = "../af-execution" }
+af-flow = { path = "../af-flow" }
+af-ir = { path = "../af-ir" }
+af-recovery = { path = "../af-recovery" }
+af-resource = { path = "../af-resource" }
+af-usage = { path = "../af-usage" }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 sha2 = "0.10"

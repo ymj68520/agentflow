@@ -410,7 +410,10 @@ fn option_field<'a>(value: &'a Value, name: &str) -> Result<Option<&'a Value>, P
     }
 }
 
-fn parse_schema(value: &Value, path: &str) -> Result<CanonicalTypeSchema, PortableProofError> {
+pub(crate) fn parse_schema(
+    value: &Value,
+    path: &str,
+) -> Result<CanonicalTypeSchema, PortableProofError> {
     let schema = text_field(value, "schema", path)?.to_owned();
     let name = text_field(value, "name", path)?.to_owned();
     let (kind, payload) = variant(field(value, "body", path)?, path)?;

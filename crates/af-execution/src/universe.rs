@@ -105,6 +105,11 @@ impl TrustDomainUniverse {
     pub fn resolves(&self, d: &TrustDomainRef) -> Result<bool, ExecutionError> {
         Ok(self.domains.contains(&normalize_named(d.clone())?))
     }
+
+    /// Every recognized trust-domain identity in canonical order.
+    pub fn domains(&self) -> impl Iterator<Item = &TrustDomainRef> {
+        self.domains.iter()
+    }
 }
 
 #[derive(Debug, Clone, Default, PartialEq, Eq)]
@@ -140,6 +145,16 @@ impl RegionUniverse {
         Ok(self
             .compatibility
             .contains(&(normalize_named(from.clone())?, normalize_named(to.clone())?)))
+    }
+
+    /// Every recognized region identity in canonical order.
+    pub fn regions(&self) -> impl Iterator<Item = &RegionRef> {
+        self.regions.iter()
+    }
+
+    /// Every directional compatibility pair in canonical order.
+    pub fn compatibility(&self) -> impl Iterator<Item = (&RegionRef, &RegionRef)> {
+        self.compatibility.iter().map(|(from, to)| (from, to))
     }
 }
 
@@ -193,6 +208,11 @@ impl RuntimeProfileUniverse {
                     "runtime profile is not registered",
                 )
             })
+    }
+
+    /// Every exact runtime profile descriptor in canonical identity order.
+    pub fn profiles(&self) -> impl Iterator<Item = &RuntimeProfileDescriptor> {
+        self.profiles.values()
     }
 }
 

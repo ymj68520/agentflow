@@ -135,10 +135,19 @@ dependencies = [
 name = "af-portable"
 version = "0.1.0"
 dependencies = [
+ "af-computation",
+ "af-contract",
  "af-core",
+ "af-effect",
+ "af-execution",
+ "af-flow",
  "af-idl",
+ "af-ir",
+ "af-recovery",
+ "af-resource",
  "af-semantic",
  "af-spec",
+ "af-usage",
  "base64",
  "hex",
  "serde",

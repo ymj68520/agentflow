@@ -225,6 +225,10 @@ fn stage_name(stage: ValidationStage) -> &'static str {
         ValidationStage::D2 => "D2",
         ValidationStage::D3 => "D3",
         ValidationStage::D4 => "D4",
+        ValidationStage::D5 => "D5",
+        ValidationStage::D6 => "D6",
+        ValidationStage::D7 => "D7",
+        ValidationStage::D8 => "D8",
     }
 }
 

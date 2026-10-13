@@ -221,6 +221,11 @@ fn primary_key(kind: &str, value: &Value) -> Option<OrderKey> {
             .and_then(digest_key),
         "DigestKey" => digest_key(value),
         "(catalog,name)" => pair_key(value, "catalog", "name"),
+        "(from,to)" => {
+            let from = field(value, "from").and_then(|item| pair_key(item, "catalog", "name"))?;
+            let to = field(value, "to").and_then(|item| pair_key(item, "catalog", "name"))?;
+            Some(OrderKey::Tuple(vec![from, to]))
+        }
         "meter" => field(value, "meter").and_then(|v| pair_key(v, "catalog", "name")),
         "capability" => field(value, "capability").and_then(|v| pair_key(v, "catalog", "name")),
         "profile" => field(value, "profile").and_then(|v| pair_key(v, "catalog", "name")),
@@ -334,7 +339,11 @@ fn digest_key(value: &Value) -> Option<OrderKey> {
 }
 
 fn schema_key(value: &Value) -> Option<OrderKey> {
-    let value = field(value, "reference").unwrap_or(value);
+    // ResourceTypeContent keeps its TypeSchemaRef under `schema`; the other
+    // registered SchemaRefKey collections carry the ref directly (or under
+    // the common asset `reference` field). All use the same exact nominal
+    // tuple and digest tie-breaker.
+    let value = field(value, "schema").unwrap_or(value);
     let value = field(value, "reference").unwrap_or(value);
     let specification = text_key(value, "specification_id")?;
     let name = text_key(value, "type_name")?;

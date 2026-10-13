@@ -9,17 +9,19 @@ use af_flow::{ConfidentialityLabelRef, FlowKind, TaintRef};
 use af_idl::{CompiledModuleSet, SpecificationId};
 use af_resource::ResourceTypeRef;
 use af_usage::UsageMeterRef;
+use serde::Deserialize;
 use sha2::{Digest, Sha256};
 use std::collections::BTreeSet;
 use unicode_normalization::UnicodeNormalization;
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum ScopeValueRule {
     FiniteExactValues(Vec<String>),
     OpaqueNfcExactString,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct SelectorKeyRule {
     pub selector_key: String,
     pub resource_attribute_key: String,
@@ -27,13 +29,13 @@ pub struct SelectorKeyRule {
     pub values: ScopeValueRule,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct EffectQualifierProfile {
     /// An empty vector explicitly denotes the unqualified profile.
     pub qualifiers: Vec<EffectQualifier>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct SupportedEffectResourcePair {
     pub operation: EffectOperationRef,
     pub resource_type: ResourceTypeRef,
@@ -41,7 +43,7 @@ pub struct SupportedEffectResourcePair {
     pub allowed_qualifier_profiles: Vec<EffectQualifierProfile>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Default)]
+#[derive(Debug, Clone, PartialEq, Eq, Default, Deserialize)]
 pub struct EffectResourceCompatibilityCatalog {
     pub complete_operations: Vec<EffectOperationRef>,
     pub supported_pairs: Vec<SupportedEffectResourcePair>,
@@ -193,13 +195,13 @@ impl EffectResourceCompatibilityCatalog {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct RecoveryUsageCoverageRule {
     pub action: RecoveryActionIdentity,
     pub complete_meters: Vec<UsageMeterRef>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Default)]
+#[derive(Debug, Clone, PartialEq, Eq, Default, Deserialize)]
 pub struct RecoveryUsageCoverageCatalog {
     pub rules: Vec<RecoveryUsageCoverageRule>,
 }
@@ -253,58 +255,62 @@ impl RecoveryUsageCoverageCatalog {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Deserialize)]
 pub struct RegionPair {
     pub execution_region: RegionRef,
     pub residency_region: RegionRef,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum RegionPairPolicy {
     FiniteExactPairs(Vec<RegionPair>),
     AllPairsInClosedRegionSnapshot,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum TrustDomainPolicy {
     ExactAllowlist(Vec<TrustDomainRef>),
     AllDomainsInClosedTrustSnapshot,
     NoAdditionalTrustRequirement,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum SandboxFloor {
     NoAdditionalMinimum,
     Minimum(SandboxLevel),
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct ConfidentialityExecutionRule {
     pub label: ConfidentialityLabelRef,
     pub region_pairs: RegionPairPolicy,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct TaintExecutionRule {
     pub taint: TaintRef,
     pub trust_domains: TrustDomainPolicy,
     pub sandbox: SandboxFloor,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct AuthorityExecutionRule {
     pub authority: af_flow::InstructionAuthority,
     pub trust_domains: TrustDomainPolicy,
     pub sandbox: SandboxFloor,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum FlowExecutionSink {
     WorkflowOutput(u32),
     ExactEffect(EffectAtom),
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct FlowExecutionRule {
     pub kind: FlowKind,
     pub sink: FlowExecutionSink,
@@ -312,7 +318,7 @@ pub struct FlowExecutionRule {
     pub sandbox: SandboxFloor,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Default)]
+#[derive(Debug, Clone, PartialEq, Eq, Default, Deserialize)]
 pub struct InformationFlowExecutionCatalog {
     pub closed_regions: Vec<RegionRef>,
     pub closed_trust_domains: Vec<TrustDomainRef>,

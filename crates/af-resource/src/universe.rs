@@ -15,6 +15,7 @@
 
 use crate::error::{ResourceError, kind};
 use crate::model::ResourceTypeRef;
+use af_idl::CanonicalTypeSchema;
 use af_semantic::SemanticError;
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -75,6 +76,32 @@ impl ResourceTypeUniverse {
                 format!("cannot register fixture schemas: {error}"),
             )
         })
+    }
+
+    /// Adds one canonical schema to this resource universe's private schema
+    /// scope. This deliberately does not import schemas from the global
+    /// contract context or from a whole compiled module.
+    pub fn insert_schema_type(
+        &mut self,
+        schema_type: &CanonicalTypeSchema,
+    ) -> Result<(), ResourceError> {
+        self.schemas.insert_type(schema_type).map_err(|error| {
+            ResourceError::new(
+                kind::INVALID_RESOURCE_TYPE,
+                format!("cannot register exact resource schema: {error}"),
+            )
+        })
+    }
+
+    /// The exact private schema membership used by resource resolution.
+    pub fn schema_universe(&self) -> &af_semantic::TypeSchemaUniverse {
+        &self.schemas
+    }
+
+    /// Every explicitly recognized descriptor in exact nominal identity
+    /// order.
+    pub fn descriptors(&self) -> impl Iterator<Item = &ResourceTypeDescriptor> {
+        self.descriptors.values()
     }
 
     /// Explicitly recognizes one resource type. Re-recognizing the same

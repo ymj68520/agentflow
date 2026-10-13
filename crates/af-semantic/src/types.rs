@@ -30,7 +30,7 @@
 
 use crate::error::SemanticError;
 use crate::ids::SemanticTypeId;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use std::fmt;
 
 /// The 9-member workflow semantic primitive universe.
@@ -114,7 +114,7 @@ impl fmt::Display for SemanticPrimitiveType {
 ///
 /// This is deliberately *not* a bare string: algorithm, domain and hex travel
 /// together and the validator enforces the frozen HashV1 rules.
-#[derive(Debug, Clone, PartialEq, Eq, Hash, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct DigestRefValue {
     pub algorithm: String,
@@ -166,7 +166,7 @@ impl DigestRefValue {
 /// A `TypeSchemaRef` never resolves against "the latest registry state": the
 /// digest is part of the reference, so a published reference keeps denoting
 /// exactly the schema it was compiled against.
-#[derive(Debug, Clone, PartialEq, Eq, Hash, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct TypeSchemaRef {
     pub specification_id: String,

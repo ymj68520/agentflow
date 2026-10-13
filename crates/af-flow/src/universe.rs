@@ -125,6 +125,20 @@ impl InformationLabelUniverse {
     pub fn is_empty(&self) -> bool {
         self.confidentiality.is_empty() && self.taints.is_empty()
     }
+
+    /// Every recognized confidentiality label in exact identity order.
+    pub fn confidentiality_labels(&self) -> impl Iterator<Item = (&str, &str)> {
+        self.confidentiality
+            .iter()
+            .map(|(catalog, name)| (catalog.as_str(), name.as_str()))
+    }
+
+    /// Every recognized taint in exact identity order.
+    pub fn taints(&self) -> impl Iterator<Item = (&str, &str)> {
+        self.taints
+            .iter()
+            .map(|(catalog, name)| (catalog.as_str(), name.as_str()))
+    }
 }
 
 /// The explicit read-only effect-catalog universe for sink resolution:
@@ -182,6 +196,19 @@ impl EffectSinkUniverse {
     #[must_use]
     pub fn is_empty(&self) -> bool {
         self.operations.is_empty()
+    }
+
+    /// Every recognized operation and its catalog-supplied decision
+    /// classification, in exact identity order.
+    pub fn operations(&self) -> impl Iterator<Item = (&str, &str, bool)> {
+        self.operations.iter().map(|(catalog, name)| {
+            (
+                catalog.as_str(),
+                name.as_str(),
+                self.decision_capable
+                    .contains(&(catalog.clone(), name.clone())),
+            )
+        })
     }
 }
 

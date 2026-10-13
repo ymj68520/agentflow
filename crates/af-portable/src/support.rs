@@ -55,6 +55,28 @@ impl SupportedPortableStaticInputs {
     pub fn applied_rule_count(&self) -> usize {
         self.applied_rule_count
     }
+
+    /// Reconstructs one exact, complete D5 static proof context from the
+    /// already D0-D4 validated portable input. Unavailable collections fail
+    /// closed and are never interpreted as empty.
+    pub fn reconstruct_context(
+        &self,
+        context_id: u32,
+    ) -> Result<crate::ReconstructedStaticContext, PortableProofError> {
+        crate::reconstruction::reconstruct_context(self, context_id)
+    }
+
+    /// Reconstructs D5 and runs fresh D6 contract checks, D7 IR/Phase 3C
+    /// checks, and D8 resolver assembly and comparison under the same exact
+    /// proof-context object. The returned value is an owned analysis
+    /// projection, not a RootExport or publication capability.
+    pub fn reconstruct_static_inputs(
+        &self,
+        context_id: u32,
+        resolver_id: u32,
+    ) -> Result<crate::ReconstructedStaticInputs, PortableProofError> {
+        crate::pipeline::reconstruct_static_inputs(self, context_id, resolver_id)
+    }
 }
 
 #[derive(Debug)]

@@ -8,9 +8,14 @@ pub enum ValidationStage {
     D2,
     D3,
     D4,
+    D5,
+    D6,
+    D7,
+    D8,
 }
 
-/// Stable, path-bearing failure for D0-D4. Diagnostic text is not an ABI field.
+/// Stable, path-bearing failure for portable static validation and
+/// reconstruction. Diagnostic text is not an ABI field.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PortableProofError {
     pub stage: ValidationStage,
