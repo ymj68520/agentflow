@@ -4,14 +4,18 @@ use crate::error::{PortableProofError, ValidationStage};
 use crate::reconstruction::{ReconstructedStaticContext, StaticContextProjection, value_to_json};
 use crate::support::SupportedPortableStaticInputs;
 use af_computation::{
-    AwaitAuthorityStatus, AwaitInteractionStatus, AwaitProvenanceStatus, ResolvedTarget,
-    ResolverSnapshotIdentity, StaticComputationResolutionSnapshotBuilder, resolve_computation_leaf,
+    AwaitAuthorityStatus, AwaitInteractionStatus, AwaitProvenanceStatus,
+    CheckedRootExportCompatibility, ControlDimensionValue, DerivedWorkflowContractSummary,
+    ResolvedTarget, ResolverSnapshotIdentity, RootExportProofReport,
+    StaticComputationResolutionSnapshotBuilder, check_root_export_assertion,
+    derive_workflow_contract_summary, resolve_computation_leaf,
 };
 use af_contract::{
     CheckedComponentContract, ComponentContract, StaticContractProofContext, canonicalize_contract,
     check_contract, component_contract_digest,
 };
 use af_core::{DigestRef, Value, decode};
+use af_effect::EffectRow;
 use af_ir::{
     CheckedIrDocument, ComputationBody, SemanticDataflowAnalysis, SemanticIrDocument,
     SubflowIrUniverse,
@@ -23,6 +27,10 @@ use std::collections::{BTreeMap, BTreeSet, HashMap};
 
 const MAX_RESOLVER_TARGETS: usize = 4096;
 const MAX_RESOLVER_GRAPH_WORK: usize = 2_000_000;
+const MAX_ASSERTION_IDENTITY_EXPANSION_WORK: usize = 50_000;
+const MAX_D9_DERIVATION_WORK: usize = 2_000_000;
+const MAX_D9_COMPUTATIONS: usize = 1_024;
+const MAX_D10_COMPARISON_WORK: usize = 2_000_000;
 
 #[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -168,6 +176,88 @@ pub struct ReconstructedStaticInputs {
     await_unknown_external_count: usize,
 }
 
+/// Serializable data projection of the fresh D9 Root/RootRecovery derivation.
+/// This value is diagnostic evidence only; it is not a checked capability.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct RootSummaryProjection {
+    value: serde_json::Value,
+}
+
+impl RootSummaryProjection {
+    #[must_use]
+    pub fn typed_facts(&self) -> &serde_json::Value {
+        &self.value
+    }
+}
+
+/// The RootRecovery-specific portion of the D9 typed projection.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct RootRecoveryProjection {
+    value: serde_json::Value,
+}
+
+impl RootRecoveryProjection {
+    #[must_use]
+    pub fn typed_facts(&self) -> &serde_json::Value {
+        &self.value
+    }
+}
+
+/// Fresh D0-D10 result. The diagnostic projection is serializable, while the
+/// optional formal checker capability has no serde or persistence path.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct PortableStaticProofAnalysis {
+    inputs: ReconstructedStaticInputs,
+    root: RootSummaryProjection,
+    recovery: RootRecoveryProjection,
+    report: RootExportProofReport,
+    checked_compatibility: Option<CheckedRootExportCompatibility>,
+}
+
+impl PortableStaticProofAnalysis {
+    #[must_use]
+    pub fn inputs(&self) -> &ReconstructedStaticInputs {
+        &self.inputs
+    }
+
+    #[must_use]
+    pub fn root_summary(&self) -> &RootSummaryProjection {
+        &self.root
+    }
+
+    #[must_use]
+    pub fn root_recovery(&self) -> &RootRecoveryProjection {
+        &self.recovery
+    }
+
+    #[must_use]
+    pub fn report(&self) -> &RootExportProofReport {
+        &self.report
+    }
+
+    /// Only the production RootExport checker can populate this capability.
+    #[must_use]
+    pub fn checked_compatibility(&self) -> Option<&CheckedRootExportCompatibility> {
+        self.checked_compatibility.as_ref()
+    }
+
+    /// Ordinary semantic facts for portable diagnostics/conformance. This
+    /// projection cannot be converted back into a Checked capability.
+    #[must_use]
+    pub fn typed_projection(&self) -> serde_json::Value {
+        serde_json::json!({
+            "d5_d8": self.inputs.typed_projection(),
+            "d9_root": self.root.value,
+            "d9_root_recovery": self.recovery.value,
+            "d10_root_export": crate::root_revalidation::root_export_report_projection(
+                &self.report,
+                self.checked_compatibility.is_some(),
+                &self.inputs,
+            ),
+        })
+    }
+}
+
 impl ReconstructedStaticInputs {
     #[must_use]
     pub fn context(&self) -> &StaticContextProjection {
@@ -258,6 +348,218 @@ pub(crate) fn reconstruct_static_inputs(
     context_id: u32,
     resolver_id: u32,
 ) -> Result<ReconstructedStaticInputs, PortableProofError> {
+    reconstruct_pipeline(supported, context_id, resolver_id, None).map(|output| output.inputs)
+}
+
+pub(crate) fn revalidate_root_export(
+    supported: &SupportedPortableStaticInputs,
+) -> Result<PortableStaticProofAnalysis, PortableProofError> {
+    let root = supported.content().value();
+    let assertion_id = u32_field(root, "root_assertion_id")?;
+    let entry = find_assertion_entry(root, assertion_id)?;
+    let assertion = field(entry, "assertion", "$.root_export_assertions[]")?;
+    let manifest = field(
+        assertion,
+        "proof_context_manifest",
+        "$.root_export_assertions[].assertion",
+    )?;
+    let context_id = u32_field(manifest, "context_id")?;
+    let resolver_id = u32_field(manifest, "resolver_id")?;
+    let compiler_id = u32_field(assertion, "compiler_semantics_id")?;
+    let compiler_manifest = find_compiler_manifest(root, compiler_id)?;
+    let mut identity_state = AssertionIdentityState::default();
+    if !identity_state.active.insert(assertion_id) {
+        return Err(root_revalidation_error(
+            ValidationStage::D10,
+            "AssertionCycle",
+            "$.root_export_assertions",
+            "root assertion identity graph contains a cycle",
+        ));
+    }
+    identity_state.visited_count = 1;
+    let request = AssertionRequest {
+        assertion_id,
+        mode: AssertionMode::RootCheck,
+        trusted_compiler_manifest: compiler_manifest,
+        identity_state: &mut identity_state,
+    };
+    reconstruct_pipeline(supported, context_id, resolver_id, Some(request))?
+        .root_analysis
+        .ok_or_else(|| {
+            root_revalidation_error(
+                ValidationStage::D10,
+                "MissingRootExportAnalysis",
+                "$.root_export_assertions",
+                "D10 root assertion reconstruction returned no analysis",
+            )
+        })
+}
+
+fn capture_assertion_identity(
+    supported: &SupportedPortableStaticInputs,
+    assertion_id: u32,
+    trusted_compiler_manifest: &Value,
+    state: &mut AssertionIdentityState,
+) -> Result<(af_computation::RootExportAssertionIdentity, usize), PortableProofError> {
+    if let Some((identity, work, comparison_work)) = state.cache.get(&assertion_id).cloned() {
+        charge_assertion_identity_work(state, work)?;
+        charge_assertion_comparison_work(state, comparison_work)?;
+        return Ok((identity, work));
+    }
+    if state.active.contains(&assertion_id) {
+        return Err(root_revalidation_error(
+            ValidationStage::D10,
+            "AssertionCycle",
+            "$.root_export_assertions",
+            "nested RootExportAssertion identity graph is cyclic",
+        ));
+    }
+    if state.visited_count >= MAX_ASSERTION_GRAPH_NODES {
+        return Err(PortableProofError::new(
+            ValidationStage::D10,
+            "ResourceLimit",
+            "$.root_export_assertions",
+            "assertion identity graph node limit exceeded",
+        ));
+    }
+    let root = supported.content().value();
+    let entry = find_assertion_entry(root, assertion_id)?;
+    let assertion = field(entry, "assertion", "$.root_export_assertions[]")?;
+    let compiler_id = u32_field(assertion, "compiler_semantics_id")?;
+    if find_compiler_manifest(root, compiler_id)? != trusted_compiler_manifest {
+        return Err(root_revalidation_error(
+            ValidationStage::D10,
+            "CompilerSemanticsMismatch",
+            "$.root_export_assertions[].assertion.compiler_semantics_id",
+            "nested assertion selects a different compiler semantics content tuple",
+        ));
+    }
+    let manifest = field(
+        assertion,
+        "proof_context_manifest",
+        "$.root_export_assertions[].assertion",
+    )?;
+    let context_id = u32_field(manifest, "context_id")?;
+    let resolver_id = u32_field(manifest, "resolver_id")?;
+    state.active.insert(assertion_id);
+    state.visited_count = state.visited_count.checked_add(1).ok_or_else(|| {
+        root_revalidation_error(
+            ValidationStage::D10,
+            "ResourceLimit",
+            "$.root_export_assertions",
+            "assertion identity node counter overflow",
+        )
+    })?;
+    let request = AssertionRequest {
+        assertion_id,
+        mode: AssertionMode::IdentityOnly,
+        trusted_compiler_manifest,
+        identity_state: state,
+    };
+    let output = reconstruct_pipeline(supported, context_id, resolver_id, Some(request))?;
+    state.active.remove(&assertion_id);
+    let identity = output.assertion_identity.ok_or_else(|| {
+        root_revalidation_error(
+            ValidationStage::D10,
+            "MissingNestedAssertionIdentity",
+            "$.root_export_assertions[].assertion.subflow_dependencies",
+            "nested assertion projection produced no typed identity",
+        )
+    })?;
+    let work = output.assertion_identity_work;
+    charge_assertion_identity_work(state, work)?;
+    let comparison_work = output.assertion_comparison_work;
+    charge_assertion_comparison_work(state, comparison_work)?;
+    state
+        .cache
+        .insert(assertion_id, (identity.clone(), work, comparison_work));
+    Ok((identity, work))
+}
+
+fn charge_assertion_identity_work(
+    state: &mut AssertionIdentityState,
+    amount: usize,
+) -> Result<(), PortableProofError> {
+    state.expansion_work = state.expansion_work.checked_add(amount).ok_or_else(|| {
+        root_revalidation_error(
+            ValidationStage::D10,
+            "ResourceLimit",
+            "$.root_export_assertions",
+            "assertion identity expansion work overflow",
+        )
+    })?;
+    if state.expansion_work > MAX_ASSERTION_IDENTITY_EXPANSION_WORK {
+        return Err(root_revalidation_error(
+            ValidationStage::D10,
+            "ResourceLimit",
+            "$.root_export_assertions",
+            "assertion identity expansion work limit exceeded",
+        ));
+    }
+    Ok(())
+}
+
+fn charge_assertion_comparison_work(
+    state: &mut AssertionIdentityState,
+    amount: usize,
+) -> Result<(), PortableProofError> {
+    state.comparison_work = state.comparison_work.checked_add(amount).ok_or_else(|| {
+        root_revalidation_error(
+            ValidationStage::D10,
+            "ResourceLimit",
+            "$.root_export_assertions",
+            "nested assertion comparison work overflow",
+        )
+    })?;
+    if state.comparison_work > MAX_D10_COMPARISON_WORK {
+        return Err(root_revalidation_error(
+            ValidationStage::D10,
+            "ResourceLimit",
+            "$.root_export_assertions",
+            "nested assertion comparison work limit exceeded",
+        ));
+    }
+    Ok(())
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum AssertionMode {
+    RootCheck,
+    IdentityOnly,
+}
+
+#[derive(Default)]
+struct AssertionIdentityState {
+    active: BTreeSet<u32>,
+    cache: BTreeMap<u32, (af_computation::RootExportAssertionIdentity, usize, usize)>,
+    expansion_work: usize,
+    comparison_work: usize,
+    visited_count: usize,
+}
+
+struct AssertionRequest<'state, 'trusted> {
+    assertion_id: u32,
+    mode: AssertionMode,
+    trusted_compiler_manifest: &'trusted Value,
+    identity_state: &'state mut AssertionIdentityState,
+}
+
+struct ReconstructionOutput {
+    inputs: ReconstructedStaticInputs,
+    assertion_identity: Option<af_computation::RootExportAssertionIdentity>,
+    assertion_identity_work: usize,
+    assertion_comparison_work: usize,
+    root_analysis: Option<PortableStaticProofAnalysis>,
+}
+
+const MAX_ASSERTION_GRAPH_NODES: usize = 32;
+
+fn reconstruct_pipeline(
+    supported: &SupportedPortableStaticInputs,
+    context_id: u32,
+    resolver_id: u32,
+    request: Option<AssertionRequest<'_, '_>>,
+) -> Result<ReconstructionOutput, PortableProofError> {
     let context = supported.reconstruct_context(context_id)?;
     let root = supported.content().value();
     let resolver = find_resolver(root, resolver_id)?;
@@ -271,22 +573,35 @@ pub(crate) fn reconstruct_static_inputs(
     }
 
     context.with_proof_context(|proof_context| {
-        reconstruct_with_context(root, &context, proof_context, &resolver)
+        reconstruct_with_context(supported, root, &context, proof_context, &resolver, request)
     })
 }
 
 fn reconstruct_with_context(
+    supported: &SupportedPortableStaticInputs,
     root: &Value,
     context_owner: &ReconstructedStaticContext,
     proof_context: &StaticContractProofContext<'_>,
     resolver: &ResolverManifest,
-) -> Result<ReconstructedStaticInputs, PortableProofError> {
+    request: Option<AssertionRequest<'_, '_>>,
+) -> Result<ReconstructionOutput, PortableProofError> {
     let mut contract_refs = resolver.components.clone();
     for target in &resolver.subflow_targets {
         if let Some(export) = &target.exported_contract {
             contract_refs.push(export.clone());
         }
     }
+    let requested_export = if let Some(request) = &request {
+        let entry = find_assertion_entry(root, request.assertion_id)?;
+        let export_ref: ContentReference = from_value(
+            field(entry, "export_contract_asset", "$.root_export_assertions[]")?,
+            "$.root_export_assertions[].export_contract_asset",
+        )?;
+        contract_refs.push(export_ref.clone());
+        Some(export_ref)
+    } else {
+        None
+    };
     contract_refs.sort_by(|left, right| digest_key(&left.digest).cmp(&digest_key(&right.digest)));
     let mut unique_contract_refs = Vec::with_capacity(contract_refs.len());
     for reference in contract_refs {
@@ -528,7 +843,7 @@ fn reconstruct_with_context(
         &resolver.caller_ir.digest,
     )?;
 
-    Ok(ReconstructedStaticInputs {
+    let inputs = ReconstructedStaticInputs {
         context: context_owner.projection().clone(),
         resolver_identity,
         checked_contracts: checked_contract_projections,
@@ -537,7 +852,152 @@ fn reconstruct_with_context(
         resolver_targets,
         await_leaf_count,
         await_unknown_external_count,
-    })
+    };
+    let mut output = ReconstructionOutput {
+        inputs,
+        assertion_identity: None,
+        assertion_identity_work: 0,
+        assertion_comparison_work: 0,
+        root_analysis: None,
+    };
+    if let Some(request) = request {
+        let export_ref = requested_export.as_ref().ok_or_else(|| {
+            root_revalidation_error(
+                ValidationStage::D10,
+                "MissingExportReference",
+                "$.root_export_assertions[].export_contract_asset",
+                "root assertion has no exact exported contract reference",
+            )
+        })?;
+        if !resolver.components.contains(export_ref) {
+            return Err(root_revalidation_error(
+                ValidationStage::D10,
+                "ExportMissingFromResolverInventory",
+                "$.resolver_dependency_manifests[].content.components",
+                "the assertion export must be a freshly checked D8 resolver component",
+            ));
+        }
+        let export_index = *contracts_by_digest
+            .get(&digest_key(&export_ref.digest))
+            .ok_or_else(|| {
+                root_revalidation_error(
+                    ValidationStage::D6,
+                    "MissingExportContract",
+                    "$.root_export_assertions[].export_contract_asset",
+                    "assertion export contract has no fresh D6 Checked value",
+                )
+            })?;
+        if contract_assets[export_index].reference != *export_ref
+            || !std::ptr::eq(
+                checked_contracts[export_index].proof_context(),
+                proof_context,
+            )
+        {
+            return Err(root_revalidation_error(
+                ValidationStage::D6,
+                "ExportContextIdentityMismatch",
+                "$.root_export_assertions[].export_contract_asset",
+                "exact D6 export reference or ProofContext pointer differs",
+            ));
+        }
+        let AssertionRequest {
+            assertion_id,
+            mode,
+            trusted_compiler_manifest,
+            identity_state,
+        } = request;
+        let checked_caller = &checked_irs[caller_index];
+        let checked_export = &checked_contracts[export_index];
+        let projected = {
+            let mut capture_child = |child_id| {
+                capture_assertion_identity(
+                    supported,
+                    child_id,
+                    trusted_compiler_manifest,
+                    identity_state,
+                )
+            };
+            crate::root_revalidation::project_assertion(
+                root,
+                assertion_id,
+                context_owner.context_id(),
+                resolver.context_id,
+                trusted_compiler_manifest,
+                proof_context,
+                checked_caller,
+                checked_export,
+                &snapshot,
+                &mut capture_child,
+            )?
+        };
+        output.assertion_identity_work = projected.expanded_identity_work;
+        output.assertion_comparison_work = projected.comparison_work;
+        match mode {
+            AssertionMode::IdentityOnly => {
+                output.assertion_identity = Some(projected.assertion.identity());
+            }
+            AssertionMode::RootCheck => {
+                charge_assertion_comparison_work(identity_state, projected.comparison_work)?;
+                check_root_derivation_budget(checked_caller.source(), &contract_assets)?;
+                let derived =
+                    derive_workflow_contract_summary(checked_caller, &snapshot, proof_context)
+                        .map_err(|failure| {
+                            root_revalidation_error(
+                                ValidationStage::D9,
+                                "RootDerivationFailed",
+                                "$.ir_assets[].canonical_content",
+                                failure.to_string(),
+                            )
+                        })?;
+                if !snapshot.is_same_context(proof_context)
+                    || !std::ptr::eq(
+                        derived.root().proof_context_reference().context(),
+                        proof_context,
+                    )
+                    || derived.resolver_identity() != &snapshot.resolver_identity()
+                {
+                    return Err(root_revalidation_error(
+                        ValidationStage::D9,
+                        "RootContextOrResolverMismatch",
+                        "$.resolver_dependency_manifests",
+                        "fresh Root and RootRecovery must derive from this D5 context and D8 snapshot",
+                    ));
+                }
+                let (root_projection, recovery_projection) =
+                    crate::root_revalidation::project_root_summary(&derived)?;
+                check_root_export_comparison_budget(
+                    &projected.assertion,
+                    &derived,
+                    identity_state.comparison_work,
+                )?;
+                let checked = check_root_export_assertion(
+                    checked_caller,
+                    checked_export,
+                    &snapshot,
+                    proof_context,
+                    &derived,
+                    &projected.assertion,
+                );
+                let (report, checked_compatibility) = match checked {
+                    Ok(checked) => (checked.report().clone(), Some(checked)),
+                    Err(report) => (*report, None),
+                };
+                output.assertion_identity = Some(report.assertion_identity.clone());
+                output.root_analysis = Some(PortableStaticProofAnalysis {
+                    inputs: output.inputs.clone(),
+                    root: RootSummaryProjection {
+                        value: root_projection,
+                    },
+                    recovery: RootRecoveryProjection {
+                        value: recovery_projection,
+                    },
+                    report,
+                    checked_compatibility,
+                });
+            }
+        }
+    }
+    Ok(output)
 }
 
 fn find_resolver(root: &Value, resolver_id: u32) -> Result<ResolverManifest, PortableProofError> {
@@ -554,6 +1014,205 @@ fn find_resolver(root: &Value, resolver_id: u32) -> Result<ResolverManifest, Por
         })?;
     let content = field(row, "content", "$.resolver_dependency_manifests")?;
     from_value(content, "$.resolver_dependency_manifests.content")
+}
+
+fn find_assertion_entry(root: &Value, assertion_id: u32) -> Result<&Value, PortableProofError> {
+    list_field(root, "root_export_assertions", "$")?
+        .iter()
+        .find(|entry| u32_field(entry, "id").ok() == Some(assertion_id))
+        .ok_or_else(|| {
+            root_revalidation_error(
+                ValidationStage::D10,
+                "MissingAssertion",
+                "$.root_assertion_id",
+                "root assertion id does not resolve",
+            )
+        })
+}
+
+fn find_compiler_manifest(root: &Value, compiler_id: u32) -> Result<&Value, PortableProofError> {
+    list_field(root, "compiler_semantics_manifests", "$")?
+        .iter()
+        .find(|entry| u32_field(entry, "id").ok() == Some(compiler_id))
+        .and_then(|entry| field(entry, "content", "$.compiler_semantics_manifests[]").ok())
+        .ok_or_else(|| {
+            root_revalidation_error(
+                ValidationStage::D10,
+                "MissingCompilerManifest",
+                "$.root_export_assertions[].assertion.compiler_semantics_id",
+                "compiler manifest id does not resolve",
+            )
+        })
+}
+
+fn root_revalidation_error(
+    stage: ValidationStage,
+    family: &'static str,
+    path: impl Into<String>,
+    detail: impl Into<String>,
+) -> PortableProofError {
+    PortableProofError::new(stage, family, path, detail)
+}
+
+fn check_root_derivation_budget(
+    caller: &SemanticIrDocument,
+    contracts: &[ContractAsset],
+) -> Result<(), PortableProofError> {
+    let computations = caller.computations.len();
+    if computations > MAX_D9_COMPUTATIONS {
+        return Err(root_revalidation_error(
+            ValidationStage::D9,
+            "ResourceLimit",
+            "$.ir_assets[].canonical_content.computations",
+            "Root derivation computation count limit exceeded",
+        ));
+    }
+    let source_count = caller
+        .computations
+        .iter()
+        .filter(|item| {
+            matches!(
+                item.body,
+                ComputationBody::Invoke(_)
+                    | ComputationBody::CallSubflow(_)
+                    | ComputationBody::Await(_)
+            )
+        })
+        .count();
+    let (effect_count, recovery_binding_count) = contracts
+        .iter()
+        .try_fold((0usize, 0usize), |(effects, recovery), asset| {
+            let effect_count = match &asset.raw.effects.row {
+                EffectRow::Unknown => 1usize,
+                EffectRow::Closed(entries) => entries.len(),
+                EffectRow::Open(open) => open.known.len().checked_add(open.residual.len())?,
+            };
+            let recovery_count = asset
+                .raw
+                .recovery_action_bindings
+                .len()
+                .checked_add(asset.raw.recovery_usage_bindings.len())?;
+            Some((
+                effects.checked_add(effect_count)?,
+                recovery.checked_add(recovery_count)?,
+            ))
+        })
+        .ok_or_else(|| {
+            root_revalidation_error(
+                ValidationStage::D9,
+                "ResourceLimit",
+                "$.contract_assets",
+                "Root effect/recovery work counter overflow",
+            )
+        })?;
+    let work = source_count
+        .checked_mul(
+            effect_count
+                .checked_add(recovery_binding_count)
+                .and_then(|n| n.checked_add(1))
+                .ok_or_else(|| {
+                    root_revalidation_error(
+                        ValidationStage::D9,
+                        "ResourceLimit",
+                        "$.contract_assets",
+                        "Root source expansion estimate overflow",
+                    )
+                })?,
+        )
+        .and_then(|n| n.checked_add(computations))
+        .and_then(|n| n.checked_add(computations.checked_mul(recovery_binding_count)?))
+        .ok_or_else(|| {
+            root_revalidation_error(
+                ValidationStage::D9,
+                "ResourceLimit",
+                "$.ir_assets[].canonical_content",
+                "Root derivation work estimate overflow",
+            )
+        })?;
+    if work > MAX_D9_DERIVATION_WORK {
+        return Err(root_revalidation_error(
+            ValidationStage::D9,
+            "ResourceLimit",
+            "$.ir_assets[].canonical_content",
+            "Root control/recovery derivation work limit exceeded",
+        ));
+    }
+    Ok(())
+}
+
+fn check_root_export_comparison_budget(
+    assertion: &af_computation::RootExportAssertion,
+    derived: &DerivedWorkflowContractSummary<'_, '_>,
+    assertion_graph_work: usize,
+) -> Result<(), PortableProofError> {
+    let mapping_lengths = [
+        assertion.input_mappings.len(),
+        assertion.output_mappings.len(),
+        assertion.resource_mappings.len(),
+        assertion.effect_mappings.len(),
+        assertion.flow_mappings.len(),
+        assertion.recovery_mappings.len(),
+        assertion.execution_mappings.len(),
+        assertion.subflow_dependencies.len(),
+    ];
+    let recovery_actions = match derived.root_recovery().actions().value() {
+        ControlDimensionValue::Complete(actions) => actions.len(),
+        ControlDimensionValue::Partial {
+            known_contribution, ..
+        } => known_contribution.as_ref().map_or(0, Vec::len),
+        ControlDimensionValue::Unknown {
+            known_contributions,
+            ..
+        } => known_contributions
+            .iter()
+            .map(|item| item.value().len())
+            .sum(),
+        ControlDimensionValue::PerChild { contributions, .. } => {
+            contributions.iter().map(|item| item.value().len()).sum()
+        }
+        ControlDimensionValue::NotApplicable => 0,
+    };
+    let source_work = mapping_lengths
+        .iter()
+        .try_fold(0usize, |sum, count| sum.checked_add(*count))
+        .and_then(|count| {
+            count.checked_mul(
+                derived
+                    .root()
+                    .effect_occurrences()
+                    .len()
+                    .checked_add(recovery_actions)?
+                    .checked_add(derived.closure().leaf_order().len())?
+                    .checked_add(1)?,
+            )
+        })
+        .ok_or_else(|| {
+            root_revalidation_error(
+                ValidationStage::D10,
+                "ResourceLimit",
+                "$.root_export_assertions[].assertion",
+                "RootExport source-coordinate work estimate overflow",
+            )
+        })?;
+    let total = assertion_graph_work
+        .checked_add(source_work)
+        .ok_or_else(|| {
+            root_revalidation_error(
+                ValidationStage::D10,
+                "ResourceLimit",
+                "$.root_export_assertions[].assertion",
+                "RootExport comparison work counter overflow",
+            )
+        })?;
+    if total > MAX_D10_COMPARISON_WORK {
+        return Err(root_revalidation_error(
+            ValidationStage::D10,
+            "ResourceLimit",
+            "$.root_export_assertions[].assertion",
+            "RootExport assertion comparison work limit exceeded",
+        ));
+    }
+    Ok(())
 }
 
 fn load_contract_assets(

@@ -19,7 +19,7 @@ fn rust_sources(root: &Path) -> Vec<PathBuf> {
 }
 
 #[test]
-fn portable_static_reconstruction_is_closed_and_stops_at_d8() {
+fn portable_static_revalidation_is_closed_and_stops_at_d10() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR"));
     let sources = rust_sources(&root.join("src"));
     assert!(!sources.is_empty());
@@ -33,6 +33,9 @@ fn portable_static_reconstruction_is_closed_and_stops_at_d8() {
         "SemanticIrDocument",
         "analyze_dataflow",
         "StaticComputationResolutionSnapshotBuilder",
+        "derive_workflow_contract_summary",
+        "check_root_export_assertion",
+        "CheckedRootExportCompatibility",
     ] {
         assert!(
             source.contains(required),
@@ -47,9 +50,6 @@ fn portable_static_reconstruction_is_closed_and_stops_at_d8() {
         "SystemTime",
         "Instant",
         "current_dir()",
-        "CheckedRootExportCompatibility",
-        "check_root_export_assertion",
-        "derive_workflow_contract_summary",
         "PublisherAuthorized",
         "TrustedOrigin",
         "root-export-assertion",

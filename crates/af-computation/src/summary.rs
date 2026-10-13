@@ -13,6 +13,7 @@ use af_recovery::RecoveryContract;
 use af_resource::ResourceRequirementRow;
 use af_semantic::{DigestRefValue, ExpressionId, ResourceSlotId, TypeSchemaRef, ValueSlotId};
 use af_usage::UsageSignature;
+use serde::Deserialize;
 
 use crate::proof::LeafProofReport;
 
@@ -101,14 +102,16 @@ pub struct EffectOccurrenceFamily {
     pub physical_attempts: Option<OccurrenceBounds>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum FlowSourceBinding {
     InputExpression(ExpressionId),
     ResourceSlot(ResourceSlotId),
     UnknownExternal,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum FlowSinkBinding {
     OutputValue(ValueSlotId),
     EffectOccurrences(Vec<usize>),

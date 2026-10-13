@@ -12,6 +12,8 @@ pub enum ValidationStage {
     D6,
     D7,
     D8,
+    D9,
+    D10,
 }
 
 /// Stable, path-bearing failure for portable static validation and

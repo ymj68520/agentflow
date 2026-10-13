@@ -11,6 +11,7 @@ use crate::control::{ControlDimension, ControlProofReport};
 use crate::proof::LeafVerdict;
 use crate::summary::{ResolvedTarget, ScopedEffectOccurrence};
 use af_ir::ComputationId;
+use serde::Deserialize;
 
 /// Identity of one repeat factor. Physical retry attempts remain separate
 /// metadata and are never multiplied a second time.
@@ -58,7 +59,7 @@ pub struct RootActionBound {
     pub applied_families: Vec<AppliedMultiplicity>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct RecoveryActionSourceIdentity {
     pub caller_semantic_ir_digest: DigestRefValue,
     pub source_node: ComputationId,

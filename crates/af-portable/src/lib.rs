@@ -1,12 +1,11 @@
-//! Registered Portable Proof Inputs v1, closed D0-D4 validation, and exact
-//! D5-D8 static input reconstruction.
+//! Registered Portable Proof Inputs v1, closed D0-D4 validation, exact D5-D8
+//! reconstruction, and fresh D9-D10 static RootExport revalidation.
 //!
 //! The D5-D8 entry points rebuild the current explicit checker context and
 //! freshly invoke the formal ComponentContract, Semantic IR, Phase 3C and
-//! computation resolver validators. Checked references remain scoped to the
-//! owned D5 arena; only non-authoritative projections leave that scope. This
-//! crate does not construct Root, RootRecovery, RootExport, publication or
-//! runtime capabilities.
+//! computation resolver validators. D9-D10 reuse the formal Root/Recovery
+//! derivation and RootExport checker under that same scope. No publication or
+//! runtime capability is constructed.
 
 mod codec;
 mod error;
@@ -14,6 +13,7 @@ mod limits;
 mod orders;
 mod pipeline;
 mod reconstruction;
+mod root_revalidation;
 mod schema;
 mod support;
 mod validation;
@@ -23,7 +23,8 @@ pub use error::{PortableProofError, ValidationStage};
 pub use limits::DecoderLimits;
 pub use pipeline::{
     CheckedContractProjection, CheckedIrProjection, ContentReferenceProjection,
-    ReconstructedStaticInputs, ResolverTargetProjection, SourceAssociationProjection,
+    PortableStaticProofAnalysis, ReconstructedStaticInputs, ResolverTargetProjection,
+    RootRecoveryProjection, RootSummaryProjection, SourceAssociationProjection,
     SourceAssociationTargetProjection, SubflowTargetIdentityProjection,
 };
 pub use reconstruction::{

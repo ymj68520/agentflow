@@ -77,6 +77,15 @@ impl SupportedPortableStaticInputs {
     ) -> Result<crate::ReconstructedStaticInputs, PortableProofError> {
         crate::pipeline::reconstruct_static_inputs(self, context_id, resolver_id)
     }
+
+    /// Reconstructs D5-D8 inputs, derives a fresh Root/RootRecovery summary,
+    /// projects the root assertion, and calls the formal D10 RootExport
+    /// checker under the same D5 context lifetime.
+    pub fn revalidate_root_export(
+        &self,
+    ) -> Result<crate::PortableStaticProofAnalysis, PortableProofError> {
+        crate::pipeline::revalidate_root_export(self)
+    }
 }
 
 #[derive(Debug)]

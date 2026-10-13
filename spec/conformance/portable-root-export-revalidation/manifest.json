@@ -1,0 +1,1795 @@
+{
+  "corpus": "agentflow.portable.root-export-revalidation",
+  "revision": 1,
+  "positive_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+  "positive_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+  "positive_bytes": 2246669,
+  "positive_expected": {
+    "root_operator": "invoke",
+    "root_effect_entries": 0,
+    "root_recovery_actions": 0,
+    "usage_coordinates": {
+      "forward/api_calls": 0,
+      "recovery/api_calls": 0
+    },
+    "execution_source_mapping_count": 1,
+    "dimension_verdicts": {
+      "I": "proven",
+      "O": "proven",
+      "Phi": "proven",
+      "epsilon": "proven",
+      "R": "proven",
+      "F": "proven",
+      "U": "proven",
+      "K": "proven",
+      "X": "proven"
+    },
+    "static_compatibility": "proven",
+    "capability_issued": true,
+    "body_conformance": "requires_evidence",
+    "implementation_conformance": "requires_evidence",
+    "publisher_authentication": "not_established",
+    "runtime_authority": "not_established"
+  },
+  "negative_expected": {
+    "root_operator": "invoke",
+    "root_effect_entries": 0,
+    "root_recovery_actions": 0,
+    "usage_coordinates": {
+      "forward/api_calls": 0,
+      "recovery/api_calls": 0
+    },
+    "execution_source_mapping_count": 1,
+    "dimension_verdicts": {
+      "I": "proven",
+      "O": "proven",
+      "Phi": "proven",
+      "epsilon": "proven",
+      "R": "proven",
+      "F": "proven",
+      "U": "proven",
+      "K": "proven",
+      "X": "unproven"
+    },
+    "static_compatibility": "unproven",
+    "capability_issued": false,
+    "body_conformance": "requires_evidence",
+    "implementation_conformance": "requires_evidence",
+    "publisher_authentication": "not_established",
+    "runtime_authority": "not_established"
+  },
+  "comparator_mutation_count": 20,
+  "comparator_mutations": [
+    {
+      "mutation_id": "root-opcode",
+      "path": [
+        "root_operator"
+      ],
+      "value": "sequence"
+    },
+    {
+      "mutation_id": "root-effect-count",
+      "path": [
+        "root_effect_entries"
+      ],
+      "value": 1
+    },
+    {
+      "mutation_id": "root-recovery-count",
+      "path": [
+        "root_recovery_actions"
+      ],
+      "value": 1
+    },
+    {
+      "mutation_id": "usage-forward",
+      "path": [
+        "usage_coordinates",
+        "forward/api_calls"
+      ],
+      "value": 1
+    },
+    {
+      "mutation_id": "execution-coordinate-count",
+      "path": [
+        "execution_source_mapping_count"
+      ],
+      "value": 0
+    },
+    {
+      "mutation_id": "dimension-I",
+      "path": [
+        "dimension_verdicts",
+        "I"
+      ],
+      "value": "unproven"
+    },
+    {
+      "mutation_id": "dimension-O",
+      "path": [
+        "dimension_verdicts",
+        "O"
+      ],
+      "value": "unproven"
+    },
+    {
+      "mutation_id": "dimension-Phi",
+      "path": [
+        "dimension_verdicts",
+        "Phi"
+      ],
+      "value": "unproven"
+    },
+    {
+      "mutation_id": "dimension-epsilon",
+      "path": [
+        "dimension_verdicts",
+        "epsilon"
+      ],
+      "value": "unproven"
+    },
+    {
+      "mutation_id": "dimension-R",
+      "path": [
+        "dimension_verdicts",
+        "R"
+      ],
+      "value": "unproven"
+    },
+    {
+      "mutation_id": "dimension-F",
+      "path": [
+        "dimension_verdicts",
+        "F"
+      ],
+      "value": "unproven"
+    },
+    {
+      "mutation_id": "dimension-U",
+      "path": [
+        "dimension_verdicts",
+        "U"
+      ],
+      "value": "unproven"
+    },
+    {
+      "mutation_id": "dimension-K",
+      "path": [
+        "dimension_verdicts",
+        "K"
+      ],
+      "value": "unproven"
+    },
+    {
+      "mutation_id": "dimension-X",
+      "path": [
+        "dimension_verdicts",
+        "X"
+      ],
+      "value": "unproven"
+    },
+    {
+      "mutation_id": "static-verdict",
+      "path": [
+        "static_compatibility"
+      ],
+      "value": "unproven"
+    },
+    {
+      "mutation_id": "capability-issuance",
+      "path": [
+        "capability_issued"
+      ],
+      "value": false
+    },
+    {
+      "mutation_id": "body-boundary",
+      "path": [
+        "body_conformance"
+      ],
+      "value": "proven"
+    },
+    {
+      "mutation_id": "implementation-boundary",
+      "path": [
+        "implementation_conformance"
+      ],
+      "value": "proven"
+    },
+    {
+      "mutation_id": "publisher-boundary",
+      "path": [
+        "publisher_authentication"
+      ],
+      "value": "authenticated"
+    },
+    {
+      "mutation_id": "runtime-boundary",
+      "path": [
+        "runtime_authority"
+      ],
+      "value": "proven"
+    }
+  ],
+  "case_count": 78,
+  "group_counts": {
+    "D9-Control": 22,
+    "D9-Recovery": 16,
+    "D10": 26,
+    "Context-Resolver-Compiler": 8,
+    "Cross-Process": 6
+  },
+  "cases": [
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-invoke",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/invoke.ace1",
+      "bundle_sha256": "2881619cdf8dea676340443d9eab2da3cddf880753bb8f6fc4637a1c5f82ce50",
+      "expected_root_operator": "invoke",
+      "expected_computation_order": [
+        1
+      ],
+      "expected_leaf_nodes": [
+        1
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-await",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/await.ace1",
+      "bundle_sha256": "7a3e130b6ffb642fa635609d0c82e2bd404a655e418506f93319fad932e47768",
+      "expected_root_operator": "await",
+      "expected_computation_order": [
+        1
+      ],
+      "expected_leaf_nodes": [
+        1
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-sequence",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/sequence.ace1",
+      "bundle_sha256": "db9a30185b1e880cd684b0d6f41d085b82fed029c70c00c5b4edcdb20fb91f8b",
+      "expected_root_operator": "sequence",
+      "expected_computation_order": [
+        1,
+        2,
+        3
+      ],
+      "expected_leaf_nodes": [
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-select",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/select.ace1",
+      "bundle_sha256": "ce5430ef08fded182bb2aee1c631f8e58ed7dbfaaacd05fc90fccebfd29e3588",
+      "expected_root_operator": "select",
+      "expected_computation_order": [
+        1,
+        2,
+        3
+      ],
+      "expected_leaf_nodes": [
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-parallel",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/parallel.ace1",
+      "bundle_sha256": "9a32acc1951caafab7b5eedb1e06448dc7ce5e1b5fe73b9d9d618d2e9c00d113",
+      "expected_root_operator": "parallel",
+      "expected_computation_order": [
+        1,
+        2,
+        3
+      ],
+      "expected_leaf_nodes": [
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-race",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/race.ace1",
+      "bundle_sha256": "027b12d5bedfa2676a20e1a62a16a7333f6f64b4aecb09db55b6305b12136256",
+      "expected_root_operator": "race",
+      "expected_computation_order": [
+        1,
+        2,
+        3
+      ],
+      "expected_leaf_nodes": [
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-handle",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/handle.ace1",
+      "bundle_sha256": "28d3bc4ec2d896a38c9d85a9c5ecd647927e44fc116feeb1f47bfcd42e89d935",
+      "expected_root_operator": "handle",
+      "expected_computation_order": [
+        1,
+        2,
+        3
+      ],
+      "expected_leaf_nodes": [
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-iterate",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/iterate.ace1",
+      "bundle_sha256": "a3a75a547ca999895ff6843f39024f6f19a20c8ca75719e2c06bf8757f3599f9",
+      "expected_root_operator": "iterate",
+      "expected_computation_order": [
+        1,
+        2
+      ],
+      "expected_leaf_nodes": [
+        2
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-retry",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/retry.ace1",
+      "bundle_sha256": "50a8d27d59b9c1ec8d4fc968073012d2629471fc3b7fce23314aa72480e1f671",
+      "expected_root_operator": "retry",
+      "expected_computation_order": [
+        1,
+        2
+      ],
+      "expected_leaf_nodes": [
+        2
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-timeout",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/timeout.ace1",
+      "bundle_sha256": "da2dbc46654f76458147a65fc18f7769b97eafa8f4ed5e30b194e50cd967c2ee",
+      "expected_root_operator": "timeout",
+      "expected_computation_order": [
+        1,
+        2
+      ],
+      "expected_leaf_nodes": [
+        2
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-scope",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/scope.ace1",
+      "bundle_sha256": "f3d4c28b9916021669f3f768ae331e0d1a9887a7a80f77cd75533d47eca08bed",
+      "expected_root_operator": "scope",
+      "expected_computation_order": [
+        1,
+        2
+      ],
+      "expected_leaf_nodes": [
+        2
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-compensation_scope",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/compensation_scope.ace1",
+      "bundle_sha256": "9d81f0fb285ebc5075730f034e7bcf06911530930135175b8036e5709b8490f3",
+      "expected_root_operator": "compensation_scope",
+      "expected_computation_order": [
+        1,
+        2
+      ],
+      "expected_leaf_nodes": [
+        2
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-call_subflow",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/call_subflow.ace1",
+      "bundle_sha256": "a3b4ed8ddca7eef36d16f109e1bc9ddfd84b87a392761528720dfcbd1ee5d12e",
+      "expected_root_operator": "call_subflow",
+      "expected_computation_order": [
+        1
+      ],
+      "expected_leaf_nodes": [
+        1
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-sequence-reversed",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/sequence-reversed.ace1",
+      "bundle_sha256": "fccb70cb37ed4752220b47884e88e8aae00c6507c41f089d49920eb852c1b4dd",
+      "expected_root_operator": "sequence",
+      "expected_computation_order": [
+        1,
+        3,
+        2
+      ],
+      "expected_leaf_nodes": [
+        3,
+        2
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-parallel-fail-fast",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/parallel-fail-fast.ace1",
+      "bundle_sha256": "c81c33955472f3345a7fcdd55f3fc60c410eb46b77e02265f5552f9ed556c3e7",
+      "expected_root_operator": "parallel",
+      "expected_computation_order": [
+        1,
+        2,
+        3
+      ],
+      "expected_leaf_nodes": [
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-race-three-contestants",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/race-three-contestants.ace1",
+      "bundle_sha256": "753032439be310f9b0bab37dc64b08fce7f33784230080577ac919378aae4823",
+      "expected_root_operator": "race",
+      "expected_computation_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected_leaf_nodes": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-retry-four-attempts",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/retry-four-attempts.ace1",
+      "bundle_sha256": "3809eb344289aa4579194dd48df6b979dfcc07e07eac45b1fbf034f9aa0ddee8",
+      "expected_root_operator": "retry",
+      "expected_computation_order": [
+        1,
+        2
+      ],
+      "expected_leaf_nodes": [
+        2
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-timeout-retry-nested",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/timeout-retry-nested.ace1",
+      "bundle_sha256": "cb7039a569d04bdb4649142a8ca1f0a80f8ac6eef4afeff74e8f2eaea2ce711a",
+      "expected_root_operator": "timeout",
+      "expected_computation_order": [
+        1,
+        2,
+        3
+      ],
+      "expected_leaf_nodes": [
+        3
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-scope-compensation-nested",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/scope-compensation-nested.ace1",
+      "bundle_sha256": "aa40ad83e0ca48512998f68296952a3e51596dcb53de244eb24f9143d10440b4",
+      "expected_root_operator": "scope",
+      "expected_computation_order": [
+        1,
+        2,
+        3
+      ],
+      "expected_leaf_nodes": [
+        3
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-compensation-sequence",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/compensation-sequence.ace1",
+      "bundle_sha256": "89e5d15fc269433c11f393325ae670be00613689b1d5a86a11b889fa120894d6",
+      "expected_root_operator": "compensation_scope",
+      "expected_computation_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected_leaf_nodes": [
+        3,
+        4
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-iterate-while-eight",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/iterate-while-eight.ace1",
+      "bundle_sha256": "257378f7250c82d7ff23bb6d3684cfb747eef3f3d3b18898aa26f074dd71bae7",
+      "expected_root_operator": "iterate",
+      "expected_computation_order": [
+        1,
+        2
+      ],
+      "expected_leaf_nodes": [
+        2
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-select-two-exclusive-branches",
+      "group": "D9-Control",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/select-two-exclusive-branches.ace1",
+      "bundle_sha256": "ce5430ef08fded182bb2aee1c631f8e58ed7dbfaaacd05fc90fccebfd29e3588",
+      "expected_root_operator": "select",
+      "expected_computation_order": [
+        1,
+        2,
+        3
+      ],
+      "expected_leaf_nodes": [
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-outer-retry-1",
+      "group": "D9-Recovery",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/outer-retry-1.ace1",
+      "bundle_sha256": "8d13268ef50b23a3a098397a94e9c3e5960072cd0217299378efd483e486ede7",
+      "expected_action_count": 1,
+      "expected_source_nodes": [
+        3
+      ],
+      "expected_forward_entry_ordinal": 1,
+      "expected_root_action_uppers": [
+        1
+      ],
+      "expected_local_action_uppers": [
+        1
+      ],
+      "expected_root_factor_counts": [
+        1
+      ],
+      "expected_local_factor_counts": [
+        0
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-outer-retry-2",
+      "group": "D9-Recovery",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/outer-retry-2.ace1",
+      "bundle_sha256": "fa8a4192b6a3d3efa56aa9e5308fafe761d3cc0ed7b89f6c3f44642f45610481",
+      "expected_action_count": 1,
+      "expected_source_nodes": [
+        3
+      ],
+      "expected_forward_entry_ordinal": 1,
+      "expected_root_action_uppers": [
+        2
+      ],
+      "expected_local_action_uppers": [
+        1
+      ],
+      "expected_root_factor_counts": [
+        1
+      ],
+      "expected_local_factor_counts": [
+        0
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-outer-retry-3",
+      "group": "D9-Recovery",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/outer-retry-3.ace1",
+      "bundle_sha256": "0cd50d75c2db0d01e25088b7204d3adf723e171392185c06cb0caf4c1f8f5c26",
+      "expected_action_count": 1,
+      "expected_source_nodes": [
+        3
+      ],
+      "expected_forward_entry_ordinal": 1,
+      "expected_root_action_uppers": [
+        3
+      ],
+      "expected_local_action_uppers": [
+        1
+      ],
+      "expected_root_factor_counts": [
+        1
+      ],
+      "expected_local_factor_counts": [
+        0
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-outer-retry-4",
+      "group": "D9-Recovery",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/outer-retry-4.ace1",
+      "bundle_sha256": "95926620d76d330f0c09a16f9db63b1d350e440b44151ad9eef79bbab7d53e44",
+      "expected_action_count": 1,
+      "expected_source_nodes": [
+        3
+      ],
+      "expected_forward_entry_ordinal": 1,
+      "expected_root_action_uppers": [
+        4
+      ],
+      "expected_local_action_uppers": [
+        1
+      ],
+      "expected_root_factor_counts": [
+        1
+      ],
+      "expected_local_factor_counts": [
+        0
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-outer-iterate-1",
+      "group": "D9-Recovery",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/outer-iterate-1.ace1",
+      "bundle_sha256": "99587870cde231c04e849af4d2390563ffe1b980c725e7ca69515ad539c21342",
+      "expected_action_count": 1,
+      "expected_source_nodes": [
+        3
+      ],
+      "expected_forward_entry_ordinal": 1,
+      "expected_root_action_uppers": [
+        1
+      ],
+      "expected_local_action_uppers": [
+        1
+      ],
+      "expected_root_factor_counts": [
+        1
+      ],
+      "expected_local_factor_counts": [
+        0
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-outer-iterate-2",
+      "group": "D9-Recovery",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/outer-iterate-2.ace1",
+      "bundle_sha256": "468989a02ce404bce049348718b1e7524b17bd03b4c8549f8d8f509ef03256a3",
+      "expected_action_count": 1,
+      "expected_source_nodes": [
+        3
+      ],
+      "expected_forward_entry_ordinal": 1,
+      "expected_root_action_uppers": [
+        2
+      ],
+      "expected_local_action_uppers": [
+        1
+      ],
+      "expected_root_factor_counts": [
+        1
+      ],
+      "expected_local_factor_counts": [
+        0
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-outer-iterate-3",
+      "group": "D9-Recovery",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/outer-iterate-3.ace1",
+      "bundle_sha256": "e41403b8151c74025a78c34ebe05a83b7175b89244495477286276df587e3386",
+      "expected_action_count": 1,
+      "expected_source_nodes": [
+        3
+      ],
+      "expected_forward_entry_ordinal": 1,
+      "expected_root_action_uppers": [
+        3
+      ],
+      "expected_local_action_uppers": [
+        1
+      ],
+      "expected_root_factor_counts": [
+        1
+      ],
+      "expected_local_factor_counts": [
+        0
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-outer-iterate-4",
+      "group": "D9-Recovery",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/outer-iterate-4.ace1",
+      "bundle_sha256": "a8d3d22fc5a21b704da99ab539495cdc46f783e4faf17636f71da4a350591bb4",
+      "expected_action_count": 1,
+      "expected_source_nodes": [
+        3
+      ],
+      "expected_forward_entry_ordinal": 1,
+      "expected_root_action_uppers": [
+        4
+      ],
+      "expected_local_action_uppers": [
+        1
+      ],
+      "expected_root_factor_counts": [
+        1
+      ],
+      "expected_local_factor_counts": [
+        0
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-retry-2-times-iterate-2",
+      "group": "D9-Recovery",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/retry-2-times-iterate-2.ace1",
+      "bundle_sha256": "6047a07660267947431fcb3734cb68639ac44e7e9484c275df296afad8bf527b",
+      "expected_action_count": 1,
+      "expected_source_nodes": [
+        4
+      ],
+      "expected_forward_entry_ordinal": 1,
+      "expected_root_action_uppers": [
+        4
+      ],
+      "expected_local_action_uppers": [
+        1
+      ],
+      "expected_root_factor_counts": [
+        2
+      ],
+      "expected_local_factor_counts": [
+        0
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-retry-2-times-iterate-4",
+      "group": "D9-Recovery",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/retry-2-times-iterate-4.ace1",
+      "bundle_sha256": "aa42bdc7adf25a6289c6a6e228842ffee4562d0980851f84ccc8a27fde0d503d",
+      "expected_action_count": 1,
+      "expected_source_nodes": [
+        4
+      ],
+      "expected_forward_entry_ordinal": 1,
+      "expected_root_action_uppers": [
+        8
+      ],
+      "expected_local_action_uppers": [
+        1
+      ],
+      "expected_root_factor_counts": [
+        2
+      ],
+      "expected_local_factor_counts": [
+        0
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-retry-3-times-iterate-2",
+      "group": "D9-Recovery",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/retry-3-times-iterate-2.ace1",
+      "bundle_sha256": "8776661704b8de07f744ccaebc8d49c0c9731526a57ea931e066858a0f06e2e2",
+      "expected_action_count": 1,
+      "expected_source_nodes": [
+        4
+      ],
+      "expected_forward_entry_ordinal": 1,
+      "expected_root_action_uppers": [
+        6
+      ],
+      "expected_local_action_uppers": [
+        1
+      ],
+      "expected_root_factor_counts": [
+        2
+      ],
+      "expected_local_factor_counts": [
+        0
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-retry-3-times-iterate-4",
+      "group": "D9-Recovery",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/retry-3-times-iterate-4.ace1",
+      "bundle_sha256": "51cbcbf06cb4790eae829bbab40f35d405f060db8960f54d3cf08934fa48773b",
+      "expected_action_count": 1,
+      "expected_source_nodes": [
+        4
+      ],
+      "expected_forward_entry_ordinal": 1,
+      "expected_root_action_uppers": [
+        12
+      ],
+      "expected_local_action_uppers": [
+        1
+      ],
+      "expected_root_factor_counts": [
+        2
+      ],
+      "expected_local_factor_counts": [
+        0
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-local-retry-inside-compensation-scope",
+      "group": "D9-Recovery",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/local-retry-inside-compensation-scope.ace1",
+      "bundle_sha256": "605f6df85947bec424ad865e2744d26c49c1a4d282427106b3460919f49c2f4b",
+      "expected_action_count": 1,
+      "expected_source_nodes": [
+        3
+      ],
+      "expected_forward_entry_ordinal": 1,
+      "expected_root_action_uppers": [
+        3
+      ],
+      "expected_local_action_uppers": [
+        3
+      ],
+      "expected_root_factor_counts": [
+        1
+      ],
+      "expected_local_factor_counts": [
+        1
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-two-sequence-actions",
+      "group": "D9-Recovery",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/two-sequence-actions.ace1",
+      "bundle_sha256": "f38aa2200d603921006a5bd379779d6de826340bd5cde6a51ff546ab7a4af120",
+      "expected_action_count": 2,
+      "expected_source_nodes": [
+        3,
+        5
+      ],
+      "expected_forward_entry_ordinal": 1,
+      "expected_root_action_uppers": [
+        1,
+        1
+      ],
+      "expected_local_action_uppers": [
+        1,
+        1
+      ],
+      "expected_root_factor_counts": [
+        0,
+        0
+      ],
+      "expected_local_factor_counts": [
+        0,
+        0
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-race-retains-loser-action",
+      "group": "D9-Recovery",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/race-retains-loser-action.ace1",
+      "bundle_sha256": "efe7989f995aae22df72799018d55e50cfa0affe3a1bfcf9aea9c36da937f5dc",
+      "expected_action_count": 2,
+      "expected_source_nodes": [
+        3,
+        5
+      ],
+      "expected_forward_entry_ordinal": 1,
+      "expected_root_action_uppers": [
+        1,
+        1
+      ],
+      "expected_local_action_uppers": [
+        1,
+        1
+      ],
+      "expected_root_factor_counts": [
+        0,
+        0
+      ],
+      "expected_local_factor_counts": [
+        0,
+        0
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-parallel-keeps-both-actions",
+      "group": "D9-Recovery",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/parallel-keeps-both-actions.ace1",
+      "bundle_sha256": "385c96d2a97a79d649ddc4755e6fbb393cef7719256848caf461ab9055ecc6aa",
+      "expected_action_count": 2,
+      "expected_source_nodes": [
+        3,
+        5
+      ],
+      "expected_forward_entry_ordinal": 1,
+      "expected_root_action_uppers": [
+        1,
+        1
+      ],
+      "expected_local_action_uppers": [
+        1,
+        1
+      ],
+      "expected_root_factor_counts": [
+        0,
+        0
+      ],
+      "expected_local_factor_counts": [
+        0,
+        0
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/provenance-context-id-missing",
+      "group": "Context-Resolver-Compiler",
+      "expected_stage": "D2",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "proof_context_manifest",
+            "context_id"
+          ],
+          "value": "99",
+          "op": "set"
+        }
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/provenance-resolver-id-missing",
+      "group": "Context-Resolver-Compiler",
+      "expected_stage": "D2",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "proof_context_manifest",
+            "resolver_id"
+          ],
+          "value": "99",
+          "op": "set"
+        }
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/provenance-compiler-id-missing",
+      "group": "Context-Resolver-Compiler",
+      "expected_stage": "D2",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "compiler_semantics_id"
+          ],
+          "value": "99",
+          "op": "set"
+        }
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/provenance-root-assertion-id-missing",
+      "group": "Context-Resolver-Compiler",
+      "expected_stage": "D2",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "path": [
+            "root_assertion_id"
+          ],
+          "value": "99",
+          "op": "set"
+        }
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/provenance-compiler-version-drift",
+      "group": "Context-Resolver-Compiler",
+      "expected_stage": "D4",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "path": [
+            "compiler_semantics_manifests",
+            "0",
+            "content",
+            "static_identity_projection",
+            "analysis_semantics_version"
+          ],
+          "value": "agentflow.root-export-checker@0",
+          "op": "set"
+        }
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/provenance-applied-rule-content-drift",
+      "group": "Context-Resolver-Compiler",
+      "expected_stage": "D3",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "path": [
+            "compiler_semantics_manifests",
+            "0",
+            "content",
+            "static_identity_projection",
+            "applied_rules",
+            "0",
+            "short_statement"
+          ],
+          "value": "mutated rule attribution is not current support",
+          "op": "set"
+        }
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/provenance-resolver-source-drift",
+      "group": "Context-Resolver-Compiler",
+      "expected_stage": "D8",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "path": [
+            "resolver_dependency_manifests",
+            "0",
+            "content",
+            "source_associations",
+            "0",
+            "target"
+          ],
+          "value": {
+            "await_signal": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "f6ca985ba7cccad128ed888a0f194433e113749d7ef548b2b0bd5f63e9f8467e"
+              },
+              "specification_id": "agentflow.semantic.ir@1",
+              "type_name": "SemanticIrDocument"
+            }
+          },
+          "op": "set"
+        }
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/provenance-fresh-context-unit-change",
+      "group": "Context-Resolver-Compiler",
+      "expected_stage": "D10",
+      "expected_static_compatibility": "proven",
+      "expected_capability_issued": true,
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "path": [
+            "proof_contexts",
+            "0",
+            "content",
+            "usage_meters",
+            "complete",
+            "0",
+            "unit",
+            "name"
+          ],
+          "value": "call-v2",
+          "op": "set"
+        }
+      ]
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-full-static-positive",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "expected_static_compatibility": "proven",
+      "expected_capability_issued": true,
+      "expected_dimension_verdicts": {
+        "I": "proven",
+        "O": "proven",
+        "Phi": "proven",
+        "epsilon": "proven",
+        "R": "proven",
+        "F": "proven",
+        "U": "proven",
+        "K": "proven",
+        "X": "proven"
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-unmapped",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/negative-execution-map-missing.ace1",
+      "bundle_sha256": "38808138ec90dbc3ffdba4338ff33274d42e6eacd227cd0bd62ed40082b0b448",
+      "expected_static_compatibility": "unproven",
+      "expected_capability_issued": false,
+      "expected_dimension_verdicts": {
+        "I": "proven",
+        "O": "proven",
+        "Phi": "proven",
+        "epsilon": "proven",
+        "R": "proven",
+        "F": "proven",
+        "U": "proven",
+        "K": "proven",
+        "X": "unproven"
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/p30-split-row-negative",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/p30-split-row-negative.ace1",
+      "bundle_sha256": "d3b337fd05e4cb804de8a6a68ee5a8abaed4394a3292e3b39e9e1accaab3ae4a",
+      "expected_static_compatibility": "unproven",
+      "expected_capability_issued": false,
+      "expected_epsilon": "unproven",
+      "expected_root_effect_entry_count": 1,
+      "expected_export_effect_entry_count": 2
+    },
+    {
+      "case_id": "portable-root-export-revalidation/p30-same-row-positive",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/p30-same-row-positive.ace1",
+      "bundle_sha256": "efbf39d31165cef75fa173be0105337c2edd9c7fe462945b5c7c5f27c6859402",
+      "expected_static_compatibility": "proven",
+      "expected_capability_issued": true,
+      "expected_epsilon": "proven",
+      "expected_root_effect_entry_count": 1,
+      "expected_export_effect_entry_count": 1
+    },
+    {
+      "case_id": "portable-root-export-revalidation/p31-snapshot-a-declaration-b-current",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/p31-snapshot-a-declaration-b-current.ace1",
+      "bundle_sha256": "be6c5163810ede286b8dd8385bdb0b14deff47e840e9ca5defe41e2e04c33774",
+      "expected_static_compatibility": "unproven",
+      "expected_capability_issued": false,
+      "expected_target_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "52e76c074f19673cb70f8e11b31497acac9cb8d7bf188cff01f8a6d6fdb3656f"
+      },
+      "expected_current_target_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "b88a7f4b9f3b4c5eecf9b6458065ed5ff055bf1278d7ed9be41ffeb86ba0f045"
+      },
+      "expected_declared_target_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "87d72e281396ee215d0d1ca4fef2328459a44393a11ea90dd0416ff66cff9719"
+      },
+      "expected_reason": "portable assertion names A while D8 snapshot binds same target IR to B"
+    },
+    {
+      "case_id": "portable-root-export-revalidation/p31-fresh-root-b-top-ceiling-one",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/p31-fresh-root-b-top-ceiling-one.ace1",
+      "bundle_sha256": "bd9330d1ce572e912b2a5db586ab2f11246c6454c4dfbc1485d72986749a563d",
+      "expected_static_compatibility": "violation",
+      "expected_capability_issued": false,
+      "expected_epsilon": "violation",
+      "expected_target_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "52e76c074f19673cb70f8e11b31497acac9cb8d7bf188cff01f8a6d6fdb3656f"
+      },
+      "expected_current_target_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "b88a7f4b9f3b4c5eecf9b6458065ed5ff055bf1278d7ed9be41ffeb86ba0f045"
+      },
+      "expected_declared_target_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "b88a7f4b9f3b4c5eecf9b6458065ed5ff055bf1278d7ed9be41ffeb86ba0f045"
+      },
+      "expected_reason": "fresh D9 root derives B upper ten against top export upper one"
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-2-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "2"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-3-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "3"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-4-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "4"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-5-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "5"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-6-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "6"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-7-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "7"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-8-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "8"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-9-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "9"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-10-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "10"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-11-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "11"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-12-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "12"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-13-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "13"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-14-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "14"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-15-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "15"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-16-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "16"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-17-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "17"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-18-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "18"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-19-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "19"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-20-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "20"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-21-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "21"
+        }
+      ],
+      "expected_execution_verdict": "not_proven",
+      "expected_capability_issued": false
+    },
+    {
+      "case_id": "portable-root-export-revalidation/cross-process-positive",
+      "group": "Cross-Process",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "expected_static_compatibility": "proven",
+      "expected_capability_issued": true,
+      "expected_dimension_verdicts": {
+        "I": "proven",
+        "O": "proven",
+        "Phi": "proven",
+        "epsilon": "proven",
+        "R": "proven",
+        "F": "proven",
+        "U": "proven",
+        "K": "proven",
+        "X": "proven"
+      },
+      "expected_consumer_stage": "D10"
+    },
+    {
+      "case_id": "portable-root-export-revalidation/cross-process-p30-split-row",
+      "group": "Cross-Process",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/p30-split-row-negative.ace1",
+      "bundle_sha256": "d3b337fd05e4cb804de8a6a68ee5a8abaed4394a3292e3b39e9e1accaab3ae4a",
+      "expected_static_compatibility": "unproven",
+      "expected_capability_issued": false,
+      "expected_epsilon": "unproven",
+      "expected_root_effect_entry_count": 1,
+      "expected_export_effect_entry_count": 2,
+      "expected_consumer_stage": "D10"
+    },
+    {
+      "case_id": "portable-root-export-revalidation/cross-process-p31-stale-target-export",
+      "group": "Cross-Process",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/p31-snapshot-a-declaration-b-current.ace1",
+      "bundle_sha256": "be6c5163810ede286b8dd8385bdb0b14deff47e840e9ca5defe41e2e04c33774",
+      "expected_static_compatibility": "unproven",
+      "expected_capability_issued": false,
+      "expected_target_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "52e76c074f19673cb70f8e11b31497acac9cb8d7bf188cff01f8a6d6fdb3656f"
+      },
+      "expected_current_target_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "b88a7f4b9f3b4c5eecf9b6458065ed5ff055bf1278d7ed9be41ffeb86ba0f045"
+      },
+      "expected_declared_target_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "87d72e281396ee215d0d1ca4fef2328459a44393a11ea90dd0416ff66cff9719"
+      },
+      "expected_reason": "portable assertion names A while D8 snapshot binds same target IR to B",
+      "expected_consumer_stage": "D10"
+    },
+    {
+      "case_id": "portable-root-export-revalidation/cross-process-context-content-change",
+      "group": "Cross-Process",
+      "expected_stage": "D10",
+      "expected_static_compatibility": "proven",
+      "expected_capability_issued": true,
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "path": [
+            "proof_contexts",
+            "0",
+            "content",
+            "usage_meters",
+            "complete",
+            "0",
+            "unit",
+            "name"
+          ],
+          "value": "call-v2",
+          "op": "set"
+        }
+      ],
+      "expected_consumer_stage": "D10"
+    },
+    {
+      "case_id": "portable-root-export-revalidation/cross-process-compiler-semantics-drift",
+      "group": "Cross-Process",
+      "expected_stage": "D4",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "path": [
+            "compiler_semantics_manifests",
+            "0",
+            "content",
+            "static_identity_projection",
+            "analysis_semantics_version"
+          ],
+          "value": "agentflow.root-export-checker@0",
+          "op": "set"
+        }
+      ],
+      "expected_consumer_stage": "D4"
+    },
+    {
+      "case_id": "portable-root-export-revalidation/cross-process-resolver-association-drift",
+      "group": "Cross-Process",
+      "expected_stage": "D8",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "bundle_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae",
+      "mutations": [
+        {
+          "path": [
+            "resolver_dependency_manifests",
+            "0",
+            "content",
+            "source_associations",
+            "0",
+            "target"
+          ],
+          "value": {
+            "await_signal": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "f6ca985ba7cccad128ed888a0f194433e113749d7ef548b2b0bd5f63e9f8467e"
+              },
+              "specification_id": "agentflow.semantic.ir@1",
+              "type_name": "SemanticIrDocument"
+            }
+          },
+          "op": "set"
+        }
+      ],
+      "expected_consumer_stage": "D8"
+    }
+  ]
+}

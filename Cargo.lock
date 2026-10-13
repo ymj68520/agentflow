@@ -19,6 +19,7 @@ dependencies = [
  "af-semantic",
  "af-usage",
  "hex",
+ "serde",
  "serde_json",
  "sha2",
 ]
@@ -140,6 +141,7 @@ dependencies = [
  "af-core",
  "af-effect",
  "af-execution",
+ "af-failure",
  "af-flow",
  "af-idl",
  "af-ir",

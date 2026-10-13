@@ -1,6 +1,6 @@
 [package]
 name = "af-portable"
-description = "Registered portable proof input codec and exact D0-D8 static reconstruction"
+description = "Registered portable proof inputs and fresh D0-D10 static RootExport revalidation"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
@@ -15,6 +15,7 @@ af-semantic = { path = "../af-semantic" }
 af-computation = { path = "../af-computation" }
 af-contract = { path = "../af-contract" }
 af-effect = { path = "../af-effect" }
+af-failure = { path = "../af-failure" }
 af-execution = { path = "../af-execution" }
 af-flow = { path = "../af-flow" }
 af-ir = { path = "../af-ir" }

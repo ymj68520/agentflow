@@ -31,6 +31,7 @@ use af_semantic::{
     ValueSlotId,
 };
 use af_usage::{StaticUsageBound, StaticUsageEnvelope, UsagePhase};
+use serde::Deserialize;
 use sha2::{Digest as _, Sha256};
 use std::collections::BTreeMap;
 
@@ -178,25 +179,25 @@ impl ProofContextManifest {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct ComponentInputPortIdentity {
     pub exported_contract_digest: DigestRefValue,
     pub port_no: u32,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct ComponentOutputPortIdentity {
     pub exported_contract_digest: DigestRefValue,
     pub port_no: u32,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct ResourceRequirementPortIdentity {
     pub exported_contract_digest: DigestRefValue,
     pub port_no: u32,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct RootInputUseSite {
     pub computation: ComputationId,
     pub source_contract_digest: DigestRefValue,
@@ -216,7 +217,7 @@ pub struct RootInputPortBinding {
     pub use_sites: Vec<RootInputUseSite>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct RootOutputProducerEvidence {
     pub exact_result_type: TypeSchemaRef,
     pub dependency_slots: Vec<ValueSlotId>,
@@ -231,7 +232,7 @@ pub struct RootOutputPortBinding {
     pub producer_evidence: RootOutputProducerEvidence,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct RootResourceSourceCoordinate {
     pub source_node: ComputationId,
     pub source_contract_digest: DigestRefValue,
@@ -240,7 +241,7 @@ pub struct RootResourceSourceCoordinate {
     pub alias_component_ports: Vec<u32>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct RootResourcePortBinding {
     pub export_resource_port: ResourceRequirementPortIdentity,
     pub root_resource_slot: ResourceSlotId,
@@ -249,7 +250,7 @@ pub struct RootResourcePortBinding {
     pub source_coordinates: Vec<RootResourceSourceCoordinate>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct RootEffectOccurrenceIdentity {
     pub caller_semantic_ir_digest: DigestRefValue,
     pub source_node: ComputationId,
@@ -259,7 +260,7 @@ pub struct RootEffectOccurrenceIdentity {
     pub guard: EffectGuard,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct RootEffectCoordinateBinding {
     pub source: RootEffectOccurrenceIdentity,
     pub root_resource_slot: Option<ResourceSlotId>,
@@ -267,7 +268,7 @@ pub struct RootEffectCoordinateBinding {
     pub export_guard: EffectGuard,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct RootFlowCoordinateBinding {
     pub source_node: ComputationId,
     pub source_contract_digest: DigestRefValue,
@@ -282,21 +283,21 @@ pub struct RootFlowCoordinateBinding {
     pub export_effect_partition: Option<EffectFlowPartition>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct RootRecoveryCoordinateBinding {
     pub source: RecoveryActionSourceIdentity,
     pub export_action_identity: af_contract::RecoveryActionIdentity,
     pub exact_usage_binding: RecoveryUsageBinding,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct RootExecutionCoordinateBinding {
     pub source_node: ComputationId,
     pub source_contract_digest: DigestRefValue,
     pub exact_execution_requirements: ExecutionRequirements,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct SubflowTargetIdentity {
     pub semantic_ir_digest: DigestRefValue,
     pub exported_contract_digest: Option<DigestRefValue>,
