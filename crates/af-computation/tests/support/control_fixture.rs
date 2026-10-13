@@ -16,8 +16,9 @@ use af_contract::{
     FlowExecutionRule, FlowExecutionSink, InformationFlowExecutionCatalog, RecoveryActionBinding,
     RecoveryActionIdentity, RecoveryActionKind, RecoveryUsageBinding, RecoveryUsageCoverageCatalog,
     RecoveryUsageCoverageRule, RelationCatalogSnapshot, RelationSnapshots, SandboxFloor,
-    StaticContractProofContext, SupportedEffectResourcePair, TaintExecutionRule, TrustDomainPolicy,
-    analyze_contract, check_contract, component_contract_digest,
+    ScopeValueRule, SelectorKeyRule, StaticContractProofContext, SupportedEffectResourcePair,
+    TaintExecutionRule, TrustDomainPolicy, analyze_contract, check_contract,
+    component_contract_digest,
 };
 use af_effect::{
     CapabilityCatalog, EffectAtom, EffectCatalogUniverse, EffectEntry, EffectGuard,
@@ -203,6 +204,15 @@ impl FixtureContext {
                 }
             }
         }
+        for attribute in case["input"]["recognized_resource_attributes"]
+            .as_array()
+            .into_iter()
+            .flatten()
+        {
+            if let Some(key) = attribute.as_str() {
+                recognized_attributes.insert(key.to_owned());
+            }
+        }
         resources
             .recognize(ResourceTypeDescriptor {
                 specification_id: resource_schema.specification_id.clone(),
@@ -262,10 +272,30 @@ impl FixtureContext {
             catalog: "agentflow.effects@1".into(),
             name: "write".into(),
         };
+        let selector_keys = case["input"]["effect_selector_rules"]
+            .as_array()
+            .into_iter()
+            .flatten()
+            .map(|rule| SelectorKeyRule {
+                selector_key: rule["selector_key"].as_str().unwrap().into(),
+                resource_attribute_key: rule["resource_attribute_key"].as_str().unwrap().into(),
+                required: rule["required"].as_bool().unwrap_or(false),
+                values: if let Some(values) = rule["finite_values"].as_array() {
+                    ScopeValueRule::FiniteExactValues(
+                        values
+                            .iter()
+                            .map(|value| value.as_str().unwrap().to_owned())
+                            .collect(),
+                    )
+                } else {
+                    ScopeValueRule::OpaqueNfcExactString
+                },
+            })
+            .collect();
         let supported_pair = SupportedEffectResourcePair {
             operation: operation.clone(),
             resource_type: resource_type.clone(),
-            selector_keys: vec![],
+            selector_keys,
             allowed_qualifier_profiles: vec![
                 EffectQualifierProfile { qualifiers: vec![] },
                 EffectQualifierProfile {
@@ -660,6 +690,7 @@ pub fn analyze_compose_case(case: &Value) -> Result<Value, String> {
 /// a formal JSON fixture. Assertion coordinates are materialized from the
 /// fixture's exact checked IR/source/export declarations; no proof verdict is
 /// injected by this helper.
+#[allow(clippy::similar_names)]
 pub fn analyze_root_export_case(case: &Value) -> Result<Value, String> {
     let input = &case["input"];
     let children = input["children"]
@@ -670,6 +701,12 @@ pub fn analyze_root_export_case(case: &Value) -> Result<Value, String> {
     }
     let env = FixtureContext::for_case(case);
     let view = env.view();
+    let alternate_env = input["checker_context_variant"]
+        .as_bool()
+        .filter(|enabled| *enabled)
+        .map(|_| FixtureContext::for_case(case));
+    let alternate_view = alternate_env.as_ref().map(FixtureContext::view);
+    let checker_view = alternate_view.as_ref().unwrap_or(&view);
     let child = &children[0];
     let alias = child["contract_digest"]
         .as_str()
@@ -715,8 +752,26 @@ pub fn analyze_root_export_case(case: &Value) -> Result<Value, String> {
     };
     let mut export_raw = raw.clone();
     apply_export_overrides(&mut export_raw, &input["export_overrides"], &env)?;
-    let checked_export = check_contract(&export_raw, &view)
-        .map_err(|report| format!("export ComponentContract rejected: {:?}", report.overall()))?;
+    let checked_export = check_contract(&export_raw, &view).map_err(|report| {
+        let details = report
+            .dimensions
+            .iter()
+            .filter(|item| item.verdict != af_contract::ProofVerdict::Proven)
+            .map(|item| {
+                format!(
+                    "{}={}:{}",
+                    item.dimension,
+                    item.verdict.as_str(),
+                    item.reason
+                )
+            })
+            .collect::<Vec<_>>()
+            .join("; ");
+        format!(
+            "export ComponentContract rejected: {:?}: {details}",
+            report.overall()
+        )
+    })?;
     let export_digest =
         component_contract_digest(&checked_export, &view).map_err(|error| error.to_string())?;
     let export_pin = DigestRefValue {
@@ -724,6 +779,43 @@ pub fn analyze_root_export_case(case: &Value) -> Result<Value, String> {
         domain: "component-contract".into(),
         hex: export_digest.hex().into(),
     };
+    let snapshot_a_overrides = input
+        .get("snapshot_a_export_overrides")
+        .unwrap_or(&input["export_overrides"]);
+    let mut snapshot_a_raw = raw.clone();
+    apply_export_overrides(&mut snapshot_a_raw, snapshot_a_overrides, &env)?;
+    let checked_snapshot_a_export = check_contract(&snapshot_a_raw, &view).map_err(|report| {
+        format!(
+            "snapshot A ComponentContract rejected: {:?}",
+            report.overall()
+        )
+    })?;
+    let snapshot_b_overrides = input.get("snapshot_b_export_overrides");
+    let checked_snapshot_b_export = if let Some(overrides) = snapshot_b_overrides {
+        let mut snapshot_b_raw = raw.clone();
+        apply_export_overrides(&mut snapshot_b_raw, overrides, &env)?;
+        Some(check_contract(&snapshot_b_raw, &view).map_err(|report| {
+            format!(
+                "snapshot B ComponentContract rejected: {:?}",
+                report.overall()
+            )
+        })?)
+    } else {
+        None
+    };
+    let checked_snapshot_b_component_extra =
+        if let Some(overrides) = input.get("snapshot_b_component_extra_overrides") {
+            let mut extra_raw = raw.clone();
+            apply_export_overrides(&mut extra_raw, overrides, &env)?;
+            Some(check_contract(&extra_raw, &view).map_err(|report| {
+                format!(
+                    "snapshot B extra ComponentContract rejected: {:?}",
+                    report.overall()
+                )
+            })?)
+        } else {
+            None
+        };
     let mut pin_by_alias = BTreeMap::new();
     pin_by_alias.insert(alias.to_owned(), source_pin.clone());
     let mut raws = BTreeMap::new();
@@ -750,18 +842,41 @@ pub fn analyze_root_export_case(case: &Value) -> Result<Value, String> {
     let dataflow = checked_ir
         .analyze_dataflow()
         .map_err(|error| format!("Phase 3C: {error}"))?;
-    let mut snapshot_builder = StaticComputationResolutionSnapshotBuilder::new(&view, &subflows);
+    let mut snapshot_a_builder = StaticComputationResolutionSnapshotBuilder::new(&view, &subflows);
     if let Some(target_digest) = subflow_targets.values().next() {
-        snapshot_builder = snapshot_builder
-            .subflow_export(target_digest, &checked_export)
-            .map_err(|error| format!("subflow export snapshot: {error}"))?;
+        snapshot_a_builder = snapshot_a_builder
+            .subflow_export(target_digest, &checked_snapshot_a_export)
+            .map_err(|error| format!("subflow export snapshot A: {error}"))?;
     } else {
-        snapshot_builder = snapshot_builder
+        snapshot_a_builder = snapshot_a_builder
             .component(&checked)
             .map_err(|error| format!("resolution snapshot: {error}"))?;
     }
-    let snapshot = snapshot_builder.build();
-    let root = derive_workflow_contract_summary(&checked_ir, &snapshot, &view)
+    let snapshot_a = snapshot_a_builder.build();
+    let mut snapshot_b_builder = StaticComputationResolutionSnapshotBuilder::new(&view, &subflows);
+    if let Some(target_digest) = subflow_targets.values().next() {
+        if input["snapshot_b_without_subflow_export"] != true {
+            snapshot_b_builder = snapshot_b_builder
+                .subflow_export(
+                    target_digest,
+                    checked_snapshot_b_export
+                        .as_ref()
+                        .unwrap_or(&checked_snapshot_a_export),
+                )
+                .map_err(|error| format!("subflow export snapshot B: {error}"))?;
+        }
+    } else {
+        snapshot_b_builder = snapshot_b_builder
+            .component(&checked)
+            .map_err(|error| format!("resolution snapshot: {error}"))?;
+    }
+    if let Some(extra) = &checked_snapshot_b_component_extra {
+        snapshot_b_builder = snapshot_b_builder
+            .component(extra)
+            .map_err(|error| format!("snapshot B extra component pin: {error}"))?;
+    }
+    let snapshot_b = snapshot_b_builder.build();
+    let root = derive_workflow_contract_summary(&checked_ir, &snapshot_a, &view)
         .map_err(|error| format!("workflow-root derivation: {error}"))?;
     let ir_digest = document
         .digest(&env.modules)
@@ -775,33 +890,67 @@ pub fn analyze_root_export_case(case: &Value) -> Result<Value, String> {
         input,
         &document,
         &checked_export,
-        &snapshot,
+        &snapshot_b,
         &root,
         &dataflow,
-        &view,
+        checker_view,
         ir_pin,
-        export_pin,
+        export_pin.clone(),
     )?;
     let mut assertion = assertion;
     apply_root_export_mutation(input["mutation"].as_str(), &mut assertion, &env);
     let report = af_computation::analyze_root_export_assertion(
         &checked_ir,
         &checked_export,
-        &snapshot,
-        &view,
+        &snapshot_b,
+        checker_view,
         &root,
         &assertion,
     );
     let checked_capability = af_computation::check_root_export_assertion(
         &checked_ir,
         &checked_export,
-        &snapshot,
-        &view,
+        &snapshot_b,
+        checker_view,
         &root,
         &assertion,
     )
     .is_ok();
-    Ok(root_export_projection(&report, checked_capability))
+    let mut projection = root_export_projection(&report, checked_capability);
+    let snapshot_b_export = checked_snapshot_b_export
+        .as_ref()
+        .unwrap_or(&checked_snapshot_a_export);
+    let snapshot_a_digest = component_contract_digest(&checked_snapshot_a_export, &view)
+        .map_err(|error| error.to_string())?;
+    let snapshot_b_digest =
+        component_contract_digest(snapshot_b_export, &view).map_err(|error| error.to_string())?;
+    projection["_production_fixture_inputs"] = json!({
+        "source_effects":effect_json(&checked.contract().effects),
+        "top_export_effects":effect_json(&checked_export.contract().effects),
+        "snapshot_a_effects":effect_json(&checked_snapshot_a_export.contract().effects),
+        "snapshot_b_effects":effect_json(&snapshot_b_export.contract().effects),
+        "source_contract_digest":digest_ref_json(&source_pin),
+        "top_export_digest":digest_ref_json(&export_pin),
+        "snapshot_a_export_digest":{
+            "algorithm":"sha256",
+            "domain":snapshot_a_digest.domain().as_str(),
+            "hex":snapshot_a_digest.hex(),
+        },
+        "snapshot_b_export_digest":{
+            "algorithm":"sha256",
+            "domain":snapshot_b_digest.domain().as_str(),
+            "hex":snapshot_b_digest.hex(),
+        },
+        "root_resolver_identity":{
+            "component_contract_digests":root.resolver_identity().component_contract_digests().iter().map(digest_ref_json).collect::<Vec<_>>(),
+            "subflow_targets":root.resolver_identity().subflow_targets().iter().map(|target|json!({
+                "semantic_ir_digest":digest_ref_json(target.semantic_ir_digest()),
+                "direct_dependencies":target.direct_dependencies().map(|items|items.iter().map(digest_ref_json).collect::<Vec<_>>()),
+                "exported_contract_digest":target.exported_contract_digest().map(digest_ref_json),
+            })).collect::<Vec<_>>(),
+        },
+    });
+    Ok(projection)
 }
 
 fn apply_export_overrides(
