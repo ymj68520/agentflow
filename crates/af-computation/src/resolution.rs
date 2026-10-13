@@ -104,6 +104,51 @@ pub struct StaticComputationResolutionSnapshot<'a, 'context, 'universe> {
     exports: HashMap<DigestRefValue, ExportedContract<'a, 'context, 'universe>>,
 }
 
+/// Content identity of an immutable resolver snapshot. This process-local
+/// value is generated from the snapshot itself and is not a wire or digest
+/// identity.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ResolverSnapshotIdentity {
+    component_contract_digests: Vec<DigestRefValue>,
+    subflow_targets: Vec<ResolverSubflowIdentity>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ResolverSubflowIdentity {
+    semantic_ir_digest: DigestRefValue,
+    direct_dependencies: Option<Vec<DigestRefValue>>,
+    exported_contract_digest: Option<DigestRefValue>,
+}
+
+impl ResolverSnapshotIdentity {
+    #[must_use]
+    pub fn component_contract_digests(&self) -> &[DigestRefValue] {
+        &self.component_contract_digests
+    }
+
+    #[must_use]
+    pub fn subflow_targets(&self) -> &[ResolverSubflowIdentity] {
+        &self.subflow_targets
+    }
+}
+
+impl ResolverSubflowIdentity {
+    #[must_use]
+    pub fn semantic_ir_digest(&self) -> &DigestRefValue {
+        &self.semantic_ir_digest
+    }
+
+    #[must_use]
+    pub fn direct_dependencies(&self) -> Option<&[DigestRefValue]> {
+        self.direct_dependencies.as_deref()
+    }
+
+    #[must_use]
+    pub fn exported_contract_digest(&self) -> Option<&DigestRefValue> {
+        self.exported_contract_digest.as_ref()
+    }
+}
+
 impl StaticComputationResolutionSnapshot<'_, '_, '_> {
     /// Whether this immutable resolver snapshot uses the exact proof-context
     /// object supplied to the analysis (not merely equal catalog contents).
@@ -138,6 +183,32 @@ impl StaticComputationResolutionSnapshot<'_, '_, '_> {
         self.subflows
             .target(target)
             .map(af_ir::SubflowTarget::dependencies)
+    }
+
+    /// Returns the exact content identity of this immutable snapshot,
+    /// including component pins and every target/dependency/export
+    /// association. Callers cannot construct or attach an identity to a
+    /// different snapshot.
+    #[must_use]
+    pub fn resolver_identity(&self) -> ResolverSnapshotIdentity {
+        let mut subflow_targets = self
+            .subflow_target_pins()
+            .into_iter()
+            .map(|semantic_ir_digest| ResolverSubflowIdentity {
+                direct_dependencies: self
+                    .subflow_dependencies(&semantic_ir_digest)
+                    .map(<[DigestRefValue]>::to_vec),
+                exported_contract_digest: self.subflow_export_pin(&semantic_ir_digest).cloned(),
+                semantic_ir_digest,
+            })
+            .collect::<Vec<_>>();
+        subflow_targets.sort_by(|left, right| {
+            digest_key(&left.semantic_ir_digest).cmp(&digest_key(&right.semantic_ir_digest))
+        });
+        ResolverSnapshotIdentity {
+            component_contract_digests: self.component_contract_pins(),
+            subflow_targets,
+        }
     }
 }
 

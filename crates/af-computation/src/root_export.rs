@@ -936,16 +936,33 @@ fn preflight(
         _ => DimensionProof::unproven("exact-ir-export-pins", RULE_ASSERTION_PIN, "exact checked digest could not be recomputed under the supplied current context"),
     });
 
+    let same_resolver_snapshot = root.resolver_identity() == &snapshot.resolver_identity();
     let same_context = std::ptr::eq(exported.proof_context(), context)
         && snapshot.is_same_context(context)
-        && std::ptr::eq(root.root().proof_context_reference().context(), context);
+        && std::ptr::eq(root.root().proof_context_reference().context(), context)
+        && same_resolver_snapshot;
     let captured_manifest = ProofContextManifest::capture(context, snapshot);
     let manifest_matches = assertion.proof_context_manifest == captured_manifest;
-    proofs.push(if same_context && manifest_matches {
-        DimensionProof::proven("proof-context", RULE_CONTEXT_MANIFEST, "checked export, resolver snapshot, root derivation, and complete typed content manifest use this exact context")
+    let mut context_proof = if same_context && manifest_matches {
+        DimensionProof::proven(
+            "proof-context",
+            RULE_CONTEXT_MANIFEST,
+            "checked export, resolver snapshot, root derivation, and complete typed content manifest use this exact context",
+        )
     } else {
-        DimensionProof::unproven("proof-context", RULE_CONTEXT_MANIFEST, "pointer-identical context or content-complete catalog/relation/resolver manifest differs; re-derivation is required")
-    });
+        DimensionProof::unproven(
+            "proof-context",
+            RULE_CONTEXT_MANIFEST,
+            "pointer-identical context or content-complete catalog/relation/resolver manifest differs; re-derivation is required",
+        )
+    };
+    if !same_resolver_snapshot {
+        context_proof.reference = Some(resolver_identity_difference(
+            root.resolver_identity(),
+            &snapshot.resolver_identity(),
+        ));
+    }
+    proofs.push(context_proof);
 
     let semantics_matches = compiler_semantics_is_current(&assertion.compiler_semantics_identity);
     proofs.push(if semantics_matches {
@@ -960,6 +977,53 @@ fn preflight(
         None => DimensionProof::unproven("subflow-dependency-pins", RULE_SUBFLOW, "a subflow pin, transitive closure, or cycle/missing-target fact is incomplete or stale"),
     });
     proofs
+}
+
+fn resolver_identity_difference(
+    root: &crate::resolution::ResolverSnapshotIdentity,
+    current: &crate::resolution::ResolverSnapshotIdentity,
+) -> String {
+    if root.component_contract_digests() != current.component_contract_digests() {
+        return "resolver component contract pin set differs".into();
+    }
+    for root_target in root.subflow_targets() {
+        let target = root_target.semantic_ir_digest();
+        let Some(current_target) = current
+            .subflow_targets()
+            .iter()
+            .find(|item| item.semantic_ir_digest() == target)
+        else {
+            return format!(
+                "resolver target {} is absent from the current snapshot",
+                target.hex
+            );
+        };
+        if root_target.direct_dependencies() != current_target.direct_dependencies() {
+            return format!(
+                "resolver target {} direct dependency closure differs",
+                target.hex
+            );
+        }
+        if root_target.exported_contract_digest() != current_target.exported_contract_digest() {
+            return format!(
+                "resolver target {} exported contract digest differs: root={}, current={}",
+                target.hex,
+                optional_digest(root_target.exported_contract_digest()),
+                optional_digest(current_target.exported_contract_digest()),
+            );
+        }
+    }
+    if current.subflow_targets().len() > root.subflow_targets().len() {
+        return "current resolver snapshot has additional subflow targets".into();
+    }
+    "resolver dependency identity differs".into()
+}
+
+fn optional_digest(digest: Option<&DigestRefValue>) -> String {
+    digest.map_or_else(
+        || "absent".into(),
+        |value| format!("{}/{}/{}", value.algorithm, value.domain, value.hex),
+    )
 }
 
 fn digest_ref(digest: &af_core::DigestRef) -> DigestRefValue {
@@ -2653,10 +2717,12 @@ fn effect_containment_verdict(
     else {
         return af_contract::ProofVerdict::Unproven;
     };
+    let mut claimed_export_slots = vec![false; export_entries.len()];
     for root_entry in root_entries {
         let same_operation_selector = export_entries
             .iter()
-            .filter(|entry| {
+            .enumerate()
+            .filter(|(_, entry)| {
                 entry.atom.operation == root_entry.atom.operation
                     && entry.atom.qualifiers == root_entry.atom.qualifiers
                     && entry.atom.resource_selector.requirement_port_no
@@ -2667,34 +2733,62 @@ fn effect_containment_verdict(
         if same_operation_selector.is_empty() {
             return af_contract::ProofVerdict::Violation;
         }
-        let bounds_covered = same_operation_selector
-            .iter()
-            .any(|entry| entry.bounds.covers(&root_entry.bounds));
-        if !bounds_covered {
-            return af_contract::ProofVerdict::Violation;
-        }
-        let guard_covered = same_operation_selector
-            .iter()
-            .any(|entry| af_effect::guard_contained(&root_entry.guard, &entry.guard));
-        if guard_covered {
+
+        // The normative relation consumes one unused export slot per root
+        // occurrence. Keep the fallback's partial analysis on that same
+        // one-to-one basis; a slot already claimed by an earlier occurrence
+        // cannot be reused to manufacture a second witness.
+        if let Some((slot, _)) = same_operation_selector.iter().find(|(slot, entry)| {
+            !claimed_export_slots[*slot]
+                && entry.bounds.covers(&root_entry.bounds)
+                && af_effect::guard_contained(&root_entry.guard, &entry.guard)
+        }) {
+            claimed_export_slots[*slot] = true;
             continue;
         }
+
+        // If an otherwise complete row exists but was already consumed, the
+        // formal algebra's finite-slot refinement is insufficient evidence;
+        // do not reinterpret capacity contention as a semantic violation.
+        if same_operation_selector.iter().any(|(slot, entry)| {
+            claimed_export_slots[*slot]
+                && entry.bounds.covers(&root_entry.bounds)
+                && af_effect::guard_contained(&root_entry.guard, &entry.guard)
+        }) {
+            return af_contract::ProofVerdict::Unproven;
+        }
+
+        // A local contradiction is decisive only when there is exactly one
+        // selector-compatible declaration. With multiple declarations, a
+        // partial fact about one row cannot exclude another row; stay
+        // conservative unless the normative full containment relation has
+        // already produced a complete witness above.
+        if same_operation_selector.len() != 1 {
+            return af_contract::ProofVerdict::Unproven;
+        }
+        let (_, entry) = same_operation_selector[0];
+        if af_effect::guard_contained(&root_entry.guard, &entry.guard)
+            && !entry.bounds.covers(&root_entry.bounds)
+        {
+            return af_contract::ProofVerdict::Violation;
+        }
         if allow_guard_countermodel
-            && same_operation_selector.iter().any(|entry| {
-                guard_counterexample(
-                    &root_entry.guard,
-                    &entry.guard,
-                    export_inputs,
-                    assertion,
-                    schemas,
-                )
-            })
+            && guard_counterexample(
+                &root_entry.guard,
+                &entry.guard,
+                export_inputs,
+                assertion,
+                schemas,
+            )
         {
             return af_contract::ProofVerdict::Violation;
         }
         return af_contract::ProofVerdict::Unproven;
     }
-    af_contract::ProofVerdict::Proven
+    // Reaching this path means the normative containment API did not prove
+    // the complete signature. The fallback may explain a contradiction or
+    // preserve Unproven, but it is never a second route to Proven.
+    af_contract::ProofVerdict::Unproven
 }
 
 fn root_has_guard_sensitive_path(summary: &DerivedControlContractSummary<'_, '_>) -> bool {

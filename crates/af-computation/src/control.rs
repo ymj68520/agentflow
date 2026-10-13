@@ -34,7 +34,7 @@ use af_usage::UsagePhase;
 use af_usage::{StaticUsageBound, StaticUsageEnvelope, UsageUpperBound};
 
 use crate::proof::LeafVerdict;
-use crate::resolution::resolve_computation_leaf;
+use crate::resolution::{ResolverSnapshotIdentity, resolve_computation_leaf};
 use crate::root_recovery::{
     AppliedMultiplicity, ControlMultiplicityIdentity, ControlMultiplicityKind, ControlPathKind,
     ControlPathReachability, ControlPathStep, LocalActionBound, LocalRecoveryAction,
@@ -323,6 +323,7 @@ pub struct DerivedWorkflowContractSummary<'context, 'universe> {
     root: DerivedControlContractSummary<'context, 'universe>,
     closure: ControlTreeClosureSummary,
     root_recovery: RootRecoverySummary,
+    resolver_identity: ResolverSnapshotIdentity,
 }
 
 impl DerivedWorkflowContractSummary<'_, '_> {
@@ -337,6 +338,10 @@ impl DerivedWorkflowContractSummary<'_, '_> {
     #[must_use]
     pub fn root_recovery(&self) -> &RootRecoverySummary {
         &self.root_recovery
+    }
+    #[must_use]
+    pub fn resolver_identity(&self) -> &ResolverSnapshotIdentity {
+        &self.resolver_identity
     }
     #[must_use]
     pub fn overall(&self) -> LeafVerdict {
@@ -1320,6 +1325,7 @@ pub fn derive_workflow_contract_summary<'context, 'universe>(
         root,
         closure,
         root_recovery,
+        resolver_identity: snapshot.resolver_identity(),
     })
 }
 

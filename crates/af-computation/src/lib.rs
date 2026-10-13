@@ -32,8 +32,9 @@ pub use control::{
 };
 pub use proof::{LeafDimensionProof, LeafProofReport, LeafVerdict};
 pub use resolution::{
-    LeafResolutionError, SnapshotError, StaticComputationResolutionSnapshot,
-    StaticComputationResolutionSnapshotBuilder, resolve_computation_leaf,
+    LeafResolutionError, ResolverSnapshotIdentity, ResolverSubflowIdentity, SnapshotError,
+    StaticComputationResolutionSnapshot, StaticComputationResolutionSnapshotBuilder,
+    resolve_computation_leaf,
 };
 pub use root_export::{
     CheckedRootExportCompatibility, CompilerSemanticsIdentity, ComponentInputPortIdentity,
