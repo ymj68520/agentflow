@@ -45,7 +45,9 @@ CONF = ROOT / "spec" / "conformance" / "afidl"
 # `semantic-core` case; revision 2 (Phase 2B) added the self-hosting
 # registry schema module. Every bump is purely additive: existing cases,
 # bytes and digests are unchanged.
-CORPUS_REVISION = 13
+# Revision 14 adds the portable-proof-inputs schema; existing cases and
+# TypeSchemaDigest values remain byte-identical.
+CORPUS_REVISION = 14
 
 # The frozen 13-opcode case table (spec/semantic/semantic-ir.md section 4).
 OPCODE_TABLE = [
@@ -752,6 +754,8 @@ def main():
     # The Phase 4A.7 Execution Requirements schema module is part of the corpus.
     execution_file = ROOT / "spec" / "idl" / "execution-requirements.afidl"
     cases.append(case_entry(execution_file, case_id="execution-requirements"))
+    portable_file = ROOT / "spec" / "idl" / "portable-proof-inputs.afidl"
+    cases.append(case_entry(portable_file, case_id="portable-proof-inputs"))
 
     schema_golden = {
         "kind": "agentflow.conformance.afidl.schema-golden",

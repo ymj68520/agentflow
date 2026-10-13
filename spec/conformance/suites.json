@@ -504,6 +504,18 @@
       ]
     },
     {
+      "description": "Independent Python and Rust production conformance for the registered portable proof-input schema, canonical ACE1 codec, closed D0-D4 decoder, inline content identities, reference closure and exact static semantic-support selection. No context reconstruction or RootExport revalidation is asserted by this suite.",
+      "suite_id": "SUITE-PORTABLE-PROOF-CODEC",
+      "targets": [
+        "tools/gen-portable-proof-codec-corpus.py",
+        "spec/conformance/portable-proof-codec/manifest.json",
+        "spec/conformance/portable-proof-codec/comparator-mutations.json",
+        "crates/af-portable/src",
+        "crates/af-portable/tests/conformance.rs",
+        "crates/af-portable/tests/static_surface.rs"
+      ]
+    },
+    {
       "description": "Unknown and partially-applied effects fail closed: blind retry is forbidden, reconciliation evidence is required, and static proof distinguishes Proven, RequiresEvidence, Unproven and Violation.",
       "suite_id": "SUITE-RECOVERY-PROOF",
       "targets": [

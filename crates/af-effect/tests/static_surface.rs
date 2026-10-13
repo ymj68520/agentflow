@@ -147,8 +147,8 @@ fn the_dependency_set_is_exactly_the_static_layer() {
 
 #[test]
 fn the_wire_freeze_holds() {
-    // Phase 4B.1 adds exactly four modules; the Semantic IR identity stays
-    // fixed and X remains an additive registered schema.
+    // Phase 4B.1's four modules and Phase 4C.1B.1's portable module are
+    // additive; the Semantic IR identity stays fixed.
     fn collect_modules(directory: &Path, out: &mut Vec<String>) {
         for entry in std::fs::read_dir(directory).unwrap() {
             let path = entry.unwrap().path();
@@ -164,8 +164,13 @@ fn the_wire_freeze_holds() {
     modules.sort_unstable();
     assert_eq!(
         modules.len(),
-        16,
-        "Phase 4B.1 must add exactly four AFIDL modules: {modules:?}"
+        17,
+        "the registered AFIDL set must contain the 16 frozen modules plus the portable module: {modules:?}"
+    );
+    assert!(
+        modules
+            .iter()
+            .any(|path| path.ends_with("portable-proof-inputs.afidl"))
     );
 
     let specifications: serde_json::Value =

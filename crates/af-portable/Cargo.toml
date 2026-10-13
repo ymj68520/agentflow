@@ -1,0 +1,27 @@
+[package]
+name = "af-portable"
+description = "Registered portable proof input codec and D0-D4 validation"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+af-core = { path = "../af-core" }
+af-idl = { path = "../af-idl" }
+af-spec = { path = "../af-spec" }
+af-semantic = { path = "../af-semantic" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+hex = "0.4"
+base64 = "0.22"
+unicode-normalization = "0.1"
+
+[build-dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[lints]
+workspace = true

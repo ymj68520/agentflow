@@ -236,8 +236,8 @@ fn the_effect_selector_linkage_is_recorded_and_the_module_is_clean() {
 
 #[test]
 fn the_wire_freeze_holds() {
-    // The Phase 4B.1 additions are four isolated modules; the earlier
-    // Semantic IR identity, HashV1 domains and effect/failure corpora stay fixed.
+    // The Phase 4B.1 additions are four modules and Portable Proof Inputs is
+    // additive; the earlier Semantic IR identity, domains and corpora stay fixed.
     fn collect_modules(directory: &Path, out: &mut Vec<String>) {
         for entry in std::fs::read_dir(directory).unwrap() {
             let path = entry.unwrap().path();
@@ -253,8 +253,8 @@ fn the_wire_freeze_holds() {
     modules.sort_unstable();
     assert_eq!(
         modules.len(),
-        16,
-        "Phase 4B.1 must add exactly four AFIDL modules: {modules:?}"
+        17,
+        "the registered AFIDL set contains the 16 frozen modules plus Portable Proof Inputs: {modules:?}"
     );
 
     let specifications: serde_json::Value =

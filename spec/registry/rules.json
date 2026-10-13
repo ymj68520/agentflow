@@ -4509,6 +4509,318 @@
       "source_anchor": "static-runtime-boundary"
     },
     {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0173",
+      "short_statement": "The registered Bundle is a closed ten-field typed record; every member is required and IDs retain local namespaces.",
+      "source_anchor": "ppi-closed-schema"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/d4-host-width-scalar-remains-uint64",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0174",
+      "short_statement": "Portable machine scalars use exact ACE1 widths and representations; Int64 and Decimal never pass through binary floating point.",
+      "source_anchor": "ppi-exact-scalars"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/positive-none-and-empty-distinct",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0175",
+      "short_statement": "Required fields, None, Some(empty), Complete(empty) and Unavailable retain their distinct states.",
+      "source_anchor": "ppi-presence"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/d1-unsorted-schema-set",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0176",
+      "short_statement": "Accepted bytes exactly equal schema-directed ACE1 re-encoding; decoders reject noncanonical input instead of repairing it.",
+      "source_anchor": "ppi-canonical-bytes"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/d1-duplicate-set-member",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0177",
+      "short_statement": "Declared sets use their registered typed order; duplicate values and conflicting identities fail at their specified stages.",
+      "source_anchor": "ppi-set-order"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/d2-dangling-context",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0178",
+      "short_statement": "Local IDs resolve in their own table namespace and are never renumbered during decoding.",
+      "source_anchor": "ppi-scoped-ids"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/d2-dangling-schema",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0179",
+      "short_statement": "All required content is inline and each reference retains its digest domain and exact nominal schema pin.",
+      "source_anchor": "ppi-assets-inline"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/d2-dangling-root",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0180",
+      "short_statement": "D2 resolves root-scoped references and rejects dangling, conflicting or unexplained transport rows.",
+      "source_anchor": "ppi-reference-closure"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/d2-structural-cycle",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0181",
+      "short_statement": "Structural-type and assertion graphs are bounded, finite and acyclic before expansion.",
+      "source_anchor": "ppi-finite-graphs"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/d2-assertion-cycle",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0182",
+      "short_statement": "Resolver source, target, export and dependency associations retain their complete scoped typed identities.",
+      "source_anchor": "ppi-associations"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0183",
+      "short_statement": "Context and nested-universe member scopes are independent; D0-D4 never fills one scope from another.",
+      "source_anchor": "ppi-context-scopes"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/d3-invalid-schema-blob",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0184",
+      "short_statement": "Schema assets use the existing canonical TypeSchema grammar and type-schema HashV1 domain.",
+      "source_anchor": "ppi-schema-content"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/d3-corrupt-ir-under-old-pin",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0185",
+      "short_statement": "IR and ComponentContract bytes use their existing exact canonical encodings and HashV1 domains; raw assets do not mint Checked wrappers.",
+      "source_anchor": "ppi-ir-contract-content"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/d3-source-plain-checksum",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0186",
+      "short_statement": "Registry, normative-source and other raw-file checksums are plain SHA-256 and are never confused with HashV1.",
+      "source_anchor": "ppi-checksum"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/d3-registry-checksum-mismatch",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0187",
+      "short_statement": "Compiler inputs bind complete inline registries, closed tables and all referenced normative source bytes.",
+      "source_anchor": "ppi-source-registry"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/d4-registry-bytes-conflict",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0188",
+      "short_statement": "D4 accepts only the exact implementation-owned current static semantic content tuple.",
+      "source_anchor": "ppi-current-profile"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/d4-missing-runtime-model",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0189",
+      "short_statement": "All ten semantic roles are represented and Lowering/Runtime remain ModelMissing in the static profile.",
+      "source_anchor": "ppi-role-boundary"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/d4-profile-b-unsupported",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0190",
+      "short_statement": "Only full-content Profile A is supported; its 84 applied rules do not assert complete dependency closure.",
+      "source_anchor": "ppi-attribution"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/d4-version-label-change",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0191",
+      "short_statement": "Unknown or unsupported semantic content fails closed without implicit upcast or label substitution.",
+      "source_anchor": "ppi-no-upcast"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/positive/profile-a-exact",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0192",
+      "short_statement": "D0-D4 output is raw content validation and cannot mint checked contract, IR, resolver or RootExport capabilities.",
+      "source_anchor": "ppi-no-capability"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/d0-invalid-width-type",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0193",
+      "short_statement": "Decoder work and allocation limits yield ResourceLimit without truncation or partial positive results.",
+      "source_anchor": "ppi-resource-limits"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0194",
+      "short_statement": "Production bytes and stage results agree with an independent Python ACE1/schema oracle that does not consume Rust Actual results.",
+      "source_anchor": "ppi-independent-conformance"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0195",
+      "short_statement": "Portable registrations are additive; existing ABI meanings, schemas, HashV1 domains and frozen digests retain their identities.",
+      "source_anchor": "ppi-additive-freeze"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "portable-proof-codec/d1-duplicate-set-member",
+        "portable-proof-codec/positive/full-ten-field-d4",
+        "SUITE-PORTABLE-PROOF-CODEC"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0196",
+      "short_statement": "Comparator faults and malformed-input cases are separately detected by production conformance.",
+      "source_anchor": "ppi-mutation-evidence"
+    },
+    {
       "area": "SPEC",
       "conformance_refs": [
         "spec-registry/duplicate-specification-id"

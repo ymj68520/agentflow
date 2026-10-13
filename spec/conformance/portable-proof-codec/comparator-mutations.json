@@ -1,0 +1,24 @@
+{
+  "kind": "agentflow.conformance.portable-proof-codec-comparator-mutations",
+  "revision": 1,
+  "mutation_count": 17,
+  "mutations": [
+    {"mutation_id":"cmp-option-collapse","dimension":"canonical_bytes","witness_case_id":"portable-proof-codec/positive-none-and-empty-distinct","expected_stage":"D4","expected_error_family":null},
+    {"mutation_id":"cmp-duplicate-accepted","dimension":"stage","witness_case_id":"portable-proof-codec/d1-duplicate-set-member","expected_stage":"D1","expected_error_family":"DuplicateSetMember"},
+    {"mutation_id":"cmp-unknown-field-ignored","dimension":"error_family","witness_case_id":"portable-proof-codec/d0-unknown-required-field","expected_stage":"D0","expected_error_family":"UnknownField"},
+    {"mutation_id":"cmp-wrong-numeric-width","dimension":"error_family","witness_case_id":"portable-proof-codec/d0-invalid-width-type","expected_stage":"D0","expected_error_family":"InvalidPrimitive"},
+    {"mutation_id":"cmp-decimal-rounding","dimension":"canonical_bytes","witness_case_id":"portable-proof-codec/positive/full-ten-field-d4","expected_stage":"D4","expected_error_family":null},
+    {"mutation_id":"cmp-wrong-digest-domain","dimension":"error_family","witness_case_id":"portable-proof-codec/d2-wrong-schema-domain","expected_stage":"D2","expected_error_family":"WrongDigestDomain"},
+    {"mutation_id":"cmp-nominal-pin-dropped","dimension":"error_family","witness_case_id":"portable-proof-codec/d2-wrong-nominal-ir-schema","expected_stage":"D2","expected_error_family":"InvalidNominalReference"},
+    {"mutation_id":"cmp-source-association-lost","dimension":"error_family","witness_case_id":"portable-proof-codec/d2-target-export-association-swap","expected_stage":"D2","expected_error_family":"MissingResolverTarget"},
+    {"mutation_id":"cmp-checksum-as-hashv1","dimension":"error_family","witness_case_id":"portable-proof-codec/d3-plain-not-hashv1","expected_stage":"D3","expected_error_family":"RegistryContentMismatch"},
+    {"mutation_id":"cmp-noncanonical-accepted","dimension":"stage","witness_case_id":"portable-proof-codec/d1-leading-whitespace","expected_stage":"D1","expected_error_family":"NoncanonicalEncoding"},
+    {"mutation_id":"cmp-historical-upcast","dimension":"error_family","witness_case_id":"portable-proof-codec/d4-version-label-change","expected_stage":"D4","expected_error_family":"ConflictingSemanticContent"},
+    {"mutation_id":"cmp-rule-attribution-promoted","dimension":"error_family","witness_case_id":"portable-proof-codec/d4-profile-b-unsupported","expected_stage":"D4","expected_error_family":"UnsupportedAttributionProfile"},
+    {"mutation_id":"cmp-model-missing-implemented","dimension":"error_family","witness_case_id":"portable-proof-codec/d4-lowering-role-defined","expected_stage":"D4","expected_error_family":"UnsupportedSemantics"},
+    {"mutation_id":"cmp-trusted-origin-inferred","dimension":"trust_boundary","witness_case_id":"portable-proof-codec/positive/full-ten-field-d4","expected_stage":"D4","expected_error_family":null},
+    {"mutation_id":"cmp-set-order-ignored","dimension":"error_family","witness_case_id":"portable-proof-codec/d1-unsorted-schema-set","expected_stage":"D1","expected_error_family":"NoncanonicalOrder"},
+    {"mutation_id":"cmp-resource-limit-partial-success","dimension":"stage","witness_case_id":"portable-proof-codec/d0-resource-limit","expected_stage":"D0","expected_error_family":"ResourceLimit"},
+    {"mutation_id":"cmp-graph-work-limit-partial-success","dimension":"error_family","witness_case_id":"portable-proof-codec/d2-graph-work-resource-limit","expected_stage":"D2","expected_error_family":"ResourceLimit"}
+  ]
+}

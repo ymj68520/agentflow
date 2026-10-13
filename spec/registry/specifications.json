@@ -275,6 +275,32 @@
       "status": "frozen"
     },
     {
+      "description": "ACE1 portable proof input semantics, closed D0-D4 validation, exact content identity, scoped references and current static semantic support.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "7d6fe7ea14b472d1df95f0a02cd0f1b19d1ff560cd7ac11ca1dad8d77e1ff74a"
+        },
+        "logical_path": "spec/portable/portable-proof-inputs.md"
+      },
+      "specification_id": "agentflow.portable.proof.inputs.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed ten-field portable static proof Bundle and its typed inline content, context, resolver, compiler and assertion records.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "3e1244fd88cf5bdb1d8c0e4dea44b999df8ccb99acf7c97fabb89e2cbb7efcf5"
+        },
+        "logical_path": "spec/idl/portable-proof-inputs.afidl"
+      },
+      "specification_id": "agentflow.portable.proof.inputs@1",
+      "status": "frozen"
+    },
+    {
       "description": "Static Recovery semantics: replay boundaries, idempotency declarations, unknown and partial effect safety, reconciliation/compensation obligations, forward-history preservation, static proofs and conservative compatibility.",
       "kind": "schema_language",
       "normative_source": {

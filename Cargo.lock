@@ -132,6 +132,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "af-portable"
+version = "0.1.0"
+dependencies = [
+ "af-core",
+ "af-idl",
+ "af-semantic",
+ "af-spec",
+ "base64",
+ "hex",
+ "serde",
+ "serde_json",
+ "sha2",
+ "unicode-normalization",
+]
+
+[[package]]
 name = "af-recovery"
 version = "0.1.0"
 dependencies = [

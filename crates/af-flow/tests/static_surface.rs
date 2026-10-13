@@ -196,8 +196,8 @@ fn the_effect_sink_reuse_is_exact_and_directional() {
 
 #[test]
 fn the_wire_freeze_holds() {
-    // Phase 4B.1 adds exactly four modules; semantic-ir stays at its Phase
-    // 3B identity, with 14 domains and prior effect/failure/resource corpora.
+    // Phase 4B.1 adds four modules and Phase 4C.1B.1 adds the portable module;
+    // semantic-ir stays at its Phase 3B identity, with 14 domains and prior corpora.
     fn collect_modules(directory: &Path, out: &mut Vec<String>) {
         for entry in std::fs::read_dir(directory).unwrap() {
             let path = entry.unwrap().path();
@@ -213,8 +213,8 @@ fn the_wire_freeze_holds() {
     modules.sort_unstable();
     assert_eq!(
         modules.len(),
-        16,
-        "Phase 4B.1 must add exactly four AFIDL modules: {modules:?}"
+        17,
+        "the registered AFIDL set contains the 16 frozen modules plus Portable Proof Inputs: {modules:?}"
     );
 
     let specifications: serde_json::Value =

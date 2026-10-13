@@ -2515,6 +2515,68 @@ COMPONENT_RULES = [
 ]
 RULES.extend(COMPONENT_RULES)
 
+PORTABLE_PROOF_SRC = "spec/portable/portable-proof-inputs.md"
+PORTABLE_PROOF_RULES = [
+    ("ppi-closed-schema", "The registered Bundle is a closed ten-field typed record; every member is required and IDs retain local namespaces."),
+    ("ppi-exact-scalars", "Portable machine scalars use exact ACE1 widths and representations; Int64 and Decimal never pass through binary floating point."),
+    ("ppi-presence", "Required fields, None, Some(empty), Complete(empty) and Unavailable retain their distinct states."),
+    ("ppi-canonical-bytes", "Accepted bytes exactly equal schema-directed ACE1 re-encoding; decoders reject noncanonical input instead of repairing it."),
+    ("ppi-set-order", "Declared sets use their registered typed order; duplicate values and conflicting identities fail at their specified stages."),
+    ("ppi-scoped-ids", "Local IDs resolve in their own table namespace and are never renumbered during decoding."),
+    ("ppi-assets-inline", "All required content is inline and each reference retains its digest domain and exact nominal schema pin."),
+    ("ppi-reference-closure", "D2 resolves root-scoped references and rejects dangling, conflicting or unexplained transport rows."),
+    ("ppi-finite-graphs", "Structural-type and assertion graphs are bounded, finite and acyclic before expansion."),
+    ("ppi-associations", "Resolver source, target, export and dependency associations retain their complete scoped typed identities."),
+    ("ppi-context-scopes", "Context and nested-universe member scopes are independent; D0-D4 never fills one scope from another."),
+    ("ppi-schema-content", "Schema assets use the existing canonical TypeSchema grammar and type-schema HashV1 domain."),
+    ("ppi-ir-contract-content", "IR and ComponentContract bytes use their existing exact canonical encodings and HashV1 domains; raw assets do not mint Checked wrappers."),
+    ("ppi-checksum", "Registry, normative-source and other raw-file checksums are plain SHA-256 and are never confused with HashV1."),
+    ("ppi-source-registry", "Compiler inputs bind complete inline registries, closed tables and all referenced normative source bytes."),
+    ("ppi-current-profile", "D4 accepts only the exact implementation-owned current static semantic content tuple."),
+    ("ppi-role-boundary", "All ten semantic roles are represented and Lowering/Runtime remain ModelMissing in the static profile."),
+    ("ppi-attribution", "Only full-content Profile A is supported; its 84 applied rules do not assert complete dependency closure."),
+    ("ppi-no-upcast", "Unknown or unsupported semantic content fails closed without implicit upcast or label substitution."),
+    ("ppi-no-capability", "D0-D4 output is raw content validation and cannot mint checked contract, IR, resolver or RootExport capabilities."),
+    ("ppi-resource-limits", "Decoder work and allocation limits yield ResourceLimit without truncation or partial positive results."),
+    ("ppi-independent-conformance", "Production bytes and stage results agree with an independent Python ACE1/schema oracle that does not consume Rust Actual results."),
+    ("ppi-additive-freeze", "Portable registrations are additive; existing ABI meanings, schemas, HashV1 domains and frozen digests retain their identities."),
+    ("ppi-mutation-evidence", "Comparator faults and malformed-input cases are separately detected by production conformance.")
+]
+for number, (anchor, statement) in enumerate(PORTABLE_PROOF_RULES, 173):
+    CASE_FOR_RULE = {
+        "ppi-closed-schema": "positive/full-ten-field-d4",
+        "ppi-exact-scalars": "d4-host-width-scalar-remains-uint64",
+        "ppi-presence": "positive-none-and-empty-distinct",
+        "ppi-canonical-bytes": "d1-unsorted-schema-set",
+        "ppi-set-order": "d1-duplicate-set-member",
+        "ppi-scoped-ids": "d2-dangling-context",
+        "ppi-assets-inline": "d2-dangling-schema",
+        "ppi-reference-closure": "d2-dangling-root",
+        "ppi-finite-graphs": "d2-structural-cycle",
+        "ppi-associations": "d2-assertion-cycle",
+        "ppi-context-scopes": "positive/full-ten-field-d4",
+        "ppi-schema-content": "d3-invalid-schema-blob",
+        "ppi-ir-contract-content": "d3-corrupt-ir-under-old-pin",
+        "ppi-checksum": "d3-source-plain-checksum",
+        "ppi-source-registry": "d3-registry-checksum-mismatch",
+        "ppi-current-profile": "d4-registry-bytes-conflict",
+        "ppi-role-boundary": "d4-missing-runtime-model",
+        "ppi-attribution": "d4-profile-b-unsupported",
+        "ppi-no-upcast": "d4-version-label-change",
+        "ppi-no-capability": "positive/profile-a-exact",
+        "ppi-resource-limits": "d0-invalid-width-type",
+        "ppi-independent-conformance": "positive/full-ten-field-d4",
+        "ppi-additive-freeze": "positive/full-ten-field-d4",
+        "ppi-mutation-evidence": "d1-duplicate-set-member",
+    }[anchor]
+    RULES.append(rule(
+        f"AF-SEMANTIC-{number:04}", "SEMANTIC", PORTABLE_PROOF_SRC, anchor,
+        statement, [
+            f"portable-proof-codec/{CASE_FOR_RULE}",
+            "portable-proof-codec/positive/full-ten-field-d4",
+            "SUITE-PORTABLE-PROOF-CODEC",
+        ]))
+
 
 
 
@@ -2732,6 +2794,12 @@ SPECS = [
      "Workflow semantic core semantics: machine vs workflow primitives, "
      "type DAG rules, exact pinning, SSA value slots, expression purity and "
      "type checking, resource slot scope."),
+    ("agentflow.portable.proof.inputs@1", "schema",
+     "spec/idl/portable-proof-inputs.afidl",
+     "Closed ten-field portable static proof Bundle and its typed inline content, context, resolver, compiler and assertion records."),
+    ("agentflow.portable.proof.inputs.semantics@1", "schema_language",
+     "spec/portable/portable-proof-inputs.md",
+     "ACE1 portable proof input semantics, closed D0-D4 validation, exact content identity, scoped references and current static semantic support."),
     ("agentflow.spec.registry@1", "schema",
      "spec/idl/specification-registry.afidl",
      "Normative shape of the Specification, Rule and ABI-number registries "
@@ -2774,6 +2842,7 @@ SCHEMA_MODULES = [
     "spec/idl/effect-resource-compatibility.afidl",
     "spec/idl/recovery-usage-coverage.afidl",
     "spec/idl/flow-execution-relation.afidl",
+    "spec/idl/portable-proof-inputs.afidl",
 ]
 
 assignments = []
@@ -3785,6 +3854,24 @@ SUITE_LIST = [
 ]
 
 SUITE_LIST.extend([
+    {
+        "suite_id": "SUITE-PORTABLE-PROOF-CODEC",
+        "description": (
+            "Independent Python and Rust production conformance for the registered "
+            "portable proof-input schema, canonical ACE1 codec, closed D0-D4 "
+            "decoder, inline content identities, reference closure and exact "
+            "static semantic-support selection. No context reconstruction or "
+            "RootExport revalidation is asserted by this suite."
+        ),
+        "targets": [
+            "tools/gen-portable-proof-codec-corpus.py",
+            "spec/conformance/portable-proof-codec/manifest.json",
+            "spec/conformance/portable-proof-codec/comparator-mutations.json",
+            "crates/af-portable/src",
+            "crates/af-portable/tests/conformance.rs",
+            "crates/af-portable/tests/static_surface.rs",
+        ],
+    },
     {
         "suite_id": "SUITE-COMPONENT-CONTRACT-CANONICAL",
         "description": (

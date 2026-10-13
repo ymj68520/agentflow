@@ -1,0 +1,607 @@
+// Portable Proof Inputs v1. Explicit additive ABI; see spec/portable/portable-proof-inputs.md.
+afidl 1;
+schema agentflow.portable.proof.inputs@1;
+
+import agentflow.component.contract@1 as contract;
+import agentflow.semantic.core@1 as core;
+import agentflow.effect.signature@1 as effect;
+import agentflow.execution.requirements@1 as execution;
+import agentflow.information.flow@1 as flow;
+import agentflow.semantic.ir@1 as ir;
+import agentflow.resource.requirement@1 as resource;
+import agentflow.usage.signature@1 as usage;
+
+alias Text = string;
+alias Bytes = bytes;
+alias U32 = uint32;
+alias U64 = uint64;
+alias Ordinal64 = U64;
+alias ContextId = U32;
+alias ResolverId = U32;
+alias CompilerManifestId = U32;
+alias AssertionId = U32;
+alias StructuralTypeId = U32;
+alias SpecId = Text;
+alias TypeName = Text;
+alias LogicalPath = Text;
+alias LowerHex64 = Text;
+
+record AssertionEntry {
+    1 id: AssertionId;
+    2 ir_asset: TypedContentRef;
+    3 export_contract_asset: TypedContentRef;
+    4 assertion: PortableRootExportAssertion;
+}
+
+variant AttributionProfile {
+    1 full_content_revalidation: IncompleteAttribution;
+    2 rule_complete_attribution: CompleteAttributionClaim;
+    3 portable_certificate: unit;
+}
+
+record ClosedTableContentSet {
+    1 hash_domains: RegistryContent;
+    2 abi_numbers: RegistryContent;
+    3 rule_areas: RegistryContent;
+    4 afidl_primitives: RegistryContent;
+}
+
+record CompilerManifestEntry {
+    1 id: CompilerManifestId;
+    2 content: CompilerSemanticsManifest;
+}
+
+record CompilerSemanticsManifest {
+    1 registries: RegistryContentSet;
+    2 closed_tables: ClosedTableContentSet;
+    3 normative_sources: list<SourceContentIdentity>;
+    4 semantic_roles: list<SemanticRoleEntry>;
+    5 attribution: AttributionProfile;
+    6 static_identity_projection: StaticIdentityProjection;
+}
+
+record CompleteAttributionClaim {
+    1 direct_rules: list<RuleContentIdentity>;
+    2 transitive_rules: list<RuleContentIdentity>;
+    3 dependency_edges: list<RuleDependencyEdge>;
+}
+
+record ComponentInputPortIdentity {
+    1 exported_contract_digest: core.DigestRefValue;
+    2 port_no: U32;
+}
+
+record ComponentOutputPortIdentity {
+    1 exported_contract_digest: core.DigestRefValue;
+    2 port_no: U32;
+}
+
+record ContractAsset {
+    1 reference: TypedContentRef;
+    2 canonical_content: Bytes;
+}
+
+record EffectCatalogContent {
+    1 specification_id: SpecId;
+    2 operations: list<Text>;
+}
+
+record EffectResourceRelationContent {
+    1 header: RelationContentHeader;
+    2 canonical_content: Bytes;
+}
+
+record ExecutionCapabilityContent {
+    1 capability: execution.ExecutionCapabilityRef;
+    2 exact_version: Text;
+    3 supported_versions: list<Text>;
+    4 attributes: list<execution.CapabilityAttribute>;
+}
+
+record ExecutionRuntimeProfileContent {
+    1 profile: execution.RuntimeProfileRef;
+    2 family: Text;
+    3 features: list<Text>;
+}
+
+record ExecutionUniverseContent {
+    1 capabilities: PpiAuxExecutionUniverseContentPF1G1;
+    2 trust_domains: PpiAuxExecutionUniverseContentPF2G1;
+    3 regions: PpiAuxExecutionUniverseContentPF3G1;
+    4 region_compatibility: PpiAuxExecutionUniverseContentPF4G1;
+    5 runtime_profiles: PpiAuxExecutionUniverseContentPF5G1;
+}
+
+record FlowCatalogContent {
+    1 confidentiality_labels: PpiAuxFlowCatalogContentPF1G1;
+    2 taints: PpiAuxFlowCatalogContentPF2G1;
+    3 effect_sinks: PpiAuxFlowCatalogContentPF3G1;
+}
+
+record FlowEffectSinkContent {
+    1 operation: effect.EffectOperationRef;
+    2 decision_capable: bool;
+}
+
+record FlowExecutionRelationContent {
+    1 header: RelationContentHeader;
+    2 canonical_content: Bytes;
+}
+
+variant FlowSinkBinding {
+    1 output_value: core.ValueSlotId;
+    2 effect_occurrences: list<Ordinal64>;
+}
+
+variant FlowSourceBinding {
+    1 input_expression: core.ExpressionId;
+    2 resource_slot: core.ResourceSlotId;
+    3 unknown_external: unit;
+}
+
+record IncompleteAttribution {
+    1 listed_rules: list<RuleContentIdentity>;
+}
+
+record IrAsset {
+    1 reference: TypedContentRef;
+    2 canonical_content: Bytes;
+}
+
+enum ModelMissingReason {
+    1 not_formalized;
+    2 future_dependency;
+}
+
+record ModuleContent {
+    1 specification_id: SpecId;
+    2 named_types: list<core.TypeSchemaRef>;
+}
+
+record PlainChecksum {
+    1 algorithm: PpiAuxPlainChecksumPF1;
+    2 hex: LowerHex64;
+}
+
+record PortableContextContent {
+    1 compiled_modules: PpiAuxPortableContextContentPF1G1;
+    2 type_schemas: PpiAuxPortableContextContentPF2G1;
+    3 effect_catalogs: PpiAuxPortableContextContentPF3G1;
+    4 resource_types: ResourceUniverseContent;
+    5 flow_catalogs: FlowCatalogContent;
+    6 usage_meters: PpiAuxPortableContextContentPF6G1;
+    7 recovery_operations: RecoveryUniverseContent;
+    8 execution_universes: ExecutionUniverseContent;
+    9 relation_snapshots: RelationSnapshotSlots;
+}
+
+record PortableProofContextManifest {
+    1 context_id: ContextId;
+    2 resolver_id: ResolverId;
+}
+
+record PortableProofInputBundle {
+    1 schema_version: SchemaVersion;
+    2 root_assertion_id: AssertionId;
+    3 schema_assets: list<SchemaAsset>;
+    4 ir_assets: list<IrAsset>;
+    5 contract_assets: list<ContractAsset>;
+    6 structural_types: list<StructuralTypeNode>;
+    7 proof_contexts: list<ProofContextEntry>;
+    8 resolver_dependency_manifests: list<ResolverEntry>;
+    9 compiler_semantics_manifests: list<CompilerManifestEntry>;
+    10 root_export_assertions: list<AssertionEntry>;
+}
+
+record PortableResolverManifest {
+    1 caller_ir: TypedContentRef;
+    2 context_id: ContextId;
+    3 components: list<TypedContentRef>;
+    4 subflow_targets: list<ResolverTarget>;
+    5 source_associations: list<SourceAssociation>;
+}
+
+record PortableRootExportAssertion {
+    1 exact_semantic_ir_digest: core.DigestRefValue;
+    2 exact_exported_component_contract_digest: core.DigestRefValue;
+    3 compiler_semantics_id: CompilerManifestId;
+    4 proof_context_manifest: PortableProofContextManifest;
+    5 input_mappings: list<RootInputPortBinding>;
+    6 output_mappings: list<RootOutputPortBinding>;
+    7 resource_mappings: list<RootResourcePortBinding>;
+    8 effect_mappings: list<RootEffectCoordinateBinding>;
+    9 flow_mappings: list<RootFlowCoordinateBinding>;
+    10 recovery_mappings: list<RootRecoveryCoordinateBinding>;
+    11 execution_mappings: list<RootExecutionCoordinateBinding>;
+    12 subflow_dependencies: list<SubflowProofDependency>;
+}
+
+variant PpiAuxExecutionUniverseContentPF1G1 {
+    1 complete: list<ExecutionCapabilityContent>;
+    2 unavailable: UnavailableReason;
+}
+
+variant PpiAuxExecutionUniverseContentPF2G1 {
+    1 complete: list<execution.TrustDomainRef>;
+    2 unavailable: UnavailableReason;
+}
+
+variant PpiAuxExecutionUniverseContentPF3G1 {
+    1 complete: list<execution.RegionRef>;
+    2 unavailable: UnavailableReason;
+}
+
+variant PpiAuxExecutionUniverseContentPF4G1 {
+    1 complete: list<RegionCompatibility>;
+    2 unavailable: UnavailableReason;
+}
+
+variant PpiAuxExecutionUniverseContentPF5G1 {
+    1 complete: list<ExecutionRuntimeProfileContent>;
+    2 unavailable: UnavailableReason;
+}
+
+variant PpiAuxFlowCatalogContentPF1G1 {
+    1 complete: list<flow.ConfidentialityLabelRef>;
+    2 unavailable: UnavailableReason;
+}
+
+variant PpiAuxFlowCatalogContentPF2G1 {
+    1 complete: list<flow.TaintRef>;
+    2 unavailable: UnavailableReason;
+}
+
+variant PpiAuxFlowCatalogContentPF3G1 {
+    1 complete: list<FlowEffectSinkContent>;
+    2 unavailable: UnavailableReason;
+}
+
+enum PpiAuxPlainChecksumPF1 {
+    1 sha256;
+}
+
+variant PpiAuxPortableContextContentPF1G1 {
+    1 complete: list<ModuleContent>;
+    2 unavailable: UnavailableReason;
+}
+
+variant PpiAuxPortableContextContentPF2G1 {
+    1 complete: list<core.TypeSchemaRef>;
+    2 unavailable: UnavailableReason;
+}
+
+variant PpiAuxPortableContextContentPF3G1 {
+    1 complete: list<EffectCatalogContent>;
+    2 unavailable: UnavailableReason;
+}
+
+variant PpiAuxPortableContextContentPF6G1 {
+    1 complete: list<UsageMeterContent>;
+    2 unavailable: UnavailableReason;
+}
+
+variant PpiAuxRecoveryUniverseContentPF1G1 {
+    1 complete: list<EffectCatalogContent>;
+    2 unavailable: UnavailableReason;
+}
+
+variant PpiAuxRecoveryUniverseContentPF2G1 {
+    1 complete: list<ReconciliationOperationRef>;
+    2 unavailable: UnavailableReason;
+}
+
+variant PpiAuxResourceUniverseContentPF1G1 {
+    1 complete: list<core.TypeSchemaRef>;
+    2 unavailable: UnavailableReason;
+}
+
+variant PpiAuxResourceUniverseContentPF2G1 {
+    1 complete: list<ResourceTypeContent>;
+    2 unavailable: UnavailableReason;
+}
+
+record ProofContextEntry {
+    1 id: ContextId;
+    2 content: PortableContextContent;
+}
+
+record ReconciliationOperationRef {
+    1 catalog: SpecId;
+    2 name: Text;
+}
+
+record RecoveryActionSourceIdentity {
+    1 caller_semantic_ir_digest: core.DigestRefValue;
+    2 source_node: ir.ComputationId;
+    3 source_contract_digest: core.DigestRefValue;
+    4 forward_entry_ordinal: Ordinal64;
+    5 action: contract.RecoveryActionIdentity;
+}
+
+record RecoveryUniverseContent {
+    1 effect_catalogs: PpiAuxRecoveryUniverseContentPF1G1;
+    2 reconciliation_operations: PpiAuxRecoveryUniverseContentPF2G1;
+}
+
+record RecoveryUsageRelationContent {
+    1 header: RelationContentHeader;
+    2 canonical_content: Bytes;
+}
+
+record RegionCompatibility {
+    1 from: execution.RegionRef;
+    2 to: execution.RegionRef;
+}
+
+record RegistryContent {
+    1 content_sha256: PlainChecksum;
+    2 content: Bytes;
+}
+
+record RegistryContentSet {
+    1 specifications: RegistryContent;
+    2 rules: RegistryContent;
+}
+
+record RelationContentHeader {
+    1 schema: core.TypeSchemaRef;
+    2 revision: Text;
+    3 canonical_content_checksum: PlainChecksum;
+}
+
+record RelationSnapshotSlots {
+    1 effect_resource: option<EffectResourceRelationContent>;
+    2 recovery_usage: option<RecoveryUsageRelationContent>;
+    3 flow_execution: option<FlowExecutionRelationContent>;
+}
+
+record ResolvedSubflowAssociation {
+    1 target_semantic_ir_digest: core.DigestRefValue;
+    2 exported_contract_digest: option<core.DigestRefValue>;
+}
+
+record ResolverEntry {
+    1 id: ResolverId;
+    2 content: PortableResolverManifest;
+}
+
+record ResolverTarget {
+    1 target_semantic_ir_digest: core.DigestRefValue;
+    2 target_ir_content: option<TypedContentRef>;
+    3 exported_contract: option<TypedContentRef>;
+    4 direct_dependencies: option<list<core.DigestRefValue>>;
+    5 transitive_dependencies: option<list<SubflowTargetIdentity>>;
+}
+
+record ResourceRequirementPortIdentity {
+    1 exported_contract_digest: core.DigestRefValue;
+    2 port_no: U32;
+}
+
+record ResourceTypeContent {
+    1 schema: core.TypeSchemaRef;
+    2 recognized_attributes: list<Text>;
+}
+
+record ResourceUniverseContent {
+    1 schemas: PpiAuxResourceUniverseContentPF1G1;
+    2 descriptors: PpiAuxResourceUniverseContentPF2G1;
+}
+
+variant RoleDeclaration {
+    1 defined: SemanticRoleDefinition;
+    2 model_missing: ModelMissingReason;
+}
+
+record RootEffectCoordinateBinding {
+    1 source: RootEffectOccurrenceIdentity;
+    2 root_resource_slot: option<core.ResourceSlotId>;
+    3 export_atom: effect.EffectAtom;
+    4 export_guard: effect.EffectGuard;
+}
+
+record RootEffectOccurrenceIdentity {
+    1 caller_semantic_ir_digest: core.DigestRefValue;
+    2 source_node: ir.ComputationId;
+    3 source_contract_digest: core.DigestRefValue;
+    4 source_entry_ordinal: Ordinal64;
+    5 atom: effect.EffectAtom;
+    6 guard: effect.EffectGuard;
+}
+
+record RootExecutionCoordinateBinding {
+    1 source_node: ir.ComputationId;
+    2 source_contract_digest: core.DigestRefValue;
+    3 exact_execution_requirements: execution.ExecutionRequirements;
+}
+
+record RootFlowCoordinateBinding {
+    1 source_node: ir.ComputationId;
+    2 source_contract_digest: core.DigestRefValue;
+    3 flow_mapping_ordinal: U64;
+    4 source: option<flow.FlowSourceRef>;
+    5 sink: option<flow.FlowConstraint>;
+    6 source_binding: option<FlowSourceBinding>;
+    7 sink_binding: option<FlowSinkBinding>;
+    8 export_source: option<flow.FlowSourceRef>;
+    9 export_sink: option<flow.FlowConstraint>;
+    10 source_effect_partition: option<contract.EffectFlowPartition>;
+    11 export_effect_partition: option<contract.EffectFlowPartition>;
+}
+
+record RootInputPortBinding {
+    1 export_input_port: ComponentInputPortIdentity;
+    2 run_parameter_id: ir.RunParameterId;
+    3 root_value_slot: core.ValueSlotId;
+    4 root_type: StructuralTypeId;
+    5 export_type: core.TypeSchemaRef;
+    6 use_sites: list<RootInputUseSite>;
+}
+
+record RootInputUseSite {
+    1 computation: ir.ComputationId;
+    2 source_contract_digest: core.DigestRefValue;
+    3 source_component_port: U32;
+    4 input_expression: core.ExpressionId;
+    5 exact_type: core.TypeSchemaRef;
+    6 dependency_slots: list<core.ValueSlotId>;
+}
+
+record RootOutputPortBinding {
+    1 export_output_port: ComponentOutputPortIdentity;
+    2 workflow_output_name: Text;
+    3 workflow_output_expression: core.ExpressionId;
+    4 root_result_type: StructuralTypeId;
+    5 producer_evidence: RootOutputProducerEvidence;
+}
+
+record RootOutputProducerEvidence {
+    1 exact_result_type: core.TypeSchemaRef;
+    2 dependency_slots: list<core.ValueSlotId>;
+}
+
+record RootRecoveryCoordinateBinding {
+    1 source: RecoveryActionSourceIdentity;
+    2 export_action_identity: contract.RecoveryActionIdentity;
+    3 exact_usage_binding: contract.RecoveryUsageBinding;
+}
+
+record RootResourcePortBinding {
+    1 export_resource_port: ResourceRequirementPortIdentity;
+    2 root_resource_slot: core.ResourceSlotId;
+    3 root_resource_type: core.TypeSchemaRef;
+    4 export_resource_type: resource.ResourceTypeRef;
+    5 source_coordinates: list<RootResourceSourceCoordinate>;
+}
+
+record RootResourceSourceCoordinate {
+    1 source_node: ir.ComputationId;
+    2 source_contract_digest: core.DigestRefValue;
+    3 component_resource_port: U32;
+    4 resource_slot: core.ResourceSlotId;
+    5 alias_component_ports: list<U32>;
+}
+
+record RuleContentIdentity {
+    1 rule_id: Text;
+    2 normative_source: LogicalPath;
+    3 source_anchor: Text;
+    4 short_statement: Text;
+}
+
+record RuleDependencyEdge {
+    1 dependent: Text;
+    2 prerequisite: Text;
+}
+
+record SchemaAsset {
+    1 reference: core.TypeSchemaRef;
+    2 canonical_content: Bytes;
+}
+
+enum SchemaVersion {
+    1 portable_proof_inputs_v1;
+}
+
+enum SemanticRole {
+    1 static_analysis;
+    2 contract_validation;
+    3 semantic_ir_validation;
+    4 dataflow;
+    5 leaf_resolution;
+    6 control_algebra;
+    7 root_recovery;
+    8 root_export;
+    9 plan_lowering;
+    10 runtime_semantics_profile;
+}
+
+record SemanticRoleDefinition {
+    1 analysis_semantics_version: Text;
+    2 normative_specifications: list<SpecId>;
+    3 required_schema_pins: list<core.TypeSchemaRef>;
+    4 depends_on: list<SemanticRole>;
+}
+
+record SemanticRoleEntry {
+    1 role: SemanticRole;
+    2 declaration: RoleDeclaration;
+}
+
+record SourceAssociation {
+    1 caller_ir: TypedContentRef;
+    2 source_node: ir.ComputationId;
+    3 target: SourceAssociationTarget;
+}
+
+variant SourceAssociationTarget {
+    1 invoke: TypedContentRef;
+    2 call_subflow: ResolvedSubflowAssociation;
+    3 await_signal: core.TypeSchemaRef;
+}
+
+record SourceContentIdentity {
+    1 specification_id: SpecId;
+    2 logical_path: LogicalPath;
+    3 content_sha256: PlainChecksum;
+    4 content: Bytes;
+}
+
+record StaticIdentityProjection {
+    1 analysis_semantics_version: Text;
+    2 normative_specification_ids: list<SpecId>;
+    3 applied_rules: list<RuleContentIdentity>;
+}
+
+variant StructuralTypeBody {
+    1 primitive: core.SemanticPrimitiveType;
+    2 schema: core.TypeSchemaRef;
+    3 list: StructuralTypeId;
+    4 map_string: StructuralTypeId;
+    5 option: StructuralTypeId;
+}
+
+record StructuralTypeNode {
+    1 id: StructuralTypeId;
+    2 body: StructuralTypeBody;
+}
+
+record SubflowProofDependency {
+    1 call_site: ir.ComputationId;
+    2 target_semantic_ir_digest: core.DigestRefValue;
+    3 target_exported_contract_digest: option<core.DigestRefValue>;
+    4 target_root_assertion_id: option<AssertionId>;
+    5 transitive_targets: list<SubflowTargetIdentity>;
+}
+
+record SubflowTargetIdentity {
+    1 semantic_ir_digest: core.DigestRefValue;
+    2 exported_contract_digest: option<core.DigestRefValue>;
+}
+
+record TypedContentRef {
+    1 digest: core.DigestRefValue;
+    2 type_schema: core.TypeSchemaRef;
+}
+
+enum UnavailableReason {
+    1 not_supplied;
+    2 content_not_retained;
+    3 unsupported_projection;
+}
+
+enum UsageAggregation {
+    1 additive;
+    2 unsupported;
+}
+
+record UsageMeterContent {
+    1 meter: usage.UsageMeterRef;
+    2 unit: UsageUnitRef;
+    3 aggregation: UsageAggregation;
+}
+
+record UsageUnitRef {
+    1 catalog: SpecId;
+    2 name: Text;
+}

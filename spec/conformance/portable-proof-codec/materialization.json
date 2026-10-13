@@ -1,0 +1,2579 @@
+{
+  "aliases": {
+    "AssertionId": "U32",
+    "Bytes": "bytes",
+    "CompilerManifestId": "U32",
+    "ContextId": "U32",
+    "LogicalPath": "Text",
+    "LowerHex64": "Text",
+    "Ordinal64": "U64",
+    "ResolverId": "U32",
+    "SpecId": "Text",
+    "StructuralTypeId": "U32",
+    "Text": "string",
+    "TypeName": "Text",
+    "U32": "uint32",
+    "U64": "uint64"
+  },
+  "auxiliary_paths": {
+    "PpiAuxExecutionUniverseContentPF1G1": [
+      "ExecutionUniverseContent",
+      "F1G1"
+    ],
+    "PpiAuxExecutionUniverseContentPF2G1": [
+      "ExecutionUniverseContent",
+      "F2G1"
+    ],
+    "PpiAuxExecutionUniverseContentPF3G1": [
+      "ExecutionUniverseContent",
+      "F3G1"
+    ],
+    "PpiAuxExecutionUniverseContentPF4G1": [
+      "ExecutionUniverseContent",
+      "F4G1"
+    ],
+    "PpiAuxExecutionUniverseContentPF5G1": [
+      "ExecutionUniverseContent",
+      "F5G1"
+    ],
+    "PpiAuxFlowCatalogContentPF1G1": [
+      "FlowCatalogContent",
+      "F1G1"
+    ],
+    "PpiAuxFlowCatalogContentPF2G1": [
+      "FlowCatalogContent",
+      "F2G1"
+    ],
+    "PpiAuxFlowCatalogContentPF3G1": [
+      "FlowCatalogContent",
+      "F3G1"
+    ],
+    "PpiAuxPlainChecksumPF1": [
+      "PlainChecksum",
+      "F1"
+    ],
+    "PpiAuxPortableContextContentPF1G1": [
+      "PortableContextContent",
+      "F1G1"
+    ],
+    "PpiAuxPortableContextContentPF2G1": [
+      "PortableContextContent",
+      "F2G1"
+    ],
+    "PpiAuxPortableContextContentPF3G1": [
+      "PortableContextContent",
+      "F3G1"
+    ],
+    "PpiAuxPortableContextContentPF6G1": [
+      "PortableContextContent",
+      "F6G1"
+    ],
+    "PpiAuxRecoveryUniverseContentPF1G1": [
+      "RecoveryUniverseContent",
+      "F1G1"
+    ],
+    "PpiAuxRecoveryUniverseContentPF2G1": [
+      "RecoveryUniverseContent",
+      "F2G1"
+    ],
+    "PpiAuxResourceUniverseContentPF1G1": [
+      "ResourceUniverseContent",
+      "F1G1"
+    ],
+    "PpiAuxResourceUniverseContentPF2G1": [
+      "ResourceUniverseContent",
+      "F2G1"
+    ]
+  },
+  "auxiliary_type_count": 17,
+  "collisions": [],
+  "deferred_outside_bundle": [
+    "PortableProofSubmission and origin/build sidecars",
+    "VerifierSupportSnapshot local policy",
+    "UpcasterDefinition future interface"
+  ],
+  "design_owners": {
+    "AssertionEntry": "docs/implementation/phase-04c1a-portable-proof-schema.md",
+    "AttributionProfile": "docs/implementation/phase-04c1a-compiler-semantics-identity.md",
+    "ClosedTableContentSet": "docs/implementation/phase-04c1a-compiler-semantics-identity.md",
+    "CompilerManifestEntry": "docs/implementation/phase-04c1a-portable-proof-schema.md",
+    "CompilerSemanticsManifest": "docs/implementation/phase-04c1a-compiler-semantics-identity.md",
+    "CompleteAttributionClaim": "docs/implementation/phase-04c1a-compiler-semantics-identity.md",
+    "ComponentInputPortIdentity": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "ComponentOutputPortIdentity": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "ContractAsset": "docs/implementation/phase-04c1a-portable-proof-schema.md",
+    "EffectCatalogContent": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "EffectResourceRelationContent": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "ExecutionCapabilityContent": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "ExecutionRuntimeProfileContent": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "ExecutionUniverseContent": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "FlowCatalogContent": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "FlowEffectSinkContent": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "FlowExecutionRelationContent": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "FlowSinkBinding": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "FlowSourceBinding": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "IncompleteAttribution": "docs/implementation/phase-04c1a-compiler-semantics-identity.md",
+    "IrAsset": "docs/implementation/phase-04c1a-portable-proof-schema.md",
+    "ModelMissingReason": "docs/implementation/phase-04c1a-compiler-semantics-identity.md",
+    "ModuleContent": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "PlainChecksum": "docs/implementation/phase-04c1a-portable-proof-schema.md",
+    "PortableContextContent": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "PortableProofContextManifest": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "PortableProofInputBundle": "docs/implementation/phase-04c1a-portable-proof-schema.md",
+    "PortableResolverManifest": "docs/implementation/phase-04c1a-resolver-dependency-manifest.md",
+    "PortableRootExportAssertion": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "ProofContextEntry": "docs/implementation/phase-04c1a-portable-proof-schema.md",
+    "ReconciliationOperationRef": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "RecoveryActionSourceIdentity": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "RecoveryUniverseContent": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "RecoveryUsageRelationContent": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "RegionCompatibility": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "RegistryContent": "docs/implementation/phase-04c1a-compiler-semantics-identity.md",
+    "RegistryContentSet": "docs/implementation/phase-04c1a-compiler-semantics-identity.md",
+    "RelationContentHeader": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "RelationSnapshotSlots": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "ResolvedSubflowAssociation": "docs/implementation/phase-04c1a-resolver-dependency-manifest.md",
+    "ResolverEntry": "docs/implementation/phase-04c1a-portable-proof-schema.md",
+    "ResolverTarget": "docs/implementation/phase-04c1a-resolver-dependency-manifest.md",
+    "ResourceRequirementPortIdentity": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "ResourceTypeContent": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "ResourceUniverseContent": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "RoleDeclaration": "docs/implementation/phase-04c1a-compiler-semantics-identity.md",
+    "RootEffectCoordinateBinding": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "RootEffectOccurrenceIdentity": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "RootExecutionCoordinateBinding": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "RootFlowCoordinateBinding": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "RootInputPortBinding": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "RootInputUseSite": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "RootOutputPortBinding": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "RootOutputProducerEvidence": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "RootRecoveryCoordinateBinding": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "RootResourcePortBinding": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "RootResourceSourceCoordinate": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "RuleContentIdentity": "docs/implementation/phase-04c1a-compiler-semantics-identity.md",
+    "RuleDependencyEdge": "docs/implementation/phase-04c1a-compiler-semantics-identity.md",
+    "SchemaAsset": "docs/implementation/phase-04c1a-portable-proof-schema.md",
+    "SchemaVersion": "docs/implementation/phase-04c1a-portable-proof-schema.md",
+    "SemanticRole": "docs/implementation/phase-04c1a-compiler-semantics-identity.md",
+    "SemanticRoleDefinition": "docs/implementation/phase-04c1a-compiler-semantics-identity.md",
+    "SemanticRoleEntry": "docs/implementation/phase-04c1a-compiler-semantics-identity.md",
+    "SourceAssociation": "docs/implementation/phase-04c1a-resolver-dependency-manifest.md",
+    "SourceAssociationTarget": "docs/implementation/phase-04c1a-resolver-dependency-manifest.md",
+    "SourceContentIdentity": "docs/implementation/phase-04c1a-compiler-semantics-identity.md",
+    "StaticIdentityProjection": "docs/implementation/phase-04c1a-compiler-semantics-identity.md",
+    "StructuralTypeBody": "docs/implementation/phase-04c1a-portable-proof-schema.md",
+    "StructuralTypeNode": "docs/implementation/phase-04c1a-portable-proof-schema.md",
+    "SubflowProofDependency": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "SubflowTargetIdentity": "docs/implementation/phase-04c1a-root-export-assertion-projection.md",
+    "TypedContentRef": "docs/implementation/phase-04c1a-portable-proof-schema.md",
+    "UnavailableReason": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "UsageAggregation": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "UsageMeterContent": "docs/implementation/phase-04c1a-proof-context-manifest.md",
+    "UsageUnitRef": "docs/implementation/phase-04c1a-proof-context-manifest.md"
+  },
+  "family": "agentflow.portable.proof.inputs@1",
+  "imported_symbol_bindings": {
+    "CapabilityAttribute": "execution.CapabilityAttribute",
+    "ComputationId": "ir.ComputationId",
+    "ConfidentialityLabelRef": "flow.ConfidentialityLabelRef",
+    "ContractPin": "core.DigestRefValue",
+    "DigestRef": "core.DigestRefValue",
+    "DigestRefValue": "core.DigestRefValue",
+    "EffectAtom": "effect.EffectAtom",
+    "EffectFlowPartition": "contract.EffectFlowPartition",
+    "EffectGuard": "effect.EffectGuard",
+    "EffectOperationRef": "effect.EffectOperationRef",
+    "EffectQualifier": "effect.EffectQualifier",
+    "ExecutionCapabilityRef": "execution.ExecutionCapabilityRef",
+    "ExecutionRequirements": "execution.ExecutionRequirements",
+    "ExpressionId": "core.ExpressionId",
+    "FlowConstraint": "flow.FlowConstraint",
+    "FlowKind": "flow.FlowKind",
+    "FlowSink": "flow.FlowSink",
+    "FlowSourceRef": "flow.FlowSourceRef",
+    "InstructionAuthority": "flow.InstructionAuthority",
+    "IrPin": "core.DigestRefValue",
+    "OccurrenceBounds": "effect.OccurrenceBounds",
+    "OccurrenceCeiling": "effect.OccurrenceCeiling",
+    "PrimitiveConstant": "core.PrimitiveConstant",
+    "RecoveryActionIdentity": "contract.RecoveryActionIdentity",
+    "RecoveryActionKind": "contract.RecoveryActionKind",
+    "RecoveryUsageBinding": "contract.RecoveryUsageBinding",
+    "RegionRef": "execution.RegionRef",
+    "ResourceSelector": "effect.ResourceSelector",
+    "ResourceSlotId": "core.ResourceSlotId",
+    "ResourceTypeRef": "resource.ResourceTypeRef",
+    "RunParameterId": "ir.RunParameterId",
+    "RuntimeProfileRef": "execution.RuntimeProfileRef",
+    "SchemaPin": "core.DigestRefValue",
+    "SchemaRef": "core.TypeSchemaRef",
+    "ScopeBinding": "effect.ScopeBinding",
+    "SemanticPrimitiveType": "core.SemanticPrimitiveType",
+    "TaintRef": "flow.TaintRef",
+    "TrustDomainRef": "execution.TrustDomainRef",
+    "TypeSchemaRef": "core.TypeSchemaRef",
+    "UsageMeterRef": "usage.UsageMeterRef",
+    "UsageSignature": "usage.UsageSignature",
+    "ValueSlotId": "core.ValueSlotId",
+    "WorkflowPrimitive": "core.SemanticPrimitiveType"
+  },
+  "imports": {
+    "contract": "agentflow.component.contract@1",
+    "core": "agentflow.semantic.core@1",
+    "effect": "agentflow.effect.signature@1",
+    "execution": "agentflow.execution.requirements@1",
+    "flow": "agentflow.information.flow@1",
+    "ir": "agentflow.semantic.ir@1",
+    "resource": "agentflow.resource.requirement@1",
+    "usage": "agentflow.usage.signature@1"
+  },
+  "named_type_count": 108,
+  "named_types": {
+    "AssertionEntry": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "id",
+          "number": 1,
+          "type": "AssertionId"
+        },
+        {
+          "name": "ir_asset",
+          "number": 2,
+          "type": "TypedContentRef"
+        },
+        {
+          "name": "export_contract_asset",
+          "number": 3,
+          "type": "TypedContentRef"
+        },
+        {
+          "name": "assertion",
+          "number": 4,
+          "type": "PortableRootExportAssertion"
+        }
+      ]
+    },
+    "AttributionProfile": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "full_content_revalidation",
+          "number": 1,
+          "type": "IncompleteAttribution"
+        },
+        {
+          "name": "rule_complete_attribution",
+          "number": 2,
+          "type": "CompleteAttributionClaim"
+        },
+        {
+          "name": "portable_certificate",
+          "number": 3,
+          "type": "unit"
+        }
+      ]
+    },
+    "ClosedTableContentSet": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "hash_domains",
+          "number": 1,
+          "type": "RegistryContent"
+        },
+        {
+          "name": "abi_numbers",
+          "number": 2,
+          "type": "RegistryContent"
+        },
+        {
+          "name": "rule_areas",
+          "number": 3,
+          "type": "RegistryContent"
+        },
+        {
+          "name": "afidl_primitives",
+          "number": 4,
+          "type": "RegistryContent"
+        }
+      ]
+    },
+    "CompilerManifestEntry": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "id",
+          "number": 1,
+          "type": "CompilerManifestId"
+        },
+        {
+          "name": "content",
+          "number": 2,
+          "type": "CompilerSemanticsManifest"
+        }
+      ]
+    },
+    "CompilerSemanticsManifest": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "registries",
+          "number": 1,
+          "type": "RegistryContentSet"
+        },
+        {
+          "name": "closed_tables",
+          "number": 2,
+          "type": "ClosedTableContentSet"
+        },
+        {
+          "name": "normative_sources",
+          "number": 3,
+          "type": "list<SourceContentIdentity>"
+        },
+        {
+          "name": "semantic_roles",
+          "number": 4,
+          "type": "list<SemanticRoleEntry>"
+        },
+        {
+          "name": "attribution",
+          "number": 5,
+          "type": "AttributionProfile"
+        },
+        {
+          "name": "static_identity_projection",
+          "number": 6,
+          "type": "StaticIdentityProjection"
+        }
+      ]
+    },
+    "CompleteAttributionClaim": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "direct_rules",
+          "number": 1,
+          "type": "list<RuleContentIdentity>"
+        },
+        {
+          "name": "transitive_rules",
+          "number": 2,
+          "type": "list<RuleContentIdentity>"
+        },
+        {
+          "name": "dependency_edges",
+          "number": 3,
+          "type": "list<RuleDependencyEdge>"
+        }
+      ]
+    },
+    "ComponentInputPortIdentity": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "exported_contract_digest",
+          "number": 1,
+          "type": "core.DigestRefValue"
+        },
+        {
+          "name": "port_no",
+          "number": 2,
+          "type": "U32"
+        }
+      ]
+    },
+    "ComponentOutputPortIdentity": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "exported_contract_digest",
+          "number": 1,
+          "type": "core.DigestRefValue"
+        },
+        {
+          "name": "port_no",
+          "number": 2,
+          "type": "U32"
+        }
+      ]
+    },
+    "ContractAsset": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "reference",
+          "number": 1,
+          "type": "TypedContentRef"
+        },
+        {
+          "name": "canonical_content",
+          "number": 2,
+          "type": "Bytes"
+        }
+      ]
+    },
+    "EffectCatalogContent": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "specification_id",
+          "number": 1,
+          "type": "SpecId"
+        },
+        {
+          "name": "operations",
+          "number": 2,
+          "type": "list<Text>"
+        }
+      ]
+    },
+    "EffectResourceRelationContent": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "header",
+          "number": 1,
+          "type": "RelationContentHeader"
+        },
+        {
+          "name": "canonical_content",
+          "number": 2,
+          "type": "Bytes"
+        }
+      ]
+    },
+    "ExecutionCapabilityContent": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "capability",
+          "number": 1,
+          "type": "execution.ExecutionCapabilityRef"
+        },
+        {
+          "name": "exact_version",
+          "number": 2,
+          "type": "Text"
+        },
+        {
+          "name": "supported_versions",
+          "number": 3,
+          "type": "list<Text>"
+        },
+        {
+          "name": "attributes",
+          "number": 4,
+          "type": "list<execution.CapabilityAttribute>"
+        }
+      ]
+    },
+    "ExecutionRuntimeProfileContent": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "profile",
+          "number": 1,
+          "type": "execution.RuntimeProfileRef"
+        },
+        {
+          "name": "family",
+          "number": 2,
+          "type": "Text"
+        },
+        {
+          "name": "features",
+          "number": 3,
+          "type": "list<Text>"
+        }
+      ]
+    },
+    "ExecutionUniverseContent": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "capabilities",
+          "number": 1,
+          "type": "PpiAuxExecutionUniverseContentPF1G1"
+        },
+        {
+          "name": "trust_domains",
+          "number": 2,
+          "type": "PpiAuxExecutionUniverseContentPF2G1"
+        },
+        {
+          "name": "regions",
+          "number": 3,
+          "type": "PpiAuxExecutionUniverseContentPF3G1"
+        },
+        {
+          "name": "region_compatibility",
+          "number": 4,
+          "type": "PpiAuxExecutionUniverseContentPF4G1"
+        },
+        {
+          "name": "runtime_profiles",
+          "number": 5,
+          "type": "PpiAuxExecutionUniverseContentPF5G1"
+        }
+      ]
+    },
+    "FlowCatalogContent": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "confidentiality_labels",
+          "number": 1,
+          "type": "PpiAuxFlowCatalogContentPF1G1"
+        },
+        {
+          "name": "taints",
+          "number": 2,
+          "type": "PpiAuxFlowCatalogContentPF2G1"
+        },
+        {
+          "name": "effect_sinks",
+          "number": 3,
+          "type": "PpiAuxFlowCatalogContentPF3G1"
+        }
+      ]
+    },
+    "FlowEffectSinkContent": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "operation",
+          "number": 1,
+          "type": "effect.EffectOperationRef"
+        },
+        {
+          "name": "decision_capable",
+          "number": 2,
+          "type": "bool"
+        }
+      ]
+    },
+    "FlowExecutionRelationContent": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "header",
+          "number": 1,
+          "type": "RelationContentHeader"
+        },
+        {
+          "name": "canonical_content",
+          "number": 2,
+          "type": "Bytes"
+        }
+      ]
+    },
+    "FlowSinkBinding": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "output_value",
+          "number": 1,
+          "type": "core.ValueSlotId"
+        },
+        {
+          "name": "effect_occurrences",
+          "number": 2,
+          "type": "list<Ordinal64>"
+        }
+      ]
+    },
+    "FlowSourceBinding": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "input_expression",
+          "number": 1,
+          "type": "core.ExpressionId"
+        },
+        {
+          "name": "resource_slot",
+          "number": 2,
+          "type": "core.ResourceSlotId"
+        },
+        {
+          "name": "unknown_external",
+          "number": 3,
+          "type": "unit"
+        }
+      ]
+    },
+    "IncompleteAttribution": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "listed_rules",
+          "number": 1,
+          "type": "list<RuleContentIdentity>"
+        }
+      ]
+    },
+    "IrAsset": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "reference",
+          "number": 1,
+          "type": "TypedContentRef"
+        },
+        {
+          "name": "canonical_content",
+          "number": 2,
+          "type": "Bytes"
+        }
+      ]
+    },
+    "ModelMissingReason": {
+      "kind": "enum",
+      "members": [
+        {
+          "name": "not_formalized",
+          "number": 1,
+          "type": null
+        },
+        {
+          "name": "future_dependency",
+          "number": 2,
+          "type": null
+        }
+      ]
+    },
+    "ModuleContent": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "specification_id",
+          "number": 1,
+          "type": "SpecId"
+        },
+        {
+          "name": "named_types",
+          "number": 2,
+          "type": "list<core.TypeSchemaRef>"
+        }
+      ]
+    },
+    "PlainChecksum": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "algorithm",
+          "number": 1,
+          "type": "PpiAuxPlainChecksumPF1"
+        },
+        {
+          "name": "hex",
+          "number": 2,
+          "type": "LowerHex64"
+        }
+      ]
+    },
+    "PortableContextContent": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "compiled_modules",
+          "number": 1,
+          "type": "PpiAuxPortableContextContentPF1G1"
+        },
+        {
+          "name": "type_schemas",
+          "number": 2,
+          "type": "PpiAuxPortableContextContentPF2G1"
+        },
+        {
+          "name": "effect_catalogs",
+          "number": 3,
+          "type": "PpiAuxPortableContextContentPF3G1"
+        },
+        {
+          "name": "resource_types",
+          "number": 4,
+          "type": "ResourceUniverseContent"
+        },
+        {
+          "name": "flow_catalogs",
+          "number": 5,
+          "type": "FlowCatalogContent"
+        },
+        {
+          "name": "usage_meters",
+          "number": 6,
+          "type": "PpiAuxPortableContextContentPF6G1"
+        },
+        {
+          "name": "recovery_operations",
+          "number": 7,
+          "type": "RecoveryUniverseContent"
+        },
+        {
+          "name": "execution_universes",
+          "number": 8,
+          "type": "ExecutionUniverseContent"
+        },
+        {
+          "name": "relation_snapshots",
+          "number": 9,
+          "type": "RelationSnapshotSlots"
+        }
+      ]
+    },
+    "PortableProofContextManifest": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "context_id",
+          "number": 1,
+          "type": "ContextId"
+        },
+        {
+          "name": "resolver_id",
+          "number": 2,
+          "type": "ResolverId"
+        }
+      ]
+    },
+    "PortableProofInputBundle": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "schema_version",
+          "number": 1,
+          "type": "SchemaVersion"
+        },
+        {
+          "name": "root_assertion_id",
+          "number": 2,
+          "type": "AssertionId"
+        },
+        {
+          "name": "schema_assets",
+          "number": 3,
+          "type": "list<SchemaAsset>"
+        },
+        {
+          "name": "ir_assets",
+          "number": 4,
+          "type": "list<IrAsset>"
+        },
+        {
+          "name": "contract_assets",
+          "number": 5,
+          "type": "list<ContractAsset>"
+        },
+        {
+          "name": "structural_types",
+          "number": 6,
+          "type": "list<StructuralTypeNode>"
+        },
+        {
+          "name": "proof_contexts",
+          "number": 7,
+          "type": "list<ProofContextEntry>"
+        },
+        {
+          "name": "resolver_dependency_manifests",
+          "number": 8,
+          "type": "list<ResolverEntry>"
+        },
+        {
+          "name": "compiler_semantics_manifests",
+          "number": 9,
+          "type": "list<CompilerManifestEntry>"
+        },
+        {
+          "name": "root_export_assertions",
+          "number": 10,
+          "type": "list<AssertionEntry>"
+        }
+      ]
+    },
+    "PortableResolverManifest": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "caller_ir",
+          "number": 1,
+          "type": "TypedContentRef"
+        },
+        {
+          "name": "context_id",
+          "number": 2,
+          "type": "ContextId"
+        },
+        {
+          "name": "components",
+          "number": 3,
+          "type": "list<TypedContentRef>"
+        },
+        {
+          "name": "subflow_targets",
+          "number": 4,
+          "type": "list<ResolverTarget>"
+        },
+        {
+          "name": "source_associations",
+          "number": 5,
+          "type": "list<SourceAssociation>"
+        }
+      ]
+    },
+    "PortableRootExportAssertion": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "exact_semantic_ir_digest",
+          "number": 1,
+          "type": "core.DigestRefValue"
+        },
+        {
+          "name": "exact_exported_component_contract_digest",
+          "number": 2,
+          "type": "core.DigestRefValue"
+        },
+        {
+          "name": "compiler_semantics_id",
+          "number": 3,
+          "type": "CompilerManifestId"
+        },
+        {
+          "name": "proof_context_manifest",
+          "number": 4,
+          "type": "PortableProofContextManifest"
+        },
+        {
+          "name": "input_mappings",
+          "number": 5,
+          "type": "list<RootInputPortBinding>"
+        },
+        {
+          "name": "output_mappings",
+          "number": 6,
+          "type": "list<RootOutputPortBinding>"
+        },
+        {
+          "name": "resource_mappings",
+          "number": 7,
+          "type": "list<RootResourcePortBinding>"
+        },
+        {
+          "name": "effect_mappings",
+          "number": 8,
+          "type": "list<RootEffectCoordinateBinding>"
+        },
+        {
+          "name": "flow_mappings",
+          "number": 9,
+          "type": "list<RootFlowCoordinateBinding>"
+        },
+        {
+          "name": "recovery_mappings",
+          "number": 10,
+          "type": "list<RootRecoveryCoordinateBinding>"
+        },
+        {
+          "name": "execution_mappings",
+          "number": 11,
+          "type": "list<RootExecutionCoordinateBinding>"
+        },
+        {
+          "name": "subflow_dependencies",
+          "number": 12,
+          "type": "list<SubflowProofDependency>"
+        }
+      ]
+    },
+    "PpiAuxExecutionUniverseContentPF1G1": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "complete",
+          "number": 1,
+          "type": "list<ExecutionCapabilityContent>"
+        },
+        {
+          "name": "unavailable",
+          "number": 2,
+          "type": "UnavailableReason"
+        }
+      ]
+    },
+    "PpiAuxExecutionUniverseContentPF2G1": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "complete",
+          "number": 1,
+          "type": "list<execution.TrustDomainRef>"
+        },
+        {
+          "name": "unavailable",
+          "number": 2,
+          "type": "UnavailableReason"
+        }
+      ]
+    },
+    "PpiAuxExecutionUniverseContentPF3G1": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "complete",
+          "number": 1,
+          "type": "list<execution.RegionRef>"
+        },
+        {
+          "name": "unavailable",
+          "number": 2,
+          "type": "UnavailableReason"
+        }
+      ]
+    },
+    "PpiAuxExecutionUniverseContentPF4G1": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "complete",
+          "number": 1,
+          "type": "list<RegionCompatibility>"
+        },
+        {
+          "name": "unavailable",
+          "number": 2,
+          "type": "UnavailableReason"
+        }
+      ]
+    },
+    "PpiAuxExecutionUniverseContentPF5G1": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "complete",
+          "number": 1,
+          "type": "list<ExecutionRuntimeProfileContent>"
+        },
+        {
+          "name": "unavailable",
+          "number": 2,
+          "type": "UnavailableReason"
+        }
+      ]
+    },
+    "PpiAuxFlowCatalogContentPF1G1": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "complete",
+          "number": 1,
+          "type": "list<flow.ConfidentialityLabelRef>"
+        },
+        {
+          "name": "unavailable",
+          "number": 2,
+          "type": "UnavailableReason"
+        }
+      ]
+    },
+    "PpiAuxFlowCatalogContentPF2G1": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "complete",
+          "number": 1,
+          "type": "list<flow.TaintRef>"
+        },
+        {
+          "name": "unavailable",
+          "number": 2,
+          "type": "UnavailableReason"
+        }
+      ]
+    },
+    "PpiAuxFlowCatalogContentPF3G1": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "complete",
+          "number": 1,
+          "type": "list<FlowEffectSinkContent>"
+        },
+        {
+          "name": "unavailable",
+          "number": 2,
+          "type": "UnavailableReason"
+        }
+      ]
+    },
+    "PpiAuxPlainChecksumPF1": {
+      "kind": "enum",
+      "members": [
+        {
+          "name": "sha256",
+          "number": 1,
+          "type": null
+        }
+      ]
+    },
+    "PpiAuxPortableContextContentPF1G1": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "complete",
+          "number": 1,
+          "type": "list<ModuleContent>"
+        },
+        {
+          "name": "unavailable",
+          "number": 2,
+          "type": "UnavailableReason"
+        }
+      ]
+    },
+    "PpiAuxPortableContextContentPF2G1": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "complete",
+          "number": 1,
+          "type": "list<core.TypeSchemaRef>"
+        },
+        {
+          "name": "unavailable",
+          "number": 2,
+          "type": "UnavailableReason"
+        }
+      ]
+    },
+    "PpiAuxPortableContextContentPF3G1": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "complete",
+          "number": 1,
+          "type": "list<EffectCatalogContent>"
+        },
+        {
+          "name": "unavailable",
+          "number": 2,
+          "type": "UnavailableReason"
+        }
+      ]
+    },
+    "PpiAuxPortableContextContentPF6G1": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "complete",
+          "number": 1,
+          "type": "list<UsageMeterContent>"
+        },
+        {
+          "name": "unavailable",
+          "number": 2,
+          "type": "UnavailableReason"
+        }
+      ]
+    },
+    "PpiAuxRecoveryUniverseContentPF1G1": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "complete",
+          "number": 1,
+          "type": "list<EffectCatalogContent>"
+        },
+        {
+          "name": "unavailable",
+          "number": 2,
+          "type": "UnavailableReason"
+        }
+      ]
+    },
+    "PpiAuxRecoveryUniverseContentPF2G1": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "complete",
+          "number": 1,
+          "type": "list<ReconciliationOperationRef>"
+        },
+        {
+          "name": "unavailable",
+          "number": 2,
+          "type": "UnavailableReason"
+        }
+      ]
+    },
+    "PpiAuxResourceUniverseContentPF1G1": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "complete",
+          "number": 1,
+          "type": "list<core.TypeSchemaRef>"
+        },
+        {
+          "name": "unavailable",
+          "number": 2,
+          "type": "UnavailableReason"
+        }
+      ]
+    },
+    "PpiAuxResourceUniverseContentPF2G1": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "complete",
+          "number": 1,
+          "type": "list<ResourceTypeContent>"
+        },
+        {
+          "name": "unavailable",
+          "number": 2,
+          "type": "UnavailableReason"
+        }
+      ]
+    },
+    "ProofContextEntry": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "id",
+          "number": 1,
+          "type": "ContextId"
+        },
+        {
+          "name": "content",
+          "number": 2,
+          "type": "PortableContextContent"
+        }
+      ]
+    },
+    "ReconciliationOperationRef": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "catalog",
+          "number": 1,
+          "type": "SpecId"
+        },
+        {
+          "name": "name",
+          "number": 2,
+          "type": "Text"
+        }
+      ]
+    },
+    "RecoveryActionSourceIdentity": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "caller_semantic_ir_digest",
+          "number": 1,
+          "type": "core.DigestRefValue"
+        },
+        {
+          "name": "source_node",
+          "number": 2,
+          "type": "ir.ComputationId"
+        },
+        {
+          "name": "source_contract_digest",
+          "number": 3,
+          "type": "core.DigestRefValue"
+        },
+        {
+          "name": "forward_entry_ordinal",
+          "number": 4,
+          "type": "Ordinal64"
+        },
+        {
+          "name": "action",
+          "number": 5,
+          "type": "contract.RecoveryActionIdentity"
+        }
+      ]
+    },
+    "RecoveryUniverseContent": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "effect_catalogs",
+          "number": 1,
+          "type": "PpiAuxRecoveryUniverseContentPF1G1"
+        },
+        {
+          "name": "reconciliation_operations",
+          "number": 2,
+          "type": "PpiAuxRecoveryUniverseContentPF2G1"
+        }
+      ]
+    },
+    "RecoveryUsageRelationContent": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "header",
+          "number": 1,
+          "type": "RelationContentHeader"
+        },
+        {
+          "name": "canonical_content",
+          "number": 2,
+          "type": "Bytes"
+        }
+      ]
+    },
+    "RegionCompatibility": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "from",
+          "number": 1,
+          "type": "execution.RegionRef"
+        },
+        {
+          "name": "to",
+          "number": 2,
+          "type": "execution.RegionRef"
+        }
+      ]
+    },
+    "RegistryContent": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "content_sha256",
+          "number": 1,
+          "type": "PlainChecksum"
+        },
+        {
+          "name": "content",
+          "number": 2,
+          "type": "Bytes"
+        }
+      ]
+    },
+    "RegistryContentSet": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "specifications",
+          "number": 1,
+          "type": "RegistryContent"
+        },
+        {
+          "name": "rules",
+          "number": 2,
+          "type": "RegistryContent"
+        }
+      ]
+    },
+    "RelationContentHeader": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "schema",
+          "number": 1,
+          "type": "core.TypeSchemaRef"
+        },
+        {
+          "name": "revision",
+          "number": 2,
+          "type": "Text"
+        },
+        {
+          "name": "canonical_content_checksum",
+          "number": 3,
+          "type": "PlainChecksum"
+        }
+      ]
+    },
+    "RelationSnapshotSlots": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "effect_resource",
+          "number": 1,
+          "type": "option<EffectResourceRelationContent>"
+        },
+        {
+          "name": "recovery_usage",
+          "number": 2,
+          "type": "option<RecoveryUsageRelationContent>"
+        },
+        {
+          "name": "flow_execution",
+          "number": 3,
+          "type": "option<FlowExecutionRelationContent>"
+        }
+      ]
+    },
+    "ResolvedSubflowAssociation": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "target_semantic_ir_digest",
+          "number": 1,
+          "type": "core.DigestRefValue"
+        },
+        {
+          "name": "exported_contract_digest",
+          "number": 2,
+          "type": "option<core.DigestRefValue>"
+        }
+      ]
+    },
+    "ResolverEntry": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "id",
+          "number": 1,
+          "type": "ResolverId"
+        },
+        {
+          "name": "content",
+          "number": 2,
+          "type": "PortableResolverManifest"
+        }
+      ]
+    },
+    "ResolverTarget": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "target_semantic_ir_digest",
+          "number": 1,
+          "type": "core.DigestRefValue"
+        },
+        {
+          "name": "target_ir_content",
+          "number": 2,
+          "type": "option<TypedContentRef>"
+        },
+        {
+          "name": "exported_contract",
+          "number": 3,
+          "type": "option<TypedContentRef>"
+        },
+        {
+          "name": "direct_dependencies",
+          "number": 4,
+          "type": "option<list<core.DigestRefValue>>"
+        },
+        {
+          "name": "transitive_dependencies",
+          "number": 5,
+          "type": "option<list<SubflowTargetIdentity>>"
+        }
+      ]
+    },
+    "ResourceRequirementPortIdentity": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "exported_contract_digest",
+          "number": 1,
+          "type": "core.DigestRefValue"
+        },
+        {
+          "name": "port_no",
+          "number": 2,
+          "type": "U32"
+        }
+      ]
+    },
+    "ResourceTypeContent": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "schema",
+          "number": 1,
+          "type": "core.TypeSchemaRef"
+        },
+        {
+          "name": "recognized_attributes",
+          "number": 2,
+          "type": "list<Text>"
+        }
+      ]
+    },
+    "ResourceUniverseContent": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "schemas",
+          "number": 1,
+          "type": "PpiAuxResourceUniverseContentPF1G1"
+        },
+        {
+          "name": "descriptors",
+          "number": 2,
+          "type": "PpiAuxResourceUniverseContentPF2G1"
+        }
+      ]
+    },
+    "RoleDeclaration": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "defined",
+          "number": 1,
+          "type": "SemanticRoleDefinition"
+        },
+        {
+          "name": "model_missing",
+          "number": 2,
+          "type": "ModelMissingReason"
+        }
+      ]
+    },
+    "RootEffectCoordinateBinding": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "source",
+          "number": 1,
+          "type": "RootEffectOccurrenceIdentity"
+        },
+        {
+          "name": "root_resource_slot",
+          "number": 2,
+          "type": "option<core.ResourceSlotId>"
+        },
+        {
+          "name": "export_atom",
+          "number": 3,
+          "type": "effect.EffectAtom"
+        },
+        {
+          "name": "export_guard",
+          "number": 4,
+          "type": "effect.EffectGuard"
+        }
+      ]
+    },
+    "RootEffectOccurrenceIdentity": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "caller_semantic_ir_digest",
+          "number": 1,
+          "type": "core.DigestRefValue"
+        },
+        {
+          "name": "source_node",
+          "number": 2,
+          "type": "ir.ComputationId"
+        },
+        {
+          "name": "source_contract_digest",
+          "number": 3,
+          "type": "core.DigestRefValue"
+        },
+        {
+          "name": "source_entry_ordinal",
+          "number": 4,
+          "type": "Ordinal64"
+        },
+        {
+          "name": "atom",
+          "number": 5,
+          "type": "effect.EffectAtom"
+        },
+        {
+          "name": "guard",
+          "number": 6,
+          "type": "effect.EffectGuard"
+        }
+      ]
+    },
+    "RootExecutionCoordinateBinding": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "source_node",
+          "number": 1,
+          "type": "ir.ComputationId"
+        },
+        {
+          "name": "source_contract_digest",
+          "number": 2,
+          "type": "core.DigestRefValue"
+        },
+        {
+          "name": "exact_execution_requirements",
+          "number": 3,
+          "type": "execution.ExecutionRequirements"
+        }
+      ]
+    },
+    "RootFlowCoordinateBinding": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "source_node",
+          "number": 1,
+          "type": "ir.ComputationId"
+        },
+        {
+          "name": "source_contract_digest",
+          "number": 2,
+          "type": "core.DigestRefValue"
+        },
+        {
+          "name": "flow_mapping_ordinal",
+          "number": 3,
+          "type": "U64"
+        },
+        {
+          "name": "source",
+          "number": 4,
+          "type": "option<flow.FlowSourceRef>"
+        },
+        {
+          "name": "sink",
+          "number": 5,
+          "type": "option<flow.FlowConstraint>"
+        },
+        {
+          "name": "source_binding",
+          "number": 6,
+          "type": "option<FlowSourceBinding>"
+        },
+        {
+          "name": "sink_binding",
+          "number": 7,
+          "type": "option<FlowSinkBinding>"
+        },
+        {
+          "name": "export_source",
+          "number": 8,
+          "type": "option<flow.FlowSourceRef>"
+        },
+        {
+          "name": "export_sink",
+          "number": 9,
+          "type": "option<flow.FlowConstraint>"
+        },
+        {
+          "name": "source_effect_partition",
+          "number": 10,
+          "type": "option<contract.EffectFlowPartition>"
+        },
+        {
+          "name": "export_effect_partition",
+          "number": 11,
+          "type": "option<contract.EffectFlowPartition>"
+        }
+      ]
+    },
+    "RootInputPortBinding": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "export_input_port",
+          "number": 1,
+          "type": "ComponentInputPortIdentity"
+        },
+        {
+          "name": "run_parameter_id",
+          "number": 2,
+          "type": "ir.RunParameterId"
+        },
+        {
+          "name": "root_value_slot",
+          "number": 3,
+          "type": "core.ValueSlotId"
+        },
+        {
+          "name": "root_type",
+          "number": 4,
+          "type": "StructuralTypeId"
+        },
+        {
+          "name": "export_type",
+          "number": 5,
+          "type": "core.TypeSchemaRef"
+        },
+        {
+          "name": "use_sites",
+          "number": 6,
+          "type": "list<RootInputUseSite>"
+        }
+      ]
+    },
+    "RootInputUseSite": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "computation",
+          "number": 1,
+          "type": "ir.ComputationId"
+        },
+        {
+          "name": "source_contract_digest",
+          "number": 2,
+          "type": "core.DigestRefValue"
+        },
+        {
+          "name": "source_component_port",
+          "number": 3,
+          "type": "U32"
+        },
+        {
+          "name": "input_expression",
+          "number": 4,
+          "type": "core.ExpressionId"
+        },
+        {
+          "name": "exact_type",
+          "number": 5,
+          "type": "core.TypeSchemaRef"
+        },
+        {
+          "name": "dependency_slots",
+          "number": 6,
+          "type": "list<core.ValueSlotId>"
+        }
+      ]
+    },
+    "RootOutputPortBinding": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "export_output_port",
+          "number": 1,
+          "type": "ComponentOutputPortIdentity"
+        },
+        {
+          "name": "workflow_output_name",
+          "number": 2,
+          "type": "Text"
+        },
+        {
+          "name": "workflow_output_expression",
+          "number": 3,
+          "type": "core.ExpressionId"
+        },
+        {
+          "name": "root_result_type",
+          "number": 4,
+          "type": "StructuralTypeId"
+        },
+        {
+          "name": "producer_evidence",
+          "number": 5,
+          "type": "RootOutputProducerEvidence"
+        }
+      ]
+    },
+    "RootOutputProducerEvidence": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "exact_result_type",
+          "number": 1,
+          "type": "core.TypeSchemaRef"
+        },
+        {
+          "name": "dependency_slots",
+          "number": 2,
+          "type": "list<core.ValueSlotId>"
+        }
+      ]
+    },
+    "RootRecoveryCoordinateBinding": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "source",
+          "number": 1,
+          "type": "RecoveryActionSourceIdentity"
+        },
+        {
+          "name": "export_action_identity",
+          "number": 2,
+          "type": "contract.RecoveryActionIdentity"
+        },
+        {
+          "name": "exact_usage_binding",
+          "number": 3,
+          "type": "contract.RecoveryUsageBinding"
+        }
+      ]
+    },
+    "RootResourcePortBinding": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "export_resource_port",
+          "number": 1,
+          "type": "ResourceRequirementPortIdentity"
+        },
+        {
+          "name": "root_resource_slot",
+          "number": 2,
+          "type": "core.ResourceSlotId"
+        },
+        {
+          "name": "root_resource_type",
+          "number": 3,
+          "type": "core.TypeSchemaRef"
+        },
+        {
+          "name": "export_resource_type",
+          "number": 4,
+          "type": "resource.ResourceTypeRef"
+        },
+        {
+          "name": "source_coordinates",
+          "number": 5,
+          "type": "list<RootResourceSourceCoordinate>"
+        }
+      ]
+    },
+    "RootResourceSourceCoordinate": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "source_node",
+          "number": 1,
+          "type": "ir.ComputationId"
+        },
+        {
+          "name": "source_contract_digest",
+          "number": 2,
+          "type": "core.DigestRefValue"
+        },
+        {
+          "name": "component_resource_port",
+          "number": 3,
+          "type": "U32"
+        },
+        {
+          "name": "resource_slot",
+          "number": 4,
+          "type": "core.ResourceSlotId"
+        },
+        {
+          "name": "alias_component_ports",
+          "number": 5,
+          "type": "list<U32>"
+        }
+      ]
+    },
+    "RuleContentIdentity": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "rule_id",
+          "number": 1,
+          "type": "Text"
+        },
+        {
+          "name": "normative_source",
+          "number": 2,
+          "type": "LogicalPath"
+        },
+        {
+          "name": "source_anchor",
+          "number": 3,
+          "type": "Text"
+        },
+        {
+          "name": "short_statement",
+          "number": 4,
+          "type": "Text"
+        }
+      ]
+    },
+    "RuleDependencyEdge": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "dependent",
+          "number": 1,
+          "type": "Text"
+        },
+        {
+          "name": "prerequisite",
+          "number": 2,
+          "type": "Text"
+        }
+      ]
+    },
+    "SchemaAsset": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "reference",
+          "number": 1,
+          "type": "core.TypeSchemaRef"
+        },
+        {
+          "name": "canonical_content",
+          "number": 2,
+          "type": "Bytes"
+        }
+      ]
+    },
+    "SchemaVersion": {
+      "kind": "enum",
+      "members": [
+        {
+          "name": "portable_proof_inputs_v1",
+          "number": 1,
+          "type": null
+        }
+      ]
+    },
+    "SemanticRole": {
+      "kind": "enum",
+      "members": [
+        {
+          "name": "static_analysis",
+          "number": 1,
+          "type": null
+        },
+        {
+          "name": "contract_validation",
+          "number": 2,
+          "type": null
+        },
+        {
+          "name": "semantic_ir_validation",
+          "number": 3,
+          "type": null
+        },
+        {
+          "name": "dataflow",
+          "number": 4,
+          "type": null
+        },
+        {
+          "name": "leaf_resolution",
+          "number": 5,
+          "type": null
+        },
+        {
+          "name": "control_algebra",
+          "number": 6,
+          "type": null
+        },
+        {
+          "name": "root_recovery",
+          "number": 7,
+          "type": null
+        },
+        {
+          "name": "root_export",
+          "number": 8,
+          "type": null
+        },
+        {
+          "name": "plan_lowering",
+          "number": 9,
+          "type": null
+        },
+        {
+          "name": "runtime_semantics_profile",
+          "number": 10,
+          "type": null
+        }
+      ]
+    },
+    "SemanticRoleDefinition": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "analysis_semantics_version",
+          "number": 1,
+          "type": "Text"
+        },
+        {
+          "name": "normative_specifications",
+          "number": 2,
+          "type": "list<SpecId>"
+        },
+        {
+          "name": "required_schema_pins",
+          "number": 3,
+          "type": "list<core.TypeSchemaRef>"
+        },
+        {
+          "name": "depends_on",
+          "number": 4,
+          "type": "list<SemanticRole>"
+        }
+      ]
+    },
+    "SemanticRoleEntry": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "role",
+          "number": 1,
+          "type": "SemanticRole"
+        },
+        {
+          "name": "declaration",
+          "number": 2,
+          "type": "RoleDeclaration"
+        }
+      ]
+    },
+    "SourceAssociation": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "caller_ir",
+          "number": 1,
+          "type": "TypedContentRef"
+        },
+        {
+          "name": "source_node",
+          "number": 2,
+          "type": "ir.ComputationId"
+        },
+        {
+          "name": "target",
+          "number": 3,
+          "type": "SourceAssociationTarget"
+        }
+      ]
+    },
+    "SourceAssociationTarget": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "invoke",
+          "number": 1,
+          "type": "TypedContentRef"
+        },
+        {
+          "name": "call_subflow",
+          "number": 2,
+          "type": "ResolvedSubflowAssociation"
+        },
+        {
+          "name": "await_signal",
+          "number": 3,
+          "type": "core.TypeSchemaRef"
+        }
+      ]
+    },
+    "SourceContentIdentity": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "specification_id",
+          "number": 1,
+          "type": "SpecId"
+        },
+        {
+          "name": "logical_path",
+          "number": 2,
+          "type": "LogicalPath"
+        },
+        {
+          "name": "content_sha256",
+          "number": 3,
+          "type": "PlainChecksum"
+        },
+        {
+          "name": "content",
+          "number": 4,
+          "type": "Bytes"
+        }
+      ]
+    },
+    "StaticIdentityProjection": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "analysis_semantics_version",
+          "number": 1,
+          "type": "Text"
+        },
+        {
+          "name": "normative_specification_ids",
+          "number": 2,
+          "type": "list<SpecId>"
+        },
+        {
+          "name": "applied_rules",
+          "number": 3,
+          "type": "list<RuleContentIdentity>"
+        }
+      ]
+    },
+    "StructuralTypeBody": {
+      "kind": "variant",
+      "members": [
+        {
+          "name": "primitive",
+          "number": 1,
+          "type": "core.SemanticPrimitiveType"
+        },
+        {
+          "name": "schema",
+          "number": 2,
+          "type": "core.TypeSchemaRef"
+        },
+        {
+          "name": "list",
+          "number": 3,
+          "type": "StructuralTypeId"
+        },
+        {
+          "name": "map_string",
+          "number": 4,
+          "type": "StructuralTypeId"
+        },
+        {
+          "name": "option",
+          "number": 5,
+          "type": "StructuralTypeId"
+        }
+      ]
+    },
+    "StructuralTypeNode": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "id",
+          "number": 1,
+          "type": "StructuralTypeId"
+        },
+        {
+          "name": "body",
+          "number": 2,
+          "type": "StructuralTypeBody"
+        }
+      ]
+    },
+    "SubflowProofDependency": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "call_site",
+          "number": 1,
+          "type": "ir.ComputationId"
+        },
+        {
+          "name": "target_semantic_ir_digest",
+          "number": 2,
+          "type": "core.DigestRefValue"
+        },
+        {
+          "name": "target_exported_contract_digest",
+          "number": 3,
+          "type": "option<core.DigestRefValue>"
+        },
+        {
+          "name": "target_root_assertion_id",
+          "number": 4,
+          "type": "option<AssertionId>"
+        },
+        {
+          "name": "transitive_targets",
+          "number": 5,
+          "type": "list<SubflowTargetIdentity>"
+        }
+      ]
+    },
+    "SubflowTargetIdentity": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "semantic_ir_digest",
+          "number": 1,
+          "type": "core.DigestRefValue"
+        },
+        {
+          "name": "exported_contract_digest",
+          "number": 2,
+          "type": "option<core.DigestRefValue>"
+        }
+      ]
+    },
+    "TypedContentRef": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "digest",
+          "number": 1,
+          "type": "core.DigestRefValue"
+        },
+        {
+          "name": "type_schema",
+          "number": 2,
+          "type": "core.TypeSchemaRef"
+        }
+      ]
+    },
+    "UnavailableReason": {
+      "kind": "enum",
+      "members": [
+        {
+          "name": "not_supplied",
+          "number": 1,
+          "type": null
+        },
+        {
+          "name": "content_not_retained",
+          "number": 2,
+          "type": null
+        },
+        {
+          "name": "unsupported_projection",
+          "number": 3,
+          "type": null
+        }
+      ]
+    },
+    "UsageAggregation": {
+      "kind": "enum",
+      "members": [
+        {
+          "name": "additive",
+          "number": 1,
+          "type": null
+        },
+        {
+          "name": "unsupported",
+          "number": 2,
+          "type": null
+        }
+      ]
+    },
+    "UsageMeterContent": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "meter",
+          "number": 1,
+          "type": "usage.UsageMeterRef"
+        },
+        {
+          "name": "unit",
+          "number": 2,
+          "type": "UsageUnitRef"
+        },
+        {
+          "name": "aggregation",
+          "number": 3,
+          "type": "UsageAggregation"
+        }
+      ]
+    },
+    "UsageUnitRef": {
+      "kind": "record",
+      "members": [
+        {
+          "name": "catalog",
+          "number": 1,
+          "type": "SpecId"
+        },
+        {
+          "name": "name",
+          "number": 2,
+          "type": "Text"
+        }
+      ]
+    }
+  },
+  "numbered_assignments": 298,
+  "reserved_prefix": "PpiAux",
+  "set_rules": [
+    {
+      "element_type": "SchemaAsset",
+      "field": "schema_assets",
+      "identity_key": "SchemaRefKey",
+      "owner": "agentflow.portable.proof.inputs@1/PortableProofInputBundle"
+    },
+    {
+      "element_type": "IrAsset",
+      "field": "ir_assets",
+      "identity_key": "TypedContentRefKey",
+      "owner": "agentflow.portable.proof.inputs@1/PortableProofInputBundle"
+    },
+    {
+      "element_type": "ContractAsset",
+      "field": "contract_assets",
+      "identity_key": "TypedContentRefKey",
+      "owner": "agentflow.portable.proof.inputs@1/PortableProofInputBundle"
+    },
+    {
+      "element_type": "StructuralTypeNode",
+      "field": "structural_types",
+      "identity_key": "id",
+      "owner": "agentflow.portable.proof.inputs@1/PortableProofInputBundle"
+    },
+    {
+      "element_type": "ProofContextEntry",
+      "field": "proof_contexts",
+      "identity_key": "id",
+      "owner": "agentflow.portable.proof.inputs@1/PortableProofInputBundle"
+    },
+    {
+      "element_type": "ResolverEntry",
+      "field": "resolver_dependency_manifests",
+      "identity_key": "id",
+      "owner": "agentflow.portable.proof.inputs@1/PortableProofInputBundle"
+    },
+    {
+      "element_type": "CompilerManifestEntry",
+      "field": "compiler_semantics_manifests",
+      "identity_key": "id",
+      "owner": "agentflow.portable.proof.inputs@1/PortableProofInputBundle"
+    },
+    {
+      "element_type": "AssertionEntry",
+      "field": "root_export_assertions",
+      "identity_key": "id",
+      "owner": "agentflow.portable.proof.inputs@1/PortableProofInputBundle"
+    },
+    {
+      "element_type": "RootInputPortBinding",
+      "field": "input_mappings",
+      "identity_key": "InputMappingKey",
+      "owner": "agentflow.portable.proof.inputs@1/PortableRootExportAssertion"
+    },
+    {
+      "element_type": "RootOutputPortBinding",
+      "field": "output_mappings",
+      "identity_key": "OutputMappingKey",
+      "owner": "agentflow.portable.proof.inputs@1/PortableRootExportAssertion"
+    },
+    {
+      "element_type": "RootResourcePortBinding",
+      "field": "resource_mappings",
+      "identity_key": "ResourceMappingKey",
+      "owner": "agentflow.portable.proof.inputs@1/PortableRootExportAssertion"
+    },
+    {
+      "element_type": "RootEffectCoordinateBinding",
+      "field": "effect_mappings",
+      "identity_key": "EffectMappingKey",
+      "owner": "agentflow.portable.proof.inputs@1/PortableRootExportAssertion"
+    },
+    {
+      "element_type": "RootFlowCoordinateBinding",
+      "field": "flow_mappings",
+      "identity_key": "FlowMappingKey",
+      "owner": "agentflow.portable.proof.inputs@1/PortableRootExportAssertion"
+    },
+    {
+      "element_type": "RootRecoveryCoordinateBinding",
+      "field": "recovery_mappings",
+      "identity_key": "RecoveryMappingKey",
+      "owner": "agentflow.portable.proof.inputs@1/PortableRootExportAssertion"
+    },
+    {
+      "element_type": "RootExecutionCoordinateBinding",
+      "field": "execution_mappings",
+      "identity_key": "ExecutionMappingKey",
+      "owner": "agentflow.portable.proof.inputs@1/PortableRootExportAssertion"
+    },
+    {
+      "element_type": "SubflowProofDependency",
+      "field": "subflow_dependencies",
+      "identity_key": "SubflowMappingKey",
+      "owner": "agentflow.portable.proof.inputs@1/PortableRootExportAssertion"
+    },
+    {
+      "element_type": "ValueSlotId",
+      "field": "dependency_slots",
+      "identity_key": "numeric",
+      "owner": "agentflow.portable.proof.inputs@1/RootInputUseSite"
+    },
+    {
+      "element_type": "RootInputUseSite",
+      "field": "use_sites",
+      "identity_key": "InputUseSiteKey",
+      "owner": "agentflow.portable.proof.inputs@1/RootInputPortBinding"
+    },
+    {
+      "element_type": "ValueSlotId",
+      "field": "dependency_slots",
+      "identity_key": "numeric",
+      "owner": "agentflow.portable.proof.inputs@1/RootOutputProducerEvidence"
+    },
+    {
+      "element_type": "U32",
+      "field": "alias_component_ports",
+      "identity_key": "numeric",
+      "owner": "agentflow.portable.proof.inputs@1/RootResourceSourceCoordinate"
+    },
+    {
+      "element_type": "RootResourceSourceCoordinate",
+      "field": "source_coordinates",
+      "identity_key": "ResourceSourceKey",
+      "owner": "agentflow.portable.proof.inputs@1/RootResourcePortBinding"
+    },
+    {
+      "element_type": "Ordinal64",
+      "field": "effect_occurrences",
+      "identity_key": "numeric",
+      "owner": "agentflow.portable.proof.inputs@1/FlowSinkBinding"
+    },
+    {
+      "element_type": "SubflowTargetIdentity",
+      "field": "transitive_targets",
+      "identity_key": "target_digest_key",
+      "owner": "agentflow.portable.proof.inputs@1/SubflowProofDependency"
+    },
+    {
+      "collection": "CompleteCollection.complete",
+      "element_type": "ModuleContent",
+      "field": "compiled_modules",
+      "identity_key": "specification_id",
+      "owner": "agentflow.portable.proof.inputs@1/PortableContextContent"
+    },
+    {
+      "collection": "CompleteCollection.complete",
+      "element_type": "SchemaRef",
+      "field": "type_schemas",
+      "identity_key": "SchemaRefKey",
+      "owner": "agentflow.portable.proof.inputs@1/PortableContextContent"
+    },
+    {
+      "collection": "CompleteCollection.complete",
+      "element_type": "EffectCatalogContent",
+      "field": "effect_catalogs",
+      "identity_key": "specification_id",
+      "owner": "agentflow.portable.proof.inputs@1/PortableContextContent"
+    },
+    {
+      "collection": "CompleteCollection.complete",
+      "element_type": "UsageMeterContent",
+      "field": "usage_meters",
+      "identity_key": "meter",
+      "owner": "agentflow.portable.proof.inputs@1/PortableContextContent"
+    },
+    {
+      "element_type": "SchemaRef",
+      "field": "named_types",
+      "identity_key": "local_type_name",
+      "owner": "agentflow.portable.proof.inputs@1/ModuleContent"
+    },
+    {
+      "element_type": "Text",
+      "field": "operations",
+      "identity_key": "utf8",
+      "owner": "agentflow.portable.proof.inputs@1/EffectCatalogContent"
+    },
+    {
+      "element_type": "Text",
+      "field": "recognized_attributes",
+      "identity_key": "utf8",
+      "owner": "agentflow.portable.proof.inputs@1/ResourceTypeContent"
+    },
+    {
+      "collection": "CompleteCollection.complete",
+      "element_type": "SchemaRef",
+      "field": "schemas",
+      "identity_key": "SchemaRefKey",
+      "owner": "agentflow.portable.proof.inputs@1/ResourceUniverseContent"
+    },
+    {
+      "collection": "CompleteCollection.complete",
+      "element_type": "ResourceTypeContent",
+      "field": "descriptors",
+      "identity_key": "SchemaRefKey",
+      "owner": "agentflow.portable.proof.inputs@1/ResourceUniverseContent"
+    },
+    {
+      "collection": "CompleteCollection.complete",
+      "element_type": "ConfidentialityLabelRef",
+      "field": "confidentiality_labels",
+      "identity_key": "(catalog,name)",
+      "owner": "agentflow.portable.proof.inputs@1/FlowCatalogContent"
+    },
+    {
+      "collection": "CompleteCollection.complete",
+      "element_type": "TaintRef",
+      "field": "taints",
+      "identity_key": "(catalog,name)",
+      "owner": "agentflow.portable.proof.inputs@1/FlowCatalogContent"
+    },
+    {
+      "collection": "CompleteCollection.complete",
+      "element_type": "FlowEffectSinkContent",
+      "field": "effect_sinks",
+      "identity_key": "operation",
+      "owner": "agentflow.portable.proof.inputs@1/FlowCatalogContent"
+    },
+    {
+      "collection": "CompleteCollection.complete",
+      "element_type": "EffectCatalogContent",
+      "field": "effect_catalogs",
+      "identity_key": "specification_id",
+      "owner": "agentflow.portable.proof.inputs@1/RecoveryUniverseContent"
+    },
+    {
+      "collection": "CompleteCollection.complete",
+      "element_type": "ReconciliationOperationRef",
+      "field": "reconciliation_operations",
+      "identity_key": "(catalog,name)",
+      "owner": "agentflow.portable.proof.inputs@1/RecoveryUniverseContent"
+    },
+    {
+      "element_type": "Text",
+      "field": "supported_versions",
+      "identity_key": "utf8",
+      "owner": "agentflow.portable.proof.inputs@1/ExecutionCapabilityContent"
+    },
+    {
+      "element_type": "CapabilityAttribute",
+      "field": "attributes",
+      "identity_key": "key,value",
+      "owner": "agentflow.portable.proof.inputs@1/ExecutionCapabilityContent"
+    },
+    {
+      "element_type": "Text",
+      "field": "features",
+      "identity_key": "utf8",
+      "owner": "agentflow.portable.proof.inputs@1/ExecutionRuntimeProfileContent"
+    },
+    {
+      "collection": "CompleteCollection.complete",
+      "element_type": "ExecutionCapabilityContent",
+      "field": "capabilities",
+      "identity_key": "capability",
+      "owner": "agentflow.portable.proof.inputs@1/ExecutionUniverseContent"
+    },
+    {
+      "collection": "CompleteCollection.complete",
+      "element_type": "TrustDomainRef",
+      "field": "trust_domains",
+      "identity_key": "(catalog,name)",
+      "owner": "agentflow.portable.proof.inputs@1/ExecutionUniverseContent"
+    },
+    {
+      "collection": "CompleteCollection.complete",
+      "element_type": "RegionRef",
+      "field": "regions",
+      "identity_key": "(catalog,name)",
+      "owner": "agentflow.portable.proof.inputs@1/ExecutionUniverseContent"
+    },
+    {
+      "collection": "CompleteCollection.complete",
+      "element_type": "RegionCompatibility",
+      "field": "region_compatibility",
+      "identity_key": "(from,to)",
+      "owner": "agentflow.portable.proof.inputs@1/ExecutionUniverseContent"
+    },
+    {
+      "collection": "CompleteCollection.complete",
+      "element_type": "ExecutionRuntimeProfileContent",
+      "field": "runtime_profiles",
+      "identity_key": "profile",
+      "owner": "agentflow.portable.proof.inputs@1/ExecutionUniverseContent"
+    },
+    {
+      "element_type": "TypedContentRef",
+      "field": "components",
+      "identity_key": "TypedContentRefKey",
+      "owner": "agentflow.portable.proof.inputs@1/PortableResolverManifest"
+    },
+    {
+      "element_type": "ResolverTarget",
+      "field": "subflow_targets",
+      "identity_key": "target_digest_key",
+      "owner": "agentflow.portable.proof.inputs@1/PortableResolverManifest"
+    },
+    {
+      "element_type": "SourceAssociation",
+      "field": "source_associations",
+      "identity_key": "caller_digest,source_node",
+      "owner": "agentflow.portable.proof.inputs@1/PortableResolverManifest"
+    },
+    {
+      "element_type": "IrPin",
+      "field": "direct_dependencies",
+      "identity_key": "DigestKey",
+      "owner": "agentflow.portable.proof.inputs@1/ResolverTarget"
+    },
+    {
+      "element_type": "SubflowTargetIdentity",
+      "field": "transitive_dependencies",
+      "identity_key": "target_digest_key",
+      "owner": "agentflow.portable.proof.inputs@1/ResolverTarget"
+    },
+    {
+      "element_type": "SpecId",
+      "field": "normative_specifications",
+      "identity_key": "utf8",
+      "owner": "agentflow.portable.proof.inputs@1/SemanticRoleDefinition"
+    },
+    {
+      "element_type": "SchemaRef",
+      "field": "required_schema_pins",
+      "identity_key": "SchemaRefKey",
+      "owner": "agentflow.portable.proof.inputs@1/SemanticRoleDefinition"
+    },
+    {
+      "element_type": "SemanticRole",
+      "field": "depends_on",
+      "identity_key": "RoleRank",
+      "owner": "agentflow.portable.proof.inputs@1/SemanticRoleDefinition"
+    },
+    {
+      "element_type": "RuleContentIdentity",
+      "field": "listed_rules",
+      "identity_key": "rule_id",
+      "owner": "agentflow.portable.proof.inputs@1/IncompleteAttribution"
+    },
+    {
+      "element_type": "RuleContentIdentity",
+      "field": "direct_rules",
+      "identity_key": "rule_id",
+      "owner": "agentflow.portable.proof.inputs@1/CompleteAttributionClaim"
+    },
+    {
+      "element_type": "RuleContentIdentity",
+      "field": "transitive_rules",
+      "identity_key": "rule_id",
+      "owner": "agentflow.portable.proof.inputs@1/CompleteAttributionClaim"
+    },
+    {
+      "element_type": "RuleDependencyEdge",
+      "field": "dependency_edges",
+      "identity_key": "dependent,prerequisite",
+      "owner": "agentflow.portable.proof.inputs@1/CompleteAttributionClaim"
+    },
+    {
+      "element_type": "SpecId",
+      "field": "normative_specification_ids",
+      "identity_key": "utf8",
+      "owner": "agentflow.portable.proof.inputs@1/StaticIdentityProjection"
+    },
+    {
+      "element_type": "RuleContentIdentity",
+      "field": "applied_rules",
+      "identity_key": "rule_id",
+      "owner": "agentflow.portable.proof.inputs@1/StaticIdentityProjection"
+    },
+    {
+      "element_type": "SourceContentIdentity",
+      "field": "normative_sources",
+      "identity_key": "specification_id",
+      "owner": "agentflow.portable.proof.inputs@1/CompilerSemanticsManifest"
+    },
+    {
+      "element_type": "SemanticRoleEntry",
+      "field": "semantic_roles",
+      "identity_key": "RoleRank",
+      "owner": "agentflow.portable.proof.inputs@1/CompilerSemanticsManifest"
+    }
+  ]
+}

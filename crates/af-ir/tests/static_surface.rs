@@ -320,9 +320,7 @@ fn the_wire_schema_is_frozen_at_its_phase_3b_identity() {
 
 #[test]
 fn module_abi_and_domain_counts_hold_at_their_frozen_values() {
-    // The cumulative module freeze: exactly twelve AFIDL modules after
-    // Phase 4A.7 added the Execution Requirements schema module (and the
-    // preceding Recovery Contract module).
+    // The cumulative module count includes the additive portable codec module.
     fn collect_modules(directory: &Path, out: &mut Vec<String>) {
         for entry in std::fs::read_dir(directory).unwrap() {
             let path = entry.unwrap().path();
@@ -338,8 +336,8 @@ fn module_abi_and_domain_counts_hold_at_their_frozen_values() {
     modules.sort_unstable();
     assert_eq!(
         modules.len(),
-        16,
-        "Phase 4B.1 must add exactly four AFIDL modules: {modules:?}"
+        17,
+        "the registered portable codec module count changed: {modules:?}"
     );
 
     // The prior 400 assignments remain unchanged (checked below after
@@ -357,12 +355,25 @@ fn module_abi_and_domain_counts_hold_at_their_frozen_values() {
         "agentflow.effect.resource.compatibility@1",
         "agentflow.recovery.usage.coverage@1",
         "agentflow.flow.execution.relation@1",
+        "agentflow.portable.proof.inputs@1",
     ];
-    let prior_rows = rows
-        .iter()
-        .filter(|row| !additive_families.contains(&row["schema_family"].as_str().unwrap()))
-        .count();
-    assert_eq!(prior_rows, 400, "a pre-Phase 4B.1 ABI assignment drifted");
+    let baseline: serde_json::Value =
+        serde_json::from_str(&read("spec/conformance/portable-proof-codec/baseline.json"))
+            .expect("pre-registration ABI snapshot");
+    let old_rows = baseline["abi"]["assignments"].as_array().unwrap();
+    assert_eq!(old_rows.len(), 477);
+    for old_row in old_rows {
+        assert_eq!(
+            rows.iter().filter(|row| *row == old_row).count(),
+            1,
+            "old ABI assignment changed or disappeared: {old_row}"
+        );
+    }
+    assert_eq!(
+        rows.len(),
+        old_rows.len() + 298,
+        "unexpected non-additive ABI change"
+    );
     for family in additive_families {
         assert!(
             rows.iter().any(|row| row["schema_family"] == family),
@@ -441,6 +452,11 @@ fn module_abi_and_domain_counts_hold_at_their_frozen_values() {
         14,
         "a HashV1 domain was added"
     );
+    let portable_count = rows
+        .iter()
+        .filter(|row| row["schema_family"] == "agentflow.portable.proof.inputs@1")
+        .count();
+    assert_eq!(portable_count, 298, "portable ABI materialization changed");
 }
 
 #[test]
