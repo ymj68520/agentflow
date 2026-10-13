@@ -24,8 +24,9 @@ from `51ae18d5731c4c354fc3a3d6cfe1549dfcf1ce4d`.
 - Historical formal production suites: Control 58/58, Advanced Control
   72/72, Scope/Closure 55/55, Root Recovery 44/44, Root Export 35/35,
   Root Export Soundness 47/47, and Portable Codec 60/60 (371 total).
-- `cargo fmt --all -- --check`, `cargo clippy --all-targets --all-features --
-  -D warnings`, and `cargo run -p af-spec --bin spec-check -- check` passed.
+- `cargo fmt --all -- --check`,
+  `cargo clippy --all-targets --all-features -- -D warnings`, and
+  `cargo run -p af-spec --bin spec-check -- check` passed.
   Registry counts remained Specifications 43, Rules 404 (403 covered, one
   intentional exception, zero missing), ABI assignments 775, AFIDL modules
   17, HashV1 domains 14.
@@ -35,6 +36,27 @@ from `51ae18d5731c4c354fc3a3d6cfe1549dfcf1ce4d`.
   while continuing to forbid D9/D10 and runtime capabilities; its focused
   post-fix test passed.
 
-The full workspace `cargo test --all` is the post-commit gate and is recorded
-after that run. No D9/D10, RootExport capability, or runtime/publication work
-is part of this phase.
+Post-commit at implementation HEAD `1a377efac6432383367e84942c7cc1ebcc082c1d`,
+`cargo test --all` passed, including both new Portable tests and all workspace
+unit, integration, static-surface and doc tests. The new independent runner
+completed in 685.97 seconds; its final result was 2 passed, 0 failed
+(63-case production corpus plus the standalone comparator-shape test).
+Post-commit `cargo fmt --all -- --check`,
+`cargo clippy --all-targets --all-features -- -D warnings`, and
+`cargo run -p af-spec --bin spec-check -- check` also passed.
+
+The D0-D4 baseline remains 43 specifications, 404 rules (403 covered, one
+intentional exception, zero missing), 775 active ABI assignments, 17 AFIDL
+modules and 14 HashV1 domains. The fixture still has 314 SchemaAssets, 16
+static modules, 108 registered Portable schema types (17 auxiliary); no
+registered schema, ABI assignment, digest golden, semantic digest or old
+371-case expected value changed. No new P0/P1/P2/P3 finding was introduced.
+Existing AUDIT-F03 and AUDIT-F04 remain OPEN/P2. MODEL-B01 through B07 remain
+BLOCKING. This is Outcome A for D5-D8 and qualifies the work to enter
+Phase 4C.1B.3, but it does not close B01/B02 because D9-D10 are still required.
+There is no RootExport capability, body-conformance claim, LockGraph,
+publication or runtime result.
+
+Implementation commit: `1a377efac6432383367e84942c7cc1ebcc082c1d`. The only
+follow-up commit records this post-commit gate report; no production code
+changed after the post-commit test run.
