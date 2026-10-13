@@ -37,6 +37,7 @@ assignments, 16 AFIDL modules, and no cross-reference errors.
 
 The frozen-path diff from the starting HEAD is empty for AFIDL, ABI
 assignments, HashV1 domains, digest rules, schema goldens, and digest goldens.
-All gates are rerun after the final documentation commit; the exact final HEAD
-and clean-tree state are reported in the handoff. No Release Control approval
-is implied; readiness stays **PENDING INDEPENDENT RE-AUDIT**.
+After the implementation, test, and documentation commits, the complete gate
+set was rerun and passed. The final working tree is clean; the exact final
+HEAD is recorded in the handoff. No Release Control approval is implied;
+readiness stays **PENDING INDEPENDENT RE-AUDIT**.
