@@ -79,6 +79,17 @@ def usage_limits(raw):
 
 
 class Model:
+    specialized_recovery = False
+
+    def recovery_leaf_facts(self, contract, dims, occurrences, ports):
+        return []
+
+    def recovery_control_proofs(self, value, node, children):
+        return []
+
+    def compensation_facts(self, value, node):
+        raise OracleGap("active compensation bindings require independent K model")
+
     def __init__(self,bundle):
         self.bundle=bundle
         self.assertion=next(item for item in bundle["root_export_assertions"] if item["id"]==bundle["root_assertion_id"])
@@ -208,7 +219,7 @@ class Model:
                 if option(declared["direct_dependencies"])!=[]: raise OracleGap("nonempty subflow graph beyond registered subset")
                 p += [proof("reference-resolution","proven",118,node,target_ir["hex"],True),proof("target-pin-validation","proven",118,node,target_ir["hex"],True),proof("subflow-interface","proven",118,node,f"computation:{node}",True),proof("subflow-dependency-closure","proven",121,node,target_ir["hex"],True),proof("subflow-export-contract","proven",119,node,pin["hex"],True)]
             targetref=pin["hex"]
-            if contract["recovery_action_bindings"] or contract["recovery_usage_bindings"]:
+            if not self.specialized_recovery and (contract["recovery_action_bindings"] or contract["recovery_usage_bindings"]):
                 raise OracleGap("nonempty K action needs 4C1B4B model")
             e=declared_effect(contract["effects"])
             f=flow_contract(contract["information_flow"])
@@ -259,7 +270,8 @@ class Model:
             flow_status="unproven" if any(item["source_binding"] is None for item in flowmaps) else "proven"
             p += [proof("input-binding",input_status,113,node,f"computation:{node}",True),proof("output-binding",output_status,113,node,f"computation:{node}",True),proof("type-compatibility",type_status,113,node,f"computation:{node}",True),proof("resource-mapping",resource_verdict,114,node,f"computation:{node}",True),proof("effect-and-recovery",effect_status,115,node,pin["hex"],True),proof("information-flow",flow_status,116,node,pin["hex"],True),proof("failure-usage-execution","proven",117,node,pin["hex"],True)]
             if op=="call_subflow": p.append(proof("subflow-body-conformance","requires_evidence",120,node,target_ir["hex"],True))
-        leaf={"computation":node,"caller_semantic_ir_digest":cp(self.digest),"kind":op,"target":target,"input_mappings":ports,"output_mappings":[],"resource_mappings":resource_maps,"resource_aliases":resource_aliases,"effect_occurrences":occ,"effect_residuals":res,"flow_mappings":flowmaps,"dimensions":dims,"action_guard_compatibility":[],"await_summary":await_summary,"proof":p,"proof_context":cp(self.context_ref)}
+        guards=self.recovery_leaf_facts(contract,dims,occ,ports) if dims is not None else []
+        leaf={"computation":node,"caller_semantic_ir_digest":cp(self.digest),"kind":op,"target":target,"input_mappings":ports,"output_mappings":[],"resource_mappings":resource_maps,"resource_aliases":resource_aliases,"effect_occurrences":occ,"effect_residuals":res,"flow_mappings":flowmaps,"dimensions":dims,"action_guard_compatibility":guards,"await_summary":await_summary,"proof":p,"proof_context":cp(self.context_ref)}
         nodevalue=self.empty_node(node,op)
         nodevalue["leaf_summary"]=leaf
         inherited=[self.obligation(item,node) for item in p if item["verdict"]!="proven"]
@@ -279,7 +291,7 @@ class Model:
         if dims:
             f=dims["information_flow"]
             flow={"known_may_influence":cp(f["summary"]),"unresolved_children":[],"sources":[{"source_node":node,"target":cp(target),"contract":cp(f),"source_mappings":cp(flowmaps),"effect_flow_partitions":[]}],"sequence_dependencies":[],"select_decision_dependencies":[],"control_decision_dependencies":[],"control_decision_influence_unknown":False,"unknown_external_children":[node] if any("unknown_external" in item for item in f["summary"]["sources"]) else []}
-            rec_source={"source_node":node,"target":cp(target),"replay_semantics":dims["recovery"]["replay_semantics"],"effect_recovery_clauses":cp(dims["recovery"]["effect_recovery_clauses"]),"action_bindings":[],"usage_bindings":[],"effect_occurrences":cp(occ),"action_guard_compatibility":[]}
+            rec_source={"source_node":node,"target":cp(target),"replay_semantics":dims["recovery"]["replay_semantics"],"effect_recovery_clauses":cp(dims["recovery"]["effect_recovery_clauses"]),"action_bindings":cp(dims["recovery_action_bindings"]),"usage_bindings":cp(dims["recovery_usage_bindings"]),"effect_occurrences":cp(occ),"action_guard_compatibility":cp(guards)}
             nodevalue["information_flow"]=dimension(flow,dp["flow"])
             nodevalue["recovery_sources"]=per_child([(node,[rec_source])],dp["recovery"])
             nodevalue["execution_sources"]=per_child([(node,[{"source_node":node,"target":cp(target),"requirements":cp(dims["execution"])}])],dp["execution"])
@@ -359,14 +371,20 @@ class Model:
         if op=="race": ep.append(proof("race-loser-effects","proven",132,node,f"computation:{node}"))
         if op=="select" and exact is None: ep.append(proof("select-case-totality","unproven",129,node,f"computation:{node}"))
         if op=="retry": ep.append(proof("retry-logical-effect-narrowing","requires_evidence" if any(item["bounds"]["upper"].get("finite",1)>0 for item in value["effects"]["value"].get("entries",[])) else "proven",144,node,f"computation:{node}"))
-        if op=="retry" and value["operator_semantics"]["max_attempts"]>1 and any(item["bounds"]["upper"].get("finite",1)>0 for item in value["effects"]["value"].get("entries",[])):
+        recovery_extra=self.recovery_control_proofs(value,node,children)
+        if not self.specialized_recovery and op=="retry" and value["operator_semantics"]["max_attempts"]>1 and any(item["bounds"]["upper"].get("finite",1)>0 for item in value["effects"]["value"].get("entries",[])):
             raise OracleGap("active-effect retry safety needs the specialized K model")
         for name,keyname,label,rule in [("resources","occurrences","resource-port-provenance",139),("recovery_sources","sources","recovery-obligations",133 if op=="race" else 138),("execution_sources","sources","execution-per-child",140)]:
             contributions=[cp(item) for child in children for item in child[name]["contributions"]]
             unresolved=[source for child in children for source in child[name]["unresolved_sources"]]
             p=[proof(label,"unproven" if unresolved else "proven",rule,node,f"computation:{node}")]
+            if name=="recovery_sources":p += recovery_extra
             value[name]={"state":"per_child","contributions":contributions,"unresolved_sources":sorted(set(unresolved)),"proofs":p}
             proofs += p
+        mapped_resources=[occurrence for contribution in value["resources"]["contributions"] for occurrence in contribution["occurrences"]]
+        resource_groups={}
+        for occurrence in mapped_resources:resource_groups.setdefault(occurrence["mapping"]["resource_slot"],[]).append(occurrence)
+        value["resource_aliases"]=[{"resource_slot":slot,"occurrences":cp(occurrences)} for slot,occurrences in sorted(resource_groups.items()) if len(occurrences)>1]
         childflows=[child["information_flow"]["value"] for child in children]
         control_unknown=op in {"race","iterate","retry","timeout","handle"} or op=="parallel" and body["mode"]=="fail_fast"
         control_unknown |= any(item["control_decision_influence_unknown"] for item in childflows)
@@ -396,11 +414,20 @@ class Model:
                 attempts=value["operator_semantics"]["max_attempts"]
                 item["control_families"].append({"control_node":node,"kind":"retry","logical_repetitions":{"lower":1,"upper":{"finite":attempts}},"physical_attempts":{"lower":1,"upper":{"finite":attempts}}})
         value["effect_residuals"]=[cp(item) for child in children for item in child["effect_residuals"]]
+        for index,child in enumerate(children):
+            value["effect_lower_bound_adjustments"] += cp(child["effect_lower_bound_adjustments"])
+            reason={"sequence":"sequence_continuation_can_be_skipped","race":"race_branch_may_lose_or_be_cancelled","parallel":"fail_fast_sibling_can_be_cancelled","select":"select_may_have_no_covered_case"}.get(op)
+            weakened=op=="race" or op=="sequence" and index>0 or op=="parallel" and body["mode"]=="fail_fast" or op=="select" and exact is None
+            if weakened and any(entry["bounds"]["lower"]>0 for entry in child["effects"]["value"].get("entries",[])):
+                value["effect_lower_bound_adjustments"].append({"source_node":child["computation"],"reason":reason})
         if op=="compensation_scope":
-            if any(source["action_bindings"] for item in value["recovery_sources"]["contributions"] for source in item["sources"]): raise OracleGap("active compensation bindings require independent K model")
+            active=any(source["action_bindings"] for item in value["recovery_sources"]["contributions"] for source in item["sources"])
             ap=[proof("conditional-compensation-actions","proven",150,node,f"computation:{node}")];lp=[proof("local-k-action-bounds","proven",155,node,f"computation:{node}")]
             value["compensation_scope"]={"potential_actions":{"state":"complete","actions":[],"proofs":ap},"local_recovery_actions":{"state":"complete","actions":[],"proofs":lp},"compensation_order":"proven","recovery_blocked_outcome":"unproven","forward_effects_retained":True,"forward_outcome_retained":True}
             proofs += [proof("compensation-forward-history","proven",149,node,f"computation:{ids[0]}"),*ap,*lp,proof("compensation-commit-order","proven",151,node,f"computation:{node}"),proof("recovery-blocked-outcome","unproven",150,node,f"computation:{node}")]
+            if active:
+                value["compensation_scope"], replacement=self.compensation_facts(value,node)
+                proofs=proofs[:-5]+replacement
         proofs += [proof("control-contract-boundary","proven",124,node,f"computation:{node}"),proof("occurrence-identity","proven",141,node,self.digest["hex"])]
         value["proof"]=proofs
         return value

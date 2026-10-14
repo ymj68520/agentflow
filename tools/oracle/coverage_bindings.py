@@ -83,17 +83,22 @@ MANDATORY_D9_RECORDS = ["af-computation::DerivedWorkflowContractSummary",
     "af-computation::LeafProofReport","af-computation::ProofContextReference"]
 
 
-def bindings(graph,projection_fields):
+def bindings(graph,projection_fields,recovery=False):
     slots={name+"."+item["field"] for name,owner in graph["types"].items() for item in owner.get("fields",[])}
     slots.update(name+"::"+variant+".$tag" for name,owner in graph["types"].items() for variant in owner.get("variants",{}))
     slots.update(name+"::"+variant+"."+item["field"] for name,owner in graph["types"].items() for variant,items in owner.get("variants",{}).items() for item in items)
     result={}
+    owners=dict(OWNERS)
+    if recovery:
+        owners_guard_type="af-computation::RootGuardCoordinateEvidence"
+        owners.update({"ActionIdentity":"af-contract::RecoveryActionIdentity","UsageBinding":"af-contract::RecoveryUsageBinding","ActionSource":"af-computation::RecoveryActionSourceIdentity","LocalBound":"af-computation::LocalActionBound","RootBound":"af-computation::RootActionBound","Multiplicity":"af-computation::AppliedMultiplicity","MultiplicityIdentity":"af-computation::ControlMultiplicityIdentity","RootAction":"af-computation::RootRecoveryAction","LocalAction":"af-computation::LocalRecoveryAction","PotentialAction":"af-computation::ConditionalCompensationAction","ControlPath":"af-computation::ControlPathStep","GuardCoordinate":"af-computation::RecoveryGuardCoordinate","ActionGuard":"af-contract::ActionGuardCompatibility","Countermodel":"af-contract::TypedGuardCountermodel","GuardAssignment":"af-contract::GuardInputAssignment","RecoveryClause":"af-recovery::EffectRecoveryClause"})
+        owners["GuardCoordinate"]=owners_guard_type
     for item in projection_fields:
         path=item["field_path"]
         definition,_,field=path.partition(".")
-        if definition not in OWNERS or "." in field or "[]" in field or "?" in field:
+        if definition not in owners or "." in field or "[]" in field or "?" in field:
             continue
-        source=OWNERS[definition]+"."+ALIASES.get(definition,{}).get(field,field)
+        source=owners[definition]+"."+ALIASES.get(definition,{}).get(field,field)
         if source in slots:
             result.setdefault(source,[]).append(path)
     # Generic wrappers retain their fields through every concrete dimension;
@@ -150,4 +155,22 @@ def bindings(graph,projection_fields):
             source=name+"."+item["field"]
             if source not in result:
                 raise ValueError("unbound mandatory D9 Rust field: "+source)
+    if recovery:
+        for owner,definition,variants in [
+            ("RootRecoveryOwner","RecoveryOwner",["CompensationScope","RootRecovery"]),
+            ("RecoveryActionUpper","ActionUpper",["Known","Overflow","InvalidMultiplicity","Unknown"]),
+        ]:
+            qualified="af-computation::"+owner
+            for index,variant in enumerate(variants):
+                prefix=definition+f"::variant[{index}]."
+                targets=[item["field_path"] for item in projection_fields if item["field_path"].startswith(prefix)]
+                result[qualified+"::"+variant+".$tag"]=targets
+                for field in graph["types"][qualified]["variants"][variant]:result[qualified+"::"+variant+"."+field["field"]]=targets
+        for variant,fields in graph["types"]["af-computation::ControlPathKind"]["variants"].items():
+            result["af-computation::ControlPathKind::"+variant+".$tag"]=["ControlPath.kind"]
+            for field in fields:result["af-computation::ControlPathKind::"+variant+"."+field["field"]]=[item["field_path"] for item in projection_fields if item["field_path"].startswith("PathDetail::") and item["field_path"].rsplit(".",1)[-1]==field["field"]]
+        for variant in ["Iterate","Retry"]:result["af-computation::ControlMultiplicityKind::"+variant+".$tag"]=["MultiplicityIdentity.kind"]
+        for owner in ["af-computation::RootRecoveryAction","af-computation::LocalRecoveryAction","af-computation::ConditionalCompensationAction","af-computation::RecoveryActionSourceIdentity","af-computation::LocalActionBound","af-computation::RootActionBound","af-computation::AppliedMultiplicity","af-computation::ControlMultiplicityIdentity","af-computation::ControlPathStep","af-computation::RootGuardCoordinateEvidence","af-contract::RecoveryActionIdentity","af-contract::RecoveryUsageBinding","af-contract::ActionGuardCompatibility"]:
+            for item in graph["types"][owner]["fields"]:
+                if owner+"."+item["field"] not in result:raise ValueError("unbound required Recovery getter: "+owner+"."+item["field"])
     return result

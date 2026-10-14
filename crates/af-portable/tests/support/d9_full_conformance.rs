@@ -6,6 +6,8 @@ use serde_json::{Value as Json, json};
 use sha2::Digest as _;
 use std::path::{Path, PathBuf};
 
+mod d9_recovery_conformance;
+
 fn repo() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR")).join("../..")
 }
@@ -285,9 +287,15 @@ fn difference(expected: &Json, actual: &Json, path: &str) -> Option<String> {
     match (expected, actual) {
         (Json::Object(left), Json::Object(right)) => {
             for (key, item) in left {
-                if let Some(diff) = difference(item, &right[key], &format!("{path}.{key}")) {
+                let Some(other) = right.get(key) else {
+                    return Some(format!("{path}.{key}: missing Actual variant member"));
+                };
+                if let Some(diff) = difference(item, other, &format!("{path}.{key}")) {
                     return Some(diff);
                 }
+            }
+            if let Some(key) = right.keys().find(|key| !left.contains_key(*key)) {
+                return Some(format!("{path}.{key}: unexpected Actual variant member"));
             }
             None
         }

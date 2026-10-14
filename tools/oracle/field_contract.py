@@ -149,7 +149,7 @@ define("ActionSource",caller_semantic_ir_digest=ref("Digest"),source_node=U,sour
 define("GuardCoordinate",source_contract_digest=ref("Digest"),component_input_port=U,input_expression=U,exact_type=opt(ref("SchemaRef")),dependency_slots=arr(U))
 define("GuardAssignment",port_no=U,value=ref("Primitive"),**{"type":ref("SchemaRef")})
 define("Countermodel",source_component=ref("Named"),recovery_action=ref("ActionIdentity"),forward_entry_ordinal=U,action_entry_ordinal=U,forward_guard=ref("Guard"),declared_action_guard=ref("Guard"),forward_bounds=ref("Bounds"),activation_upper=ref("Upper"),attempt_upper=ref("Upper"),action_upper=ref("Upper"),assignments=arr(ref("GuardAssignment")),reachability=S,related_rule_id=S)
-define("ActionGuard",source_component=ref("Named"),recovery_action=ref("ActionIdentity"),forward_entry_ordinal=U,action_entry_ordinal=U,forward_guard=opt(ref("Guard")),declared_action_guard=opt(ref("Guard")),action_upper=opt(ref("Upper")),verdict=V,basis=S,reason=D,countermodel=opt(ref("Countermodel")))
+define("ActionGuard",source_component=ref("Named"),recovery_action=ref("ActionIdentity"),forward_entry_ordinal=opt(U),action_entry_ordinal=opt(U),forward_guard=opt(ref("Guard")),declared_action_guard=opt(ref("Guard")),action_upper=opt(ref("Upper")),verdict=V,basis=S,reason=D,countermodel=opt(ref("Countermodel")))
 DEFS["PathDetail"] = union(rec(),rec(case_ordinal=U,selector=opt(U),selector_dependencies=arr(U),exact_case=opt(U)),rec(branch_ordinal=U),rec(max_attempts=U),rec(ordinal=U))
 define("ControlPath",parent_node=U,child_node=U,child_index=U,kind=S,detail=ref("PathDetail"),reachability=enum("possible","exact_selected","proven_unreachable"))
 DEFS["RecoveryOwner"] = union(rec(kind=lit("compensation_scope"),node=U),rec(kind=lit("root_recovery")))
@@ -228,6 +228,10 @@ DEFS["RootExportReport"]["fields"]["dimensions"]["exact_length"]=9
 DEFS["RootExportReport"]["fields"]["dimensions"]["unique_by"]="dimension"
 DEFS["Node"]["constraints"]=["owned_children","leaf_identity"]
 DEFS["ContextRelation"]["fields"]["canonical_content"]["element"]={"kind":"u8"}
+DEFS["ActionIdentity"]["fields"]["action_kind"]=enum("reconciliation","compensation")
+DEFS["ActionGuard"]["fields"]["basis"]=enum("frozen_guard_containment","zero_possible_actions","typed_countermodel","insufficient_evidence")
+DEFS["ControlPath"]["fields"]["kind"]=enum("sequence_child","select_case","parallel_branch","race_branch","iterate_body","retry_child","timeout_child","handle_protected","handle_clause","scope_child","compensation_scope_child")
+DEFS["Countermodel"]["fields"]["reachability"]=lit("well_typed_component_input_domain")
 
 
 def schema_fields():

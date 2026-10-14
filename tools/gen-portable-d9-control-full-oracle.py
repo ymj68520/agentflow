@@ -78,6 +78,12 @@ def source_case_applies(path,facts):
     if owner=="UsagePhase":return any_record(facts,lambda item:item.get("phase")==snake)
     if owner=="StaticUsageBound":return any_record(facts,lambda item:isinstance(item.get("bound"),dict) and item["bound"].get("state")==snake)
     if owner=="ControlDimensionValue":return any_record(facts,lambda item:item.get("state")==snake and "proofs" in item)
+    if owner in {"ControlPathKind","ControlMultiplicityKind","ControlPathReachability","RecoveryActionKind"}:
+        import re
+        value=re.sub(r"(?<!^)(?=[A-Z])","_",variant).lower()
+        if owner=="ControlPathReachability":return any_record(facts,lambda item:item.get("reachability")==value)
+        if owner=="RecoveryActionKind":return any_record(facts,lambda item:item.get("action_kind")==value)
+        return any_record(facts,lambda item:item.get("kind")==value)
     return True
 
 
@@ -152,8 +158,10 @@ def main():
         sidecars[filename.removesuffix(".json")]=sidecar
         rows.append({"case_id":case["case_id"],"bundle_file":case["bundle_file"],"expected_file":(OUT/filename).relative_to(ROOT).as_posix(),"input_sha256":hashlib.sha256(raw).hexdigest(),"expected_stage":"D10","comparison_scope":"D9","instance_coverage":count,"oracle_provenance":provenance})
     coverage=contract(frozen,sidecars)
-    outputs[COVERAGE/"field-coverage.json"]=coverage
-    outputs[COVERAGE/"pending-fields.json"]={"schema_version":1,"source_fields":[item["typed_field_path"] for item in coverage["fields"] if item["required_comparison"] and not item["case_applicability"]],"projection_fields":[item["field_path"] for item in coverage["projection_fields"] if item["classification"]!="DiagnosticOnly" and not item["case_applicability"]],"other_case_ids":[case["case_id"] for case in historical["cases"] if case["group"]!="D9-Control"]}
+    # 4B owns the cumulative registered contract. This independently regenerated
+    # 4A view keeps its original 268/332 and 120117 counting baseline explicit.
+    outputs[COVERAGE/"d9-control-field-coverage.json"]=coverage
+    outputs[COVERAGE/"d9-control-pending-fields.json"]={"schema_version":1,"source_fields":[item["typed_field_path"] for item in coverage["fields"] if item["required_comparison"] and not item["case_applicability"]],"projection_fields":[item["field_path"] for item in coverage["projection_fields"] if item["classification"]!="DiagnosticOnly" and not item["case_applicability"]],"other_case_ids":[case["case_id"] for case in historical["cases"] if case["group"]!="D9-Control"]}
     validate_mutations(sidecars)
     outputs[COVERAGE/"comparator-mutations.json"]={"schema_version":1,"baseline":"independent full-field Expected only","mutation_count":len(mutations()),"mutations":mutations(),"both_side_required_omission":"must fail shape validation before equality"}
     outputs[COVERAGE/"hand-calculations.json"]={"schema_version":1,"basis":"literal hand-derived values and explicit source/rule traces; Rust output is not an input","vectors":documented_hand_vectors(sidecars)}
@@ -181,7 +189,7 @@ def main():
     outputs[COVERAGE/"comparator-mutations.json"]={"schema_version":1,"baseline":"independent full-field Expected only","mutation_count":len(mutations())+len(rich_mutations()),"mutations":mutations()+rich_mutations(),"both_side_required_omission":"must fail shape validation before equality"}
     outputs[OUT/"manifest.json"]={"schema_version":1,"corpus":"agentflow.independent.d9-control-full","case_count":22,"cases":rows,"instance_totals":{"required":sum(row["instance_coverage"]["required"] for row in rows),"diagnostic":sum(row["instance_coverage"]["diagnostic"] for row in rows)},"source_reads":"Portable declarations and frozen type/rule/schema assets only; no target/Actual input"}
     evidence=json.loads((COVERAGE/"gate-evidence.json").read_text(encoding="utf-8"))
-    for filename,text in documents(coverage,outputs[OUT/"manifest.json"],outputs[COVERAGE/"comparator-mutations.json"],outputs[COVERAGE/"hand-calculations.json"],outputs[COVERAGE/"pending-fields.json"],evidence).items():
+    for filename,text in documents(coverage,outputs[OUT/"manifest.json"],outputs[COVERAGE/"comparator-mutations.json"],outputs[COVERAGE/"hand-calculations.json"],outputs[COVERAGE/"d9-control-pending-fields.json"],evidence).items():
         path=ROOT/"docs/implementation"/filename
         if args.check:
             if not path.exists() or path.read_text(encoding="utf-8")!=text:raise SystemExit("documentation drift "+filename)
