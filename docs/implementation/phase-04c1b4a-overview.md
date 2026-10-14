@@ -1,6 +1,6 @@
 # Phase 4C.1B.4A
 
-Verification in progress; no closure claim.
+Outcome A — D9 Control Oracle Subset Closed.
 
 Scope: the 22 existing D9-Control CaseIds only. D10 independent value comparison remains Pending. Historical CaseIds and Expected are unchanged. Starting HEAD: `5aa4ef7b865b9255a29c83c8375e13803d5e5ce1`.
 
