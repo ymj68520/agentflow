@@ -1,4 +1,5 @@
 //! Executable field contract and independent sidecars, test build only.
+//! Kept outside src so the unchanged production static-surface scan stays closed.
 
 use crate::PortableProofCodec;
 use serde_json::{Value as Json, json};

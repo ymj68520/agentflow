@@ -19,6 +19,7 @@ mod support;
 mod validation;
 
 #[cfg(test)]
+#[path = "../tests/support/d9_full_conformance.rs"]
 mod d9_full_conformance;
 
 pub use codec::{CanonicalPortableBundle, DecodedPortableBundle, PortableProofCodec};
