@@ -129,6 +129,167 @@ fn set_projection_path(value: &mut Json, path: &[Json], replacement: Json) {
         .insert(tokens[tokens.len() - 1].to_owned(), replacement);
 }
 
+fn semantic_path(path: &[String]) -> String {
+    let mut rendered = String::from("$");
+    for part in path {
+        if part.parse::<usize>().is_ok() {
+            rendered.push('[');
+            rendered.push_str(part);
+            rendered.push(']');
+        } else {
+            rendered.push_str("[\"");
+            rendered.push_str(&part.replace('\\', "\\\\").replace('\"', "\\\""));
+            rendered.push_str("\"]");
+        }
+    }
+    rendered
+}
+
+fn first_semantic_difference(expected: &Json, actual: &Json, path: &str) -> Option<String> {
+    match (expected, actual) {
+        (Json::Object(expected), Json::Object(actual)) => {
+            let mut keys = expected.keys().chain(actual.keys()).collect::<Vec<_>>();
+            keys.sort();
+            keys.dedup();
+            for key in keys {
+                let child_path = format!(
+                    "{path}[\"{}\"]",
+                    key.replace('\\', "\\\\").replace('\"', "\\\"")
+                );
+                match (expected.get(key), actual.get(key)) {
+                    (Some(left), Some(right)) => {
+                        if let Some(difference) =
+                            first_semantic_difference(left, right, &child_path)
+                        {
+                            return Some(difference);
+                        }
+                    }
+                    _ => return Some(child_path),
+                }
+            }
+            None
+        }
+        (Json::Array(expected), Json::Array(actual)) => {
+            let common = expected.len().min(actual.len());
+            for index in 0..common {
+                let child_path = format!("{path}[{index}]");
+                if let Some(difference) =
+                    first_semantic_difference(&expected[index], &actual[index], &child_path)
+                {
+                    return Some(difference);
+                }
+            }
+            (expected.len() != actual.len()).then(|| format!("{path}[{common}]"))
+        }
+        _ if expected == actual => None,
+        _ => Some(path.to_owned()),
+    }
+}
+
+fn collect_semantic_scalars(value: &Json, path: &mut Vec<String>, output: &mut Vec<Vec<String>>) {
+    match value {
+        Json::Object(fields) => {
+            for (key, child) in fields {
+                if key == "reason" {
+                    continue;
+                }
+                path.push(key.clone());
+                collect_semantic_scalars(child, path, output);
+                path.pop();
+            }
+        }
+        Json::Array(items) => {
+            for (index, child) in items.iter().enumerate() {
+                path.push(index.to_string());
+                collect_semantic_scalars(child, path, output);
+                path.pop();
+            }
+        }
+        _ => output.push(path.clone()),
+    }
+}
+
+fn mutate_semantic_path(value: &mut Json, path: &[String]) {
+    assert!(!path.is_empty());
+    let mut current = value;
+    for part in &path[..path.len() - 1] {
+        current = match current {
+            Json::Object(fields) => fields.get_mut(part).expect("manifest object field exists"),
+            Json::Array(items) => &mut items[part.parse::<usize>().expect("manifest array index")],
+            _ => panic!("semantic mutation path traverses a scalar"),
+        };
+    }
+    let last = path.last().unwrap();
+    let target = match current {
+        Json::Object(fields) => fields.get_mut(last).expect("manifest object leaf exists"),
+        Json::Array(items) => &mut items[last.parse::<usize>().expect("manifest array leaf")],
+        _ => panic!("semantic mutation parent is a scalar"),
+    };
+    *target = match target {
+        Json::Null => serde_json::json!({"mutation":"present"}),
+        Json::Bool(value) => Json::Bool(!*value),
+        Json::Number(value) => value
+            .as_u64()
+            .and_then(|number| number.checked_add(1))
+            .map_or_else(
+                || serde_json::json!("mutated-number"),
+                |number| serde_json::json!(number),
+            ),
+        Json::String(value) => Json::String(format!("{value}#mutated")),
+        Json::Array(_) | Json::Object(_) => unreachable!("only scalar paths are collected"),
+    };
+}
+
+fn assert_projection_mutations(projection: &Json, subtree: &str, count: usize) {
+    let expected_subtree = projection.get(subtree).expect("formal projection subtree");
+    let mut paths = Vec::new();
+    collect_semantic_scalars(expected_subtree, &mut vec![subtree.to_owned()], &mut paths);
+    assert!(
+        paths.len() >= count,
+        "{subtree} has {} scalar fields; mutation contract requires {count}",
+        paths.len()
+    );
+    for path in paths.into_iter().take(count) {
+        let mut actual = projection.clone();
+        mutate_semantic_path(&mut actual, &path);
+        let expected_path = semantic_path(&path);
+        let difference = first_semantic_difference(projection, &actual, "$");
+        assert_eq!(
+            difference.as_deref(),
+            Some(expected_path.as_str()),
+            "comparator must report the exact mutated semantic field"
+        );
+    }
+}
+
+#[test]
+fn recursive_semantic_comparator_is_fail_closed_for_shape_order_and_options() {
+    let expected = serde_json::json!({"items":[{"tag":"left"},{"tag":"right"}],"optional":null});
+    let missing = serde_json::json!({"items":[{"tag":"left"},{"tag":"right"}]});
+    assert_eq!(
+        first_semantic_difference(&expected, &missing, "$").as_deref(),
+        Some("$[\"optional\"]")
+    );
+
+    let extra = serde_json::json!({"items":[{"tag":"left"},{"tag":"right"}],"optional":null,"new_semantic_field":true});
+    assert_eq!(
+        first_semantic_difference(&expected, &extra, "$").as_deref(),
+        Some("$[\"new_semantic_field\"]")
+    );
+
+    let reordered = serde_json::json!({"items":[{"tag":"right"},{"tag":"left"}],"optional":null});
+    assert_eq!(
+        first_semantic_difference(&expected, &reordered, "$").as_deref(),
+        Some("$[\"items\"][0][\"tag\"]")
+    );
+
+    let wrong_option = serde_json::json!({"items":[{"tag":"left"},{"tag":"right"}],"optional":[]});
+    assert_eq!(
+        first_semantic_difference(&expected, &wrong_option, "$").as_deref(),
+        Some("$[\"optional\"]")
+    );
+}
+
 #[test]
 fn every_registered_opcode_bundle_passes_d0_to_d4() {
     let manifest = corpus_manifest();
@@ -251,6 +412,9 @@ fn registered_d9_recovery_cases_preserve_bounds_provenance_and_multiplicity() {
                         .revalidate_root_export()
                         .unwrap_or_else(|error| panic!("{} D5-D10: {error}", case["case_id"]));
                     let projection = analysis.typed_projection();
+                    if case["scenario"] == "outer-retry-1" {
+                        assert_projection_mutations(&projection, "d9_root_recovery", 12);
+                    }
                     let actions = projection["d9_root_recovery"]["actions"]["actions"]
                         .as_array()
                         .unwrap_or_else(|| {
@@ -391,6 +555,10 @@ fn full_registered_bundle_revalidates_through_d0_to_d10() {
             mutation["mutation_id"]
         );
     }
+
+    assert_projection_mutations(&projection, "d9_root", 12);
+    assert_projection_mutations(&projection, "d9_root_recovery", 12);
+    assert_projection_mutations(&projection, "d10_root_export", 22);
 }
 
 #[test]
@@ -427,6 +595,7 @@ fn p30_split_rows_are_not_combined_and_same_row_positive_remains_accepted() {
     assert_eq!(epsilon.proof.verdict.as_str(), "unproven");
     assert_eq!(split.report().static_compatibility.as_str(), "unproven");
     assert!(split.checked_compatibility().is_none());
+    assert_projection_mutations(&split.typed_projection(), "d10_root_export", 10);
 
     let same_row = codec
         .validate_supported(&fixture("p30-same-row-positive.ace1"))
