@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "basis": "Phase 4C1B4A nominal macro type audit; no production declaration changes",
+  "old_field_count": 1079,
+  "new_field_count": 1079,
+  "production_declarations_changed": false,
+  "reviewed_change": "explicit nominal-id macro definitions; underlying u32 and namespaces"
+}

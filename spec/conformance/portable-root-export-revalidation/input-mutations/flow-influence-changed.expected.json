@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "facts": {
+    "case_id": "portable-d9-input-mutation/flow-influence-changed",
+    "input_identity": {
+      "canonical_bytes": 2246320,
+      "canonical_sha256": "1f5fd9d32e22aceaf38d0fc6ec516c375ceca30697a8773f012e35a98f2db288"
+    },
+    "production_stage": "D6",
+    "error_family": "ContractValidationFailed",
+    "error_path": "$.contract_assets",
+    "d9_root": null,
+    "capability_issued": false
+  },
+  "formal_basis": "AF-CONTRACT-0012: unknown influence RequiresEvidence; no Checked contract/D9 fact",
+  "comparison_scope": "D6 rejection; D9 absent"
+}

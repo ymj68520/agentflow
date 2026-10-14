@@ -1,0 +1,408 @@
+{
+  "schema_version": 1,
+  "corpus": "agentflow.independent.d9-control-full",
+  "case_count": 22,
+  "cases": [
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-invoke",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/invoke.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-invoke.json",
+      "input_sha256": "2881619cdf8dea676340443d9eab2da3cddf880753bb8f6fc4637a1c5f82ce50",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 918,
+        "ExactDeclarations": 158,
+        "ContentIdentity": 3768,
+        "DiagnosticOnly": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-await",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/await.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-await.json",
+      "input_sha256": "7a3e130b6ffb642fa635609d0c82e2bd404a655e418506f93319fad932e47768",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 4509,
+        "diagnostic": 72
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 659,
+        "ExactDeclarations": 102,
+        "ContentIdentity": 3748,
+        "DiagnosticOnly": 72
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-sequence",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/sequence.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-sequence.json",
+      "input_sha256": "db9a30185b1e880cd684b0d6f41d085b82fed029c70c00c5b4edcdb20fb91f8b",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 5758,
+        "diagnostic": 137
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 1632,
+        "ExactDeclarations": 291,
+        "ContentIdentity": 3835,
+        "DiagnosticOnly": 137
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-select",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/select.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-select.json",
+      "input_sha256": "ce5430ef08fded182bb2aee1c631f8e58ed7dbfaaacd05fc90fccebfd29e3588",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 5767,
+        "diagnostic": 137
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 1641,
+        "ExactDeclarations": 291,
+        "ContentIdentity": 3835,
+        "DiagnosticOnly": 137
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-parallel",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/parallel.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-parallel.json",
+      "input_sha256": "9a32acc1951caafab7b5eedb1e06448dc7ce5e1b5fe73b9d9d618d2e9c00d113",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 5759,
+        "diagnostic": 137
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 1633,
+        "ExactDeclarations": 291,
+        "ContentIdentity": 3835,
+        "DiagnosticOnly": 137
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-race",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/race.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-race.json",
+      "input_sha256": "027b12d5bedfa2676a20e1a62a16a7333f6f64b4aecb09db55b6305b12136256",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 5794,
+        "diagnostic": 141
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 1664,
+        "ExactDeclarations": 295,
+        "ContentIdentity": 3835,
+        "DiagnosticOnly": 141
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-handle",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/handle.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-handle.json",
+      "input_sha256": "28d3bc4ec2d896a38c9d85a9c5ecd647927e44fc116feeb1f47bfcd42e89d935",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 5768,
+        "diagnostic": 137
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 1642,
+        "ExactDeclarations": 291,
+        "ContentIdentity": 3835,
+        "DiagnosticOnly": 137
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-iterate",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/iterate.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-iterate.json",
+      "input_sha256": "a3a75a547ca999895ff6843f39024f6f19a20c8ca75719e2c06bf8757f3599f9",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 5091,
+        "diagnostic": 97
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 1129,
+        "ExactDeclarations": 177,
+        "ContentIdentity": 3785,
+        "DiagnosticOnly": 97
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-retry",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/retry.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-retry.json",
+      "input_sha256": "50a8d27d59b9c1ec8d4fc968073012d2629471fc3b7fce23314aa72480e1f671",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 5117,
+        "diagnostic": 101
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 1151,
+        "ExactDeclarations": 181,
+        "ContentIdentity": 3785,
+        "DiagnosticOnly": 101
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-timeout",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/timeout.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-timeout.json",
+      "input_sha256": "da2dbc46654f76458147a65fc18f7769b97eafa8f4ed5e30b194e50cd967c2ee",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 5104,
+        "diagnostic": 99
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 1140,
+        "ExactDeclarations": 179,
+        "ContentIdentity": 3785,
+        "DiagnosticOnly": 99
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-scope",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/scope.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-scope.json",
+      "input_sha256": "f3d4c28b9916021669f3f768ae331e0d1a9887a7a80f77cd75533d47eca08bed",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 5153,
+        "diagnostic": 105
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 1183,
+        "ExactDeclarations": 185,
+        "ContentIdentity": 3785,
+        "DiagnosticOnly": 105
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-compensation_scope",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/compensation_scope.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-compensation_scope.json",
+      "input_sha256": "9d81f0fb285ebc5075730f034e7bcf06911530930135175b8036e5709b8490f3",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 5188,
+        "diagnostic": 109
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 1214,
+        "ExactDeclarations": 189,
+        "ContentIdentity": 3785,
+        "DiagnosticOnly": 109
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-call_subflow",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/call_subflow.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-call_subflow.json",
+      "input_sha256": "a3b4ed8ddca7eef36d16f109e1bc9ddfd84b87a392761528720dfcbd1ee5d12e",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 4976,
+        "diagnostic": 102
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 999,
+        "ExactDeclarations": 165,
+        "ContentIdentity": 3812,
+        "DiagnosticOnly": 102
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-sequence-reversed",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/sequence-reversed.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-sequence-reversed.json",
+      "input_sha256": "fccb70cb37ed4752220b47884e88e8aae00c6507c41f089d49920eb852c1b4dd",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 5758,
+        "diagnostic": 137
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 1632,
+        "ExactDeclarations": 291,
+        "ContentIdentity": 3835,
+        "DiagnosticOnly": 137
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-parallel-fail-fast",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/parallel-fail-fast.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-parallel-fail-fast.json",
+      "input_sha256": "c81c33955472f3345a7fcdd55f3fc60c410eb46b77e02265f5552f9ed556c3e7",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 5795,
+        "diagnostic": 141
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 1665,
+        "ExactDeclarations": 295,
+        "ContentIdentity": 3835,
+        "DiagnosticOnly": 141
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-race-three-contestants",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/race-three-contestants.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-race-three-contestants.json",
+      "input_sha256": "753032439be310f9b0bab37dc64b08fce7f33784230080577ac919378aae4823",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 6473,
+        "diagnostic": 181
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 2179,
+        "ExactDeclarations": 409,
+        "ContentIdentity": 3885,
+        "DiagnosticOnly": 181
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-retry-four-attempts",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/retry-four-attempts.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-retry-four-attempts.json",
+      "input_sha256": "3809eb344289aa4579194dd48df6b979dfcc07e07eac45b1fbf034f9aa0ddee8",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 5119,
+        "diagnostic": 101
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 1153,
+        "ExactDeclarations": 181,
+        "ContentIdentity": 3785,
+        "DiagnosticOnly": 101
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-timeout-retry-nested",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/timeout-retry-nested.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-timeout-retry-nested.json",
+      "input_sha256": "cb7039a569d04bdb4649142a8ca1f0a80f8ac6eef4afeff74e8f2eaea2ce711a",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 5472,
+        "diagnostic": 124
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 1456,
+        "ExactDeclarations": 214,
+        "ContentIdentity": 3802,
+        "DiagnosticOnly": 124
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-scope-compensation-nested",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/scope-compensation-nested.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-scope-compensation-nested.json",
+      "input_sha256": "aa40ad83e0ca48512998f68296952a3e51596dcb53de244eb24f9143d10440b4",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 5566,
+        "diagnostic": 135
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 1539,
+        "ExactDeclarations": 225,
+        "ContentIdentity": 3802,
+        "DiagnosticOnly": 135
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-compensation-sequence",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/compensation-sequence.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-compensation-sequence.json",
+      "input_sha256": "89e5d15fc269433c11f393325ae670be00613689b1d5a86a11b889fa120894d6",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 6248,
+        "diagnostic": 168
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 2046,
+        "ExactDeclarations": 338,
+        "ContentIdentity": 3864,
+        "DiagnosticOnly": 168
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-iterate-while-eight",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/iterate-while-eight.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-iterate-while-eight.json",
+      "input_sha256": "257378f7250c82d7ff23bb6d3684cfb747eef3f3d3b18898aa26f074dd71bae7",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 5091,
+        "diagnostic": 97
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 1129,
+        "ExactDeclarations": 177,
+        "ContentIdentity": 3785,
+        "DiagnosticOnly": 97
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-opcode-select-two-exclusive-branches",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/select-two-exclusive-branches.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-select-two-exclusive-branches.json",
+      "input_sha256": "ce5430ef08fded182bb2aee1c631f8e58ed7dbfaaacd05fc90fccebfd29e3588",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "instance_coverage": {
+        "required": 5767,
+        "diagnostic": 137
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 1641,
+        "ExactDeclarations": 291,
+        "ContentIdentity": 3835,
+        "DiagnosticOnly": 137
+      }
+    }
+  ],
+  "instance_totals": {
+    "required": 120117,
+    "diagnostic": 2683
+  },
+  "source_reads": "Portable declarations and frozen type/rule/schema assets only; no target/Actual input"
+}

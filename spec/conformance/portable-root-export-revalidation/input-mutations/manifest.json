@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "vector_count": 12,
+  "cases": [
+    {
+      "vector_id": "source-contract-changed",
+      "case_id": "portable-d9-input-mutation/source-contract-changed",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/input-mutations/source-contract-changed.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/source-contract-changed.expected.json",
+      "expected_stage": "D10"
+    },
+    {
+      "vector_id": "computation-node-changed",
+      "case_id": "portable-d9-input-mutation/computation-node-changed",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/input-mutations/computation-node-changed.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/computation-node-changed.expected.json",
+      "expected_stage": "D10"
+    },
+    {
+      "vector_id": "effect-operation-changed",
+      "case_id": "portable-d9-input-mutation/effect-operation-changed",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/input-mutations/effect-operation-changed.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/effect-operation-changed.expected.json",
+      "expected_stage": "D10"
+    },
+    {
+      "vector_id": "effect-guard-changed",
+      "case_id": "portable-d9-input-mutation/effect-guard-changed",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/input-mutations/effect-guard-changed.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/effect-guard-changed.expected.json",
+      "expected_stage": "D10"
+    },
+    {
+      "vector_id": "failure-member-changed",
+      "case_id": "portable-d9-input-mutation/failure-member-changed",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/input-mutations/failure-member-changed.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/failure-member-changed.expected.json",
+      "expected_stage": "D10"
+    },
+    {
+      "vector_id": "usage-meter-changed",
+      "case_id": "portable-d9-input-mutation/usage-meter-changed",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/input-mutations/usage-meter-changed.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/usage-meter-changed.expected.json",
+      "expected_stage": "D10"
+    },
+    {
+      "vector_id": "resource-slot-changed",
+      "case_id": "portable-d9-input-mutation/resource-slot-changed",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/input-mutations/resource-slot-changed.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/resource-slot-changed.expected.json",
+      "expected_stage": "D10"
+    },
+    {
+      "vector_id": "flow-influence-changed",
+      "case_id": "portable-d9-input-mutation/flow-influence-changed",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/input-mutations/flow-influence-changed.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/flow-influence-changed.expected.json",
+      "expected_stage": "D6"
+    },
+    {
+      "vector_id": "execution-capability-changed",
+      "case_id": "portable-d9-input-mutation/execution-capability-changed",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/input-mutations/execution-capability-changed.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/execution-capability-changed.expected.json",
+      "expected_stage": "D10"
+    },
+    {
+      "vector_id": "control-child-reordered",
+      "case_id": "portable-d9-input-mutation/control-child-reordered",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/input-mutations/control-child-reordered.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/control-child-reordered.expected.json",
+      "expected_stage": "D10"
+    },
+    {
+      "vector_id": "retry-bound-changed",
+      "case_id": "portable-d9-input-mutation/retry-bound-changed",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/input-mutations/retry-bound-changed.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/retry-bound-changed.expected.json",
+      "expected_stage": "D10"
+    },
+    {
+      "vector_id": "subflow-target-export-changed",
+      "case_id": "portable-d9-input-mutation/subflow-target-export-changed",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/input-mutations/subflow-target-export-changed.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/subflow-target-export-changed.expected.json",
+      "expected_stage": "D10"
+    }
+  ],
+  "historical_22_cases_modified": false
+}

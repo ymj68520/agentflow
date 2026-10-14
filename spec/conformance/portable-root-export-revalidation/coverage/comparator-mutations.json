@@ -1,0 +1,561 @@
+{
+  "schema_version": 1,
+  "baseline": "independent full-field Expected only",
+  "mutation_count": 42,
+  "mutations": [
+    {
+      "mutation_id": "root-node",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root",
+        "root_control",
+        "computation"
+      ],
+      "replacement": 9
+    },
+    {
+      "mutation_id": "root-opcode",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root",
+        "root_control",
+        "operator"
+      ],
+      "replacement": "await"
+    },
+    {
+      "mutation_id": "child-order",
+      "case_slug": "d9-opcode-sequence",
+      "path": [
+        "d9_root",
+        "root_control",
+        "direct_children"
+      ],
+      "replacement": [
+        3,
+        2
+      ]
+    },
+    {
+      "mutation_id": "child-source-node",
+      "case_slug": "d9-opcode-sequence",
+      "path": [
+        "d9_root",
+        "root_control",
+        "children",
+        "0",
+        "computation"
+      ],
+      "replacement": 9
+    },
+    {
+      "mutation_id": "leaf-contract-pin",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root",
+        "root_control",
+        "leaf_summary",
+        "target",
+        "contract_digest",
+        "hex"
+      ],
+      "replacement": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    },
+    {
+      "mutation_id": "leaf-call-site",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root",
+        "root_control",
+        "leaf_summary",
+        "computation"
+      ],
+      "replacement": 9
+    },
+    {
+      "mutation_id": "leaf-usage-limit",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root",
+        "root_control",
+        "leaf_summary",
+        "dimensions",
+        "usage",
+        "0",
+        "upper",
+        "finite"
+      ],
+      "replacement": 1
+    },
+    {
+      "mutation_id": "root-usage-upper",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root",
+        "root_control",
+        "usage",
+        "value",
+        "coordinates",
+        "0",
+        "bound",
+        "upper"
+      ],
+      "replacement": 1
+    },
+    {
+      "mutation_id": "meter-unit",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "context",
+        "usage_meters",
+        "0",
+        "unit",
+        "name"
+      ],
+      "replacement": "changed-unit"
+    },
+    {
+      "mutation_id": "meter-identity",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root",
+        "root_control",
+        "usage",
+        "value",
+        "coordinates",
+        "0",
+        "meter",
+        "name"
+      ],
+      "replacement": "changed-meter"
+    },
+    {
+      "mutation_id": "recovery-phase",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root",
+        "root_dimensions",
+        "usage",
+        "value",
+        "coordinates",
+        "1",
+        "phase"
+      ],
+      "replacement": "forward"
+    },
+    {
+      "mutation_id": "recovery-source-node",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root",
+        "root_control",
+        "recovery_sources",
+        "contributions",
+        "0",
+        "source_node"
+      ],
+      "replacement": 9
+    },
+    {
+      "mutation_id": "execution-child",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root",
+        "root_control",
+        "execution_sources",
+        "contributions",
+        "0",
+        "source_node"
+      ],
+      "replacement": 9
+    },
+    {
+      "mutation_id": "execution-sandbox",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root",
+        "root_control",
+        "leaf_summary",
+        "dimensions",
+        "execution",
+        "sandbox"
+      ],
+      "replacement": {
+        "minimum": "strong"
+      }
+    },
+    {
+      "mutation_id": "flow-influence",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root",
+        "root_control",
+        "information_flow",
+        "value",
+        "known_may_influence",
+        "influence_unknown"
+      ],
+      "replacement": true
+    },
+    {
+      "mutation_id": "flow-source",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root",
+        "root_control",
+        "information_flow",
+        "value",
+        "sources",
+        "0",
+        "source_node"
+      ],
+      "replacement": 9
+    },
+    {
+      "mutation_id": "context-association",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root",
+        "root_control",
+        "proof_context",
+        "same_as_root"
+      ],
+      "replacement": false
+    },
+    {
+      "mutation_id": "closure-node",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root",
+        "closure",
+        "computation_order"
+      ],
+      "replacement": [
+        9
+      ]
+    },
+    {
+      "mutation_id": "closure-leaf",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root",
+        "closure",
+        "leaf_order"
+      ],
+      "replacement": [
+        9
+      ]
+    },
+    {
+      "mutation_id": "closure-occurrences",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root",
+        "closure",
+        "known_effect_occurrences_accounted"
+      ],
+      "replacement": false
+    },
+    {
+      "mutation_id": "root-k-source-closure",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root_recovery",
+        "source_closure",
+        "action_bindings_accounted"
+      ],
+      "replacement": "unproven"
+    },
+    {
+      "mutation_id": "root-k-verdict",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root_recovery",
+        "overall_verdict"
+      ],
+      "replacement": "unproven"
+    },
+    {
+      "mutation_id": "scope-owner-child",
+      "case_slug": "d9-opcode-scope",
+      "path": [
+        "d9_root",
+        "root_control",
+        "scope_boundary",
+        "child"
+      ],
+      "replacement": 9
+    },
+    {
+      "mutation_id": "retry-factor",
+      "case_slug": "d9-opcode-retry-four-attempts",
+      "path": [
+        "d9_root",
+        "root_control",
+        "operator_semantics",
+        "max_attempts"
+      ],
+      "replacement": 5
+    },
+    {
+      "mutation_id": "retry-delay-order",
+      "case_slug": "d9-opcode-retry-four-attempts",
+      "path": [
+        "d9_root",
+        "root_control",
+        "operator_semantics",
+        "delay_micros_in_order"
+      ],
+      "replacement": [
+        2,
+        1,
+        0
+      ]
+    },
+    {
+      "mutation_id": "selector-witness",
+      "case_slug": "d9-opcode-select",
+      "path": [
+        "d9_root",
+        "root_control",
+        "interface",
+        "select_decision",
+        "exact_case"
+      ],
+      "replacement": 2
+    },
+    {
+      "mutation_id": "timeout-duration",
+      "case_slug": "d9-opcode-timeout",
+      "path": [
+        "d9_root",
+        "root_control",
+        "operator_semantics",
+        "static_duration_micros"
+      ],
+      "replacement": 77
+    },
+    {
+      "mutation_id": "subflow-export-pin",
+      "case_slug": "d9-opcode-call_subflow",
+      "path": [
+        "d9_root",
+        "root_control",
+        "leaf_summary",
+        "target",
+        "exported_contract_digest",
+        "hex"
+      ],
+      "replacement": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    },
+    {
+      "mutation_id": "compensation-obligation",
+      "case_slug": "d9-opcode-compensation_scope",
+      "path": [
+        "d9_root",
+        "root_control",
+        "compensation_scope",
+        "recovery_blocked_outcome"
+      ],
+      "replacement": "proven"
+    },
+    {
+      "mutation_id": "await-verdict-promotion",
+      "case_slug": "d9-opcode-await",
+      "path": [
+        "d9_root",
+        "root_control",
+        "effects",
+        "proofs",
+        "0",
+        "verdict"
+      ],
+      "replacement": "proven"
+    },
+    {
+      "mutation_id": "await-option-presence",
+      "case_slug": "d9-opcode-await",
+      "path": [
+        "d9_root",
+        "root_control",
+        "leaf_summary",
+        "await_summary"
+      ],
+      "replacement": null
+    },
+    {
+      "mutation_id": "proof-precondition",
+      "case_slug": "d9-opcode-invoke",
+      "path": [
+        "d9_root",
+        "root_control",
+        "effects",
+        "proofs",
+        "0",
+        "prerequisites"
+      ],
+      "replacement": [
+        "undeclared-receipt"
+      ]
+    },
+    {
+      "mutation_id": "effect-qualifier",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/effect-operation-changed.expected.json",
+      "path": [
+        "d9_root",
+        "root_control",
+        "effects",
+        "value",
+        "entries",
+        "0",
+        "atom",
+        "qualifiers",
+        "0",
+        "member"
+      ],
+      "replacement": "none"
+    },
+    {
+      "mutation_id": "effect-selector",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/effect-operation-changed.expected.json",
+      "path": [
+        "d9_root",
+        "root_control",
+        "effects",
+        "value",
+        "entries",
+        "0",
+        "atom",
+        "resource_selector",
+        "scope_bindings",
+        "0",
+        "value"
+      ],
+      "replacement": "2"
+    },
+    {
+      "mutation_id": "effect-guard-value",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/effect-guard-changed.expected.json",
+      "path": [
+        "d9_root",
+        "root_control",
+        "effects",
+        "value",
+        "entries",
+        "0",
+        "guard",
+        "input_equals",
+        "expected",
+        "int64"
+      ],
+      "replacement": 1
+    },
+    {
+      "mutation_id": "effect-upper",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/effect-operation-changed.expected.json",
+      "path": [
+        "d9_root",
+        "root_control",
+        "effects",
+        "value",
+        "entries",
+        "0",
+        "bounds",
+        "upper",
+        "finite"
+      ],
+      "replacement": 11
+    },
+    {
+      "mutation_id": "effect-occurrence-source",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/effect-operation-changed.expected.json",
+      "path": [
+        "d9_root",
+        "root_control",
+        "effect_occurrences",
+        "0",
+        "computation"
+      ],
+      "replacement": 9
+    },
+    {
+      "mutation_id": "failure-nominal-pin",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/failure-member-changed.expected.json",
+      "path": [
+        "d9_root",
+        "root_control",
+        "leaf_summary",
+        "dimensions",
+        "failures",
+        "0",
+        "type_name"
+      ],
+      "replacement": "ChangedFailure"
+    },
+    {
+      "mutation_id": "resource-slot-coordinate",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/resource-slot-changed.expected.json",
+      "path": [
+        "d9_root",
+        "root_control",
+        "resources",
+        "contributions",
+        "0",
+        "occurrences",
+        "0",
+        "mapping",
+        "resource_slot"
+      ],
+      "replacement": 8
+    },
+    {
+      "mutation_id": "resource-type-pin",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/resource-slot-changed.expected.json",
+      "path": [
+        "d9_root",
+        "root_control",
+        "resources",
+        "contributions",
+        "0",
+        "occurrences",
+        "0",
+        "mapping",
+        "required_type",
+        "schema_digest",
+        "hex"
+      ],
+      "replacement": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    },
+    {
+      "mutation_id": "execution-capability-identity",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/execution-capability-changed.expected.json",
+      "path": [
+        "d9_root",
+        "root_control",
+        "execution_sources",
+        "contributions",
+        "0",
+        "sources",
+        "0",
+        "requirements",
+        "capabilities",
+        "0",
+        "capability",
+        "name"
+      ],
+      "replacement": "wrong-capability"
+    },
+    {
+      "mutation_id": "failure-source-call-site",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/failure-member-changed.expected.json",
+      "path": [
+        "d9_root",
+        "root_control",
+        "leaf_summary",
+        "computation"
+      ],
+      "replacement": 9
+    }
+  ],
+  "both_side_required_omission": "must fail shape validation before equality"
+}
