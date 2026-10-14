@@ -18,6 +18,9 @@ mod schema;
 mod support;
 mod validation;
 
+#[cfg(test)]
+mod d9_full_conformance;
+
 pub use codec::{CanonicalPortableBundle, DecodedPortableBundle, PortableProofCodec};
 pub use error::{PortableProofError, ValidationStage};
 pub use limits::DecoderLimits;

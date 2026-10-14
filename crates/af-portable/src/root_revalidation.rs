@@ -48,6 +48,11 @@ use serde_json::json;
 use sha2::Digest as _;
 use std::collections::{BTreeMap, BTreeSet};
 
+#[cfg(test)]
+mod conformance;
+#[cfg(test)]
+pub(crate) use conformance::project_full_d9_for_conformance;
+
 const MAX_ASSERTION_MAPPINGS: usize = 2_048;
 const MAX_STRUCTURAL_NODES: usize = 100_000;
 const MAX_STRUCTURAL_EXPANSION_WORK: usize = 100_000;

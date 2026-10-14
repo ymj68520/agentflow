@@ -965,6 +965,13 @@ fn reconstruct_with_context(
                 }
                 let (root_projection, recovery_projection) =
                     crate::root_revalidation::project_root_summary(&derived)?;
+                #[cfg(test)]
+                let (root_projection, recovery_projection) =
+                    crate::root_revalidation::project_full_d9_for_conformance(
+                        &derived,
+                        root_projection,
+                        recovery_projection,
+                    )?;
                 check_root_export_comparison_budget(
                     &projected.assertion,
                     &derived,
