@@ -8,7 +8,7 @@ The checkout began at `3eb53e8110c8901ed9f789dda9631eed7a7bd0dc`, with a clean w
 
 The existing Python generator independently constructs Portable declarations, ACE1 bytes and some fixture-level facts. Its RootExport expected projection is intentionally small: it checks an empty-root positive (and missing-execution variant), including root opcode, empty effect/recovery totals, two explicit zero usage coordinates, execution mapping count, nine verdict labels and authority boundaries. Existing D9 tests additionally check selected opcode/closure fields and recovery bounds. These are useful local checks, not a Full-field Oracle.
 
-The Rust report projection contains substantially more information than those expectations: recursive control facts, provenance, effect and failure rows, usage states, recovery source/action identities and multiplicity paths, typed mapping witnesses, preflight proofs, per-dimension source facts, execution child verdicts, capability issuance and unresolved obligations. The independent generator does not currently derive these complete values for every applicable CaseId. The per-type gap inventory is in [the field coverage manifest](phase-04c1b4-field-coverage-manifest.md).
+The Rust report projection contains substantially more information than those expectations: recursive control facts, provenance, effect and failure rows, usage states, recovery source/action identities and multiplicity paths, typed mapping witnesses, preflight proofs, per-dimension source facts, execution child verdicts, capability issuance and unresolved obligations. The independent generator does not currently derive these complete values for every applicable CaseId. The per-type gap inventory is in [the field coverage manifest](phase-04c1b4-field-coverage-manifest.md); that inventory is not yet a closed, executable coverage contract.
 
 ## What changed in this interim pass
 
@@ -23,7 +23,7 @@ This is comparator integrity evidence only. Its mutation baseline is a productio
 - A declaration-derived full `RootExportAssertionIdentity`, including every typed mapping member, all content identities and explicit option presence.
 - Independent preflight and nine-dimension proofs including source facts, mapping witnesses, prerequisites, missing evidence, violation witnesses and rule attribution.
 - Full-field comparison of the six producer/consumer scenarios and the 69 D10-reaching cases.
-- A closed field inventory with numeric required/derived/compared/diagnostic-only/uncovered counts. The current tree does not contain such a field-level manifest, so no zero-gap count is claimed.
+- A closed, executable field inventory with numeric required/derived/compared/diagnostic-only/uncovered counts. The checked-in inventory is only a gap audit, so no zero-gap count is claimed.
 - Human-derived cross-check vectors for all requested control operators and every proof dimension.
 - The requested complete production-input mutation matrix as part of an independent full-field Oracle.
 
