@@ -1,0 +1,366 @@
+{
+  "schema_version": 1,
+  "case_count": 16,
+  "cases": [
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-outer-retry-1",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/outer-retry-1.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-outer-retry-1.json",
+      "input_sha256": "8d13268ef50b23a3a098397a94e9c3e5960072cd0217299378efd483e486ede7",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "root_computation": 1,
+      "recovery_sources": [
+        3
+      ],
+      "instance_coverage": {
+        "required": 9468,
+        "diagnostic": 150
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 3255,
+        "ExactDeclarations": 473,
+        "ContentIdentity": 5740,
+        "DiagnosticOnly": 150
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-outer-retry-2",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/outer-retry-2.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-outer-retry-2.json",
+      "input_sha256": "fa8a4192b6a3d3efa56aa9e5308fafe761d3cc0ed7b89f6c3f44642f45610481",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "root_computation": 1,
+      "recovery_sources": [
+        3
+      ],
+      "instance_coverage": {
+        "required": 9501,
+        "diagnostic": 154
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 3284,
+        "ExactDeclarations": 477,
+        "ContentIdentity": 5740,
+        "DiagnosticOnly": 154
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-outer-retry-3",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/outer-retry-3.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-outer-retry-3.json",
+      "input_sha256": "0cd50d75c2db0d01e25088b7204d3adf723e171392185c06cb0caf4c1f8f5c26",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "root_computation": 1,
+      "recovery_sources": [
+        3
+      ],
+      "instance_coverage": {
+        "required": 9502,
+        "diagnostic": 154
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 3285,
+        "ExactDeclarations": 477,
+        "ContentIdentity": 5740,
+        "DiagnosticOnly": 154
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-outer-retry-4",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/outer-retry-4.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-outer-retry-4.json",
+      "input_sha256": "95926620d76d330f0c09a16f9db63b1d350e440b44151ad9eef79bbab7d53e44",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "root_computation": 1,
+      "recovery_sources": [
+        3
+      ],
+      "instance_coverage": {
+        "required": 9503,
+        "diagnostic": 154
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 3286,
+        "ExactDeclarations": 477,
+        "ContentIdentity": 5740,
+        "DiagnosticOnly": 154
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-outer-iterate-1",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/outer-iterate-1.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-outer-iterate-1.json",
+      "input_sha256": "99587870cde231c04e849af4d2390563ffe1b980c725e7ca69515ad539c21342",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "root_computation": 1,
+      "recovery_sources": [
+        3
+      ],
+      "instance_coverage": {
+        "required": 9414,
+        "diagnostic": 146
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 3205,
+        "ExactDeclarations": 469,
+        "ContentIdentity": 5740,
+        "DiagnosticOnly": 146
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-outer-iterate-2",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/outer-iterate-2.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-outer-iterate-2.json",
+      "input_sha256": "468989a02ce404bce049348718b1e7524b17bd03b4c8549f8d8f509ef03256a3",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "root_computation": 1,
+      "recovery_sources": [
+        3
+      ],
+      "instance_coverage": {
+        "required": 9414,
+        "diagnostic": 146
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 3205,
+        "ExactDeclarations": 469,
+        "ContentIdentity": 5740,
+        "DiagnosticOnly": 146
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-outer-iterate-3",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/outer-iterate-3.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-outer-iterate-3.json",
+      "input_sha256": "e41403b8151c74025a78c34ebe05a83b7175b89244495477286276df587e3386",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "root_computation": 1,
+      "recovery_sources": [
+        3
+      ],
+      "instance_coverage": {
+        "required": 9414,
+        "diagnostic": 146
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 3205,
+        "ExactDeclarations": 469,
+        "ContentIdentity": 5740,
+        "DiagnosticOnly": 146
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-outer-iterate-4",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/outer-iterate-4.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-outer-iterate-4.json",
+      "input_sha256": "a8d3d22fc5a21b704da99ab539495cdc46f783e4faf17636f71da4a350591bb4",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "root_computation": 1,
+      "recovery_sources": [
+        3
+      ],
+      "instance_coverage": {
+        "required": 9414,
+        "diagnostic": 146
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 3205,
+        "ExactDeclarations": 469,
+        "ContentIdentity": 5740,
+        "DiagnosticOnly": 146
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-retry-2-times-iterate-2",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/retry-2-times-iterate-2.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-retry-2-times-iterate-2.json",
+      "input_sha256": "6047a07660267947431fcb3734cb68639ac44e7e9484c275df296afad8bf527b",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "root_computation": 1,
+      "recovery_sources": [
+        4
+      ],
+      "instance_coverage": {
+        "required": 10360,
+        "diagnostic": 190
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 4016,
+        "ExactDeclarations": 527,
+        "ContentIdentity": 5817,
+        "DiagnosticOnly": 190
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-retry-2-times-iterate-4",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/retry-2-times-iterate-4.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-retry-2-times-iterate-4.json",
+      "input_sha256": "aa42bdc7adf25a6289c6a6e228842ffee4562d0980851f84ccc8a27fde0d503d",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "root_computation": 1,
+      "recovery_sources": [
+        4
+      ],
+      "instance_coverage": {
+        "required": 10360,
+        "diagnostic": 190
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 4016,
+        "ExactDeclarations": 527,
+        "ContentIdentity": 5817,
+        "DiagnosticOnly": 190
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-retry-3-times-iterate-2",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/retry-3-times-iterate-2.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-retry-3-times-iterate-2.json",
+      "input_sha256": "8776661704b8de07f744ccaebc8d49c0c9731526a57ea931e066858a0f06e2e2",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "root_computation": 1,
+      "recovery_sources": [
+        4
+      ],
+      "instance_coverage": {
+        "required": 10361,
+        "diagnostic": 190
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 4017,
+        "ExactDeclarations": 527,
+        "ContentIdentity": 5817,
+        "DiagnosticOnly": 190
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-retry-3-times-iterate-4",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/retry-3-times-iterate-4.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-retry-3-times-iterate-4.json",
+      "input_sha256": "51cbcbf06cb4790eae829bbab40f35d405f060db8960f54d3cf08934fa48773b",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "root_computation": 1,
+      "recovery_sources": [
+        4
+      ],
+      "instance_coverage": {
+        "required": 10361,
+        "diagnostic": 190
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 4017,
+        "ExactDeclarations": 527,
+        "ContentIdentity": 5817,
+        "DiagnosticOnly": 190
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-local-retry-inside-compensation-scope",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/local-retry-inside-compensation-scope.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-local-retry-inside-compensation-scope.json",
+      "input_sha256": "605f6df85947bec424ad865e2744d26c49c1a4d282427106b3460919f49c2f4b",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "root_computation": 1,
+      "recovery_sources": [
+        3
+      ],
+      "instance_coverage": {
+        "required": 9639,
+        "diagnostic": 155
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 3409,
+        "ExactDeclarations": 478,
+        "ContentIdentity": 5752,
+        "DiagnosticOnly": 155
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-two-sequence-actions",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/two-sequence-actions.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-two-sequence-actions.json",
+      "input_sha256": "f38aa2200d603921006a5bd379779d6de826340bd5cde6a51ff546ab7a4af120",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "root_computation": 1,
+      "recovery_sources": [
+        3,
+        5
+      ],
+      "instance_coverage": {
+        "required": 12724,
+        "diagnostic": 235
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 5684,
+        "ExactDeclarations": 881,
+        "ContentIdentity": 6159,
+        "DiagnosticOnly": 235
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-race-retains-loser-action",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/race-retains-loser-action.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-race-retains-loser-action.json",
+      "input_sha256": "efe7989f995aae22df72799018d55e50cfa0affe3a1bfcf9aea9c36da937f5dc",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "root_computation": 1,
+      "recovery_sources": [
+        3,
+        5
+      ],
+      "instance_coverage": {
+        "required": 12768,
+        "diagnostic": 239
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 5722,
+        "ExactDeclarations": 887,
+        "ContentIdentity": 6159,
+        "DiagnosticOnly": 239
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d9-recovery-parallel-keeps-both-actions",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/d9/recovery/parallel-keeps-both-actions.ace1",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-parallel-keeps-both-actions.json",
+      "input_sha256": "385c96d2a97a79d649ddc4755e6fbb393cef7719256848caf461ab9055ecc6aa",
+      "expected_stage": "D10",
+      "comparison_scope": "D9",
+      "root_computation": 1,
+      "recovery_sources": [
+        3,
+        5
+      ],
+      "instance_coverage": {
+        "required": 12721,
+        "diagnostic": 235
+      },
+      "oracle_provenance": {
+        "IndependentAlgebra": 5683,
+        "ExactDeclarations": 879,
+        "ContentIdentity": 6159,
+        "DiagnosticOnly": 235
+      }
+    }
+  ],
+  "instance_totals": {
+    "required": 164924,
+    "diagnostic": 2820
+  },
+  "source_reads": "Portable declarations and normative inputs only"
+}

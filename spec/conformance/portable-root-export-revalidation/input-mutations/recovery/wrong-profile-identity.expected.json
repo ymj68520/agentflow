@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "facts": {
+    "case_id": "portable-d9-recovery-input/wrong-profile-identity",
+    "input_identity": {
+      "canonical_bytes": 2253207,
+      "canonical_sha256": "1cddcda129e439e96d8d24f72685cef10e2ac38688033dcfc48a6379d96e8e13"
+    },
+    "production_stage": "D6",
+    "error_family": "ContractValidationFailed",
+    "error_path": "$.contract_assets",
+    "d9_root": null,
+    "capability_issued": false
+  },
+  "formal_basis": "AF-CONTRACT-0014..0020; AF-SEMANTIC-0150/0154..0158",
+  "d10_independent_values": "Pending"
+}

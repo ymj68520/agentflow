@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "starting_head": "c5b49850d9ba0dce75255f152498468fe8e93762",
+  "all_gates": "pending",
+  "code_gate_head": "pending",
+  "historical_512": "pending",
+  "d9_control_22": "pending",
+  "d9_recovery_16": "pending_fresh_production_run",
+  "recovery_input_mutations": "pending",
+  "recovery_comparator_mutations": "pending",
+  "hand_calculations": "independent generator checks; pending Rust gate",
+  "fmt": "pending",
+  "clippy": "pending",
+  "cargo_test_all": "pending",
+  "spec_check": "pending",
+  "generator_double_round": "pending",
+  "frozen_asset_drift": "pending",
+  "d10_independent_values": "Pending for all 78",
+  "B01_B02_conformance_closure": "BLOCKING",
+  "B03_B07": "BLOCKING",
+  "findings": {"F01": "CLOSED", "F02": "CLOSED", "F03": "OPEN/P2", "F04": "OPEN/P2", "new_confirmed_production": []},
+  "oracle_review": ["local action dimension preserves positive eligibility evidence, separate from arithmetic certainty", "Root-relative occurrences retain enclosing family annotations without applying their multiplier twice", "Retry safety is also a Recovery dimension proof; cross-source aliases retain all mapped occurrences", "negative Usage fixtures must declare finite meter premises; EMPTY exhaustive meter sets are not missing meters", "unsupported aggregation uses the registered unsupported enum, not an invented opaque literal"]
+}

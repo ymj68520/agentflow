@@ -1,0 +1,2324 @@
+# Phase 4C.1B.4B — hand calculation
+
+Starting HEAD: `c5b49850d9ba0dce75255f152498468fe8e93762`. This phase targets only 16 original D9-Recovery cases; the 22 Control baseline is retained. Closure depends on the recorded committed gates. D10 independent values are Pending for all 78; B01/B02 Closure and B03–B07 remain BLOCKING. No later phase or runtime/publication capability is created.
+
+The original 37 hand vectors remain unchanged. New literal premises distinguish local/root, nested ownership, distinct sources, logical/physical factors, same-atom seed, usage, missing evidence, unbounded/overflow and typed guards. Synthetic witnesses establish only their declared static premises, not Checked/runtime capabilities.
+
+## retry-outside-scope-4-12
+
+```json
+{
+  "vector_id": "retry-outside-scope-4-12",
+  "input": {
+    "forward_seed": 1,
+    "activation": 2,
+    "attempts": 2,
+    "nearest_scope": 3
+  },
+  "normative_rule": "AF-SEMANTIC-0155",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": [
+    1,
+    2,
+    2,
+    4
+  ],
+  "applied_factor_identities": [
+    {
+      "identity": {
+        "caller_semantic_ir_digest": {
+          "algorithm": "sha256",
+          "domain": "semantic-ir",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "control_node": 1,
+        "kind": "retry"
+      },
+      "logical_repetitions": {
+        "lower": 1,
+        "upper": {
+          "finite": 3
+        }
+      },
+      "physical_attempts": {
+        "lower": 1,
+        "upper": {
+          "finite": 3
+        }
+      }
+    }
+  ],
+  "expected_local_fact": 4,
+  "expected_root_fact": 12,
+  "expected_witness": {
+    "local_factors": [],
+    "root_factors": [
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 1,
+          "kind": "retry"
+        },
+        "logical_repetitions": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        },
+        "physical_attempts": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        }
+      }
+    ],
+    "nearest_owner_only": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## retry-inside-scope-12-12
+
+```json
+{
+  "vector_id": "retry-inside-scope-12-12",
+  "input": {
+    "forward_seed": 1,
+    "activation": 2,
+    "attempts": 2,
+    "nearest_scope": 3
+  },
+  "normative_rule": "AF-SEMANTIC-0155",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": [
+    1,
+    2,
+    2,
+    4
+  ],
+  "applied_factor_identities": [
+    {
+      "identity": {
+        "caller_semantic_ir_digest": {
+          "algorithm": "sha256",
+          "domain": "semantic-ir",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "control_node": 2,
+        "kind": "retry"
+      },
+      "logical_repetitions": {
+        "lower": 1,
+        "upper": {
+          "finite": 3
+        }
+      },
+      "physical_attempts": {
+        "lower": 1,
+        "upper": {
+          "finite": 3
+        }
+      }
+    }
+  ],
+  "expected_local_fact": 12,
+  "expected_root_fact": 12,
+  "expected_witness": {
+    "local_factors": [
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 2,
+          "kind": "retry"
+        },
+        "logical_repetitions": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        },
+        "physical_attempts": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        }
+      }
+    ],
+    "root_factors": [
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 2,
+          "kind": "retry"
+        },
+        "logical_repetitions": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        },
+        "physical_attempts": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        }
+      }
+    ],
+    "nearest_owner_only": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## iterate-outside-scope-4-16
+
+```json
+{
+  "vector_id": "iterate-outside-scope-4-16",
+  "input": {
+    "forward_seed": 1,
+    "activation": 2,
+    "attempts": 2,
+    "nearest_scope": 3
+  },
+  "normative_rule": "AF-SEMANTIC-0155",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": [
+    1,
+    2,
+    2,
+    4
+  ],
+  "applied_factor_identities": [
+    {
+      "identity": {
+        "caller_semantic_ir_digest": {
+          "algorithm": "sha256",
+          "domain": "semantic-ir",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "control_node": 1,
+        "kind": "iterate"
+      },
+      "logical_repetitions": {
+        "lower": 0,
+        "upper": {
+          "finite": 4
+        }
+      },
+      "physical_attempts": null
+    }
+  ],
+  "expected_local_fact": 4,
+  "expected_root_fact": 16,
+  "expected_witness": {
+    "local_factors": [],
+    "root_factors": [
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 1,
+          "kind": "iterate"
+        },
+        "logical_repetitions": {
+          "lower": 0,
+          "upper": {
+            "finite": 4
+          }
+        },
+        "physical_attempts": null
+      }
+    ],
+    "nearest_owner_only": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## retry-times-iterate-8-96
+
+```json
+{
+  "vector_id": "retry-times-iterate-8-96",
+  "input": {
+    "forward_seed": 2,
+    "activation": 2,
+    "attempts": 2,
+    "nearest_scope": 3
+  },
+  "normative_rule": "AF-SEMANTIC-0155",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": [
+    2,
+    2,
+    2,
+    8
+  ],
+  "applied_factor_identities": [
+    {
+      "identity": {
+        "caller_semantic_ir_digest": {
+          "algorithm": "sha256",
+          "domain": "semantic-ir",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "control_node": 1,
+        "kind": "retry"
+      },
+      "logical_repetitions": {
+        "lower": 1,
+        "upper": {
+          "finite": 3
+        }
+      },
+      "physical_attempts": {
+        "lower": 1,
+        "upper": {
+          "finite": 3
+        }
+      }
+    },
+    {
+      "identity": {
+        "caller_semantic_ir_digest": {
+          "algorithm": "sha256",
+          "domain": "semantic-ir",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "control_node": 2,
+        "kind": "iterate"
+      },
+      "logical_repetitions": {
+        "lower": 0,
+        "upper": {
+          "finite": 4
+        }
+      },
+      "physical_attempts": null
+    }
+  ],
+  "expected_local_fact": 8,
+  "expected_root_fact": 96,
+  "expected_witness": {
+    "local_factors": [],
+    "root_factors": [
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 1,
+          "kind": "retry"
+        },
+        "logical_repetitions": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        },
+        "physical_attempts": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        }
+      },
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 2,
+          "kind": "iterate"
+        },
+        "logical_repetitions": {
+          "lower": 0,
+          "upper": {
+            "finite": 4
+          }
+        },
+        "physical_attempts": null
+      }
+    ],
+    "nearest_owner_only": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## root-owner-single-six
+
+```json
+{
+  "vector_id": "root-owner-single-six",
+  "input": {
+    "forward_seed": 1,
+    "activation": 2,
+    "attempts": 3,
+    "nearest_scope": null
+  },
+  "normative_rule": "AF-SEMANTIC-0155",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": [
+    1,
+    2,
+    3,
+    6
+  ],
+  "applied_factor_identities": [],
+  "expected_local_fact": null,
+  "expected_root_fact": 6,
+  "expected_witness": {
+    "local_factors": [],
+    "root_factors": [],
+    "nearest_owner_only": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## nested-nearest-owner
+
+```json
+{
+  "vector_id": "nested-nearest-owner",
+  "input": {
+    "forward_seed": 1,
+    "activation": 2,
+    "attempts": 2,
+    "nearest_scope": 3
+  },
+  "normative_rule": "AF-SEMANTIC-0155",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": [
+    1,
+    2,
+    2,
+    4
+  ],
+  "applied_factor_identities": [
+    {
+      "identity": {
+        "caller_semantic_ir_digest": {
+          "algorithm": "sha256",
+          "domain": "semantic-ir",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "control_node": 1,
+        "kind": "iterate"
+      },
+      "logical_repetitions": {
+        "lower": 0,
+        "upper": {
+          "finite": 3
+        }
+      },
+      "physical_attempts": null
+    },
+    {
+      "identity": {
+        "caller_semantic_ir_digest": {
+          "algorithm": "sha256",
+          "domain": "semantic-ir",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "control_node": 4,
+        "kind": "retry"
+      },
+      "logical_repetitions": {
+        "lower": 1,
+        "upper": {
+          "finite": 2
+        }
+      },
+      "physical_attempts": {
+        "lower": 1,
+        "upper": {
+          "finite": 2
+        }
+      }
+    }
+  ],
+  "expected_local_fact": 8,
+  "expected_root_fact": 24,
+  "expected_witness": {
+    "local_factors": [
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 4,
+          "kind": "retry"
+        },
+        "logical_repetitions": {
+          "lower": 1,
+          "upper": {
+            "finite": 2
+          }
+        },
+        "physical_attempts": {
+          "lower": 1,
+          "upper": {
+            "finite": 2
+          }
+        }
+      }
+    ],
+    "root_factors": [
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 1,
+          "kind": "iterate"
+        },
+        "logical_repetitions": {
+          "lower": 0,
+          "upper": {
+            "finite": 3
+          }
+        },
+        "physical_attempts": null
+      },
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 4,
+          "kind": "retry"
+        },
+        "logical_repetitions": {
+          "lower": 1,
+          "upper": {
+            "finite": 2
+          }
+        },
+        "physical_attempts": {
+          "lower": 1,
+          "upper": {
+            "finite": 2
+          }
+        }
+      }
+    ],
+    "nearest_owner_only": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## zero-activation
+
+```json
+{
+  "vector_id": "zero-activation",
+  "input": {
+    "forward_seed": 5,
+    "activation": 0,
+    "attempts": 9,
+    "nearest_scope": 3
+  },
+  "normative_rule": "AF-SEMANTIC-0155",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": [
+    5,
+    0,
+    9,
+    0
+  ],
+  "applied_factor_identities": [
+    {
+      "identity": {
+        "caller_semantic_ir_digest": {
+          "algorithm": "sha256",
+          "domain": "semantic-ir",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "control_node": 1,
+        "kind": "retry"
+      },
+      "logical_repetitions": {
+        "lower": 1,
+        "upper": {
+          "finite": 3
+        }
+      },
+      "physical_attempts": {
+        "lower": 1,
+        "upper": {
+          "finite": 3
+        }
+      }
+    }
+  ],
+  "expected_local_fact": 0,
+  "expected_root_fact": 0,
+  "expected_witness": {
+    "local_factors": [],
+    "root_factors": [
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 1,
+          "kind": "retry"
+        },
+        "logical_repetitions": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        },
+        "physical_attempts": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        }
+      }
+    ],
+    "nearest_owner_only": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## zero-forward
+
+```json
+{
+  "vector_id": "zero-forward",
+  "input": {
+    "forward_seed": 0,
+    "activation": 7,
+    "attempts": 9,
+    "nearest_scope": 3
+  },
+  "normative_rule": "AF-SEMANTIC-0155",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": [
+    0,
+    7,
+    9,
+    0
+  ],
+  "applied_factor_identities": [
+    {
+      "identity": {
+        "caller_semantic_ir_digest": {
+          "algorithm": "sha256",
+          "domain": "semantic-ir",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "control_node": 1,
+        "kind": "iterate"
+      },
+      "logical_repetitions": {
+        "lower": 0,
+        "upper": {
+          "finite": 4
+        }
+      },
+      "physical_attempts": null
+    }
+  ],
+  "expected_local_fact": 0,
+  "expected_root_fact": 0,
+  "expected_witness": {
+    "local_factors": [],
+    "root_factors": [
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 1,
+          "kind": "iterate"
+        },
+        "logical_repetitions": {
+          "lower": 0,
+          "upper": {
+            "finite": 4
+          }
+        },
+        "physical_attempts": null
+      }
+    ],
+    "nearest_owner_only": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## physical-not-second-factor
+
+```json
+{
+  "vector_id": "physical-not-second-factor",
+  "input": {
+    "forward_seed": 1,
+    "activation": 1,
+    "attempts": 2,
+    "nearest_scope": 3
+  },
+  "normative_rule": "AF-SEMANTIC-0155",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "applied_factor_identities": [
+    {
+      "identity": {
+        "caller_semantic_ir_digest": {
+          "algorithm": "sha256",
+          "domain": "semantic-ir",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "control_node": 1,
+        "kind": "retry"
+      },
+      "logical_repetitions": {
+        "lower": 1,
+        "upper": {
+          "finite": 3
+        }
+      },
+      "physical_attempts": {
+        "lower": 1,
+        "upper": {
+          "finite": 3
+        }
+      }
+    }
+  ],
+  "expected_local_fact": 2,
+  "expected_root_fact": 6,
+  "expected_witness": {
+    "local_factors": [],
+    "root_factors": [
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 1,
+          "kind": "retry"
+        },
+        "logical_repetitions": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        },
+        "physical_attempts": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        }
+      }
+    ],
+    "nearest_owner_only": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## two-local-factors
+
+```json
+{
+  "vector_id": "two-local-factors",
+  "input": {
+    "forward_seed": 1,
+    "activation": 1,
+    "attempts": 1,
+    "nearest_scope": 3
+  },
+  "normative_rule": "AF-SEMANTIC-0155",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "applied_factor_identities": [
+    {
+      "identity": {
+        "caller_semantic_ir_digest": {
+          "algorithm": "sha256",
+          "domain": "semantic-ir",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "control_node": 2,
+        "kind": "retry"
+      },
+      "logical_repetitions": {
+        "lower": 1,
+        "upper": {
+          "finite": 3
+        }
+      },
+      "physical_attempts": {
+        "lower": 1,
+        "upper": {
+          "finite": 3
+        }
+      }
+    },
+    {
+      "identity": {
+        "caller_semantic_ir_digest": {
+          "algorithm": "sha256",
+          "domain": "semantic-ir",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "control_node": 3,
+        "kind": "iterate"
+      },
+      "logical_repetitions": {
+        "lower": 0,
+        "upper": {
+          "finite": 4
+        }
+      },
+      "physical_attempts": null
+    }
+  ],
+  "expected_local_fact": 12,
+  "expected_root_fact": 12,
+  "expected_witness": {
+    "local_factors": [
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 2,
+          "kind": "retry"
+        },
+        "logical_repetitions": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        },
+        "physical_attempts": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        }
+      },
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 3,
+          "kind": "iterate"
+        },
+        "logical_repetitions": {
+          "lower": 0,
+          "upper": {
+            "finite": 4
+          }
+        },
+        "physical_attempts": null
+      }
+    ],
+    "root_factors": [
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 2,
+          "kind": "retry"
+        },
+        "logical_repetitions": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        },
+        "physical_attempts": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        }
+      },
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 3,
+          "kind": "iterate"
+        },
+        "logical_repetitions": {
+          "lower": 0,
+          "upper": {
+            "finite": 4
+          }
+        },
+        "physical_attempts": null
+      }
+    ],
+    "nearest_owner_only": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## one-attempt-still-identity
+
+```json
+{
+  "vector_id": "one-attempt-still-identity",
+  "input": {
+    "forward_seed": 1,
+    "activation": 2,
+    "attempts": 2,
+    "nearest_scope": 3
+  },
+  "normative_rule": "AF-SEMANTIC-0155",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": [
+    1,
+    2,
+    2,
+    4
+  ],
+  "applied_factor_identities": [
+    {
+      "identity": {
+        "caller_semantic_ir_digest": {
+          "algorithm": "sha256",
+          "domain": "semantic-ir",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "control_node": 1,
+        "kind": "retry"
+      },
+      "logical_repetitions": {
+        "lower": 1,
+        "upper": {
+          "finite": 1
+        }
+      },
+      "physical_attempts": {
+        "lower": 1,
+        "upper": {
+          "finite": 1
+        }
+      }
+    }
+  ],
+  "expected_local_fact": 4,
+  "expected_root_fact": 4,
+  "expected_witness": {
+    "local_factors": [],
+    "root_factors": [
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 1,
+          "kind": "retry"
+        },
+        "logical_repetitions": {
+          "lower": 1,
+          "upper": {
+            "finite": 1
+          }
+        },
+        "physical_attempts": {
+          "lower": 1,
+          "upper": {
+            "finite": 1
+          }
+        }
+      }
+    ],
+    "nearest_owner_only": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## scope-adds-no-factor
+
+```json
+{
+  "vector_id": "scope-adds-no-factor",
+  "input": {
+    "forward_seed": 1,
+    "activation": 2,
+    "attempts": 3,
+    "nearest_scope": 3
+  },
+  "normative_rule": "AF-SEMANTIC-0155",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": [
+    1,
+    2,
+    3,
+    6
+  ],
+  "applied_factor_identities": [],
+  "expected_local_fact": 6,
+  "expected_root_fact": 6,
+  "expected_witness": {
+    "local_factors": [],
+    "root_factors": [],
+    "nearest_owner_only": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## sequence-two-cooccurring-sources
+
+```json
+{
+  "vector_id": "sequence-two-cooccurring-sources",
+  "input": {
+    "tree": "sequence",
+    "source_nodes": [
+      3,
+      5
+    ],
+    "action_uppers": [
+      4,
+      6
+    ],
+    "same_atom": true
+  },
+  "normative_rule": "AF-SEMANTIC-0154/0156",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "4 + 6 = 10",
+  "applied_factor_identities": [],
+  "expected_local_fact": [
+    4,
+    6
+  ],
+  "expected_root_fact": 10,
+  "expected_witness": {
+    "source_multiset": [
+      3,
+      5
+    ],
+    "deduplicate_contract_or_atom": false
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## parallel-two-cooccurring-sources
+
+```json
+{
+  "vector_id": "parallel-two-cooccurring-sources",
+  "input": {
+    "tree": "parallel",
+    "source_nodes": [
+      3,
+      5
+    ],
+    "action_uppers": [
+      4,
+      6
+    ],
+    "same_atom": true
+  },
+  "normative_rule": "AF-SEMANTIC-0154/0156",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "4 + 6 = 10",
+  "applied_factor_identities": [],
+  "expected_local_fact": [
+    4,
+    6
+  ],
+  "expected_root_fact": 10,
+  "expected_witness": {
+    "source_multiset": [
+      3,
+      5
+    ],
+    "deduplicate_contract_or_atom": false
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## race-two-cooccurring-sources
+
+```json
+{
+  "vector_id": "race-two-cooccurring-sources",
+  "input": {
+    "tree": "race",
+    "source_nodes": [
+      3,
+      5
+    ],
+    "action_uppers": [
+      4,
+      6
+    ],
+    "same_atom": true
+  },
+  "normative_rule": "AF-SEMANTIC-0154/0156",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "4 + 6 = 10",
+  "applied_factor_identities": [],
+  "expected_local_fact": [
+    4,
+    6
+  ],
+  "expected_root_fact": 10,
+  "expected_witness": {
+    "source_multiset": [
+      3,
+      5
+    ],
+    "deduplicate_contract_or_atom": false
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## select-exclusive-max
+
+```json
+{
+  "vector_id": "select-exclusive-max",
+  "input": {
+    "alternatives": [
+      4,
+      6
+    ]
+  },
+  "normative_rule": "AF-SEMANTIC-0156",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "max(4,6) = 6",
+  "applied_factor_identities": [],
+  "expected_local_fact": [
+    4,
+    6
+  ],
+  "expected_root_fact": 6,
+  "expected_witness": {
+    "exclusive": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## handle-protected-plus-handler
+
+```json
+{
+  "vector_id": "handle-protected-plus-handler",
+  "input": {
+    "protected": 4,
+    "handlers": [
+      2,
+      6
+    ]
+  },
+  "normative_rule": "AF-SEMANTIC-0146/0156",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "4 + max(0,2,6) = 10",
+  "applied_factor_identities": [],
+  "expected_local_fact": [
+    4,
+    2,
+    6
+  ],
+  "expected_root_fact": 10,
+  "expected_witness": {
+    "no_handler_path": 0
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## timeout-does-not-discount
+
+```json
+{
+  "vector_id": "timeout-does-not-discount",
+  "input": {
+    "action_upper": 6,
+    "duration": 1
+  },
+  "normative_rule": "AF-SEMANTIC-0145/0156",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "retain 6",
+  "applied_factor_identities": [],
+  "expected_local_fact": 6,
+  "expected_root_fact": 6,
+  "expected_witness": {
+    "no_cancel_assumption": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## same-atom-forward-one-k-six
+
+```json
+{
+  "vector_id": "same-atom-forward-one-k-six",
+  "input": {
+    "ceiling": 7,
+    "multipliers": [
+      2,
+      3
+    ],
+    "full_atom": {
+      "operation": {
+        "catalog": "hand.effects@1",
+        "name": "work"
+      },
+      "resource_selector": {
+        "requirement_port_no": 1,
+        "scope_bindings": []
+      },
+      "qualifiers": [
+        {
+          "family": "idempotency",
+          "member": "natural"
+        }
+      ]
+    }
+  },
+  "normative_rule": "AF-SEMANTIC-0150/0157",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "floor(7/(1+2*3))=1; K=6; required=1+6=7",
+  "applied_factor_identities": [],
+  "expected_local_fact": 6,
+  "expected_root_fact": {
+    "forward": 1,
+    "K": 6,
+    "required_epsilon": 7
+  },
+  "expected_witness": {
+    "two_opportunities_one_declared_ceiling": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## different-atom-not-shared
+
+```json
+{
+  "vector_id": "different-atom-not-shared",
+  "input": {
+    "forward_atom": "write",
+    "K_atom": "undo",
+    "forward": 1,
+    "K": 6
+  },
+  "normative_rule": "AF-SEMANTIC-0157",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "K requirement stays on undo",
+  "applied_factor_identities": [],
+  "expected_local_fact": 6,
+  "expected_root_fact": {
+    "write": 1,
+    "undo": 6
+  },
+  "expected_witness": {
+    "full_atom_identity": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## different-qualifier-no-coalesce
+
+```json
+{
+  "vector_id": "different-qualifier-no-coalesce",
+  "input": {
+    "qualifiers": [
+      "natural",
+      "none"
+    ]
+  },
+  "normative_rule": "AF-SEMANTIC-0157",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "two exact identities",
+  "applied_factor_identities": [],
+  "expected_local_fact": [
+    4,
+    6
+  ],
+  "expected_root_fact": [
+    4,
+    6
+  ],
+  "expected_witness": {
+    "qualifier_family_and_member": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## different-selector-no-coalesce
+
+```json
+{
+  "vector_id": "different-selector-no-coalesce",
+  "input": {
+    "requirement_ports": [
+      1,
+      2
+    ],
+    "same_operation": true
+  },
+  "normative_rule": "AF-SEMANTIC-0157",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "two exact selectors",
+  "applied_factor_identities": [],
+  "expected_local_fact": [
+    4,
+    6
+  ],
+  "expected_root_fact": [
+    4,
+    6
+  ],
+  "expected_witness": {
+    "source_port_namespace": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## usage-six-at-three
+
+```json
+{
+  "vector_id": "usage-six-at-three",
+  "input": {
+    "action_upper": 6,
+    "per_attempt": 3,
+    "Root_U_recovery": 18
+  },
+  "normative_rule": "AF-SEMANTIC-0158",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "6*3 = 18; compare <=18, do not add to U",
+  "applied_factor_identities": [],
+  "expected_local_fact": 18,
+  "expected_root_fact": 18,
+  "expected_witness": {
+    "phase": "recovery",
+    "meter": "hand.calls",
+    "unit": "call",
+    "total_not_36": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## profile-explicit-zero
+
+```json
+{
+  "vector_id": "profile-explicit-zero",
+  "input": {
+    "action_upper": 6,
+    "per_attempt": 0,
+    "profile_present": true
+  },
+  "normative_rule": "AF-SEMANTIC-0158",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "6*0=0",
+  "applied_factor_identities": [],
+  "expected_local_fact": 0,
+  "expected_root_fact": 0,
+  "expected_witness": {
+    "complete_meter_presence": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## profile-missing-is-unproven
+
+```json
+{
+  "vector_id": "profile-missing-is-unproven",
+  "input": {
+    "required_meters": [
+      "calls"
+    ],
+    "profile": []
+  },
+  "normative_rule": "AF-SEMANTIC-0154/0158",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "no multiplication can fill an absent coordinate",
+  "applied_factor_identities": [],
+  "expected_local_fact": "unproven",
+  "expected_root_fact": "unproven",
+  "expected_witness": {
+    "missing_meter": "calls"
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## unknown-source-not-empty
+
+```json
+{
+  "vector_id": "unknown-source-not-empty",
+  "input": {
+    "source_state": "unknown"
+  },
+  "normative_rule": "AF-SEMANTIC-0154",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "unknown is not an empty multiset",
+  "applied_factor_identities": [],
+  "expected_local_fact": "unknown",
+  "expected_root_fact": "unproven",
+  "expected_witness": {
+    "source_nodes_accounted": "unproven"
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## unbounded-is-not-finite
+
+```json
+{
+  "vector_id": "unbounded-is-not-finite",
+  "input": {
+    "seed": "unbounded",
+    "attempts": 3
+  },
+  "normative_rule": "AF-SEMANTIC-0155",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "unbounded*3 remains unbounded",
+  "applied_factor_identities": [],
+  "expected_local_fact": "unbounded",
+  "expected_root_fact": "unbounded",
+  "expected_witness": {
+    "not_finite_zero": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## activation-overflow
+
+```json
+{
+  "vector_id": "activation-overflow",
+  "input": {
+    "max": 18446744073709551615
+  },
+  "normative_rule": "AF-SEMANTIC-0155/0158",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "checked arithmetic rejects",
+  "applied_factor_identities": [],
+  "expected_local_fact": null,
+  "expected_root_fact": "overflow",
+  "expected_witness": {
+    "no_saturation": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## aggregate-overflow
+
+```json
+{
+  "vector_id": "aggregate-overflow",
+  "input": {
+    "max": 18446744073709551615
+  },
+  "normative_rule": "AF-SEMANTIC-0155/0158",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "checked arithmetic rejects",
+  "applied_factor_identities": [],
+  "expected_local_fact": null,
+  "expected_root_fact": "overflow",
+  "expected_witness": {
+    "no_saturation": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## duplicate-factor-invalid
+
+```json
+{
+  "vector_id": "duplicate-factor-invalid",
+  "input": {
+    "factors": [
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 1,
+          "kind": "retry"
+        },
+        "logical_repetitions": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        },
+        "physical_attempts": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        }
+      },
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 1,
+          "kind": "retry"
+        },
+        "logical_repetitions": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        },
+        "physical_attempts": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        }
+      }
+    ]
+  },
+  "normative_rule": "AF-SEMANTIC-0155",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "one unique identity cannot be applied twice",
+  "applied_factor_identities": [
+    {
+      "identity": {
+        "caller_semantic_ir_digest": {
+          "algorithm": "sha256",
+          "domain": "semantic-ir",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "control_node": 1,
+        "kind": "retry"
+      },
+      "logical_repetitions": {
+        "lower": 1,
+        "upper": {
+          "finite": 3
+        }
+      },
+      "physical_attempts": {
+        "lower": 1,
+        "upper": {
+          "finite": 3
+        }
+      }
+    },
+    {
+      "identity": {
+        "caller_semantic_ir_digest": {
+          "algorithm": "sha256",
+          "domain": "semantic-ir",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "control_node": 1,
+        "kind": "retry"
+      },
+      "logical_repetitions": {
+        "lower": 1,
+        "upper": {
+          "finite": 3
+        }
+      },
+      "physical_attempts": {
+        "lower": 1,
+        "upper": {
+          "finite": 3
+        }
+      }
+    }
+  ],
+  "expected_local_fact": null,
+  "expected_root_fact": "invalid_multiplicity",
+  "expected_witness": {
+    "duplicate_identity": {
+      "caller_semantic_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "control_node": 1,
+      "kind": "retry"
+    }
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## missing-factor-not-closed
+
+```json
+{
+  "vector_id": "missing-factor-not-closed",
+  "input": {
+    "required": [
+      {
+        "identity": {
+          "caller_semantic_ir_digest": {
+            "algorithm": "sha256",
+            "domain": "semantic-ir",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "control_node": 1,
+          "kind": "retry"
+        },
+        "logical_repetitions": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        },
+        "physical_attempts": {
+          "lower": 1,
+          "upper": {
+            "finite": 3
+          }
+        }
+      }
+    ],
+    "applied": []
+  },
+  "normative_rule": "AF-SEMANTIC-0154/0155",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "expected path factor multiset differs",
+  "applied_factor_identities": [],
+  "expected_local_fact": 4,
+  "expected_root_fact": "unproven",
+  "expected_witness": {
+    "missing_identity": {
+      "caller_semantic_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "control_node": 1,
+      "kind": "retry"
+    }
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## guard-containment-direction
+
+```json
+{
+  "vector_id": "guard-containment-direction",
+  "input": {
+    "forward": "input_equals(1,true)",
+    "action": "unconditional"
+  },
+  "normative_rule": "AF-CONTRACT-0017/AF-SEMANTIC-0156",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "Forward subset Action",
+  "applied_factor_identities": [],
+  "expected_local_fact": "proven",
+  "expected_root_fact": "proven",
+  "expected_witness": {
+    "basis": "frozen_guard_containment",
+    "receipt": null
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## guard-no-domain-no-countermodel
+
+```json
+{
+  "vector_id": "guard-no-domain-no-countermodel",
+  "input": {
+    "forward": "unconditional",
+    "action": "input_equals(1,false)",
+    "primitive_domain": null
+  },
+  "normative_rule": "AF-CONTRACT-0017/AF-SEMANTIC-0156",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "failed containment alone is not a violation",
+  "applied_factor_identities": [],
+  "expected_local_fact": "unproven",
+  "expected_root_fact": "unproven",
+  "expected_witness": {
+    "countermodel": null
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## typed-bool-countermodel
+
+```json
+{
+  "vector_id": "typed-bool-countermodel",
+  "input": {
+    "forward": "unconditional",
+    "action": "input_equals(1,false)",
+    "primitive_domain": "Bool"
+  },
+  "normative_rule": "AF-CONTRACT-0017",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "true is well-typed; Forward=true; Action=false",
+  "applied_factor_identities": [],
+  "expected_local_fact": "violation",
+  "expected_root_fact": "violation",
+  "expected_witness": {
+    "port_no": 1,
+    "value": {
+      "bool": true
+    },
+    "reachability": "well_typed_component_input_domain"
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## invalid-countermodel-type
+
+```json
+{
+  "vector_id": "invalid-countermodel-type",
+  "input": {
+    "primitive_domain": "Bool",
+    "assignment": {
+      "int64": 1
+    }
+  },
+  "normative_rule": "AF-CONTRACT-0017",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "not a Bool assignment",
+  "applied_factor_identities": [],
+  "expected_local_fact": "unproven",
+  "expected_root_fact": "unproven",
+  "expected_witness": {
+    "valid_countermodel": false
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## f04-root-global-sensitive-path
+
+```json
+{
+  "vector_id": "f04-root-global-sensitive-path",
+  "input": {
+    "root_contains": "race",
+    "unrelated_guard_countermodel": true
+  },
+  "normative_rule": "AF-SEMANTIC-0156",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "preserve frozen global suppression",
+  "applied_factor_identities": [],
+  "expected_local_fact": "unproven",
+  "expected_root_fact": "unproven",
+  "expected_witness": {
+    "no_path_local_repair": true
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+
+## source-action-profile-multiset
+
+```json
+{
+  "vector_id": "source-action-profile-multiset",
+  "input": {
+    "same_contract": true,
+    "sources": [
+      3,
+      5
+    ],
+    "profiles": [
+      "P",
+      "P"
+    ]
+  },
+  "normative_rule": "AF-SEMANTIC-0154",
+  "source_identity": {
+    "caller": {
+      "algorithm": "sha256",
+      "domain": "semantic-ir",
+      "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "source_node": 9,
+    "contract_digest": {
+      "algorithm": "sha256",
+      "domain": "component-contract",
+      "hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "forward_entry_ordinal": 1
+  },
+  "intermediate_arithmetic": "two source-scoped copies; multiplicity retained",
+  "applied_factor_identities": [],
+  "expected_local_fact": 2,
+  "expected_root_fact": 2,
+  "expected_witness": {
+    "source": 2,
+    "action": 2,
+    "profile": 2
+  },
+  "verdict_scope": "static possibility only; positive eligibility RequiresEvidence"
+}
+```
+

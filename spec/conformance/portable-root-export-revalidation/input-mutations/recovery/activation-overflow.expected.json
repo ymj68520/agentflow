@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "facts": {
+    "case_id": "portable-d9-recovery-input/activation-overflow",
+    "input_identity": {
+      "canonical_bytes": 2253592,
+      "canonical_sha256": "32fe8a3b8bd25765f23f4d4c42a1d3c5b5be3bfd3da6d2d427236c19928122c1"
+    },
+    "production_stage": "D6",
+    "error_family": "ContractValidationFailed",
+    "error_path": "$.contract_assets",
+    "d9_root": null,
+    "capability_issued": false
+  },
+  "formal_basis": "AF-CONTRACT-0020: explicit finite meter rejects nonfinite/overflow K usage",
+  "d10_independent_values": "Pending"
+}

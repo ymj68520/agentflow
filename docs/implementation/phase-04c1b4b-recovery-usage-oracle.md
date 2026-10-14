@@ -1,0 +1,5 @@
+# Phase 4C.1B.4B — recovery usage oracle
+
+Starting HEAD: `c5b49850d9ba0dce75255f152498468fe8e93762`. This phase targets only 16 original D9-Recovery cases; the 22 Control baseline is retained. Closure depends on the recorded committed gates. D10 independent values are Pending for all 78; B01/B02 Closure and B03–B07 remain BLOCKING. No later phase or runtime/publication capability is created.
+
+Exact profile identities, phase/meter/unit/aggregation and activation/attempt uppers come from declarations and exhaustive catalog content. The original 16 explicitly declare an exhaustive EMPTY meter set; that is not a missing required meter or a zero for arbitrary coordinates. Added valid profiles cover nonempty finite and explicit-zero usage; finite-meter negative premises cover missing/nonfinite/overflow/unsupported cases. K-required Usage multiplies per-attempt bounds by action potential and compares with existing U.recovery; it is never added to U or mixed with Forward. Active-source empty profiles are accepted only when the exact catalog says the complete set is empty.

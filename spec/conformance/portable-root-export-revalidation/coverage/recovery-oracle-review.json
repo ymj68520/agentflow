@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "stage": "4C.1B.4B",
+  "initial_independent_generation": {"case_count": 16, "required_visits": 163124, "source": "declarations only; before Rust differential"},
+  "first_difference": {"case_id": "portable-root-export-revalidation/d9-recovery-outer-retry-1", "path": "$.d9_root.root_control.children[0].compensation_scope.local_recovery_actions.proofs[0].verdict", "initial_expected": "proven", "actual": "requires_evidence"},
+  "review": "Local action objects retain eligibility_evidence; their dimension is not just the exact arithmetic ceiling. AF-SEMANTIC-0150 and the 0155 proof boundary preserve positive-potential RequiresEvidence. Independent aggregate member-verdict derivation fixes the omitted obligation; no source/bound changes and no production changes.",
+  "additional_declaration_review": "Retry safety evaluates complete effect-clause coverage before evidence obligations, per the existing independent Recovery oracle. Guard entry ordinals are explicit Option<usize> in the frozen type graph; normalized grammar now preserves nullable presence without changing its 937 field paths.",
+  "production_semantic_findings": []
+}

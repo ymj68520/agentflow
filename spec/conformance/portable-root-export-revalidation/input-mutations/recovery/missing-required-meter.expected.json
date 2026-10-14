@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "facts": {
+    "case_id": "portable-d9-recovery-input/missing-required-meter",
+    "input_identity": {
+      "canonical_bytes": 2253279,
+      "canonical_sha256": "00a60013537b3622927ab1c13987d77b1932c75de2c33244224bf751ddf184c5"
+    },
+    "production_stage": "D6",
+    "error_family": "ContractValidationFailed",
+    "error_path": "$.contract_assets",
+    "d9_root": null,
+    "capability_issued": false
+  },
+  "formal_basis": "AF-SEMANTIC-0150/0154..0158",
+  "d10_independent_values": "Pending"
+}

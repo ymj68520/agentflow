@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "facts": {
+    "case_id": "portable-d9-recovery-input/unbounded-action-requirement",
+    "input_identity": {
+      "canonical_bytes": 2253572,
+      "canonical_sha256": "6bd7b5ffd209264e469d8a7a9b425c2e938aa3d6ef0a516e6539a23803d47dbf"
+    },
+    "production_stage": "D6",
+    "error_family": "ContractValidationFailed",
+    "error_path": "$.contract_assets",
+    "d9_root": null,
+    "capability_issued": false
+  },
+  "formal_basis": "AF-CONTRACT-0020: explicit finite meter rejects nonfinite/overflow K usage",
+  "d10_independent_values": "Pending"
+}

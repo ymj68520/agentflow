@@ -1,0 +1,1409 @@
+{
+  "schema_version": 1,
+  "baseline": "independent Expected only",
+  "mutation_count": 41,
+  "mutations": [
+    {
+      "mutation_id": "caller-digest",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "source",
+        "caller_semantic_ir_digest"
+      ],
+      "replacement": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+      },
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "source-node",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "source",
+        "source_node"
+      ],
+      "replacement": 8,
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "contract-digest",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "source",
+        "source_contract_digest",
+        "hex"
+      ],
+      "replacement": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "forward-ordinal",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "source",
+        "forward_entry_ordinal"
+      ],
+      "replacement": 0,
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "action-kind",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "source",
+        "action",
+        "action_kind"
+      ],
+      "replacement": "reconciliation",
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "forward-atom",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "source",
+        "action",
+        "forward_effect",
+        "operation",
+        "name"
+      ],
+      "replacement": "changed",
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "action-atom",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "source",
+        "action",
+        "action_effect",
+        "qualifiers",
+        "0",
+        "member"
+      ],
+      "replacement": "natural",
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "action-guard",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "action_effect_occurrence",
+        "declared",
+        "guard"
+      ],
+      "replacement": {
+        "input_equals": {
+          "port_no": 1,
+          "expected": {
+            "bool": false
+          }
+        }
+      },
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "activation",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "recovery_usage_binding",
+        "activations_per_forward",
+        "upper",
+        "finite"
+      ],
+      "replacement": 2,
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "attempts",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "recovery_usage_binding",
+        "attempts_per_activation",
+        "upper",
+        "finite"
+      ],
+      "replacement": 2,
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "owner-scope",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "owner",
+        "node"
+      ],
+      "replacement": 8,
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "owner-variant",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "owner"
+      ],
+      "replacement": {
+        "kind": "root_recovery"
+      },
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "local-bound",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "local_bound",
+        "upper",
+        "upper",
+        "finite"
+      ],
+      "replacement": 2,
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "local-option",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "local_bound"
+      ],
+      "replacement": null,
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "root-bound",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "root_bound",
+        "upper",
+        "upper",
+        "finite"
+      ],
+      "replacement": 4,
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "logical-repeat",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "root_bound",
+        "applied_families",
+        "0",
+        "logical_repetitions",
+        "upper",
+        "finite"
+      ],
+      "replacement": 4,
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "physical-attempt",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "root_bound",
+        "applied_families",
+        "0",
+        "physical_attempts",
+        "upper",
+        "finite"
+      ],
+      "replacement": 4,
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "factor-identity",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "root_bound",
+        "applied_families",
+        "0",
+        "identity",
+        "control_node"
+      ],
+      "replacement": 8,
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "factor-kind",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "root_bound",
+        "applied_families",
+        "0",
+        "identity",
+        "kind"
+      ],
+      "replacement": "iterate",
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "factor-missing",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "root_bound",
+        "applied_families"
+      ],
+      "replacement": [],
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "forward-occurrence",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "forward_occurrence",
+        "source_entry_ordinal"
+      ],
+      "replacement": 0,
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "action-occurrence",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "action_effect_occurrence",
+        "computation"
+      ],
+      "replacement": 8,
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "usage-binding",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "recovery_usage_binding",
+        "action",
+        "action_kind"
+      ],
+      "replacement": "reconciliation",
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "path-step",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "control_path",
+        "0",
+        "parent_node"
+      ],
+      "replacement": 8,
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "path-reachability",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "control_path",
+        "0",
+        "reachability"
+      ],
+      "replacement": "proven_unreachable",
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "eligibility",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "eligibility_evidence"
+      ],
+      "replacement": "proven",
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "guard-verdict",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "guard_compatibility",
+        "verdict"
+      ],
+      "replacement": "unproven",
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "guard-option",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "guard_compatibility"
+      ],
+      "replacement": null,
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "countermodel-presence",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "guard_compatibility",
+        "countermodel"
+      ],
+      "replacement": true,
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "guard-upper",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "guard_compatibility",
+        "action_upper",
+        "finite"
+      ],
+      "replacement": 4,
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "factor-duplicate",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "root_bound",
+        "applied_families"
+      ],
+      "replacement": [
+        {
+          "identity": {
+            "caller_semantic_ir_digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "c7f0bfc0fc24302fd63ca0a1f081e3b654baab8654cce78d4c11b19f2af552ab"
+            },
+            "control_node": 1,
+            "kind": "retry"
+          },
+          "logical_repetitions": {
+            "lower": 1,
+            "upper": {
+              "finite": 3
+            }
+          },
+          "physical_attempts": {
+            "lower": 1,
+            "upper": {
+              "finite": 3
+            }
+          }
+        },
+        {
+          "identity": {
+            "caller_semantic_ir_digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "c7f0bfc0fc24302fd63ca0a1f081e3b654baab8654cce78d4c11b19f2af552ab"
+            },
+            "control_node": 1,
+            "kind": "retry"
+          },
+          "logical_repetitions": {
+            "lower": 1,
+            "upper": {
+              "finite": 3
+            }
+          },
+          "physical_attempts": {
+            "lower": 1,
+            "upper": {
+              "finite": 3
+            }
+          }
+        }
+      ],
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "source-closure-verdict",
+      "path": [
+        "d9_root_recovery",
+        "source_closure",
+        "usage_profiles_accounted"
+      ],
+      "replacement": "unproven",
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "typed-guard-coordinate",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "guard_coordinates"
+      ],
+      "replacement": [
+        {
+          "source_contract_digest": {
+            "algorithm": "sha256",
+            "domain": "component-contract",
+            "hex": "2e84ab322f73637aa12204686951aec2adb3c365c09a0583c8f018151d1a603e"
+          },
+          "component_input_port": 1,
+          "input_expression": 1,
+          "exact_type": null,
+          "dependency_slots": []
+        }
+      ],
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "epsilon-coverage",
+      "path": [
+        "d9_root_recovery",
+        "epsilon_coverage_requirement",
+        "value",
+        "entries",
+        "0",
+        "bounds",
+        "upper",
+        "finite"
+      ],
+      "replacement": 4,
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "action-member-missing",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions"
+      ],
+      "replacement": [],
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "action-member-extra",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions"
+      ],
+      "replacement": [
+        {
+          "source": {
+            "caller_semantic_ir_digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "c7f0bfc0fc24302fd63ca0a1f081e3b654baab8654cce78d4c11b19f2af552ab"
+            },
+            "source_node": 3,
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "2e84ab322f73637aa12204686951aec2adb3c365c09a0583c8f018151d1a603e"
+            },
+            "forward_entry_ordinal": 1,
+            "action": {
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "forward"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "compensation",
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "compensate"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "none"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            }
+          },
+          "forward_seed_upper": {
+            "finite": 1
+          },
+          "target": {
+            "kind": "component",
+            "identity": {
+              "catalog": "agentflow.portable.fixture@1",
+              "name": "portable.d9.recovery"
+            },
+            "contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "2e84ab322f73637aa12204686951aec2adb3c365c09a0583c8f018151d1a603e"
+            }
+          },
+          "owner": {
+            "kind": "compensation_scope",
+            "node": 2
+          },
+          "local_bound": {
+            "compensation_scope_node": 2,
+            "upper": {
+              "state": "known",
+              "upper": {
+                "finite": 1
+              }
+            },
+            "applied_families": []
+          },
+          "root_bound": {
+            "root_semantic_ir_digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "c7f0bfc0fc24302fd63ca0a1f081e3b654baab8654cce78d4c11b19f2af552ab"
+            },
+            "upper": {
+              "state": "known",
+              "upper": {
+                "finite": 3
+              }
+            },
+            "applied_families": [
+              {
+                "identity": {
+                  "caller_semantic_ir_digest": {
+                    "algorithm": "sha256",
+                    "domain": "semantic-ir",
+                    "hex": "c7f0bfc0fc24302fd63ca0a1f081e3b654baab8654cce78d4c11b19f2af552ab"
+                  },
+                  "control_node": 1,
+                  "kind": "retry"
+                },
+                "logical_repetitions": {
+                  "lower": 1,
+                  "upper": {
+                    "finite": 3
+                  }
+                },
+                "physical_attempts": {
+                  "lower": 1,
+                  "upper": {
+                    "finite": 3
+                  }
+                }
+              }
+            ]
+          },
+          "forward_occurrence": {
+            "caller_semantic_ir_digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "c7f0bfc0fc24302fd63ca0a1f081e3b654baab8654cce78d4c11b19f2af552ab"
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "2e84ab322f73637aa12204686951aec2adb3c365c09a0583c8f018151d1a603e"
+            },
+            "source_component": {
+              "catalog": "agentflow.portable.fixture@1",
+              "name": "portable.d9.recovery"
+            },
+            "computation": 3,
+            "source_entry_ordinal": 1,
+            "declared": {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "forward"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "bounds": {
+                "lower": 1,
+                "upper": {
+                  "finite": 1
+                }
+              },
+              "guard": {
+                "unconditional": true
+              }
+            },
+            "mapped_resource_slot": 1,
+            "control_families": [
+              {
+                "control_node": 1,
+                "kind": "retry",
+                "logical_repetitions": {
+                  "lower": 1,
+                  "upper": {
+                    "finite": 3
+                  }
+                },
+                "physical_attempts": {
+                  "lower": 1,
+                  "upper": {
+                    "finite": 3
+                  }
+                }
+              }
+            ]
+          },
+          "action_effect_occurrence": {
+            "caller_semantic_ir_digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "c7f0bfc0fc24302fd63ca0a1f081e3b654baab8654cce78d4c11b19f2af552ab"
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "2e84ab322f73637aa12204686951aec2adb3c365c09a0583c8f018151d1a603e"
+            },
+            "source_component": {
+              "catalog": "agentflow.portable.fixture@1",
+              "name": "portable.d9.recovery"
+            },
+            "computation": 3,
+            "source_entry_ordinal": 0,
+            "declared": {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "compensate"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "none"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "bounds": {
+                "lower": 0,
+                "upper": {
+                  "finite": 1
+                }
+              },
+              "guard": {
+                "unconditional": true
+              }
+            },
+            "mapped_resource_slot": 1,
+            "control_families": [
+              {
+                "control_node": 1,
+                "kind": "retry",
+                "logical_repetitions": {
+                  "lower": 1,
+                  "upper": {
+                    "finite": 3
+                  }
+                },
+                "physical_attempts": {
+                  "lower": 1,
+                  "upper": {
+                    "finite": 3
+                  }
+                }
+              }
+            ]
+          },
+          "recovery_usage_binding": {
+            "action": {
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "forward"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "compensation",
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "compensate"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "none"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            },
+            "activations_per_forward": {
+              "lower": 1,
+              "upper": {
+                "finite": 1
+              }
+            },
+            "attempts_per_activation": {
+              "lower": 1,
+              "upper": {
+                "finite": 1
+              }
+            },
+            "per_attempt_usage": []
+          },
+          "local_recovery_usage": {
+            "globally_unknown": false,
+            "coordinates": []
+          },
+          "root_recovery_usage": {
+            "globally_unknown": false,
+            "coordinates": []
+          },
+          "guard_compatibility": {
+            "source_component": {
+              "catalog": "agentflow.portable.fixture@1",
+              "name": "portable.d9.recovery"
+            },
+            "recovery_action": {
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "forward"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "compensation",
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "compensate"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "none"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            },
+            "forward_entry_ordinal": 1,
+            "action_entry_ordinal": 0,
+            "forward_guard": {
+              "unconditional": true
+            },
+            "declared_action_guard": {
+              "unconditional": true
+            },
+            "action_upper": {
+              "finite": 1
+            },
+            "verdict": "proven",
+            "basis": "frozen_guard_containment",
+            "reason": "Independent guard relation; no receipt or action eligibility",
+            "countermodel": null
+          },
+          "guard_coordinates": [],
+          "eligibility_evidence": "requires_evidence",
+          "control_path": [
+            {
+              "parent_node": 1,
+              "child_node": 2,
+              "child_index": 0,
+              "kind": "retry_child",
+              "detail": {
+                "max_attempts": 3
+              },
+              "reachability": "possible"
+            },
+            {
+              "parent_node": 2,
+              "child_node": 3,
+              "child_index": 0,
+              "kind": "compensation_scope_child",
+              "detail": {},
+              "reachability": "possible"
+            }
+          ]
+        },
+        {
+          "source": {
+            "caller_semantic_ir_digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "c7f0bfc0fc24302fd63ca0a1f081e3b654baab8654cce78d4c11b19f2af552ab"
+            },
+            "source_node": 3,
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "2e84ab322f73637aa12204686951aec2adb3c365c09a0583c8f018151d1a603e"
+            },
+            "forward_entry_ordinal": 1,
+            "action": {
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "forward"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "compensation",
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "compensate"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "none"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            }
+          },
+          "forward_seed_upper": {
+            "finite": 1
+          },
+          "target": {
+            "kind": "component",
+            "identity": {
+              "catalog": "agentflow.portable.fixture@1",
+              "name": "portable.d9.recovery"
+            },
+            "contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "2e84ab322f73637aa12204686951aec2adb3c365c09a0583c8f018151d1a603e"
+            }
+          },
+          "owner": {
+            "kind": "compensation_scope",
+            "node": 2
+          },
+          "local_bound": {
+            "compensation_scope_node": 2,
+            "upper": {
+              "state": "known",
+              "upper": {
+                "finite": 1
+              }
+            },
+            "applied_families": []
+          },
+          "root_bound": {
+            "root_semantic_ir_digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "c7f0bfc0fc24302fd63ca0a1f081e3b654baab8654cce78d4c11b19f2af552ab"
+            },
+            "upper": {
+              "state": "known",
+              "upper": {
+                "finite": 3
+              }
+            },
+            "applied_families": [
+              {
+                "identity": {
+                  "caller_semantic_ir_digest": {
+                    "algorithm": "sha256",
+                    "domain": "semantic-ir",
+                    "hex": "c7f0bfc0fc24302fd63ca0a1f081e3b654baab8654cce78d4c11b19f2af552ab"
+                  },
+                  "control_node": 1,
+                  "kind": "retry"
+                },
+                "logical_repetitions": {
+                  "lower": 1,
+                  "upper": {
+                    "finite": 3
+                  }
+                },
+                "physical_attempts": {
+                  "lower": 1,
+                  "upper": {
+                    "finite": 3
+                  }
+                }
+              }
+            ]
+          },
+          "forward_occurrence": {
+            "caller_semantic_ir_digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "c7f0bfc0fc24302fd63ca0a1f081e3b654baab8654cce78d4c11b19f2af552ab"
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "2e84ab322f73637aa12204686951aec2adb3c365c09a0583c8f018151d1a603e"
+            },
+            "source_component": {
+              "catalog": "agentflow.portable.fixture@1",
+              "name": "portable.d9.recovery"
+            },
+            "computation": 3,
+            "source_entry_ordinal": 1,
+            "declared": {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "forward"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "bounds": {
+                "lower": 1,
+                "upper": {
+                  "finite": 1
+                }
+              },
+              "guard": {
+                "unconditional": true
+              }
+            },
+            "mapped_resource_slot": 1,
+            "control_families": [
+              {
+                "control_node": 1,
+                "kind": "retry",
+                "logical_repetitions": {
+                  "lower": 1,
+                  "upper": {
+                    "finite": 3
+                  }
+                },
+                "physical_attempts": {
+                  "lower": 1,
+                  "upper": {
+                    "finite": 3
+                  }
+                }
+              }
+            ]
+          },
+          "action_effect_occurrence": {
+            "caller_semantic_ir_digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "c7f0bfc0fc24302fd63ca0a1f081e3b654baab8654cce78d4c11b19f2af552ab"
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "2e84ab322f73637aa12204686951aec2adb3c365c09a0583c8f018151d1a603e"
+            },
+            "source_component": {
+              "catalog": "agentflow.portable.fixture@1",
+              "name": "portable.d9.recovery"
+            },
+            "computation": 3,
+            "source_entry_ordinal": 0,
+            "declared": {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "compensate"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "none"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "bounds": {
+                "lower": 0,
+                "upper": {
+                  "finite": 1
+                }
+              },
+              "guard": {
+                "unconditional": true
+              }
+            },
+            "mapped_resource_slot": 1,
+            "control_families": [
+              {
+                "control_node": 1,
+                "kind": "retry",
+                "logical_repetitions": {
+                  "lower": 1,
+                  "upper": {
+                    "finite": 3
+                  }
+                },
+                "physical_attempts": {
+                  "lower": 1,
+                  "upper": {
+                    "finite": 3
+                  }
+                }
+              }
+            ]
+          },
+          "recovery_usage_binding": {
+            "action": {
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "forward"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "compensation",
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "compensate"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "none"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            },
+            "activations_per_forward": {
+              "lower": 1,
+              "upper": {
+                "finite": 1
+              }
+            },
+            "attempts_per_activation": {
+              "lower": 1,
+              "upper": {
+                "finite": 1
+              }
+            },
+            "per_attempt_usage": []
+          },
+          "local_recovery_usage": {
+            "globally_unknown": false,
+            "coordinates": []
+          },
+          "root_recovery_usage": {
+            "globally_unknown": false,
+            "coordinates": []
+          },
+          "guard_compatibility": {
+            "source_component": {
+              "catalog": "agentflow.portable.fixture@1",
+              "name": "portable.d9.recovery"
+            },
+            "recovery_action": {
+              "forward_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "forward"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              },
+              "action_kind": "compensation",
+              "action_effect": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "compensate"
+                },
+                "qualifiers": [
+                  {
+                    "family": "idempotency",
+                    "member": "none"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": 1,
+                  "scope_bindings": []
+                }
+              }
+            },
+            "forward_entry_ordinal": 1,
+            "action_entry_ordinal": 0,
+            "forward_guard": {
+              "unconditional": true
+            },
+            "declared_action_guard": {
+              "unconditional": true
+            },
+            "action_upper": {
+              "finite": 1
+            },
+            "verdict": "proven",
+            "basis": "frozen_guard_containment",
+            "reason": "Independent guard relation; no receipt or action eligibility",
+            "countermodel": null
+          },
+          "guard_coordinates": [],
+          "eligibility_evidence": "requires_evidence",
+          "control_path": [
+            {
+              "parent_node": 1,
+              "child_node": 2,
+              "child_index": 0,
+              "kind": "retry_child",
+              "detail": {
+                "max_attempts": 3
+              },
+              "reachability": "possible"
+            },
+            {
+              "parent_node": 2,
+              "child_node": 3,
+              "child_index": 0,
+              "kind": "compensation_scope_child",
+              "detail": {},
+              "reachability": "possible"
+            }
+          ]
+        }
+      ],
+      "case_slug": "d9-recovery-outer-retry-3"
+    },
+    {
+      "mutation_id": "recovery-meter",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "recovery_usage_binding",
+        "per_attempt_usage",
+        "0",
+        "meter",
+        "name"
+      ],
+      "replacement": "wrong",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/recovery-profile-changed.expected.json"
+    },
+    {
+      "mutation_id": "recovery-phase",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "recovery_usage_binding",
+        "per_attempt_usage",
+        "0",
+        "phase"
+      ],
+      "replacement": "forward",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/recovery-profile-changed.expected.json"
+    },
+    {
+      "mutation_id": "recovery-unit",
+      "path": [
+        "context",
+        "usage_meters",
+        "0",
+        "unit",
+        "name"
+      ],
+      "replacement": "wrong-unit",
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/recovery-profile-changed.expected.json"
+    },
+    {
+      "mutation_id": "root-recovery-usage",
+      "path": [
+        "d9_root_recovery",
+        "recovery_usage",
+        "value",
+        "coordinates",
+        "0",
+        "bound",
+        "upper"
+      ],
+      "replacement": 10,
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/recovery-profile-changed.expected.json"
+    },
+    {
+      "mutation_id": "local-recovery-usage",
+      "path": [
+        "d9_root_recovery",
+        "actions",
+        "actions",
+        "0",
+        "local_recovery_usage",
+        "coordinates",
+        "0",
+        "bound",
+        "upper"
+      ],
+      "replacement": 4,
+      "expected_file": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/recovery-profile-changed.expected.json"
+    }
+  ]
+}

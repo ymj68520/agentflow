@@ -1,0 +1,5 @@
+# Phase 4C.1B.4B — guard evidence
+
+Starting HEAD: `c5b49850d9ba0dce75255f152498468fe8e93762`. This phase targets only 16 original D9-Recovery cases; the 22 Control baseline is retained. Closure depends on the recorded committed gates. D10 independent values are Pending for all 78; B01/B02 Closure and B03–B07 remain BLOCKING. No later phase or runtime/publication capability is created.
+
+AF-CONTRACT-0017 and AF-SEMANTIC-0156: forward guard contained by action guard, not the reverse. Guard containment is Unconditional or exact InputEquals with typed constants; no solver is introduced. Failed containment alone is Unproven without a valid typed domain countermodel. The original 16 guards are Unconditional, so countermodel=None is exact and compared, not omitted. Entry ordinals are explicit Option<usize>; nullable presence is registered while the finite path count remains 937. Positive eligibility stays RequiresEvidence. F04 global SELECT/RACE/HANDLE suppression remains open and is not path-locally repaired. Typed Bool and invalid-type hand witnesses have explicit premises; this does not promote uninstantiated D10 witnesses.

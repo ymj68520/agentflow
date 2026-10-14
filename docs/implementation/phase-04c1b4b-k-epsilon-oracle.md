@@ -1,0 +1,5 @@
+# Phase 4C.1B.4B — k epsilon oracle
+
+Starting HEAD: `c5b49850d9ba0dce75255f152498468fe8e93762`. This phase targets only 16 original D9-Recovery cases; the 22 Control baseline is retained. Closure depends on the recorded committed gates. D10 independent values are Pending for all 78; B01/B02 Closure and B03–B07 remain BLOCKING. No later phase or runtime/publication capability is created.
+
+Action effect potential is a separate proof input, not a second executed event or new epsilon charge. Epsilon requirement folds with ordered sum, exclusive max, conditional handlers, loser-retaining race and single repetition factors. Full atoms/qualifiers/selectors/guards remain. Exact same-atom Forward opportunity is added once to K opportunity (1+6=7 hand premise); the declared aggregate envelope is not incremented. Source occurrences and conditional action identities stay separate. D9 compares against already-derived Root epsilon; D10 export-row witnesses remain Pending. F01 same-row/one-use capacity regressions are retained, never splicing bounds and guards from different rows.

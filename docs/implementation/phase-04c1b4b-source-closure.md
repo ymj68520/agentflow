@@ -1,0 +1,5 @@
+# Phase 4C.1B.4B — source closure
+
+Starting HEAD: `c5b49850d9ba0dce75255f152498468fe8e93762`. This phase targets only 16 original D9-Recovery cases; the 22 Control baseline is retained. Closure depends on the recorded committed gates. D10 independent values are Pending for all 78; B01/B02 Closure and B03–B07 remain BLOCKING. No later phase or runtime/publication capability is created.
+
+Five verdicts are independently accounted: source node multiset against owned leaf traversal; action binding multiset by exact source/action; complete profile multiset by source/binding; unique factor identities against control paths; total soundness from the complete prior accountings plus checked derivations. Equal contract/atom/profile contents at different call sites are not deduplicated. Missing source/profile/factor cannot become empty or zero. Root action objects retain source, seed, target, owner, both bound coordinates, both occurrences, binding, both Usage projections, Guard Option/coordinates, eligibility and path. All required payloads compare; only reviewed human explanation text is DiagnosticOnly.

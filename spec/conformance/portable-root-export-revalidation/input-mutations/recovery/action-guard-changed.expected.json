@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "facts": {
+    "case_id": "portable-d9-recovery-input/action-guard-changed",
+    "input_identity": {
+      "canonical_bytes": 2253251,
+      "canonical_sha256": "e2f3c4b78e74b28517e70715b12d96ec5d20dc4ebc630b08b0472db6582fa19b"
+    },
+    "production_stage": "D6",
+    "error_family": "ContractValidationFailed",
+    "error_path": "$.contract_assets",
+    "d9_root": null,
+    "capability_issued": false
+  },
+  "formal_basis": "AF-CONTRACT-0017: missing actual input port, no invented D9 fact",
+  "d10_independent_values": "Pending"
+}
