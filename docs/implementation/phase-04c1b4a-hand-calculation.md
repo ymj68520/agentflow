@@ -23,7 +23,64 @@ These literal expected values were derived from the formal rules, without Rust o
   "body": {},
   "expected_lower": 1,
   "expected_upper": 5,
-  "expected_usage_upper": 5
+  "expected_usage_upper": 5,
+  "input_tree": {
+    "opcode": "sequence",
+    "children": [
+      "leaf-1",
+      "leaf-2"
+    ],
+    "parameters": {}
+  },
+  "leaf_facts": [
+    {
+      "source": "leaf-1",
+      "epsilon_bounds": [
+        1,
+        2
+      ],
+      "phi": [],
+      "forward_usage_upper": 2
+    },
+    {
+      "source": "leaf-2",
+      "epsilon_bounds": [
+        2,
+        3
+      ],
+      "phi": [],
+      "forward_usage_upper": 3
+    }
+  ],
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0127",
+    "AF-SEMANTIC-0134",
+    "AF-SEMANTIC-0137"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon_lower": 1,
+    "epsilon_upper": 5,
+    "phi": [],
+    "forward_usage_upper": 5
+  },
+  "source_closure": {
+    "leaf_order": [
+      "leaf-1",
+      "leaf-2"
+    ],
+    "distinct_call_sites": 2,
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon_lower": 1,
+    "epsilon_upper": 5,
+    "phi": [],
+    "forward_usage_upper": 5
+  },
+  "expected_verdict": {
+    "hand_epsilon_phi_usage_equality": "proven",
+    "overall_root": "not_established: synthetic algebra inputs do not declare all Root premises"
+  }
 }
 ```
 
@@ -46,7 +103,65 @@ These literal expected values were derived from the formal rules, without Rust o
   "body": {},
   "expected_lower": 0,
   "expected_upper": 3,
-  "expected_usage_upper": 3
+  "expected_usage_upper": 3,
+  "input_tree": {
+    "opcode": "select",
+    "children": [
+      "leaf-1",
+      "leaf-2"
+    ],
+    "parameters": {}
+  },
+  "leaf_facts": [
+    {
+      "source": "leaf-1",
+      "epsilon_bounds": [
+        1,
+        2
+      ],
+      "phi": [],
+      "forward_usage_upper": 2
+    },
+    {
+      "source": "leaf-2",
+      "epsilon_bounds": [
+        2,
+        3
+      ],
+      "phi": [],
+      "forward_usage_upper": 3
+    }
+  ],
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0128",
+    "AF-SEMANTIC-0129",
+    "AF-SEMANTIC-0134",
+    "AF-SEMANTIC-0137"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon_lower": 0,
+    "epsilon_upper": 3,
+    "phi": [],
+    "forward_usage_upper": 3
+  },
+  "source_closure": {
+    "leaf_order": [
+      "leaf-1",
+      "leaf-2"
+    ],
+    "distinct_call_sites": 2,
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon_lower": 0,
+    "epsilon_upper": 3,
+    "phi": [],
+    "forward_usage_upper": 3
+  },
+  "expected_verdict": {
+    "hand_epsilon_phi_usage_equality": "proven",
+    "overall_root": "not_established: synthetic algebra inputs do not declare all Root premises"
+  }
 }
 ```
 
@@ -71,7 +186,66 @@ These literal expected values were derived from the formal rules, without Rust o
   },
   "expected_lower": 3,
   "expected_upper": 5,
-  "expected_usage_upper": 5
+  "expected_usage_upper": 5,
+  "input_tree": {
+    "opcode": "parallel",
+    "children": [
+      "leaf-1",
+      "leaf-2"
+    ],
+    "parameters": {
+      "mode": "all"
+    }
+  },
+  "leaf_facts": [
+    {
+      "source": "leaf-1",
+      "epsilon_bounds": [
+        1,
+        2
+      ],
+      "phi": [],
+      "forward_usage_upper": 2
+    },
+    {
+      "source": "leaf-2",
+      "epsilon_bounds": [
+        2,
+        3
+      ],
+      "phi": [],
+      "forward_usage_upper": 3
+    }
+  ],
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0130",
+    "AF-SEMANTIC-0134",
+    "AF-SEMANTIC-0137"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon_lower": 3,
+    "epsilon_upper": 5,
+    "phi": [],
+    "forward_usage_upper": 5
+  },
+  "source_closure": {
+    "leaf_order": [
+      "leaf-1",
+      "leaf-2"
+    ],
+    "distinct_call_sites": 2,
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon_lower": 3,
+    "epsilon_upper": 5,
+    "phi": [],
+    "forward_usage_upper": 5
+  },
+  "expected_verdict": {
+    "hand_epsilon_phi_usage_equality": "proven",
+    "overall_root": "not_established: synthetic algebra inputs do not declare all Root premises"
+  }
 }
 ```
 
@@ -94,7 +268,65 @@ These literal expected values were derived from the formal rules, without Rust o
   "body": {},
   "expected_lower": 0,
   "expected_upper": 5,
-  "expected_usage_upper": 5
+  "expected_usage_upper": 5,
+  "input_tree": {
+    "opcode": "race",
+    "children": [
+      "leaf-1",
+      "leaf-2"
+    ],
+    "parameters": {}
+  },
+  "leaf_facts": [
+    {
+      "source": "leaf-1",
+      "epsilon_bounds": [
+        1,
+        2
+      ],
+      "phi": [],
+      "forward_usage_upper": 2
+    },
+    {
+      "source": "leaf-2",
+      "epsilon_bounds": [
+        2,
+        3
+      ],
+      "phi": [],
+      "forward_usage_upper": 3
+    }
+  ],
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0132",
+    "AF-SEMANTIC-0133",
+    "AF-SEMANTIC-0134",
+    "AF-SEMANTIC-0137"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon_lower": 0,
+    "epsilon_upper": 5,
+    "phi": [],
+    "forward_usage_upper": 5
+  },
+  "source_closure": {
+    "leaf_order": [
+      "leaf-1",
+      "leaf-2"
+    ],
+    "distinct_call_sites": 2,
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon_lower": 0,
+    "epsilon_upper": 5,
+    "phi": [],
+    "forward_usage_upper": 5
+  },
+  "expected_verdict": {
+    "hand_epsilon_phi_usage_equality": "proven",
+    "overall_root": "not_established: synthetic algebra inputs do not declare all Root premises"
+  }
 }
 ```
 
@@ -117,7 +349,55 @@ These literal expected values were derived from the formal rules, without Rust o
   },
   "expected_lower": 0,
   "expected_upper": 8,
-  "expected_usage_upper": 8
+  "expected_usage_upper": 8,
+  "input_tree": {
+    "opcode": "iterate",
+    "children": [
+      "leaf-1"
+    ],
+    "parameters": {
+      "while": {
+        "max_iterations": "4"
+      }
+    }
+  },
+  "leaf_facts": [
+    {
+      "source": "leaf-1",
+      "epsilon_bounds": [
+        1,
+        2
+      ],
+      "phi": [],
+      "forward_usage_upper": 2
+    }
+  ],
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0143"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon_lower": 0,
+    "epsilon_upper": 8,
+    "phi": [],
+    "forward_usage_upper": 8
+  },
+  "source_closure": {
+    "leaf_order": [
+      "leaf-1"
+    ],
+    "distinct_call_sites": 1,
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon_lower": 0,
+    "epsilon_upper": 8,
+    "phi": [],
+    "forward_usage_upper": 8
+  },
+  "expected_verdict": {
+    "hand_epsilon_phi_usage_equality": "proven",
+    "overall_root": "not_established: synthetic algebra inputs do not declare all Root premises"
+  }
 }
 ```
 
@@ -141,7 +421,56 @@ These literal expected values were derived from the formal rules, without Rust o
   },
   "expected_lower": 1,
   "expected_upper": 6,
-  "expected_usage_upper": 6
+  "expected_usage_upper": 6,
+  "input_tree": {
+    "opcode": "retry",
+    "children": [
+      "leaf-1"
+    ],
+    "parameters": {
+      "delays": [
+        "0",
+        "1"
+      ]
+    }
+  },
+  "leaf_facts": [
+    {
+      "source": "leaf-1",
+      "epsilon_bounds": [
+        1,
+        2
+      ],
+      "phi": [],
+      "forward_usage_upper": 2
+    }
+  ],
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0144"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon_lower": 1,
+    "epsilon_upper": 6,
+    "phi": [],
+    "forward_usage_upper": 6
+  },
+  "source_closure": {
+    "leaf_order": [
+      "leaf-1"
+    ],
+    "distinct_call_sites": 1,
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon_lower": 1,
+    "epsilon_upper": 6,
+    "phi": [],
+    "forward_usage_upper": 6
+  },
+  "expected_verdict": {
+    "hand_epsilon_phi_usage_equality": "proven",
+    "overall_root": "not_established: synthetic algebra inputs do not declare all Root premises"
+  }
 }
 ```
 
@@ -160,7 +489,51 @@ These literal expected values were derived from the formal rules, without Rust o
   "body": {},
   "expected_lower": 1,
   "expected_upper": 2,
-  "expected_usage_upper": 2
+  "expected_usage_upper": 2,
+  "input_tree": {
+    "opcode": "timeout",
+    "children": [
+      "leaf-1"
+    ],
+    "parameters": {}
+  },
+  "leaf_facts": [
+    {
+      "source": "leaf-1",
+      "epsilon_bounds": [
+        1,
+        2
+      ],
+      "phi": [],
+      "forward_usage_upper": 2
+    }
+  ],
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0145"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon_lower": 1,
+    "epsilon_upper": 2,
+    "phi": [],
+    "forward_usage_upper": 2
+  },
+  "source_closure": {
+    "leaf_order": [
+      "leaf-1"
+    ],
+    "distinct_call_sites": 1,
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon_lower": 1,
+    "epsilon_upper": 2,
+    "phi": [],
+    "forward_usage_upper": 2
+  },
+  "expected_verdict": {
+    "hand_epsilon_phi_usage_equality": "proven",
+    "overall_root": "not_established: synthetic algebra inputs do not declare all Root premises"
+  }
 }
 ```
 
@@ -185,7 +558,64 @@ These literal expected values were derived from the formal rules, without Rust o
   },
   "expected_lower": 1,
   "expected_upper": 5,
-  "expected_usage_upper": 5
+  "expected_usage_upper": 5,
+  "input_tree": {
+    "opcode": "handle",
+    "children": [
+      "leaf-1",
+      "leaf-2"
+    ],
+    "parameters": {
+      "clauses": []
+    }
+  },
+  "leaf_facts": [
+    {
+      "source": "leaf-1",
+      "epsilon_bounds": [
+        1,
+        2
+      ],
+      "phi": [],
+      "forward_usage_upper": 2
+    },
+    {
+      "source": "leaf-2",
+      "epsilon_bounds": [
+        2,
+        3
+      ],
+      "phi": [],
+      "forward_usage_upper": 3
+    }
+  ],
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0146"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon_lower": 1,
+    "epsilon_upper": 5,
+    "phi": [],
+    "forward_usage_upper": 5
+  },
+  "source_closure": {
+    "leaf_order": [
+      "leaf-1",
+      "leaf-2"
+    ],
+    "distinct_call_sites": 2,
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon_lower": 1,
+    "epsilon_upper": 5,
+    "phi": [],
+    "forward_usage_upper": 5
+  },
+  "expected_verdict": {
+    "hand_epsilon_phi_usage_equality": "proven",
+    "overall_root": "not_established: synthetic algebra inputs do not declare all Root premises"
+  }
 }
 ```
 
@@ -204,7 +634,52 @@ These literal expected values were derived from the formal rules, without Rust o
   "body": {},
   "expected_lower": 1,
   "expected_upper": 2,
-  "expected_usage_upper": 2
+  "expected_usage_upper": 2,
+  "input_tree": {
+    "opcode": "scope",
+    "children": [
+      "leaf-1"
+    ],
+    "parameters": {}
+  },
+  "leaf_facts": [
+    {
+      "source": "leaf-1",
+      "epsilon_bounds": [
+        1,
+        2
+      ],
+      "phi": [],
+      "forward_usage_upper": 2
+    }
+  ],
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0147",
+    "AF-SEMANTIC-0148"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon_lower": 1,
+    "epsilon_upper": 2,
+    "phi": [],
+    "forward_usage_upper": 2
+  },
+  "source_closure": {
+    "leaf_order": [
+      "leaf-1"
+    ],
+    "distinct_call_sites": 1,
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon_lower": 1,
+    "epsilon_upper": 2,
+    "phi": [],
+    "forward_usage_upper": 2
+  },
+  "expected_verdict": {
+    "hand_epsilon_phi_usage_equality": "proven",
+    "overall_root": "not_established: synthetic algebra inputs do not declare all Root premises"
+  }
 }
 ```
 
@@ -223,7 +698,53 @@ These literal expected values were derived from the formal rules, without Rust o
   "body": {},
   "expected_lower": 1,
   "expected_upper": 2,
-  "expected_usage_upper": 2
+  "expected_usage_upper": 2,
+  "input_tree": {
+    "opcode": "compensation_scope",
+    "children": [
+      "leaf-1"
+    ],
+    "parameters": {}
+  },
+  "leaf_facts": [
+    {
+      "source": "leaf-1",
+      "epsilon_bounds": [
+        1,
+        2
+      ],
+      "phi": [],
+      "forward_usage_upper": 2
+    }
+  ],
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0149",
+    "AF-SEMANTIC-0150",
+    "AF-SEMANTIC-0151"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon_lower": 1,
+    "epsilon_upper": 2,
+    "phi": [],
+    "forward_usage_upper": 2
+  },
+  "source_closure": {
+    "leaf_order": [
+      "leaf-1"
+    ],
+    "distinct_call_sites": 1,
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon_lower": 1,
+    "epsilon_upper": 2,
+    "phi": [],
+    "forward_usage_upper": 2
+  },
+  "expected_verdict": {
+    "hand_epsilon_phi_usage_equality": "proven",
+    "overall_root": "not_established: synthetic algebra inputs do not declare all Root premises"
+  }
 }
 ```
 
@@ -275,7 +796,163 @@ These literal expected values were derived from the formal rules, without Rust o
         "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       }
     }
-  ]
+  ],
+  "input_tree": "HANDLE(protected:A, handler:B)",
+  "leaf_facts": {
+    "literal_inputs": {
+      "vector_id": "exact-handle-failure",
+      "protected": [
+        {
+          "specification_id": "hand.failure@1",
+          "type_name": "A",
+          "schema_digest": {
+            "algorithm": "sha256",
+            "domain": "type-schema",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        }
+      ],
+      "handled": [
+        {
+          "specification_id": "hand.failure@1",
+          "type_name": "A",
+          "schema_digest": {
+            "algorithm": "sha256",
+            "domain": "type-schema",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        }
+      ],
+      "handler": [
+        {
+          "specification_id": "hand.failure@1",
+          "type_name": "B",
+          "schema_digest": {
+            "algorithm": "sha256",
+            "domain": "type-schema",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        }
+      ],
+      "expected": [
+        {
+          "specification_id": "hand.failure@1",
+          "type_name": "B",
+          "schema_digest": {
+            "algorithm": "sha256",
+            "domain": "type-schema",
+            "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        }
+      ]
+    }
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0146"
+  ],
+  "intermediate_effect_failure_usage": {
+    "vector_id": "exact-handle-failure",
+    "protected": [
+      {
+        "specification_id": "hand.failure@1",
+        "type_name": "A",
+        "schema_digest": {
+          "algorithm": "sha256",
+          "domain": "type-schema",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      }
+    ],
+    "handled": [
+      {
+        "specification_id": "hand.failure@1",
+        "type_name": "A",
+        "schema_digest": {
+          "algorithm": "sha256",
+          "domain": "type-schema",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      }
+    ],
+    "handler": [
+      {
+        "specification_id": "hand.failure@1",
+        "type_name": "B",
+        "schema_digest": {
+          "algorithm": "sha256",
+          "domain": "type-schema",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      }
+    ],
+    "expected": [
+      {
+        "specification_id": "hand.failure@1",
+        "type_name": "B",
+        "schema_digest": {
+          "algorithm": "sha256",
+          "domain": "type-schema",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      }
+    ]
+  },
+  "source_closure": {
+    "leaf_order": [
+      "protected",
+      "handler"
+    ],
+    "distinct_call_sites": 2,
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "vector_id": "exact-handle-failure",
+    "protected": [
+      {
+        "specification_id": "hand.failure@1",
+        "type_name": "A",
+        "schema_digest": {
+          "algorithm": "sha256",
+          "domain": "type-schema",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      }
+    ],
+    "handled": [
+      {
+        "specification_id": "hand.failure@1",
+        "type_name": "A",
+        "schema_digest": {
+          "algorithm": "sha256",
+          "domain": "type-schema",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      }
+    ],
+    "handler": [
+      {
+        "specification_id": "hand.failure@1",
+        "type_name": "B",
+        "schema_digest": {
+          "algorithm": "sha256",
+          "domain": "type-schema",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      }
+    ],
+    "expected": [
+      {
+        "specification_id": "hand.failure@1",
+        "type_name": "B",
+        "schema_digest": {
+          "algorithm": "sha256",
+          "domain": "type-schema",
+          "hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      }
+    ]
+  },
+  "expected_verdict": "proven for stated algebra equality only; no overall Root capability"
 }
 ```
 
@@ -287,7 +964,43 @@ These literal expected values were derived from the formal rules, without Rust o
   "leaf_upper": 2,
   "retry_attempts": 3,
   "iterations": 4,
-  "expected_upper": 24
+  "expected_upper": 24,
+  "input_tree": "ITERATE(4, RETRY(3, leaf))",
+  "leaf_facts": {
+    "literal_inputs": {
+      "vector_id": "retry-times-iterate",
+      "leaf_upper": 2,
+      "retry_attempts": 3,
+      "iterations": 4,
+      "expected_upper": 24
+    }
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0143",
+    "AF-SEMANTIC-0144"
+  ],
+  "intermediate_effect_failure_usage": {
+    "vector_id": "retry-times-iterate",
+    "leaf_upper": 2,
+    "retry_attempts": 3,
+    "iterations": 4,
+    "expected_upper": 24
+  },
+  "source_closure": {
+    "leaf_order": [
+      "leaf"
+    ],
+    "distinct_call_sites": 1,
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "vector_id": "retry-times-iterate",
+    "leaf_upper": 2,
+    "retry_attempts": 3,
+    "iterations": 4,
+    "expected_upper": 24
+  },
+  "expected_verdict": "proven for stated algebra equality only; no overall Root capability"
 }
 ```
 
@@ -298,7 +1011,40 @@ These literal expected values were derived from the formal rules, without Rust o
   "vector_id": "missing-is-not-zero",
   "declared_zero": 0,
   "missing": [],
-  "expected_state": "unknown"
+  "expected_state": "unknown",
+  "input_tree": "SEQUENCE(explicit-zero, missing-coordinate)",
+  "leaf_facts": {
+    "literal_inputs": {
+      "vector_id": "missing-is-not-zero",
+      "declared_zero": 0,
+      "missing": [],
+      "expected_state": "unknown"
+    }
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0137"
+  ],
+  "intermediate_effect_failure_usage": {
+    "vector_id": "missing-is-not-zero",
+    "declared_zero": 0,
+    "missing": [],
+    "expected_state": "unknown"
+  },
+  "source_closure": {
+    "leaf_order": [
+      "explicit-zero",
+      "missing-coordinate"
+    ],
+    "distinct_call_sites": 2,
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "vector_id": "missing-is-not-zero",
+    "declared_zero": 0,
+    "missing": [],
+    "expected_state": "unknown"
+  },
+  "expected_verdict": "proven for stated algebra equality only; no overall Root capability"
 }
 ```
 
@@ -310,7 +1056,42 @@ These literal expected values were derived from the formal rules, without Rust o
   "max": 18446744073709551615,
   "checked_add": 1,
   "checked_multiply": 2,
-  "expected": "OverflowError"
+  "expected": "OverflowError",
+  "input_tree": "checked_add(U64_MAX,1); checked_mul(U64_MAX,2)",
+  "leaf_facts": {
+    "literal_inputs": {
+      "vector_id": "u64-overflow",
+      "max": 18446744073709551615,
+      "checked_add": 1,
+      "checked_multiply": 2,
+      "expected": "OverflowError"
+    }
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0137",
+    "AF-SEMANTIC-0143",
+    "AF-SEMANTIC-0144"
+  ],
+  "intermediate_effect_failure_usage": {
+    "vector_id": "u64-overflow",
+    "max": 18446744073709551615,
+    "checked_add": 1,
+    "checked_multiply": 2,
+    "expected": "OverflowError"
+  },
+  "source_closure": {
+    "leaf_order": [],
+    "distinct_call_sites": 0,
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "vector_id": "u64-overflow",
+    "max": 18446744073709551615,
+    "checked_add": 1,
+    "checked_multiply": 2,
+    "expected": "OverflowError"
+  },
+  "expected_verdict": "arithmetic_rejected"
 }
 ```
 
@@ -331,7 +1112,71 @@ These literal expected values were derived from the formal rules, without Rust o
   ],
   "attempts": 3,
   "expected_lower": 1,
-  "expected_upper": 9
+  "expected_upper": 9,
+  "input_tree": "SEQUENCE(RETRY(3, first), second)",
+  "leaf_facts": {
+    "literal_inputs": {
+      "vector_id": "sequence-plus-retry",
+      "inputs": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "attempts": 3,
+      "expected_lower": 1,
+      "expected_upper": 9
+    }
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0127",
+    "AF-SEMANTIC-0144"
+  ],
+  "intermediate_effect_failure_usage": {
+    "vector_id": "sequence-plus-retry",
+    "inputs": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "attempts": 3,
+    "expected_lower": 1,
+    "expected_upper": 9
+  },
+  "source_closure": {
+    "leaf_order": [
+      "first",
+      "second"
+    ],
+    "distinct_call_sites": 2,
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "vector_id": "sequence-plus-retry",
+    "inputs": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "attempts": 3,
+    "expected_lower": 1,
+    "expected_upper": 9
+  },
+  "expected_verdict": "proven for stated algebra equality only; no overall Root capability"
 }
 ```
 
@@ -344,7 +1189,48 @@ These literal expected values were derived from the formal rules, without Rust o
   "handler_upper": 3,
   "other_branch_upper": 4,
   "expected_lower": 0,
-  "expected_upper": 5
+  "expected_upper": 5,
+  "input_tree": "SELECT(HANDLE(protected, handler), other)",
+  "leaf_facts": {
+    "literal_inputs": {
+      "vector_id": "select-plus-handle",
+      "protected_upper": 2,
+      "handler_upper": 3,
+      "other_branch_upper": 4,
+      "expected_lower": 0,
+      "expected_upper": 5
+    }
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0128",
+    "AF-SEMANTIC-0146"
+  ],
+  "intermediate_effect_failure_usage": {
+    "vector_id": "select-plus-handle",
+    "protected_upper": 2,
+    "handler_upper": 3,
+    "other_branch_upper": 4,
+    "expected_lower": 0,
+    "expected_upper": 5
+  },
+  "source_closure": {
+    "leaf_order": [
+      "protected",
+      "handler",
+      "other"
+    ],
+    "distinct_call_sites": 3,
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "vector_id": "select-plus-handle",
+    "protected_upper": 2,
+    "handler_upper": 3,
+    "other_branch_upper": 4,
+    "expected_lower": 0,
+    "expected_upper": 5
+  },
+  "expected_verdict": "proven for stated algebra equality only; no overall Root capability"
 }
 ```
 
@@ -355,7 +1241,42 @@ These literal expected values were derived from the formal rules, without Rust o
   "vector_id": "parallel-plus-race",
   "loser_retained": true,
   "expected_lower": 1,
-  "expected_upper": 9
+  "expected_upper": 9,
+  "input_tree": "PARALLEL(RACE(first, second), third)",
+  "leaf_facts": {
+    "literal_inputs": {
+      "vector_id": "parallel-plus-race",
+      "loser_retained": true,
+      "expected_lower": 1,
+      "expected_upper": 9
+    }
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0130",
+    "AF-SEMANTIC-0132"
+  ],
+  "intermediate_effect_failure_usage": {
+    "vector_id": "parallel-plus-race",
+    "loser_retained": true,
+    "expected_lower": 1,
+    "expected_upper": 9
+  },
+  "source_closure": {
+    "leaf_order": [
+      "first",
+      "second",
+      "third"
+    ],
+    "distinct_call_sites": 3,
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "vector_id": "parallel-plus-race",
+    "loser_retained": true,
+    "expected_lower": 1,
+    "expected_upper": 9
+  },
+  "expected_verdict": "proven for stated algebra equality only; no overall Root capability"
 }
 ```
 
@@ -367,7 +1288,45 @@ These literal expected values were derived from the formal rules, without Rust o
   "forward_retained": true,
   "no_action_declared": true,
   "iterations": 4,
-  "expected_upper": 8
+  "expected_upper": 8,
+  "input_tree": "ITERATE(4, COMPENSATION_SCOPE(leaf))",
+  "leaf_facts": {
+    "literal_inputs": {
+      "vector_id": "iterate-plus-compensation-scope",
+      "forward_retained": true,
+      "no_action_declared": true,
+      "iterations": 4,
+      "expected_upper": 8
+    }
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0143",
+    "AF-SEMANTIC-0149",
+    "AF-SEMANTIC-0150",
+    "AF-SEMANTIC-0151"
+  ],
+  "intermediate_effect_failure_usage": {
+    "vector_id": "iterate-plus-compensation-scope",
+    "forward_retained": true,
+    "no_action_declared": true,
+    "iterations": 4,
+    "expected_upper": 8
+  },
+  "source_closure": {
+    "leaf_order": [
+      "leaf"
+    ],
+    "distinct_call_sites": 1,
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "vector_id": "iterate-plus-compensation-scope",
+    "forward_retained": true,
+    "no_action_declared": true,
+    "iterations": 4,
+    "expected_upper": 8
+  },
+  "expected_verdict": "proven for stated algebra equality only; no overall Root capability"
 }
 ```
 
@@ -383,7 +1342,128 @@ These literal expected values were derived from the formal rules, without Rust o
     "recovery": 0
   },
   "source_instances": 1,
-  "rule": "AF-SEMANTIC-0112/0117"
+  "rule": "AF-SEMANTIC-0112/0117",
+  "input_tree": {
+    "source": "unchanged portable d9-opcode-invoke",
+    "opcode": "invoke",
+    "direct_children": []
+  },
+  "leaf_facts": {
+    "literal_inputs": {
+      "vector_id": "invoke-leaf",
+      "declared_effect": "closed empty",
+      "declared_failure": [],
+      "declared_usage": {
+        "forward": 0,
+        "recovery": 0
+      },
+      "source_instances": 1,
+      "rule": "AF-SEMANTIC-0112/0117"
+    }
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0112/0117"
+  ],
+  "intermediate_effect_failure_usage": {
+    "effect": {
+      "state": "complete",
+      "value": {
+        "row": "closed",
+        "entries": []
+      },
+      "proofs": [
+        {
+          "dimension": "effect-envelope",
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0127",
+          "reference": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        }
+      ]
+    },
+    "failure": {
+      "state": "complete",
+      "value": [],
+      "proofs": [
+        {
+          "dimension": "failure-row",
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0134",
+          "reference": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        }
+      ]
+    },
+    "usage": {
+      "state": "complete",
+      "value": {
+        "globally_unknown": false,
+        "coordinates": [
+          {
+            "phase": "forward",
+            "meter": {
+              "catalog": "agentflow.meters.test@1",
+              "name": "api_calls"
+            },
+            "bound": {
+              "state": "known_finite",
+              "upper": 0
+            }
+          },
+          {
+            "phase": "recovery",
+            "meter": {
+              "catalog": "agentflow.meters.test@1",
+              "name": "api_calls"
+            },
+            "bound": {
+              "state": "known_finite",
+              "upper": 0
+            }
+          }
+        ]
+      },
+      "proofs": [
+        {
+          "dimension": "usage",
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0137",
+          "reference": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        }
+      ]
+    }
+  },
+  "source_closure": {
+    "computation_order": [
+      1
+    ],
+    "leaf_order": [
+      1
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "vector_id": "invoke-leaf",
+    "declared_effect": "closed empty",
+    "declared_failure": [],
+    "declared_usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "source_instances": 1,
+    "rule": "AF-SEMANTIC-0112/0117"
+  },
+  "expected_verdict": {
+    "checked_literal_hand_assertions": "proven",
+    "proof_premises": "only the assertions recorded in this vector; full D9 comparison is a separate test"
+  }
 }
 ```
 
@@ -395,7 +1475,100 @@ These literal expected values were derived from the formal rules, without Rust o
   "adapter_contract": "absent",
   "expected_effect_failure_usage_flow": "Unknown",
   "external_influence": "unknown_external_influence",
-  "rule": "AF-SEMANTIC-0122"
+  "rule": "AF-SEMANTIC-0122",
+  "input_tree": {
+    "source": "unchanged portable d9-opcode-await",
+    "opcode": "await",
+    "direct_children": []
+  },
+  "leaf_facts": {
+    "literal_inputs": {
+      "vector_id": "await-leaf",
+      "adapter_contract": "absent",
+      "expected_effect_failure_usage_flow": "Unknown",
+      "external_influence": "unknown_external_influence",
+      "rule": "AF-SEMANTIC-0122"
+    }
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0122"
+  ],
+  "intermediate_effect_failure_usage": {
+    "effect": {
+      "state": "unknown",
+      "known_contributions": [],
+      "unresolved_sources": [
+        1
+      ],
+      "proofs": [
+        {
+          "dimension": "effect-envelope",
+          "verdict": "unproven",
+          "rule_id": "AF-SEMANTIC-0127",
+          "reference": "agentflow.semantic.ir@1/SemanticIrDocument@f6ca985ba7cccad128ed888a0f194433e113749d7ef548b2b0bd5f63e9f8467e",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        }
+      ]
+    },
+    "failure": {
+      "state": "unknown",
+      "known_contributions": [],
+      "unresolved_sources": [
+        1
+      ],
+      "proofs": [
+        {
+          "dimension": "failure-row",
+          "verdict": "unproven",
+          "rule_id": "AF-SEMANTIC-0134",
+          "reference": "agentflow.semantic.ir@1/SemanticIrDocument@f6ca985ba7cccad128ed888a0f194433e113749d7ef548b2b0bd5f63e9f8467e",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        }
+      ]
+    },
+    "usage": {
+      "state": "unknown",
+      "known_contributions": [],
+      "unresolved_sources": [
+        1
+      ],
+      "proofs": [
+        {
+          "dimension": "usage",
+          "verdict": "unproven",
+          "rule_id": "AF-SEMANTIC-0137",
+          "reference": "agentflow.semantic.ir@1/SemanticIrDocument@f6ca985ba7cccad128ed888a0f194433e113749d7ef548b2b0bd5f63e9f8467e",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        }
+      ]
+    }
+  },
+  "source_closure": {
+    "computation_order": [
+      1
+    ],
+    "leaf_order": [
+      1
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "vector_id": "await-leaf",
+    "adapter_contract": "absent",
+    "expected_effect_failure_usage_flow": "Unknown",
+    "external_influence": "unknown_external_influence",
+    "rule": "AF-SEMANTIC-0122"
+  },
+  "expected_verdict": {
+    "checked_literal_hand_assertions": "proven",
+    "proof_premises": "only the assertions recorded in this vector; full D9 comparison is a separate test"
+  }
 }
 ```
 
@@ -406,7 +1579,118 @@ These literal expected values were derived from the formal rules, without Rust o
   "vector_id": "call-subflow-leaf",
   "target_and_export": "exact declaration pins",
   "body_conformance": "requires_evidence",
-  "rule": "AF-SEMANTIC-0118/0119/0120"
+  "rule": "AF-SEMANTIC-0118/0119/0120",
+  "input_tree": {
+    "source": "unchanged portable d9-opcode-call_subflow",
+    "opcode": "call_subflow",
+    "direct_children": []
+  },
+  "leaf_facts": {
+    "literal_inputs": {
+      "vector_id": "call-subflow-leaf",
+      "target_and_export": "exact declaration pins",
+      "body_conformance": "requires_evidence",
+      "rule": "AF-SEMANTIC-0118/0119/0120"
+    }
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0118/0119/0120"
+  ],
+  "intermediate_effect_failure_usage": {
+    "effect": {
+      "state": "complete",
+      "value": {
+        "row": "closed",
+        "entries": []
+      },
+      "proofs": [
+        {
+          "dimension": "effect-envelope",
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0127",
+          "reference": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        }
+      ]
+    },
+    "failure": {
+      "state": "complete",
+      "value": [],
+      "proofs": [
+        {
+          "dimension": "failure-row",
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0134",
+          "reference": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        }
+      ]
+    },
+    "usage": {
+      "state": "complete",
+      "value": {
+        "globally_unknown": false,
+        "coordinates": [
+          {
+            "phase": "forward",
+            "meter": {
+              "catalog": "agentflow.meters.test@1",
+              "name": "api_calls"
+            },
+            "bound": {
+              "state": "known_finite",
+              "upper": 0
+            }
+          },
+          {
+            "phase": "recovery",
+            "meter": {
+              "catalog": "agentflow.meters.test@1",
+              "name": "api_calls"
+            },
+            "bound": {
+              "state": "known_finite",
+              "upper": 0
+            }
+          }
+        ]
+      },
+      "proofs": [
+        {
+          "dimension": "usage",
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0137",
+          "reference": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        }
+      ]
+    }
+  },
+  "source_closure": {
+    "computation_order": [
+      1
+    ],
+    "leaf_order": [
+      1
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "vector_id": "call-subflow-leaf",
+    "target_and_export": "exact declaration pins",
+    "body_conformance": "requires_evidence",
+    "rule": "AF-SEMANTIC-0118/0119/0120"
+  },
+  "expected_verdict": {
+    "checked_literal_hand_assertions": "proven",
+    "proof_premises": "only the assertions recorded in this vector; full D9 comparison is a separate test"
+  }
 }
 ```
 
@@ -422,7 +1706,134 @@ These literal expected values were derived from the formal rules, without Rust o
   ],
   "expected_source_instances": 2,
   "requirements": "retained per child",
-  "rule": "AF-SEMANTIC-0138/0139/0140/0141"
+  "rule": "AF-SEMANTIC-0138/0139/0140/0141",
+  "input_tree": {
+    "source": "unchanged portable d9-opcode-sequence",
+    "opcode": "sequence",
+    "direct_children": [
+      2,
+      3
+    ]
+  },
+  "leaf_facts": {
+    "literal_inputs": {
+      "vector_id": "source-multiset-and-per-child-r-x-k",
+      "same_contract": true,
+      "child_ids": [
+        2,
+        3
+      ],
+      "expected_source_instances": 2,
+      "requirements": "retained per child",
+      "rule": "AF-SEMANTIC-0138/0139/0140/0141"
+    }
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0138/0139/0140/0141"
+  ],
+  "intermediate_effect_failure_usage": {
+    "effect": {
+      "state": "complete",
+      "value": {
+        "row": "closed",
+        "entries": []
+      },
+      "proofs": [
+        {
+          "dimension": "effect-envelope",
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0127",
+          "reference": "computation:1",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        }
+      ]
+    },
+    "failure": {
+      "state": "complete",
+      "value": [],
+      "proofs": [
+        {
+          "dimension": "failure-row",
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0134",
+          "reference": "computation:1",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        }
+      ]
+    },
+    "usage": {
+      "state": "complete",
+      "value": {
+        "globally_unknown": false,
+        "coordinates": [
+          {
+            "phase": "forward",
+            "meter": {
+              "catalog": "agentflow.meters.test@1",
+              "name": "api_calls"
+            },
+            "bound": {
+              "state": "known_finite",
+              "upper": 0
+            }
+          },
+          {
+            "phase": "recovery",
+            "meter": {
+              "catalog": "agentflow.meters.test@1",
+              "name": "api_calls"
+            },
+            "bound": {
+              "state": "known_finite",
+              "upper": 0
+            }
+          }
+        ]
+      },
+      "proofs": [
+        {
+          "dimension": "usage",
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0137",
+          "reference": "computation:1",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        }
+      ]
+    }
+  },
+  "source_closure": {
+    "computation_order": [
+      1,
+      2,
+      3
+    ],
+    "leaf_order": [
+      2,
+      3
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "vector_id": "source-multiset-and-per-child-r-x-k",
+    "same_contract": true,
+    "child_ids": [
+      2,
+      3
+    ],
+    "expected_source_instances": 2,
+    "requirements": "retained per child",
+    "rule": "AF-SEMANTIC-0138/0139/0140/0141"
+  },
+  "expected_verdict": {
+    "checked_literal_hand_assertions": "proven",
+    "proof_premises": "only the assertions recorded in this vector; full D9 comparison is a separate test"
+  }
 }
 ```
 
@@ -434,7 +1845,135 @@ These literal expected values were derived from the formal rules, without Rust o
   "content_authority": "none",
   "expected_decision_influence_unknown": true,
   "expected_state": "partial",
-  "rule": "AF-SEMANTIC-0132/0136"
+  "rule": "AF-SEMANTIC-0132/0136",
+  "input_tree": {
+    "source": "unchanged portable d9-opcode-race",
+    "opcode": "race",
+    "direct_children": [
+      2,
+      3
+    ]
+  },
+  "leaf_facts": {
+    "literal_inputs": {
+      "vector_id": "race-flow-decision",
+      "content_authority": "none",
+      "expected_decision_influence_unknown": true,
+      "expected_state": "partial",
+      "rule": "AF-SEMANTIC-0132/0136"
+    }
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0132/0136"
+  ],
+  "intermediate_effect_failure_usage": {
+    "effect": {
+      "state": "complete",
+      "value": {
+        "row": "closed",
+        "entries": []
+      },
+      "proofs": [
+        {
+          "dimension": "effect-envelope",
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0132",
+          "reference": "computation:1",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        },
+        {
+          "dimension": "race-loser-effects",
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0132",
+          "reference": "computation:1",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        }
+      ]
+    },
+    "failure": {
+      "state": "complete",
+      "value": [],
+      "proofs": [
+        {
+          "dimension": "failure-row",
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0134",
+          "reference": "computation:1",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        }
+      ]
+    },
+    "usage": {
+      "state": "complete",
+      "value": {
+        "globally_unknown": false,
+        "coordinates": [
+          {
+            "phase": "forward",
+            "meter": {
+              "catalog": "agentflow.meters.test@1",
+              "name": "api_calls"
+            },
+            "bound": {
+              "state": "known_finite",
+              "upper": 0
+            }
+          },
+          {
+            "phase": "recovery",
+            "meter": {
+              "catalog": "agentflow.meters.test@1",
+              "name": "api_calls"
+            },
+            "bound": {
+              "state": "known_finite",
+              "upper": 0
+            }
+          }
+        ]
+      },
+      "proofs": [
+        {
+          "dimension": "usage",
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0137",
+          "reference": "computation:1",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        }
+      ]
+    }
+  },
+  "source_closure": {
+    "computation_order": [
+      1,
+      2,
+      3
+    ],
+    "leaf_order": [
+      2,
+      3
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "vector_id": "race-flow-decision",
+    "content_authority": "none",
+    "expected_decision_influence_unknown": true,
+    "expected_state": "partial",
+    "rule": "AF-SEMANTIC-0132/0136"
+  },
+  "expected_verdict": {
+    "checked_literal_hand_assertions": "proven",
+    "proof_premises": "only the assertions recorded in this vector; full D9 comparison is a separate test"
+  }
 }
 ```
 
@@ -448,6 +1987,992 @@ These literal expected values were derived from the formal rules, without Rust o
   "authority": "unproven",
   "budget": "unproven",
   "settlement": "requires_evidence",
-  "rule": "AF-SEMANTIC-0147/0148"
+  "rule": "AF-SEMANTIC-0147/0148",
+  "input_tree": {
+    "source": "unchanged portable d9-opcode-scope",
+    "opcode": "scope",
+    "direct_children": [
+      2
+    ]
+  },
+  "leaf_facts": {
+    "literal_inputs": {
+      "vector_id": "scope-static-resource-and-runtime-obligations",
+      "parent_declared_child_resources": [],
+      "resource": "proven",
+      "authority": "unproven",
+      "budget": "unproven",
+      "settlement": "requires_evidence",
+      "rule": "AF-SEMANTIC-0147/0148"
+    }
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0147/0148"
+  ],
+  "intermediate_effect_failure_usage": {
+    "effect": {
+      "state": "complete",
+      "value": {
+        "row": "closed",
+        "entries": []
+      },
+      "proofs": [
+        {
+          "dimension": "effect-envelope",
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0147",
+          "reference": "computation:1",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        }
+      ]
+    },
+    "failure": {
+      "state": "complete",
+      "value": [],
+      "proofs": [
+        {
+          "dimension": "failure-row",
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0148",
+          "reference": "computation:1",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        }
+      ]
+    },
+    "usage": {
+      "state": "complete",
+      "value": {
+        "globally_unknown": false,
+        "coordinates": [
+          {
+            "phase": "forward",
+            "meter": {
+              "catalog": "agentflow.meters.test@1",
+              "name": "api_calls"
+            },
+            "bound": {
+              "state": "known_finite",
+              "upper": 0
+            }
+          },
+          {
+            "phase": "recovery",
+            "meter": {
+              "catalog": "agentflow.meters.test@1",
+              "name": "api_calls"
+            },
+            "bound": {
+              "state": "known_finite",
+              "upper": 0
+            }
+          }
+        ]
+      },
+      "proofs": [
+        {
+          "dimension": "usage",
+          "verdict": "proven",
+          "rule_id": "AF-SEMANTIC-0148",
+          "reference": "computation:1",
+          "reason": "Independent formal obligation; diagnostic prose excluded",
+          "prerequisites": [],
+          "source_node": 1
+        }
+      ]
+    }
+  },
+  "source_closure": {
+    "computation_order": [
+      1,
+      2
+    ],
+    "leaf_order": [
+      2
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "vector_id": "scope-static-resource-and-runtime-obligations",
+    "parent_declared_child_resources": [],
+    "resource": "proven",
+    "authority": "unproven",
+    "budget": "unproven",
+    "settlement": "requires_evidence",
+    "rule": "AF-SEMANTIC-0147/0148"
+  },
+  "expected_verdict": {
+    "checked_literal_hand_assertions": "proven",
+    "proof_premises": "only the assertions recorded in this vector; full D9 comparison is a separate test"
+  }
+}
+```
+
+## portable-hand-invoke
+
+```json
+{
+  "vector_id": "portable-hand-invoke",
+  "input_tree": {
+    "source": "unchanged Portable d9-opcode-invoke",
+    "root": 1,
+    "opcode": "invoke",
+    "direct_children": []
+  },
+  "leaf_facts": {
+    "call_sites": [
+      1
+    ],
+    "declarations": "closed-empty E/Phi/K and explicit zero forward/recovery U; exact declared target pins"
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0111",
+    "AF-SEMANTIC-0112",
+    "AF-SEMANTIC-0113",
+    "AF-SEMANTIC-0114",
+    "AF-SEMANTIC-0115",
+    "AF-SEMANTIC-0116",
+    "AF-SEMANTIC-0117",
+    "AF-SEMANTIC-0152",
+    "AF-SEMANTIC-0153"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "source_closure": {
+    "computation_order": [
+      1
+    ],
+    "leaf_order": [
+      1
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "expected_verdict": "unproven",
+  "verdict_basis": "RootExport compatibility is unavailable at D9; Scope settlement and subflow body obligations additionally require evidence. Unknown adapter facts are not trusted."
+}
+```
+
+## portable-hand-await
+
+```json
+{
+  "vector_id": "portable-hand-await",
+  "input_tree": {
+    "source": "unchanged Portable d9-opcode-await",
+    "root": 1,
+    "opcode": "await",
+    "direct_children": []
+  },
+  "leaf_facts": {
+    "call_sites": [
+      1
+    ],
+    "declarations": "AWAIT adapter unavailable"
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0122",
+    "AF-SEMANTIC-0152",
+    "AF-SEMANTIC-0153"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon": "Unknown",
+    "phi": "Unknown",
+    "usage": "Unknown",
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "source_closure": {
+    "computation_order": [
+      1
+    ],
+    "leaf_order": [
+      1
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon": "Unknown",
+    "phi": "Unknown",
+    "usage": "Unknown",
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "expected_verdict": "unproven",
+  "verdict_basis": "RootExport compatibility is unavailable at D9; Scope settlement and subflow body obligations additionally require evidence. Unknown adapter facts are not trusted."
+}
+```
+
+## portable-hand-sequence
+
+```json
+{
+  "vector_id": "portable-hand-sequence",
+  "input_tree": {
+    "source": "unchanged Portable d9-opcode-sequence",
+    "root": 1,
+    "opcode": "sequence",
+    "direct_children": [
+      2,
+      3
+    ]
+  },
+  "leaf_facts": {
+    "call_sites": [
+      2,
+      3
+    ],
+    "declarations": "closed-empty E/Phi/K and explicit zero forward/recovery U; exact declared target pins"
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0127",
+    "AF-SEMANTIC-0134",
+    "AF-SEMANTIC-0137",
+    "AF-SEMANTIC-0152",
+    "AF-SEMANTIC-0153"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "source_closure": {
+    "computation_order": [
+      1,
+      2,
+      3
+    ],
+    "leaf_order": [
+      2,
+      3
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "expected_verdict": "unproven",
+  "verdict_basis": "RootExport compatibility is unavailable at D9; Scope settlement and subflow body obligations additionally require evidence. Unknown adapter facts are not trusted."
+}
+```
+
+## portable-hand-select
+
+```json
+{
+  "vector_id": "portable-hand-select",
+  "input_tree": {
+    "source": "unchanged Portable d9-opcode-select",
+    "root": 1,
+    "opcode": "select",
+    "direct_children": [
+      2,
+      3
+    ]
+  },
+  "leaf_facts": {
+    "call_sites": [
+      2,
+      3
+    ],
+    "declarations": "closed-empty E/Phi/K and explicit zero forward/recovery U; exact declared target pins"
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0128",
+    "AF-SEMANTIC-0129",
+    "AF-SEMANTIC-0134",
+    "AF-SEMANTIC-0137",
+    "AF-SEMANTIC-0152",
+    "AF-SEMANTIC-0153"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "source_closure": {
+    "computation_order": [
+      1,
+      2,
+      3
+    ],
+    "leaf_order": [
+      2,
+      3
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "expected_verdict": "unproven",
+  "verdict_basis": "RootExport compatibility is unavailable at D9; Scope settlement and subflow body obligations additionally require evidence. Unknown adapter facts are not trusted."
+}
+```
+
+## portable-hand-parallel
+
+```json
+{
+  "vector_id": "portable-hand-parallel",
+  "input_tree": {
+    "source": "unchanged Portable d9-opcode-parallel",
+    "root": 1,
+    "opcode": "parallel",
+    "direct_children": [
+      2,
+      3
+    ]
+  },
+  "leaf_facts": {
+    "call_sites": [
+      2,
+      3
+    ],
+    "declarations": "closed-empty E/Phi/K and explicit zero forward/recovery U; exact declared target pins"
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0130",
+    "AF-SEMANTIC-0134",
+    "AF-SEMANTIC-0137",
+    "AF-SEMANTIC-0152",
+    "AF-SEMANTIC-0153"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "source_closure": {
+    "computation_order": [
+      1,
+      2,
+      3
+    ],
+    "leaf_order": [
+      2,
+      3
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "expected_verdict": "unproven",
+  "verdict_basis": "RootExport compatibility is unavailable at D9; Scope settlement and subflow body obligations additionally require evidence. Unknown adapter facts are not trusted."
+}
+```
+
+## portable-hand-race
+
+```json
+{
+  "vector_id": "portable-hand-race",
+  "input_tree": {
+    "source": "unchanged Portable d9-opcode-race",
+    "root": 1,
+    "opcode": "race",
+    "direct_children": [
+      2,
+      3
+    ]
+  },
+  "leaf_facts": {
+    "call_sites": [
+      2,
+      3
+    ],
+    "declarations": "closed-empty E/Phi/K and explicit zero forward/recovery U; exact declared target pins"
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0132",
+    "AF-SEMANTIC-0133",
+    "AF-SEMANTIC-0134",
+    "AF-SEMANTIC-0137",
+    "AF-SEMANTIC-0152",
+    "AF-SEMANTIC-0153"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "source_closure": {
+    "computation_order": [
+      1,
+      2,
+      3
+    ],
+    "leaf_order": [
+      2,
+      3
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "expected_verdict": "unproven",
+  "verdict_basis": "RootExport compatibility is unavailable at D9; Scope settlement and subflow body obligations additionally require evidence. Unknown adapter facts are not trusted."
+}
+```
+
+## portable-hand-iterate
+
+```json
+{
+  "vector_id": "portable-hand-iterate",
+  "input_tree": {
+    "source": "unchanged Portable d9-opcode-iterate",
+    "root": 1,
+    "opcode": "iterate",
+    "direct_children": [
+      2
+    ]
+  },
+  "leaf_facts": {
+    "call_sites": [
+      2
+    ],
+    "declarations": "closed-empty E/Phi/K and explicit zero forward/recovery U; exact declared target pins"
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0143",
+    "AF-SEMANTIC-0152",
+    "AF-SEMANTIC-0153"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "source_closure": {
+    "computation_order": [
+      1,
+      2
+    ],
+    "leaf_order": [
+      2
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "expected_verdict": "unproven",
+  "verdict_basis": "RootExport compatibility is unavailable at D9; Scope settlement and subflow body obligations additionally require evidence. Unknown adapter facts are not trusted."
+}
+```
+
+## portable-hand-retry
+
+```json
+{
+  "vector_id": "portable-hand-retry",
+  "input_tree": {
+    "source": "unchanged Portable d9-opcode-retry",
+    "root": 1,
+    "opcode": "retry",
+    "direct_children": [
+      2
+    ]
+  },
+  "leaf_facts": {
+    "call_sites": [
+      2
+    ],
+    "declarations": "closed-empty E/Phi/K and explicit zero forward/recovery U; exact declared target pins"
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0144",
+    "AF-SEMANTIC-0152",
+    "AF-SEMANTIC-0153"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "source_closure": {
+    "computation_order": [
+      1,
+      2
+    ],
+    "leaf_order": [
+      2
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "expected_verdict": "unproven",
+  "verdict_basis": "RootExport compatibility is unavailable at D9; Scope settlement and subflow body obligations additionally require evidence. Unknown adapter facts are not trusted."
+}
+```
+
+## portable-hand-timeout
+
+```json
+{
+  "vector_id": "portable-hand-timeout",
+  "input_tree": {
+    "source": "unchanged Portable d9-opcode-timeout",
+    "root": 1,
+    "opcode": "timeout",
+    "direct_children": [
+      2
+    ]
+  },
+  "leaf_facts": {
+    "call_sites": [
+      2
+    ],
+    "declarations": "closed-empty E/Phi/K and explicit zero forward/recovery U; exact declared target pins"
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0145",
+    "AF-SEMANTIC-0152",
+    "AF-SEMANTIC-0153"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "source_closure": {
+    "computation_order": [
+      1,
+      2
+    ],
+    "leaf_order": [
+      2
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "expected_verdict": "unproven",
+  "verdict_basis": "RootExport compatibility is unavailable at D9; Scope settlement and subflow body obligations additionally require evidence. Unknown adapter facts are not trusted."
+}
+```
+
+## portable-hand-handle
+
+```json
+{
+  "vector_id": "portable-hand-handle",
+  "input_tree": {
+    "source": "unchanged Portable d9-opcode-handle",
+    "root": 1,
+    "opcode": "handle",
+    "direct_children": [
+      2,
+      3
+    ]
+  },
+  "leaf_facts": {
+    "call_sites": [
+      2,
+      3
+    ],
+    "declarations": "closed-empty E/Phi/K and explicit zero forward/recovery U; exact declared target pins"
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0146",
+    "AF-SEMANTIC-0152",
+    "AF-SEMANTIC-0153"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "source_closure": {
+    "computation_order": [
+      1,
+      2,
+      3
+    ],
+    "leaf_order": [
+      2,
+      3
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "expected_verdict": "unproven",
+  "verdict_basis": "RootExport compatibility is unavailable at D9; Scope settlement and subflow body obligations additionally require evidence. Unknown adapter facts are not trusted."
+}
+```
+
+## portable-hand-scope
+
+```json
+{
+  "vector_id": "portable-hand-scope",
+  "input_tree": {
+    "source": "unchanged Portable d9-opcode-scope",
+    "root": 1,
+    "opcode": "scope",
+    "direct_children": [
+      2
+    ]
+  },
+  "leaf_facts": {
+    "call_sites": [
+      2
+    ],
+    "declarations": "closed-empty E/Phi/K and explicit zero forward/recovery U; exact declared target pins"
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0147",
+    "AF-SEMANTIC-0148",
+    "AF-SEMANTIC-0152",
+    "AF-SEMANTIC-0153"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "requires_evidence",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "source_closure": {
+    "computation_order": [
+      1,
+      2
+    ],
+    "leaf_order": [
+      2
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "requires_evidence",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "expected_verdict": "requires_evidence",
+  "verdict_basis": "RootExport compatibility is unavailable at D9; Scope settlement and subflow body obligations additionally require evidence. Unknown adapter facts are not trusted."
+}
+```
+
+## portable-hand-compensation_scope
+
+```json
+{
+  "vector_id": "portable-hand-compensation_scope",
+  "input_tree": {
+    "source": "unchanged Portable d9-opcode-compensation_scope",
+    "root": 1,
+    "opcode": "compensation_scope",
+    "direct_children": [
+      2
+    ]
+  },
+  "leaf_facts": {
+    "call_sites": [
+      2
+    ],
+    "declarations": "closed-empty E/Phi/K and explicit zero forward/recovery U; exact declared target pins"
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0149",
+    "AF-SEMANTIC-0150",
+    "AF-SEMANTIC-0151",
+    "AF-SEMANTIC-0152",
+    "AF-SEMANTIC-0153"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "source_closure": {
+    "computation_order": [
+      1,
+      2
+    ],
+    "leaf_order": [
+      2
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "unproven",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "expected_verdict": "unproven",
+  "verdict_basis": "RootExport compatibility is unavailable at D9; Scope settlement and subflow body obligations additionally require evidence. Unknown adapter facts are not trusted."
+}
+```
+
+## portable-hand-call_subflow
+
+```json
+{
+  "vector_id": "portable-hand-call_subflow",
+  "input_tree": {
+    "source": "unchanged Portable d9-opcode-call_subflow",
+    "root": 1,
+    "opcode": "call_subflow",
+    "direct_children": []
+  },
+  "leaf_facts": {
+    "call_sites": [
+      1
+    ],
+    "declarations": "closed-empty E/Phi/K and explicit zero forward/recovery U; exact declared target pins"
+  },
+  "applied_formal_rules": [
+    "AF-SEMANTIC-0118",
+    "AF-SEMANTIC-0119",
+    "AF-SEMANTIC-0120",
+    "AF-SEMANTIC-0121",
+    "AF-SEMANTIC-0152",
+    "AF-SEMANTIC-0153"
+  ],
+  "intermediate_effect_failure_usage": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "requires_evidence",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "source_closure": {
+    "computation_order": [
+      1
+    ],
+    "leaf_order": [
+      1
+    ],
+    "coalesce_by_contract": false
+  },
+  "expected_root_facts": {
+    "epsilon": {
+      "closed": [],
+      "source_occurrences": 0
+    },
+    "phi": [],
+    "usage": {
+      "forward": 0,
+      "recovery": 0
+    },
+    "overall_verdict": "requires_evidence",
+    "root_export": "not_expressed_in_semantic_ir"
+  },
+  "expected_verdict": "requires_evidence",
+  "verdict_basis": "RootExport compatibility is unavailable at D9; Scope settlement and subflow body obligations additionally require evidence. Unknown adapter facts are not trusted."
 }
 ```

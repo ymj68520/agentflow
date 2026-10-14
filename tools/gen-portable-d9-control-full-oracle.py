@@ -22,7 +22,7 @@ from oracle import field_contract as FC
 from oracle.d9_control_model import Model
 from oracle.rust_type_inventory import inventory, slots
 from oracle.coverage_bindings import bindings
-from oracle.d9_verification_vectors import mutations,rich_mutations,replace,validate_mutations,hand_calculations,hand_leaf_checks
+from oracle.d9_verification_vectors import mutations,rich_mutations,replace,validate_mutations,documented_hand_vectors
 from oracle.d9_input_mutations import fixtures as input_mutations, expectations as mutation_expected
 from portable_proof_python_oracle import canonical_bytes
 from oracle.render_d9_docs import documents
@@ -156,7 +156,7 @@ def main():
     outputs[COVERAGE/"pending-fields.json"]={"schema_version":1,"source_fields":[item["typed_field_path"] for item in coverage["fields"] if item["required_comparison"] and not item["case_applicability"]],"projection_fields":[item["field_path"] for item in coverage["projection_fields"] if item["classification"]!="DiagnosticOnly" and not item["case_applicability"]],"other_case_ids":[case["case_id"] for case in historical["cases"] if case["group"]!="D9-Control"]}
     validate_mutations(sidecars)
     outputs[COVERAGE/"comparator-mutations.json"]={"schema_version":1,"baseline":"independent full-field Expected only","mutation_count":len(mutations()),"mutations":mutations(),"both_side_required_omission":"must fail shape validation before equality"}
-    outputs[COVERAGE/"hand-calculations.json"]={"schema_version":1,"basis":"literal hand-derived values; Rust output is not an input","vectors":hand_calculations()+hand_leaf_checks(sidecars)}
+    outputs[COVERAGE/"hand-calculations.json"]={"schema_version":1,"basis":"literal hand-derived values and explicit source/rule traces; Rust output is not an input","vectors":documented_hand_vectors(sidecars)}
     input_rows=[];binary_outputs={}
     for row in input_mutations():
         path=CORPUS/"input-mutations"/(row["vector_id"]+".ace1")

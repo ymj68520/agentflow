@@ -179,3 +179,92 @@ def hand_leaf_checks(sidecars):
         {"vector_id":"race-flow-decision","content_authority":"none","expected_decision_influence_unknown":True,"expected_state":"partial","rule":"AF-SEMANTIC-0132/0136"},
         {"vector_id":"scope-static-resource-and-runtime-obligations","parent_declared_child_resources":[],"resource":"proven","authority":"unproven","budget":"unproven","settlement":"requires_evidence","rule":"AF-SEMANTIC-0147/0148"},
     ]
+
+
+def documented_hand_vectors(sidecars):
+    """Explicit hand traces, not a second Expected/Actual comparison.
+
+    Synthetic algebra vectors establish E/Phi/U obligations only. They cannot
+    mint an overall checked Root verdict from undeclared R/F/X/K premises.
+    The three declaration-leaf traces use independently derived sidecars.
+    """
+    rules={"sequence":[127,134,137],"select":[128,129,134,137],
+           "parallel":[130,134,137],"race":[132,133,134,137],
+           "iterate":[143],"retry":[144],"timeout":[145],
+           "handle":[146],"scope":[147,148],"compensation_scope":[149,150,151]}
+    compound={"exact-handle-failure":([146],"HANDLE(protected:A, handler:B)",["protected","handler"]),
+              "retry-times-iterate":([143,144],"ITERATE(4, RETRY(3, leaf))",["leaf"]),
+              "missing-is-not-zero":([137],"SEQUENCE(explicit-zero, missing-coordinate)",["explicit-zero","missing-coordinate"]),
+              "u64-overflow":([137,143,144],"checked_add(U64_MAX,1); checked_mul(U64_MAX,2)",[]),
+              "sequence-plus-retry":([127,144],"SEQUENCE(RETRY(3, first), second)",["first","second"]),
+              "select-plus-handle":([128,146],"SELECT(HANDLE(protected, handler), other)",["protected","handler","other"]),
+              "parallel-plus-race":([130,132],"PARALLEL(RACE(first, second), third)",["first","second","third"]),
+              "iterate-plus-compensation-scope":([143,149,150,151],"ITERATE(4, COMPENSATION_SCOPE(leaf))",["leaf"])}
+    vectors=hand_calculations()+hand_leaf_checks(sidecars)
+    for vector in vectors:
+        name=vector["vector_id"]
+        literal=copy.deepcopy(vector)
+        if "operator" in vector:
+            op=vector["operator"]
+            leaves=["leaf-"+str(index+1) for index in range(len(vector["input_effect_bounds"]))]
+            vector["input_tree"]={"opcode":op,"children":leaves,"parameters":copy.deepcopy(vector["body"])}
+            vector["leaf_facts"]=[{"source":source,"epsilon_bounds":bounds,"phi":[],"forward_usage_upper":bounds[1]} for source,bounds in zip(leaves,vector["input_effect_bounds"])]
+            vector["applied_formal_rules"]=[f"AF-SEMANTIC-{rule:04d}" for rule in rules[op]]
+            vector["intermediate_effect_failure_usage"]={"epsilon_lower":vector["expected_lower"],"epsilon_upper":vector["expected_upper"],"phi":[],"forward_usage_upper":vector["expected_usage_upper"]}
+            vector["source_closure"]={"leaf_order":leaves,"distinct_call_sites":len(leaves),"coalesce_by_contract":False}
+            vector["expected_root_facts"]=copy.deepcopy(vector["intermediate_effect_failure_usage"])
+            vector["expected_verdict"]={"hand_epsilon_phi_usage_equality":"proven","overall_root":"not_established: synthetic algebra inputs do not declare all Root premises"}
+        elif name in compound:
+            numbers,tree,leaves=compound[name]
+            vector["input_tree"]=tree
+            vector["leaf_facts"]={"literal_inputs":literal}
+            vector["applied_formal_rules"]=[f"AF-SEMANTIC-{rule:04d}" for rule in numbers]
+            vector["intermediate_effect_failure_usage"]=copy.deepcopy(literal)
+            vector["source_closure"]={"leaf_order":leaves,"distinct_call_sites":len(leaves),"coalesce_by_contract":False}
+            vector["expected_root_facts"]=copy.deepcopy(literal)
+            vector["expected_verdict"]="arithmetic_rejected" if name=="u64-overflow" else "proven for stated algebra equality only; no overall Root capability"
+        else:
+            slug={"invoke-leaf":"invoke","await-leaf":"await","call-subflow-leaf":"call_subflow","source-multiset-and-per-child-r-x-k":"sequence","race-flow-decision":"race","scope-static-resource-and-runtime-obligations":"scope"}[name]
+            root=sidecars["d9-opcode-"+slug]["facts"]["d9_root"]
+            node=root["root_control"]
+            vector["input_tree"]={"source":"unchanged portable d9-opcode-"+slug,"opcode":node["operator"],"direct_children":copy.deepcopy(node["direct_children"])}
+            vector["leaf_facts"]={"literal_inputs":literal}
+            vector["applied_formal_rules"]=[literal["rule"]]
+            vector["intermediate_effect_failure_usage"]={"effect":copy.deepcopy(node["effects"]),"failure":copy.deepcopy(node["failures"]),"usage":copy.deepcopy(node["usage"])}
+            vector["source_closure"]={"computation_order":copy.deepcopy(root["closure"]["computation_order"]),"leaf_order":copy.deepcopy(root["closure"]["leaf_order"]),"coalesce_by_contract":False}
+            vector["expected_root_facts"]=literal
+            vector["expected_verdict"]={"checked_literal_hand_assertions":"proven","proof_premises":"only the assertions recorded in this vector; full D9 comparison is a separate test"}
+    # Thirteen valid Portable trees also have literal, manually reviewed Root
+    # expectations. The artificial nonzero algebra examples above deliberately
+    # do not invent all-dimensional Checked premises.
+    binary={"sequence","select","parallel","race","handle"}
+    leaf_ops={"invoke","await","call_subflow"}
+    for op in ["invoke","await","sequence","select","parallel","race","iterate","retry","timeout","handle","scope","compensation_scope","call_subflow"]:
+        root=sidecars["d9-opcode-"+op]["facts"]["d9_root"]
+        node=root["root_control"]
+        leaf_order=[1] if op in leaf_ops else [2,3] if op in binary else [2]
+        computation_order=[1] if op in leaf_ops else [1]+leaf_order
+        required_verdict="requires_evidence" if op in {"scope","call_subflow"} else "unproven"
+        assert root["closure"]["computation_order"]==computation_order
+        assert root["closure"]["leaf_order"]==leaf_order
+        assert root["overall_verdict"]==required_verdict
+        unknown=op=="await"
+        assert node["effects"]["state"]==("unknown" if unknown else "complete")
+        assert node["failures"]["state"]==("unknown" if unknown else "complete")
+        assert node["usage"]["state"]==("unknown" if unknown else "complete")
+        if not unknown:
+            assert node["effects"]["value"]=={"row":"closed","entries":[]}
+            assert node["failures"]["value"]==[]
+            assert [item["bound"]["upper"] for item in node["usage"]["value"]["coordinates"]]==[0,0]
+        numbers=rules.get(op,{"invoke":[111,112,113,114,115,116,117],"await":[122],"call_subflow":[118,119,120,121]}.get(op,[]))+[152,153]
+        literal_facts={"epsilon":"Unknown" if unknown else {"closed":[],"source_occurrences":0},"phi":"Unknown" if unknown else [],"usage":"Unknown" if unknown else {"forward":0,"recovery":0},"overall_verdict":required_verdict,"root_export":"not_expressed_in_semantic_ir"}
+        vectors.append({"vector_id":"portable-hand-"+op,
+            "input_tree":{"source":"unchanged Portable d9-opcode-"+op,"root":1,"opcode":op,"direct_children":[] if op in leaf_ops else leaf_order},
+            "leaf_facts":{"call_sites":leaf_order,"declarations":"AWAIT adapter unavailable" if unknown else "closed-empty E/Phi/K and explicit zero forward/recovery U; exact declared target pins"},
+            "applied_formal_rules":[f"AF-SEMANTIC-{number:04d}" for number in numbers],
+            "intermediate_effect_failure_usage":copy.deepcopy(literal_facts),
+            "source_closure":{"computation_order":computation_order,"leaf_order":leaf_order,"coalesce_by_contract":False},
+            "expected_root_facts":literal_facts,
+            "expected_verdict":required_verdict,
+            "verdict_basis":"RootExport compatibility is unavailable at D9; Scope settlement and subflow body obligations additionally require evidence. Unknown adapter facts are not trusted."})
+    return vectors
