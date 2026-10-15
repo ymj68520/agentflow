@@ -1,8 +1,8 @@
 # Ordered final report — Phase4C.1B.4C.3
 
-Intermediate receipt:registered staging implementation and fresh Rust/legacy tests are complete;original-directory generator double-round verification is pending. No activation is claimed.
+**Outcome A — Registered Edition-2 Staging Accepted.** Fresh staged/legacy Rust gates and two complete consecutive original-directory generator rounds passed. No positive proof or release activation is claimed.
 
-1. Start/legacy HEAD abc91d533b4d62e91226722e1d1fcaa30bd00883;full staged code-gate HEAD5657ab336fa6fdad1e31572b420fd5d74025f955;final full documentation HEAD given at delivery.
+1. Start/legacy HEAD abc91d533b4d62e91226722e1d1fcaa30bd00883;final full staged code-gate HEAD bbee6fbb41c31cda868604827b73ff557fc40eed (freshly rerun after initial5657ab3 gate);final full documentation HEAD given at delivery.
 2. Registration/support/activation separation is safe only with the new exact identity/state denial before proof evaluation and independently at the private constructor;registration alone was unsafe.
 3. Registered OS agentflow.computation.proof-obligation.semantics@1,RM agentflow.computation.proof-report.model@1,PP2 agentflow.portable.proof.inputs.semantics@2.
 4. Exactly32 registered RuleIds AF-SEMANTIC-0197–0228;unique formal source/anchor/statement/direct dependencies/staged case refs.
@@ -28,10 +28,10 @@ Intermediate receipt:registered staging implementation and fresh Rust/legacy tes
 24. MODEL-B01/B02 CONFORMANCE BLOCKING;B03–B07 blocking;no4D/integration audit.
 25. Actual registered counts46 specifications/436 rules;old row counts43/404 unchanged.
 26. Actual spec-check435 reference-covered,1 intentional,0 missing;this is not full G01 operational coverage.
-27. Fresh staged fmt/clippy/full Cargo/spec-check all exited0 at5657ab3;fresh exact legacy four-command job also exited0;final documentation fast recheck is separate.
-28. Original-directory current31-generator consecutive double-round gate PENDING;isolated verification cannot replace it.
+27. Fresh staged fmt/clippy/full Cargo/spec-check all exited0 at5657ab3 and again at final code HEAD bbee6fbb41c31cda868604827b73ff557fc40eed;fresh exact legacy four-command job exited0;final documentation fast recheck is separate.
+28. Original-directory current31-generator consecutive double-round gate PASS:31/31 each round,1774 files,zero changed/added/removed,159.35s/160.42s,baseline=Round1=Round2,process exit0. Full successful log target/phase-04c1b4c3-generators-original-final.log. Earlier Round2 rules.json OSError22 attempt remains independently recorded and is not counted;isolated verification never replaced this gate.
 29. T3–T8 remain separate prerequisites,including complete G02/G03,independent full78 applicable closure,cross-process/resource/soundness/availability review and explicit T8 authorization.
-30. OutcomeA pending mandatory original-directory generator evidence;positive proof/release remain NOT ACTIVATED even after registered-staging acceptance.
-31. Classified code commit5657ab336fa6fdad1e31572b420fd5d74025f955;documentation/evidence commits and final full HEAD recorded at delivery;clean-worktree check required;no push.
+30. OutcomeA achieved for COMPLETE — REGISTERED STAGING only;positive proof/release remain NOT ACTIVATED,Typed Producers/Normalizer/full-field oracle NOT IMPLEMENTED.
+31. Classified commits:5657ab336fa6fdad1e31572b420fd5d74025f955(registration/staging code);0797bed2df267b76e67e8aaac0cb0aea5a1fe6d6(evidence/docs);bbee6fbb41c31cda868604827b73ff557fc40eed(registry idempotent writer,full code gates rerun);final receipt commit/full HEAD and actual clean-worktree check in delivery.No push.
 
 Stop after the accepted registered-staging scope.No Typed Producer,normalizer,G02/G03 fix,D10 full oracle,integration audit,LockGraph,PlanCore,WorkflowVersion,Publication or Runtime work.
