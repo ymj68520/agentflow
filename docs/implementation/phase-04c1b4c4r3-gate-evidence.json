@@ -1,0 +1,110 @@
+{
+  "kind": "R3 diagnostic/current regression receipts;NOT T3 capture conformance",
+  "source_full_code_gate_head": "8c84f663e446bf967d1a541d31275bb4112c33d5",
+  "source_production_formal_unchanged": true,
+  "source_bindings":
+  [
+    {
+      "path": "crates/af-contract/src/recovery_guard.rs",
+      "sha256": "6bf6921902636e2bf729d3c29957b55a440b1cd28a955a205f722c8d23fe18a8"
+    },
+    {
+      "path": "crates/af-contract/tests/component_contract_conformance.rs",
+      "sha256": "5c82c3980a3cccebd5f1372749e7eb3cadb01a3817feacfa4de76bbcca2ac09f"
+    },
+    {
+      "path": "crates/af-computation/src/control.rs",
+      "sha256": "262d97a73e32e501490ffc7c9189e8cc83e45882d17b74239f6687f3c4f935fa"
+    },
+    {
+      "path": "crates/af-computation/src/registered_model.rs",
+      "sha256": "29b92382627e68970eebf688f3ce02be6a2bffbb14e528e6ebdf79bab8e9f25e"
+    },
+    {
+      "path": "spec/computation/proof-obligation-semantics-v2.md",
+      "sha256": "a614692e839403fbd8a55c5642236083435870fe2e9fe0d2aae05b7125ff7b91"
+    },
+    {
+      "path": "spec/component/standalone-substitution-proof.md",
+      "sha256": "b7231217d2dd40b6756f7372018092336938036d929429ae44e982fd5e404d88"
+    },
+    {
+      "path": "spec/tables/proof-report-model-v2.md",
+      "sha256": "86d97bdcbf17814f03bdab4f34090e90b53963a8a8ea8761be9d30822b3779d1"
+    },
+    {
+      "path": "spec/portable/portable-proof-inputs-v3.md",
+      "sha256": "57d9ec10b5cc2ec0ef1e2ad20389b9018e03a868129482ef7ec10cc2386fb658"
+    }
+  ],
+  "current_commands_exit_codes": {
+    "fmt": 0,
+    "clippy": 0,
+    "cargo_test_all": 0,
+    "spec_check": 0
+  },
+  "current_cargo": {
+    "reported_passes": 336,
+    "result_groups": 71,
+    "failed": 0,
+    "ignored": 0,
+    "filtered": 0,
+    "existing_successor_staging_case_ids": 173,
+    "new_t3_capture_case_ids": 0
+  },
+  "targeted_native_guard": {
+    "passed": 1,
+    "failed": 0,
+    "ignored": 0,
+    "filtered": 20
+  },
+  "native_probe": {
+    "initial_exit": 0,
+    "final_exit": 0,
+    "metadata_api_rejection_is_not_proof_of_unregistered_historical_type": true
+  },
+  "read_only_admission_audit": {
+    "expected_exit": 2,
+    "decision": "OUTCOME_C_FORMAL_BINDING_REQUIRED",
+    "zero_gap_coverage": false
+  },
+  "historical_editions_fresh_r3": {
+    "edition1_512": "NOT RERUN",
+    "edition2_51": "NOT RERUN"
+  },
+  "evidence": [
+    {
+      "path": "target/phase-04c1b4c4r3-current-tests.log",
+      "sha256": "b647f44fd94edae58335b656b3bae60c2cc82d09d2044e4d307d8c0f7933ed28",
+      "bytes": 35949
+    },
+    {
+      "path": "target/phase-04c1b4c4r3-clippy.log",
+      "sha256": "81ec1cdd743847b4f5a9e52b008007651ce192445abd957f13186cd29fca70c1",
+      "bytes": 359
+    },
+    {
+      "path": "target/phase-04c1b4c4r3-spec-check.log",
+      "sha256": "ae674674f562b9f341d2f74f5ad39aeabfa37fb50296d1f7c702e9af86f7bee3",
+      "bytes": 362
+    },
+    {
+      "path": "target/phase-04c1b4c4r3-native-guard-test.log",
+      "sha256": "12a3adb4451ee4bb3d7f24925594e3926cd0277a237bb6e90908d1eac24c8aab",
+      "bytes": 481
+    },
+    {
+      "path": "target/phase-04c1b4c4r3-probe.log",
+      "sha256": "a2cb3a93db7a5f96cb43771d2261be85d25d3464ae2e52266d698e23351c9afe",
+      "bytes": 8610
+    },
+    {
+      "path": "target/phase-04c1b4c4r3-probe-final.log",
+      "sha256": "e956bc06063744b5048f6816d0f3d0091649e3fcbf90793f16e72c9566690bc9",
+      "bytes": 9227
+    }
+  ],
+  "generator_receipt": "Fresh final committed tree actual result is reported at delivery;read target/phase-04c1b4c4r3-generators*;do not infer PASS from this pending field",
+  "positive_capability": "NotAuthorized",
+  "next_stage": "No T4 admission"
+}

@@ -1,0 +1,11 @@
+# Independent evidence and coverage limits
+
+[The minimal guard law](phase-04c1b4c4r3-guard-law.json) was authored directly from the declaration:true Forward,action port1==0,Int64 input,positive action potential. Assignment1 satisfies Forward and falsifies the action guard. It is not generated from Rust Collector output and is not a full T3 Python Oracle. The native diagnostic constructs these actual inputs and checks that the real validator supplies its own typed witness;changing only the action guard to unconditional is a real-input positive control.
+
+The [Actual source/admission evidence](phase-04c1b4c4r3-admission-audit.json) is explicitly Actual,NOT Expected. It includes the complete native canonical input bytes and actual ModelType admissions,with the historical-owner known-Scope control that limits interpretation. Do not use that output to author a TypedSeed Expected. No scope-normalized G01 value is generated.
+
+New T3 Capture CaseIds0;independently compared T3 producer sites0;typed seed field instances0;T3 comparator mutations0;T3 real-input pipeline mutations0. The conditional-to-unconditional native input perturbation is1 source diagnostic control,NOT a completed capture mutation. The 68/42/41 historical comparator families and48 R1 design vectors are not relabelled as new tests. All48 R1 design vectors remain NotExecuted here. No delete-same-required-field law or40-mutation coverage contract is claimed implemented.
+
+Fresh current workspace regression reports336 test passes in71 result groups,0 failed/ignored/filtered,including R2's173 staging CaseIds. The targeted existing native guard test separately passed1 test with20 intentionally filtered functions;this is not a skipped T3 manifest case. Exact Edition1(512) and Edition2(51) fresh test runs were NOT performed in this blocked R3 phase;their old frozen corpus/source bytes are preserved,not counted as current new successes. The R2 receipts remain historical evidence only.
+
+No zero-gap ProducerCoverageContract exists. Site coverage,semantic field-instance coverage and CaseId coverage are explicitly separate and incomplete. This phase's original-directory generator verification,if it passes,only proves output stability;it cannot turn Outcome C into implemented capture.
