@@ -24,6 +24,8 @@ Validation order: bounded byte preflight/canonical closed decode (D0–D1), refe
 
 No old Portable file's label is rewritten. No RuleId/version-only, hash/count-only, or oldExpected-based equality is admissible. Current-only does not promise that a legacy valid fixture will pass new build: the required result is UnsupportedSemantics when its *complete* old tuple is valid and unsupported. Known-owner mixed content is InvalidIdentity instead.
 
+No historical checker/support entry is required merely to classify rejection. After D3 consistency, the singleton current tuple is authoritative for admission. A known legacy label attached to the otherwise exact current registry/source/profile content is a detectable mixed tuple and returns InvalidIdentity; an internally consistent noncurrent legacy tuple returns UnsupportedSemantics without certifying historical validity. Its historical validity is tested only by the separate legacy verifier. A known current label whose complete contents differ is InvalidIdentity. Unknown labels are UnsupportedSemantics. These negative classifications cannot accept a bundle and do not use counts/hashes as identity equality or silently embed a historical validator.
+
 No D10 report exists after D0–D4 rejection. Error categories are not proof verdicts. An early failure must not fabricate six boundary obligations or a full empty successful view. Canonical malformed bytes are not made valid before content checks.
 
 Explicit human approval is needed to change this current-only choice or add historical code/profile support. Isolation uses a separate pinned executable/environment, not a hidden multi-version compiler.
