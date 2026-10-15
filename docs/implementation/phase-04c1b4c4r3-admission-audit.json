@@ -1,0 +1,1089 @@
+{
+  "kind": "R3 source/witness admission evidence;NOT capture conformance",
+  "baseline": "8c84f663e446bf967d1a541d31275bb4112c33d5",
+  "decision": "OUTCOME_C_FORMAL_BINDING_REQUIRED",
+  "finding_id": "T3-MODEL-01",
+  "model": "agentflow.computation.proof-report.model@2",
+  "binding_question": "Native AF-CONTRACT-0022 single-contract guard fact has no caller/root. Identify the exact registered predicate/source/coordinate and full witness binding without relabelling it as the AF-SEMANTIC-0156 root aggregate or standalone two-contract comparison.",
+  "scope_of_conclusion": "Formal binding unresolved for required native guard producer;not a proof that no possible lossless mapping could be approved. Metadata API rejection alone is not the semantic argument.",
+  "model_sha256": "86d97bdcbf17814f03bdab4f34090e90b53963a8a8ea8761be9d30822b3779d1",
+  "descriptor_count": 518,
+  "resolved_references": 1593,
+  "missing_active_bindings": [
+    {
+      "name": "af-contract::ActionGuardCompatibility",
+      "historical_native_snapshot": {
+        "fields": [
+          {
+            "collection": false,
+            "field": "source_component",
+            "full_type": "ComponentIdentity",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "recovery_action",
+            "full_type": "RecoveryActionIdentity",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "forward_entry_ordinal",
+            "full_type": "Option<usize>",
+            "option_presence": "explicit_none_or_some"
+          },
+          {
+            "collection": false,
+            "field": "action_entry_ordinal",
+            "full_type": "Option<usize>",
+            "option_presence": "explicit_none_or_some"
+          },
+          {
+            "collection": false,
+            "field": "forward_guard",
+            "full_type": "Option<EffectGuard>",
+            "option_presence": "explicit_none_or_some"
+          },
+          {
+            "collection": false,
+            "field": "declared_action_guard",
+            "full_type": "Option<EffectGuard>",
+            "option_presence": "explicit_none_or_some"
+          },
+          {
+            "collection": false,
+            "field": "action_upper",
+            "full_type": "Option<OccurrenceCeiling>",
+            "option_presence": "explicit_none_or_some"
+          },
+          {
+            "collection": false,
+            "field": "verdict",
+            "full_type": "ProofVerdict",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "basis",
+            "full_type": "GuardCompatibilityBasis",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "countermodel",
+            "full_type": "Option<TypedGuardCountermodel>",
+            "option_presence": "explicit_none_or_some"
+          },
+          {
+            "collection": false,
+            "field": "reason",
+            "full_type": "String",
+            "option_presence": "required"
+          }
+        ],
+        "kind": "struct",
+        "owner_type": "af-contract::ActionGuardCompatibility",
+        "source": "crates/af-contract/src/recovery_guard.rs"
+      },
+      "active_descriptor": "ABSENT",
+      "binding": "UNRESOLVED",
+      "historical_type_is_declared": true,
+      "not_claimed": "absence from current types is not absence from all registered historical declarations"
+    },
+    {
+      "name": "af-contract::GuardCompatibilityBasis",
+      "historical_native_snapshot": {
+        "kind": "enum",
+        "owner_type": "af-contract::GuardCompatibilityBasis",
+        "source": "crates/af-contract/src/recovery_guard.rs",
+        "variants": {
+          "FrozenGuardContainment": [],
+          "InsufficientEvidence": [],
+          "TypedCountermodel": [],
+          "ZeroPossibleActions": []
+        }
+      },
+      "active_descriptor": "ABSENT",
+      "binding": "UNRESOLVED",
+      "historical_type_is_declared": true,
+      "not_claimed": "absence from current types is not absence from all registered historical declarations"
+    },
+    {
+      "name": "af-contract::TypedGuardCountermodel",
+      "historical_native_snapshot": {
+        "fields": [
+          {
+            "collection": false,
+            "field": "source_contract",
+            "full_type": "ComponentContract",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "source_component",
+            "full_type": "ComponentIdentity",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "recovery_action",
+            "full_type": "RecoveryActionIdentity",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "forward_entry_ordinal",
+            "full_type": "usize",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "action_entry_ordinal",
+            "full_type": "usize",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "forward_guard",
+            "full_type": "EffectGuard",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "declared_action_guard",
+            "full_type": "EffectGuard",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "forward_bounds",
+            "full_type": "OccurrenceBounds",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "activation_upper",
+            "full_type": "OccurrenceCeiling",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "attempt_upper",
+            "full_type": "OccurrenceCeiling",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "action_upper",
+            "full_type": "OccurrenceCeiling",
+            "option_presence": "required"
+          },
+          {
+            "collection": true,
+            "field": "assignments",
+            "full_type": "Vec<GuardInputAssignment>",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "reachability",
+            "full_type": "GuardCountermodelReachability",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "related_rule_id",
+            "full_type": "&'static str",
+            "option_presence": "required"
+          }
+        ],
+        "kind": "struct",
+        "owner_type": "af-contract::TypedGuardCountermodel",
+        "source": "crates/af-contract/src/recovery_guard.rs"
+      },
+      "active_descriptor": "ABSENT",
+      "binding": "UNRESOLVED",
+      "historical_type_is_declared": true,
+      "not_claimed": "absence from current types is not absence from all registered historical declarations"
+    },
+    {
+      "name": "af-contract::GuardInputAssignment",
+      "historical_native_snapshot": {
+        "fields": [
+          {
+            "collection": false,
+            "field": "port_no",
+            "full_type": "u32",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "type_ref",
+            "full_type": "TypeSchemaRef",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "value",
+            "full_type": "PrimitiveConstant",
+            "option_presence": "required"
+          }
+        ],
+        "kind": "struct",
+        "owner_type": "af-contract::GuardInputAssignment",
+        "source": "crates/af-contract/src/recovery_guard.rs"
+      },
+      "active_descriptor": "ABSENT",
+      "binding": "UNRESOLVED",
+      "historical_type_is_declared": true,
+      "not_claimed": "absence from current types is not absence from all registered historical declarations"
+    },
+    {
+      "name": "af-contract::GuardCountermodelReachability",
+      "historical_native_snapshot": {
+        "kind": "enum",
+        "owner_type": "af-contract::GuardCountermodelReachability",
+        "source": "crates/af-contract/src/recovery_guard.rs",
+        "variants": {
+          "WellTypedComponentInputDomain": []
+        }
+      },
+      "active_descriptor": "ABSENT",
+      "binding": "UNRESOLVED",
+      "historical_type_is_declared": true,
+      "not_claimed": "absence from current types is not absence from all registered historical declarations"
+    }
+  ],
+  "identical_native_witness_field_records": [],
+  "existing_guard_contradiction": {
+    "kind": "record",
+    "fields": [
+      [
+        "source",
+        {
+          "ref": "af-computation::RecoveryActionSourceIdentity"
+        }
+      ],
+      [
+        "source_guard",
+        {
+          "ref": "af-effect::EffectGuard"
+        }
+      ],
+      [
+        "target_guard",
+        {
+          "ref": "af-effect::EffectGuard"
+        }
+      ],
+      [
+        "bounds",
+        {
+          "ref": "af-effect::OccurrenceBounds"
+        }
+      ],
+      [
+        "countermodel",
+        {
+          "ref": "TypedValue"
+        }
+      ]
+    ]
+  },
+  "existing_guard_source": {
+    "kind": "record",
+    "fields": [
+      [
+        "caller_semantic_ir_digest",
+        {
+          "ref": "af-semantic::DigestRefValue"
+        }
+      ],
+      [
+        "source_node",
+        {
+          "ref": "ComputationId"
+        }
+      ],
+      [
+        "source_contract_digest",
+        {
+          "ref": "af-semantic::DigestRefValue"
+        }
+      ],
+      [
+        "forward_entry_ordinal",
+        {
+          "ref": "$usize"
+        }
+      ],
+      [
+        "action",
+        {
+          "ref": "af-contract::RecoveryActionIdentity"
+        }
+      ]
+    ]
+  },
+  "reviewed_lexical_sites": {
+    "control_constructor_calls": [
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 1297,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 1305,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 1588,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 1602,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 1610,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 1618,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 1626,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 1634,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 1642,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 1658,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 1669,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 1680,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3076,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3088,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3154,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3162,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3198,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3206,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3234,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3243,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3271,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3288,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3316,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3387,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3396,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3467,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3497,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3511,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3525,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3544,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3557,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3572,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3586,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3653,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3702,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3859,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3881,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3900,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3912,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 4288,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 4325,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 4502,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 4512,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 4524,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 4531,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 4542,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 4890,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 5048,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 5523,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 5614,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 5716,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 5724,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 5732,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 5740,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 5750,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 5870,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 6225,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 6247,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 6259,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 6274,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 6282,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 6311,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 6494,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 6527,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 6664,
+        "audit_only_not_origin": true
+      }
+    ],
+    "leaf_constructor_calls": [
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 356,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 367,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 377,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 508,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 534,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 535,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 600,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 640,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 647,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 662,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 663,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 667,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 677,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 687,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 718,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 719,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 760,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 779,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 815,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 838,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 894,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 937,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 941,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 985,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 1000,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 1013,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/resolution.rs",
+        "line": 1017,
+        "audit_only_not_origin": true
+      }
+    ],
+    "legacy_root_direct_pushes": [
+      {
+        "path": "crates/af-computation/src/root_export.rs",
+        "line": 1120,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/root_export.rs",
+        "line": 1129,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/root_export.rs",
+        "line": 1131,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/root_export.rs",
+        "line": 1135,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/root_export.rs",
+        "line": 1139,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/root_export.rs",
+        "line": 1140,
+        "audit_only_not_origin": true
+      }
+    ],
+    "inherited_literals": [
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3476,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 3756,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-computation/src/control.rs",
+        "line": 4333,
+        "audit_only_not_origin": true
+      }
+    ],
+    "native_dimension_constructor_calls": [
+      {
+        "path": "crates/af-contract/src/validate.rs",
+        "line": 85,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/validate.rs",
+        "line": 127,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/validate.rs",
+        "line": 133,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/validate.rs",
+        "line": 153,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/validate.rs",
+        "line": 196,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/validate.rs",
+        "line": 201,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/validate.rs",
+        "line": 206,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/validate.rs",
+        "line": 211,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/validate.rs",
+        "line": 216,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/validate.rs",
+        "line": 221,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/validate.rs",
+        "line": 226,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/validate.rs",
+        "line": 231,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/validate.rs",
+        "line": 236,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/validate.rs",
+        "line": 281,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/validate.rs",
+        "line": 292,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/validate.rs",
+        "line": 302,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/validate.rs",
+        "line": 308,
+        "audit_only_not_origin": true
+      }
+    ],
+    "native_guard_record_sites": [
+      {
+        "path": "crates/af-contract/src/recovery_guard.rs",
+        "line": 222,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/recovery_guard.rs",
+        "line": 242,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/recovery_guard.rs",
+        "line": 265,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/recovery_guard.rs",
+        "line": 280,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/recovery_guard.rs",
+        "line": 301,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/recovery_guard.rs",
+        "line": 315,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/recovery_guard.rs",
+        "line": 348,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/recovery_guard.rs",
+        "line": 357,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/recovery_guard.rs",
+        "line": 364,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/recovery_guard.rs",
+        "line": 380,
+        "audit_only_not_origin": true
+      },
+      {
+        "path": "crates/af-contract/src/recovery_guard.rs",
+        "line": 388,
+        "audit_only_not_origin": true
+      }
+    ]
+  },
+  "lexical_counts_not_semantic_producer_total": {
+    "control_constructor_calls": 65,
+    "leaf_constructor_calls": 27,
+    "legacy_root_direct_pushes": 6,
+    "inherited_literals": 3,
+    "native_dimension_constructor_calls": 17,
+    "native_guard_record_sites": 11
+  },
+  "prerequisite_match_arms": 11,
+  "prerequisite_literal_occurrences": 20,
+  "constructor_categories_overlap": true,
+  "total_unique_semantic_producer_sites": "NOT_CLOSED;do_not_sum_categories",
+  "capture_sites": 0,
+  "independently_compared_capture_sites": 0,
+  "capture_case_ids": 0,
+  "capture_field_instances_compared": 0,
+  "required_coverage_status": "BLOCKED_NOT_ZERO_GAPS",
+  "original_byte_audit": {
+    "status": "PASS",
+    "original_nonignored_files": 1867,
+    "changed": 0,
+    "removed": 0
+  },
+  "complete_scope": "PendingG02",
+  "normalizer": "NotImplemented",
+  "positive_capability": "NotAuthorized",
+  "actual_native_probe": {
+    "path": "target/phase-04c1b4c4r3-probe-final.log",
+    "sha256": "e956bc06063744b5048f6816d0f3d0091649e3fcbf90793f16e72c9566690bc9",
+    "actual": {
+      "action_guard": {
+        "expected_int64": 0,
+        "port_no": 1
+      },
+      "caller_ir_supplied": false,
+      "canonical_validation": "passed",
+      "control_unconditional_action": "Checked",
+      "countermodel": {
+        "action_entry_ordinal": 1,
+        "assignment_port_no": 1,
+        "assignment_schema": "agentflow.test.guard-types@1",
+        "assignment_schema_digest": "395382f76ef8d9ac6c59fd873ee35ace1e321ad999259b228ac1521eb362b9ac",
+        "assignment_type": "GuardInt64",
+        "assignment_value_int64": 1,
+        "forward_entry_ordinal": 0,
+        "reachability": "WellTypedComponentInputDomain",
+        "rule": "AF-CONTRACT-0022"
+      },
+      "forward_guard": "unconditional",
+      "full_check": "rejected_at_contract_validation",
+      "guard_basis": "TypedCountermodel",
+      "guard_verdict": "Violation",
+      "input_canonical_ace1_hex": "7b22636f6d706f6e656e745f6964656e74697479223a7b22636174616c6f67223a226167656e74666c6f772e636f6d706f6e656e74734031222c226e616d65223a2261636d652e7472616e73666f726d227d2c226566666563745f666c6f775f706172746974696f6e73223a5b5d2c2265666665637473223a7b22726f77223a7b22636c6f736564223a5b7b2261746f6d223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a22636861726765227d2c227175616c696669657273223a5b5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c22626f756e6473223a7b226c6f776572223a2231222c227570706572223a7b2266696e697465223a2232227d7d2c226775617264223a7b22756e636f6e646974696f6e616c223a6e756c6c7d7d2c7b2261746f6d223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272657665727365227d2c227175616c696669657273223a5b5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c22626f756e6473223a7b226c6f776572223a2230222c227570706572223a7b2266696e697465223a2232227d7d2c226775617264223a7b22696e7075745f657175616c73223a7b226578706563746564223a7b22696e743634223a2230227d2c22706f72745f6e6f223a2231227d7d7d5d7d7d2c22657865637574696f6e223a7b226361706162696c6974696573223a5b5d2c22696d706c656d656e746174696f6e5f61626973223a5b5d2c227175616e746974696573223a5b5d2c22726567696f6e5f7265736964656e6379223a7b226e6f6e65223a6e756c6c7d2c2272756e74696d655f70726f66696c65223a7b226e6f6e65223a6e756c6c7d2c2273616e64626f78223a7b226e6f6e65223a6e756c6c7d2c22736f66745f707265666572656e636573223a5b5d2c2274727573745f646f6d61696e223a7b226e6f6e65223a6e756c6c7d7d2c226661696c75726573223a7b226661696c75726573223a5b5d7d2c22696e666f726d6174696f6e5f666c6f77223a7b22636f6e666964656e7469616c6974795f7265737472696374696f6e73223a5b5d2c22666c6f775f636f6e73747261696e7473223a5b5d2c2273756d6d617279223a7b22696e666c75656e63655f756e6b6e6f776e223a66616c73652c22696e737472756374696f6e5f617574686f72697479223a226e6f6e65222c22736f7572636573223a5b5d2c227461696e7473223a5b5d7d7d2c22696e70757473223a5b7b22706f72745f6e6f223a2231222c2274797065223a7b22736368656d615f646967657374223a7b22616c676f726974686d223a22736861323536222c22646f6d61696e223a22747970652d736368656d61222c22686578223a2233393533383266373665663864396163366335396664383733656533356163653165333231616439393932353962323238616331353231656233363262396163227d2c2273706563696669636174696f6e5f6964223a226167656e74666c6f772e746573742e67756172642d74797065734031222c22747970655f6e616d65223a224775617264496e743634227d7d5d2c226f757470757473223a5b5d2c227265636f76657279223a7b226566666563745f7265636f766572795f636c6175736573223a5b7b22636f6d70656e736174696f6e223a7b227265717569726564223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272657665727365227d7d2c22656666656374223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a22636861726765227d2c227175616c696669657273223a5b5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c226964656d706f74656e6379223a226e61747572616c222c226b65795f726571756972656d656e74223a7b226e6f6e65223a6e756c6c7d2c227265636f6e63696c696174696f6e223a226e6f6e65222c22756e6b6e6f776e5f6566666563745f68616e646c696e67223a22626c6f636b227d5d2c227265706c61795f73656d616e74696373223a227265636f6d70757465227d2c227265636f766572795f616374696f6e5f62696e64696e6773223a5b7b226964656e74697479223a7b22616374696f6e5f656666656374223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272657665727365227d2c227175616c696669657273223a5b5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c22616374696f6e5f6b696e64223a22636f6d70656e736174696f6e222c22666f72776172645f656666656374223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a22636861726765227d2c227175616c696669657273223a5b5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d7d7d5d2c227265636f766572795f75736167655f62696e64696e6773223a5b7b22616374696f6e223a7b22616374696f6e5f656666656374223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a2272657665727365227d2c227175616c696669657273223a5b5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d2c22616374696f6e5f6b696e64223a22636f6d70656e736174696f6e222c22666f72776172645f656666656374223a7b226f7065726174696f6e223a7b22636174616c6f67223a226167656e74666c6f772e656666656374734031222c226e616d65223a22636861726765227d2c227175616c696669657273223a5b5d2c227265736f757263655f73656c6563746f72223a7b22726571756972656d656e745f706f72745f6e6f223a2231222c2273636f70655f62696e64696e6773223a5b5d7d7d7d2c2261637469766174696f6e735f7065725f666f7277617264223a7b226c6f776572223a2231222c227570706572223a7b2266696e697465223a2231227d7d2c22617474656d7074735f7065725f61637469766174696f6e223a7b226c6f776572223a2231222c227570706572223a7b2266696e697465223a2232227d7d2c227065725f617474656d70745f7573616765223a7b226c696d697473223a5b7b226d65746572223a7b22636174616c6f67223a226167656e74666c6f772e6d65746572734031222c226e616d65223a226170695f63616c6c73227d2c227068617365223a227265636f76657279222c227570706572223a7b2266696e697465223a2233227d7d5d7d7d5d2c227265736f7572636573223a7b22726571756972656d656e7473223a5b7b22706f72745f6e6f223a2231222c2272657175697265645f61747472696275746573223a5b5d2c227265736f757263655f74797065223a7b22736368656d61223a7b22736368656d615f646967657374223a7b22616c676f726974686d223a22736861323536222c22646f6d61696e223a22747970652d736368656d61222c22686578223a2265313733393630393332303531386462396638653030373134636136376539613739666364353733356135656238653864616531353931316631353535386534227d2c2273706563696669636174696f6e5f6964223a226167656e74666c6f772e73656d616e7469632e636f72654031222c22747970655f6e616d65223a2254797065536368656d61526566227d7d7d5d7d2c227573616765223a7b226c696d697473223a5b7b226d65746572223a7b22636174616c6f67223a226167656e74666c6f772e6d65746572734031222c226e616d65223a226170695f63616c6c73227d2c227068617365223a227265636f76657279222c227570706572223a7b2266696e697465223a223132227d7d5d7d7d",
+      "kind": "native admission diagnostic;NOT T3 Capture Conformance",
+      "model_admission": [
+        {
+          "active_materialized_descriptor": false,
+          "actual_model_type_admission": "UnsupportedModel",
+          "historical_native_snapshot": true,
+          "historical_owner_actual_admission": "UnsupportedModel",
+          "name": "af-contract::ActionGuardCompatibility"
+        },
+        {
+          "active_materialized_descriptor": false,
+          "actual_model_type_admission": "UnsupportedModel",
+          "historical_native_snapshot": true,
+          "historical_owner_actual_admission": "UnsupportedModel",
+          "name": "af-contract::GuardCompatibilityBasis"
+        },
+        {
+          "active_materialized_descriptor": false,
+          "actual_model_type_admission": "UnsupportedModel",
+          "historical_native_snapshot": true,
+          "historical_owner_actual_admission": "UnsupportedModel",
+          "name": "af-contract::TypedGuardCountermodel"
+        },
+        {
+          "active_materialized_descriptor": false,
+          "actual_model_type_admission": "UnsupportedModel",
+          "historical_native_snapshot": true,
+          "historical_owner_actual_admission": "UnsupportedModel",
+          "name": "af-contract::GuardInputAssignment"
+        },
+        {
+          "active_materialized_descriptor": false,
+          "actual_model_type_admission": "UnsupportedModel",
+          "historical_native_snapshot": true,
+          "historical_owner_actual_admission": "UnsupportedModel",
+          "name": "af-contract::GuardCountermodelReachability"
+        }
+      ],
+      "owner_controls": {
+        "current_owner_known_scope": "accepted_metadata_only",
+        "historical_owner_known_scope": "UnsupportedModel",
+        "interpretation": "API rejection alone is NOT proof that the historical declared type is unregistered;explicit complete binding must be reviewed"
+      },
+      "positive_capability_allowed": false,
+      "root_node_supplied": false,
+      "source_node_supplied": false
+    },
+    "not_independent_expected": true
+  }
+}

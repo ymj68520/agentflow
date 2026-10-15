@@ -1,0 +1,29 @@
+{
+  "kind": "independently authored minimal guard-law diagnostic;NOT T3 Seed Expected",
+  "declaration": {
+    "input": {
+      "port_no": 1,
+      "primitive": "Int64"
+    },
+    "forward_guard": "true",
+    "action_guard": {
+      "equals_int64": 0,
+      "port_no": 1
+    },
+    "positive_action_potential": true
+  },
+  "expected": {
+    "counterexample_assignment_int64": 1,
+    "forward_holds": true,
+    "action_holds": false,
+    "native_guard_verdict": "Violation",
+    "full_contract_checked": false,
+    "unconditional_action_control_checked": true
+  },
+  "derivation": "1 belongs to the unrestricted Int64 input domain;true and not(1==0). The actual native checker chooses that assignment without parsing diagnostic text.",
+  "coverage": {
+    "t3_capture_cases": 0,
+    "typed_seed_fields_compared": 0,
+    "full_t3_oracle": "NOT IMPLEMENTED"
+  }
+}
