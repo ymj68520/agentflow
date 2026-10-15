@@ -1,0 +1,9 @@
+# R1 readiness and authorized next boundaries
+
+**PROPOSED — NOT REGISTERED.** Design selects B with complete standalone subject/27-case roster/12-result matrix,ordered operands,exact context gate,local/result status split,closed sources/coordinates,basis/witnesses,declarative origin,dependencies,references and version impact.48 design vectors remain NotExecuted. Outcome A is contingent on the fresh gate/freeze records;not Outcome B reuse of a pre-existing binding.
+
+R1 -> **R2 separately authorized registration/migration** -> **R3 separately authorized T3 resumption**. Design materials are ready for R2 review;execution admission is **not granted**. R2 must select exact source/RuleId/edition identities after collision/content/applicability review,materialize complete descriptors/imports,retain old51/512 routing and independently prove fail-closed staging at all native/Portable constructors. If registration cannot be safely separated from adapter support,stage an atomic fail-closed transaction rather than a registry-only positive build. No automatic registration or enabling flags.
+
+R3 still owns all6 direct/3 inherited/11 arms20 literals/65 Control/27 Leaf/reference/role/transformation sites plus substitution. It must capture actual local comparison/source/witness data before loss and compare independent Expected per field/site. The new document-origin adapter is an explicit source input,not a trusted Proven flag. Additional model gaps found in other T3 producers must still stop that producer;this amendment is not a global T3 closure certificate.
+
+T3-REG-01:amendment design complete for review;**formal binding remains unregistered and production blocked**. G01 Typed Capture/Complete Identity/Normalizer NOT_IMPLEMENTED;G02 OPEN/P1;G03 OPEN/P2;F01/F02 CLOSED,F03/F04 OPEN/P2;B01/B02 and B03–B07 BLOCKING. Positive RootExport proof/release NOT_AUTHORIZED. T4–T8,full D10 oracle,independent integration audit and later systems are not authorized.
