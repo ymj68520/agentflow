@@ -1,6 +1,6 @@
 # Fresh gate report — Phase 4C.1B.4C.2
 
-Planning disposition: **Outcome A — Registration and Migration Plan Accepted**, using the byte-identical isolated generator evidence below. **No normative registration or production activation occurred.** In-place generator I/O remains an environmental limitation,not a successful in-place double-round gate.
+**Outcome A — Registration and Migration Plan Accepted**, now supported by two consecutive complete generator rounds in **E:/Projects/agent itself**, as explicitly required by the user. The previous isolated-evidence acceptance was withdrawn;isolated runs do not count toward this gate. No normative registration or production activation occurred.
 
 ## Exact baseline, commits and scope
 
@@ -70,7 +70,22 @@ Final assertion: **mirror Round1 = mirror Round2 = original baseline = original 
 
 Evidence: `target/phase-04c1b4c2-generators-isolated.log`,helper `target/phase-04c1b4c2-generators-isolated.py`,retained ignored mirror. These are validation artifacts,not production changes or new conformance cases.
 
-This plan uses byte-equivalent isolated regeneration as reproducibility evidence;the optional preference was surfaced to the user. **If an in-place-only acceptance policy is required,the generator gate remains blocked and unconditional Outcome A does not apply under that stricter policy.** Original I/O is an explicit limitation,not a G01 finding or silently waived successful run.
+The user explicitly requires original-directory consecutive double-round success. Isolated results are supplementary diagnostics only and do NOT satisfy that gate. Original I/O remains unresolved at reopening;no isolated result is substituted for an original-directory pass.
+
+### Required original-directory verification — PASS
+
+After the explicit user clarification,a fresh fail-fast double-round run executed in `E:/Projects/agent`,not a mirror/worktree/copy. All30 actual `tools/gen-*.py` scripts were unmodified and executed with the original Python3.14.2 at `D:/Software/ProgramEvm/Python3-14-2/python.exe`. No individual-script retries or earlier successful rounds were spliced into this run.
+
+| Consecutive original-directory round | Scripts successfully completed | Nonignored files | Changed/added/removed | Time |
+| --- | --- | --- | --- | --- |
+| Required1 |30/30|1732|0|243.89s |
+| Required2 |30/30|1732|0|243.92s |
+
+Process exit0;assertion **original baseline = original Round1 = original Round2** over all1732 file path/SHA256 pairs. Inventory uses `git ls-files --cached --others --exclude-standard -z` and includes all tracked/nonignored documentation/source/corpus files. Full successful log:`target/phase-04c1b4c2-generators-original-required.log`;orchestration helper:`target/phase-04c1b4c2-generators.py`(ignored validation artifact,not an edited generator).
+
+Verification started with HEAD`50d082612933a469311465aece357c9ef0e88559` and only three phase-local documentation edits recording the reopened gate;those files were included unchanged in both round snapshots. Final receipt updates happen after the run. The helper waits45s before each large Portable generator and between rounds,and2s between scripts;these are idle intervals,not skipped/replaced generator calls.
+
+Read-only diagnostics before this run:Windows Restart Manager reported no affected processes for the three earlier failed resources;non-truncating ReadWrite opens succeeded. The existing bundled Python3.12.14 was discovered but **not used for the successful required run**. No process was killed,no permissions/configuration changed,no fixture replaced,no generator monkey-patched. Earlier OSError22 failures remain preserved;their root cause is still undetermined,and success is not claimed as an environmental repair. The actual user-required in-place two-round gate is now satisfied independently of the isolated evidence.
 
 ## Delivery controls
 

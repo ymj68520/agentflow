@@ -2,6 +2,8 @@
 
 Planning verdict is conditional on the fresh gates recorded in the [gate report](phase-04c1b4c2-gate-report.md). Nothing in this document is an activation instruction.
 
+Explicit user clarification after initial handoff:generator evidence must be two consecutive complete rounds in E:/Projects/agent.Isolated-snapshot success is supplementary only.Previous isolated-evidence Outcome A was withdrawn;the reopened original-directory gate has now actually passed30+30 scripts with1732 files and zero byte drift in each round.See the original-required log and gate report;no isolated evidence is substituted.
+
 ## Planning acceptance checklist
 
 | Requirement | Planning decision/evidence |
