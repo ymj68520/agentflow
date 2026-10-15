@@ -1,0 +1,401 @@
+{
+  "schema_version": 1,
+  "evidence_role": "Actual stage and D9 comparison evidence only; NEVER an Expected-generation input",
+  "code_head": "9c6dbd6a9de02f32e50ef4495c18c8c974b05532",
+  "source_log": "target/phase-04c1b4c-cargo-test-all.log",
+  "test": "d10_original_reachability_and_available_independent_d9_preconditions",
+  "cases": [
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-full-static-positive",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246669,
+        "canonical_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-unmapped",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246267,
+        "canonical_sha256": "38808138ec90dbc3ffdba4338ff33274d42e6eacd227cd0bd62ed40082b0b448"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 5997,
+      "case_id": "portable-root-export-revalidation/p30-split-row-negative",
+      "compared_required": 5997,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 5997,
+      "input_identity": {
+        "canonical_bytes": 2257498,
+        "canonical_sha256": "d3b337fd05e4cb804de8a6a68ee5a8abaed4394a3292e3b39e9e1accaab3ae4a"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 5997,
+      "case_id": "portable-root-export-revalidation/p30-same-row-positive",
+      "compared_required": 5997,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 5997,
+      "input_identity": {
+        "canonical_bytes": 2257091,
+        "canonical_sha256": "efbf39d31165cef75fa173be0105337c2edd9c7fe462945b5c7c5f27c6859402"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "case_id": "portable-root-export-revalidation/p31-snapshot-a-declaration-b-current",
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "OracleImplementationGap",
+      "input_identity": {
+        "canonical_bytes": 2266289,
+        "canonical_sha256": "be6c5163810ede286b8dd8385bdb0b14deff47e840e9ca5defe41e2e04c33774"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "case_id": "portable-root-export-revalidation/p31-fresh-root-b-top-ceiling-one",
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "OracleImplementationGap",
+      "input_identity": {
+        "canonical_bytes": 2266289,
+        "canonical_sha256": "bd9330d1ce572e912b2a5db586ab2f11246c6454c4dfbc1485d72986749a563d"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-2-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246669,
+        "canonical_sha256": "1c22877207f86b461fb0fac989689973341f45d8af388c60986ae16db6049bed"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-3-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246669,
+        "canonical_sha256": "29c05d121fb94bc4720c58f5a4e0714380ce58ab28d8618df80ce4b3f5c290bb"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-4-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246669,
+        "canonical_sha256": "33a66f4b5a6a149b774ae3e67b61f7dd77765e57e7e36541051a97132cf3acbd"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-5-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246669,
+        "canonical_sha256": "1f46302d07b7dcaaae883da48cdf5c60d14f074d668f99c88f176d79d63b61b9"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-6-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246669,
+        "canonical_sha256": "7884d4bed16982dc0968314340381f51176bc49cdc6592432e278ed8115cd923"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-7-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246669,
+        "canonical_sha256": "ef4ea3748f0926ad386a8cb1acf9b26e9d6730af19e5b8dbe7d87cf03718259d"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-8-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246669,
+        "canonical_sha256": "226a406b0afa45907c441ff7f954c33a9f6aa44919ab671d37c0aa5016cbf09e"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-9-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246669,
+        "canonical_sha256": "921852a512b309f9b7c99949a9157dfe12e2fb8b3161470f369137e3de3f68c6"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-10-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "b242fdd4c9838db40bec88ef144b6dd929eb820149405449fb892852b27747c3"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-11-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "2043bcdd71b39b2c9a8ce5909e13fadeb19904b396831d23c9fe9e14a0598cc0"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-12-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "0f1021c05a81cd2c1f017b80d41af0495d544cf861efe4b03e220bb873bdf78e"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-13-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "0cad91acf9f893a71f3ee1f3fbb01909c801526ff9911c58c2356dfbc1074d0f"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-14-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "d6164cff94cef2d52c750cef3cd3090cbc1617cc7c46ad1433b73e93142efa26"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-15-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "3792f0699d252e420f78564a06e346d2b2ebb39cd5f579fc6d158ea1e7d4c556"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-16-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "c68acf9cf726cb34c2d617b1d207fd9117a907c71e3d5e2bb980a65415db0248"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-17-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "2adccc9db963d1600dc25998cf47d566eb0229f400aa5f613147abbf1fa3fa2b"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-18-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "e37c0a4a4ff76bb5c63fe295182951e2d488bb1cb69dcf7349e3042ba7d5739b"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-19-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "c6c726d04ece253a25cfffa6b2ae3256f31e54f1531e5cfd29229fb14f21ff1c"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-20-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "45602f58fbfcff63994c09fae73f52129e0e733f4e3e6c5524469974153b08fd"
+      }
+    },
+    {
+      "actual_first_stage": "D10",
+      "actual_required": 4844,
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-21-not-root",
+      "compared_required": 4844,
+      "d10_fully_compared": false,
+      "d10_status": "NotComparedFormalModelGap",
+      "d9_status": "passed",
+      "diagnostic_instances": 88,
+      "expected_required": 4844,
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "b4e642170ca85ea3affbeb53ec31d4f1019fead4059444e1cf78235c2f3f3da4"
+      }
+    }
+  ],
+  "d10_formal_gap_cases": 26,
+  "d10_fully_compared": 0,
+  "d9_compared_required_instances": 118562,
+  "d9_diagnostic_instances": 2112,
+  "d9_fully_compared": 24,
+  "d9_oracle_gaps": 2,
+  "executed": 26,
+  "outcome": "C - Formal Model Gap; NOT COMPLETE",
+  "reached_d10": 26,
+  "skipped": 0
+}
