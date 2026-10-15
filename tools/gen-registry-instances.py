@@ -77,6 +77,11 @@ def write_json(rel: str, payload: dict) -> None:
     path = ROOT / rel
     path.parent.mkdir(parents=True, exist_ok=True)
     text = json.dumps(payload, indent=2, ensure_ascii=False, sort_keys=True) + "\n"
+    # Recompute/validate the whole registry, but never truncate an already exact
+    # output. This is byte equality, not an exception-swallowing I/O fallback.
+    if path.exists() and path.read_bytes() == text.encode("utf-8"):
+        print(f"verified unchanged {rel} ({len(text.splitlines())} lines)")
+        return
     path.write_text(text, encoding="utf-8", newline="\n")
     print(f"wrote {rel} ({len(text.splitlines())} lines)")
 
