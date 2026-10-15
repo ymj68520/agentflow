@@ -6,6 +6,7 @@ use serde_json::{Value as Json, json};
 use sha2::Digest as _;
 use std::path::{Path, PathBuf};
 
+mod d10_gap_conformance;
 mod d9_recovery_conformance;
 
 fn repo() -> PathBuf {
