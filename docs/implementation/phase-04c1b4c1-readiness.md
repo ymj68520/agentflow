@@ -4,7 +4,7 @@ See [decisions](phase-04c1b4c1-decisions.md), [draft](phase-04c1b4c1-g01-normati
 
 Design acceptance means identity/derivation/aggregation/order/multiplicity/encoding/unknown handling, prerequisites/references, source provenance, consistency and migration choices are specified and reviewed against every producer family. It does **not** mean current Rust conforms to that model. The compatibility audit explicitly requires future production/metadata adaptation; current strings cannot be upcast losslessly.
 
-Prospective stage result, conditional on complete evidence and final gates: **Outcome A — DESIGN COMPLETE**, with Outcome B representation incompatibility recorded. G01 state: **FORMAL CONTRACT DESIGN ACCEPTED; NORMATIVE REGISTRATION PENDING; PRODUCTION IMPLEMENTATION OPEN/P1**. No current executable coverage classification changes.
+Stage result: **Outcome A — DESIGN COMPLETE**, with Outcome B representation incompatibility recorded. Complete design evidence, full baseline-code Cargo regression, fast gates and generator double-round checks passed; see the gate report. G01 state: **FORMAL CONTRACT DESIGN ACCEPTED; NORMATIVE REGISTRATION PENDING; PRODUCTION IMPLEMENTATION OPEN/P1**. No current executable coverage classification changes.
 
 ## Entry to a separately authorized registration stage
 

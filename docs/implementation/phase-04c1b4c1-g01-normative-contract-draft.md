@@ -40,7 +40,7 @@ Scope = {
   compiler_identity: COMPLETE CompilerSemanticsIdentity,
   context_manifest: COMPLETE ProofContextManifest,
   resolver_associations: COMPLETE checked caller/node/target association set,
-  root_provenance: {source_ir, COMPLETE root_resolver_identity,
+  root_provenance: {source_ir, root_node, COMPLETE root_resolver_identity,
                     COMPLETE root_context_contents, COMPLETE root_K_context_contents},
   context_association: equivalence partition of analysis_context/checked_export/snapshot/root/root_K roles,
   assertion_inputs: COMPLETE typed assertion input graph
