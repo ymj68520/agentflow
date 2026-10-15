@@ -8,6 +8,7 @@ algebra. It does not execute Rust, inspect Rust projections, or call a checker.
 from __future__ import annotations
 
 import copy
+from legacy_edition1_inputs import assert_historical_output
 import importlib.util
 import json
 from pathlib import Path
@@ -679,13 +680,13 @@ def main() -> None:
     bundle = full_static_positive()
     payload = canonical_bytes(bundle)
     OUT.mkdir(parents=True, exist_ok=True)
-    (ROOT / POSITIVE_PATH).write_bytes(payload)
+    assert_historical_output(ROOT / POSITIVE_PATH, payload)
     expected = independent_positive_expected(bundle)
     missing_execution = copy.deepcopy(bundle)
     missing_execution["root_export_assertions"][0]["assertion"]["execution_mappings"] = []
     missing_payload = canonical_bytes(missing_execution)
     missing_path = "spec/conformance/portable-root-export-revalidation/negative-execution-map-missing.ace1"
-    (ROOT / missing_path).write_bytes(missing_payload)
+    assert_historical_output(ROOT / missing_path, missing_payload)
     missing_expected = independent_positive_expected(missing_execution, missing_execution=True)
     d9_cases = d9_opcode_cases()
     d9_manifest_cases = []
@@ -693,7 +694,7 @@ def main() -> None:
         relative = f"{D9_DIR}/{case['opcode']}.ace1"
         raw = canonical_bytes(case["bundle"])
         (ROOT / relative).parent.mkdir(parents=True, exist_ok=True)
-        (ROOT / relative).write_bytes(raw)
+        assert_historical_output(ROOT / relative, raw)
         d9_manifest_cases.append({
             "case_id": f"portable-root-export-revalidation/d9-opcode-{case['opcode']}",
             "group": "D9-Control",
@@ -710,7 +711,7 @@ def main() -> None:
         relative = f"{D9_DIR}/recovery/{slug}.ace1"
         raw = canonical_bytes(case["bundle"])
         (ROOT / relative).parent.mkdir(parents=True, exist_ok=True)
-        (ROOT / relative).write_bytes(raw)
+        assert_historical_output(ROOT / relative, raw)
         caller_ref = case["bundle"]["resolver_dependency_manifests"][0]["content"]["caller_ir"]
         caller_ir = json.loads(_static.b64decode(
             _static.find_ir(case["bundle"], caller_ref["digest"]["hex"])["canonical_content"]
@@ -762,7 +763,7 @@ def main() -> None:
         slug = "p30-split-row-negative" if split_rows else "p30-same-row-positive"
         relative = f"spec/conformance/portable-root-export-revalidation/{slug}.ace1"
         p30_payload = canonical_bytes(p30_bundle)
-        (ROOT / relative).write_bytes(p30_payload)
+        assert_historical_output(ROOT / relative, p30_payload)
         cases.append({
             "case_id": f"portable-root-export-revalidation/{slug}",
             "group": "D10",
@@ -778,7 +779,7 @@ def main() -> None:
     for slug, p31_bundle, p31_expected in p31_resolver_cases():
         relative = f"spec/conformance/portable-root-export-revalidation/{slug}.ace1"
         p31_payload = canonical_bytes(p31_bundle)
-        (ROOT / relative).write_bytes(p31_payload)
+        assert_historical_output(ROOT / relative, p31_payload)
         p31_manifest_cases.append({
             "case_id": f"portable-root-export-revalidation/{slug}",
             "group": "D10",
@@ -838,9 +839,7 @@ def main() -> None:
         "group_counts": {"D9-Control": len(d9_manifest_cases), "D9-Recovery": len(recovery_manifest_cases), "D10": len(cases), "Context-Resolver-Compiler": len(provenance), "Cross-Process": len(cross_process_cases)},
         "cases": [*d9_manifest_cases, *recovery_manifest_cases, *provenance, *cases, *cross_process_cases],
     }
-    (OUT / "manifest.json").write_text(
-        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+    assert_historical_output(OUT / "manifest.json", json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"portable root/export fixtures: {manifest['case_count']}; independent declaration oracle")
 
 

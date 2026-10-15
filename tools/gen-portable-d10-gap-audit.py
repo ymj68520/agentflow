@@ -2,6 +2,7 @@
 """Additive D10 inventory and independent D9 preconditions; fail closed on gaps."""
 
 import argparse
+from legacy_edition1_inputs import assert_historical_output
 import json
 
 from oracle.d10_gap_audit import artifacts
@@ -20,7 +21,7 @@ def main():
                 raise SystemExit("D10 gap audit drift: " + str(path))
         else:
             path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text(encoded, encoding="utf-8")
+            assert_historical_output(path, encoded, encoding="utf-8")
     print("D10 inventory=26; D9 independent Expected=24; D10 full-field Expected=0; Outcome C, NOT COMPLETE")
 
 

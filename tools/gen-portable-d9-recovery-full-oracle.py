@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Declaration-only Recovery full-field Expected. Existing Expected is read-only."""
 import argparse
+from legacy_edition1_inputs import assert_historical_output
 import hashlib
 import importlib.util
 import json
@@ -43,7 +44,7 @@ def models():
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument("--check",action="store_true");args=parser.parse_args()
-    graph=inventory()
+    graph=inventory(edition="legacy-1")
     frozen=json.loads((CORPUS/"coverage/rust-type-inventory.json").read_text(encoding="utf-8"))
     if graph!=frozen:raise SystemExit("production type graph drift")
     sidecars,rows=models()
@@ -89,7 +90,7 @@ def main():
         path=ROOT/"docs/implementation"/filename
         if args.check:
             if not path.exists() or path.read_text(encoding="utf-8")!=text:raise SystemExit("Recovery documentation drift: "+filename)
-        else:path.write_text(text,encoding="utf-8")
+        else:assert_historical_output(path, text, encoding="utf-8")
     # All derivations/shape checks finish before any artifact is written.
     for path,value in outputs.items():
         encoded=json.dumps(value,ensure_ascii=False,indent=2)+"\n"
@@ -99,7 +100,7 @@ def main():
     for path,raw in binary_outputs.items():
         if args.check:
             if not path.exists() or path.read_bytes()!=raw:raise SystemExit("Portable input bytes drift: "+str(path))
-        else:path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(raw)
+        else:path.parent.mkdir(parents=True,exist_ok=True);assert_historical_output(path, raw)
     print("D9 Recovery independent Expected: 16; required visits="+str(outputs[OUT/"manifest.json"]["instance_totals"]["required"]))
 
 

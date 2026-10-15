@@ -4821,6 +4821,358 @@
       "source_anchor": "ppi-mutation-evidence"
     },
     {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0197"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0197",
+      "short_statement": "Only a complete validator-origin fact roster may derive a full obligation view.",
+      "source_anchor": "g01-fact-authority"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0198"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0198",
+      "short_statement": "Scope retains complete compiler/context/resolver/root/assertion values and context-role partition.",
+      "source_anchor": "g01-exact-scope"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0199"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0199",
+      "short_statement": "Kind, clause, class, role and applicability must match the closed predicate roster.",
+      "source_anchor": "g01-closed-predicate"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0200"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0200",
+      "short_statement": "Source, target, coordinate and declared occurrence origin must be complete and consistent.",
+      "source_anchor": "g01-subject-origin"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0201"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0201",
+      "short_statement": "Each evaluated non-Proven fact yields exactly its disposition and typed obligation.",
+      "source_anchor": "g01-derive-nonproven"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0202"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0202",
+      "short_statement": "Failed core preflights block nine dimensions without inventing evaluations.",
+      "source_anchor": "g01-blocked-not-evaluated"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0203"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0203",
+      "short_statement": "Static proof eligibility requires five core checks and nine unique evaluated dimensions Proven.",
+      "source_anchor": "g01-five-plus-nine"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0204"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0204",
+      "short_statement": "Six root boundaries and each call-body requirement remain independent of static success.",
+      "source_anchor": "g01-independent-boundaries"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0205"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0205",
+      "short_statement": "Each known child retains distinct feasibility/security and source-coverage predicates.",
+      "source_anchor": "g01-child-execution-aspects"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0206"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0206",
+      "short_statement": "Prerequisites retain original predicate/stage/subject/origin and all consumer edges.",
+      "source_anchor": "g01-prerequisite-identity"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0207"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0207",
+      "short_statement": "A Proven predicate cannot have an unmet mandatory prerequisite or missing support.",
+      "source_anchor": "g01-prerequisite-consistency"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0208"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0208",
+      "short_statement": "References are complete typed evidence coordinates, not RuleIds or prose identities.",
+      "source_anchor": "g01-evidence-coordinate"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0209"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0209",
+      "short_statement": "Derived complete reference sets use the typed minimum except six root boundary primaries None.",
+      "source_anchor": "g01-primary-reference"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0210"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0210",
+      "short_statement": "Only equal originating facts merge observations; distinct origins stay distinct.",
+      "source_anchor": "g01-origin-copy-merge"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0211"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0211",
+      "short_statement": "Status, disposition, links, contradiction and observations remain required alongside identity.",
+      "source_anchor": "g01-status-preservation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0212"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0212",
+      "short_statement": "The private successor constructor requires proof eligibility and successful complete bounded normalization.",
+      "source_anchor": "g01-private-capability-gate"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0213"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0213",
+      "short_statement": "Text, ordering, emptiness or successful serialization cannot create proof or runtime authority.",
+      "source_anchor": "g01-no-report-authority"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0214"
+      ],
+      "normative_source": "spec/tables/proof-report-model-v1.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0214",
+      "short_statement": "Every semantic model type has exact closed field, width, option and variant descriptors.",
+      "source_anchor": "model-closed-descriptors"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0215"
+      ],
+      "normative_source": "spec/tables/proof-report-model-v1.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0215",
+      "short_statement": "Sets and identity views use the registered typed total order, preserving semantic sequences.",
+      "source_anchor": "model-typed-order"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0216"
+      ],
+      "normative_source": "spec/tables/proof-report-model-v1.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0216",
+      "short_statement": "Canonical identity strings are schema-directed ACE1 of the complete identity and decode bijectively.",
+      "source_anchor": "model-identity-ace1"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0217"
+      ],
+      "normative_source": "spec/tables/proof-report-model-v1.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0217",
+      "short_statement": "Full scope is a finite minimal reachable typed value DAG with canonical bottom-up ranks.",
+      "source_anchor": "model-minimal-value-dag"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0218"
+      ],
+      "normative_source": "spec/tables/proof-report-model-v1.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0218",
+      "short_statement": "Output/work/graph limits fail explicitly without truncated successful reports.",
+      "source_anchor": "model-no-partial-output"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0219"
+      ],
+      "normative_source": "spec/tables/proof-report-model-v1.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0219",
+      "short_statement": "Unknown, missing, duplicate or noncanonical report fields/variants/identities are rejected without repair.",
+      "source_anchor": "model-closed-decode"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0220"
+      ],
+      "normative_source": "spec/tables/proof-report-model-v1.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0220",
+      "short_statement": "Independent Expected compares every required typed field and canonical byte, not strings alone.",
+      "source_anchor": "model-independent-fullfield"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0221"
+      ],
+      "normative_source": "spec/tables/proof-report-model-v1.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0221",
+      "short_statement": "Model identity/rank/derivation changes require new shape/obligation/content edition.",
+      "source_anchor": "model-shape-version"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0222"
+      ],
+      "normative_source": "spec/tables/proof-report-model-v1.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0222",
+      "short_statement": "Reason is diagnostic only after all equality/decision-bearing content is structurally retained.",
+      "source_anchor": "model-diagnostic-separation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0223"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs-v2.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0223",
+      "short_statement": "The supported owner binds complete sources, registries, attribution, model and support policy.",
+      "source_anchor": "edition-exact-tuple"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0224"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs-v2.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0224",
+      "short_statement": "Owner@2 admits only its implementation-owned exact current edition without implicit old support.",
+      "source_anchor": "edition-current-only"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0225"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs-v2.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0225",
+      "short_statement": "Admission failures retain canonical/content/identity/support/resource categories, not static Violation.",
+      "source_anchor": "edition-failure-taxonomy"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0226"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs-v2.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0226",
+      "short_statement": "Legacy code/inputs/Expected and new-edition independent evidence are immutable separate domains.",
+      "source_anchor": "edition-corpus-isolation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0227"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs-v2.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0227",
+      "short_statement": "Registry, support, producers, lossless views and independent conformance activate only as one transaction.",
+      "source_anchor": "edition-atomic-activation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0228"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs-v2.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0228",
+      "short_statement": "Applied-rule attribution is explicit and does not claim complete dependency closure.",
+      "source_anchor": "edition-attribution-boundary"
+    },
+    {
       "area": "SPEC",
       "conformance_refs": [
         "spec-registry/duplicate-specification-id"

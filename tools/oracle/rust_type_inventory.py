@@ -70,11 +70,17 @@ def field(part, position):
             "collection": bool(re.search(r"\b(?:Vec|BTreeMap|BTreeSet|HashMap|HashSet)\s*<", full_type))}
 
 
-def declarations():
+def declarations(edition="current"):
     result = {}
     for path in sorted((ROOT / "crates").glob("*/src/**/*.rs")):
         crate = path.relative_to(ROOT / "crates").parts[0]
-        text = clean_comments(path.read_text(encoding="utf-8"))
+        if edition == "legacy-1":
+            from legacy_edition1_inputs import historical_type_source
+            text = clean_comments(historical_type_source(path))
+        elif edition == "current":
+            text = clean_comments(path.read_text(encoding="utf-8"))
+        else:
+            raise ValueError("unsupported inventory edition")
         for match in re.finditer(r"\b(struct|enum)\s+(\w+)", text):
             kind, name = match.groups()
             cursor = match.end()
@@ -133,8 +139,8 @@ def references(full_type, crate, index):
     return sorted(refs), sorted(terminals)
 
 
-def inventory():
-    index = declarations()
+def inventory(edition="current"):
+    index = declarations(edition)
     queue, graph, terminals = list(ROOTS), {}, set()
     while queue:
         name = queue.pop(0)

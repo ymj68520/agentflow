@@ -9,6 +9,7 @@ invokes Rust or reads a Rust-produced actual result.
 from __future__ import annotations
 
 import base64
+from legacy_edition1_inputs import assert_historical_output
 import copy
 import hashlib
 import json
@@ -1306,7 +1307,7 @@ def main():
         ],
         "cases": cases,
     }
-    (OUT / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    assert_historical_output(OUT / "manifest.json", json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"generated {len(cases)} independent D5-D8 cases in {OUT.relative_to(ROOT)}")
 
 

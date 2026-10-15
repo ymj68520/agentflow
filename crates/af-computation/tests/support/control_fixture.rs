@@ -917,6 +917,11 @@ pub fn analyze_root_export_case(case: &Value) -> Result<Value, String> {
     )
     .is_ok();
     let mut projection = root_export_projection(&report, checked_capability);
+    projection["_edition2_admission_failure"] = json!(
+        report
+            .edition_admission_failure
+            .map(|failure| format!("{failure:?}"))
+    );
     let snapshot_b_export = checked_snapshot_b_export
         .as_ref()
         .unwrap_or(&checked_snapshot_a_export);

@@ -162,8 +162,10 @@ impl PortableProofCodec {
         &self,
         bytes: &[u8],
     ) -> Result<SupportedPortableStaticInputs, PortableProofError> {
-        let decoded = self.decode_d0(bytes)?;
-        let canonical = self.validate_d1(decoded, bytes)?;
+        let decoded = self.decode_d0(bytes).map_err(staged_canonical_error)?;
+        let canonical = self
+            .validate_d1(decoded, bytes)
+            .map_err(staged_canonical_error)?;
         let referenced = self.validate_references(canonical)?;
         let content = self.validate_contents(referenced)?;
         self.validate_semantics(content)
@@ -211,6 +213,14 @@ impl PortableProofCodec {
         }
         Ok(())
     }
+}
+
+fn staged_canonical_error(mut error: PortableProofError) -> PortableProofError {
+    if error.family != "ResourceLimit" {
+        error.detail = format!("{}: {}", error.family, error.detail);
+        error.family = "InvalidCanonicalEncoding";
+    }
+    error
 }
 
 fn contains_malformed_option(bytes: &[u8], shape: &af_core::Shape) -> bool {

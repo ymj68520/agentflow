@@ -9,6 +9,7 @@ never reads production output.
 from __future__ import annotations
 
 import json
+from legacy_edition1_inputs import assert_historical_output
 from pathlib import Path
 
 
@@ -297,7 +298,7 @@ def main():
     ids = [case["case_id"] for case in vectors]
     assert len(ids) == len(set(ids))
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / "cases.json").write_text(json.dumps(vectors, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    assert_historical_output(OUT / "cases.json", json.dumps(vectors, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     manifest = {
         "kind": "agentflow.conformance.computation-root-export-soundness.corpus",
         "revision": 1,
@@ -309,7 +310,7 @@ def main():
         "expected_checked_capabilities": sum(case["expected"]["checked_capability"] for case in vectors),
         "oracle": "tools/gen-root-export-soundness-corpus.py::containment_oracle",
     }
-    (OUT / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    assert_historical_output(OUT / "manifest.json", json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"RootExport soundness corpus: {len(vectors)} cases (F01={manifest['f01_case_count']}, F02={manifest['f02_case_count']})")
 
 

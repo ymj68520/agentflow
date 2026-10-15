@@ -41,6 +41,32 @@
       "status": "frozen"
     },
     {
+      "description": "Complete typed obligation identity, derivation, provenance, evidence boundaries and capability consistency.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "c8d4cf135c28db286b0a598c3fb69814dece936fcf888ce3e46296a336186f5c"
+        },
+        "logical_path": "spec/computation/proof-obligation-semantics.md"
+      },
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed non-wire G01 semantic type model, typed order, finite value DAG and ACE1 canonical identity relation.",
+      "kind": "closed_table",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "e23ca47c05efe9f7ec22177011982ac47ca0cdc8642173de56a90e6e29a93099"
+        },
+        "logical_path": "spec/tables/proof-report-model-v1.md"
+      },
+      "specification_id": "agentflow.computation.proof-report.model@1",
+      "status": "frozen"
+    },
+    {
       "description": "Pure in-process RootExportAssertion proof: exact typed coordinates and nine-dimension static root/export compatibility, with body, publisher, authority, budget and runtime evidence kept separate.",
       "kind": "schema_language",
       "normative_source": {
@@ -285,6 +311,19 @@
         "logical_path": "spec/portable/portable-proof-inputs.md"
       },
       "specification_id": "agentflow.portable.proof.inputs.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Exact Edition2 content binding, current-only fail-closed staging and isolated historical evidence without positive activation.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "751b46630198e82b99e58eb9ee31ab7c95edd373a1c938e2c1edd470f54dc8c0"
+        },
+        "logical_path": "spec/portable/portable-proof-inputs-v2.md"
+      },
+      "specification_id": "agentflow.portable.proof.inputs.semantics@2",
       "status": "frozen"
     },
     {

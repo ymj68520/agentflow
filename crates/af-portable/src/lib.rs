@@ -18,9 +18,8 @@ mod schema;
 mod support;
 mod validation;
 
-#[cfg(test)]
-#[path = "../tests/support/d9_full_conformance.rs"]
-mod d9_full_conformance;
+// Edition1 full-field tests are retained unchanged and executed by the pinned
+// legacy build. They cannot assert old-profile success in current-only@2.
 
 pub use codec::{CanonicalPortableBundle, DecodedPortableBundle, PortableProofCodec};
 pub use error::{PortableProofError, ValidationStage};

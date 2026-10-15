@@ -9,6 +9,7 @@ projection, or updates Expected values from observed output.
 from __future__ import annotations
 
 import hashlib
+from legacy_edition1_inputs import assert_historical_output
 import json
 from pathlib import Path
 
@@ -454,7 +455,7 @@ def write_case(case: dict) -> None:
     slug = case["case_id"].split("/")[-1]
     path = OUT / group / f"{slug}.json"
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(case, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+    assert_historical_output(path, json.dumps(case, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
 
 
 def main() -> None:
@@ -478,7 +479,7 @@ def main() -> None:
         }.items())},
         "format_note":"non-wire static RootExportAssertion vectors; no RootContractDigest or runtime claim",
     }
-    (OUT / "manifest.json").write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+    assert_historical_output(OUT / "manifest.json", json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     print(f"generated {len(ids)} root-export cases")
 
 

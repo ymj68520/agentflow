@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import copy
+from legacy_edition1_inputs import assert_historical_output
 import base64
 import json
 import sys
@@ -14,6 +15,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 from portable_proof_python_oracle import (  # noqa: E402
     AFIDL, ROOT, b64url, canonical_bytes, hash_v1, ref, sha256,
 )
+from legacy_edition1_inputs import pinned_bytes
 
 OUT = ROOT / "spec" / "conformance" / "portable-proof-codec"
 
@@ -130,27 +132,30 @@ def rule_identity(rule):
     }
 
 
-def compiler_manifest(specifications, rules, module_refs):
+def compiler_manifest(specifications, rules, module_refs, profile=None):
+    version = profile["version"] if profile else "agentflow.root-export-checker@1"
+    selected_specs = profile["spec_ids"] if profile else STATIC_SPECS
+    selected_ids = profile["rule_ids"] if profile else STATIC_RULE_IDS
     role_rows = []
     for role in ROLE_NAMES:
         if role in ("plan_lowering", "runtime_semantics_profile"):
             declaration = tagged("model_missing", "not_formalized")
         else:
             declaration = tagged("defined", {
-                "analysis_semantics_version": "agentflow.root-export-checker@1",
-                "normative_specifications": STATIC_SPECS.copy(),
+                "analysis_semantics_version": version,
+                "normative_specifications": selected_specs.copy(),
                 "required_schema_pins": type_schema_pins(module_refs),
                 "depends_on": DEPENDENCIES[role].copy(),
             })
         role_rows.append({"role": role, "declaration": declaration})
     selected_rules = [rule_identity(row) for row in rules["rules"]
-                      if row["rule_id"] in set(STATIC_RULE_IDS)]
-    if [row["rule_id"] for row in selected_rules] != STATIC_RULE_IDS:
+                      if row["rule_id"] in set(selected_ids)]
+    if [row["rule_id"] for row in selected_rules] != selected_ids:
         raise ValueError("the frozen applied rule set no longer matches the registered Rules Registry")
     return {
         "registries": {
-            "specifications": checksum_blob((ROOT / "spec/registry/specifications.json").read_bytes()),
-            "rules": checksum_blob((ROOT / "spec/registry/rules.json").read_bytes()),
+            "specifications": checksum_blob(profile["specification_bytes"] if profile else pinned_bytes("specifications")),
+            "rules": checksum_blob(profile["rule_bytes"] if profile else pinned_bytes("rules")),
         },
         "closed_tables": {
             "hash_domains": checksum_blob((ROOT / "spec/tables/hash-domains.json").read_bytes()),
@@ -162,16 +167,16 @@ def compiler_manifest(specifications, rules, module_refs):
         "semantic_roles": role_rows,
         "attribution": tagged("full_content_revalidation", {"listed_rules": selected_rules}),
         "static_identity_projection": {
-            "analysis_semantics_version": "agentflow.root-export-checker@1",
-            "normative_specification_ids": STATIC_SPECS.copy(),
+            "analysis_semantics_version": version,
+            "normative_specification_ids": selected_specs.copy(),
             "applied_rules": selected_rules,
         },
     }
 
 
-def bundle_and_context():
-    specifications = json.loads((ROOT / "spec/registry/specifications.json").read_text(encoding="utf-8"))
-    rules = json.loads((ROOT / "spec/registry/rules.json").read_text(encoding="utf-8"))
+def bundle_and_context(profile=None):
+    specifications = json.loads(profile["specification_bytes"] if profile else pinned_bytes("specifications"))
+    rules = json.loads(profile["rule_bytes"] if profile else pinned_bytes("rules"))
     schema_modules = sorted((ROOT / "spec/idl").rglob("*.afidl"))
     sources = [(path.relative_to(ROOT).as_posix(), path.read_text(encoding="utf-8"))
                for path in schema_modules]
@@ -255,7 +260,7 @@ def bundle_and_context():
         "digest": {"algorithm": "sha256", "domain": "component-contract", "hex": contract_digest},
         "type_schema": contract_schema_ref,
     }
-    compiler = compiler_manifest(specifications, rules, full_refs)
+    compiler = compiler_manifest(specifications, rules, full_refs, profile)
 
     context = {
         "id": 1,
@@ -532,7 +537,7 @@ def generate():
     base = bundle_and_context()
     base_bytes = canonical_bytes(base)
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / "full-ten-field-bundle.ace1").write_bytes(base_bytes)
+    assert_historical_output(OUT / "full-ten-field-bundle.ace1", base_bytes)
     cases = []
     add = cases.append
     root = ["root_assertion_id"]
@@ -845,7 +850,7 @@ def generate():
         raise ValueError("portable codec corpus needs 48+ unique CaseIds")
     base_bytes = canonical_bytes(base)
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / "full-ten-field-bundle.ace1").write_bytes(base_bytes)
+    assert_historical_output(OUT / "full-ten-field-bundle.ace1", base_bytes)
     corpus = {
         "kind": "agentflow.conformance.portable-proof-codec",
         "corpus_revision": 1,
@@ -861,10 +866,7 @@ def generate():
         ],
         "cases": cases,
     }
-    (OUT / "manifest.json").write_text(
-        json.dumps(corpus, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8", newline="\n",
-    )
+    assert_historical_output(OUT / "manifest.json", json.dumps(corpus, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
     print(f"portable codec vectors: {len(cases)}; oracle-generated")
 
 

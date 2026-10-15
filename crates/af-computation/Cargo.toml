@@ -1,4 +1,5 @@
 [package]
+autotests = false
 name = "af-computation"
 description = "Pure static computation-leaf resolution and structured control contract algebra"
 version.workspace = true
@@ -26,6 +27,30 @@ serde_json = "1"
 serde = { version = "1", features = ["derive"] }
 
 [dev-dependencies]
+
+[build-dependencies]
+serde_json = "1"
+
+# The original82 identity/report-sensitive cases run from the exact retained
+# Edition1 source tree. They are not silently relabelled as Edition2 tests.
+[[test]]
+name = "advanced_control_conformance"
+path = "tests/advanced_control_conformance.rs"
+[[test]]
+name = "control_conformance"
+path = "tests/control_conformance.rs"
+[[test]]
+name = "leaf_resolution"
+path = "tests/leaf_resolution.rs"
+[[test]]
+name = "root_recovery_conformance"
+path = "tests/root_recovery_conformance.rs"
+[[test]]
+name = "scope_closure_conformance"
+path = "tests/scope_closure_conformance.rs"
+[[test]]
+name = "edition2_staging"
+path = "tests/edition2_staging.rs"
 
 [lints]
 workspace = true

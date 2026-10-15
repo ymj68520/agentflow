@@ -1,0 +1,586 @@
+{
+  "baseline": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+  "cases": [
+    {
+      "anchor": "g01-fact-authority",
+      "case_id": "g01-edition2-staging/rule-0197",
+      "dependencies": [
+        "AF-CONTRACT-0017",
+        "AF-SEMANTIC-0142"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0197",
+      "source": "spec/computation/proof-obligation-semantics.md",
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "statement": "Only a complete validator-origin fact roster may derive a full obligation view."
+    },
+    {
+      "anchor": "g01-exact-scope",
+      "case_id": "g01-edition2-staging/rule-0198",
+      "dependencies": [
+        "AF-SEMANTIC-0160",
+        "AF-SEMANTIC-0161",
+        "AF-SEMANTIC-0182",
+        "AF-SEMANTIC-0187"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0198",
+      "source": "spec/computation/proof-obligation-semantics.md",
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "statement": "Scope retains complete compiler/context/resolver/root/assertion values and context-role partition."
+    },
+    {
+      "anchor": "g01-closed-predicate",
+      "case_id": "g01-edition2-staging/rule-0199",
+      "dependencies": [
+        "AF-SEMANTIC-0197"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0199",
+      "source": "spec/computation/proof-obligation-semantics.md",
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "statement": "Kind, clause, class, role and applicability must match the closed predicate roster."
+    },
+    {
+      "anchor": "g01-subject-origin",
+      "case_id": "g01-edition2-staging/rule-0200",
+      "dependencies": [
+        "AF-SEMANTIC-0141",
+        "AF-SEMANTIC-0159"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0200",
+      "source": "spec/computation/proof-obligation-semantics.md",
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "statement": "Source, target, coordinate and declared occurrence origin must be complete and consistent."
+    },
+    {
+      "anchor": "g01-derive-nonproven",
+      "case_id": "g01-edition2-staging/rule-0201",
+      "dependencies": [
+        "AF-SEMANTIC-0197",
+        "AF-SEMANTIC-0198",
+        "AF-SEMANTIC-0199",
+        "AF-SEMANTIC-0200"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0201",
+      "source": "spec/computation/proof-obligation-semantics.md",
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "statement": "Each evaluated non-Proven fact yields exactly its disposition and typed obligation."
+    },
+    {
+      "anchor": "g01-blocked-not-evaluated",
+      "case_id": "g01-edition2-staging/rule-0202",
+      "dependencies": [
+        "AF-SEMANTIC-0159",
+        "AF-SEMANTIC-0160",
+        "AF-SEMANTIC-0161",
+        "AF-SEMANTIC-0171",
+        "AF-SEMANTIC-0201"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0202",
+      "source": "spec/computation/proof-obligation-semantics.md",
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "statement": "Failed core preflights block nine dimensions without inventing evaluations."
+    },
+    {
+      "anchor": "g01-five-plus-nine",
+      "case_id": "g01-edition2-staging/rule-0203",
+      "dependencies": [
+        "AF-SEMANTIC-0159",
+        "AF-SEMANTIC-0160",
+        "AF-SEMANTIC-0161",
+        "AF-SEMANTIC-0162",
+        "AF-SEMANTIC-0163",
+        "AF-SEMANTIC-0164",
+        "AF-SEMANTIC-0165",
+        "AF-SEMANTIC-0166",
+        "AF-SEMANTIC-0167",
+        "AF-SEMANTIC-0168",
+        "AF-SEMANTIC-0169",
+        "AF-SEMANTIC-0170"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0203",
+      "source": "spec/computation/proof-obligation-semantics.md",
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "statement": "Static proof eligibility requires five core checks and nine unique evaluated dimensions Proven."
+    },
+    {
+      "anchor": "g01-independent-boundaries",
+      "case_id": "g01-edition2-staging/rule-0204",
+      "dependencies": [
+        "AF-SEMANTIC-0148",
+        "AF-SEMANTIC-0171",
+        "AF-SEMANTIC-0172"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0204",
+      "source": "spec/computation/proof-obligation-semantics.md",
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "statement": "Six root boundaries and each call-body requirement remain independent of static success."
+    },
+    {
+      "anchor": "g01-child-execution-aspects",
+      "case_id": "g01-edition2-staging/rule-0205",
+      "dependencies": [
+        "AF-SEMANTIC-0170"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0205",
+      "source": "spec/computation/proof-obligation-semantics.md",
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "statement": "Each known child retains distinct feasibility/security and source-coverage predicates."
+    },
+    {
+      "anchor": "g01-prerequisite-identity",
+      "case_id": "g01-edition2-staging/rule-0206",
+      "dependencies": [
+        "AF-CONTRACT-0001",
+        "AF-CONTRACT-0002",
+        "AF-CONTRACT-0003",
+        "AF-CONTRACT-0004",
+        "AF-CONTRACT-0005",
+        "AF-CONTRACT-0006",
+        "AF-CONTRACT-0007",
+        "AF-CONTRACT-0008",
+        "AF-CONTRACT-0009",
+        "AF-CONTRACT-0010",
+        "AF-CONTRACT-0011",
+        "AF-CONTRACT-0012",
+        "AF-CONTRACT-0013",
+        "AF-CONTRACT-0014",
+        "AF-CONTRACT-0015",
+        "AF-CONTRACT-0016",
+        "AF-CONTRACT-0017",
+        "AF-CONTRACT-0018",
+        "AF-CONTRACT-0019",
+        "AF-SEMANTIC-0199",
+        "AF-SEMANTIC-0200"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0206",
+      "source": "spec/computation/proof-obligation-semantics.md",
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "statement": "Prerequisites retain original predicate/stage/subject/origin and all consumer edges."
+    },
+    {
+      "anchor": "g01-prerequisite-consistency",
+      "case_id": "g01-edition2-staging/rule-0207",
+      "dependencies": [
+        "AF-CONTRACT-0017",
+        "AF-SEMANTIC-0206"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0207",
+      "source": "spec/computation/proof-obligation-semantics.md",
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "statement": "A Proven predicate cannot have an unmet mandatory prerequisite or missing support."
+    },
+    {
+      "anchor": "g01-evidence-coordinate",
+      "case_id": "g01-edition2-staging/rule-0208",
+      "dependencies": [
+        "AF-SEMANTIC-0200"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0208",
+      "source": "spec/computation/proof-obligation-semantics.md",
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "statement": "References are complete typed evidence coordinates, not RuleIds or prose identities."
+    },
+    {
+      "anchor": "g01-primary-reference",
+      "case_id": "g01-edition2-staging/rule-0209",
+      "dependencies": [
+        "AF-SEMANTIC-0208"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0209",
+      "source": "spec/computation/proof-obligation-semantics.md",
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "statement": "Derived complete reference sets use the typed minimum except six root boundary primaries None."
+    },
+    {
+      "anchor": "g01-origin-copy-merge",
+      "case_id": "g01-edition2-staging/rule-0210",
+      "dependencies": [
+        "AF-SEMANTIC-0200",
+        "AF-SEMANTIC-0201"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0210",
+      "source": "spec/computation/proof-obligation-semantics.md",
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "statement": "Only equal originating facts merge observations; distinct origins stay distinct."
+    },
+    {
+      "anchor": "g01-status-preservation",
+      "case_id": "g01-edition2-staging/rule-0211",
+      "dependencies": [
+        "AF-SEMANTIC-0201",
+        "AF-SEMANTIC-0206",
+        "AF-SEMANTIC-0208"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0211",
+      "source": "spec/computation/proof-obligation-semantics.md",
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "statement": "Status, disposition, links, contradiction and observations remain required alongside identity."
+    },
+    {
+      "anchor": "g01-private-capability-gate",
+      "case_id": "g01-edition2-staging/rule-0212",
+      "dependencies": [
+        "AF-SEMANTIC-0202",
+        "AF-SEMANTIC-0203",
+        "AF-SEMANTIC-0204",
+        "AF-SEMANTIC-0205",
+        "AF-SEMANTIC-0206",
+        "AF-SEMANTIC-0207",
+        "AF-SEMANTIC-0217",
+        "AF-SEMANTIC-0218",
+        "AF-SEMANTIC-0219",
+        "AF-SEMANTIC-0220"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0212",
+      "source": "spec/computation/proof-obligation-semantics.md",
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "statement": "The private successor constructor requires proof eligibility and successful complete bounded normalization."
+    },
+    {
+      "anchor": "g01-no-report-authority",
+      "case_id": "g01-edition2-staging/rule-0213",
+      "dependencies": [
+        "AF-SEMANTIC-0172",
+        "AF-SEMANTIC-0212"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0213",
+      "source": "spec/computation/proof-obligation-semantics.md",
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "statement": "Text, ordering, emptiness or successful serialization cannot create proof or runtime authority."
+    },
+    {
+      "anchor": "model-closed-descriptors",
+      "case_id": "g01-edition2-staging/rule-0214",
+      "dependencies": [
+        "AF-ACE1-0001",
+        "AF-SEMANTIC-0198",
+        "AF-SEMANTIC-0199",
+        "AF-SEMANTIC-0200"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0214",
+      "source": "spec/tables/proof-report-model-v1.md",
+      "specification_id": "agentflow.computation.proof-report.model@1",
+      "statement": "Every semantic model type has exact closed field, width, option and variant descriptors."
+    },
+    {
+      "anchor": "model-typed-order",
+      "case_id": "g01-edition2-staging/rule-0215",
+      "dependencies": [
+        "AF-SEMANTIC-0214"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0215",
+      "source": "spec/tables/proof-report-model-v1.md",
+      "specification_id": "agentflow.computation.proof-report.model@1",
+      "statement": "Sets and identity views use the registered typed total order, preserving semantic sequences."
+    },
+    {
+      "anchor": "model-identity-ace1",
+      "case_id": "g01-edition2-staging/rule-0216",
+      "dependencies": [
+        "AF-ACE1-0001",
+        "AF-ACE1-0002",
+        "AF-ACE1-0003",
+        "AF-ACE1-0004",
+        "AF-ACE1-0005",
+        "AF-ACE1-0006",
+        "AF-ACE1-0007",
+        "AF-ACE1-0008",
+        "AF-ACE1-0009",
+        "AF-ACE1-0010",
+        "AF-ACE1-0011",
+        "AF-ACE1-0012",
+        "AF-ACE1-0013",
+        "AF-ACE1-0014",
+        "AF-SEMANTIC-0214",
+        "AF-SEMANTIC-0215"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0216",
+      "source": "spec/tables/proof-report-model-v1.md",
+      "specification_id": "agentflow.computation.proof-report.model@1",
+      "statement": "Canonical identity strings are schema-directed ACE1 of the complete identity and decode bijectively."
+    },
+    {
+      "anchor": "model-minimal-value-dag",
+      "case_id": "g01-edition2-staging/rule-0217",
+      "dependencies": [
+        "AF-SEMANTIC-0181",
+        "AF-SEMANTIC-0214"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0217",
+      "source": "spec/tables/proof-report-model-v1.md",
+      "specification_id": "agentflow.computation.proof-report.model@1",
+      "statement": "Full scope is a finite minimal reachable typed value DAG with canonical bottom-up ranks."
+    },
+    {
+      "anchor": "model-no-partial-output",
+      "case_id": "g01-edition2-staging/rule-0218",
+      "dependencies": [
+        "AF-SEMANTIC-0193",
+        "AF-SEMANTIC-0217"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0218",
+      "source": "spec/tables/proof-report-model-v1.md",
+      "specification_id": "agentflow.computation.proof-report.model@1",
+      "statement": "Output/work/graph limits fail explicitly without truncated successful reports."
+    },
+    {
+      "anchor": "model-closed-decode",
+      "case_id": "g01-edition2-staging/rule-0219",
+      "dependencies": [
+        "AF-SEMANTIC-0214",
+        "AF-SEMANTIC-0215",
+        "AF-SEMANTIC-0216",
+        "AF-SEMANTIC-0217"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0219",
+      "source": "spec/tables/proof-report-model-v1.md",
+      "specification_id": "agentflow.computation.proof-report.model@1",
+      "statement": "Unknown, missing, duplicate or noncanonical report fields/variants/identities are rejected without repair."
+    },
+    {
+      "anchor": "model-independent-fullfield",
+      "case_id": "g01-edition2-staging/rule-0220",
+      "dependencies": [
+        "AF-SEMANTIC-0194",
+        "AF-SEMANTIC-0211",
+        "AF-SEMANTIC-0216",
+        "AF-SEMANTIC-0217",
+        "AF-SEMANTIC-0218",
+        "AF-SEMANTIC-0219"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0220",
+      "source": "spec/tables/proof-report-model-v1.md",
+      "specification_id": "agentflow.computation.proof-report.model@1",
+      "statement": "Independent Expected compares every required typed field and canonical byte, not strings alone."
+    },
+    {
+      "anchor": "model-shape-version",
+      "case_id": "g01-edition2-staging/rule-0221",
+      "dependencies": [
+        "AF-SEMANTIC-0214",
+        "AF-SEMANTIC-0215",
+        "AF-SEMANTIC-0216",
+        "AF-SEMANTIC-0217",
+        "AF-SEMANTIC-0218",
+        "AF-SEMANTIC-0219"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0221",
+      "source": "spec/tables/proof-report-model-v1.md",
+      "specification_id": "agentflow.computation.proof-report.model@1",
+      "statement": "Model identity/rank/derivation changes require new shape/obligation/content edition."
+    },
+    {
+      "anchor": "model-diagnostic-separation",
+      "case_id": "g01-edition2-staging/rule-0222",
+      "dependencies": [
+        "AF-SEMANTIC-0211",
+        "AF-SEMANTIC-0214"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0222",
+      "source": "spec/tables/proof-report-model-v1.md",
+      "specification_id": "agentflow.computation.proof-report.model@1",
+      "statement": "Reason is diagnostic only after all equality/decision-bearing content is structurally retained."
+    },
+    {
+      "anchor": "edition-exact-tuple",
+      "case_id": "g01-edition2-staging/rule-0223",
+      "dependencies": [
+        "AF-SEMANTIC-0186",
+        "AF-SEMANTIC-0187",
+        "AF-SEMANTIC-0221"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0223",
+      "source": "spec/portable/portable-proof-inputs-v2.md",
+      "specification_id": "agentflow.portable.proof.inputs.semantics@2",
+      "statement": "The supported owner binds complete sources, registries, attribution, model and support policy."
+    },
+    {
+      "anchor": "edition-current-only",
+      "case_id": "g01-edition2-staging/rule-0224",
+      "dependencies": [
+        "AF-SEMANTIC-0191",
+        "AF-SEMANTIC-0223"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0224",
+      "source": "spec/portable/portable-proof-inputs-v2.md",
+      "specification_id": "agentflow.portable.proof.inputs.semantics@2",
+      "statement": "Owner@2 admits only its implementation-owned exact current edition without implicit old support."
+    },
+    {
+      "anchor": "edition-failure-taxonomy",
+      "case_id": "g01-edition2-staging/rule-0225",
+      "dependencies": [
+        "AF-SEMANTIC-0176",
+        "AF-SEMANTIC-0193",
+        "AF-SEMANTIC-0224"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0225",
+      "source": "spec/portable/portable-proof-inputs-v2.md",
+      "specification_id": "agentflow.portable.proof.inputs.semantics@2",
+      "statement": "Admission failures retain canonical/content/identity/support/resource categories, not static Violation."
+    },
+    {
+      "anchor": "edition-corpus-isolation",
+      "case_id": "g01-edition2-staging/rule-0226",
+      "dependencies": [
+        "AF-SEMANTIC-0194",
+        "AF-SEMANTIC-0195",
+        "AF-SEMANTIC-0224"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0226",
+      "source": "spec/portable/portable-proof-inputs-v2.md",
+      "specification_id": "agentflow.portable.proof.inputs.semantics@2",
+      "statement": "Legacy code/inputs/Expected and new-edition independent evidence are immutable separate domains."
+    },
+    {
+      "anchor": "edition-atomic-activation",
+      "case_id": "g01-edition2-staging/rule-0227",
+      "dependencies": [
+        "AF-SEMANTIC-0212",
+        "AF-SEMANTIC-0220",
+        "AF-SEMANTIC-0223",
+        "AF-SEMANTIC-0224",
+        "AF-SEMANTIC-0225",
+        "AF-SEMANTIC-0226"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0227",
+      "source": "spec/portable/portable-proof-inputs-v2.md",
+      "specification_id": "agentflow.portable.proof.inputs.semantics@2",
+      "statement": "Registry, support, producers, lossless views and independent conformance activate only as one transaction."
+    },
+    {
+      "anchor": "edition-attribution-boundary",
+      "case_id": "g01-edition2-staging/rule-0228",
+      "dependencies": [
+        "AF-CONTRACT-0017",
+        "AF-SEMANTIC-0189"
+      ],
+      "executed_scope": "registration-and-staging-only",
+      "full_semantic_conformance": "NOT IMPLEMENTED;T3-T8 required",
+      "kind": "registered_rule",
+      "rule_id": "AF-SEMANTIC-0228",
+      "source": "spec/portable/portable-proof-inputs-v2.md",
+      "specification_id": "agentflow.portable.proof.inputs.semantics@2",
+      "statement": "Applied-rule attribution is explicit and does not claim complete dependency closure."
+    }
+  ],
+  "expected_counts": {
+    "active_abi": 775,
+    "afidl_modules": 17,
+    "applied_rules": 138,
+    "hash_domains": 14,
+    "rules": 436,
+    "selected_sources": 20,
+    "specifications": 46
+  },
+  "model_scope": "non-wire",
+  "new_specifications": [
+    {
+      "path": "spec/computation/proof-obligation-semantics.md",
+      "sha256": "c8d4cf135c28db286b0a598c3fb69814dece936fcf888ce3e46296a336186f5c",
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1"
+    },
+    {
+      "path": "spec/tables/proof-report-model-v1.md",
+      "sha256": "e23ca47c05efe9f7ec22177011982ac47ca0cdc8642173de56a90e6e29a93099",
+      "specification_id": "agentflow.computation.proof-report.model@1"
+    },
+    {
+      "path": "spec/portable/portable-proof-inputs-v2.md",
+      "sha256": "751b46630198e82b99e58eb9ee31ab7c95edd373a1c938e2c1edd470f54dc8c0",
+      "specification_id": "agentflow.portable.proof.inputs.semantics@2"
+    }
+  ]
+}

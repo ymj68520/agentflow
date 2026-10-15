@@ -38,7 +38,9 @@ pub use resolution::{
 };
 pub use root_export::{
     CheckedRootExportCompatibility, CompilerSemanticsIdentity, ComponentInputPortIdentity,
-    ComponentOutputPortIdentity, ProofContextManifest, ROOT_EXPORT_ANALYSIS_SEMANTICS_VERSION,
+    ComponentOutputPortIdentity, EditionActivation, EditionAdmissionFailure, EditionRegistration,
+    EditionRelease, EditionSupport, OBLIGATION_IDENTITY_EDITION, ProofContextManifest,
+    REPORT_SHAPE_EDITION, ROOT_EXPORT_ANALYSIS_SEMANTICS_VERSION, RegisteredAnalysisEdition,
     RelationSnapshotContent, ResolverDependencyManifest, ResourceRequirementPortIdentity,
     RootEffectCoordinateBinding, RootEffectOccurrenceIdentity, RootExecutionChildProof,
     RootExecutionCoordinateBinding, RootExportAssertion, RootExportAssertionIdentity,
@@ -46,9 +48,11 @@ pub use root_export::{
     RootExportProofReport, RootExportSourceReference, RootFlowCoordinateBinding,
     RootInputPortBinding, RootInputUseSite, RootOutputPortBinding, RootOutputProducerEvidence,
     RootRecoveryCoordinateBinding, RootResourcePortBinding, RootResourceSourceCoordinate,
-    RuntimeAuthorityStatus, SpecificationContentIdentity, SubflowProofDependency,
-    SubflowTargetContextPin, SubflowTargetIdentity, analyze_root_export_assertion,
-    check_root_export_assertion, current_compiler_semantics_identity,
+    RuleContentIdentity, RuntimeAuthorityStatus, SpecificationContentIdentity,
+    SubflowProofDependency, SubflowTargetContextPin, SubflowTargetIdentity,
+    analyze_root_export_assertion, check_registered_compiler_identity,
+    check_registered_report_editions, check_root_export_assertion,
+    current_compiler_semantics_identity, current_registered_analysis_edition,
 };
 pub use root_recovery::{
     AppliedMultiplicity, ControlMultiplicityIdentity, ControlMultiplicityKind, ControlPathKind,

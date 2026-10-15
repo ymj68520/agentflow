@@ -307,7 +307,7 @@ fn check_compiler_content(value: &Value, path: &str) -> Result<(), PortableProof
     }
     if seen.len() != specs.specifications.len() {
         return Err(d3(
-            "SourceContentMismatch",
+            "IncompleteContent",
             path,
             "not all registry sources are inline",
         ));

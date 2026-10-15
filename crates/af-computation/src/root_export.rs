@@ -33,7 +33,7 @@ use af_semantic::{
 use af_usage::{StaticUsageBound, StaticUsageEnvelope, UsagePhase};
 use serde::Deserialize;
 use sha2::{Digest as _, Sha256};
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 
 const RULE_ASSERTION_PIN: &str = "AF-SEMANTIC-0159";
 const RULE_CONTEXT_MANIFEST: &str = "AF-SEMANTIC-0160";
@@ -50,7 +50,210 @@ const RULE_EXECUTION: &str = "AF-SEMANTIC-0170";
 const RULE_SUBFLOW: &str = "AF-SEMANTIC-0171";
 
 /// Compiler-side semantics version. Any semantic checker change must bump it.
-pub const ROOT_EXPORT_ANALYSIS_SEMANTICS_VERSION: &str = "agentflow.root-export-checker@1";
+pub const ROOT_EXPORT_ANALYSIS_SEMANTICS_VERSION: &str = "agentflow.root-export-checker@2";
+
+pub const REPORT_SHAPE_EDITION: &str = "agentflow.g01.report-shape@1";
+pub const OBLIGATION_IDENTITY_EDITION: &str = "agentflow.g01.obligation@1";
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum EditionRegistration {
+    Unregistered,
+    Registered,
+}
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum EditionSupport {
+    NotImplemented,
+}
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum EditionActivation {
+    NotAuthorized,
+}
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum EditionRelease {
+    NotAuthorized,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum EditionAdmissionFailure {
+    InvalidIdentity,
+    IncompleteContent,
+    UnsupportedSemantics,
+    ResourceLimit,
+    NotImplemented,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct RegisteredAnalysisEdition {
+    pub compiler: CompilerSemanticsIdentity,
+    /// All registered source contents,not only the20 selected analysis sources.
+    pub registered_sources: Vec<SpecificationContentIdentity>,
+    /// Exact closed tables are content identity,not inferred counts.
+    pub closed_tables: BTreeMap<&'static str, Vec<u8>>,
+    pub report_shape: &'static str,
+    pub obligation_edition: &'static str,
+    pub registration: EditionRegistration,
+    pub support: EditionSupport,
+    pub activation: EditionActivation,
+    pub release: EditionRelease,
+}
+
+impl RegisteredAnalysisEdition {
+    /// There is deliberately no supported or activated state in this staging build.
+    #[must_use]
+    pub fn can_issue_capability(&self) -> bool {
+        self.registration == EditionRegistration::Registered
+            && self.support != EditionSupport::NotImplemented
+            && self.activation != EditionActivation::NotAuthorized
+            && self.release != EditionRelease::NotAuthorized
+    }
+}
+
+/// Full implementation-owned identity, not a caller-provided support declaration.
+#[must_use]
+pub fn current_registered_analysis_edition() -> RegisteredAnalysisEdition {
+    let compiler = current_compiler_semantics_identity();
+    let registered_sources = REGISTERED_SOURCE_CONTENTS
+        .iter()
+        .map(|(id, path, bytes)| SpecificationContentIdentity {
+            specification_id: (*id).to_owned(),
+            logical_path: (*path).to_owned(),
+            content_sha256: sha256_hex(bytes),
+            content: bytes.to_vec(),
+        })
+        .collect::<Vec<_>>();
+    let registration = if compiler_semantics_is_current(&compiler)
+        && compiler.specifications.len() == 20
+        && compiler.rules.len() == 138
+        && registered_sources.len() == 46
+        && registered_sources_match_registry(&compiler.registry_content, &registered_sources)
+    {
+        EditionRegistration::Registered
+    } else {
+        EditionRegistration::Unregistered
+    };
+    RegisteredAnalysisEdition {
+        compiler,
+        registered_sources,
+        closed_tables: BTreeMap::from([
+            (
+                "hash_domains",
+                include_bytes!("../../../spec/tables/hash-domains.json").to_vec(),
+            ),
+            (
+                "abi_numbers",
+                include_bytes!("../../../spec/registry/abi-numbers.json").to_vec(),
+            ),
+            (
+                "rule_areas",
+                include_bytes!("../../../spec/tables/rule-areas.json").to_vec(),
+            ),
+            (
+                "afidl_primitives",
+                include_bytes!("../../../spec/tables/afidl-primitives.json").to_vec(),
+            ),
+        ]),
+        report_shape: REPORT_SHAPE_EDITION,
+        obligation_edition: OBLIGATION_IDENTITY_EDITION,
+        registration,
+        support: EditionSupport::NotImplemented,
+        activation: EditionActivation::NotAuthorized,
+        release: EditionRelease::NotAuthorized,
+    }
+}
+
+include!(concat!(env!("OUT_DIR"), "/registered_edition_sources.rs"));
+
+fn registered_sources_match_registry(raw: &[u8], sources: &[SpecificationContentIdentity]) -> bool {
+    let Ok(value) = serde_json::from_slice::<serde_json::Value>(raw) else {
+        return false;
+    };
+    let Some(rows) = value["specifications"].as_array() else {
+        return false;
+    };
+    if rows.len() != sources.len()
+        || sources
+            .iter()
+            .map(|source| &source.specification_id)
+            .collect::<BTreeSet<_>>()
+            .len()
+            != sources.len()
+    {
+        return false;
+    }
+    rows.iter().all(|row| {
+        sources.iter().any(|source| {
+            row["specification_id"].as_str() == Some(source.specification_id.as_str())
+                && row["normative_source"]["logical_path"].as_str()
+                    == Some(source.logical_path.as_str())
+                && row["normative_source"]["content_digest"]["algorithm"].as_str() == Some("sha256")
+                && row["normative_source"]["content_digest"]["hex"].as_str()
+                    == Some(source.content_sha256.as_str())
+                && sha256_hex(&source.content) == source.content_sha256
+        })
+    })
+}
+
+/// Identity admission is separate from support; matching Edition2 still cannot prove.
+pub fn check_registered_compiler_identity(
+    identity: &CompilerSemanticsIdentity,
+) -> Result<(), EditionAdmissionFailure> {
+    let mut bytes = identity
+        .registry_content
+        .len()
+        .checked_add(identity.rule_registry_content.len())
+        .ok_or(EditionAdmissionFailure::ResourceLimit)?;
+    for source in &identity.specifications {
+        bytes = bytes
+            .checked_add(source.content.len())
+            .ok_or(EditionAdmissionFailure::ResourceLimit)?;
+    }
+    if bytes > 32 * 1024 * 1024
+        || identity.specifications.len() > 256
+        || identity.rules.len() > 10_000
+    {
+        return Err(EditionAdmissionFailure::ResourceLimit);
+    }
+    if identity.analysis_semantics_version == "agentflow.root-export-checker@1" {
+        return Err(
+            if identity.registry_content == current_compiler_semantics_identity().registry_content {
+                EditionAdmissionFailure::InvalidIdentity
+            } else {
+                EditionAdmissionFailure::UnsupportedSemantics
+            },
+        );
+    }
+    if identity.analysis_semantics_version != ROOT_EXPORT_ANALYSIS_SEMANTICS_VERSION {
+        return Err(EditionAdmissionFailure::UnsupportedSemantics);
+    }
+    let current = current_compiler_semantics_identity();
+    if identity.registry_content != current.registry_content
+        || identity.rule_registry_content != current.rule_registry_content
+    {
+        return Err(EditionAdmissionFailure::InvalidIdentity);
+    }
+    if current.specifications.iter().any(|expected| {
+        !identity
+            .specifications
+            .iter()
+            .any(|source| source.specification_id == expected.specification_id)
+    }) {
+        return Err(EditionAdmissionFailure::IncompleteContent);
+    }
+    if !compiler_semantics_is_current(identity) {
+        return Err(EditionAdmissionFailure::InvalidIdentity);
+    }
+    Ok(())
+}
+
+pub fn check_registered_report_editions(
+    shape: &str,
+    obligation: &str,
+) -> Result<(), EditionAdmissionFailure> {
+    if shape != REPORT_SHAPE_EDITION || obligation != OBLIGATION_IDENTITY_EDITION {
+        return Err(EditionAdmissionFailure::UnsupportedSemantics);
+    }
+    Ok(())
+}
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SpecificationContentIdentity {
@@ -510,6 +713,8 @@ pub struct RootExecutionChildProof {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RootExportProofReport {
+    /// Typed staging rejection, outside the four proof verdicts. Never a G01 view.
+    pub edition_admission_failure: Option<EditionAdmissionFailure>,
     pub assertion_identity: RootExportAssertionIdentity,
     pub preflight: Vec<DimensionProof>,
     pub dimensions: Vec<RootExportDimensionProof>,
@@ -555,6 +760,26 @@ impl CheckedRootExportCompatibility {
 }
 
 const APPLICABLE_SPECS: &[(&str, &str, &[u8])] = &[
+    (
+        "agentflow.computation.proof-obligation.semantics@1",
+        "spec/computation/proof-obligation-semantics.md",
+        include_bytes!("../../../spec/computation/proof-obligation-semantics.md"),
+    ),
+    (
+        "agentflow.computation.proof-report.model@1",
+        "spec/tables/proof-report-model-v1.md",
+        include_bytes!("../../../spec/tables/proof-report-model-v1.md"),
+    ),
+    (
+        "agentflow.portable.proof.inputs.semantics@1",
+        "spec/portable/portable-proof-inputs.md",
+        include_bytes!("../../../spec/portable/portable-proof-inputs.md"),
+    ),
+    (
+        "agentflow.portable.proof.inputs.semantics@2",
+        "spec/portable/portable-proof-inputs-v2.md",
+        include_bytes!("../../../spec/portable/portable-proof-inputs-v2.md"),
+    ),
     (
         "agentflow.component.contract.semantics@1",
         "spec/component/component-contract.md",
@@ -637,12 +862,18 @@ const APPLICABLE_SPECS: &[(&str, &str, &[u8])] = &[
     ),
 ];
 
-const APPLICABLE_RULE_COUNT: usize = 84; // AF-CONTRACT-0001..0022 and AF-SEMANTIC-0111..0172.
+const APPLICABLE_RULE_COUNT: usize = 138; // Applied attribution only, not a dependency closure.
 
 fn applicable_rule_ids() -> Vec<String> {
     let mut ids = (1..=22)
         .map(|number| format!("AF-CONTRACT-{number:04}"))
         .chain((111..=172).map(|number| format!("AF-SEMANTIC-{number:04}")))
+        .chain(
+            (173..=187)
+                .chain([189])
+                .chain(191..=228)
+                .map(|number| format!("AF-SEMANTIC-{number:04}")),
+        )
         .collect::<Vec<_>>();
     ids.sort();
     ids
@@ -791,6 +1022,26 @@ pub fn analyze_root_export_assertion(
     root: &DerivedWorkflowContractSummary<'_, '_>,
     assertion: &RootExportAssertion,
 ) -> RootExportProofReport {
+    let failure = check_registered_compiler_identity(&assertion.compiler_semantics_identity)
+        .err()
+        .unwrap_or(EditionAdmissionFailure::NotImplemented);
+    let edition = current_registered_analysis_edition();
+    if !edition.can_issue_capability() {
+        return RootExportProofReport {
+            edition_admission_failure: Some(failure), assertion_identity: assertion.identity(),
+            preflight: vec![DimensionProof::unproven("edition-admission", "AF-SEMANTIC-0224", "registered Edition2 is not implemented or authorized; no proof evaluation occurred")],
+            dimensions: unproven_dimensions(assertion, "not evaluated: Edition2 support is not implemented"),
+            execution_children: Vec::new(), body_conformance: af_contract::ProofVerdict::RequiresEvidence,
+            implementation_conformance: af_contract::ProofVerdict::RequiresEvidence,
+            scope_authority_attenuation: af_contract::ProofVerdict::Unproven,
+            scope_budget_attenuation: af_contract::ProofVerdict::Unproven,
+            runtime_authority: RuntimeAuthorityStatus::NotEstablished,
+            runtime_authority_evidence: af_contract::ProofVerdict::RequiresEvidence,
+            publisher_authentication: RuntimeAuthorityStatus::NotEstablished,
+            unresolved_obligations: vec!["Edition2 staging admission rejected; this legacy diagnostic carrier is not a normalized G01 report".to_owned()],
+            static_compatibility: af_contract::ProofVerdict::Unproven,
+        };
+    }
     let mut preflight = preflight(ir, exported, snapshot, context, root, assertion);
     let preflight_ok = preflight
         .iter()
@@ -864,6 +1115,7 @@ pub fn analyze_root_export_assertion(
     unresolved_obligations.push("static compatibility creates no EffectGrant, ResourceHandle, reservation, receipt, or runtime authorization".to_owned());
 
     RootExportProofReport {
+        edition_admission_failure: None,
         assertion_identity: assertion.identity(),
         preflight,
         dimensions,
@@ -891,7 +1143,10 @@ pub fn check_root_export_assertion(
     assertion: &RootExportAssertion,
 ) -> Result<CheckedRootExportCompatibility, Box<RootExportProofReport>> {
     let report = analyze_root_export_assertion(ir, exported, snapshot, context, root, assertion);
-    if report.static_compatibility == af_contract::ProofVerdict::Proven {
+    if current_registered_analysis_edition().can_issue_capability()
+        && report.edition_admission_failure.is_none()
+        && report.static_compatibility == af_contract::ProofVerdict::Proven
+    {
         Ok(CheckedRootExportCompatibility { report })
     } else {
         Err(Box::new(report))

@@ -1,0 +1,148 @@
+{
+  "case_count": 9,
+  "cases": [
+    {
+      "case_id": "g01-edition2-staging/new-complete-staging",
+      "expected_capability": false,
+      "expected_family": "UnsupportedSemantics",
+      "expected_stage": "D4",
+      "file": "portable/new-complete-staging.ace1",
+      "kind": "portable_admission"
+    },
+    {
+      "case_id": "g01-edition2-staging/old-complete-rejected",
+      "expected_capability": false,
+      "expected_family": "UnsupportedSemantics",
+      "expected_stage": "D4",
+      "file": "portable/old-complete-rejected.ace1",
+      "kind": "portable_admission"
+    },
+    {
+      "case_id": "g01-edition2-staging/new-label-old-content",
+      "expected_capability": false,
+      "expected_family": "InvalidIdentity",
+      "expected_stage": "D4",
+      "file": "portable/new-label-old-content.ace1",
+      "kind": "portable_admission"
+    },
+    {
+      "case_id": "g01-edition2-staging/old-label-new-content",
+      "expected_capability": false,
+      "expected_family": "InvalidIdentity",
+      "expected_stage": "D4",
+      "file": "portable/old-label-new-content.ace1",
+      "kind": "portable_admission"
+    },
+    {
+      "case_id": "g01-edition2-staging/unknown-edition",
+      "expected_capability": false,
+      "expected_family": "UnsupportedSemantics",
+      "expected_stage": "D4",
+      "file": "portable/unknown-edition.ace1",
+      "kind": "portable_admission"
+    },
+    {
+      "case_id": "g01-edition2-staging/missing-source",
+      "expected_capability": false,
+      "expected_family": "IncompleteContent",
+      "expected_stage": "D3",
+      "file": "portable/missing-source.ace1",
+      "kind": "portable_admission"
+    },
+    {
+      "case_id": "g01-edition2-staging/noncanonical-space",
+      "expected_capability": false,
+      "expected_family": "InvalidCanonicalEncoding",
+      "expected_stage": "D1",
+      "file": "portable/noncanonical-space.ace1",
+      "kind": "portable_admission"
+    },
+    {
+      "case_id": "g01-edition2-staging/caller-support-flag",
+      "expected_capability": false,
+      "expected_family": "InvalidCanonicalEncoding",
+      "expected_stage": "D0",
+      "file": "portable/caller-support-flag.ace1",
+      "kind": "portable_admission"
+    },
+    {
+      "case_id": "g01-edition2-staging/changed-registry-same-label",
+      "expected_capability": false,
+      "expected_family": "InvalidIdentity",
+      "expected_stage": "D4",
+      "file": "portable/changed-registry-same-label.ace1",
+      "kind": "portable_admission"
+    }
+  ],
+  "design_vectors_48_plus_16": "Not Executed",
+  "edition": "agentflow.root-export-checker@2",
+  "expected_stage_state": {
+    "activation": "NotAuthorized",
+    "registration": "Registered",
+    "release": "NotAuthorized",
+    "support": "NotImplemented"
+  },
+  "native_cases": [
+    {
+      "case_id": "g01-edition2-staging/current-identity",
+      "expected_capability": false,
+      "expected_failure": null,
+      "mutation": "current-identity"
+    },
+    {
+      "case_id": "g01-edition2-staging/new-label-old-native-content",
+      "expected_capability": false,
+      "expected_failure": "InvalidIdentity",
+      "mutation": "new-label-old-native-content"
+    },
+    {
+      "case_id": "g01-edition2-staging/old-label-new-native-content",
+      "expected_capability": false,
+      "expected_failure": "InvalidIdentity",
+      "mutation": "old-label-new-native-content"
+    },
+    {
+      "case_id": "g01-edition2-staging/old-identity",
+      "expected_capability": false,
+      "expected_failure": "UnsupportedSemantics",
+      "mutation": "old-identity"
+    },
+    {
+      "case_id": "g01-edition2-staging/unknown-native-edition",
+      "expected_capability": false,
+      "expected_failure": "UnsupportedSemantics",
+      "mutation": "unknown-native-edition"
+    },
+    {
+      "case_id": "g01-edition2-staging/missing-selected-source",
+      "expected_capability": false,
+      "expected_failure": "IncompleteContent",
+      "mutation": "missing-selected-source"
+    },
+    {
+      "case_id": "g01-edition2-staging/changed-rule-native-content",
+      "expected_capability": false,
+      "expected_failure": "InvalidIdentity",
+      "mutation": "changed-rule-native-content"
+    },
+    {
+      "case_id": "g01-edition2-staging/identity-resource-limit",
+      "expected_capability": false,
+      "expected_failure": "ResourceLimit",
+      "mutation": "identity-resource-limit"
+    },
+    {
+      "case_id": "g01-edition2-staging/unknown-report-shape",
+      "expected_capability": false,
+      "expected_failure": "UnsupportedSemantics",
+      "mutation": "unknown-report-shape"
+    },
+    {
+      "case_id": "g01-edition2-staging/unknown-obligation-edition",
+      "expected_capability": false,
+      "expected_failure": "UnsupportedSemantics",
+      "mutation": "unknown-obligation-edition"
+    }
+  ],
+  "registration_case_count": 32
+}

@@ -10,6 +10,7 @@ are read-only. Expectations use Model(declared_bundle), not CaseId labels.
 from __future__ import annotations
 
 import argparse
+from legacy_edition1_inputs import assert_historical_output
 import copy
 import hashlib
 import json
@@ -26,6 +27,7 @@ from oracle.d9_verification_vectors import mutations,rich_mutations,replace,vali
 from oracle.d9_input_mutations import fixtures as input_mutations, expectations as mutation_expected
 from portable_proof_python_oracle import canonical_bytes
 from oracle.render_d9_docs import documents
+from legacy_edition1_inputs import pinned_bytes
 
 CORPUS=ROOT/"spec/conformance/portable-root-export-revalidation"
 OUT=CORPUS/"expected-full/d9-control"
@@ -34,7 +36,7 @@ COVERAGE=CORPUS/"coverage"
 
 def save(path,value):
     path.parent.mkdir(parents=True,exist_ok=True)
-    path.write_text(json.dumps(value,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    assert_historical_output(path, json.dumps(value,ensure_ascii=False,indent=2)+"\n", encoding="utf-8")
 
 
 def classify(owner,item):
@@ -105,7 +107,7 @@ def contract(graph,sidecars):
         item["comparator_owner"]="oracle.field_contract / af-portable::d9_full_conformance"
         item["source_field_bindings"]=[source for source,paths in source_bindings.items() if item["field_path"] in paths]
     fields=[]
-    rules=json.loads((ROOT/"spec/registry/rules.json").read_text(encoding="utf-8"))["rules"]
+    rules=json.loads(pinned_bytes("rules"))["rules"]
     for path,owner,item in slots(graph):
         classification=classify(owner,item)
         target_paths=source_bindings.get(path,[])
@@ -126,7 +128,7 @@ def main():
     parser.add_argument("--check",action="store_true")
     parser.add_argument("--review-inventory-basis")
     args=parser.parse_args()
-    current=inventory()
+    current=inventory(edition="legacy-1")
     frozen_path=COVERAGE/"rust-type-inventory.json"
     if args.initialize_inventory:
         if frozen_path.exists():
@@ -193,7 +195,7 @@ def main():
         path=ROOT/"docs/implementation"/filename
         if args.check:
             if not path.exists() or path.read_text(encoding="utf-8")!=text:raise SystemExit("documentation drift "+filename)
-        else:path.write_text(text,encoding="utf-8")
+        else:assert_historical_output(path, text, encoding="utf-8")
     for path,value in outputs.items():
         encoded=json.dumps(value,ensure_ascii=False,indent=2)+"\n"
         if args.check:
@@ -205,7 +207,7 @@ def main():
         # All 22 Expected, twelve mutation models, shape checks and hand vectors
         # have succeeded before any raw input mutation is materialized.
         for path,raw in binary_outputs.items():
-            path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(raw)
+            path.parent.mkdir(parents=True,exist_ok=True);assert_historical_output(path, raw)
     print(f"D9 Control independent sidecars: {len(rows)}; type slots: {len(list(slots(frozen)))}; required instances: {outputs[OUT/'manifest.json']['instance_totals']['required']}")
 
 

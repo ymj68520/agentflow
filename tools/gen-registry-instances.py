@@ -2580,6 +2580,14 @@ for number, (anchor, statement) in enumerate(PORTABLE_PROOF_RULES, 173):
 
 
 
+from g01_registration_data import DATA as G01_DATA
+G01_PATHS = {"OS":"spec/computation/proof-obligation-semantics.md", "RM":"spec/tables/proof-report-model-v1.md", "PP2":"spec/portable/portable-proof-inputs-v2.md"}
+for item in G01_DATA["rules"]:
+    RULES.append(rule(item["rule_id"], "SEMANTIC", G01_PATHS[item["source"]],
+        item["anchor"], item["statement"], [item["case_id"]]))
+legacy_rules = json.loads((ROOT/"spec/conformance/g01-edition2-staging/legacy-rules.json").read_bytes())["rules"]
+new_rule_map = {item["rule_id"]:item for item in RULES}
+assert all(new_rule_map.get(item["rule_id"]) == item for item in legacy_rules), "old rule descriptor changed"
 RULES.sort(key=lambda r: r["rule_id"])
 write_json("spec/registry/rules.json", {
     "registry_revision": 1,
@@ -2806,6 +2814,11 @@ SPECS = [
      "(self-hosting bootstrap module)."),
 ]
 
+SPECS.extend([
+    ("agentflow.computation.proof-obligation.semantics@1", "schema_language", G01_PATHS["OS"], "Complete typed obligation identity, derivation, provenance, evidence boundaries and capability consistency."),
+    ("agentflow.computation.proof-report.model@1", "closed_table", G01_PATHS["RM"], "Closed non-wire G01 semantic type model, typed order, finite value DAG and ACE1 canonical identity relation."),
+    ("agentflow.portable.proof.inputs.semantics@2", "schema_language", G01_PATHS["PP2"], "Exact Edition2 content binding, current-only fail-closed staging and isolated historical evidence without positive activation."),
+])
 spec_entries = [
     {
         "specification_id": spec_id,
@@ -2817,6 +2830,9 @@ spec_entries = [
     for spec_id, kind, path, description in SPECS
 ]
 spec_entries.sort(key=lambda e: e["specification_id"])
+legacy_specs = json.loads((ROOT/"spec/conformance/g01-edition2-staging/legacy-specifications.json").read_bytes())["specifications"]
+new_spec_map = {item["specification_id"]:item for item in spec_entries}
+assert all(new_spec_map.get(item["specification_id"]) == item for item in legacy_specs), "old specification descriptor changed"
 write_json("spec/registry/specifications.json", {
     "registry_revision": 1,
     "specifications": spec_entries,

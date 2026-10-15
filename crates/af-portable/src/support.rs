@@ -5,8 +5,12 @@ use af_core::Value;
 use af_spec::model::{RuleJson, RulesFile, SpecificationsFile};
 use std::collections::BTreeSet;
 
-const CURRENT_VERSION: &str = "agentflow.root-export-checker@1";
+const CURRENT_VERSION: &str = af_computation::ROOT_EXPORT_ANALYSIS_SEMANTICS_VERSION;
 const STATIC_SPECS: &[&str] = &[
+    "agentflow.computation.proof-obligation.semantics@1",
+    "agentflow.computation.proof-report.model@1",
+    "agentflow.portable.proof.inputs.semantics@1",
+    "agentflow.portable.proof.inputs.semantics@2",
     "agentflow.component.contract.semantics@1",
     "agentflow.component.relation-catalogs.semantics@1",
     "agentflow.effect.signature.semantics@1",
@@ -101,6 +105,26 @@ pub(crate) fn validate_d4(
     content: ContentValidatedPortableProofBundleAlias,
 ) -> Result<SupportedPortableStaticInputs, PortableProofError> {
     let compiler = root_compiler(&content)?;
+    let version = string_field(
+        field(compiler, "static_identity_projection")?,
+        "analysis_semantics_version",
+    )?;
+    if version != CURRENT_VERSION {
+        let family = if version == "agentflow.root-export-checker@1"
+            && embedded_blob(compiler, "registries", "specifications")?
+                == SPECIFICATION_REGISTRY_BYTES
+        {
+            "InvalidIdentity"
+        } else {
+            "UnsupportedSemantics"
+        };
+        return Err(PortableProofError::new(
+            ValidationStage::D4,
+            family,
+            "$.compiler_semantics_manifests.static_identity_projection.analysis_semantics_version",
+            "current-only Edition2 staging never upgrades an old or unknown edition",
+        ));
+    }
     let (profile, _) = variant(field(compiler, "attribution")?)?;
     if profile != "full_content_revalidation" {
         return Err(PortableProofError::new(
@@ -128,7 +152,7 @@ pub(crate) fn validate_d4(
             )
         })?;
     if specification_file.specifications.len() != CURRENT_NORMATIVE_SOURCES.len()
-        || CURRENT_NORMATIVE_SOURCES.len() != 43
+        || CURRENT_NORMATIVE_SOURCES.len() != 46
     {
         return Err(d4(
             "$.compiler_semantics_manifests.normative_sources",
@@ -218,7 +242,7 @@ pub(crate) fn validate_d4(
     {
         return Err(d4(
             "$.compiler_semantics_manifests.static_identity_projection.applied_rules",
-            "the exact current 84 applied RuleContentIdentity rows are required",
+            "the exact current 138 applied RuleContentIdentity rows are required; not a dependency closure",
         ));
     }
     let (profile_name, profile_payload) = variant(field(compiler, "attribution")?)?;
@@ -298,6 +322,15 @@ pub(crate) fn validate_d4(
 
     let supported_source_count = rows.len();
     let applied_rule_count = expected_rules.len();
+    let stage = af_computation::current_registered_analysis_edition();
+    if !stage.can_issue_capability() {
+        return Err(PortableProofError::new(
+            ValidationStage::D4,
+            "UnsupportedSemantics",
+            "$.compiler_semantics_manifests",
+            "Edition2 is Registered/NotImplemented/NotAuthorized; T3-T8 are incomplete",
+        ));
+    }
     Ok(SupportedPortableStaticInputs {
         content,
         semantic_version: CURRENT_VERSION,
@@ -360,7 +393,7 @@ fn validate_current_tuple(compiler: &Value) -> Result<(), PortableProofError> {
         if actual != bytes || string_field(checksum, "hex")? != plain_checksum(bytes) {
             return Err(PortableProofError::new(
                 ValidationStage::D4,
-                "ConflictingSemanticContent",
+                "InvalidIdentity",
                 "$.compiler_semantics_manifests",
                 "compiler content tuple differs from the implementation-owned current profile",
             ));
@@ -498,6 +531,12 @@ fn expected_rule_rows(rules: &[RuleJson]) -> Result<Vec<&RuleJson>, PortableProo
     let mut ids = (1..=22)
         .map(|n| format!("AF-CONTRACT-{n:04}"))
         .chain((111..=172).map(|n| format!("AF-SEMANTIC-{n:04}")))
+        .chain(
+            (173..=187)
+                .chain([189])
+                .chain(191..=228)
+                .map(|n| format!("AF-SEMANTIC-{n:04}")),
+        )
         .collect::<Vec<_>>();
     ids.sort();
     ids.into_iter()
