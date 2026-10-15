@@ -98,7 +98,7 @@
       "normative_source": {
         "content_digest": {
           "algorithm": "sha256",
-          "hex": "471387dfde653d219978d60a023d51561048d86e16c1404622bee641c2a2813d"
+          "hex": "86d97bdcbf17814f03bdab4f34090e90b53963a8a8ea8761be9d30822b3779d1"
         },
         "logical_path": "spec/tables/proof-report-model-v2.md"
       },

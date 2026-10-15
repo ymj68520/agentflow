@@ -33,7 +33,7 @@ def model():
   bounds=legacy["bounds"],profile="standalone_substitution",registration_only=True,
   producer_status="NotImplemented",normalizer_status="NotImplemented",lossless_scope_status="NotImplemented",positive_capability="NotAuthorized",
   case_descriptors=[case_descriptor(i,c) for i,c in enumerate(CASES)],dimension_descriptors=[dimension_descriptor(i,d) for i,d in enumerate(DIMENSIONS)],
-  canonical_constraints=legacy["semantic_constraints"]+[
+  canonical_constraints=successor_constraints(legacy)+[
    "The successor profile uses the registered appended ranks and exact source/content tuple;no old edition is relabelled.",
    "Standalone assertion_path is exactly empty;ApplicationOrigin binds actual applications[index] input path,not report fields.",
    "Context-role partition retains all three roles exactly once and actual native association;equal content is not shared identity.",
@@ -42,6 +42,30 @@ def model():
    "NonaggregateSubstitutionWitness excludes aggregate;Violation requires a valid typed actual source witness.",
    "DependencyErrorPayload.domain agrees with its domain-tagged kind;detail is diagnostic only and never witness input.",
    "Metadata shape admission does not establish validator-origin facts,shared native context,CompleteAndValid,or a checked capability."])
+
+def successor_constraints(legacy):
+ # Historical prose remains byte-exact inside inherited_registered_model. The
+ # active successor constraints must not claim the old closed roster/counts.
+ out=[]
+ for value in legacy["semantic_constraints"]:
+  if value.startswith("Kind ranks1"):
+   value+=" Successor appends substitution_evidence at rank26;old ranks remain unchanged."
+  elif value.startswith("Dimension ="):
+   value+=" Successor appends substitution:SubstitutionDimension after supporting;its twelve cases use the registered numeric order."
+  elif value.startswith("Requirement={"):
+   value+=" Successor appends substitution:SubstitutionClause with exactly the26 registered non-context cases;context_association remains direct:proof_context."
+  elif value.startswith("PredicateFamily ="):
+   value+=" For this successor the family roster additionally appends standalone_substitution with exactly the27 case_descriptors;the preceding closed roster describes inherited families only."
+  elif value.startswith("FullSupportManifest="):
+   value=value.replace("all46 source bindings here,20 selected specifications and138 applied rules", "all50 source bindings here,24 selected specifications and149 applied rules").replace("hidden 46->20 content reduction","hidden 50->24 content reduction")
+  elif value.startswith("Context={"):
+   value="Inherited root/computation Context only (not standalone contract context): "+value+" Standalone uses ContractProofContextContents with its exact nine fields and no resolver_dependencies."
+  elif value.startswith("ContextPartition="):
+   value+=" Standalone uses its separate ContextRolePartition and ordered SubstitutionContextRole analysis0,old_checked1,replacement_checked2;analysis aliases replacement_checked."
+  elif value.startswith("ModelType={"):
+   value=value.replace("or RM@1", "or the exact inherited RM@1 or successor RM@2")
+  out.append(value)
+ return out
 
 def case_descriptor(rank,case):
  context=case=="context_association";result=case.startswith("result_")

@@ -532,7 +532,7 @@
     },
     {
       "path": "spec/tables/proof-report-model-v2.md",
-      "sha256": "471387dfde653d219978d60a023d51561048d86e16c1404622bee641c2a2813d",
+      "sha256": "86d97bdcbf17814f03bdab4f34090e90b53963a8a8ea8761be9d30822b3779d1",
       "specification_id": "agentflow.computation.proof-report.model@2"
     },
     {
