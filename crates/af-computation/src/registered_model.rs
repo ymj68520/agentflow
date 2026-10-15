@@ -389,8 +389,8 @@ fn check_shape(
     Ok(())
 }
 
-/// Recognizing array registered profile still refuses all complete proof support.
-/// A standalone request is never array RootExport CompleteView conversion.
+/// Recognizing a registered profile still refuses all complete proof support.
+/// A standalone request is never a RootExport CompleteView conversion.
 pub fn admit_registered_profile(
     profile: &str,
     as_root: bool,
