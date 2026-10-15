@@ -1,0 +1,7 @@
+# Ordered operands and context identity
+
+Subject retains ordered old/replacement OperandSubject values; check_substitution is called (replacement,old). Each has all13 declared contract fields, exact canonical bytes, complete pin, full ComponentIdentity.catalog/name, validation origin and context association. ContractContents/OperandSubject/ContractContextSet/SubstitutionProofSubject are concrete descriptors, not digest-only summaries.
+
+Three closed roles: analysis=0, old_checked=1, replacement_checked=2. Analysis aliases replacement_checked; native shared context still uses std::ptr::eq in unchanged af-contract compatibility.rs. Equal contents or digests do not establish object identity. No pointer address enters portable semantics. ContextRolePartition shape admission requires every role exactly once and the analysis/replacement association; missing role=>IncompleteFacts, conflicting alias=>InvalidFacts. Metadata is not proof of actual native identity.
+
+ContractProofContextContents has exactly nine real contract context components and no resolver_dependencies; the inherited root Context remains separately complete. No caller IR/ComputationId/root assertion/resolver/workflow is fabricated. G02 must later losslessly bind full contents and equivalence partition. Missing validation history must fail or trigger explicitly fresh instrumented validation under each operand's own original context; it cannot invent old validator facts or erase a context mismatch.

@@ -1,0 +1,7 @@
+# Actual registry and frozen-surface delta
+
+Actual spec-check:50 specifications /452 rules /451 reference-covered /1 intentional exception /0 missing. Added4 actual sources and16 actual normative rules, allocated only after complete amendment mapping and collision review. Old46 specification records and436 rule records compare as whole JSON values, including every field; both comparisons pass.
+
+Starting physical baseline1811 files. Exactly10 original paths are authorized changes: Cargo.lock; af-computation/Cargo.toml,src/lib.rs,src/root_export.rs; af-portable/Cargo.toml,src/support.rs; spec/registry/{specifications,rules}.json; tools/gen-{g01-edition2-staging-corpus,registry-instances}.py. Other1801 original files remain byte-identical, including1178 historical conformance/AFIDL files. Newly added sources/models/tests/tools/docs are distinct paths; no old normative source or Expected is edited.
+
+ABI775, AFIDL17, HashV1 domains14, cross-reference failures0. Old SemanticIR, ComponentContract, RootExport, Portable Expected, original D9 Expected and D10 gaps remain exact. Cargo.lock adds unicode-normalization as a direct dependency already locked transitively, not a new wire/ABI type. HashV1/Digest semantics and ACE1 grammar unchanged. Audit command: python tools/audit-substitution-staging.py (uses ignored phase baseline evidence); full raw audit is pinned by receipt. Old input snapshot pins are independently hardcoded, not self-certified by a mutable manifest.

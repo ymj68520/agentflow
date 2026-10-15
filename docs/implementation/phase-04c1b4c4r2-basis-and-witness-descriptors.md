@@ -1,0 +1,7 @@
+# Typed basis, witness, contradiction and evaluation
+
+Model@2 fully defines SubstitutionBasis, UnprovenBasis, SubstitutionWitness, NonaggregateSubstitutionWitness, ClosedRelationDecision and amended Fact, TypedContradiction, ObservationSite/ObservationOwner. The complete payload definitions and exact references are part of the 518-row manifest, not inferred from diagnostic text.
+
+Basis variants: checked_origin, association, body_equality, changed_pair_floor, local_relation, reflexive_result, conservative_result, aspect_combination, cross_fold, blocked_result. Witness variants: io_added_input, io_missing_output, failure_extra, resource_added_port, resource_attribute_strengthened, flow_dropped_restriction, flow_added_sink, flow_authority_raised, usage_ceiling_increase, recovery_clause_removed, execution_constraint, aggregate. Nonaggregate excludes aggregate structurally, preventing recursive witness construction. Aggregate links real violating facts; full graph validity remains unimplemented.
+
+A Violation needs its exact applicable valid typed countermodel at the actual branch. Unsupported comparisons are not witnesses. Execution aspects and original typed dependency payloads are retained. Fact.substitution_basis is Some exactly for the new family; otherwise None. Blocked evaluation differs from evaluated Unproven while keeping the frozen verdict enum. The metadata shape checker validates shapes only, not factual truth, applicability, derivation or CompleteAndValid. No caller-authored FactSeed becomes trusted.

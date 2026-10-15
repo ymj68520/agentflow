@@ -1,0 +1,275 @@
+{
+  "start_head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+  "code_gate_head": "635616cea0916429161a5a353dc9a4090834589d",
+  "runtime_authority": "NotEstablished",
+  "positive_capability": "NotAuthorized",
+  "capture": "NotImplemented",
+  "normalizer": "NotImplemented",
+  "r1_semantic_vectors": "48 NotExecuted",
+  "editions": {
+    "edition1": {
+      "head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+      "stable_case_ids": 512,
+      "case_failed": 0,
+      "case_skipped": 0,
+      "cargo_reported_test_passes_including_child_invocations": 382,
+      "cargo_result_groups": 87,
+      "cargo_ignored": 0,
+      "child_invocation_filtered_out_sum": 144,
+      "filtered_note": "Historical cross-process tests invoke filtered child test processes; these are not skipped manifest CaseIds or ignored tests. Reported test passes include those actual child executions.",
+      "tests": {
+        "path": "target/phase-04c1b4c4r2-edition1-tests.log",
+        "sha256": "0c7070d57f72dec5cd6d3c649e276a5c3f8e817784418c5253394d8d9e3d8505",
+        "bytes": 47248
+      },
+      "spec_check": {
+        "path": "target/phase-04c1b4c4r2-edition1-spec.log",
+        "sha256": "f10e7201f369c5bd4b78a49ef778a6fdf53c4de3353fa7cb11c4aac8be0609ff",
+        "bytes": 416
+      },
+      "commands_exit_codes": {
+        "fmt": 0,
+        "clippy": 0,
+        "cargo_test_all": 0,
+        "spec_check": 0
+      }
+    },
+    "edition2": {
+      "head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+      "stable_case_ids": 51,
+      "case_failed": 0,
+      "case_skipped": 0,
+      "cargo_reported_test_passes_including_child_invocations": 335,
+      "cargo_result_groups": 71,
+      "cargo_ignored": 0,
+      "child_invocation_filtered_out_sum": 0,
+      "filtered_note": "Historical cross-process tests invoke filtered child test processes; these are not skipped manifest CaseIds or ignored tests. Reported test passes include those actual child executions.",
+      "tests": {
+        "path": "target/phase-04c1b4c4r2-edition2-tests.log",
+        "sha256": "f47c49d5a29963fc5c39e19fba2bf1fd502ba1207296b40dfc37fff1de182c03",
+        "bytes": 40844
+      },
+      "spec_check": {
+        "path": "target/phase-04c1b4c4r2-edition2-spec.log",
+        "sha256": "a62af751fef4581133cf3135d1e5cca25f05aa75721e0957b698be35614cb59d",
+        "bytes": 412
+      },
+      "commands_exit_codes": {
+        "fmt": 0,
+        "clippy": 0,
+        "cargo_test_all": 0,
+        "spec_check": 0
+      }
+    },
+    "current": {
+      "head": "635616cea0916429161a5a353dc9a4090834589d",
+      "stable_case_ids": 173,
+      "case_failed": 0,
+      "case_skipped": 0,
+      "cargo_reported_test_passes_including_child_invocations": 336,
+      "cargo_result_groups": 71,
+      "cargo_ignored": 0,
+      "child_invocation_filtered_out_sum": 0,
+      "filtered_note": "Historical cross-process tests invoke filtered child test processes; these are not skipped manifest CaseIds or ignored tests. Reported test passes include those actual child executions.",
+      "tests": {
+        "path": "target/phase-04c1b4c4r2-current-tests.log",
+        "sha256": "6c7e18c43d61072ad89b1ded31c3f2eec575c0c64d605a3af078e0c49cd0d1c3",
+        "bytes": 36023
+      },
+      "spec_check": {
+        "path": "target/phase-04c1b4c4r2-current-spec.log",
+        "sha256": "cae6734467897f5e3eb7693cb7f417dc80bb2d42ad769175f904d83657bcf04a",
+        "bytes": 362
+      },
+      "commands_exit_codes": {
+        "fmt": 0,
+        "clippy": 0,
+        "cargo_test_all": 0,
+        "spec_check": 0
+      }
+    }
+  },
+  "generators": {
+    "cwd": "E:/Projects/agent",
+    "scripts": [
+      "gen-advanced-control-corpus.py",
+      "gen-afidl-corpus.py",
+      "gen-component-contract-corpus.py",
+      "gen-computation-control-corpus.py",
+      "gen-computation-leaf-corpus.py",
+      "gen-computation-root-export-corpus.py",
+      "gen-computation-root-recovery-corpus.py",
+      "gen-computation-scope-closure-corpus.py",
+      "gen-conformance.py",
+      "gen-cost-projection-corpus.py",
+      "gen-effect-signature-corpus.py",
+      "gen-execution-requirements-corpus.py",
+      "gen-failure-row-corpus.py",
+      "gen-g01-edition2-staging-corpus.py",
+      "gen-information-flow-corpus.py",
+      "gen-portable-d10-gap-audit.py",
+      "gen-portable-d9-control-full-oracle.py",
+      "gen-portable-d9-recovery-full-oracle.py",
+      "gen-portable-proof-codec-corpus.py",
+      "gen-portable-root-export-revalidation-corpus.py",
+      "gen-portable-static-reconstruction-corpus.py",
+      "gen-recovery-contract-corpus.py",
+      "gen-registry-instances.py",
+      "gen-resource-requirement-corpus.py",
+      "gen-root-export-soundness-corpus.py",
+      "gen-semantic-core-corpus.py",
+      "gen-semantic-dataflow-corpus.py",
+      "gen-semantic-ir-corpus.py",
+      "gen-spec-registry-corpus.py",
+      "gen-subflow-interface-corpus.py",
+      "gen-substitution-successor-staging.py",
+      "gen-usage-signature-corpus.py"
+    ],
+    "rounds": 2,
+    "script_exits_zero": 64,
+    "file_count": 1866,
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "baseline_equals_round1_equals_round2": true,
+    "timing_lines": [
+      "ROUND_RESULT 1 FILES 1866 DELTA {'added': 0, 'removed': 0, 'changed': 0} SECONDS 190.43",
+      "ROUND_RESULT 2 FILES 1866 DELTA {'added': 0, 'removed': 0, 'changed': 0} SECONDS 166.89"
+    ],
+    "maps": {
+      "baseline": {
+        "path": "target/phase-04c1b4c4r2-registration-generators-baseline.json",
+        "sha256": "2b2c1504126008c3cf5a800c505238e2376a36e0bdf76f3e97e66774a84aace7",
+        "bytes": 264867
+      },
+      "round1": {
+        "path": "target/phase-04c1b4c4r2-registration-generators-round1.json",
+        "sha256": "2b2c1504126008c3cf5a800c505238e2376a36e0bdf76f3e97e66774a84aace7",
+        "bytes": 264867
+      },
+      "round2": {
+        "path": "target/phase-04c1b4c4r2-registration-generators-round2.json",
+        "sha256": "2b2c1504126008c3cf5a800c505238e2376a36e0bdf76f3e97e66774a84aace7",
+        "bytes": 264867
+      }
+    },
+    "log": {
+      "path": "target/phase-04c1b4c4r2-registration-generators.log",
+      "sha256": "f073a19eef31f52e56d54932d293ddd4a4675b91104824a109d9a063e7bd772e",
+      "bytes": 3493
+    },
+    "pair": "registration-docs pair; all64 script executions complete; final receipt text finalized afterwards"
+  },
+  "frozen_audit": {
+    "baseline": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+    "old_spec_rows_equal": 46,
+    "old_rule_rows_equal": 436,
+    "original_files": 1811,
+    "authorized_changed_original_paths": [
+      "Cargo.lock",
+      "crates/af-computation/Cargo.toml",
+      "crates/af-computation/src/lib.rs",
+      "crates/af-computation/src/root_export.rs",
+      "crates/af-portable/Cargo.toml",
+      "crates/af-portable/src/support.rs",
+      "spec/registry/rules.json",
+      "spec/registry/specifications.json",
+      "tools/gen-g01-edition2-staging-corpus.py",
+      "tools/gen-registry-instances.py"
+    ],
+    "unauthorized_changed_original_paths": [],
+    "unchanged_original_file_count": 1801,
+    "frozen_conformance_and_afidl_files_unchanged": 1178,
+    "actual_specifications": 50,
+    "actual_rules": 452,
+    "descriptor_types": 518,
+    "resolved_ref_occurrences": 1593,
+    "closed_cases": 27,
+    "non_context_clauses": 26,
+    "dimensions": 12,
+    "error_counts": {
+      "resource": 12,
+      "flow": 11,
+      "usage": 11,
+      "recovery": 13,
+      "execution": 22
+    },
+    "new_staging_cases": 173,
+    "new_source_bindings": [
+      {
+        "path": "spec/computation/proof-obligation-semantics-v2.md",
+        "sha256": "a614692e839403fbd8a55c5642236083435870fe2e9fe0d2aae05b7125ff7b91",
+        "specification_id": "agentflow.computation.proof-obligation.semantics@2"
+      },
+      {
+        "path": "spec/component/standalone-substitution-proof.md",
+        "sha256": "b7231217d2dd40b6756f7372018092336938036d929429ae44e982fd5e404d88",
+        "specification_id": "agentflow.component.substitution-proof.semantics@1"
+      },
+      {
+        "path": "spec/tables/proof-report-model-v2.md",
+        "sha256": "86d97bdcbf17814f03bdab4f34090e90b53963a8a8ea8761be9d30822b3779d1",
+        "specification_id": "agentflow.computation.proof-report.model@2"
+      },
+      {
+        "path": "spec/portable/portable-proof-inputs-v3.md",
+        "sha256": "57d9ec10b5cc2ec0ef1e2ad20389b9018e03a868129482ef7ec10cc2386fb658",
+        "specification_id": "agentflow.portable.proof.inputs.semantics@3"
+      }
+    ],
+    "new_generator_count": 32,
+    "producer": "NOT IMPLEMENTED",
+    "normalizer": "NOT IMPLEMENTED",
+    "positive_capability": "NOT AUTHORIZED"
+  },
+  "evidence": [
+    {
+      "path": "target/phase-04c1b4c4r2-audit.json",
+      "sha256": "f4ad4b79cb626a5756e9de5612cc4f309a4759523d25887696456e40b4f2fac3",
+      "bytes": 2218
+    },
+    {
+      "path": "target/phase-04c1b4c4r2-clippy-final.log",
+      "sha256": "52ceced5d7ec6e802beadaef21b787469311f0509b1d3b07ce309e56eda23d83",
+      "bytes": 287
+    },
+    {
+      "path": "target/phase-04c1b4c4r2-reference-probe.log",
+      "sha256": "4a19b19f56fb5d255442ef9bdd5997cec7305220f795549cb705bd22766a8fd3",
+      "bytes": 4922
+    },
+    {
+      "path": "target/phase-04c1b4c4r2-current-tests-overlap-failed.log",
+      "sha256": "b327534b2682c7917b80bd3ce0c04c3f582c2e2efc844fd0f0c777156ec224dc",
+      "bytes": 24673
+    }
+  ],
+  "overlap_failure": {
+    "exit_code": 101,
+    "reason": "e919c57 compiled identity read regenerated b85bf2a fixtures during a development run; entire final gate rerun at fixed635616c",
+    "retained": true
+  },
+  "registry_bindings": {
+    "edition1": {
+      "specifications": "b3dd17ee9e4d2f8b1fb86108abfa5fb667a551fda49927db1bfb52bdaf12882c",
+      "rules": "599b94622e446bb7ffb2ac0f39c3c252d891273d123eae32bbb35dbbb28ef329",
+      "abi-numbers": "e6e8730fba259abd66ba6712d95f890caedfda8f602c05d8eea226f5044397d4"
+    },
+    "edition2": {
+      "specifications": "d3afa5f16fba4cffb9f1a802e296ea1f33d844f5a75c792e116d8eef5254471f",
+      "rules": "8f93ec2e54bbeb248b518f2f60152695b2708a7bf57d3239415f588463d7ff3f",
+      "abi-numbers": "e6e8730fba259abd66ba6712d95f890caedfda8f602c05d8eea226f5044397d4"
+    },
+    "current": {
+      "specifications": "345ec14a89c6bc774991dc955dc1c7f4185a34ac2c8b0677646ae3d52a98a230",
+      "rules": "034568ba56c84e0cd5715d06aa4302e682d0247bd9b4b9b81668de35ce545726",
+      "abi-numbers": "e6e8730fba259abd66ba6712d95f890caedfda8f602c05d8eea226f5044397d4"
+    }
+  },
+  "compiler_fixture_bindings": {
+    "compiler-edition2.json": "47c9887c864af4076b167e460e3d3f0db1384af12788c6918e1d55c5be27e30c",
+    "compiler-successor.json": "20ca93b1939fc81f8b745d703955298d489275b97a181e0b05ed945abaf8bbb5",
+    "manifest.json": "d3b76d06eb08a88a476835ef2b4e530401df38b1f8fdaf8673c860c1c672c9eb"
+  },
+  "delivery_policy": "Final committed tree is independently checked again by an uninterrupted original-directory double round without nonignored file edits; its fresh final maps/log remain under target/phase-04c1b4c4r2-generators* and the actual completion is recorded at delivery. This receipt binds the distinct earlier complete pair, never a splice."
+}

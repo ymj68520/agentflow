@@ -1,0 +1,9 @@
+# Canonical representation and exact identity
+
+No ACE1 syntax, AFIDL grammar, HashV1 domain or digest definition is changed. The non-wire logical descriptors use exact record field identities/declaration order, existing closed single-case tagged values, explicit none/some presence, nominal widths, validated UTF8/NFC checked strings and raw-byte companions for untrusted claims. Native macros retain nominal u32 IDs; usize logical counts are u64; MultiplicityFactor resolves to the actual AppliedMultiplicity type. af-core Decimal/Float64/Timestamp/Duration are logical scalars, not hidden Rust representation.
+
+Variant ranks append to inherited ranks; SubstitutionCase/SubstitutionDimension have exact registered order. Numeric2<10 mathematically, not by decimal text; exact Decimal and finite float follow frozen canonical scalar rules. Sequences preserve original order/duplicates; maps/sets use complete typed keys and reject conflicting identities. ModelType is bound to exact owner/source and registered type, not open text. Complete pins/schema declarations and imported error payloads are retained.
+
+CanonicalValueDag is finite, acyclic, reachable/minimal, bottom-up interned by complete typed equality; node height/type/nonrecursive payload/ordered children determine contiguous ranks. Ranks/hashes never replace typed semantic comparison. Scope inputs exclude Fact/Obligation/Report/capability descendants; no recursive digest equation. Bound intersections/overflow reject without partial success. Existing bounds remain unchanged.
+
+These laws are REGISTERED DESCRIPTORS only. No G01 encoder, Obligation normalizer, complete FactKey/Scope identity, valid-witness checker or value-DAG normalization algorithm is implemented. Metadata shape success returns unit and cannot establish any canonical or proof authority.
