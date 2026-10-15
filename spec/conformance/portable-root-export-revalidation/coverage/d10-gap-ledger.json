@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "stage_outcome": "C",
+  "complete": false,
+  "findings": [
+    {
+      "id": "ORACLE-D10-G01",
+      "severity": "P1",
+      "kind": "FormalModelGap",
+      "field": "RootExportReport.unresolved_obligations",
+      "applicable_case_ids": [
+        "portable-root-export-revalidation/d10-full-static-positive",
+        "portable-root-export-revalidation/d10-execution-source-unmapped",
+        "portable-root-export-revalidation/p30-split-row-negative",
+        "portable-root-export-revalidation/p30-same-row-positive",
+        "portable-root-export-revalidation/p31-snapshot-a-declaration-b-current",
+        "portable-root-export-revalidation/p31-fresh-root-b-top-ceiling-one",
+        "portable-root-export-revalidation/d10-execution-source-node-2-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-3-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-4-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-5-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-6-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-7-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-8-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-9-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-10-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-11-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-12-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-13-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-14-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-15-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-16-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-17-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-18-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-19-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-20-not-root",
+        "portable-root-export-revalidation/d10-execution-source-node-21-not-root"
+      ],
+      "normative_sources": [
+        "spec/computation/root-export-contract-proof.md#subflow-body-separation",
+        "spec/computation/root-export-contract-proof.md#static-runtime-boundary",
+        "spec/component/component-contract.md#component-contract-proof-composition"
+      ],
+      "known_facts": [
+        "Static compatibility does not prove implementation conformance",
+        "Static proof establishes no publisher authentication or runtime authority",
+        "Without trusted body proof, body conformance RequiresEvidence",
+        "Scope authority/budget attenuation Unproven without declared ceilings"
+      ],
+      "missing_fact": "Exact nominal obligation identifiers, string encoding, enumeration/aggregation conditions, order and duplicate policy for this required Vec<String>",
+      "why_not_diagnostic": "The frozen executable field contract marks the entire array RequiredSemantic with exact ordering, unlike reason prose",
+      "non_uniqueness": {
+        "premise": "Implementation conformance requires independent evidence",
+        "possible_encodings_not_expected": [
+          "implementation:requires_evidence",
+          "implementation_conformance:requires_evidence"
+        ],
+        "claim": "The normative premise selects neither exact spelling. These are illustrative encodings, not fabricated production reports or Expected. Exact comparison cannot choose by observing Actual."
+      },
+      "resolution_required": "A separately authorized formal conformance vocabulary/typed obligation identity and ordering contract. No field may be silently dropped or reclassified DiagnosticOnly.",
+      "production_soundness_claim": "None; no false-Proven established"
+    },
+    {
+      "id": "ORACLE-D10-G02",
+      "severity": "P1",
+      "kind": "ProjectionCoverageDefect",
+      "field": "Assertion.compiler_semantics / Assertion.proof_context_manifest",
+      "evidence": [
+        "CompilerIdentity registry_content_bytes and specification content_bytes are u64 lengths, not bytes",
+        "ContextManifest omits execution universes and reduces multiple universes to counts",
+        "RelationSnapshot content_bytes retains length/checksum but not canonical bytes"
+      ],
+      "normative_sources": [
+        "spec/computation/root-export-contract-proof.md#compiler-semantics-identity",
+        "spec/computation/root-export-contract-proof.md#proof-context-manifest"
+      ],
+      "production_soundness_claim": "None; typed production identities retain complete content; legacy report projection is lossy",
+      "resolution_required": "Lossless test-only getters and reviewed source/projection bindings before any full D10 closure claim; not a production semantics edit",
+      "status": "OPEN - repairable within test-only scope, not itself a FormalModelGap"
+    },
+    {
+      "id": "ORACLE-D10-G03",
+      "severity": "P2",
+      "kind": "OracleImplementationGap",
+      "field": "D9 nonempty CALL_SUBFLOW interface",
+      "applicable_case_ids": [
+        "portable-root-export-revalidation/p31-snapshot-a-declaration-b-current",
+        "portable-root-export-revalidation/p31-fresh-root-b-top-ceiling-one"
+      ],
+      "resolution_required": "Extend existing independent Phase 3D interface model; normative interface rules exist. Do not confuse this with missing formal semantics.",
+      "status": "OPEN"
+    }
+  ],
+  "audit_findings": {
+    "AUDIT-F01": "CLOSED",
+    "AUDIT-F02": "CLOSED",
+    "AUDIT-F03": "OPEN/P2",
+    "AUDIT-F04": "OPEN/P2"
+  },
+  "b01_b02_conformance_closure": "BLOCKING",
+  "phase_4d_admission": false
+}

@@ -1,0 +1,3094 @@
+{
+  "schema_version": 1,
+  "outcome": "C - Formal Model Gap; NOT COMPLETE",
+  "case_count": 26,
+  "d9_expected_count": 24,
+  "d9_generated_instance_totals": {
+    "required": 118562,
+    "diagnostic": 2112
+  },
+  "d9_comparison_status": "PendingProductionRun",
+  "d10_full_field_compared": 0,
+  "d10_full_field_expected": 0,
+  "coverage_union_updated": false,
+  "cases": [
+    {
+      "case_id": "portable-root-export-revalidation/d10-full-static-positive",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [],
+      "input_identity": {
+        "canonical_bytes": 2246669,
+        "canonical_sha256": "a674473638b977cfb40a6f945569cfb3e674c68e9683de339b5ebce308f209ae"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "1"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-full-static-positive.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-unmapped",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/negative-execution-map-missing.ace1",
+      "mutations": [],
+      "input_identity": {
+        "canonical_bytes": 2246267,
+        "canonical_sha256": "38808138ec90dbc3ffdba4338ff33274d42e6eacd227cd0bd62ed40082b0b448"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-unmapped.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/p30-split-row-negative",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/p30-split-row-negative.ace1",
+      "mutations": [],
+      "input_identity": {
+        "canonical_bytes": 2257498,
+        "canonical_sha256": "d3b337fd05e4cb804de8a6a68ee5a8abaed4394a3292e3b39e9e1accaab3ae4a"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "52e76c074f19673cb70f8e11b31497acac9cb8d7bf188cff01f8a6d6fdb3656f"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "eddf05add00542ea9e53b87bf5b487c3a618451aadac3aa9b5ba92dd53f9d3bf"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 117997,
+        "canonical_sha256": "d9a832abc357972e38928bc96fd101a8be604de291f2337be3c46168c22bb3f5"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1976,
+        "canonical_sha256": "76137db1b9f5e8136fe724f33b51073f0e139553f2ebd3b61fda9ad69a4f83bf"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [
+          {
+            "export_input_port": {
+              "exported_contract_digest": {
+                "algorithm": "sha256",
+                "domain": "component-contract",
+                "hex": "eddf05add00542ea9e53b87bf5b487c3a618451aadac3aa9b5ba92dd53f9d3bf"
+              },
+              "port_no": "1"
+            },
+            "export_type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1a05cc6cd2e100c736d0ff6206876d4e7ac4d3ff68ec2d13e729938f18b4cae1"
+              },
+              "specification_id": "agentflow.guard.fixture@1",
+              "type_name": "GuardInt64"
+            },
+            "root_type": "1",
+            "root_value_slot": "11",
+            "run_parameter_id": "1",
+            "use_sites": [
+              {
+                "computation": "1",
+                "dependency_slots": [
+                  "11"
+                ],
+                "exact_type": {
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "1a05cc6cd2e100c736d0ff6206876d4e7ac4d3ff68ec2d13e729938f18b4cae1"
+                  },
+                  "specification_id": "agentflow.guard.fixture@1",
+                  "type_name": "GuardInt64"
+                },
+                "input_expression": "1",
+                "source_component_port": "1",
+                "source_contract_digest": {
+                  "algorithm": "sha256",
+                  "domain": "component-contract",
+                  "hex": "b4f3556aef057e5cbedddddea004d3f615738634ed596119d5d5751d6fc406df"
+                }
+              }
+            ]
+          }
+        ],
+        "output_mappings": [],
+        "resource_mappings": [
+          {
+            "export_resource_port": {
+              "exported_contract_digest": {
+                "algorithm": "sha256",
+                "domain": "component-contract",
+                "hex": "eddf05add00542ea9e53b87bf5b487c3a618451aadac3aa9b5ba92dd53f9d3bf"
+              },
+              "port_no": "1"
+            },
+            "export_resource_type": {
+              "schema": {
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "1a05cc6cd2e100c736d0ff6206876d4e7ac4d3ff68ec2d13e729938f18b4cae1"
+                },
+                "specification_id": "agentflow.guard.fixture@1",
+                "type_name": "GuardInt64"
+              }
+            },
+            "root_resource_slot": "1",
+            "root_resource_type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1a05cc6cd2e100c736d0ff6206876d4e7ac4d3ff68ec2d13e729938f18b4cae1"
+              },
+              "specification_id": "agentflow.guard.fixture@1",
+              "type_name": "GuardInt64"
+            },
+            "source_coordinates": [
+              {
+                "alias_component_ports": [
+                  "1"
+                ],
+                "component_resource_port": "1",
+                "resource_slot": "1",
+                "source_contract_digest": {
+                  "algorithm": "sha256",
+                  "domain": "component-contract",
+                  "hex": "b4f3556aef057e5cbedddddea004d3f615738634ed596119d5d5751d6fc406df"
+                },
+                "source_node": "1"
+              }
+            ]
+          }
+        ],
+        "effect_mappings": [
+          {
+            "export_atom": {
+              "operation": {
+                "catalog": "agentflow.effects.test@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "idempotency": "natural"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": "1",
+                "scope_bindings": [
+                  {
+                    "key": "a",
+                    "value": "1"
+                  }
+                ]
+              }
+            },
+            "export_guard": {
+              "input_equals": {
+                "expected": {
+                  "int64": "0"
+                },
+                "port_no": "1"
+              }
+            },
+            "root_resource_slot": {
+              "some": "1"
+            },
+            "source": {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "write"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": "1",
+                  "scope_bindings": [
+                    {
+                      "key": "a",
+                      "value": "1"
+                    },
+                    {
+                      "key": "b",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "caller_semantic_ir_digest": {
+                "algorithm": "sha256",
+                "domain": "semantic-ir",
+                "hex": "52e76c074f19673cb70f8e11b31497acac9cb8d7bf188cff01f8a6d6fdb3656f"
+              },
+              "guard": {
+                "unconditional": null
+              },
+              "source_contract_digest": {
+                "algorithm": "sha256",
+                "domain": "component-contract",
+                "hex": "b4f3556aef057e5cbedddddea004d3f615738634ed596119d5d5751d6fc406df"
+              },
+              "source_entry_ordinal": "0",
+              "source_node": "1"
+            }
+          }
+        ],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "b4f3556aef057e5cbedddddea004d3f615738634ed596119d5d5751d6fc406df"
+            },
+            "source_node": "1"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/p30-split-row-negative.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 5997,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/p30-same-row-positive",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/p30-same-row-positive.ace1",
+      "mutations": [],
+      "input_identity": {
+        "canonical_bytes": 2257091,
+        "canonical_sha256": "efbf39d31165cef75fa173be0105337c2edd9c7fe462945b5c7c5f27c6859402"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "52e76c074f19673cb70f8e11b31497acac9cb8d7bf188cff01f8a6d6fdb3656f"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "bda488793a87d87967d1eeb493e778c3225b8d96be9f53401f47d225ce95aaf2"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 117997,
+        "canonical_sha256": "d9a832abc357972e38928bc96fd101a8be604de291f2337be3c46168c22bb3f5"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1976,
+        "canonical_sha256": "fc4001af0e41593731d3fdf164d08b6873719bc4ea14ae906ca05faa620d85f2"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [
+          {
+            "export_input_port": {
+              "exported_contract_digest": {
+                "algorithm": "sha256",
+                "domain": "component-contract",
+                "hex": "bda488793a87d87967d1eeb493e778c3225b8d96be9f53401f47d225ce95aaf2"
+              },
+              "port_no": "1"
+            },
+            "export_type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1a05cc6cd2e100c736d0ff6206876d4e7ac4d3ff68ec2d13e729938f18b4cae1"
+              },
+              "specification_id": "agentflow.guard.fixture@1",
+              "type_name": "GuardInt64"
+            },
+            "root_type": "1",
+            "root_value_slot": "11",
+            "run_parameter_id": "1",
+            "use_sites": [
+              {
+                "computation": "1",
+                "dependency_slots": [
+                  "11"
+                ],
+                "exact_type": {
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "1a05cc6cd2e100c736d0ff6206876d4e7ac4d3ff68ec2d13e729938f18b4cae1"
+                  },
+                  "specification_id": "agentflow.guard.fixture@1",
+                  "type_name": "GuardInt64"
+                },
+                "input_expression": "1",
+                "source_component_port": "1",
+                "source_contract_digest": {
+                  "algorithm": "sha256",
+                  "domain": "component-contract",
+                  "hex": "b4f3556aef057e5cbedddddea004d3f615738634ed596119d5d5751d6fc406df"
+                }
+              }
+            ]
+          }
+        ],
+        "output_mappings": [],
+        "resource_mappings": [
+          {
+            "export_resource_port": {
+              "exported_contract_digest": {
+                "algorithm": "sha256",
+                "domain": "component-contract",
+                "hex": "bda488793a87d87967d1eeb493e778c3225b8d96be9f53401f47d225ce95aaf2"
+              },
+              "port_no": "1"
+            },
+            "export_resource_type": {
+              "schema": {
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "1a05cc6cd2e100c736d0ff6206876d4e7ac4d3ff68ec2d13e729938f18b4cae1"
+                },
+                "specification_id": "agentflow.guard.fixture@1",
+                "type_name": "GuardInt64"
+              }
+            },
+            "root_resource_slot": "1",
+            "root_resource_type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1a05cc6cd2e100c736d0ff6206876d4e7ac4d3ff68ec2d13e729938f18b4cae1"
+              },
+              "specification_id": "agentflow.guard.fixture@1",
+              "type_name": "GuardInt64"
+            },
+            "source_coordinates": [
+              {
+                "alias_component_ports": [
+                  "1"
+                ],
+                "component_resource_port": "1",
+                "resource_slot": "1",
+                "source_contract_digest": {
+                  "algorithm": "sha256",
+                  "domain": "component-contract",
+                  "hex": "b4f3556aef057e5cbedddddea004d3f615738634ed596119d5d5751d6fc406df"
+                },
+                "source_node": "1"
+              }
+            ]
+          }
+        ],
+        "effect_mappings": [
+          {
+            "export_atom": {
+              "operation": {
+                "catalog": "agentflow.effects.test@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "idempotency": "natural"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": "1",
+                "scope_bindings": [
+                  {
+                    "key": "a",
+                    "value": "1"
+                  },
+                  {
+                    "key": "b",
+                    "value": "1"
+                  }
+                ]
+              }
+            },
+            "export_guard": {
+              "unconditional": null
+            },
+            "root_resource_slot": {
+              "some": "1"
+            },
+            "source": {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "write"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": "1",
+                  "scope_bindings": [
+                    {
+                      "key": "a",
+                      "value": "1"
+                    },
+                    {
+                      "key": "b",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "caller_semantic_ir_digest": {
+                "algorithm": "sha256",
+                "domain": "semantic-ir",
+                "hex": "52e76c074f19673cb70f8e11b31497acac9cb8d7bf188cff01f8a6d6fdb3656f"
+              },
+              "guard": {
+                "unconditional": null
+              },
+              "source_contract_digest": {
+                "algorithm": "sha256",
+                "domain": "component-contract",
+                "hex": "b4f3556aef057e5cbedddddea004d3f615738634ed596119d5d5751d6fc406df"
+              },
+              "source_entry_ordinal": "0",
+              "source_node": "1"
+            }
+          }
+        ],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "b4f3556aef057e5cbedddddea004d3f615738634ed596119d5d5751d6fc406df"
+            },
+            "source_node": "1"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/p30-same-row-positive.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 5997,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/p31-snapshot-a-declaration-b-current",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/p31-snapshot-a-declaration-b-current.ace1",
+      "mutations": [],
+      "input_identity": {
+        "canonical_bytes": 2266289,
+        "canonical_sha256": "be6c5163810ede286b8dd8385bdb0b14deff47e840e9ca5defe41e2e04c33774"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "871265025335f4ec69db0805801d6de7d2d1de335deed7e9c9de140573dda50c"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "51cbe266f7c3cd4f6c6633b56670422e026a8fd6f839a37d27c8304e788639ae"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 117997,
+        "canonical_sha256": "d9a832abc357972e38928bc96fd101a8be604de291f2337be3c46168c22bb3f5"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 3302,
+        "canonical_sha256": "84a88a29d206aa2196165237685effcbfe9e6692bc86e2072784bd48ef982ebf"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [
+          {
+            "export_input_port": {
+              "exported_contract_digest": {
+                "algorithm": "sha256",
+                "domain": "component-contract",
+                "hex": "51cbe266f7c3cd4f6c6633b56670422e026a8fd6f839a37d27c8304e788639ae"
+              },
+              "port_no": "1"
+            },
+            "export_type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1a05cc6cd2e100c736d0ff6206876d4e7ac4d3ff68ec2d13e729938f18b4cae1"
+              },
+              "specification_id": "agentflow.guard.fixture@1",
+              "type_name": "GuardInt64"
+            },
+            "root_type": "1",
+            "root_value_slot": "11",
+            "run_parameter_id": "1",
+            "use_sites": [
+              {
+                "computation": "1",
+                "dependency_slots": [
+                  "11"
+                ],
+                "exact_type": {
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "1a05cc6cd2e100c736d0ff6206876d4e7ac4d3ff68ec2d13e729938f18b4cae1"
+                  },
+                  "specification_id": "agentflow.guard.fixture@1",
+                  "type_name": "GuardInt64"
+                },
+                "input_expression": "1",
+                "source_component_port": "1",
+                "source_contract_digest": {
+                  "algorithm": "sha256",
+                  "domain": "component-contract",
+                  "hex": "b88a7f4b9f3b4c5eecf9b6458065ed5ff055bf1278d7ed9be41ffeb86ba0f045"
+                }
+              }
+            ]
+          }
+        ],
+        "output_mappings": [],
+        "resource_mappings": [
+          {
+            "export_resource_port": {
+              "exported_contract_digest": {
+                "algorithm": "sha256",
+                "domain": "component-contract",
+                "hex": "51cbe266f7c3cd4f6c6633b56670422e026a8fd6f839a37d27c8304e788639ae"
+              },
+              "port_no": "1"
+            },
+            "export_resource_type": {
+              "schema": {
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "1a05cc6cd2e100c736d0ff6206876d4e7ac4d3ff68ec2d13e729938f18b4cae1"
+                },
+                "specification_id": "agentflow.guard.fixture@1",
+                "type_name": "GuardInt64"
+              }
+            },
+            "root_resource_slot": "1",
+            "root_resource_type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1a05cc6cd2e100c736d0ff6206876d4e7ac4d3ff68ec2d13e729938f18b4cae1"
+              },
+              "specification_id": "agentflow.guard.fixture@1",
+              "type_name": "GuardInt64"
+            },
+            "source_coordinates": [
+              {
+                "alias_component_ports": [
+                  "1"
+                ],
+                "component_resource_port": "1",
+                "resource_slot": "1",
+                "source_contract_digest": {
+                  "algorithm": "sha256",
+                  "domain": "component-contract",
+                  "hex": "b88a7f4b9f3b4c5eecf9b6458065ed5ff055bf1278d7ed9be41ffeb86ba0f045"
+                },
+                "source_node": "1"
+              }
+            ]
+          }
+        ],
+        "effect_mappings": [
+          {
+            "export_atom": {
+              "operation": {
+                "catalog": "agentflow.effects.test@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "idempotency": "natural"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": "1",
+                "scope_bindings": [
+                  {
+                    "key": "a",
+                    "value": "1"
+                  },
+                  {
+                    "key": "b",
+                    "value": "1"
+                  }
+                ]
+              }
+            },
+            "export_guard": {
+              "unconditional": null
+            },
+            "root_resource_slot": {
+              "some": "1"
+            },
+            "source": {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "write"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": "1",
+                  "scope_bindings": [
+                    {
+                      "key": "a",
+                      "value": "1"
+                    },
+                    {
+                      "key": "b",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "caller_semantic_ir_digest": {
+                "algorithm": "sha256",
+                "domain": "semantic-ir",
+                "hex": "871265025335f4ec69db0805801d6de7d2d1de335deed7e9c9de140573dda50c"
+              },
+              "guard": {
+                "unconditional": null
+              },
+              "source_contract_digest": {
+                "algorithm": "sha256",
+                "domain": "component-contract",
+                "hex": "b88a7f4b9f3b4c5eecf9b6458065ed5ff055bf1278d7ed9be41ffeb86ba0f045"
+              },
+              "source_entry_ordinal": "0",
+              "source_node": "1"
+            }
+          }
+        ],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "b88a7f4b9f3b4c5eecf9b6458065ed5ff055bf1278d7ed9be41ffeb86ba0f045"
+            },
+            "source_node": "1"
+          }
+        ],
+        "subflow_dependencies": [
+          {
+            "call_site": "1",
+            "target_exported_contract_digest": {
+              "some": {
+                "algorithm": "sha256",
+                "domain": "component-contract",
+                "hex": "87d72e281396ee215d0d1ca4fef2328459a44393a11ea90dd0416ff66cff9719"
+              }
+            },
+            "target_root_assertion_id": {
+              "none": null
+            },
+            "target_semantic_ir_digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "52e76c074f19673cb70f8e11b31497acac9cb8d7bf188cff01f8a6d6fdb3656f"
+            },
+            "transitive_targets": []
+          }
+        ]
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": null,
+      "d9_full_field_status": "OracleImplementationGap",
+      "d9_gap": {
+        "id": "ORACLE-D10-G03",
+        "detail": "nonempty subflow interface needs independent Phase 3D interface expansion"
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/p31-fresh-root-b-top-ceiling-one",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/p31-fresh-root-b-top-ceiling-one.ace1",
+      "mutations": [],
+      "input_identity": {
+        "canonical_bytes": 2266289,
+        "canonical_sha256": "bd9330d1ce572e912b2a5db586ab2f11246c6454c4dfbc1485d72986749a563d"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "871265025335f4ec69db0805801d6de7d2d1de335deed7e9c9de140573dda50c"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "51cbe266f7c3cd4f6c6633b56670422e026a8fd6f839a37d27c8304e788639ae"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 117997,
+        "canonical_sha256": "d9a832abc357972e38928bc96fd101a8be604de291f2337be3c46168c22bb3f5"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 3302,
+        "canonical_sha256": "84a88a29d206aa2196165237685effcbfe9e6692bc86e2072784bd48ef982ebf"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [
+          {
+            "export_input_port": {
+              "exported_contract_digest": {
+                "algorithm": "sha256",
+                "domain": "component-contract",
+                "hex": "51cbe266f7c3cd4f6c6633b56670422e026a8fd6f839a37d27c8304e788639ae"
+              },
+              "port_no": "1"
+            },
+            "export_type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1a05cc6cd2e100c736d0ff6206876d4e7ac4d3ff68ec2d13e729938f18b4cae1"
+              },
+              "specification_id": "agentflow.guard.fixture@1",
+              "type_name": "GuardInt64"
+            },
+            "root_type": "1",
+            "root_value_slot": "11",
+            "run_parameter_id": "1",
+            "use_sites": [
+              {
+                "computation": "1",
+                "dependency_slots": [
+                  "11"
+                ],
+                "exact_type": {
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "1a05cc6cd2e100c736d0ff6206876d4e7ac4d3ff68ec2d13e729938f18b4cae1"
+                  },
+                  "specification_id": "agentflow.guard.fixture@1",
+                  "type_name": "GuardInt64"
+                },
+                "input_expression": "1",
+                "source_component_port": "1",
+                "source_contract_digest": {
+                  "algorithm": "sha256",
+                  "domain": "component-contract",
+                  "hex": "b88a7f4b9f3b4c5eecf9b6458065ed5ff055bf1278d7ed9be41ffeb86ba0f045"
+                }
+              }
+            ]
+          }
+        ],
+        "output_mappings": [],
+        "resource_mappings": [
+          {
+            "export_resource_port": {
+              "exported_contract_digest": {
+                "algorithm": "sha256",
+                "domain": "component-contract",
+                "hex": "51cbe266f7c3cd4f6c6633b56670422e026a8fd6f839a37d27c8304e788639ae"
+              },
+              "port_no": "1"
+            },
+            "export_resource_type": {
+              "schema": {
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "1a05cc6cd2e100c736d0ff6206876d4e7ac4d3ff68ec2d13e729938f18b4cae1"
+                },
+                "specification_id": "agentflow.guard.fixture@1",
+                "type_name": "GuardInt64"
+              }
+            },
+            "root_resource_slot": "1",
+            "root_resource_type": {
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "1a05cc6cd2e100c736d0ff6206876d4e7ac4d3ff68ec2d13e729938f18b4cae1"
+              },
+              "specification_id": "agentflow.guard.fixture@1",
+              "type_name": "GuardInt64"
+            },
+            "source_coordinates": [
+              {
+                "alias_component_ports": [
+                  "1"
+                ],
+                "component_resource_port": "1",
+                "resource_slot": "1",
+                "source_contract_digest": {
+                  "algorithm": "sha256",
+                  "domain": "component-contract",
+                  "hex": "b88a7f4b9f3b4c5eecf9b6458065ed5ff055bf1278d7ed9be41ffeb86ba0f045"
+                },
+                "source_node": "1"
+              }
+            ]
+          }
+        ],
+        "effect_mappings": [
+          {
+            "export_atom": {
+              "operation": {
+                "catalog": "agentflow.effects.test@1",
+                "name": "write"
+              },
+              "qualifiers": [
+                {
+                  "idempotency": "natural"
+                }
+              ],
+              "resource_selector": {
+                "requirement_port_no": "1",
+                "scope_bindings": [
+                  {
+                    "key": "a",
+                    "value": "1"
+                  },
+                  {
+                    "key": "b",
+                    "value": "1"
+                  }
+                ]
+              }
+            },
+            "export_guard": {
+              "unconditional": null
+            },
+            "root_resource_slot": {
+              "some": "1"
+            },
+            "source": {
+              "atom": {
+                "operation": {
+                  "catalog": "agentflow.effects.test@1",
+                  "name": "write"
+                },
+                "qualifiers": [
+                  {
+                    "idempotency": "natural"
+                  }
+                ],
+                "resource_selector": {
+                  "requirement_port_no": "1",
+                  "scope_bindings": [
+                    {
+                      "key": "a",
+                      "value": "1"
+                    },
+                    {
+                      "key": "b",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "caller_semantic_ir_digest": {
+                "algorithm": "sha256",
+                "domain": "semantic-ir",
+                "hex": "871265025335f4ec69db0805801d6de7d2d1de335deed7e9c9de140573dda50c"
+              },
+              "guard": {
+                "unconditional": null
+              },
+              "source_contract_digest": {
+                "algorithm": "sha256",
+                "domain": "component-contract",
+                "hex": "b88a7f4b9f3b4c5eecf9b6458065ed5ff055bf1278d7ed9be41ffeb86ba0f045"
+              },
+              "source_entry_ordinal": "0",
+              "source_node": "1"
+            }
+          }
+        ],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "b88a7f4b9f3b4c5eecf9b6458065ed5ff055bf1278d7ed9be41ffeb86ba0f045"
+            },
+            "source_node": "1"
+          }
+        ],
+        "subflow_dependencies": [
+          {
+            "call_site": "1",
+            "target_exported_contract_digest": {
+              "some": {
+                "algorithm": "sha256",
+                "domain": "component-contract",
+                "hex": "b88a7f4b9f3b4c5eecf9b6458065ed5ff055bf1278d7ed9be41ffeb86ba0f045"
+              }
+            },
+            "target_root_assertion_id": {
+              "none": null
+            },
+            "target_semantic_ir_digest": {
+              "algorithm": "sha256",
+              "domain": "semantic-ir",
+              "hex": "52e76c074f19673cb70f8e11b31497acac9cb8d7bf188cff01f8a6d6fdb3656f"
+            },
+            "transitive_targets": []
+          }
+        ]
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": null,
+      "d9_full_field_status": "OracleImplementationGap",
+      "d9_gap": {
+        "id": "ORACLE-D10-G03",
+        "detail": "nonempty subflow interface needs independent Phase 3D interface expansion"
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-2-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "2"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246669,
+        "canonical_sha256": "1c22877207f86b461fb0fac989689973341f45d8af388c60986ae16db6049bed"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "2"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-2-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-3-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "3"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246669,
+        "canonical_sha256": "29c05d121fb94bc4720c58f5a4e0714380ce58ab28d8618df80ce4b3f5c290bb"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "3"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-3-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-4-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "4"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246669,
+        "canonical_sha256": "33a66f4b5a6a149b774ae3e67b61f7dd77765e57e7e36541051a97132cf3acbd"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "4"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-4-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-5-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "5"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246669,
+        "canonical_sha256": "1f46302d07b7dcaaae883da48cdf5c60d14f074d668f99c88f176d79d63b61b9"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "5"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-5-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-6-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "6"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246669,
+        "canonical_sha256": "7884d4bed16982dc0968314340381f51176bc49cdc6592432e278ed8115cd923"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "6"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-6-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-7-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "7"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246669,
+        "canonical_sha256": "ef4ea3748f0926ad386a8cb1acf9b26e9d6730af19e5b8dbe7d87cf03718259d"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "7"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-7-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-8-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "8"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246669,
+        "canonical_sha256": "226a406b0afa45907c441ff7f954c33a9f6aa44919ab671d37c0aa5016cbf09e"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "8"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-8-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-9-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "9"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246669,
+        "canonical_sha256": "921852a512b309f9b7c99949a9157dfe12e2fb8b3161470f369137e3de3f68c6"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "9"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-9-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-10-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "10"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "b242fdd4c9838db40bec88ef144b6dd929eb820149405449fb892852b27747c3"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "10"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-10-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-11-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "11"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "2043bcdd71b39b2c9a8ce5909e13fadeb19904b396831d23c9fe9e14a0598cc0"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "11"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-11-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-12-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "12"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "0f1021c05a81cd2c1f017b80d41af0495d544cf861efe4b03e220bb873bdf78e"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "12"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-12-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-13-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "13"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "0cad91acf9f893a71f3ee1f3fbb01909c801526ff9911c58c2356dfbc1074d0f"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "13"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-13-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-14-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "14"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "d6164cff94cef2d52c750cef3cd3090cbc1617cc7c46ad1433b73e93142efa26"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "14"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-14-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-15-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "15"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "3792f0699d252e420f78564a06e346d2b2ebb39cd5f579fc6d158ea1e7d4c556"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "15"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-15-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-16-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "16"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "c68acf9cf726cb34c2d617b1d207fd9117a907c71e3d5e2bb980a65415db0248"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "16"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-16-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-17-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "17"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "2adccc9db963d1600dc25998cf47d566eb0229f400aa5f613147abbf1fa3fa2b"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "17"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-17-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-18-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "18"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "e37c0a4a4ff76bb5c63fe295182951e2d488bb1cb69dcf7349e3042ba7d5739b"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "18"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-18-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-19-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "19"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "c6c726d04ece253a25cfffa6b2ae3256f31e54f1531e5cfd29229fb14f21ff1c"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "19"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-19-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-20-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "20"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "45602f58fbfcff63994c09fae73f52129e0e733f4e3e6c5524469974153b08fd"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "20"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-20-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    },
+    {
+      "case_id": "portable-root-export-revalidation/d10-execution-source-node-21-not-root",
+      "group": "D10",
+      "bundle_file": "spec/conformance/portable-root-export-revalidation/full-static-positive.ace1",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "root_export_assertions",
+            "0",
+            "assertion",
+            "execution_mappings",
+            "0",
+            "source_node"
+          ],
+          "value": "21"
+        }
+      ],
+      "input_identity": {
+        "canonical_bytes": 2246670,
+        "canonical_sha256": "b4e642170ca85ea3affbeb53ec31d4f1019fead4059444e1cf78235c2f3f3da4"
+      },
+      "expected_first_stage": "D10",
+      "stage_expectation_basis": "Original D10 group registration; independently tested below, not a new full D0-D9 oracle",
+      "actual_first_stage": "PendingProductionRun",
+      "checked_ir_digest": {
+        "algorithm": "sha256",
+        "domain": "semantic-ir",
+        "hex": "83f6a2648fdc4722d246bc9020dfddbf9c5560306eb78982909b8d8189e68af6"
+      },
+      "top_export_digest": {
+        "algorithm": "sha256",
+        "domain": "component-contract",
+        "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+      },
+      "context_declaration_identity": {
+        "canonical_bytes": 115873,
+        "canonical_sha256": "dcebdb23580d720b819e365c2487ef5e8f69e800383c42fb1ae8a63f2dd3ab72"
+      },
+      "resolver_declaration_identity": {
+        "canonical_bytes": 1604,
+        "canonical_sha256": "3b3e242f6f70cc59abb87849bc6ab08ac9bf6fa69a64ecfd8f9e753b2d7ce74d"
+      },
+      "root_assertion_id": "1",
+      "mapped_source_inventory": {
+        "input_mappings": [],
+        "output_mappings": [],
+        "resource_mappings": [],
+        "effect_mappings": [],
+        "flow_mappings": [],
+        "recovery_mappings": [],
+        "execution_mappings": [
+          {
+            "exact_execution_requirements": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "source_contract_digest": {
+              "algorithm": "sha256",
+              "domain": "component-contract",
+              "hex": "339f1940a70904362de7a58d6b9c3ec7ab6e43d0a1025f99813572190e5076e5"
+            },
+            "source_node": "21"
+          }
+        ],
+        "subflow_dependencies": []
+      },
+      "expected_static_verdict": "OracleGapNotFilledFromActual",
+      "expected_capability_status": "OracleGapNotFilledFromActual",
+      "d10_full_field_status": "FormalModelGap",
+      "d10_gap_ids": [
+        "ORACLE-D10-G01",
+        "ORACLE-D10-G02"
+      ],
+      "expected_d9_file": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-21-not-root.json",
+      "d9_full_field_status": "PendingProductionRun",
+      "instance_coverage": {
+        "required": 4844,
+        "diagnostic": 88
+      }
+    }
+  ]
+}
