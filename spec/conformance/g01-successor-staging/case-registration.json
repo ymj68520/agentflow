@@ -1,0 +1,1055 @@
+{
+  "authority": "accepted R1 roster and matrix;no Rust Actual",
+  "cases": [
+    {
+      "case_id": "g01-successor-staging/case-checked_operand",
+      "expected_case": {
+        "applicability": "all valid subjects",
+        "assertion_path": "known-empty",
+        "case": "checked_operand",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "old",
+          "replacement"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 0,
+        "requirement": {
+          "clause": "checked_operand",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "mandatory_preflight",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "actual original validator facts"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-context_association",
+      "expected_case": {
+        "applicability": "all valid subjects",
+        "assertion_path": "known-empty",
+        "case": "context_association",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "proof_context",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 1,
+        "requirement": {
+          "clause": "proof_context",
+          "evidence_class": "static_declaration",
+          "family": "direct"
+        },
+        "role": "mandatory_preflight",
+        "source_type": "Source",
+        "source_variant": "substitution_application",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)"
+        ],
+        "target_type": "Target",
+        "target_variant": "substitution_pair",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-whole_body_equality",
+      "expected_case": {
+        "applicability": "context Proven",
+        "assertion_path": "known-empty",
+        "case": "whole_body_equality",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 2,
+        "requirement": {
+          "clause": "whole_body_equality",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "supporting_fact",
+        "source_type": "Source",
+        "source_variant": "substitution_application",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "substitution_pair",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-changed_pair_evidence_floor",
+      "expected_case": {
+        "applicability": "context Proven and body changed",
+        "assertion_path": "known-empty",
+        "case": "changed_pair_evidence_floor",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 3,
+        "requirement": {
+          "clause": "changed_pair_evidence_floor",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "supporting_fact",
+        "source_type": "Source",
+        "source_variant": "substitution_application",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "substitution_pair",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-lineage_equality",
+      "expected_case": {
+        "applicability": "context Proven and body changed",
+        "assertion_path": "known-empty",
+        "case": "lineage_equality",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 4,
+        "requirement": {
+          "clause": "lineage_equality",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "supporting_fact",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-io_relation",
+      "expected_case": {
+        "applicability": "context Proven and body changed",
+        "assertion_path": "known-empty",
+        "case": "io_relation",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 5,
+        "requirement": {
+          "clause": "io_relation",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "supporting_fact",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-failure_relation",
+      "expected_case": {
+        "applicability": "context Proven and body changed",
+        "assertion_path": "known-empty",
+        "case": "failure_relation",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 6,
+        "requirement": {
+          "clause": "failure_relation",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "supporting_fact",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-effects_relation",
+      "expected_case": {
+        "applicability": "context Proven and body changed",
+        "assertion_path": "known-empty",
+        "case": "effects_relation",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 7,
+        "requirement": {
+          "clause": "effects_relation",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "supporting_fact",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-resources_relation",
+      "expected_case": {
+        "applicability": "context Proven and body changed",
+        "assertion_path": "known-empty",
+        "case": "resources_relation",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 8,
+        "requirement": {
+          "clause": "resources_relation",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "supporting_fact",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-flow_relation",
+      "expected_case": {
+        "applicability": "context Proven and body changed",
+        "assertion_path": "known-empty",
+        "case": "flow_relation",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 9,
+        "requirement": {
+          "clause": "flow_relation",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "supporting_fact",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-usage_relation",
+      "expected_case": {
+        "applicability": "context Proven and body changed",
+        "assertion_path": "known-empty",
+        "case": "usage_relation",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 10,
+        "requirement": {
+          "clause": "usage_relation",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "supporting_fact",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-recovery_relation",
+      "expected_case": {
+        "applicability": "context Proven and body changed",
+        "assertion_path": "known-empty",
+        "case": "recovery_relation",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 11,
+        "requirement": {
+          "clause": "recovery_relation",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "supporting_fact",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-execution_feasibility_relation",
+      "expected_case": {
+        "applicability": "context Proven and body changed",
+        "assertion_path": "known-empty",
+        "case": "execution_feasibility_relation",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 12,
+        "requirement": {
+          "clause": "execution_feasibility_relation",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "supporting_fact",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-execution_security_relation",
+      "expected_case": {
+        "applicability": "context Proven and body changed",
+        "assertion_path": "known-empty",
+        "case": "execution_security_relation",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 13,
+        "requirement": {
+          "clause": "execution_security_relation",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "supporting_fact",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-execution_combined_relation",
+      "expected_case": {
+        "applicability": "context Proven and body changed",
+        "assertion_path": "known-empty",
+        "case": "execution_combined_relation",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 14,
+        "requirement": {
+          "clause": "execution_combined_relation",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "supporting_fact",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-result_identity",
+      "expected_case": {
+        "applicability": "all valid subjects",
+        "assertion_path": "known-empty",
+        "case": "result_identity",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 15,
+        "requirement": {
+          "clause": "result_identity",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "static_dimension",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-result_io",
+      "expected_case": {
+        "applicability": "all valid subjects",
+        "assertion_path": "known-empty",
+        "case": "result_io",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 16,
+        "requirement": {
+          "clause": "result_io",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "static_dimension",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-result_failure",
+      "expected_case": {
+        "applicability": "all valid subjects",
+        "assertion_path": "known-empty",
+        "case": "result_failure",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 17,
+        "requirement": {
+          "clause": "result_failure",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "static_dimension",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-result_effects",
+      "expected_case": {
+        "applicability": "all valid subjects",
+        "assertion_path": "known-empty",
+        "case": "result_effects",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 18,
+        "requirement": {
+          "clause": "result_effects",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "static_dimension",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-result_resources",
+      "expected_case": {
+        "applicability": "all valid subjects",
+        "assertion_path": "known-empty",
+        "case": "result_resources",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 19,
+        "requirement": {
+          "clause": "result_resources",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "static_dimension",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-result_information_flow",
+      "expected_case": {
+        "applicability": "all valid subjects",
+        "assertion_path": "known-empty",
+        "case": "result_information_flow",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 20,
+        "requirement": {
+          "clause": "result_information_flow",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "static_dimension",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-result_usage",
+      "expected_case": {
+        "applicability": "all valid subjects",
+        "assertion_path": "known-empty",
+        "case": "result_usage",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 21,
+        "requirement": {
+          "clause": "result_usage",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "static_dimension",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-result_recovery",
+      "expected_case": {
+        "applicability": "all valid subjects",
+        "assertion_path": "known-empty",
+        "case": "result_recovery",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 22,
+        "requirement": {
+          "clause": "result_recovery",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "static_dimension",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-result_execution",
+      "expected_case": {
+        "applicability": "all valid subjects",
+        "assertion_path": "known-empty",
+        "case": "result_execution",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 23,
+        "requirement": {
+          "clause": "result_execution",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "static_dimension",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-result_execution_feasibility",
+      "expected_case": {
+        "applicability": "all valid subjects",
+        "assertion_path": "known-empty",
+        "case": "result_execution_feasibility",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 24,
+        "requirement": {
+          "clause": "result_execution_feasibility",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "static_dimension",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-result_execution_security",
+      "expected_case": {
+        "applicability": "all valid subjects",
+        "assertion_path": "known-empty",
+        "case": "result_execution_security",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 25,
+        "requirement": {
+          "clause": "result_execution_security",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "static_dimension",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/case-result_cross_dimension",
+      "expected_case": {
+        "applicability": "all valid subjects",
+        "assertion_path": "known-empty",
+        "case": "result_cross_dimension",
+        "coordinate_type": "Coordinate",
+        "evaluation": "context false:blocked result;body equal:reflexive result;changed:actual evaluated candidate/fold",
+        "family": "standalone_substitution",
+        "governing_rule": "AF-CONTRACT-0020",
+        "kind": "substitution_evidence",
+        "operand_roles": [
+          "replacement",
+          "old"
+        ],
+        "ordering": "rank;full typed payload and source/application origin",
+        "origin_path": "ApplicationDocument.applications[index];old/replacement field only for checked consumption",
+        "origin_type": "Origin",
+        "rank": 26,
+        "requirement": {
+          "clause": "result_cross_dimension",
+          "evidence_class": "static_declaration",
+          "family": "substitution"
+        },
+        "role": "static_dimension",
+        "source_type": "Source",
+        "source_variant": "contract_operand",
+        "stage": "standalone_substitution",
+        "status_rules": "frozen three-branch matrix;local and final judgments are distinct;no invented RequiresEvidence",
+        "supporting_relations": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association"
+        ],
+        "target_type": "Target",
+        "target_variant": "contract_operand",
+        "witness": "exact typed witness iff Violation;never recover from reason"
+      }
+    }
+  ]
+}

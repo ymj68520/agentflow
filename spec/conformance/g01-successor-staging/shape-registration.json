@@ -1,0 +1,203 @@
+{
+  "cases": [
+    {
+      "case_id": "g01-successor-staging/shape-unknown-case",
+      "expected_failure": "UnsupportedModel",
+      "type": "SubstitutionCase",
+      "value": "future_case"
+    },
+    {
+      "case_id": "g01-successor-staging/shape-roles-shared",
+      "expected_failure": null,
+      "type": "ContextRolePartition",
+      "value": [
+        [
+          "analysis",
+          "old_checked",
+          "replacement_checked"
+        ]
+      ]
+    },
+    {
+      "case_id": "g01-successor-staging/shape-roles-distinct",
+      "expected_failure": null,
+      "type": "ContextRolePartition",
+      "value": [
+        [
+          "analysis",
+          "replacement_checked"
+        ],
+        [
+          "old_checked"
+        ]
+      ]
+    },
+    {
+      "case_id": "g01-successor-staging/shape-roles-missing",
+      "expected_failure": "IncompleteFacts",
+      "type": "ContextRolePartition",
+      "value": [
+        [
+          "analysis",
+          "replacement_checked"
+        ]
+      ]
+    },
+    {
+      "case_id": "g01-successor-staging/shape-roles-duplicate",
+      "expected_failure": "IncompleteFacts",
+      "type": "ContextRolePartition",
+      "value": [
+        [
+          "analysis",
+          "old_checked",
+          "replacement_checked",
+          "old_checked"
+        ]
+      ]
+    },
+    {
+      "case_id": "g01-successor-staging/shape-alias-conflict",
+      "expected_failure": "InvalidFacts",
+      "type": "ContextRolePartition",
+      "value": [
+        [
+          "analysis"
+        ],
+        [
+          "old_checked"
+        ],
+        [
+          "replacement_checked"
+        ]
+      ]
+    },
+    {
+      "case_id": "g01-successor-staging/shape-unknown-model",
+      "expected_failure": "UnsupportedModel",
+      "type": "not_registered",
+      "value": {}
+    },
+    {
+      "case_id": "g01-successor-staging/shape-unknown-role",
+      "expected_failure": "UnsupportedModel",
+      "type": "OperandRole",
+      "value": "caller"
+    },
+    {
+      "case_id": "g01-successor-staging/shape-option-none",
+      "expected_failure": "IncompleteFacts",
+      "type": "Source",
+      "value": {
+        "contract_operand": {
+          "role": "old"
+        }
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/shape-ordinal-two",
+      "expected_failure": null,
+      "type": "$U64",
+      "value": 2
+    },
+    {
+      "case_id": "g01-successor-staging/shape-ordinal-ten",
+      "expected_failure": null,
+      "type": "$U64",
+      "value": 10
+    },
+    {
+      "case_id": "g01-successor-staging/shape-nominal-u32-overflow",
+      "expected_failure": "UnsupportedModel",
+      "type": "ComputationId",
+      "value": 4294967296
+    },
+    {
+      "case_id": "g01-successor-staging/shape-raw-utf8-claim",
+      "expected_failure": null,
+      "type": "Raw($Text)",
+      "value": [
+        101,
+        204,
+        129
+      ]
+    },
+    {
+      "case_id": "g01-successor-staging/shape-nfd-checked-text",
+      "expected_failure": "UnsupportedModel",
+      "type": "$Text",
+      "value": "é"
+    },
+    {
+      "case_id": "g01-successor-staging/shape-unknown-error-resource",
+      "expected_failure": "UnsupportedModel",
+      "type": "resourceErrorKind",
+      "value": "future_error"
+    },
+    {
+      "case_id": "g01-successor-staging/shape-unknown-error-flow",
+      "expected_failure": "UnsupportedModel",
+      "type": "flowErrorKind",
+      "value": "future_error"
+    },
+    {
+      "case_id": "g01-successor-staging/shape-unknown-error-usage",
+      "expected_failure": "UnsupportedModel",
+      "type": "usageErrorKind",
+      "value": "future_error"
+    },
+    {
+      "case_id": "g01-successor-staging/shape-unknown-error-recovery",
+      "expected_failure": "UnsupportedModel",
+      "type": "recoveryErrorKind",
+      "value": "future_error"
+    },
+    {
+      "case_id": "g01-successor-staging/shape-unknown-error-execution",
+      "expected_failure": "UnsupportedModel",
+      "type": "executionErrorKind",
+      "value": "future_error"
+    },
+    {
+      "case_id": "g01-successor-staging/shape-domain-kind-conflict",
+      "expected_failure": "InvalidFacts",
+      "type": "DependencyErrorPayload",
+      "value": {
+        "detail": "diagnostic",
+        "domain": "resource",
+        "kind": {
+          "usage": "unknown_usage_meter"
+        }
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/shape-missing-error-detail",
+      "expected_failure": "IncompleteFacts",
+      "type": "DependencyErrorPayload",
+      "value": {
+        "domain": "resource",
+        "kind": {
+          "resource": "unknown_resource_type"
+        }
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/shape-unknown-model-ref",
+      "expected_failure": "UnsupportedModel",
+      "type": "ModelRef",
+      "value": {
+        "name": "not_registered",
+        "owner": "agentflow.computation.proof-report.model@2"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/shape-wrong-option-tag",
+      "expected_failure": "UnsupportedModel",
+      "type": "ProofVerdict",
+      "value": {
+        "some": "Proven"
+      }
+    }
+  ],
+  "meaning": "metadata shape only;NOT trusted Fact Seed"
+}

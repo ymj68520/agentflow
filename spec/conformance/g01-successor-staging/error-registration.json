@@ -1,0 +1,556 @@
+{
+  "cases": [
+    {
+      "case_id": "g01-successor-staging/error-resource-invalid_resource_type",
+      "constant": "INVALID_RESOURCE_TYPE",
+      "domain": "resource",
+      "kind": "invalid_resource_type",
+      "probe_type": "resourceErrorKind",
+      "value": "invalid_resource_type"
+    },
+    {
+      "case_id": "g01-successor-staging/error-resource-unknown_resource_type",
+      "constant": "UNKNOWN_RESOURCE_TYPE",
+      "domain": "resource",
+      "kind": "unknown_resource_type",
+      "probe_type": "resourceErrorKind",
+      "value": "unknown_resource_type"
+    },
+    {
+      "case_id": "g01-successor-staging/error-resource-resource_type_digest_mismatch",
+      "constant": "RESOURCE_TYPE_DIGEST_MISMATCH",
+      "domain": "resource",
+      "kind": "resource_type_digest_mismatch",
+      "probe_type": "resourceErrorKind",
+      "value": "resource_type_digest_mismatch"
+    },
+    {
+      "case_id": "g01-successor-staging/error-resource-invalid_resource_port",
+      "constant": "INVALID_RESOURCE_PORT",
+      "domain": "resource",
+      "kind": "invalid_resource_port",
+      "probe_type": "resourceErrorKind",
+      "value": "invalid_resource_port"
+    },
+    {
+      "case_id": "g01-successor-staging/error-resource-duplicate_resource_port",
+      "constant": "DUPLICATE_RESOURCE_PORT",
+      "domain": "resource",
+      "kind": "duplicate_resource_port",
+      "probe_type": "resourceErrorKind",
+      "value": "duplicate_resource_port"
+    },
+    {
+      "case_id": "g01-successor-staging/error-resource-invalid_resource_attribute",
+      "constant": "INVALID_RESOURCE_ATTRIBUTE",
+      "domain": "resource",
+      "kind": "invalid_resource_attribute",
+      "probe_type": "resourceErrorKind",
+      "value": "invalid_resource_attribute"
+    },
+    {
+      "case_id": "g01-successor-staging/error-resource-duplicate_resource_attribute",
+      "constant": "DUPLICATE_RESOURCE_ATTRIBUTE",
+      "domain": "resource",
+      "kind": "duplicate_resource_attribute",
+      "probe_type": "resourceErrorKind",
+      "value": "duplicate_resource_attribute"
+    },
+    {
+      "case_id": "g01-successor-staging/error-resource-unknown_resource_attribute",
+      "constant": "UNKNOWN_RESOURCE_ATTRIBUTE",
+      "domain": "resource",
+      "kind": "unknown_resource_attribute",
+      "probe_type": "resourceErrorKind",
+      "value": "unknown_resource_attribute"
+    },
+    {
+      "case_id": "g01-successor-staging/error-resource-resource_requirement_unsatisfied",
+      "constant": "RESOURCE_REQUIREMENT_UNSATISFIED",
+      "domain": "resource",
+      "kind": "resource_requirement_unsatisfied",
+      "probe_type": "resourceErrorKind",
+      "value": "resource_requirement_unsatisfied"
+    },
+    {
+      "case_id": "g01-successor-staging/error-resource-resource_requirement_unproven",
+      "constant": "RESOURCE_REQUIREMENT_UNPROVEN",
+      "domain": "resource",
+      "kind": "resource_requirement_unproven",
+      "probe_type": "resourceErrorKind",
+      "value": "resource_requirement_unproven"
+    },
+    {
+      "case_id": "g01-successor-staging/error-resource-resource_requirement_strengthened",
+      "constant": "RESOURCE_REQUIREMENT_STRENGTHENED",
+      "domain": "resource",
+      "kind": "resource_requirement_strengthened",
+      "probe_type": "resourceErrorKind",
+      "value": "resource_requirement_strengthened"
+    },
+    {
+      "case_id": "g01-successor-staging/error-resource-resource_encoding_error",
+      "constant": "RESOURCE_ENCODING_ERROR",
+      "domain": "resource",
+      "kind": "resource_encoding_error",
+      "probe_type": "resourceErrorKind",
+      "value": "resource_encoding_error"
+    },
+    {
+      "case_id": "g01-successor-staging/error-flow-invalid_information_label",
+      "constant": "INVALID_INFORMATION_LABEL",
+      "domain": "flow",
+      "kind": "invalid_information_label",
+      "probe_type": "flowErrorKind",
+      "value": "invalid_information_label"
+    },
+    {
+      "case_id": "g01-successor-staging/error-flow-unknown_information_label",
+      "constant": "UNKNOWN_INFORMATION_LABEL",
+      "domain": "flow",
+      "kind": "unknown_information_label",
+      "probe_type": "flowErrorKind",
+      "value": "unknown_information_label"
+    },
+    {
+      "case_id": "g01-successor-staging/error-flow-duplicate_information_label",
+      "constant": "DUPLICATE_INFORMATION_LABEL",
+      "domain": "flow",
+      "kind": "duplicate_information_label",
+      "probe_type": "flowErrorKind",
+      "value": "duplicate_information_label"
+    },
+    {
+      "case_id": "g01-successor-staging/error-flow-invalid_flow_source",
+      "constant": "INVALID_FLOW_SOURCE",
+      "domain": "flow",
+      "kind": "invalid_flow_source",
+      "probe_type": "flowErrorKind",
+      "value": "invalid_flow_source"
+    },
+    {
+      "case_id": "g01-successor-staging/error-flow-invalid_flow_sink",
+      "constant": "INVALID_FLOW_SINK",
+      "domain": "flow",
+      "kind": "invalid_flow_sink",
+      "probe_type": "flowErrorKind",
+      "value": "invalid_flow_sink"
+    },
+    {
+      "case_id": "g01-successor-staging/error-flow-unknown_flow_sink",
+      "constant": "UNKNOWN_FLOW_SINK",
+      "domain": "flow",
+      "kind": "unknown_flow_sink",
+      "probe_type": "flowErrorKind",
+      "value": "unknown_flow_sink"
+    },
+    {
+      "case_id": "g01-successor-staging/error-flow-duplicate_flow_constraint",
+      "constant": "DUPLICATE_FLOW_CONSTRAINT",
+      "domain": "flow",
+      "kind": "duplicate_flow_constraint",
+      "probe_type": "flowErrorKind",
+      "value": "duplicate_flow_constraint"
+    },
+    {
+      "case_id": "g01-successor-staging/error-flow-flow_not_proven",
+      "constant": "FLOW_NOT_PROVEN",
+      "domain": "flow",
+      "kind": "flow_not_proven",
+      "probe_type": "flowErrorKind",
+      "value": "flow_not_proven"
+    },
+    {
+      "case_id": "g01-successor-staging/error-flow-flow_contract_relaxed",
+      "constant": "FLOW_CONTRACT_RELAXED",
+      "domain": "flow",
+      "kind": "flow_contract_relaxed",
+      "probe_type": "flowErrorKind",
+      "value": "flow_contract_relaxed"
+    },
+    {
+      "case_id": "g01-successor-staging/error-flow-privileged_transformation_required",
+      "constant": "PRIVILEGED_TRANSFORMATION_REQUIRED",
+      "domain": "flow",
+      "kind": "privileged_transformation_required",
+      "probe_type": "flowErrorKind",
+      "value": "privileged_transformation_required"
+    },
+    {
+      "case_id": "g01-successor-staging/error-flow-flow_encoding_error",
+      "constant": "FLOW_ENCODING_ERROR",
+      "domain": "flow",
+      "kind": "flow_encoding_error",
+      "probe_type": "flowErrorKind",
+      "value": "flow_encoding_error"
+    },
+    {
+      "case_id": "g01-successor-staging/error-usage-invalid_usage_meter",
+      "constant": "INVALID_USAGE_METER",
+      "domain": "usage",
+      "kind": "invalid_usage_meter",
+      "probe_type": "usageErrorKind",
+      "value": "invalid_usage_meter"
+    },
+    {
+      "case_id": "g01-successor-staging/error-usage-unknown_usage_meter",
+      "constant": "UNKNOWN_USAGE_METER",
+      "domain": "usage",
+      "kind": "unknown_usage_meter",
+      "probe_type": "usageErrorKind",
+      "value": "unknown_usage_meter"
+    },
+    {
+      "case_id": "g01-successor-staging/error-usage-incompatible_meter_unit",
+      "constant": "INCOMPATIBLE_METER_UNIT",
+      "domain": "usage",
+      "kind": "incompatible_meter_unit",
+      "probe_type": "usageErrorKind",
+      "value": "incompatible_meter_unit"
+    },
+    {
+      "case_id": "g01-successor-staging/error-usage-invalid_usage_phase",
+      "constant": "INVALID_USAGE_PHASE",
+      "domain": "usage",
+      "kind": "invalid_usage_phase",
+      "probe_type": "usageErrorKind",
+      "value": "invalid_usage_phase"
+    },
+    {
+      "case_id": "g01-successor-staging/error-usage-duplicate_usage_limit",
+      "constant": "DUPLICATE_USAGE_LIMIT",
+      "domain": "usage",
+      "kind": "duplicate_usage_limit",
+      "probe_type": "usageErrorKind",
+      "value": "duplicate_usage_limit"
+    },
+    {
+      "case_id": "g01-successor-staging/error-usage-unsupported_usage_aggregation",
+      "constant": "UNSUPPORTED_USAGE_AGGREGATION",
+      "domain": "usage",
+      "kind": "unsupported_usage_aggregation",
+      "probe_type": "usageErrorKind",
+      "value": "unsupported_usage_aggregation"
+    },
+    {
+      "case_id": "g01-successor-staging/error-usage-usage_arithmetic_overflow",
+      "constant": "USAGE_ARITHMETIC_OVERFLOW",
+      "domain": "usage",
+      "kind": "usage_arithmetic_overflow",
+      "probe_type": "usageErrorKind",
+      "value": "usage_arithmetic_overflow"
+    },
+    {
+      "case_id": "g01-successor-staging/error-usage-usage_bound_unproven",
+      "constant": "USAGE_BOUND_UNPROVEN",
+      "domain": "usage",
+      "kind": "usage_bound_unproven",
+      "probe_type": "usageErrorKind",
+      "value": "usage_bound_unproven"
+    },
+    {
+      "case_id": "g01-successor-staging/error-usage-usage_ceiling_exceeded",
+      "constant": "USAGE_CEILING_EXCEEDED",
+      "domain": "usage",
+      "kind": "usage_ceiling_exceeded",
+      "probe_type": "usageErrorKind",
+      "value": "usage_ceiling_exceeded"
+    },
+    {
+      "case_id": "g01-successor-staging/error-usage-usage_compatibility_unproven",
+      "constant": "USAGE_COMPATIBILITY_UNPROVEN",
+      "domain": "usage",
+      "kind": "usage_compatibility_unproven",
+      "probe_type": "usageErrorKind",
+      "value": "usage_compatibility_unproven"
+    },
+    {
+      "case_id": "g01-successor-staging/error-usage-usage_encoding_error",
+      "constant": "USAGE_ENCODING_ERROR",
+      "domain": "usage",
+      "kind": "usage_encoding_error",
+      "probe_type": "usageErrorKind",
+      "value": "usage_encoding_error"
+    },
+    {
+      "case_id": "g01-successor-staging/error-recovery-invalid_replay_semantics",
+      "constant": "INVALID_REPLAY_SEMANTICS",
+      "domain": "recovery",
+      "kind": "invalid_replay_semantics",
+      "probe_type": "recoveryErrorKind",
+      "value": "invalid_replay_semantics"
+    },
+    {
+      "case_id": "g01-successor-staging/error-recovery-invalid_idempotency_contract",
+      "constant": "INVALID_IDEMPOTENCY_CONTRACT",
+      "domain": "recovery",
+      "kind": "invalid_idempotency_contract",
+      "probe_type": "recoveryErrorKind",
+      "value": "invalid_idempotency_contract"
+    },
+    {
+      "case_id": "g01-successor-staging/error-recovery-duplicate_effect_recovery_clause",
+      "constant": "DUPLICATE_EFFECT_RECOVERY_CLAUSE",
+      "domain": "recovery",
+      "kind": "duplicate_effect_recovery_clause",
+      "probe_type": "recoveryErrorKind",
+      "value": "duplicate_effect_recovery_clause"
+    },
+    {
+      "case_id": "g01-successor-staging/error-recovery-unknown_recovery_operation",
+      "constant": "UNKNOWN_RECOVERY_OPERATION",
+      "domain": "recovery",
+      "kind": "unknown_recovery_operation",
+      "probe_type": "recoveryErrorKind",
+      "value": "unknown_recovery_operation"
+    },
+    {
+      "case_id": "g01-successor-staging/error-recovery-recovery_effect_not_declared",
+      "constant": "RECOVERY_EFFECT_NOT_DECLARED",
+      "domain": "recovery",
+      "kind": "recovery_effect_not_declared",
+      "probe_type": "recoveryErrorKind",
+      "value": "recovery_effect_not_declared"
+    },
+    {
+      "case_id": "g01-successor-staging/error-recovery-reconciliation_required",
+      "constant": "RECONCILIATION_REQUIRED",
+      "domain": "recovery",
+      "kind": "reconciliation_required",
+      "probe_type": "recoveryErrorKind",
+      "value": "reconciliation_required"
+    },
+    {
+      "case_id": "g01-successor-staging/error-recovery-reconciliation_evidence_missing",
+      "constant": "RECONCILIATION_EVIDENCE_MISSING",
+      "domain": "recovery",
+      "kind": "reconciliation_evidence_missing",
+      "probe_type": "recoveryErrorKind",
+      "value": "reconciliation_evidence_missing"
+    },
+    {
+      "case_id": "g01-successor-staging/error-recovery-idempotency_evidence_missing",
+      "constant": "IDEMPOTENCY_EVIDENCE_MISSING",
+      "domain": "recovery",
+      "kind": "idempotency_evidence_missing",
+      "probe_type": "recoveryErrorKind",
+      "value": "idempotency_evidence_missing"
+    },
+    {
+      "case_id": "g01-successor-staging/error-recovery-compensation_obligation_unresolved",
+      "constant": "COMPENSATION_OBLIGATION_UNRESOLVED",
+      "domain": "recovery",
+      "kind": "compensation_obligation_unresolved",
+      "probe_type": "recoveryErrorKind",
+      "value": "compensation_obligation_unresolved"
+    },
+    {
+      "case_id": "g01-successor-staging/error-recovery-unsafe_blind_retry",
+      "constant": "UNSAFE_BLIND_RETRY",
+      "domain": "recovery",
+      "kind": "unsafe_blind_retry",
+      "probe_type": "recoveryErrorKind",
+      "value": "unsafe_blind_retry"
+    },
+    {
+      "case_id": "g01-successor-staging/error-recovery-recovery_contract_unproven",
+      "constant": "RECOVERY_CONTRACT_UNPROVEN",
+      "domain": "recovery",
+      "kind": "recovery_contract_unproven",
+      "probe_type": "recoveryErrorKind",
+      "value": "recovery_contract_unproven"
+    },
+    {
+      "case_id": "g01-successor-staging/error-recovery-recovery_contract_weakened",
+      "constant": "RECOVERY_CONTRACT_WEAKENED",
+      "domain": "recovery",
+      "kind": "recovery_contract_weakened",
+      "probe_type": "recoveryErrorKind",
+      "value": "recovery_contract_weakened"
+    },
+    {
+      "case_id": "g01-successor-staging/error-recovery-recovery_encoding_error",
+      "constant": "RECOVERY_ENCODING_ERROR",
+      "domain": "recovery",
+      "kind": "recovery_encoding_error",
+      "probe_type": "recoveryErrorKind",
+      "value": "recovery_encoding_error"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-invalid_execution_capability",
+      "constant": "INVALID_EXECUTION_CAPABILITY",
+      "domain": "execution",
+      "kind": "invalid_execution_capability",
+      "probe_type": "executionErrorKind",
+      "value": "invalid_execution_capability"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-unknown_execution_capability",
+      "constant": "UNKNOWN_EXECUTION_CAPABILITY",
+      "domain": "execution",
+      "kind": "unknown_execution_capability",
+      "probe_type": "executionErrorKind",
+      "value": "unknown_execution_capability"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-unsupported_capability_version",
+      "constant": "UNSUPPORTED_CAPABILITY_VERSION",
+      "domain": "execution",
+      "kind": "unsupported_capability_version",
+      "probe_type": "executionErrorKind",
+      "value": "unsupported_capability_version"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-capability_requirement_unproven",
+      "constant": "CAPABILITY_REQUIREMENT_UNPROVEN",
+      "domain": "execution",
+      "kind": "capability_requirement_unproven",
+      "probe_type": "executionErrorKind",
+      "value": "capability_requirement_unproven"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-invalid_compute_quantity",
+      "constant": "INVALID_COMPUTE_QUANTITY",
+      "domain": "execution",
+      "kind": "invalid_compute_quantity",
+      "probe_type": "executionErrorKind",
+      "value": "invalid_compute_quantity"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-quantity_unit_mismatch",
+      "constant": "QUANTITY_UNIT_MISMATCH",
+      "domain": "execution",
+      "kind": "quantity_unit_mismatch",
+      "probe_type": "executionErrorKind",
+      "value": "quantity_unit_mismatch"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-invalid_sandbox_requirement",
+      "constant": "INVALID_SANDBOX_REQUIREMENT",
+      "domain": "execution",
+      "kind": "invalid_sandbox_requirement",
+      "probe_type": "executionErrorKind",
+      "value": "invalid_sandbox_requirement"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-sandbox_assurance_unproven",
+      "constant": "SANDBOX_ASSURANCE_UNPROVEN",
+      "domain": "execution",
+      "kind": "sandbox_assurance_unproven",
+      "probe_type": "executionErrorKind",
+      "value": "sandbox_assurance_unproven"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-unknown_trust_domain",
+      "constant": "UNKNOWN_TRUST_DOMAIN",
+      "domain": "execution",
+      "kind": "unknown_trust_domain",
+      "probe_type": "executionErrorKind",
+      "value": "unknown_trust_domain"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-trust_domain_mismatch",
+      "constant": "TRUST_DOMAIN_MISMATCH",
+      "domain": "execution",
+      "kind": "trust_domain_mismatch",
+      "probe_type": "executionErrorKind",
+      "value": "trust_domain_mismatch"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-unknown_region",
+      "constant": "UNKNOWN_REGION",
+      "domain": "execution",
+      "kind": "unknown_region",
+      "probe_type": "executionErrorKind",
+      "value": "unknown_region"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-residency_requirement_unproven",
+      "constant": "RESIDENCY_REQUIREMENT_UNPROVEN",
+      "domain": "execution",
+      "kind": "residency_requirement_unproven",
+      "probe_type": "executionErrorKind",
+      "value": "residency_requirement_unproven"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-unknown_runtime_profile",
+      "constant": "UNKNOWN_RUNTIME_PROFILE",
+      "domain": "execution",
+      "kind": "unknown_runtime_profile",
+      "probe_type": "executionErrorKind",
+      "value": "unknown_runtime_profile"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-runtime_abi_incompatible",
+      "constant": "RUNTIME_ABI_INCOMPATIBLE",
+      "domain": "execution",
+      "kind": "runtime_abi_incompatible",
+      "probe_type": "executionErrorKind",
+      "value": "runtime_abi_incompatible"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-duplicate_execution_requirement",
+      "constant": "DUPLICATE_EXECUTION_REQUIREMENT",
+      "domain": "execution",
+      "kind": "duplicate_execution_requirement",
+      "probe_type": "executionErrorKind",
+      "value": "duplicate_execution_requirement"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-conflicting_hard_constraint",
+      "constant": "CONFLICTING_HARD_CONSTRAINT",
+      "domain": "execution",
+      "kind": "conflicting_hard_constraint",
+      "probe_type": "executionErrorKind",
+      "value": "conflicting_hard_constraint"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-execution_profile_rejected",
+      "constant": "EXECUTION_PROFILE_REJECTED",
+      "domain": "execution",
+      "kind": "execution_profile_rejected",
+      "probe_type": "executionErrorKind",
+      "value": "execution_profile_rejected"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-execution_profile_unproven",
+      "constant": "EXECUTION_PROFILE_UNPROVEN",
+      "domain": "execution",
+      "kind": "execution_profile_unproven",
+      "probe_type": "executionErrorKind",
+      "value": "execution_profile_unproven"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-execution_feasibility_strengthened",
+      "constant": "EXECUTION_FEASIBILITY_STRENGTHENED",
+      "domain": "execution",
+      "kind": "execution_feasibility_strengthened",
+      "probe_type": "executionErrorKind",
+      "value": "execution_feasibility_strengthened"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-execution_security_relaxed",
+      "constant": "EXECUTION_SECURITY_RELAXED",
+      "domain": "execution",
+      "kind": "execution_security_relaxed",
+      "probe_type": "executionErrorKind",
+      "value": "execution_security_relaxed"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-execution_compatibility_unproven",
+      "constant": "EXECUTION_COMPATIBILITY_UNPROVEN",
+      "domain": "execution",
+      "kind": "execution_compatibility_unproven",
+      "probe_type": "executionErrorKind",
+      "value": "execution_compatibility_unproven"
+    },
+    {
+      "case_id": "g01-successor-staging/error-execution-execution_encoding_error",
+      "constant": "EXECUTION_ENCODING_ERROR",
+      "domain": "execution",
+      "kind": "execution_encoding_error",
+      "probe_type": "executionErrorKind",
+      "value": "execution_encoding_error"
+    }
+  ]
+}

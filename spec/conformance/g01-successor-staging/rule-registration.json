@@ -1,0 +1,132 @@
+{
+  "cases": [
+    {
+      "anchor": "successor-profile-separation",
+      "case_id": "g01-successor-staging/rule-0229",
+      "normative_source": "spec/computation/proof-obligation-semantics-v2.md",
+      "rule_id": "AF-SEMANTIC-0229",
+      "scope": "registered-staging-only;full semantic laws NOT EXECUTED",
+      "statement": "Only the root_export profile has the five-core/nine-dimension CompleteView; standalone_substitution is a distinct non-root fragment and cannot issue RootExport capability."
+    },
+    {
+      "anchor": "substitution-subject",
+      "case_id": "g01-successor-staging/rule-0230",
+      "normative_source": "spec/component/standalone-substitution-proof.md",
+      "rule_id": "AF-SEMANTIC-0230",
+      "scope": "registered-staging-only;full semantic laws NOT EXECUTED",
+      "statement": "The ordered old and replacement subjects retain all thirteen contract fields, exact canonical bytes and pins, actual validation provenance and complete context-role association without invented caller or resolver."
+    },
+    {
+      "anchor": "substitution-roster",
+      "case_id": "g01-successor-staging/rule-0231",
+      "normative_source": "spec/component/standalone-substitution-proof.md",
+      "rule_id": "AF-SEMANTIC-0231",
+      "scope": "registered-staging-only;full semantic laws NOT EXECUTED",
+      "statement": "The standalone_substitution profile admits exactly its twenty-seven closed cases, twenty-six non-context clauses and twelve ordered result dimensions with the registered role and applicability mapping."
+    },
+    {
+      "anchor": "substitution-lineage",
+      "case_id": "g01-successor-staging/rule-0232",
+      "normative_source": "spec/component/standalone-substitution-proof.md",
+      "rule_id": "AF-SEMANTIC-0232",
+      "scope": "registered-staging-only;full semantic laws NOT EXECUTED",
+      "statement": "Complete catalog/name lineage equality is a local Proven or Unproven relation distinct from the final identity judgment; inequality is not Violation."
+    },
+    {
+      "anchor": "substitution-context",
+      "case_id": "g01-successor-staging/rule-0233",
+      "normative_source": "spec/component/standalone-substitution-proof.md",
+      "rule_id": "AF-SEMANTIC-0233",
+      "scope": "registered-staging-only;full semantic laws NOT EXECUTED",
+      "statement": "Analysis aliases the replacement checked context and native context identity is mandatory; a failed association blocks all twelve comparisons without claiming evaluated relation failures."
+    },
+    {
+      "anchor": "substitution-branches",
+      "case_id": "g01-successor-staging/rule-0234",
+      "normative_source": "spec/component/standalone-substitution-proof.md",
+      "rule_id": "AF-SEMANTIC-0234",
+      "scope": "registered-staging-only;full semantic laws NOT EXECUTED",
+      "statement": "Context failure, exact-body reflexivity and changed-body comparison are disjoint branches; reflexivity never fabricates directional comparator execution."
+    },
+    {
+      "anchor": "substitution-result-fold",
+      "case_id": "g01-successor-staging/rule-0235",
+      "normative_source": "spec/component/standalone-substitution-proof.md",
+      "rule_id": "AF-SEMANTIC-0235",
+      "scope": "registered-staging-only;full semantic laws NOT EXECUTED",
+      "statement": "Changed-body results retain the Unproven floor and all pre-arbitration candidates; the cross result folds eleven distinct non-cross results without a self dependency."
+    },
+    {
+      "anchor": "substitution-execution",
+      "case_id": "g01-successor-staging/rule-0236",
+      "normative_source": "spec/component/standalone-substitution-proof.md",
+      "rule_id": "AF-SEMANTIC-0236",
+      "scope": "registered-staging-only;full semantic laws NOT EXECUTED",
+      "statement": "Execution feasibility and security remain distinct, combined execution preserves Unproven over Violation, and a shared comparison error does not invent three successful independent calls."
+    },
+    {
+      "anchor": "substitution-usage-recovery",
+      "case_id": "g01-successor-staging/rule-0237",
+      "normative_source": "spec/component/standalone-substitution-proof.md",
+      "rule_id": "AF-SEMANTIC-0237",
+      "scope": "registered-staging-only;full semantic laws NOT EXECUTED",
+      "statement": "Usage and recovery preserve their exact frozen candidate rules, including the usage fallback without an added recovery-profile equality gate and no newly invented RequiresEvidence candidate."
+    },
+    {
+      "anchor": "substitution-origin",
+      "case_id": "g01-successor-staging/rule-0238",
+      "normative_source": "spec/component/standalone-substitution-proof.md",
+      "rule_id": "AF-SEMANTIC-0238",
+      "scope": "registered-staging-only;full semantic laws NOT EXECUTED",
+      "statement": "Application origin binds the complete declarative document and real entry path; consumption premises are distinct from original validation facts and observations do not create origins."
+    },
+    {
+      "anchor": "substitution-reference-links",
+      "case_id": "g01-successor-staging/rule-0239",
+      "normative_source": "spec/component/standalone-substitution-proof.md",
+      "rule_id": "AF-SEMANTIC-0239",
+      "scope": "registered-staging-only;full semantic laws NOT EXECUTED",
+      "statement": "Typed operand/member references, original-stage prerequisites, actual supporting facts and every consumer/observation edge are retained independently of RuleId and diagnostic text."
+    },
+    {
+      "anchor": "substitution-basis-witness",
+      "case_id": "g01-successor-staging/rule-0240",
+      "normative_source": "spec/component/standalone-substitution-proof.md",
+      "rule_id": "AF-SEMANTIC-0240",
+      "scope": "registered-staging-only;full semantic laws NOT EXECUTED",
+      "statement": "Every applicable fact retains its closed typed basis and each Violation its exact valid witness; unsupported lineage, effect, nominal-resource, influence, meter or binding relations are not upgraded to Violation."
+    },
+    {
+      "anchor": "substitution-error-closure",
+      "case_id": "g01-successor-staging/rule-0241",
+      "normative_source": "spec/component/standalone-substitution-proof.md",
+      "rule_id": "AF-SEMANTIC-0241",
+      "scope": "registered-staging-only;full semantic laws NOT EXECUTED",
+      "statement": "Dependency errors use the complete domain-tagged finite frozen error-kind sets and full declared payload; unknown kinds are UnsupportedModel and missing required payload is IncompleteFacts."
+    },
+    {
+      "anchor": "successor-descriptor-closure",
+      "case_id": "g01-successor-staging/rule-0242",
+      "normative_source": "spec/tables/proof-report-model-v2.md",
+      "rule_id": "AF-SEMANTIC-0242",
+      "scope": "registered-staging-only;full semantic laws NOT EXECUTED",
+      "statement": "Every reachable successor descriptor has closed fields, variants, nominal widths, option presence, typed ordering and bounded DAG semantics; unknown types reject and no runtime reflection or new ACE1 grammar is permitted."
+    },
+    {
+      "anchor": "successor-exact-identity",
+      "case_id": "g01-successor-staging/rule-0243",
+      "normative_source": "spec/portable/portable-proof-inputs-v3.md",
+      "rule_id": "AF-SEMANTIC-0243",
+      "scope": "registered-staging-only;full semantic laws NOT EXECUTED",
+      "statement": "The distinct successor owner binds complete source, registry, descriptor, report and obligation identity; known label/content mismatches reject and old exact identities are never relabelled."
+    },
+    {
+      "anchor": "successor-staging-denial",
+      "case_id": "g01-successor-staging/rule-0244",
+      "normative_source": "spec/portable/portable-proof-inputs-v3.md",
+      "rule_id": "AF-SEMANTIC-0244",
+      "scope": "registered-staging-only;full semantic laws NOT EXECUTED",
+      "statement": "Registered, Supported and Activated are implementation-owned distinct states; incomplete successor producers, normalization or lossless scope cannot issue any RootExport Checked through direct, Portable or private construction paths."
+    }
+  ]
+}

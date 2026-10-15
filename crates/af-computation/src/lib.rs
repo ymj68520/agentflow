@@ -13,6 +13,7 @@
 mod control;
 mod mapping;
 mod proof;
+mod registered_model;
 mod resolution;
 mod root_export;
 mod root_recovery;
@@ -31,6 +32,10 @@ pub use control::{
     derive_control_contract, derive_workflow_contract_summary,
 };
 pub use proof::{LeafDimensionProof, LeafProofReport, LeafVerdict};
+pub use registered_model::{
+    RegisteredModelFailure, SUCCESSOR_MODEL_ID, admit_registered_profile,
+    registered_descriptor_integrity, registered_model_catalogue, validate_registered_model_shape,
+};
 pub use resolution::{
     LeafResolutionError, ResolverSnapshotIdentity, ResolverSubflowIdentity, SnapshotError,
     StaticComputationResolutionSnapshot, StaticComputationResolutionSnapshotBuilder,

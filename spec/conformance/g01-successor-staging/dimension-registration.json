@@ -1,0 +1,489 @@
+{
+  "cases": [
+    {
+      "case_id": "g01-successor-staging/dimension-identity",
+      "expected_dimension": {
+        "applicability": "every valid application;blocked under failed context",
+        "candidate_rules": "exact catalog AND name equality:P;otherwise:U;never:V",
+        "case": "result_identity",
+        "coordinate": "lineage",
+        "dependencies": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association",
+          "changed_pair_evidence_floor",
+          "lineage_equality"
+        ],
+        "dimension": "identity",
+        "error_basis": "UnprovenBasis;full known domain/kind/payload;unknown UnsupportedModel",
+        "evaluation": "blocked|exact-body-reflexive|changed-body-evaluated",
+        "floor": "Unproven",
+        "governing_rule": "AF-CONTRACT-0020",
+        "local_predicate": "lineage_equality",
+        "old_operand_paths": [
+          "old.contents.contract.component_identity"
+        ],
+        "rank": 0,
+        "replacement_operand_paths": [
+          "replacement.contents.contract.component_identity"
+        ],
+        "result_fold": "outer max(Unproven,local)",
+        "role": "static_dimension",
+        "source": "replacement checked operand",
+        "source_anchor": "component-contract-substitution",
+        "subordinate_rules": [],
+        "target": "old checked operand",
+        "witness": "SubstitutionWitness exact applicable variant only"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/dimension-io",
+      "expected_dimension": {
+        "applicability": "every valid application;blocked under failed context",
+        "candidate_rules": "equal I/O port sets and pins:P;added required input or missing old output:V;otherwise:U",
+        "case": "result_io",
+        "coordinate": "io",
+        "dependencies": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association",
+          "changed_pair_evidence_floor",
+          "io_relation"
+        ],
+        "dimension": "io",
+        "error_basis": "UnprovenBasis;full known domain/kind/payload;unknown UnsupportedModel",
+        "evaluation": "blocked|exact-body-reflexive|changed-body-evaluated",
+        "floor": "Unproven",
+        "governing_rule": "AF-CONTRACT-0020",
+        "local_predicate": "io_relation",
+        "old_operand_paths": [
+          "old.contents.contract.inputs",
+          "old.contents.contract.outputs"
+        ],
+        "rank": 1,
+        "replacement_operand_paths": [
+          "replacement.contents.contract.inputs",
+          "replacement.contents.contract.outputs"
+        ],
+        "result_fold": "outer max(Unproven,local)",
+        "role": "static_dimension",
+        "source": "replacement checked operand",
+        "source_anchor": "component-contract-substitution",
+        "subordinate_rules": [],
+        "target": "old checked operand",
+        "witness": "SubstitutionWitness exact applicable variant only"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/dimension-failure",
+      "expected_dimension": {
+        "applicability": "every valid application;blocked under failed context",
+        "candidate_rules": "new nominal failure set subset old:P;otherwise:V",
+        "case": "result_failure",
+        "coordinate": "failure",
+        "dependencies": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association",
+          "changed_pair_evidence_floor",
+          "failure_relation"
+        ],
+        "dimension": "failure",
+        "error_basis": "UnprovenBasis;full known domain/kind/payload;unknown UnsupportedModel",
+        "evaluation": "blocked|exact-body-reflexive|changed-body-evaluated",
+        "floor": "Unproven",
+        "governing_rule": "AF-CONTRACT-0020",
+        "local_predicate": "failure_relation",
+        "old_operand_paths": [
+          "old.contents.contract.failures"
+        ],
+        "rank": 2,
+        "replacement_operand_paths": [
+          "replacement.contents.contract.failures"
+        ],
+        "result_fold": "outer max(Unproven,local)",
+        "role": "static_dimension",
+        "source": "replacement checked operand",
+        "source_anchor": "component-contract-substitution",
+        "subordinate_rules": [
+          "AF-FAILURE-0008"
+        ],
+        "target": "old checked operand",
+        "witness": "SubstitutionWitness exact applicable variant only"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/dimension-effects",
+      "expected_dimension": {
+        "applicability": "every valid application;blocked under failed context",
+        "candidate_rules": "existing exact effect containment:P or typed U;never manufacture V",
+        "case": "result_effects",
+        "coordinate": "effects",
+        "dependencies": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association",
+          "changed_pair_evidence_floor",
+          "effects_relation"
+        ],
+        "dimension": "effects",
+        "error_basis": "UnprovenBasis;full known domain/kind/payload;unknown UnsupportedModel",
+        "evaluation": "blocked|exact-body-reflexive|changed-body-evaluated",
+        "floor": "Unproven",
+        "governing_rule": "AF-CONTRACT-0020",
+        "local_predicate": "effects_relation",
+        "old_operand_paths": [
+          "old.contents.contract.effects"
+        ],
+        "rank": 3,
+        "replacement_operand_paths": [
+          "replacement.contents.contract.effects"
+        ],
+        "result_fold": "outer max(Unproven,local)",
+        "role": "static_dimension",
+        "source": "replacement checked operand",
+        "source_anchor": "component-contract-substitution",
+        "subordinate_rules": [
+          "AF-EFFECT-0009"
+        ],
+        "target": "old checked operand",
+        "witness": "SubstitutionWitness exact applicable variant only"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/dimension-resources",
+      "expected_dimension": {
+        "applicability": "every valid application;blocked under failed context",
+        "candidate_rules": "existing non-strengthening Ok:P/U;strengthened error:V;other error:U",
+        "case": "result_resources",
+        "coordinate": "resources",
+        "dependencies": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association",
+          "changed_pair_evidence_floor",
+          "resources_relation"
+        ],
+        "dimension": "resources",
+        "error_basis": "UnprovenBasis;full known domain/kind/payload;unknown UnsupportedModel",
+        "evaluation": "blocked|exact-body-reflexive|changed-body-evaluated",
+        "floor": "Unproven",
+        "governing_rule": "AF-CONTRACT-0020",
+        "local_predicate": "resources_relation",
+        "old_operand_paths": [
+          "old.contents.contract.resources",
+          "old.contents.contract.component_identity"
+        ],
+        "rank": 4,
+        "replacement_operand_paths": [
+          "replacement.contents.contract.resources",
+          "replacement.contents.contract.component_identity"
+        ],
+        "result_fold": "outer max(Unproven,local)",
+        "role": "static_dimension",
+        "source": "replacement checked operand",
+        "source_anchor": "component-contract-substitution",
+        "subordinate_rules": [
+          "AF-RESOURCE-0012",
+          "AF-RESOURCE-0013",
+          "AF-RESOURCE-0018"
+        ],
+        "target": "old checked operand",
+        "witness": "SubstitutionWitness exact applicable variant only"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/dimension-information-flow",
+      "expected_dimension": {
+        "applicability": "every valid application;blocked under failed context",
+        "candidate_rules": "flow_relaxed error:V;Ok(P) and partitions equal:P;otherwise:U",
+        "case": "result_information_flow",
+        "coordinate": "flow",
+        "dependencies": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association",
+          "changed_pair_evidence_floor",
+          "flow_relation"
+        ],
+        "dimension": "information-flow",
+        "error_basis": "UnprovenBasis;full known domain/kind/payload;unknown UnsupportedModel",
+        "evaluation": "blocked|exact-body-reflexive|changed-body-evaluated",
+        "floor": "Unproven",
+        "governing_rule": "AF-CONTRACT-0020",
+        "local_predicate": "flow_relation",
+        "old_operand_paths": [
+          "old.contents.contract.information_flow",
+          "old.contents.contract.effect_flow_partitions"
+        ],
+        "rank": 5,
+        "replacement_operand_paths": [
+          "replacement.contents.contract.information_flow",
+          "replacement.contents.contract.effect_flow_partitions"
+        ],
+        "result_fold": "outer max(Unproven,local)",
+        "role": "static_dimension",
+        "source": "replacement checked operand",
+        "source_anchor": "component-contract-substitution",
+        "subordinate_rules": [
+          "AF-INFOFLOW-0017"
+        ],
+        "target": "old checked operand",
+        "witness": "SubstitutionWitness exact applicable variant only"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/dimension-usage",
+      "expected_dimension": {
+        "applicability": "every valid application;blocked under failed context",
+        "candidate_rules": "equal usage and profiles:P;otherwise existing usage_not_increased P/V/U;Err:U;no extra fallback profile gate",
+        "case": "result_usage",
+        "coordinate": "usage",
+        "dependencies": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association",
+          "changed_pair_evidence_floor",
+          "usage_relation"
+        ],
+        "dimension": "usage",
+        "error_basis": "UnprovenBasis;full known domain/kind/payload;unknown UnsupportedModel",
+        "evaluation": "blocked|exact-body-reflexive|changed-body-evaluated",
+        "floor": "Unproven",
+        "governing_rule": "AF-CONTRACT-0020",
+        "local_predicate": "usage_relation",
+        "old_operand_paths": [
+          "old.contents.contract.usage",
+          "old.contents.contract.recovery_usage_bindings"
+        ],
+        "rank": 6,
+        "replacement_operand_paths": [
+          "replacement.contents.contract.usage",
+          "replacement.contents.contract.recovery_usage_bindings"
+        ],
+        "result_fold": "outer max(Unproven,local)",
+        "role": "static_dimension",
+        "source": "replacement checked operand",
+        "source_anchor": "component-contract-substitution",
+        "subordinate_rules": [
+          "AF-USAGE-0013"
+        ],
+        "target": "old checked operand",
+        "witness": "SubstitutionWitness exact applicable variant only"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/dimension-recovery",
+      "expected_dimension": {
+        "applicability": "every valid application;blocked under failed context",
+        "candidate_rules": "K equivalent and action bindings equal:P;Weakened:V;otherwise:U",
+        "case": "result_recovery",
+        "coordinate": "recovery",
+        "dependencies": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association",
+          "changed_pair_evidence_floor",
+          "recovery_relation"
+        ],
+        "dimension": "recovery",
+        "error_basis": "UnprovenBasis;full known domain/kind/payload;unknown UnsupportedModel",
+        "evaluation": "blocked|exact-body-reflexive|changed-body-evaluated",
+        "floor": "Unproven",
+        "governing_rule": "AF-CONTRACT-0020",
+        "local_predicate": "recovery_relation",
+        "old_operand_paths": [
+          "old.contents.contract.recovery",
+          "old.contents.contract.recovery_action_bindings"
+        ],
+        "rank": 7,
+        "replacement_operand_paths": [
+          "replacement.contents.contract.recovery",
+          "replacement.contents.contract.recovery_action_bindings"
+        ],
+        "result_fold": "outer max(Unproven,local)",
+        "role": "static_dimension",
+        "source": "replacement checked operand",
+        "source_anchor": "component-contract-substitution",
+        "subordinate_rules": [
+          "AF-RECOVERY-0013"
+        ],
+        "target": "old checked operand",
+        "witness": "SubstitutionWitness exact applicable variant only"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/dimension-execution",
+      "expected_dimension": {
+        "applicability": "every valid application;blocked under failed context",
+        "candidate_rules": "either aspect U:U;else either V:V;else:P;shared Err:U",
+        "case": "result_execution",
+        "coordinate": "execution",
+        "dependencies": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association",
+          "changed_pair_evidence_floor",
+          "execution_combined_relation"
+        ],
+        "dimension": "execution",
+        "error_basis": "UnprovenBasis;full known domain/kind/payload;unknown UnsupportedModel",
+        "evaluation": "blocked|exact-body-reflexive|changed-body-evaluated",
+        "floor": "Unproven",
+        "governing_rule": "AF-CONTRACT-0020",
+        "local_predicate": "execution_combined_relation",
+        "old_operand_paths": [
+          "old.contents.contract.execution"
+        ],
+        "rank": 8,
+        "replacement_operand_paths": [
+          "replacement.contents.contract.execution"
+        ],
+        "result_fold": "outer max(Unproven,local)",
+        "role": "static_dimension",
+        "source": "replacement checked operand",
+        "source_anchor": "component-contract-substitution",
+        "subordinate_rules": [
+          "AF-EXECUTION-0014"
+        ],
+        "target": "old checked operand",
+        "witness": "SubstitutionWitness exact applicable variant only"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/dimension-execution-feasibility",
+      "expected_dimension": {
+        "applicability": "every valid application;blocked under failed context",
+        "candidate_rules": "existing feasibility P/V/U;shared Err:U",
+        "case": "result_execution_feasibility",
+        "coordinate": "execution",
+        "dependencies": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association",
+          "changed_pair_evidence_floor",
+          "execution_feasibility_relation"
+        ],
+        "dimension": "execution-feasibility",
+        "error_basis": "UnprovenBasis;full known domain/kind/payload;unknown UnsupportedModel",
+        "evaluation": "blocked|exact-body-reflexive|changed-body-evaluated",
+        "floor": "Unproven",
+        "governing_rule": "AF-CONTRACT-0020",
+        "local_predicate": "execution_feasibility_relation",
+        "old_operand_paths": [
+          "old.contents.contract.execution"
+        ],
+        "rank": 9,
+        "replacement_operand_paths": [
+          "replacement.contents.contract.execution"
+        ],
+        "result_fold": "outer max(Unproven,local)",
+        "role": "static_dimension",
+        "source": "replacement checked operand",
+        "source_anchor": "component-contract-substitution",
+        "subordinate_rules": [
+          "AF-EXECUTION-0012"
+        ],
+        "target": "old checked operand",
+        "witness": "SubstitutionWitness exact applicable variant only"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/dimension-execution-security",
+      "expected_dimension": {
+        "applicability": "every valid application;blocked under failed context",
+        "candidate_rules": "existing security P/V/U;shared Err:U",
+        "case": "result_execution_security",
+        "coordinate": "execution",
+        "dependencies": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association",
+          "changed_pair_evidence_floor",
+          "execution_security_relation"
+        ],
+        "dimension": "execution-security",
+        "error_basis": "UnprovenBasis;full known domain/kind/payload;unknown UnsupportedModel",
+        "evaluation": "blocked|exact-body-reflexive|changed-body-evaluated",
+        "floor": "Unproven",
+        "governing_rule": "AF-CONTRACT-0020",
+        "local_predicate": "execution_security_relation",
+        "old_operand_paths": [
+          "old.contents.contract.execution"
+        ],
+        "rank": 10,
+        "replacement_operand_paths": [
+          "replacement.contents.contract.execution"
+        ],
+        "result_fold": "outer max(Unproven,local)",
+        "role": "static_dimension",
+        "source": "replacement checked operand",
+        "source_anchor": "component-contract-substitution",
+        "subordinate_rules": [
+          "AF-EXECUTION-0013"
+        ],
+        "target": "old checked operand",
+        "witness": "SubstitutionWitness exact applicable variant only"
+      }
+    },
+    {
+      "case_id": "g01-successor-staging/dimension-cross-dimension",
+      "expected_dimension": {
+        "applicability": "every valid application;blocked under failed context",
+        "candidate_rules": "outer fold of eleven distinct non-cross final results;V>RE>U>P;no self edge",
+        "case": "result_cross_dimension",
+        "coordinate": "whole_pair",
+        "dependencies": [
+          "checked_operand(old)",
+          "checked_operand(replacement)",
+          "context_association",
+          "eleven distinct final results;no self edge"
+        ],
+        "dimension": "cross-dimension",
+        "error_basis": "UnprovenBasis;full known domain/kind/payload;unknown UnsupportedModel",
+        "evaluation": "blocked|exact-body-reflexive|changed-body-evaluated",
+        "floor": "Unproven",
+        "governing_rule": "AF-CONTRACT-0020",
+        "local_predicate": null,
+        "old_operand_paths": [
+          "old.contents.contract.component_identity",
+          "old.contents.contract.inputs",
+          "old.contents.contract.outputs",
+          "old.contents.contract.failures",
+          "old.contents.contract.effects",
+          "old.contents.contract.resources",
+          "old.contents.contract.information_flow",
+          "old.contents.contract.usage",
+          "old.contents.contract.recovery",
+          "old.contents.contract.execution",
+          "old.contents.contract.effect_flow_partitions",
+          "old.contents.contract.recovery_action_bindings",
+          "old.contents.contract.recovery_usage_bindings"
+        ],
+        "rank": 11,
+        "replacement_operand_paths": [
+          "replacement.contents.contract.component_identity",
+          "replacement.contents.contract.inputs",
+          "replacement.contents.contract.outputs",
+          "replacement.contents.contract.failures",
+          "replacement.contents.contract.effects",
+          "replacement.contents.contract.resources",
+          "replacement.contents.contract.information_flow",
+          "replacement.contents.contract.usage",
+          "replacement.contents.contract.recovery",
+          "replacement.contents.contract.execution",
+          "replacement.contents.contract.effect_flow_partitions",
+          "replacement.contents.contract.recovery_action_bindings",
+          "replacement.contents.contract.recovery_usage_bindings"
+        ],
+        "result_fold": "outer fold eleven distinct non-cross results",
+        "role": "static_dimension",
+        "source": "replacement checked operand",
+        "source_anchor": "component-contract-substitution",
+        "subordinate_rules": [],
+        "target": "old checked operand",
+        "witness": "SubstitutionWitness exact applicable variant only"
+      }
+    }
+  ]
+}

@@ -25,6 +25,7 @@ sha2 = "0.10"
 hex = "0.4"
 serde_json = "1"
 serde = { version = "1", features = ["derive"] }
+unicode-normalization = "0.1"
 
 [dev-dependencies]
 
@@ -49,8 +50,8 @@ path = "tests/root_recovery_conformance.rs"
 name = "scope_closure_conformance"
 path = "tests/scope_closure_conformance.rs"
 [[test]]
-name = "edition2_staging"
-path = "tests/edition2_staging.rs"
+name = "successor_staging"
+path = "tests/successor_staging.rs"
 
 [lints]
 workspace = true

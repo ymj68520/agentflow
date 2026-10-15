@@ -4,18 +4,18 @@ import importlib.util,json,copy,hashlib
 from g01_registration_data import DATA
 from g01_rule_dependencies import dependencies
 from portable_proof_python_oracle import canonical_bytes,sha256
+from edition2_registration_inputs import pinned as pinned_edition2
 ROOT=Path(__file__).resolve().parent.parent
 OUT=ROOT/"spec/conformance/g01-edition2-staging"
 SOURCES={"OS":("agentflow.computation.proof-obligation.semantics@1","spec/computation/proof-obligation-semantics.md"),"RM":("agentflow.computation.proof-report.model@1","spec/tables/proof-report-model-v1.md"),"PP2":("agentflow.portable.proof.inputs.semantics@2","spec/portable/portable-proof-inputs-v2.md")}
 def save(path,raw):
- path.parent.mkdir(parents=True,exist_ok=True)
- if path.exists() and path.read_bytes()==raw:return
- path.write_bytes(raw)
+ if not path.is_file() or path.read_bytes()!=raw:
+  raise ValueError("frozen Edition2 output mismatch;refusing overwrite: "+str(path))
 def js(path,value):save(path,(json.dumps(value,ensure_ascii=False,sort_keys=True,indent=2)+"\n").encode())
 def load_module(name,filename):
  spec=importlib.util.spec_from_file_location(name,ROOT/"tools"/filename);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 codec=load_module("e1_codec_input_builder","gen-portable-proof-codec-corpus.py")
-spec_bytes=(ROOT/"spec/registry/specifications.json").read_bytes();rule_bytes=(ROOT/"spec/registry/rules.json").read_bytes()
+spec_bytes=pinned_edition2("specifications");rule_bytes=pinned_edition2("rules")
 specs=json.loads(spec_bytes);rules=json.loads(rule_bytes)
 ids=sorted(codec.STATIC_SPECS+[x[0] for x in SOURCES.values()]+["agentflow.portable.proof.inputs.semantics@1"])
 rule_ids=sorted(codec.STATIC_RULE_IDS+[f"AF-SEMANTIC-{n:04}" for n in list(range(173,188))+[189]+list(range(191,229))])

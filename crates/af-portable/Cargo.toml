@@ -43,5 +43,5 @@ workspace = true
 name = "static_surface"
 path = "tests/static_surface.rs"
 [[test]]
-name = "edition2_staging"
-path = "tests/edition2_staging.rs"
+name = "successor_staging"
+path = "tests/successor_staging.rs"

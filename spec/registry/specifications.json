@@ -41,6 +41,19 @@
       "status": "frozen"
     },
     {
+      "description": "Closed standalone substitution profile, ordered checked operands, three branches and exact conservative judgments.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "b7231217d2dd40b6756f7372018092336938036d929429ae44e982fd5e404d88"
+        },
+        "logical_path": "spec/component/standalone-substitution-proof.md"
+      },
+      "specification_id": "agentflow.component.substitution-proof.semantics@1",
+      "status": "frozen"
+    },
+    {
       "description": "Complete typed obligation identity, derivation, provenance, evidence boundaries and capability consistency.",
       "kind": "schema_language",
       "normative_source": {
@@ -54,6 +67,19 @@
       "status": "frozen"
     },
     {
+      "description": "Successor profile applicability, exact scoped facts and independent non-root fragments.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a614692e839403fbd8a55c5642236083435870fe2e9fe0d2aae05b7125ff7b91"
+        },
+        "logical_path": "spec/computation/proof-obligation-semantics-v2.md"
+      },
+      "specification_id": "agentflow.computation.proof-obligation.semantics@2",
+      "status": "frozen"
+    },
+    {
       "description": "Closed non-wire G01 semantic type model, typed order, finite value DAG and ACE1 canonical identity relation.",
       "kind": "closed_table",
       "normative_source": {
@@ -64,6 +90,19 @@
         "logical_path": "spec/tables/proof-report-model-v1.md"
       },
       "specification_id": "agentflow.computation.proof-report.model@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Materialized successor non-wire semantic descriptor graph, substitution cases, bases, witnesses and complete error imports.",
+      "kind": "closed_table",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "471387dfde653d219978d60a023d51561048d86e16c1404622bee641c2a2813d"
+        },
+        "logical_path": "spec/tables/proof-report-model-v2.md"
+      },
+      "specification_id": "agentflow.computation.proof-report.model@2",
       "status": "frozen"
     },
     {
@@ -324,6 +363,19 @@
         "logical_path": "spec/portable/portable-proof-inputs-v2.md"
       },
       "specification_id": "agentflow.portable.proof.inputs.semantics@2",
+      "status": "frozen"
+    },
+    {
+      "description": "Exact successor identity and current-only non-activatable staging, isolated Edition1 and Edition2 evidence.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "57d9ec10b5cc2ec0ef1e2ad20389b9018e03a868129482ef7ec10cc2386fb658"
+        },
+        "logical_path": "spec/portable/portable-proof-inputs-v3.md"
+      },
+      "specification_id": "agentflow.portable.proof.inputs.semantics@3",
       "status": "frozen"
     },
     {
