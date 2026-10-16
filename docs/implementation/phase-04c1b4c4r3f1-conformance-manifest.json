@@ -1,0 +1,248 @@
+{
+  "kind": "BytesRepairConformanceManifest",
+  "baseline": "be04c05e07d3a72a7c795d289e689281bceaa65f",
+  "original_native_inputs": 53,
+  "registration_case_ids": 889,
+  "new_case_ids": [
+    "bytes-f1/lowering/empty",
+    "bytes-f1/lowering/single",
+    "bytes-f1/lowering/multi-zero",
+    "bytes-f1/lowering/zeroes",
+    "bytes-f1/lowering/non-utf8",
+    "bytes-f1/lowering/utf8-bytes",
+    "bytes-f1/lowering/url-alphabet",
+    "bytes-f1/lowering/block-2",
+    "bytes-f1/lowering/block-3",
+    "bytes-f1/lowering/block-255",
+    "bytes-f1/lowering/block-256",
+    "bytes-f1/lowering/block-257",
+    "bytes-f1/lowering/string-0",
+    "bytes-f1/lowering/string-1",
+    "bytes-f1/lowering/invalid-0",
+    "bytes-f1/lowering/invalid-1",
+    "bytes-f1/lowering/invalid-2",
+    "bytes-f1/lowering/invalid-3",
+    "bytes-f1/lowering/invalid-4",
+    "bytes-f1/lowering/invalid-5",
+    "bytes-f1/lowering/invalid-6",
+    "bytes-f1/lowering/invalid-7",
+    "bytes-f1/lowering/invalid-8",
+    "bytes-f1/lowering/invalid-9",
+    "bytes-f1/lowering/invalid-10",
+    "bytes-f1/lowering/invalid-11",
+    "bytes-f1/native/empty-countermodel",
+    "bytes-f1/native/empty-contained",
+    "bytes-f1/native/empty-zero",
+    "bytes-f1/native/single-countermodel",
+    "bytes-f1/native/single-contained",
+    "bytes-f1/native/single-zero",
+    "bytes-f1/native/multi-zero-countermodel",
+    "bytes-f1/native/multi-zero-contained",
+    "bytes-f1/native/multi-zero-zero",
+    "bytes-f1/native/zeroes-countermodel",
+    "bytes-f1/native/zeroes-contained",
+    "bytes-f1/native/zeroes-zero",
+    "bytes-f1/native/non-utf8-countermodel",
+    "bytes-f1/native/non-utf8-contained",
+    "bytes-f1/native/non-utf8-zero",
+    "bytes-f1/native/utf8-bytes-countermodel",
+    "bytes-f1/native/utf8-bytes-contained",
+    "bytes-f1/native/utf8-bytes-zero",
+    "bytes-f1/native/url-alphabet-countermodel",
+    "bytes-f1/native/url-alphabet-contained",
+    "bytes-f1/native/url-alphabet-zero",
+    "bytes-f1/native/type-mismatch",
+    "bytes-f1/native/string-same-printable-countermodel",
+    "bytes-f1/native/string-same-printable-contained",
+    "bytes-f1/native/invalid-0",
+    "bytes-f1/native/invalid-1",
+    "bytes-f1/native/invalid-2",
+    "bytes-f1/native/invalid-3",
+    "bytes-f1/native/invalid-4",
+    "bytes-f1/native/invalid-5",
+    "bytes-f1/native/invalid-6",
+    "bytes-f1/native/invalid-7",
+    "bytes-f1/native/invalid-8",
+    "bytes-f1/native/invalid-9",
+    "bytes-f1/native/invalid-10",
+    "bytes-f1/native/invalid-11"
+  ],
+  "new_input_case_count": 62,
+  "mutations": [
+    {
+      "case_id": "bytes-f1/mutation/bytes-to-string-same-scalar",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/payload-a-to-b",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/decoded-tag",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/byte-out-of-range",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/wrong-scalar-wire",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/wrong-signature-wire",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/wrong-source-tag",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/wrong-admission",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-canonical_admission",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-case_id",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-decoded_payload",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-input_constant",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-rejection_kind",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-scalar_ace1_utf8",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-signature_ace1_utf8",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-typed_payload",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-typed_payload-kind",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-typed_payload-value",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-decoded_payload-kind",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-decoded_payload-value",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-countermodel-source_contract",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-countermodel-source_component",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-countermodel-recovery_action",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-countermodel-forward_entry_ordinal",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-countermodel-action_entry_ordinal",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-countermodel-forward_guard",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-countermodel-declared_action_guard",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-countermodel-forward_bounds",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-countermodel-activation_upper",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-countermodel-attempt_upper",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-countermodel-action_upper",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-countermodel-assignments",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-countermodel-reachability",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-countermodel-related_rule_id",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-assignment-port_no",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-assignment-type_ref",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-assignment-value",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/both-delete-assignment-bytes-case",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/assignment-bytes-to-string",
+      "rejected": true
+    },
+    {
+      "case_id": "bytes-f1/mutation/assignment-wrong-bytes",
+      "rejected": true
+    }
+  ],
+  "mutation_count": 40,
+  "mutation_scope": "F1 ONLY;not the unfinished whole-R3 comparator target",
+  "rust_binary_vectors": 18,
+  "rust_invalid_text_vectors": 12,
+  "rust_other_constant_controls": 8,
+  "rust_open_known_vectors": 2,
+  "new_rust_tests": 6,
+  "expected": "phase-04c1b4c4r3f1-independent-expected.json",
+  "full_seed_conformance": false,
+  "unique_semantic_producer_sites": "NOT_CLOSED;181 lexical anchors unchanged",
+  "r3_status": "STILL INCOMPLETE",
+  "r3_ng_status": "FULL SEED CONFORMANCE PENDING",
+  "positive_capability": "NotAuthorized",
+  "t4_eligible": false,
+  "automatic_r3_resumption": false
+}

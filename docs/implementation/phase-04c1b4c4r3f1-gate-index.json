@@ -1,0 +1,121 @@
+{
+  "kind": "R3-F1GateEvidenceIndex",
+  "baseline": "be04c05e07d3a72a7c795d289e689281bceaa65f",
+  "complete_code_gate_head": "325b1b465fc00b62b5c753788927f7c779bd0176",
+  "production_repair": "c020aef",
+  "quality": {
+    "fmt_exit": 0,
+    "clippy_exit": 0,
+    "cargo_exit": 0,
+    "cargo_pass_records": 367,
+    "cargo_failed": 0,
+    "cargo_ignored": 0,
+    "cargo_result_groups": 73,
+    "spec_exit": 0,
+    "log_prefix": "target/phase-04c1b4c4r3f1-final-"
+  },
+  "native_original": {
+    "before": {
+      "exit_code": 1,
+      "matched": 51,
+      "mismatched": 2
+    },
+    "after": {
+      "exit_code": 0,
+      "matched": 53,
+      "mismatched": 0
+    },
+    "frozen_expected": "UNCHANGED",
+    "original_oracle": "UNCHANGED",
+    "original_51_actual_full_values": "UNCHANGED",
+    "after_actual": "target/phase-04c1b4c4r3f1-native-actual.json",
+    "stages": "target/phase-04c1b4c4r3f1-native-stages.json"
+  },
+  "supplement": {
+    "lowering_input_ids": 26,
+    "native_pipeline_input_ids": 36,
+    "new_mutations": 40,
+    "unexpected_mismatch": 0,
+    "full_t3_seed_conformance": false,
+    "report": "target/phase-04c1b4c4r3f1-supplement-report.json",
+    "actual": "target/phase-04c1b4c4r3f1-supplement-actual.json"
+  },
+  "freeze": {
+    "raw_original_paths_verified": 1985,
+    "authorized_existing_changes": [
+      "crates/af-effect/src/canonical.rs",
+      "crates/af-computation/tests/native_capture_conformance.rs"
+    ],
+    "other_original_bytes_equal": true,
+    "specifications": 54,
+    "rules": 468,
+    "reference_covered": 467,
+    "intentional_exception": 1,
+    "missing": 0,
+    "abi": 775,
+    "afidl": 17,
+    "hash_domains": 14,
+    "model_types": 652,
+    "model_refs": 1941,
+    "selected_imports": 97,
+    "live_declarations": 90,
+    "historical_snapshots": 19
+  },
+  "capability": {
+    "analysis": "agentflow.root-export-checker@4",
+    "positive_root_export": "NotAuthorized",
+    "denials": [
+      "native analyzer",
+      "direct checker",
+      "private checked constructor",
+      "alternate internal entry",
+      "Portable D4 default D0 resource limit",
+      "Portable D4 explicit bounded 8 MiB denial"
+    ],
+    "default_limits_changed": false,
+    "cargo_regressions_exit": 0
+  },
+  "historical_exact_runs": [
+    {
+      "edition": 1,
+      "head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+      "case_ids": 512,
+      "source_blobs": 1732
+    },
+    {
+      "edition": 2,
+      "head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+      "case_ids": 51,
+      "source_blobs": 1811
+    },
+    {
+      "edition": 3,
+      "head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+      "case_ids": 173,
+      "source_blobs": 1902
+    }
+  ],
+  "final_runtime_evidence": {
+    "note": "Actual final historical/generator exits and final HEAD are populated only after successful complete execution, not prefilled. No nonignored edit is made during or after the final pair.",
+    "results": "target/phase-04c1b4c4r3f1-final-runtime-results.json",
+    "history_logs": "target/phase-04c1b4c4r3f1-edition{1,2,3}-tests.log",
+    "generators_log": "target/phase-04c1b4c4r3f1-generators.log",
+    "generator_maps": "target/phase-04c1b4c4r3f1-generators-{baseline,round1,round2}.json",
+    "original_directory": "E:/Projects/agent",
+    "generator_scripts": 34,
+    "required_consecutive_rounds": 2
+  },
+  "finding": {
+    "id": "R3-NG-B01",
+    "closure": "CLOSED — PRODUCTION LOWERING FIX VERIFIED",
+    "claim_valid_only_with": "successful complete final runtime ledger",
+    "otherwise": "OPEN / BLOCKING"
+  },
+  "stage": {
+    "f1_acceptance": "conditional on all final runtime gates",
+    "r3": "STILL INCOMPLETE",
+    "r3_ng": "FULL SEED CONFORMANCE PENDING",
+    "t4": "NOT ELIGIBLE",
+    "automatic_r3_resumption": false
+  }
+}
