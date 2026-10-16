@@ -59,6 +59,9 @@ path = "tests/native_capture_conformance.rs"
 [[test]]
 name = "native_seed_source_conformance"
 path = "tests/native_seed_source_conformance.rs"
+[[test]]
+name = "raw_document_identity_c2"
+path = "tests/raw_document_identity_c2.rs"
 
 [lints]
 workspace = true
