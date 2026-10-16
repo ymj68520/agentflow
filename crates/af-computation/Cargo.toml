@@ -55,6 +55,9 @@ path = "tests/native_guard_staging.rs"
 [[test]]
 name = "native_capture_conformance"
 path = "tests/native_capture_conformance.rs"
+[[test]]
+name = "native_seed_source_conformance"
+path = "tests/native_seed_source_conformance.rs"
 
 [lints]
 workspace = true
