@@ -33,3 +33,29 @@ fn all_raw_current_only_portable_paths_deny_supported_inputs() {
     }
     assert_eq!(m["portable_cases"].as_array().unwrap().len(), 8);
 }
+
+#[test]
+fn caller_flags_and_noncanonical_new_tuple_bytes_never_gain_support() {
+    let root = Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../../spec/conformance/g01-raw-validation-staging");
+    let bytes = std::fs::read(root.join("portable/current-denied.ace1")).unwrap();
+    let mut value: Value = serde_json::from_slice(&bytes).unwrap();
+    value
+        .as_object_mut()
+        .unwrap()
+        .insert("supported".into(), Value::Bool(true));
+    let fake = serde_json::to_vec(&value).unwrap();
+    let codec = PortableProofCodec::new(DecoderLimits {
+        max_scalar_bytes: 16 * 1024 * 1024,
+        ..DecoderLimits::default()
+    });
+    let error = codec.validate_supported(&fake).unwrap_err();
+    assert_eq!(error.family, "InvalidCanonicalEncoding");
+    assert_eq!(format!("{:?}", error.stage), "D0");
+    let mut noncanonical = Vec::with_capacity(bytes.len() + 1);
+    noncanonical.push(b' ');
+    noncanonical.extend_from_slice(&bytes);
+    let error = codec.validate_supported(&noncanonical).unwrap_err();
+    assert_eq!(error.family, "InvalidCanonicalEncoding");
+    assert_eq!(format!("{:?}", error.stage), "D1");
+}
