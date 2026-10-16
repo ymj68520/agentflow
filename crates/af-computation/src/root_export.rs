@@ -50,10 +50,10 @@ const RULE_EXECUTION: &str = "AF-SEMANTIC-0170";
 const RULE_SUBFLOW: &str = "AF-SEMANTIC-0171";
 
 /// Compiler-side semantics version. Any semantic checker change must bump it.
-pub const ROOT_EXPORT_ANALYSIS_SEMANTICS_VERSION: &str = "agentflow.root-export-checker@3";
+pub const ROOT_EXPORT_ANALYSIS_SEMANTICS_VERSION: &str = "agentflow.root-export-checker@4";
 
-pub const REPORT_SHAPE_EDITION: &str = "agentflow.g01.report-shape@2";
-pub const OBLIGATION_IDENTITY_EDITION: &str = "agentflow.g01.obligation@2";
+pub const REPORT_SHAPE_EDITION: &str = "agentflow.g01.report-shape@3";
+pub const OBLIGATION_IDENTITY_EDITION: &str = "agentflow.g01.obligation@3";
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum EditionRegistration {
@@ -122,9 +122,9 @@ pub fn current_registered_analysis_edition() -> RegisteredAnalysisEdition {
         })
         .collect::<Vec<_>>();
     let registration = if compiler_semantics_is_current(&compiler)
-        && compiler.specifications.len() == 24
-        && compiler.rules.len() == 149
-        && registered_sources.len() == 50
+        && compiler.specifications.len() == 28
+        && compiler.rules.len() == 163
+        && registered_sources.len() == 54
         && crate::registered_model::registered_descriptor_integrity().is_ok()
         && registered_sources_match_registry(&compiler.registry_content, &registered_sources)
     {
@@ -216,7 +216,9 @@ pub fn check_registered_compiler_identity(
     }
     if matches!(
         identity.analysis_semantics_version.as_str(),
-        "agentflow.root-export-checker@1" | "agentflow.root-export-checker@2"
+        "agentflow.root-export-checker@1"
+            | "agentflow.root-export-checker@2"
+            | "agentflow.root-export-checker@3"
     ) {
         return Err(
             if identity.registry_content == current_compiler_semantics_identity().registry_content {
@@ -765,6 +767,26 @@ impl CheckedRootExportCompatibility {
 
 const APPLICABLE_SPECS: &[(&str, &str, &[u8])] = &[
     (
+        "agentflow.computation.proof-obligation.semantics@3",
+        "spec/computation/proof-obligation-semantics-v3.md",
+        include_bytes!("../../../spec/computation/proof-obligation-semantics-v3.md"),
+    ),
+    (
+        "agentflow.component.native-recovery-guard.semantics@1",
+        "spec/component/native-recovery-guard.md",
+        include_bytes!("../../../spec/component/native-recovery-guard.md"),
+    ),
+    (
+        "agentflow.computation.proof-report.model@3",
+        "spec/tables/proof-report-model-v3.md",
+        include_bytes!("../../../spec/tables/proof-report-model-v3.md"),
+    ),
+    (
+        "agentflow.portable.proof.inputs.semantics@4",
+        "spec/portable/portable-proof-inputs-v4.md",
+        include_bytes!("../../../spec/portable/portable-proof-inputs-v4.md"),
+    ),
+    (
         "agentflow.computation.proof-obligation.semantics@2",
         "spec/computation/proof-obligation-semantics-v2.md",
         include_bytes!("../../../spec/computation/proof-obligation-semantics-v2.md"),
@@ -886,7 +908,7 @@ const APPLICABLE_SPECS: &[(&str, &str, &[u8])] = &[
     ),
 ];
 
-const APPLICABLE_RULE_COUNT: usize = 149; // Applied attribution only, not a dependency closure.
+const APPLICABLE_RULE_COUNT: usize = 163; // Applied attribution only, not a dependency closure.
 
 fn applicable_rule_ids() -> Vec<String> {
     let mut ids = (1..=22)
@@ -896,7 +918,8 @@ fn applicable_rule_ids() -> Vec<String> {
             (173..=187)
                 .chain([189])
                 .chain(191..=222)
-                .chain(228..=244)
+                .chain(228..=242)
+                .chain(245..=260)
                 .map(|number| format!("AF-SEMANTIC-{number:04}")),
         )
         .collect::<Vec<_>>();
@@ -1054,7 +1077,7 @@ pub fn analyze_root_export_assertion(
     if !edition.can_issue_capability() {
         return RootExportProofReport {
             edition_admission_failure: Some(failure), assertion_identity: assertion.identity(),
-            preflight: vec![DimensionProof::unproven("edition-admission", "AF-SEMANTIC-0244", "registered successor is not implemented or authorized; no proof evaluation occurred")],
+            preflight: vec![DimensionProof::unproven("edition-admission", "AF-SEMANTIC-0260", "registered native successor is not implemented or authorized; no proof evaluation occurred")],
             dimensions: unproven_dimensions(assertion, "not evaluated: successor support is not implemented"),
             execution_children: Vec::new(), body_conformance: af_contract::ProofVerdict::RequiresEvidence,
             implementation_conformance: af_contract::ProofVerdict::RequiresEvidence,

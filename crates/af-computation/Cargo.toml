@@ -50,8 +50,8 @@ path = "tests/root_recovery_conformance.rs"
 name = "scope_closure_conformance"
 path = "tests/scope_closure_conformance.rs"
 [[test]]
-name = "successor_staging"
-path = "tests/successor_staging.rs"
+name = "native_guard_staging"
+path = "tests/native_guard_staging.rs"
 
 [lints]
 workspace = true

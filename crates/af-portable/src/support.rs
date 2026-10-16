@@ -7,6 +7,10 @@ use std::collections::BTreeSet;
 
 const CURRENT_VERSION: &str = af_computation::ROOT_EXPORT_ANALYSIS_SEMANTICS_VERSION;
 const STATIC_SPECS: &[&str] = &[
+    "agentflow.computation.proof-obligation.semantics@3",
+    "agentflow.component.native-recovery-guard.semantics@1",
+    "agentflow.computation.proof-report.model@3",
+    "agentflow.portable.proof.inputs.semantics@4",
     "agentflow.computation.proof-obligation.semantics@2",
     "agentflow.component.substitution-proof.semantics@1",
     "agentflow.computation.proof-report.model@2",
@@ -116,7 +120,9 @@ pub(crate) fn validate_d4(
     if version != CURRENT_VERSION {
         let family = if matches!(
             version,
-            "agentflow.root-export-checker@1" | "agentflow.root-export-checker@2"
+            "agentflow.root-export-checker@1"
+                | "agentflow.root-export-checker@2"
+                | "agentflow.root-export-checker@3"
         ) && embedded_blob(compiler, "registries", "specifications")?
             == SPECIFICATION_REGISTRY_BYTES
         {
@@ -248,7 +254,7 @@ pub(crate) fn validate_d4(
     {
         return Err(d4(
             "$.compiler_semantics_manifests.static_identity_projection.applied_rules",
-            "the exact current 149 applied RuleContentIdentity rows are required; not a dependency closure",
+            "the exact current 163 applied RuleContentIdentity rows are required; not a dependency closure",
         ));
     }
     let (profile_name, profile_payload) = variant(field(compiler, "attribution")?)?;
@@ -541,7 +547,8 @@ fn expected_rule_rows(rules: &[RuleJson]) -> Result<Vec<&RuleJson>, PortableProo
             (173..=187)
                 .chain([189])
                 .chain(191..=222)
-                .chain(228..=244)
+                .chain(228..=242)
+                .chain(245..=260)
                 .map(|n| format!("AF-SEMANTIC-{n:04}")),
         )
         .collect::<Vec<_>>();

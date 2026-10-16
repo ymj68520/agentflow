@@ -5,8 +5,8 @@ use std::collections::BTreeSet;
 use std::sync::OnceLock;
 use unicode_normalization::UnicodeNormalization;
 
-const SOURCE: &str = include_str!("../../../spec/tables/proof-report-model-v2.md");
-pub const SUCCESSOR_MODEL_ID: &str = "agentflow.computation.proof-report.model@2";
+const SOURCE: &str = include_str!("../../../spec/tables/proof-report-model-v3.md");
+pub const SUCCESSOR_MODEL_ID: &str = "agentflow.computation.proof-report.model@3";
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum RegisteredModelFailure {
@@ -126,6 +126,7 @@ pub fn registered_descriptor_integrity() -> Result<(), RegisteredModelFailure> {
     for (field, count, key) in [
         ("case_descriptors", 27, "case"),
         ("dimension_descriptors", 12, "dimension"),
+        ("native_case_descriptors", 7, "case"),
     ] {
         let rows = catalogue[field]
             .as_array()
@@ -162,6 +163,30 @@ fn check_named_constraints(
     name: &str,
     value: &Value,
 ) -> Result<(), RegisteredModelFailure> {
+    if name == "NativeGuardContextPartition"
+        && *value != serde_json::json!([["analysis", "canonical_validation"]])
+    {
+        return Err(RegisteredModelFailure::InvalidFacts);
+    }
+    // A selected historical field token is not an arbitrary NFC string and
+    // must not be interpreted under a same-named current descriptor.
+    if name == "DeclaredStep" {
+        if let Some(field) = value.get("field") {
+            let historical = "agentflow.computation.proof-report.model@1";
+            if field["owner"]["owner"] == historical {
+                let ty = field["owner"]["name"]
+                    .as_str()
+                    .ok_or(RegisteredModelFailure::IncompleteFacts)?;
+                let key = format!("{historical}/{ty}");
+                if catalogue["types"][&key]["fields"]
+                    .as_array()
+                    .is_none_or(|rows| !rows.iter().any(|r| r[0] == field["field"]))
+                {
+                    return Err(RegisteredModelFailure::UnsupportedModel);
+                }
+            }
+        }
+    }
     if name == "ContextRolePartition" {
         let roles = value
             .as_array()
@@ -208,7 +233,9 @@ fn check_named_constraints(
             .as_str()
             .ok_or(RegisteredModelFailure::IncompleteFacts)?;
         let qualified = format!("{owner}/{ty}");
-        if !((owner == SUCCESSOR_MODEL_ID && catalogue["types"].get(ty).is_some())
+        if !((owner == SUCCESSOR_MODEL_ID
+            && !ty.starts_with("agentflow.computation.proof-report.model@1/")
+            && catalogue["types"].get(ty).is_some())
             || catalogue["types"].get(&qualified).is_some())
         {
             return Err(RegisteredModelFailure::UnsupportedModel);
@@ -398,8 +425,12 @@ pub fn admit_registered_profile(
     registered_descriptor_integrity()?;
     if !matches!(
         profile,
-        "root_export" | "contract_validation" | "computation" | "standalone_substitution"
-    ) || (profile == "standalone_substitution" && as_root)
+        "root_export"
+            | "contract_validation"
+            | "computation"
+            | "standalone_substitution"
+            | "native_recovery_guard"
+    ) || (matches!(profile, "standalone_substitution" | "native_recovery_guard") && as_root)
     {
         return Err(RegisteredModelFailure::UnsupportedModel);
     }
