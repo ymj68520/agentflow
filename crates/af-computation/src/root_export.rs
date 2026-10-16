@@ -50,10 +50,10 @@ const RULE_EXECUTION: &str = "AF-SEMANTIC-0170";
 const RULE_SUBFLOW: &str = "AF-SEMANTIC-0171";
 
 /// Compiler-side semantics version. Any semantic checker change must bump it.
-pub const ROOT_EXPORT_ANALYSIS_SEMANTICS_VERSION: &str = "agentflow.root-export-checker@4";
+pub const ROOT_EXPORT_ANALYSIS_SEMANTICS_VERSION: &str = "agentflow.root-export-checker@5";
 
-pub const REPORT_SHAPE_EDITION: &str = "agentflow.g01.report-shape@3";
-pub const OBLIGATION_IDENTITY_EDITION: &str = "agentflow.g01.obligation@3";
+pub const REPORT_SHAPE_EDITION: &str = "agentflow.g01.report-shape@4";
+pub const OBLIGATION_IDENTITY_EDITION: &str = "agentflow.g01.obligation@4";
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum EditionRegistration {
@@ -122,9 +122,9 @@ pub fn current_registered_analysis_edition() -> RegisteredAnalysisEdition {
         })
         .collect::<Vec<_>>();
     let registration = if compiler_semantics_is_current(&compiler)
-        && compiler.specifications.len() == 28
-        && compiler.rules.len() == 163
-        && registered_sources.len() == 54
+        && compiler.specifications.len() == 32
+        && compiler.rules.len() == 174
+        && registered_sources.len() == 58
         && crate::registered_model::registered_descriptor_integrity().is_ok()
         && registered_sources_match_registry(&compiler.registry_content, &registered_sources)
     {
@@ -219,6 +219,7 @@ pub fn check_registered_compiler_identity(
         "agentflow.root-export-checker@1"
             | "agentflow.root-export-checker@2"
             | "agentflow.root-export-checker@3"
+            | "agentflow.root-export-checker@4"
     ) {
         return Err(
             if identity.registry_content == current_compiler_semantics_identity().registry_content {
@@ -767,6 +768,26 @@ impl CheckedRootExportCompatibility {
 
 const APPLICABLE_SPECS: &[(&str, &str, &[u8])] = &[
     (
+        "agentflow.component.raw-validation.semantics@1",
+        "spec/component/raw-contract-validation.md",
+        include_bytes!("../../../spec/component/raw-contract-validation.md"),
+    ),
+    (
+        "agentflow.computation.proof-obligation.semantics@4",
+        "spec/computation/proof-obligation-semantics-v4.md",
+        include_bytes!("../../../spec/computation/proof-obligation-semantics-v4.md"),
+    ),
+    (
+        "agentflow.computation.proof-report.model@4",
+        "spec/tables/proof-report-model-v4.md",
+        include_bytes!("../../../spec/tables/proof-report-model-v4.md"),
+    ),
+    (
+        "agentflow.portable.proof.inputs.semantics@5",
+        "spec/portable/portable-proof-inputs-v5.md",
+        include_bytes!("../../../spec/portable/portable-proof-inputs-v5.md"),
+    ),
+    (
         "agentflow.computation.proof-obligation.semantics@3",
         "spec/computation/proof-obligation-semantics-v3.md",
         include_bytes!("../../../spec/computation/proof-obligation-semantics-v3.md"),
@@ -908,7 +929,7 @@ const APPLICABLE_SPECS: &[(&str, &str, &[u8])] = &[
     ),
 ];
 
-const APPLICABLE_RULE_COUNT: usize = 163; // Applied attribution only, not a dependency closure.
+const APPLICABLE_RULE_COUNT: usize = 174; // Applied attribution only, not a dependency closure.
 
 fn applicable_rule_ids() -> Vec<String> {
     let mut ids = (1..=22)
@@ -920,6 +941,7 @@ fn applicable_rule_ids() -> Vec<String> {
                 .chain(191..=222)
                 .chain(228..=242)
                 .chain(245..=260)
+                .chain(261..=271)
                 .map(|number| format!("AF-SEMANTIC-{number:04}")),
         )
         .collect::<Vec<_>>();

@@ -14,6 +14,7 @@ mod control;
 mod mapping;
 pub mod native_capture;
 mod proof;
+mod raw_admission;
 mod registered_model;
 mod resolution;
 mod root_export;
@@ -33,6 +34,10 @@ pub use control::{
     derive_control_contract, derive_workflow_contract_summary,
 };
 pub use proof::{LeafDimensionProof, LeafProofReport, LeafVerdict};
+pub use raw_admission::{
+    NativeRawDocument, RawAdmissionFailure, RawDocumentMember, admit_native_raw_source,
+    admit_physical_raw_source,
+};
 pub use registered_model::{
     RegisteredModelFailure, SUCCESSOR_MODEL_ID, admit_registered_profile,
     registered_descriptor_integrity, registered_model_catalogue, validate_registered_model_shape,

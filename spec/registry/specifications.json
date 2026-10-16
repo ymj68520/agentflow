@@ -41,6 +41,19 @@
       "status": "frozen"
     },
     {
+      "description": "Raw input source admission, one exact port predicate, declarative origin and non-authoritative typed evidence.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "2d4ff247ccd4c7a2aaf9d9da4e25e2e22426f74f2034faca98138a07ec02bb19"
+        },
+        "logical_path": "spec/component/raw-contract-validation.md"
+      },
+      "specification_id": "agentflow.component.raw-validation.semantics@1",
+      "status": "frozen"
+    },
+    {
       "description": "Exact versioned relation catalog snapshots and content-bound static proof assumptions.",
       "kind": "schema_language",
       "normative_source": {
@@ -106,6 +119,19 @@
       "status": "frozen"
     },
     {
+      "description": "Independent Raw fragment, explicit Origin extension and input/output separation without CompleteView.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "6e9b5464e2fa6743899df5535a1ea67c31978a19293be455dcbe0fde84c6107c"
+        },
+        "logical_path": "spec/computation/proof-obligation-semantics-v4.md"
+      },
+      "specification_id": "agentflow.computation.proof-obligation.semantics@4",
+      "status": "frozen"
+    },
+    {
       "description": "Closed non-wire G01 semantic type model, typed order, finite value DAG and ACE1 canonical identity relation.",
       "kind": "closed_table",
       "normative_source": {
@@ -142,6 +168,19 @@
         "logical_path": "spec/tables/proof-report-model-v3.md"
       },
       "specification_id": "agentflow.computation.proof-report.model@3",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed Raw validation successor descriptors and unchanged embedded historical models.",
+      "kind": "closed_table",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "52150b387c48b8c6e0800e80cf0c82607cd295d91fd53de5f96c499a7c655a8b"
+        },
+        "logical_path": "spec/tables/proof-report-model-v4.md"
+      },
+      "specification_id": "agentflow.computation.proof-report.model@4",
       "status": "frozen"
     },
     {
@@ -428,6 +467,19 @@
         "logical_path": "spec/portable/portable-proof-inputs-v4.md"
       },
       "specification_id": "agentflow.portable.proof.inputs.semantics@4",
+      "status": "frozen"
+    },
+    {
+      "description": "Exact Raw successor tuple, current-only content identity and unconditional staging capability denial.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "1e2a5c6392fbf9c3df87ed481eb404879d68d1aae01d5981dfb2e582a726c49d"
+        },
+        "logical_path": "spec/portable/portable-proof-inputs-v5.md"
+      },
+      "specification_id": "agentflow.portable.proof.inputs.semantics@5",
       "status": "frozen"
     },
     {

@@ -110,7 +110,9 @@ def main():
  codec=load('native_codec','gen-portable-proof-codec-corpus.py')
  oldids=json.loads((ROOT/'spec/conformance/g01-successor-staging/manifest.json').read_bytes())['selected_specifications']
  ids=sorted(oldids+[v[0] for v in SOURCES.values()]);rids=sorted([f'AF-CONTRACT-{n:04}' for n in range(1,23)]+[f'AF-SEMANTIC-{n:04}' for n in list(range(111,188))+[189]+list(range(191,223))+list(range(228,243))+list(range(245,261))])
- sb=(ROOT/'spec/registry/specifications.json').read_bytes();rb=(ROOT/'spec/registry/rules.json').read_bytes()
+ # Edition4 input bytes stay frozen when a successor is added.
+ frozen=ROOT/'spec/conformance/g01-raw-validation-staging'
+ sb=(frozen/'edition4-specifications.json').read_bytes();rb=(frozen/'edition4-rules.json').read_bytes()
  profile=dict(specification_bytes=sb,rule_bytes=rb,version=OWNER,spec_ids=ids,rule_ids=rids)
  def identity(p):
   return {'analysis_semantics_version':p['version'],'registry_hex':p['specification_bytes'].hex(),'rule_registry_hex':p['rule_bytes'].hex(),'specifications':[{'specification_id':x['specification_id'],'logical_path':x['normative_source']['logical_path'],'content_sha256':sha((ROOT/x['normative_source']['logical_path']).read_bytes()),'content_hex':(ROOT/x['normative_source']['logical_path']).read_bytes().hex()} for x in json.loads(p['specification_bytes'])['specifications'] if x['specification_id'] in p['spec_ids']],'rules':[codec.rule_identity(x) for x in json.loads(p['rule_bytes'])['rules'] if x['rule_id'] in p['rule_ids']]}

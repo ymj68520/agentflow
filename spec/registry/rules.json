@@ -5525,6 +5525,127 @@
       "source_anchor": "native-staging-denial"
     },
     {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0261"
+      ],
+      "normative_source": "spec/component/raw-contract-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0261",
+      "short_statement": "Raw subjects preserve all thirteen parsed Raw fields, real declarative documents and physical byte associations without inventing historical input.",
+      "source_anchor": "raw-subject"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0262"
+      ],
+      "normative_source": "spec/component/raw-contract-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0262",
+      "short_statement": "Raw analysis and canonical validation use the actual same nine-member context object and exact partition without a fabricated resolver.",
+      "source_anchor": "raw-context"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0263"
+      ],
+      "normative_source": "spec/component/raw-contract-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0263",
+      "short_statement": "Raw physical bytes, parsed declarations, diagnostic presentation, canonical validation and Checked states remain distinct; parser failure is not a port predicate.",
+      "source_anchor": "raw-stages"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0264"
+      ],
+      "normative_source": "spec/component/raw-contract-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0264",
+      "short_statement": "The single positive_unique_io_ports case preserves the actual input-before-output stable numeric sort and reached positivity/uniqueness check before schema resolution.",
+      "source_anchor": "raw-port-predicate"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0265"
+      ],
+      "normative_source": "spec/component/raw-contract-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0265",
+      "short_statement": "Raw Source, exact schema constraint Target, original and sorted port Coordinate and both declarative paths identify the same real occurrence.",
+      "source_anchor": "raw-origin"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0266"
+      ],
+      "normative_source": "spec/component/raw-contract-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0266",
+      "short_statement": "Zero and duplicate violations retain complete typed U32 occurrences and real predecessor evidence; positive facts have no contradiction and diagnostic strings cannot supply evidence.",
+      "source_anchor": "raw-witness"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0267"
+      ],
+      "normative_source": "spec/component/raw-contract-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0267",
+      "short_statement": "Raw prerequisites and typed member references retain original stage and origin, all observations and consumers; one local positive port does not prove namespace coverage.",
+      "source_anchor": "raw-links"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0268"
+      ],
+      "normative_source": "spec/component/raw-contract-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0268",
+      "short_statement": "Future branch-created evidence is borrowed before diagnostic reduction; source, context and evidence lifetimes cannot produce a Checked token or trusted caller assertion.",
+      "source_anchor": "raw-hook-contract"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0269"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics-v4.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0269",
+      "short_statement": "Raw input Scope excludes generated facts and witnesses, whose separate finite DAGs and non-root fragment cannot convert to CompleteView.",
+      "source_anchor": "raw-fragment"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0270"
+      ],
+      "normative_source": "spec/tables/proof-report-model-v4.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0270",
+      "short_statement": "All Raw descriptors, parent extensions and member paths are closed, width-exact, ranked and field-complete while historical descriptors retain their original owners.",
+      "source_anchor": "raw-descriptors"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0271"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs-v5.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0271",
+      "short_statement": "The exact Raw successor binds complete registered content with separate Registered, NotImplemented and NotAuthorized states; old and mixed identities fail closed.",
+      "source_anchor": "raw-migration"
+    },
+    {
       "area": "SPEC",
       "conformance_refs": [
         "spec-registry/duplicate-specification-id"
