@@ -1,0 +1,609 @@
+{
+  "kind": "IndependentDesignVectors;NOT production fixtures or Capture conformance",
+  "registered": false,
+  "oracle_implemented": false,
+  "actual_status": "Not Executed",
+  "definitions": {
+    "port_zero": "Complete replay-input.json rust_input, unchanged except explicit declared mutations",
+    "port_one": "port_zero with inputs[0].port_no=1; same actual Int64 universe; hypothetical actual event",
+    "C": "one actual context object; labels are design variables, never identity data",
+    "D": "a separate actual context object",
+    "documents": "actual declarative input documents supplied to a future adapter; not generated from runtime calls",
+    "nfd_text": "raw utf8 65cc81; no implicit NFC admission",
+    "canonical_valid_whole_contract_negative": "requires genuine separate future fixture; not forged Checked",
+    "symbolic_inputs": "design constraints to materialize independently later; no claim of runnable complete production fixtures"
+  },
+  "categories": {
+    "stage": 10,
+    "context": 8,
+    "source_origin_witness": 12,
+    "version_boundary": 10
+  },
+  "vectors": [
+    {
+      "id": "c1g1/stage/01-raw-port-zero",
+      "category": "stage",
+      "declared_input": {
+        "input": "port_zero",
+        "entry": "parsed_declaration",
+        "trace": "input[0].positive_unique"
+      },
+      "design_expected": {
+        "stage": "canonical_validation/io_port_check",
+        "status": "Violation",
+        "witness": "zero",
+        "checked": false,
+        "native_guard_executed": false
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/stage/02-malformed-utf8",
+      "category": "stage",
+      "declared_input": {
+        "input": "physical",
+        "physical_hex": "ff"
+      },
+      "design_expected": {
+        "stage": "raw_input_decode",
+        "fact": "none",
+        "rejection": "InvalidUtf8"
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/stage/03-malformed-port-field",
+      "category": "stage",
+      "declared_input": {
+        "input": "physical",
+        "physical_hex": "7b22696e70757473223a5b7b22706f72745f6e6f223a226e6f742d752d3332227d5d7d"
+      },
+      "design_expected": {
+        "stage": "raw_input_parse",
+        "fact": "none",
+        "rejection": "MalformedRawField"
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/stage/04-parsed-not-canonical",
+      "category": "stage",
+      "declared_input": {
+        "input": "port_zero",
+        "parsed": true
+      },
+      "design_expected": {
+        "parsed": true,
+        "canonical_validated": false,
+        "successful_canonical_bytes": "none"
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/stage/05-diagnostic-not-raw",
+      "category": "stage",
+      "declared_input": {
+        "input": "nfd_text",
+        "presentation": "NFC"
+      },
+      "design_expected": {
+        "raw_bytes_preserved": true,
+        "display_may_differ": true,
+        "origin_from_display": false
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/stage/06-canonical-valid-control",
+      "category": "stage",
+      "declared_input": {
+        "input": "port_one",
+        "actual_check": "positive_unique event only"
+      },
+      "design_expected": {
+        "port_fact": "Proven",
+        "canonical_success": "requires separate actual whole canonicalize",
+        "checked": false
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/stage/07-canonical-not-checked",
+      "category": "stage",
+      "declared_input": {
+        "input": "canonical_valid_whole_contract_negative"
+      },
+      "design_expected": {
+        "native_diagnostic": "only if actually executed",
+        "checked": false,
+        "port_proven_does_not_prove_contract": true
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/stage/08-checked-not-raw-proof",
+      "category": "stage",
+      "declared_input": {
+        "input": "genuine_checked",
+        "raw_history": "unavailable"
+      },
+      "design_expected": {
+        "historical_raw_origin": "not reconstructed",
+        "fact": "none without fresh genuine raw source"
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/stage/09-identity-reject-before-ports",
+      "category": "stage",
+      "declared_input": {
+        "input": "bad_component_identity",
+        "actual_check": "identity rejects"
+      },
+      "design_expected": {
+        "stage": "canonical_validation/component_identity",
+        "port_events": [],
+        "native_guard_executed": false
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/stage/10-prior-type-pin-stops-later",
+      "category": "stage",
+      "declared_input": {
+        "input": "two_positive_ports",
+        "first_type_pin": "unresolved"
+      },
+      "design_expected": {
+        "first_port_fact": "Proven",
+        "second_port_event": "not_reached",
+        "port_zero_witness": "forbidden"
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/context/01-nine-without-resolver",
+      "category": "context",
+      "declared_input": {
+        "context": "C",
+        "members": 9,
+        "resolver": "not_supplied"
+      },
+      "design_expected": {
+        "subject_context": "ContractProofContextContents",
+        "resolver_placeholder": false
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/context/02-same-object",
+      "category": "context",
+      "declared_input": {
+        "analysis_object": "C",
+        "canonical_object": "C"
+      },
+      "design_expected": {
+        "partition": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ],
+        "association": "valid"
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/context/03-equal-contents-different-object",
+      "category": "context",
+      "declared_input": {
+        "analysis_object": "C",
+        "canonical_object": "D",
+        "contents_equal": true
+      },
+      "design_expected": {
+        "capture_error": "InvalidContextBinding",
+        "fact": "none"
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/context/04-different-context-content",
+      "category": "context",
+      "declared_input": {
+        "analysis_object": "C",
+        "canonical_object": "D",
+        "contents_equal": false
+      },
+      "design_expected": {
+        "capture_error": "InvalidContextBinding",
+        "fact": "none"
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/context/05-resolver-known-empty",
+      "category": "context",
+      "declared_input": {
+        "resolver": "supplied_known_empty",
+        "route": "old contract_validation"
+      },
+      "design_expected": {
+        "not_equivalent_to_native_absent": true,
+        "old_requirements": "unchanged",
+        "automatic_raw_adapter": false
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/context/06-resolver-not-supplied",
+      "category": "context",
+      "declared_input": {
+        "resolver": "not_supplied",
+        "route": "old contract_validation"
+      },
+      "design_expected": {
+        "old_subject_admission": "reject missing resolver",
+        "coerce_empty": false
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/context/07-missing-ninth-member",
+      "category": "context",
+      "declared_input": {
+        "context": "C",
+        "members": 8
+      },
+      "design_expected": {
+        "capture_error": "IncompleteContext",
+        "fact": "none"
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/context/08-relation-slots-not-sequence",
+      "category": "context",
+      "declared_input": {
+        "relations": {
+          "effect_resource": "none",
+          "recovery_usage": "none",
+          "flow_execution": "none"
+        },
+        "old_relations": []
+      },
+      "design_expected": {
+        "structural_types_differ": true,
+        "silent_coercion": false
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/source_origin_witness/01-zero-witness",
+      "category": "source_origin_witness",
+      "declared_input": {
+        "input": "port_zero",
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0
+      },
+      "design_expected": {
+        "rule": "AF-CONTRACT-0004",
+        "status": "Violation",
+        "member": "inputs[0].port_no",
+        "witness": {
+          "case": "zero",
+          "raw_member_value": 0,
+          "minimum": 1
+        }
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/source_origin_witness/02-duplicate-witness",
+      "category": "source_origin_witness",
+      "declared_input": {
+        "input_numbers": [
+          2,
+          1,
+          2
+        ],
+        "direction": "input"
+      },
+      "design_expected": {
+        "status": "Violation",
+        "selected_original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "predecessor_original_ordinal": 0,
+        "port_no": 2,
+        "witness": "duplicate"
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/source_origin_witness/03-separate-port-namespaces",
+      "category": "source_origin_witness",
+      "declared_input": {
+        "input_numbers": [
+          1
+        ],
+        "output_numbers": [
+          1
+        ],
+        "pins": "resolved"
+      },
+      "design_expected": {
+        "local_port_statuses": [
+          "Proven",
+          "Proven"
+        ],
+        "duplicate": false
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/source_origin_witness/04-same-fact-observed-twice",
+      "category": "source_origin_witness",
+      "declared_input": {
+        "document": "D",
+        "path": "declarations[0]",
+        "observations": [
+          "legacy_dimensions[0]",
+          "local_fragment"
+        ]
+      },
+      "design_expected": {
+        "origin_count": 1,
+        "observation_count": 2
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/source_origin_witness/05-distinct-identical-declarations",
+      "category": "source_origin_witness",
+      "declared_input": {
+        "document": "D",
+        "declarations": [
+          "port_zero",
+          "port_zero"
+        ]
+      },
+      "design_expected": {
+        "origins": [
+          "declarations[0].inputs[0].port_no",
+          "declarations[1].inputs[0].port_no"
+        ],
+        "fact_count": 2,
+        "merge": false
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/source_origin_witness/06-missing-source",
+      "category": "source_origin_witness",
+      "declared_input": {
+        "candidate": "port_zero",
+        "source": "absent"
+      },
+      "design_expected": {
+        "capture_error": "MissingRequiredSource",
+        "fact": "none"
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/source_origin_witness/07-missing-declarative-origin",
+      "category": "source_origin_witness",
+      "declared_input": {
+        "candidate": "port_zero",
+        "origin": "not_supplied",
+        "physical": "not_supplied"
+      },
+      "design_expected": {
+        "capture_error": "MissingDeclarativeOrigin",
+        "legacy_diagnostic": "allowed",
+        "portable_fact": "none"
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/source_origin_witness/08-raw-nfd-bytes",
+      "category": "source_origin_witness",
+      "declared_input": {
+        "physical_hex": "2265cc8122",
+        "parsed_utf8_hex": "65cc81"
+      },
+      "design_expected": {
+        "raw_nfd_preserved": true,
+        "canonical_display_not_original": true,
+        "port_fact": "not applicable to this scalar"
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/source_origin_witness/09-nfc-diagnostic-presentation",
+      "category": "source_origin_witness",
+      "declared_input": {
+        "physical_hex": "2265cc8122",
+        "diagnostic_utf8_hex": "c3a9"
+      },
+      "design_expected": {
+        "source_identity_uses_physical": true,
+        "source_replaced_by_display": false
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/source_origin_witness/10-witness-member-mismatch",
+      "category": "source_origin_witness",
+      "declared_input": {
+        "input": "port_zero",
+        "claimed_coordinate": "outputs[0].port_no"
+      },
+      "design_expected": {
+        "capture_error": "InvalidFacts",
+        "fact": "none"
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/source_origin_witness/11-duplicate-missing-predecessor",
+      "category": "source_origin_witness",
+      "declared_input": {
+        "input_numbers": [
+          1,
+          1
+        ],
+        "witness_predecessor": "none"
+      },
+      "design_expected": {
+        "capture_error": "IncompleteWitness",
+        "fact": "none"
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/source_origin_witness/12-zero-as-valid-portno-forbidden",
+      "category": "source_origin_witness",
+      "declared_input": {
+        "input": "port_zero",
+        "witness_numeric_type": "valid PortNo"
+      },
+      "design_expected": {
+        "capture_error": "InvalidWitnessType",
+        "required_numeric_type": "U32"
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/version_boundary/01-unknown-subject-variant",
+      "category": "version_boundary",
+      "declared_input": {
+        "subject": "unregistered_future_tag",
+        "route": "current"
+      },
+      "design_expected": {
+        "admission": "UnsupportedModel",
+        "fact": "none"
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/version_boundary/02-unknown-edition",
+      "category": "version_boundary",
+      "declared_input": {
+        "edition": "unregistered_symbolic_edition"
+      },
+      "design_expected": {
+        "admission": "UnsupportedEdition",
+        "fact": "none"
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/version_boundary/03-current-tuple-new-profile",
+      "category": "version_boundary",
+      "declared_input": {
+        "tuple": "Analysis@4/Model@3/Report@3/Obligation@3",
+        "family": "raw_contract_validation"
+      },
+      "design_expected": {
+        "admission": "reject unregistered family",
+        "supported": false
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/version_boundary/04-old-label-new-content",
+      "category": "version_boundary",
+      "declared_input": {
+        "tuple": "current label",
+        "descriptor_content": "proposed changed content"
+      },
+      "design_expected": {
+        "admission": "content identity mismatch",
+        "repair": false
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/version_boundary/05-false-checked-token",
+      "category": "version_boundary",
+      "declared_input": {
+        "input": "port_zero",
+        "caller_claimed_checked": true
+      },
+      "design_expected": {
+        "checked": "not issued",
+        "caller_claim_ignored": true
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/version_boundary/06-native-guard-not-executed",
+      "category": "version_boundary",
+      "declared_input": {
+        "input": "port_zero",
+        "guard_case": "canonical_source"
+      },
+      "design_expected": {
+        "guard_fact": "none",
+        "guard_proven": false,
+        "native_guard_executed": false
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/version_boundary/07-standalone-two-checked-required",
+      "category": "version_boundary",
+      "declared_input": {
+        "input": "one rejected Raw",
+        "attempt": "standalone_substitution"
+      },
+      "design_expected": {
+        "admission": "reject missing genuine operands/application",
+        "cases_unchanged": 27
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/version_boundary/08-root-capability-denial",
+      "category": "version_boundary",
+      "declared_input": {
+        "port_fact": "Proven",
+        "attempt": "RootExport Checked"
+      },
+      "design_expected": {
+        "positive_root_export": "NotAuthorized",
+        "complete_view": false
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/version_boundary/09-unmapped-canonical-error",
+      "category": "version_boundary",
+      "declared_input": {
+        "error_domain": "usage canonicalizer",
+        "attempt_case": "positive_unique_io_ports"
+      },
+      "design_expected": {
+        "capture_error": "UnsupportedPredicate",
+        "generic_schema_violation_fact": false
+      },
+      "actual_status": "Not Executed"
+    },
+    {
+      "id": "c1g1/version_boundary/10-legacy-u-not-evaluation",
+      "category": "version_boundary",
+      "declared_input": {
+        "input": "port_zero",
+        "legacy_later_dimensions": "Unproven placeholders"
+      },
+      "design_expected": {
+        "later_fact_evaluation": "not_reached",
+        "fabricated_evaluated_unproven": false
+      },
+      "actual_status": "Not Executed"
+    }
+  ]
+}

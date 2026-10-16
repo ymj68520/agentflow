@@ -1,0 +1,4160 @@
+{
+  "status": "Unmodified registered descriptor selection; NOT proposed registration",
+  "model": "agentflow.computation.proof-report.model@3",
+  "types": {
+    "ScopeSubject": {
+      "kind": "enum",
+      "variants": [
+        [
+          "root_export",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "caller_ir",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "top_export",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "compiler",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "Compiler"
+                  }
+                }
+              ],
+              [
+                "context",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "Context"
+                  }
+                }
+              ],
+              [
+                "resolver_associations",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "ResolverAssociations"
+                  }
+                }
+              ],
+              [
+                "root_provenance",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "RootProvenance"
+                  }
+                }
+              ],
+              [
+                "associations",
+                {
+                  "ref": "ContextPartition"
+                }
+              ],
+              [
+                "assertion_inputs",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "AssertionGraph"
+                  }
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "contract_validation",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "compiler",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "Compiler"
+                  }
+                }
+              ],
+              [
+                "context",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "Context"
+                  }
+                }
+              ],
+              [
+                "associations",
+                {
+                  "ref": "ContextPartition"
+                }
+              ],
+              [
+                "candidate",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "RawCandidateContract"
+                  }
+                }
+              ],
+              [
+                "old_checked",
+                {
+                  "kind": "option",
+                  "item": {
+                    "kind": "dag_ref",
+                    "target": {
+                      "ref": "CheckedContractContents"
+                    }
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "computation",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "compiler",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "Compiler"
+                  }
+                }
+              ],
+              [
+                "caller_ir",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "context",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "Context"
+                  }
+                }
+              ],
+              [
+                "resolver_associations",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "ResolverAssociations"
+                  }
+                }
+              ],
+              [
+                "root_provenance",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "RootProvenance"
+                  }
+                }
+              ],
+              [
+                "associations",
+                {
+                  "ref": "ContextPartition"
+                }
+              ],
+              [
+                "owned_root",
+                {
+                  "ref": "ComputationId"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "standalone_substitution",
+          {
+            "ref": "SubstitutionProofSubject"
+          }
+        ],
+        [
+          "native_recovery_guard",
+          {
+            "ref": "NativeRecoveryGuardSubject"
+          }
+        ]
+      ]
+    },
+    "Context": {
+      "kind": "record",
+      "fields": [
+        [
+          "compiled_modules",
+          {
+            "kind": "map",
+            "key": {
+              "ref": "SpecificationId"
+            },
+            "value": {
+              "ref": "CompiledModuleContents"
+            }
+          }
+        ],
+        [
+          "type_schemas",
+          {
+            "kind": "map",
+            "key": {
+              "ref": "LogicalTypeIdentity"
+            },
+            "value": {
+              "ref": "af-idl::CanonicalTypeSchema"
+            }
+          }
+        ],
+        [
+          "effect_catalogs",
+          {
+            "kind": "map",
+            "key": {
+              "ref": "SpecificationId"
+            },
+            "value": {
+              "kind": "set",
+              "item": {
+                "ref": "$Text"
+              },
+              "minimum": 0
+            }
+          }
+        ],
+        [
+          "resource_types",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "schemas",
+                {
+                  "kind": "map",
+                  "key": {
+                    "ref": "LogicalTypeIdentity"
+                  },
+                  "value": {
+                    "ref": "af-idl::CanonicalTypeSchema"
+                  }
+                }
+              ],
+              [
+                "descriptors",
+                {
+                  "kind": "map",
+                  "key": {
+                    "ref": "LogicalTypeIdentity"
+                  },
+                  "value": {
+                    "ref": "ResourceTypeDescriptor"
+                  }
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "flow_catalogs",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "confidentiality",
+                {
+                  "kind": "set",
+                  "item": {
+                    "ref": "af-flow::ConfidentialityLabelRef"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "taints",
+                {
+                  "kind": "set",
+                  "item": {
+                    "ref": "af-flow::TaintRef"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "sinks",
+                {
+                  "kind": "map",
+                  "key": {
+                    "ref": "af-effect::EffectOperationRef"
+                  },
+                  "value": {
+                    "ref": "$Bool"
+                  }
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "usage_meters",
+          {
+            "kind": "map",
+            "key": {
+              "ref": "af-usage::UsageMeterRef"
+            },
+            "value": {
+              "kind": "record",
+              "fields": [
+                [
+                  "meter",
+                  {
+                    "ref": "af-usage::UsageMeterRef"
+                  }
+                ],
+                [
+                  "unit",
+                  {
+                    "ref": "af-usage::UsageUnitRef"
+                  }
+                ],
+                [
+                  "aggregation",
+                  {
+                    "ref": "af-usage::UsageAggregation"
+                  }
+                ]
+              ]
+            }
+          }
+        ],
+        [
+          "recovery_operations",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "effects",
+                {
+                  "kind": "map",
+                  "key": {
+                    "ref": "SpecificationId"
+                  },
+                  "value": {
+                    "kind": "set",
+                    "item": {
+                      "ref": "$Text"
+                    },
+                    "minimum": 0
+                  }
+                }
+              ],
+              [
+                "reconciliation_operations",
+                {
+                  "kind": "set",
+                  "item": {
+                    "kind": "record",
+                    "fields": [
+                      [
+                        "catalog",
+                        {
+                          "ref": "$Text"
+                        }
+                      ],
+                      [
+                        "name",
+                        {
+                          "ref": "$Text"
+                        }
+                      ]
+                    ]
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "execution_universes",
+          {
+            "ref": "ExecutionUniverseContents"
+          }
+        ],
+        [
+          "relation_snapshots",
+          {
+            "kind": "sequence",
+            "item": {
+              "ref": "RelationSnapshotContent"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "resolver_dependencies",
+          {
+            "ref": "ResolverDependencyManifest"
+          }
+        ]
+      ]
+    },
+    "ContractProofContextContents": {
+      "kind": "record",
+      "fields": [
+        [
+          "compiled_modules",
+          {
+            "kind": "map",
+            "key": {
+              "ref": "SpecificationId"
+            },
+            "value": {
+              "ref": "CompiledModuleContents"
+            }
+          }
+        ],
+        [
+          "type_schemas",
+          {
+            "kind": "map",
+            "key": {
+              "ref": "LogicalTypeIdentity"
+            },
+            "value": {
+              "ref": "af-idl::CanonicalTypeSchema"
+            }
+          }
+        ],
+        [
+          "effect_catalogs",
+          {
+            "kind": "map",
+            "key": {
+              "ref": "SpecificationId"
+            },
+            "value": {
+              "kind": "set",
+              "item": {
+                "ref": "$Text"
+              },
+              "minimum": 0
+            }
+          }
+        ],
+        [
+          "resource_types",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "schemas",
+                {
+                  "kind": "map",
+                  "key": {
+                    "ref": "LogicalTypeIdentity"
+                  },
+                  "value": {
+                    "ref": "af-idl::CanonicalTypeSchema"
+                  }
+                }
+              ],
+              [
+                "descriptors",
+                {
+                  "kind": "map",
+                  "key": {
+                    "ref": "LogicalTypeIdentity"
+                  },
+                  "value": {
+                    "ref": "ResourceTypeDescriptor"
+                  }
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "flow_catalogs",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "confidentiality",
+                {
+                  "kind": "set",
+                  "item": {
+                    "ref": "af-flow::ConfidentialityLabelRef"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "taints",
+                {
+                  "kind": "set",
+                  "item": {
+                    "ref": "af-flow::TaintRef"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "sinks",
+                {
+                  "kind": "map",
+                  "key": {
+                    "ref": "af-effect::EffectOperationRef"
+                  },
+                  "value": {
+                    "ref": "$Bool"
+                  }
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "usage_meters",
+          {
+            "kind": "map",
+            "key": {
+              "ref": "af-usage::UsageMeterRef"
+            },
+            "value": {
+              "kind": "record",
+              "fields": [
+                [
+                  "meter",
+                  {
+                    "ref": "af-usage::UsageMeterRef"
+                  }
+                ],
+                [
+                  "unit",
+                  {
+                    "ref": "af-usage::UsageUnitRef"
+                  }
+                ],
+                [
+                  "aggregation",
+                  {
+                    "ref": "af-usage::UsageAggregation"
+                  }
+                ]
+              ]
+            }
+          }
+        ],
+        [
+          "recovery_operations",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "effects",
+                {
+                  "kind": "map",
+                  "key": {
+                    "ref": "SpecificationId"
+                  },
+                  "value": {
+                    "kind": "set",
+                    "item": {
+                      "ref": "$Text"
+                    },
+                    "minimum": 0
+                  }
+                }
+              ],
+              [
+                "reconciliation_operations",
+                {
+                  "kind": "set",
+                  "item": {
+                    "kind": "record",
+                    "fields": [
+                      [
+                        "catalog",
+                        {
+                          "ref": "$Text"
+                        }
+                      ],
+                      [
+                        "name",
+                        {
+                          "ref": "$Text"
+                        }
+                      ]
+                    ]
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "execution_universes",
+          {
+            "ref": "ExecutionUniverseContents"
+          }
+        ],
+        [
+          "relation_snapshots",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "effect_resource",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "RelationSnapshotContent"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "recovery_usage",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "RelationSnapshotContent"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "flow_execution",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "RelationSnapshotContent"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    "SubstitutionProofSubject": {
+      "kind": "record",
+      "fields": [
+        [
+          "owner_compiler",
+          {
+            "ref": "CompleteCompiler"
+          }
+        ],
+        [
+          "old",
+          {
+            "ref": "OperandSubject"
+          }
+        ],
+        [
+          "replacement",
+          {
+            "ref": "OperandSubject"
+          }
+        ],
+        [
+          "contexts",
+          {
+            "ref": "ContractContextSet"
+          }
+        ],
+        [
+          "associations",
+          {
+            "ref": "ContextRolePartition"
+          }
+        ],
+        [
+          "application",
+          {
+            "ref": "ApplicationOrigin"
+          }
+        ]
+      ]
+    },
+    "OperandSubject": {
+      "kind": "record",
+      "fields": [
+        [
+          "role",
+          {
+            "ref": "OperandRole"
+          }
+        ],
+        [
+          "contents",
+          {
+            "ref": "ContractContents"
+          }
+        ],
+        [
+          "identity",
+          {
+            "ref": "af-contract::ComponentIdentity"
+          }
+        ],
+        [
+          "context_role",
+          {
+            "ref": "SubstitutionContextRole"
+          }
+        ]
+      ]
+    },
+    "ContractContextSet": {
+      "kind": "record",
+      "fields": [
+        [
+          "analysis",
+          {
+            "ref": "ContractProofContextContents"
+          }
+        ],
+        [
+          "old_checked",
+          {
+            "ref": "ContractProofContextContents"
+          }
+        ],
+        [
+          "replacement_checked",
+          {
+            "ref": "ContractProofContextContents"
+          }
+        ]
+      ]
+    },
+    "ContextRolePartition": {
+      "kind": "sequence",
+      "item": {
+        "kind": "sequence",
+        "item": {
+          "ref": "SubstitutionContextRole"
+        },
+        "minimum": 1
+      },
+      "minimum": 0
+    },
+    "NativeRecoveryGuardSubject": {
+      "kind": "record",
+      "fields": [
+        [
+          "owner_compiler",
+          {
+            "ref": "CompleteCompiler"
+          }
+        ],
+        [
+          "declaration",
+          {
+            "ref": "CanonicalNativeContractDeclaration"
+          }
+        ],
+        [
+          "context",
+          {
+            "ref": "ContractProofContextContents"
+          }
+        ],
+        [
+          "context_roles",
+          {
+            "ref": "NativeGuardContextPartition"
+          }
+        ]
+      ]
+    },
+    "NativeGuardContextPartition": {
+      "kind": "sequence",
+      "item": {
+        "kind": "sequence",
+        "item": {
+          "ref": "NativeGuardContextRole"
+        },
+        "minimum": 1
+      },
+      "minimum": 1
+    },
+    "PredicateFamily": {
+      "kind": "enum",
+      "variants": [
+        [
+          "root_preflight",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "root_dimension",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "execution_child",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "root_boundary",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "leaf",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "control",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "root_recovery",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "prerequisite",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "standalone_substitution",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "native_recovery_guard",
+          {
+            "kind": "unit"
+          }
+        ]
+      ]
+    },
+    "ClosedPredicateCase": {
+      "kind": "enum",
+      "variants": [
+        [
+          "control",
+          {
+            "kind": "enum",
+            "variants": [
+              [
+                "compensation-commit-order",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "compensation-forward-history",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "compensation-recovery-coverage",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "conditional-compensation-actions",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "control-contract-boundary",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "control-topology",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "control-tree-closure",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "effect-envelope",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "execution-per-child",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "failure-row",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "information-flow",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "local-k-action-bounds",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "occurrence-identity",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "parallel-fail-fast",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "proof-context-consistency",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "race-loser-effects",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "recovery-blocked-outcome",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "recovery-obligations",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "resource-port-provenance",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "retry-logical-effect-narrowing",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "retry-recovery-safety",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-export-compatibility",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-k-action-effect-envelope",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-k-action-epsilon-coverage",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-k-epsilon-coverage-requirement",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-k-recovery-usage",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-k-recovery-usage-coverage",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-recovery-action-totals",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-recovery-eligibility",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-recovery-guard-compatibility",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-recovery-multiplicity",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-recovery-source-closure",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "scope-authority-attenuation",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "scope-budget-attenuation",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "scope-child-summary",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "scope-owned-child-settlement",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "scope-resource-attenuation",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "select-case-totality",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "timeout-control-outcomes",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "typed-output-interface",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "unsupported-control",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "usage",
+                {
+                  "kind": "unit"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "execution_child",
+          {
+            "kind": "enum",
+            "variants": [
+              [
+                "source",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "feasibility",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "security",
+                {
+                  "kind": "unit"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "leaf",
+          {
+            "kind": "enum",
+            "variants": [
+              [
+                "await-control-semantics",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "await-signal-pin",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "contract-pin-validation",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "effect-and-recovery",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "failure-usage-execution",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "information-flow",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "input-binding",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "output-binding",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "proof-context-consistency",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "reference-resolution",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "resource-mapping",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "scoped-dataflow",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "subflow-body-conformance",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "subflow-dependency-closure",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "subflow-export-contract",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "subflow-interface",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "target-pin-validation",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "type-compatibility",
+                {
+                  "kind": "unit"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "prerequisite",
+          {
+            "kind": "enum",
+            "variants": [
+              [
+                "closed_contract_schema",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "imported_module_closure",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "schema_universe",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "positive_unique_ports",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "failure_pins",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "effect_operation_membership",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "resource_universe",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "effect_resource_relation",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "flow_catalogs",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "io_resource_namespaces",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "additive_meter_units",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "recovery_usage_exhaustiveness",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "closed_effect_action_coverage",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "exact_k_identity",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "execution_universes",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "flow_execution_relation",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "required_dimensions",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "exact_relation_pins",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "epsilon_nonempty",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "flow_constraints_require_relation",
+                {
+                  "kind": "unit"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "root_boundary",
+          {
+            "kind": "enum",
+            "variants": [
+              [
+                "body",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "implementation",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "scope_authority",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "scope_budget",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "runtime",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "publisher",
+                {
+                  "kind": "unit"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "root_dimension",
+          {
+            "kind": "enum",
+            "variants": [
+              [
+                "I",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "O",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "Phi",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "epsilon",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "R",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "F",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "U",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "K",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "X",
+                {
+                  "kind": "unit"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "root_preflight",
+          {
+            "kind": "enum",
+            "variants": [
+              [
+                "assertion_input",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "exact_pin",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "proof_context",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "compiler_identity",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "subflow_dependency",
+                {
+                  "kind": "unit"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "root_recovery",
+          {
+            "kind": "enum",
+            "variants": [
+              [
+                "root-k-action-effect-envelope",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-k-action-epsilon-coverage",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-k-epsilon-coverage-requirement",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-k-recovery-usage",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-k-recovery-usage-coverage",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-recovery-action-totals",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-recovery-eligibility",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-recovery-guard-compatibility",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-recovery-multiplicity",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "root-recovery-source-closure",
+                {
+                  "kind": "unit"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "standalone_substitution",
+          {
+            "kind": "enum",
+            "variants": [
+              [
+                "checked_operand",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "context_association",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "whole_body_equality",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "changed_pair_evidence_floor",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "lineage_equality",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "io_relation",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "failure_relation",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "effects_relation",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "resources_relation",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "flow_relation",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "usage_relation",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "recovery_relation",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "execution_feasibility_relation",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "execution_security_relation",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "execution_combined_relation",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "result_identity",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "result_io",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "result_failure",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "result_effects",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "result_resources",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "result_information_flow",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "result_usage",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "result_recovery",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "result_execution",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "result_execution_feasibility",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "result_execution_security",
+                {
+                  "kind": "unit"
+                }
+              ],
+              [
+                "result_cross_dimension",
+                {
+                  "kind": "unit"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "native_recovery_guard",
+          {
+            "ref": "NativeGuardCase"
+          }
+        ]
+      ]
+    },
+    "Stage": {
+      "kind": "enum",
+      "variants": [
+        [
+          "D0",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "D1",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "D2",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "D3",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "D4",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "D5",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "D6",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "D7",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "D8",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "D9",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "D10",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "contract_validation",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "standalone_substitution",
+          {
+            "kind": "unit"
+          }
+        ]
+      ]
+    },
+    "Kind": {
+      "kind": "enum",
+      "variants": [
+        [
+          "assertion_input",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "exact_pin",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "proof_context",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "resolver_provenance",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "compiler_identity",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "subflow_dependency",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "input_mapping",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "output_producer",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "failure_containment",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "effect_containment",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "resource_mapping",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "information_flow",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "usage_coverage",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "recovery_coverage",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "execution_source",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "execution_feasibility",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "execution_security",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "body_conformance",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "implementation_conformance",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "scope_authority",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "scope_budget",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "runtime_authority",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "publisher_authentication",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "control_evidence",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "prerequisite",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "substitution_evidence",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "native_recovery_guard_evidence",
+          {
+            "kind": "unit"
+          }
+        ]
+      ]
+    },
+    "RequirementClause": {
+      "kind": "enum",
+      "variants": [
+        [
+          "direct",
+          {
+            "ref": "DirectKind"
+          }
+        ],
+        [
+          "recovery",
+          {
+            "ref": "RecoveryClause"
+          }
+        ],
+        [
+          "control",
+          {
+            "ref": "ControlClause"
+          }
+        ],
+        [
+          "prerequisite",
+          {
+            "ref": "PrerequisitePredicate"
+          }
+        ],
+        [
+          "substitution",
+          {
+            "ref": "SubstitutionClause"
+          }
+        ],
+        [
+          "native_guard",
+          {
+            "ref": "NativeGuardClause"
+          }
+        ]
+      ]
+    },
+    "Role": {
+      "kind": "enum",
+      "variants": [
+        [
+          "mandatory_preflight",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "static_dimension",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "execution_child",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "independent_boundary",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "supporting_fact",
+          {
+            "kind": "unit"
+          }
+        ]
+      ]
+    },
+    "Source": {
+      "kind": "enum",
+      "variants": [
+        [
+          "root",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "ir",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "root_node",
+                {
+                  "ref": "ComputationId"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "component",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "caller_ir",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "node",
+                {
+                  "ref": "ComputationId"
+                }
+              ],
+              [
+                "contract",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "entry_ordinal",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "$Ordinal64"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "subflow",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "caller_ir",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "call_site",
+                {
+                  "ref": "ComputationId"
+                }
+              ],
+              [
+                "target_ir",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "export_state",
+                {
+                  "ref": "ExportState"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "scope",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "caller_ir",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "node",
+                {
+                  "ref": "ComputationId"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "context",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "member",
+                {
+                  "kind": "sequence",
+                  "item": {
+                    "ref": "MemberStep"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "catalog_role",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "ContextCatalogRole"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "compiler",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "member",
+                {
+                  "kind": "sequence",
+                  "item": {
+                    "ref": "MemberStep"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "control",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "caller_ir",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "node",
+                {
+                  "ref": "ComputationId"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "contract_operand",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "role",
+                {
+                  "ref": "OperandRole"
+                }
+              ],
+              [
+                "subject",
+                {
+                  "ref": "OperandSubject"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "substitution_application",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "application",
+                {
+                  "ref": "ApplicationOrigin"
+                }
+              ],
+              [
+                "old",
+                {
+                  "ref": "OperandSubject"
+                }
+              ],
+              [
+                "replacement",
+                {
+                  "ref": "OperandSubject"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "native_guard_subject",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "subject",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "NativeRecoveryGuardSubject"
+                  }
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "native_guard_binding",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "subject",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "NativeRecoveryGuardSubject"
+                  }
+                }
+              ],
+              [
+                "occurrence",
+                {
+                  "ref": "NativeGuardOccurrence"
+                }
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    "Target": {
+      "kind": "enum",
+      "variants": [
+        [
+          "analysis_boundary",
+          {
+            "ref": "$unit"
+          }
+        ],
+        [
+          "export",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "digest",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "port",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "PortIdentity"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "component",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "digest",
+                {
+                  "ref": "DigestRef"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "subflow",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "ir",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "export_state",
+                {
+                  "ref": "ExportState"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "relation",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "schema",
+                {
+                  "ref": "af-semantic::TypeSchemaRef"
+                }
+              ],
+              [
+                "revision",
+                {
+                  "ref": "$Text"
+                }
+              ],
+              [
+                "content",
+                {
+                  "ref": "$Bytes"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "proof",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "key",
+                {
+                  "ref": "FactKey"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "unresolved_request",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "caller_ir",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "node",
+                {
+                  "ref": "ComputationId"
+                }
+              ],
+              [
+                "request",
+                {
+                  "ref": "Request"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "contract_operand",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "role",
+                {
+                  "ref": "OperandRole"
+                }
+              ],
+              [
+                "subject",
+                {
+                  "ref": "OperandSubject"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "substitution_pair",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "old",
+                {
+                  "ref": "OperandSubject"
+                }
+              ],
+              [
+                "replacement",
+                {
+                  "ref": "OperandSubject"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "native_guard_subject",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "subject",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "NativeRecoveryGuardSubject"
+                  }
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "native_guard_binding",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "subject",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "NativeRecoveryGuardSubject"
+                  }
+                }
+              ],
+              [
+                "action_binding_ordinal",
+                {
+                  "ref": "$U64"
+                }
+              ],
+              [
+                "action_identity",
+                {
+                  "ref": "af-contract::RecoveryActionIdentity"
+                }
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    "Coordinate": {
+      "kind": "enum",
+      "variants": [
+        [
+          "whole",
+          {
+            "ref": "$unit"
+          }
+        ],
+        [
+          "input",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "binding",
+                {
+                  "ref": "af-computation::RootInputPortBinding"
+                }
+              ],
+              [
+                "export_port",
+                {
+                  "ref": "af-computation::ComponentInputPortIdentity"
+                }
+              ],
+              [
+                "run_parameter",
+                {
+                  "ref": "RunParameterId"
+                }
+              ],
+              [
+                "slot",
+                {
+                  "ref": "ValueSlotId"
+                }
+              ],
+              [
+                "use_site",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "af-computation::RootInputUseSite"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "output",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "binding",
+                {
+                  "ref": "af-computation::RootOutputPortBinding"
+                }
+              ],
+              [
+                "export_port",
+                {
+                  "ref": "af-computation::ComponentOutputPortIdentity"
+                }
+              ],
+              [
+                "name",
+                {
+                  "ref": "RawClaim"
+                }
+              ],
+              [
+                "expression",
+                {
+                  "ref": "ExpressionId"
+                }
+              ],
+              [
+                "path",
+                {
+                  "kind": "sequence",
+                  "item": {
+                    "ref": "MemberStep"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "resource",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "binding",
+                {
+                  "ref": "af-computation::RootResourcePortBinding"
+                }
+              ],
+              [
+                "source_port",
+                {
+                  "ref": "PortIdentity"
+                }
+              ],
+              [
+                "slot",
+                {
+                  "ref": "ResourceSlotId"
+                }
+              ],
+              [
+                "export_port",
+                {
+                  "ref": "af-computation::ResourceRequirementPortIdentity"
+                }
+              ],
+              [
+                "type",
+                {
+                  "ref": "af-semantic::TypeSchemaRef"
+                }
+              ],
+              [
+                "attributes",
+                {
+                  "kind": "set",
+                  "item": {
+                    "ref": "af-resource::ResourceAttributeConstraint"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "aliases",
+                {
+                  "kind": "set",
+                  "item": {
+                    "ref": "PortIdentity"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "effect",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "binding",
+                {
+                  "ref": "af-computation::RootEffectCoordinateBinding"
+                }
+              ],
+              [
+                "source",
+                {
+                  "ref": "af-computation::RootEffectOccurrenceIdentity"
+                }
+              ],
+              [
+                "export_atom",
+                {
+                  "ref": "af-effect::EffectAtom"
+                }
+              ],
+              [
+                "export_guard",
+                {
+                  "ref": "af-effect::EffectGuard"
+                }
+              ],
+              [
+                "bounds",
+                {
+                  "ref": "af-effect::OccurrenceBounds"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "flow",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "binding",
+                {
+                  "ref": "af-computation::RootFlowCoordinateBinding"
+                }
+              ],
+              [
+                "source",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "af-flow::FlowSourceRef"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "sink",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "af-flow::FlowConstraint"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "kind",
+                {
+                  "ref": "af-flow::FlowKind"
+                }
+              ],
+              [
+                "labels",
+                {
+                  "kind": "set",
+                  "item": {
+                    "ref": "af-flow::ConfidentialityLabelRef"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "taints",
+                {
+                  "kind": "set",
+                  "item": {
+                    "ref": "af-flow::TaintRef"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "partition",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "af-contract::EffectFlowPartition"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "ordinal",
+                {
+                  "ref": "$Ordinal64"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "usage",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "phase",
+                {
+                  "ref": "af-usage::UsagePhase"
+                }
+              ],
+              [
+                "meter",
+                {
+                  "ref": "af-usage::UsageMeterRef"
+                }
+              ],
+              [
+                "unit",
+                {
+                  "ref": "af-usage::UsageUnitRef"
+                }
+              ],
+              [
+                "aggregation",
+                {
+                  "ref": "af-usage::UsageAggregation"
+                }
+              ],
+              [
+                "coverage_role",
+                {
+                  "ref": "UsageCoverageRole"
+                }
+              ],
+              [
+                "source_bound",
+                {
+                  "ref": "af-usage::UsageUpperBound"
+                }
+              ],
+              [
+                "export_bound",
+                {
+                  "ref": "af-usage::UsageUpperBound"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "recovery",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "binding",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "af-computation::RootRecoveryCoordinateBinding"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "source",
+                {
+                  "ref": "af-computation::RecoveryActionSourceIdentity"
+                }
+              ],
+              [
+                "action",
+                {
+                  "ref": "af-contract::RecoveryActionIdentity"
+                }
+              ],
+              [
+                "profile",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "af-contract::RecoveryUsageBinding"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "factors",
+                {
+                  "kind": "sequence",
+                  "item": {
+                    "ref": "MultiplicityFactor"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "path",
+                {
+                  "kind": "sequence",
+                  "item": {
+                    "ref": "DeclaredStep"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "execution",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "source_node",
+                {
+                  "ref": "ComputationId"
+                }
+              ],
+              [
+                "contract",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "requirements",
+                {
+                  "ref": "af-execution::ExecutionRequirements"
+                }
+              ],
+              [
+                "aspect",
+                {
+                  "ref": "ExecutionAspect"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "dependency",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "call_site",
+                {
+                  "ref": "ComputationId"
+                }
+              ],
+              [
+                "target",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "edge_ordinal",
+                {
+                  "ref": "$Ordinal64"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "control",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "node",
+                {
+                  "ref": "ComputationId"
+                }
+              ],
+              [
+                "operator",
+                {
+                  "ref": "af-computation::ControlOperator"
+                }
+              ],
+              [
+                "predicate",
+                {
+                  "ref": "PredicateId"
+                }
+              ],
+              [
+                "edge_path",
+                {
+                  "kind": "sequence",
+                  "item": {
+                    "ref": "DeclaredStep"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "context_member",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "catalog",
+                {
+                  "ref": "ContextCatalogRole"
+                }
+              ],
+              [
+                "member",
+                {
+                  "ref": "TypedValue"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "pin",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "role",
+                {
+                  "ref": "PinRole"
+                }
+              ],
+              [
+                "expected",
+                {
+                  "ref": "ClaimValue"
+                }
+              ],
+              [
+                "observed",
+                {
+                  "ref": "ClaimValue"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "substitution",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "application",
+                {
+                  "ref": "ApplicationOrigin"
+                }
+              ],
+              [
+                "dimension",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "SubstitutionDimension"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "clause",
+                {
+                  "ref": "RequirementClause"
+                }
+              ],
+              [
+                "comparison",
+                {
+                  "ref": "SubstitutionCoordinate"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "native_guard",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "subject",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "NativeRecoveryGuardSubject"
+                  }
+                }
+              ],
+              [
+                "clause",
+                {
+                  "ref": "NativeGuardCoordinateClause"
+                }
+              ],
+              [
+                "occurrence",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "NativeGuardOccurrence"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "guard_role",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "NativeGuardRole"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "member",
+                {
+                  "ref": "NativeGuardMemberPath"
+                }
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    "Origin": {
+      "kind": "record",
+      "fields": [
+        [
+          "predicate",
+          {
+            "ref": "PredicateId"
+          }
+        ],
+        [
+          "declared_path",
+          {
+            "kind": "sequence",
+            "item": {
+              "ref": "DeclaredStep"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "source_ordinal",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "$Ordinal64"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "mapping_ordinal",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "$Ordinal64"
+            },
+            "minimum": 0
+          }
+        ]
+      ]
+    },
+    "TypedContradiction": {
+      "kind": "enum",
+      "variants": [
+        [
+          "pin_mismatch",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "role",
+                {
+                  "ref": "PinRole"
+                }
+              ],
+              [
+                "expected",
+                {
+                  "ref": "ClaimValue"
+                }
+              ],
+              [
+                "observed",
+                {
+                  "ref": "ClaimValue"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "missing_members",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "universe",
+                {
+                  "ref": "TypedValue"
+                }
+              ],
+              [
+                "required",
+                {
+                  "kind": "set",
+                  "item": {
+                    "ref": "TypedValue"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "missing",
+                {
+                  "kind": "set",
+                  "item": {
+                    "ref": "TypedValue"
+                  },
+                  "minimum": 1
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "noncontainment",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "relation",
+                {
+                  "ref": "PredicateId"
+                }
+              ],
+              [
+                "actual",
+                {
+                  "ref": "TypedValue"
+                }
+              ],
+              [
+                "ceiling",
+                {
+                  "ref": "TypedValue"
+                }
+              ],
+              [
+                "witness",
+                {
+                  "ref": "TypedValue"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "invalid_mapping",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "input",
+                {
+                  "ref": "TypedValue"
+                }
+              ],
+              [
+                "offending",
+                {
+                  "kind": "sequence",
+                  "item": {
+                    "ref": "DeclaredStep"
+                  },
+                  "minimum": 1
+                }
+              ],
+              [
+                "expected",
+                {
+                  "ref": "TypedValue"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "invalid_shape",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "candidate",
+                {
+                  "ref": "ClaimValue"
+                }
+              ],
+              [
+                "expected_descriptor",
+                {
+                  "ref": "ModelType"
+                }
+              ],
+              [
+                "offending",
+                {
+                  "kind": "sequence",
+                  "item": {
+                    "ref": "DeclaredStep"
+                  },
+                  "minimum": 1
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "guard_countermodel",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "source",
+                {
+                  "ref": "af-computation::RecoveryActionSourceIdentity"
+                }
+              ],
+              [
+                "source_guard",
+                {
+                  "ref": "af-effect::EffectGuard"
+                }
+              ],
+              [
+                "target_guard",
+                {
+                  "ref": "af-effect::EffectGuard"
+                }
+              ],
+              [
+                "bounds",
+                {
+                  "ref": "af-effect::OccurrenceBounds"
+                }
+              ],
+              [
+                "countermodel",
+                {
+                  "ref": "TypedValue"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "source_mismatch",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "expected",
+                {
+                  "ref": "TypedValue"
+                }
+              ],
+              [
+                "observed",
+                {
+                  "ref": "TypedValue"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "prerequisite_contradiction",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "key",
+                {
+                  "ref": "PrerequisiteKey"
+                }
+              ],
+              [
+                "witness",
+                {
+                  "ref": "TypedValue"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "substitution",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "witness",
+                {
+                  "ref": "SubstitutionWitness"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "native_guard",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "witness",
+                {
+                  "ref": "NativeGuardWitness"
+                }
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    "Fact": {
+      "kind": "record",
+      "fields": [
+        [
+          "key",
+          {
+            "ref": "FactKey"
+          }
+        ],
+        [
+          "role",
+          {
+            "ref": "Role"
+          }
+        ],
+        [
+          "evaluation",
+          {
+            "ref": "Evaluation"
+          }
+        ],
+        [
+          "status",
+          {
+            "ref": "Status"
+          }
+        ],
+        [
+          "prerequisites",
+          {
+            "kind": "set",
+            "item": {
+              "ref": "PrerequisiteKey"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "references",
+          {
+            "kind": "set",
+            "item": {
+              "ref": "EvidenceRef"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "primary",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "EvidenceRef"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "contradiction",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "TypedContradiction"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "cause_fact_keys",
+          {
+            "kind": "set",
+            "item": {
+              "ref": "FactKey"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "companion_evidence_status",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "ProofVerdict"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "observations",
+          {
+            "kind": "set",
+            "item": {
+              "ref": "ObservationSite"
+            },
+            "minimum": 1
+          }
+        ],
+        [
+          "substitution_basis",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "SubstitutionBasis"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "native_guard_basis",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "NativeGuardBasis"
+            },
+            "minimum": 0
+          }
+        ]
+      ]
+    },
+    "EvidenceRef": {
+      "kind": "enum",
+      "variants": [
+        [
+          "computation",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "caller_ir",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "node",
+                {
+                  "ref": "ComputationId"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "digest",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "role",
+                {
+                  "ref": "DigestRole"
+                }
+              ],
+              [
+                "pin",
+                {
+                  "ref": "DigestRef"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "schema",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "pin",
+                {
+                  "ref": "af-semantic::TypeSchemaRef"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "port",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "owner",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "direction",
+                {
+                  "ref": "PortDirection"
+                }
+              ],
+              [
+                "number",
+                {
+                  "ref": "PortNo"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "operation",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "operation",
+                {
+                  "ref": "af-effect::EffectOperationRef"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "effect_atom",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "source",
+                {
+                  "ref": "af-computation::RootEffectOccurrenceIdentity"
+                }
+              ],
+              [
+                "atom",
+                {
+                  "ref": "af-effect::EffectAtom"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "contract_ref",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "caller_ir",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "id",
+                {
+                  "ref": "ContractRefId"
+                }
+              ],
+              [
+                "resolved",
+                {
+                  "ref": "ExportState"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "control_edge",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "caller_ir",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "owner",
+                {
+                  "ref": "ComputationId"
+                }
+              ],
+              [
+                "child",
+                {
+                  "ref": "ComputationId"
+                }
+              ],
+              [
+                "path",
+                {
+                  "kind": "sequence",
+                  "item": {
+                    "ref": "DeclaredStep"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "opcode",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "caller_ir",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "node",
+                {
+                  "ref": "ComputationId"
+                }
+              ],
+              [
+                "operator",
+                {
+                  "ref": "af-computation::ControlOperator"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "resolver_difference",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "case",
+                {
+                  "ref": "ResolverDifference"
+                }
+              ],
+              [
+                "expected",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "ResolverAssociations"
+                  }
+                }
+              ],
+              [
+                "observed",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "ResolverAssociations"
+                  }
+                }
+              ],
+              [
+                "target",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "DigestRef"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "fact",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "key",
+                {
+                  "ref": "FactKey"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "scope_member",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "path",
+                {
+                  "kind": "sequence",
+                  "item": {
+                    "ref": "MemberStep"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "unresolved_request",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "request",
+                {
+                  "ref": "Request"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "contract_operand",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "role",
+                {
+                  "ref": "OperandRole"
+                }
+              ],
+              [
+                "subject",
+                {
+                  "ref": "OperandSubject"
+                }
+              ],
+              [
+                "member_path",
+                {
+                  "kind": "sequence",
+                  "item": {
+                    "ref": "MemberStep"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "application_declaration",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "application",
+                {
+                  "ref": "ApplicationOrigin"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "native_guard_member",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "subject",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "NativeRecoveryGuardSubject"
+                  }
+                }
+              ],
+              [
+                "member",
+                {
+                  "ref": "NativeGuardMemberPath"
+                }
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    "ObservationOwner": {
+      "kind": "enum",
+      "variants": [
+        [
+          "root_export",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "contract_validation",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "leaf",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "control",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "root_recovery",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "portable_projection",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "standalone_substitution",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "native_recovery_guard",
+          {
+            "kind": "unit"
+          }
+        ]
+      ]
+    },
+    "RawCandidateContract": {
+      "ref": "Raw(af-contract::ComponentContract)"
+    },
+    "Raw(af-contract::ComponentContract)": {
+      "kind": "record",
+      "fields": [
+        [
+          "component_identity",
+          {
+            "ref": "Raw(af-contract::ComponentIdentity)"
+          }
+        ],
+        [
+          "inputs",
+          {
+            "kind": "sequence",
+            "item": {
+              "ref": "Raw(af-contract::ComponentInputPort)"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "outputs",
+          {
+            "kind": "sequence",
+            "item": {
+              "ref": "Raw(af-contract::ComponentOutputPort)"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "failures",
+          {
+            "ref": "Raw(af-failure::FailureRow)"
+          }
+        ],
+        [
+          "effects",
+          {
+            "ref": "Raw(af-effect::EffectSignature)"
+          }
+        ],
+        [
+          "resources",
+          {
+            "ref": "Raw(af-resource::ResourceRequirementRow)"
+          }
+        ],
+        [
+          "information_flow",
+          {
+            "ref": "Raw(af-flow::InformationFlowContract)"
+          }
+        ],
+        [
+          "usage",
+          {
+            "ref": "Raw(af-usage::UsageSignature)"
+          }
+        ],
+        [
+          "recovery",
+          {
+            "ref": "Raw(af-recovery::RecoveryContract)"
+          }
+        ],
+        [
+          "execution",
+          {
+            "ref": "Raw(af-execution::ExecutionRequirements)"
+          }
+        ],
+        [
+          "effect_flow_partitions",
+          {
+            "kind": "sequence",
+            "item": {
+              "ref": "Raw(af-contract::EffectFlowPartition)"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "recovery_action_bindings",
+          {
+            "kind": "sequence",
+            "item": {
+              "ref": "Raw(af-contract::RecoveryActionBinding)"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "recovery_usage_bindings",
+          {
+            "kind": "sequence",
+            "item": {
+              "ref": "Raw(af-contract::RecoveryUsageBinding)"
+            },
+            "minimum": 0
+          }
+        ]
+      ]
+    }
+  }
+}

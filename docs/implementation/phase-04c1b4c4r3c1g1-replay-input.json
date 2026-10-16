@@ -1,0 +1,135 @@
+{
+  "case_id": "c1-binding/direct-native-raw-port-zero",
+  "raw": {
+    "component_identity": {
+      "catalog": "agentflow.components@1",
+      "name": "acme.transform"
+    },
+    "inputs": [
+      {
+        "port_no": 0,
+        "type": {
+          "specification_id": "agentflow.test.guard-types@1",
+          "type_name": "CaptureInput",
+          "schema_digest": {
+            "algorithm": "sha256",
+            "domain": "type-schema",
+            "hex": "03c31e7af6d91c1ee4e19a624bc2cc075779ae45abdf4f428906e75b15ddca7e"
+          }
+        }
+      }
+    ],
+    "outputs": [],
+    "failures": {
+      "failures": []
+    },
+    "effects": {
+      "row": {
+        "closed": []
+      }
+    },
+    "resources": {
+      "requirements": []
+    },
+    "information_flow": {
+      "confidentiality_restrictions": [],
+      "summary": {
+        "sources": [],
+        "taints": [],
+        "instruction_authority": "none",
+        "influence_unknown": false
+      },
+      "flow_constraints": []
+    },
+    "usage": {
+      "limits": []
+    },
+    "recovery": {
+      "replay_semantics": "recompute",
+      "effect_recovery_clauses": []
+    },
+    "execution": {
+      "capabilities": [],
+      "quantities": [],
+      "sandbox": {
+        "none": null
+      },
+      "trust_domain": {
+        "none": null
+      },
+      "region_residency": {
+        "none": null
+      },
+      "runtime_profile": {
+        "none": null
+      },
+      "implementation_abis": [],
+      "soft_preferences": []
+    },
+    "effect_flow_partitions": [],
+    "recovery_action_bindings": [],
+    "recovery_usage_bindings": []
+  },
+  "rust_input": {
+    "component_identity": {
+      "catalog": "agentflow.components@1",
+      "name": "acme.transform"
+    },
+    "inputs": [
+      {
+        "port_no": 0,
+        "type": {
+          "specification_id": "agentflow.test.guard-types@1",
+          "type_name": "CaptureInput",
+          "schema_digest": {
+            "algorithm": "sha256",
+            "domain": "type-schema",
+            "hex": "03c31e7af6d91c1ee4e19a624bc2cc075779ae45abdf4f428906e75b15ddca7e"
+          }
+        }
+      }
+    ],
+    "outputs": [],
+    "failures": {
+      "failures": []
+    },
+    "effects": {
+      "row": {
+        "closed": []
+      }
+    },
+    "resources": {
+      "requirements": []
+    },
+    "information_flow": {
+      "confidentiality_restrictions": [],
+      "summary": {
+        "sources": [],
+        "taints": [],
+        "instruction_authority": "none",
+        "influence_unknown": false
+      },
+      "flow_constraints": []
+    },
+    "usage": {
+      "limits": []
+    },
+    "recovery": {
+      "replay_semantics": "recompute",
+      "effect_recovery_clauses": []
+    },
+    "execution": {
+      "capabilities": [],
+      "quantities": [],
+      "sandbox": null,
+      "trust_domain": null,
+      "region_residency": null,
+      "runtime_profile": null,
+      "implementation_abis": [],
+      "soft_preferences": []
+    },
+    "effect_flow_partitions": [],
+    "recovery_action_bindings": [],
+    "recovery_usage_bindings": []
+  }
+}
