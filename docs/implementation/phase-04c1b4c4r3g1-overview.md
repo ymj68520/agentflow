@@ -1,0 +1,11 @@
+# G1 — Native Recovery Guard binding adjudication
+
+Outcome A — AMENDMENT DESIGN COMPLETE, not registration or T3 implementation. Starting/code-gate HEAD:5bee948a033cfbf1233c65448e39d0c344993b52,clean. Current identities remain analysis agentflow.root-export-checker@3,report-shape@2,obligation@2,model@2;50/452/451/1/0,ABI775/AFIDL17/HashV1 domains14,518 descriptors/1593 references,27 substitution cases/69 dependency kinds are frozen.
+
+**Unique recommendation:Option C**,a separately registered,closed,IR-free native_recovery_guard family/profile,using a restricted exact import/projection of the already-declared historical native types (Option B is a technique inside C,not a second alternative recommendation). No exact existing binding passes all twelve criteria. Most decisively,the negative canonical-valid native subject has neither caller/node nor a Checked contract pin;existing root/leaf sources require the former and substitution operand sources require the latter. Whole Context is not the contract/action occurrence. Metadata admission repair cannot supply that missing predicate/source binding.
+
+The five historical types are declared and source-registered;their full native snapshots are included unchanged in model@2. They are not materialized/current-claimable through the tested current API. This is not evidence that they never existed. The historical Scope owner control proves why ownership and predicate sufficiency must be audited separately.
+
+T3-MODEL-01:AMENDMENT DESIGN ACCEPTED / REGISTRATION PENDING. Current stage state remains Typed Capture NOT IMPLEMENTED,normalizer NOT IMPLEMENTED,complete Scope BLOCKING,positive capability NOT AUTHORIZED. This design proposes no numeric successor identity or RuleId. Only separately authorized registration may allocate versions and install the complete normative transaction;R3 resumption is a later separate authorization.
+
+Read [binding audit](phase-04c1b4c4r3g1-registered-binding-audit.md),[native subject](phase-04c1b4c4r3g1-native-subject.md),[draft](phase-04c1b4c4r3g1-normative-amendment-draft.md),[decisions](phase-04c1b4c4r3g1-decisions.md),[readiness](phase-04c1b4c4r3g1-readiness.md). Diagnostics are Actual only;48 new design vectors remain Not Executed. No formal/production/metadata admission/Expected byte is changed.

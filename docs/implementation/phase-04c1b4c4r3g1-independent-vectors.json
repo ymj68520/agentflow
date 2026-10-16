@@ -1,0 +1,439 @@
+{
+  "kind": "DRAFT NOT REGISTERED;independently specified design vectors,NOT Executed",
+  "vectors": [
+    {
+      "design_vector_id": "G1-NG-001",
+      "group": "Native semantics",
+      "name": "Unconditional positive",
+      "declarative_scenario": "Canonical C,Forward=true,Action=true,positive local potential",
+      "independently_specified_expected": "source/context/readiness P;frozen containment P;native evaluation P/FrozenGuardContainment;no assignment witness",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-002",
+      "group": "Native semantics",
+      "name": "Int64 counterexample",
+      "declarative_scenario": "Int64 port1,Forward=true,Action=(p1==0),positive upper",
+      "independently_specified_expected": "frozen containment false/U;assignment p1=1 typed-valid;native evaluation V/TypedCountermodel;full check rejects",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-003",
+      "group": "Native semantics",
+      "name": "Equal conditional",
+      "declarative_scenario": "Forward=(p1==0),Action=(p1==0),valid exact type",
+      "independently_specified_expected": "frozen containment P;native P;no fabricated countermodel",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-004",
+      "group": "Native semantics",
+      "name": "Forward narrower",
+      "declarative_scenario": "Forward=(p1==0),Action=true",
+      "independently_specified_expected": "native P under frozen direction;never reverse F/A",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-005",
+      "group": "Native semantics",
+      "name": "Different guard ports",
+      "declarative_scenario": "Forward=(p1==0),Action=(p2==0),both Int64",
+      "independently_specified_expected": "retain two exact typed assignments chosen by frozen builder;F true/A false gives V",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-006",
+      "group": "Native semantics",
+      "name": "Same port different constants",
+      "declarative_scenario": "Forward=(p1==0),Action=(p1==1)",
+      "independently_specified_expected": "retain p1=0,do not overwrite it with action alternate;V",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-007",
+      "group": "Native semantics",
+      "name": "Zero potential",
+      "declarative_scenario": "Valid guard ports,derived action upper0",
+      "independently_specified_expected": "native P/ZeroPossibleActions;containment not executed;no runtime eligibility or whole-contract success inference",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-008",
+      "group": "Native semantics",
+      "name": "Zero with missing port",
+      "declarative_scenario": "upper0 but Action references absent port",
+      "independently_specified_expected": "input validation precedes zero;native V/InsufficientEvidence with missing-port structural witness,no input countermodel",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-009",
+      "group": "Native semantics",
+      "name": "Unit domain unknown",
+      "declarative_scenario": "Forward=true,Action=(unit_port==Unit)",
+      "independently_specified_expected": "no alternate Unit value;frozen containment false and no countermodel=>U,not P or V",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-010",
+      "group": "Native semantics",
+      "name": "Missing E entry",
+      "declarative_scenario": "Exact binding present but Forward E not found",
+      "independently_specified_expected": "actual absent resolution/optional ordinal;native U,not fabricated Unconditional/P",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-011",
+      "group": "Native semantics",
+      "name": "Missing usage",
+      "declarative_scenario": "E entries present;matching usage absent",
+      "independently_specified_expected": "native U;bounds and guard validations not queried",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-012",
+      "group": "Native semantics",
+      "name": "Unknown schema expansion",
+      "declarative_scenario": "Known exact machine-only schema unsupported by workflow primitive expansion",
+      "independently_specified_expected": "canonical admission must first be established;native input UnresolvedSchema U;never fabricated domain or assignment",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-013",
+      "group": "Native semantics",
+      "name": "Type mismatch",
+      "declarative_scenario": "Bool input schema,Int64 guard constant",
+      "independently_specified_expected": "native V/InsufficientEvidence and typed constant-type mismatch cause;no well-typed assignment claimed",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-014",
+      "group": "Native semantics",
+      "name": "Action multiplication overflow",
+      "declarative_scenario": "finite product exceeds u64 at actual checked step",
+      "independently_specified_expected": "native V with typed arithmetic failure;no saturation,partial success or guessed countermodel",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-015",
+      "group": "Native semantics",
+      "name": "Shared ceiling conflict",
+      "declarative_scenario": "Same full Forward/action atom,C=2,lower2,multiplier2",
+      "independently_specified_expected": "divisor3 gives recovered upper0<lower2;native V premise failure before guard containment",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-016",
+      "group": "Native semantics",
+      "name": "First-error ordering",
+      "declarative_scenario": "Forward schema expansion U,action port missing V;canonical admission verified",
+      "independently_specified_expected": "retain both eager helper outcomes;native primary selects forward U rather than max V",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-017",
+      "group": "Source,ordinal,origin,context",
+      "name": "IR-free source",
+      "declarative_scenario": "Canonical-valid/full-check-negative native subject;no caller IR",
+      "independently_specified_expected": "native declaration/binding identity complete without fake IR/node/Checked pin",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-018",
+      "group": "Source,ordinal,origin,context",
+      "name": "No root object",
+      "declarative_scenario": "Same native input with no Root ComputationId",
+      "independently_specified_expected": "no root requirement in native subject;root observation absent",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-019",
+      "group": "Source,ordinal,origin,context",
+      "name": "Forward ordinal change",
+      "declarative_scenario": "Different actual selected Forward E occurrence",
+      "independently_specified_expected": "coordinate and source change;not an array count or generic0",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-020",
+      "group": "Source,ordinal,origin,context",
+      "name": "Action ordinal change",
+      "declarative_scenario": "Different actual selected action E entry",
+      "independently_specified_expected": "exact action-entry ordinal changes;binding ordinal remains a different field",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-021",
+      "group": "Source,ordinal,origin,context",
+      "name": "Binding ordinal change",
+      "declarative_scenario": "Same guard definition used by distinct action bindings",
+      "independently_specified_expected": "distinct declared binding application origins,full identities retained",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-022",
+      "group": "Source,ordinal,origin,context",
+      "name": "Action identity change",
+      "declarative_scenario": "Change qualifier/resource selector in a full atom",
+      "independently_specified_expected": "full AtomKey lookup changes;operation-only equality cannot merge",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-023",
+      "group": "Source,ordinal,origin,context",
+      "name": "Guard role change",
+      "declarative_scenario": "Same shared E guard evaluated as Forward versus Action",
+      "independently_specified_expected": "parameterized guard_inputs instances retain distinct real reference paths/roles",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-024",
+      "group": "Source,ordinal,origin,context",
+      "name": "Same content reevaluation",
+      "declarative_scenario": "Repeat identical canonical declaration/context/application",
+      "independently_specified_expected": "one formal native origin,additional observations only;no call counter identity",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-025",
+      "group": "Source,ordinal,origin,context",
+      "name": "Different declaration same guard",
+      "declarative_scenario": "Different complete canonical Contract body or binding occurrence,same guard text",
+      "independently_specified_expected": "different native source/origin;lineage alone insufficient",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-026",
+      "group": "Source,ordinal,origin,context",
+      "name": "Context alias mismatch",
+      "declarative_scenario": "Canonical validation object bound to context A,analysis uses distinct B with equal bytes",
+      "independently_specified_expected": "capture admission fails or performs explicit fresh validation under B;no digest→alias proof",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-027",
+      "group": "Source,ordinal,origin,context",
+      "name": "Open known row",
+      "declarative_scenario": "Real Forward/action references in Open.known",
+      "independently_specified_expected": "preserve row-kind tag and known-vector ordinals;do not call closed an object field",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-028",
+      "group": "Source,ordinal,origin,context",
+      "name": "Raw reorder/canonical source",
+      "declarative_scenario": "Reorder valid raw action bindings;canonicalizer sorts full keys",
+      "independently_specified_expected": "origin uses explicitly admitted canonical vector;raw provenance not falsely claimed as the canonical position",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-029",
+      "group": "Witness,owner,descriptor",
+      "name": "All14 field differences",
+      "declarative_scenario": "Independently change each row of the14-field projection contract",
+      "independently_specified_expected": "full typed comparison detects every required native field difference;not exists/count/hash comparison",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-030",
+      "group": "Witness,owner,descriptor",
+      "name": "Assignment schema pin",
+      "declarative_scenario": "Same port/value but altered exact TypeSchemaRef digest",
+      "independently_specified_expected": "invalid typed witness/source pin;equal type name is not enough",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-031",
+      "group": "Witness,owner,descriptor",
+      "name": "Absent payload",
+      "declarative_scenario": "V/TypedCountermodel with assignments or source_contract missing",
+      "independently_specified_expected": "IncompleteFacts/no complete fragment;do not repair from reason",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-032",
+      "group": "Witness,owner,descriptor",
+      "name": "Unknown witness tag",
+      "declarative_scenario": "Undeclared NativeGuardWitness case or private error kind",
+      "independently_specified_expected": "UnsupportedModel;no Other(String) acceptance",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-033",
+      "group": "Witness,owner,descriptor",
+      "name": "Historical Owner Scope",
+      "declarative_scenario": "Claim schema ModelType/ModelRef,owner model@1,name Scope",
+      "independently_specified_expected": "record current UnsupportedModel as safe staging availability limit,not nonexistent historical type",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-034",
+      "group": "Witness,owner,descriptor",
+      "name": "Current Owner Scope",
+      "declarative_scenario": "Current owner/name Scope valid metadata claim",
+      "independently_specified_expected": "metadata-only acceptance;not complete Scope or capability",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-035",
+      "group": "Witness,owner,descriptor",
+      "name": "Declared but inactive",
+      "declarative_scenario": "Native guard type exists in inherited snapshot but not active types",
+      "independently_specified_expected": "separate Declared/Registered/Included/Reachable/Materialized/Claimable states;no inferred import",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-036",
+      "group": "Witness,owner,descriptor",
+      "name": "Same name different owner",
+      "declarative_scenario": "Native type spelling under current,historical,AFIDL and unknown owners",
+      "independently_specified_expected": "exact provenance/admission differs;unknown never broadened",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-037",
+      "group": "Witness,owner,descriptor",
+      "name": "Native enum ordering",
+      "declarative_scenario": "Historical JSON variant keys alphabetically ordered",
+      "independently_specified_expected": "preserve actual Frozen/Zero/Typed/Insufficient native declaration ranks,not JSON key rank",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-038",
+      "group": "Witness,owner,descriptor",
+      "name": "Effective versus declared bound",
+      "declarative_scenario": "Track original shared E ceiling and recovered local seed",
+      "independently_specified_expected": "retain both typed roles;do not invent a same-atom14-field countermodel that current containment short-circuits",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-039",
+      "group": "Witness,owner,descriptor",
+      "name": "Structural V without assignment",
+      "declarative_scenario": "MissingPort/TypeMismatch/arithmetic V,legacy countermodel=None",
+      "independently_specified_expected": "preserve None and structural cause;do not fabricate GuardInt64 assignment",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-040",
+      "group": "Witness,owner,descriptor",
+      "name": "Derived assignment DAG",
+      "declarative_scenario": "Generated value1 absent as a literal in source Guard0",
+      "independently_specified_expected": "witness payload owns its own typed DAG;do not insert a report/witness descendant into input Scope",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-041",
+      "group": "Root,edition,capability",
+      "name": "Native observed by root",
+      "declarative_scenario": "Actual checked source/body/context join then RootRecovery consumes native P",
+      "independently_specified_expected": "original native stage/origin retained;separate root call-site fact and observation",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-042",
+      "group": "Root,edition,capability",
+      "name": "Two root observations",
+      "declarative_scenario": "Two real call-sites consume same native declaration/binding",
+      "independently_specified_expected": "one native origin,two consumer/observation edges;not two native facts",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-043",
+      "group": "Root,edition,capability",
+      "name": "Two source occurrences",
+      "declarative_scenario": "Different actual computation nodes,one native origin",
+      "independently_specified_expected": "root source occurrences remain distinct;root aggregate not substituted for native",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-044",
+      "group": "Root,edition,capability",
+      "name": "Negative rejected before root",
+      "declarative_scenario": "Native typed countermodel V makes check_contract reject",
+      "independently_specified_expected": "retain native diagnostic and real earlier rejection;do not manufacture a checked root source or Root V",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-045",
+      "group": "Root,edition,capability",
+      "name": "Root multiplicity",
+      "declarative_scenario": "Root Retry/Iterate factor added to an already local native action upper",
+      "independently_specified_expected": "apply root factor exactly once on root bounds;never multiply native guard origin/count",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-046",
+      "group": "Root,edition,capability",
+      "name": "Old label/new content",
+      "declarative_scenario": "Current/legacy analysis label combined with proposed changed model/registry bytes",
+      "independently_specified_expected": "InvalidIdentity under exact future routing;not relabelled old success",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-047",
+      "group": "Root,edition,capability",
+      "name": "New label/old content",
+      "declarative_scenario": "Future exact tuple label combined with old model/import bytes",
+      "independently_specified_expected": "InvalidIdentity or actual missing-content category at defined layer;no same-name repair",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    },
+    {
+      "design_vector_id": "G1-NG-048",
+      "group": "Root,edition,capability",
+      "name": "Capability denial",
+      "declarative_scenario": "Native local P or successful selected-type claim with no complete T3/T4/T5/T6/T7/T8",
+      "independently_specified_expected": "no RootExport Checked,CompleteView,runtime/publisher authority or automatic R3/T4 admission",
+      "actual_status": "Not Executed",
+      "kind": "design law;NOT registered CaseId or capture conformance"
+    }
+  ],
+  "total": 48,
+  "executed": 0
+}

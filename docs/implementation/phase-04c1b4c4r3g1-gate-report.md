@@ -1,0 +1,19 @@
+# G1 gates / immutable-source verification
+
+Starting/current full-code gate HEAD:`5bee948a033cfbf1233c65448e39d0c344993b52`,initial clean tree1879 nonignored files. Source implementation/formal content remains that exact baseline. Only additive design documents,read-only audit and ignored isolated diagnostics are allowed. Final full HEAD and clean state are reported at delivery rather than inserting a self-referential Git hash here.
+
+Fresh required commands actually exited0:cargo fmt --all -- --check;cargo clippy -j2 --all-targets --all-features -- -D warnings;cargo test --all -j2;cargo run -p af-spec --bin spec-check -- check. Current336 reported passes in71 result groups,0 failed/ignored/filtered,including173 existing current staging CaseIds. Actual spec-check50/452/451/1/0,ABI775/AFIDL17/xref0;14 HashV1 domains unchanged. These are old/current regression cases,not G1 design vectors or new T3 capture. Complete immutable log hashes and reviewed source hashes are in [gate evidence](phase-04c1b4c4r3g1-gate-evidence.json).
+
+Exact Edition1 source abc91d533b4d62e91226722e1d1fcaa30bd00883/512 cases and Edition2 source51239a0045d7a6fb274bb24cdc8130f2346bf085/51 cases were NOT freshly run in G1. Their old corpus/source files remain frozen;prior phase logs are not replayed as new passes. The user permits accurate non-execution reporting for these optional historical reruns.
+
+Two successful isolated diagnostic invocations are retained:initial10 native scenarios,final11 after adding the real first-U/later-missing-port input. Final probe exits0,56 full ModelType/ModelRef owner/name rows yield8 metadata-only accepts/48 rejects;four nested controls retain the owner gate;positive capability remains false. The negative Actual retains all14 witness fields and actual earlier full-check rejection. No diagnostic changes a new vector's Not Executed state. No production/metadata/Expected was changed to make a probe pass. A tool-output JSON read was truncated during evidence loading;it was discarded and re-read in bounded pieces. That was not a failed checker/generator or a changed Expected.
+
+Read-only source audit loads both complete registered model objects,verifies exact inheritance,all50 registered source hashes,518 descriptors/1593 refs,native source fields/variant sets/declaration order and original-file bytes. Static named-ref root reachability488 is distinguished from catalogue dispatch518. Source locators are not Origin and the reviewed recommendation is not mechanically proved by absent names. Current native branch/candidate review plus exact subject/source constraints establishes why Outcome B is not certified.
+
+## Original-directory final generator gate
+
+Current inventory32 tools/gen-*.py,no new generator. Run in E:/Projects/agent:complete Round1 then complete Round2,all scripts exit0;baseline=round1=round2 over every nonignored path and raw byte hash;0 unexpected added/removed/changed. The final committed design/audit tree is included BEFORE this pair. No nonignored file is edited during or after it. No isolated mirror substitution,retry splicing or swallowed exception. Any I/O failure must retain its own log and restart a complete pair.
+
+Actual final receipt is target/phase-04c1b4c4r3g1-generators.log plus -generators-{baseline,round1,round2}.json;actual completion/timings/file count are reported at delivery,not prefilled. Final source/receipt/hash/documentation checks are read-only. Fast postcommit fmt/clippy/spec checks are not advertised as a second full Cargo run.
+
+Outcome A sign-off is DESIGN COMPLETE only,conditional on the actual final-byte/generator verification. Forty-eight new vectors are independently specified/all Not Executed;seven cases are draft only. No registered source/RuleId/type,metadata policy or production change;T3 remains NOT IMPLEMENTED,normalizer NOT IMPLEMENTED,Scope BLOCKING,capability NOT AUTHORIZED. Stop before registration,metadata repair,R3,T4–T8 and later systems.

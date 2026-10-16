@@ -1,0 +1,128 @@
+{
+  "kind": "G1 design/source/admission diagnostics and current regression;NOT T3 Capture",
+  "source_full_gate_head": "5bee948a033cfbf1233c65448e39d0c344993b52",
+  "current_commands_exit": {
+    "fmt": 0,
+    "clippy": 0,
+    "cargo_test_all": 0,
+    "spec_check": 0
+  },
+  "current_tests": {
+    "passes": 336,
+    "groups": 71,
+    "failed": 0,
+    "ignored": 0,
+    "filtered": 0,
+    "existing_staging_case_ids": 173
+  },
+  "source_bindings": [
+    {
+      "path": "spec/tables/proof-report-model-v1.md",
+      "sha256": "e23ca47c05efe9f7ec22177011982ac47ca0cdc8642173de56a90e6e29a93099"
+    },
+    {
+      "path": "spec/tables/proof-report-model-v2.md",
+      "sha256": "86d97bdcbf17814f03bdab4f34090e90b53963a8a8ea8761be9d30822b3779d1"
+    },
+    {
+      "path": "crates/af-contract/src/recovery_guard.rs",
+      "sha256": "6bf6921902636e2bf729d3c29957b55a440b1cd28a955a205f722c8d23fe18a8"
+    },
+    {
+      "path": "crates/af-contract/src/validate.rs",
+      "sha256": "38e2ec3a5e4c92e0a044b2a7effbe2ba61589c619677ad007f354f23fc948130"
+    },
+    {
+      "path": "crates/af-contract/src/canonical.rs",
+      "sha256": "68f51bb521d075ae65a8103cacc81e2650831e8c6b228a2f504c17643bb306bc"
+    },
+    {
+      "path": "crates/af-computation/src/registered_model.rs",
+      "sha256": "29b92382627e68970eebf688f3ce02be6a2bffbb14e528e6ebdf79bab8e9f25e"
+    },
+    {
+      "path": "crates/af-computation/src/control.rs",
+      "sha256": "262d97a73e32e501490ffc7c9189e8cc83e45882d17b74239f6687f3c4f935fa"
+    },
+    {
+      "path": "crates/af-computation/src/root_recovery.rs",
+      "sha256": "f99cdde6060280605487973d6b0cb8b0aa0a573ceaa7e097d515af1172797bba"
+    },
+    {
+      "path": "spec/component/component-contract.md",
+      "sha256": "7f847a770dd0d92c289a06a6133e55bd239e5247d7eea63e1c9bc98bcf231f22"
+    },
+    {
+      "path": "spec/registry/specifications.json",
+      "sha256": "345ec14a89c6bc774991dc955dc1c7f4185a34ac2c8b0677646ae3d52a98a230"
+    },
+    {
+      "path": "spec/registry/rules.json",
+      "sha256": "034568ba56c84e0cd5715d06aa4302e682d0247bd9b4b9b81668de35ce545726"
+    }
+  ],
+  "logs": [
+    {
+      "path": "target/phase-04c1b4c4r3g1-clippy.log",
+      "sha256": "f2e41e82e529519a61760a151f9b968db0bcc275b91fb7ae5189ed83da2aaa9f",
+      "bytes": 359
+    },
+    {
+      "path": "target/phase-04c1b4c4r3g1-current-tests.log",
+      "sha256": "a2c63129d350f1d87f84c98ad74918273678621df83725eda3e5974d0dc89af9",
+      "bytes": 36022
+    },
+    {
+      "path": "target/phase-04c1b4c4r3g1-spec-check.log",
+      "sha256": "cae6734467897f5e3eb7693cb7f417dc80bb2d42ad769175f904d83657bcf04a",
+      "bytes": 362
+    },
+    {
+      "path": "target/phase-04c1b4c4r3g1-probe.log",
+      "sha256": "d9c799b31c74a973d09f4f63a35180e3da788d995cada4038fb2681e6fa6be5b",
+      "bytes": 108935
+    },
+    {
+      "path": "target/phase-04c1b4c4r3g1-probe-final.log",
+      "sha256": "0207f4d603463e6ed86bbe65833b04e03dcd4b1f71ced5a80928fc5458d33120",
+      "bytes": 117445
+    },
+    {
+      "path": "target/phase-04c1b4c4r3g1-audit.json",
+      "sha256": "406d31284c9de0a709b76ccc575cb97c1199a2325c94d4371a0175e6e634e710",
+      "bytes": 176577
+    }
+  ],
+  "diagnostics": {
+    "first_native_scenarios": 10,
+    "final_native_scenarios": 11,
+    "metadata_rows": 56,
+    "metadata_accept_metadata_only": 8,
+    "metadata_reject": 48,
+    "nested_controls": 4,
+    "new_design_vectors_executed": 0,
+    "new_capture_case_ids": 0
+  },
+  "design": {
+    "recommendation": "Option C with constrained historical import technique",
+    "cases": 7,
+    "vectors": 48,
+    "vector_actual_status": "Not Executed",
+    "registered": false,
+    "numeric_successor_allocated": false
+  },
+  "historical_fresh_runs": {
+    "edition1": {
+      "head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+      "case_ids": 512,
+      "status": "NOT RERUN"
+    },
+    "edition2": {
+      "head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+      "case_ids": 51,
+      "status": "NOT RERUN"
+    }
+  },
+  "positive_capability": "NotAuthorized",
+  "generator_receipt_location": "Actual final committed-tree log/maps target/phase-04c1b4c4r3g1-generators*. Delivery reports exit,round timings and baseline equality;not inferred from this field."
+}
