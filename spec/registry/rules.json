@@ -5349,6 +5349,182 @@
       "source_anchor": "successor-staging-denial"
     },
     {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-guard-staging/rule-0245"
+      ],
+      "normative_source": "spec/component/native-recovery-guard.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0245",
+      "short_statement": "Native guard subjects retain complete compiler, canonical declaration and bytes, actual nine-member context and validated provenance without inventing Checked contracts.",
+      "source_anchor": "native-subject"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-guard-staging/rule-0246"
+      ],
+      "normative_source": "spec/component/native-recovery-guard.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0246",
+      "short_statement": "The native_recovery_guard family has exactly seven ordered cases, six non-context clauses and contract_validation stage; its preflights do not extend the root roster.",
+      "source_anchor": "native-roster"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-guard-staging/rule-0247"
+      ],
+      "normative_source": "spec/component/native-recovery-guard.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0247",
+      "short_statement": "Analysis and canonical_validation retain the actual same context association and exact ordered role partition; equal contents do not prove object identity.",
+      "source_anchor": "native-context"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-guard-staging/rule-0248"
+      ],
+      "normative_source": "spec/component/native-recovery-guard.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0248",
+      "short_statement": "IR-free native origins and typed coordinates identify the complete declaration, real action binding, effect and member occurrences; observations do not create origins.",
+      "source_anchor": "native-origin"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-guard-staging/rule-0249"
+      ],
+      "normative_source": "spec/component/native-recovery-guard.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0249",
+      "short_statement": "Full AtomKey forward and action queries preserve both executed resolutions and exact usage lookup without converting unknown or absent into pure, unconditional or zero.",
+      "source_anchor": "native-sources"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-guard-staging/rule-0250"
+      ],
+      "normative_source": "spec/component/native-recovery-guard.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0250",
+      "short_statement": "Native bounds preserve declared and effective ceilings, consulted peers, checked arithmetic order and all five typed failure payloads without root multipliers.",
+      "source_anchor": "native-bounds"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-guard-staging/rule-0251"
+      ],
+      "normative_source": "spec/component/native-recovery-guard.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0251",
+      "short_statement": "Both eager port results retain closed full payloads while the first forward-before-action failure controls the native verdict before the zero shortcut.",
+      "source_anchor": "native-inputs"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-guard-staging/rule-0252"
+      ],
+      "normative_source": "spec/component/native-recovery-guard.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0252",
+      "short_statement": "Only an actual frozen containment call yields its Boolean fact: true is Proven and false is Unproven; skipped calls are not invented.",
+      "source_anchor": "native-containment"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-guard-staging/rule-0253"
+      ],
+      "normative_source": "spec/component/native-recovery-guard.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0253",
+      "short_statement": "Native evaluation preserves the eleven-field record, four native bases, twelve selected branches and exact legacy verdict without reason parsing.",
+      "source_anchor": "native-evaluation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-guard-staging/rule-0254"
+      ],
+      "normative_source": "spec/component/native-recovery-guard.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0254",
+      "short_statement": "Typed countermodels retain all fourteen fields and three-field assignments; structural violations use exact non-countermodel witnesses and local reachability never proves root reachability.",
+      "source_anchor": "native-witness"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-guard-staging/rule-0255"
+      ],
+      "normative_source": "spec/component/native-recovery-guard.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0255",
+      "short_statement": "Native prerequisites, typed references, supporting facts and all consumers retain applicability, original stage and origin; observed false containment is not upgraded to Proven.",
+      "source_anchor": "native-links"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-guard-staging/rule-0256"
+      ],
+      "normative_source": "spec/component/native-recovery-guard.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0256",
+      "short_statement": "Selected historical imports bind each exact owner, name, full source and recursively closed descriptor; unknown owners and same-name latest fallbacks reject.",
+      "source_anchor": "native-imports"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-guard-staging/rule-0257"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics-v3.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0257",
+      "short_statement": "Native input Scope excludes generated results and witnesses; the independent non-root fragment and separate finite witness DAG cannot grant root CompleteView.",
+      "source_anchor": "native-fragment"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-guard-staging/rule-0258"
+      ],
+      "normative_source": "spec/tables/proof-report-model-v3.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0258",
+      "short_statement": "Every native descriptor is concretely closed, source-pinned, ranked, width-exact and bounded, including all parent variants and imported recursive dependencies.",
+      "source_anchor": "native-descriptors"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-guard-staging/rule-0259"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs-v4.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0259",
+      "short_statement": "The distinct current native tuple binds all complete registered content, applied attribution, selected sources and closed tables; frozen old editions reject without relabelling.",
+      "source_anchor": "native-migration"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-guard-staging/rule-0260"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs-v4.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0260",
+      "short_statement": "Registered shape admission never implies capture, support or activation; direct, portable and private RootExport issuance deny the incomplete native edition.",
+      "source_anchor": "native-staging-denial"
+    },
+    {
       "area": "SPEC",
       "conformance_refs": [
         "spec-registry/duplicate-specification-id"

@@ -7,6 +7,7 @@ from pathlib import Path
 import base64,copy,hashlib,importlib.util,json,re
 from substitution_registration_data import OWNER,SHAPE,OBLIGATION,SOURCES,BASELINE
 from portable_proof_python_oracle import canonical_bytes
+from edition3_registration_inputs import pinned_bytes
 ROOT=Path(__file__).resolve().parent.parent;OUT=ROOT/"spec/conformance/g01-successor-staging"
 def sha(b):return hashlib.sha256(b).hexdigest()
 def save(path,raw):
@@ -19,7 +20,7 @@ def load(name,path):
 def source_profile(sbytes,rbytes,version,ids,rids):return dict(specification_bytes=sbytes,rule_bytes=rbytes,version=version,spec_ids=ids,rule_ids=rids)
 
 def main():
- sbytes=(ROOT/"spec/registry/specifications.json").read_bytes();rbytes=(ROOT/"spec/registry/rules.json").read_bytes()
+ sbytes=pinned_bytes('specifications');rbytes=pinned_bytes('rules')
  specs=json.loads(sbytes);rules=json.loads(rbytes)
  e2s=(OUT/"edition2-specifications.json").read_bytes();e2r=(OUT/"edition2-rules.json").read_bytes()
  js(OUT/"edition2-input-pins.json",{"baseline":BASELINE,"specifications":sha(e2s),"rules":sha(e2r)})

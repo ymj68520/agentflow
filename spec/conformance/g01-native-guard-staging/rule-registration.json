@@ -1,0 +1,204 @@
+{
+  "cases": [
+    {
+      "anchor": "native-subject",
+      "case_id": "g01-native-guard-staging/rule-0245",
+      "dependencies": [
+        "AF-CONTRACT-0022",
+        "AF-SEMANTIC-0198"
+      ],
+      "draft": "NG-SUBJECT",
+      "rule_id": "AF-SEMANTIC-0245",
+      "source": "spec/component/native-recovery-guard.md",
+      "statement": "Native guard subjects retain complete compiler, canonical declaration and bytes, actual nine-member context and validated provenance without inventing Checked contracts."
+    },
+    {
+      "anchor": "native-roster",
+      "case_id": "g01-native-guard-staging/rule-0246",
+      "dependencies": [
+        "AF-SEMANTIC-0199",
+        "AF-SEMANTIC-0229"
+      ],
+      "draft": "NG-ROSTER",
+      "rule_id": "AF-SEMANTIC-0246",
+      "source": "spec/component/native-recovery-guard.md",
+      "statement": "The native_recovery_guard family has exactly seven ordered cases, six non-context clauses and contract_validation stage; its preflights do not extend the root roster."
+    },
+    {
+      "anchor": "native-context",
+      "case_id": "g01-native-guard-staging/rule-0247",
+      "dependencies": [
+        "AF-SEMANTIC-0202",
+        "AF-SEMANTIC-0233"
+      ],
+      "draft": "NG-CONTEXT",
+      "rule_id": "AF-SEMANTIC-0247",
+      "source": "spec/component/native-recovery-guard.md",
+      "statement": "Analysis and canonical_validation retain the actual same context association and exact ordered role partition; equal contents do not prove object identity."
+    },
+    {
+      "anchor": "native-origin",
+      "case_id": "g01-native-guard-staging/rule-0248",
+      "dependencies": [
+        "AF-SEMANTIC-0200",
+        "AF-SEMANTIC-0210"
+      ],
+      "draft": "NG-ORIGIN",
+      "rule_id": "AF-SEMANTIC-0248",
+      "source": "spec/component/native-recovery-guard.md",
+      "statement": "IR-free native origins and typed coordinates identify the complete declaration, real action binding, effect and member occurrences; observations do not create origins."
+    },
+    {
+      "anchor": "native-sources",
+      "case_id": "g01-native-guard-staging/rule-0249",
+      "dependencies": [
+        "AF-CONTRACT-0022",
+        "AF-SEMANTIC-0206"
+      ],
+      "draft": "NG-SOURCES",
+      "rule_id": "AF-SEMANTIC-0249",
+      "source": "spec/component/native-recovery-guard.md",
+      "statement": "Full AtomKey forward and action queries preserve both executed resolutions and exact usage lookup without converting unknown or absent into pure, unconditional or zero."
+    },
+    {
+      "anchor": "native-bounds",
+      "case_id": "g01-native-guard-staging/rule-0250",
+      "dependencies": [
+        "AF-CONTRACT-0021",
+        "AF-CONTRACT-0022"
+      ],
+      "draft": "NG-BOUNDS",
+      "rule_id": "AF-SEMANTIC-0250",
+      "source": "spec/component/native-recovery-guard.md",
+      "statement": "Native bounds preserve declared and effective ceilings, consulted peers, checked arithmetic order and all five typed failure payloads without root multipliers."
+    },
+    {
+      "anchor": "native-inputs",
+      "case_id": "g01-native-guard-staging/rule-0251",
+      "dependencies": [
+        "AF-CONTRACT-0022"
+      ],
+      "draft": "NG-INPUTS",
+      "rule_id": "AF-SEMANTIC-0251",
+      "source": "spec/component/native-recovery-guard.md",
+      "statement": "Both eager port results retain closed full payloads while the first forward-before-action failure controls the native verdict before the zero shortcut."
+    },
+    {
+      "anchor": "native-containment",
+      "case_id": "g01-native-guard-staging/rule-0252",
+      "dependencies": [
+        "AF-CONTRACT-0022"
+      ],
+      "draft": "NG-CONTAINMENT",
+      "rule_id": "AF-SEMANTIC-0252",
+      "source": "spec/component/native-recovery-guard.md",
+      "statement": "Only an actual frozen containment call yields its Boolean fact: true is Proven and false is Unproven; skipped calls are not invented."
+    },
+    {
+      "anchor": "native-evaluation",
+      "case_id": "g01-native-guard-staging/rule-0253",
+      "dependencies": [
+        "AF-CONTRACT-0022",
+        "AF-SEMANTIC-0211"
+      ],
+      "draft": "NG-EVALUATION",
+      "rule_id": "AF-SEMANTIC-0253",
+      "source": "spec/component/native-recovery-guard.md",
+      "statement": "Native evaluation preserves the eleven-field record, four native bases, twelve selected branches and exact legacy verdict without reason parsing."
+    },
+    {
+      "anchor": "native-witness",
+      "case_id": "g01-native-guard-staging/rule-0254",
+      "dependencies": [
+        "AF-CONTRACT-0022",
+        "AF-SEMANTIC-0222"
+      ],
+      "draft": "NG-WITNESS",
+      "rule_id": "AF-SEMANTIC-0254",
+      "source": "spec/component/native-recovery-guard.md",
+      "statement": "Typed countermodels retain all fourteen fields and three-field assignments; structural violations use exact non-countermodel witnesses and local reachability never proves root reachability."
+    },
+    {
+      "anchor": "native-links",
+      "case_id": "g01-native-guard-staging/rule-0255",
+      "dependencies": [
+        "AF-SEMANTIC-0206",
+        "AF-SEMANTIC-0207",
+        "AF-SEMANTIC-0208",
+        "AF-SEMANTIC-0209"
+      ],
+      "draft": "NG-LINKS",
+      "rule_id": "AF-SEMANTIC-0255",
+      "source": "spec/component/native-recovery-guard.md",
+      "statement": "Native prerequisites, typed references, supporting facts and all consumers retain applicability, original stage and origin; observed false containment is not upgraded to Proven."
+    },
+    {
+      "anchor": "native-imports",
+      "case_id": "g01-native-guard-staging/rule-0256",
+      "dependencies": [
+        "AF-SEMANTIC-0214",
+        "AF-SEMANTIC-0242"
+      ],
+      "draft": "NG-OWNERSHIP",
+      "rule_id": "AF-SEMANTIC-0256",
+      "source": "spec/component/native-recovery-guard.md",
+      "statement": "Selected historical imports bind each exact owner, name, full source and recursively closed descriptor; unknown owners and same-name latest fallbacks reject."
+    },
+    {
+      "anchor": "native-fragment",
+      "case_id": "g01-native-guard-staging/rule-0257",
+      "dependencies": [
+        "AF-SEMANTIC-0197",
+        "AF-SEMANTIC-0203",
+        "AF-SEMANTIC-0229"
+      ],
+      "draft": "NG-FRAGMENT",
+      "rule_id": "AF-SEMANTIC-0257",
+      "source": "spec/computation/proof-obligation-semantics-v3.md",
+      "statement": "Native input Scope excludes generated results and witnesses; the independent non-root fragment and separate finite witness DAG cannot grant root CompleteView."
+    },
+    {
+      "anchor": "native-descriptors",
+      "case_id": "g01-native-guard-staging/rule-0258",
+      "dependencies": [
+        "AF-SEMANTIC-0214",
+        "AF-SEMANTIC-0215",
+        "AF-SEMANTIC-0216",
+        "AF-SEMANTIC-0217",
+        "AF-SEMANTIC-0218",
+        "AF-SEMANTIC-0221"
+      ],
+      "draft": "NG-DESCRIPTORS",
+      "rule_id": "AF-SEMANTIC-0258",
+      "source": "spec/tables/proof-report-model-v3.md",
+      "statement": "Every native descriptor is concretely closed, source-pinned, ranked, width-exact and bounded, including all parent variants and imported recursive dependencies."
+    },
+    {
+      "anchor": "native-migration",
+      "case_id": "g01-native-guard-staging/rule-0259",
+      "dependencies": [
+        "AF-SEMANTIC-0223",
+        "AF-SEMANTIC-0225",
+        "AF-SEMANTIC-0226",
+        "AF-SEMANTIC-0228"
+      ],
+      "draft": "NG-MIGRATION",
+      "rule_id": "AF-SEMANTIC-0259",
+      "source": "spec/portable/portable-proof-inputs-v4.md",
+      "statement": "The distinct current native tuple binds all complete registered content, applied attribution, selected sources and closed tables; frozen old editions reject without relabelling."
+    },
+    {
+      "anchor": "native-staging-denial",
+      "case_id": "g01-native-guard-staging/rule-0260",
+      "dependencies": [
+        "AF-SEMANTIC-0212",
+        "AF-SEMANTIC-0213",
+        "AF-SEMANTIC-0244"
+      ],
+      "draft": "NG-CONFORMANCE",
+      "rule_id": "AF-SEMANTIC-0260",
+      "source": "spec/portable/portable-proof-inputs-v4.md",
+      "statement": "Registered shape admission never implies capture, support or activation; direct, portable and private RootExport issuance deny the incomplete native edition."
+    }
+  ]
+}

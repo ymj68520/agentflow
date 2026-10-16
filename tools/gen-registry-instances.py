@@ -2594,6 +2594,12 @@ from substitution_registration_data import RULES as SUB_RULES, SOURCES as SUB_SO
 for item in SUB_RULES:
     RULES.append(rule(item["rule_id"], "SEMANTIC", SUB_SOURCES[item["source"]][2],
         item["anchor"], item["statement"], [item["case_id"]]))
+from native_guard_registration_data import RULES as NG_RULES, SOURCES as NG_SOURCES
+for item in NG_RULES:
+    RULES.append(rule(item["rule_id"], "SEMANTIC", NG_SOURCES[item["source"]][2],
+        item["anchor"], item["statement"], [item["case_id"]]))
+edition3_rules = json.loads((ROOT/"spec/conformance/g01-native-guard-staging/edition3-rules.json").read_bytes())["rules"]
+assert all(next((r for r in RULES if r["rule_id"]==old["rule_id"]),None)==old for old in edition3_rules), "old452 rule row changed"
 edition2_rules = json.loads((ROOT/"spec/conformance/g01-successor-staging/edition2-rules.json").read_bytes())["rules"]
 assert all(next((r for r in RULES if r["rule_id"]==old["rule_id"]),None)==old for old in edition2_rules), "old436 rule row changed"
 legacy_rules = json.loads((ROOT/"spec/conformance/g01-edition2-staging/legacy-rules.json").read_bytes())["rules"]
@@ -2831,6 +2837,7 @@ SPECS.extend([
     ("agentflow.portable.proof.inputs.semantics@2", "schema_language", G01_PATHS["PP2"], "Exact Edition2 content binding, current-only fail-closed staging and isolated historical evidence without positive activation."),
 ])
 SPECS.extend(SUB_SOURCES.values())
+SPECS.extend(NG_SOURCES.values())
 spec_entries = [
     {
         "specification_id": spec_id,
@@ -2847,6 +2854,8 @@ new_spec_map = {item["specification_id"]:item for item in spec_entries}
 assert all(new_spec_map.get(item["specification_id"]) == item for item in legacy_specs), "old specification descriptor changed"
 edition2_specs = json.loads((ROOT/"spec/conformance/g01-successor-staging/edition2-specifications.json").read_bytes())["specifications"]
 assert all(new_spec_map.get(item["specification_id"])==item for item in edition2_specs), "old46 specification row changed"
+edition3_specs = json.loads((ROOT/"spec/conformance/g01-native-guard-staging/edition3-specifications.json").read_bytes())["specifications"]
+assert all(new_spec_map.get(item["specification_id"])==item for item in edition3_specs), "old50 specification row changed"
 write_json("spec/registry/specifications.json", {
     "registry_revision": 1,
     "specifications": spec_entries,

@@ -1,0 +1,296 @@
+{
+  "cases": [
+    {
+      "case": "canonical_source",
+      "case_id": "g01-native-guard-staging/roster-canonical_source",
+      "expected": {
+        "kind": "native_recovery_guard_evidence",
+        "rank": 0,
+        "requirement": {
+          "clause": "canonical_source",
+          "evidence_class": "static_declaration",
+          "family": "native_guard"
+        },
+        "role": "mandatory_preflight",
+        "stage": "contract_validation"
+      },
+      "part": "native_case"
+    },
+    {
+      "case": "context_association",
+      "case_id": "g01-native-guard-staging/roster-context_association",
+      "expected": {
+        "kind": "proof_context",
+        "rank": 1,
+        "requirement": {
+          "clause": "proof_context",
+          "evidence_class": "static_declaration",
+          "family": "direct"
+        },
+        "role": "mandatory_preflight",
+        "stage": "contract_validation"
+      },
+      "part": "native_case"
+    },
+    {
+      "case": "action_sources",
+      "case_id": "g01-native-guard-staging/roster-action_sources",
+      "expected": {
+        "kind": "native_recovery_guard_evidence",
+        "rank": 2,
+        "requirement": {
+          "clause": "action_sources",
+          "evidence_class": "static_declaration",
+          "family": "native_guard"
+        },
+        "role": "supporting_fact",
+        "stage": "contract_validation"
+      },
+      "part": "native_case"
+    },
+    {
+      "case": "action_bounds",
+      "case_id": "g01-native-guard-staging/roster-action_bounds",
+      "expected": {
+        "kind": "native_recovery_guard_evidence",
+        "rank": 3,
+        "requirement": {
+          "clause": "action_bounds",
+          "evidence_class": "static_declaration",
+          "family": "native_guard"
+        },
+        "role": "supporting_fact",
+        "stage": "contract_validation"
+      },
+      "part": "native_case"
+    },
+    {
+      "case": "guard_inputs",
+      "case_id": "g01-native-guard-staging/roster-guard_inputs",
+      "expected": {
+        "kind": "native_recovery_guard_evidence",
+        "rank": 4,
+        "requirement": {
+          "clause": "guard_inputs",
+          "evidence_class": "static_declaration",
+          "family": "native_guard"
+        },
+        "role": "supporting_fact",
+        "stage": "contract_validation"
+      },
+      "part": "native_case"
+    },
+    {
+      "case": "guard_containment",
+      "case_id": "g01-native-guard-staging/roster-guard_containment",
+      "expected": {
+        "kind": "native_recovery_guard_evidence",
+        "rank": 5,
+        "requirement": {
+          "clause": "guard_containment",
+          "evidence_class": "static_declaration",
+          "family": "native_guard"
+        },
+        "role": "supporting_fact",
+        "stage": "contract_validation"
+      },
+      "part": "native_case"
+    },
+    {
+      "case": "guard_evaluation",
+      "case_id": "g01-native-guard-staging/roster-guard_evaluation",
+      "expected": {
+        "kind": "native_recovery_guard_evidence",
+        "rank": 6,
+        "requirement": {
+          "clause": "guard_evaluation",
+          "evidence_class": "static_declaration",
+          "family": "native_guard"
+        },
+        "role": "supporting_fact",
+        "stage": "contract_validation"
+      },
+      "part": "native_case"
+    },
+    {
+      "case_id": "g01-native-guard-staging/native-fields-ActionGuardCompatibility",
+      "expected": [
+        "source_component",
+        "recovery_action",
+        "forward_entry_ordinal",
+        "action_entry_ordinal",
+        "forward_guard",
+        "declared_action_guard",
+        "action_upper",
+        "verdict",
+        "basis",
+        "countermodel",
+        "reason"
+      ],
+      "part": "fields",
+      "type": "agentflow.computation.proof-report.model@1/af-contract::ActionGuardCompatibility"
+    },
+    {
+      "case_id": "g01-native-guard-staging/native-fields-TypedGuardCountermodel",
+      "expected": [
+        "source_contract",
+        "source_component",
+        "recovery_action",
+        "forward_entry_ordinal",
+        "action_entry_ordinal",
+        "forward_guard",
+        "declared_action_guard",
+        "forward_bounds",
+        "activation_upper",
+        "attempt_upper",
+        "action_upper",
+        "assignments",
+        "reachability",
+        "related_rule_id"
+      ],
+      "part": "fields",
+      "type": "agentflow.computation.proof-report.model@1/af-contract::TypedGuardCountermodel"
+    },
+    {
+      "case_id": "g01-native-guard-staging/native-fields-GuardInputAssignment",
+      "expected": [
+        "port_no",
+        "type_ref",
+        "value"
+      ],
+      "part": "fields",
+      "type": "agentflow.computation.proof-report.model@1/af-contract::GuardInputAssignment"
+    },
+    {
+      "case_id": "g01-native-guard-staging/native-bases",
+      "expected": [
+        "FrozenGuardContainment",
+        "ZeroPossibleActions",
+        "TypedCountermodel",
+        "InsufficientEvidence"
+      ],
+      "part": "variants",
+      "type": "agentflow.computation.proof-report.model@1/af-contract::GuardCompatibilityBasis"
+    },
+    {
+      "case_id": "g01-native-guard-staging/native-reachability",
+      "expected": [
+        "WellTypedComponentInputDomain"
+      ],
+      "part": "variants",
+      "type": "agentflow.computation.proof-report.model@1/af-contract::GuardCountermodelReachability"
+    },
+    {
+      "case_id": "g01-native-guard-staging/native-context-nine",
+      "expected": [
+        "compiled_modules",
+        "type_schemas",
+        "effect_catalogs",
+        "resource_types",
+        "flow_catalogs",
+        "usage_meters",
+        "recovery_operations",
+        "execution_universes",
+        "relation_snapshots"
+      ],
+      "part": "fields",
+      "type": "ContractProofContextContents"
+    },
+    {
+      "case_id": "g01-native-guard-staging/native-branches",
+      "expected": [
+        "missing_entries",
+        "missing_usage",
+        "unisolated_forward",
+        "same_atom_bounds_failure",
+        "action_upper_overflow",
+        "missing_port",
+        "schema_unresolved",
+        "type_mismatch",
+        "zero_potential",
+        "frozen_containment",
+        "typed_countermodel",
+        "no_countermodel"
+      ],
+      "part": "variants",
+      "type": "NativeGuardBranch"
+    },
+    {
+      "case_id": "g01-native-guard-staging/bound-failures",
+      "expected": [
+        "same_atom_product_overflow",
+        "same_atom_sum_overflow",
+        "same_atom_divisor_overflow",
+        "same_atom_lower_conflict",
+        "action_upper_overflow"
+      ],
+      "part": "variants",
+      "type": "NativeBoundFailure"
+    },
+    {
+      "case_id": "g01-native-guard-staging/port-results",
+      "expected": [
+        "unconditional_not_required",
+        "valid",
+        "missing_port",
+        "unresolved_schema",
+        "type_mismatch"
+      ],
+      "part": "variants",
+      "type": "NativeGuardPortResult"
+    },
+    {
+      "case_id": "g01-native-guard-staging/prerequisite-clauses",
+      "expected": [
+        "canonical_source",
+        "context_association",
+        "action_sources_ready",
+        "action_bounds_ready",
+        "guard_input_valid",
+        "containment_outcome"
+      ],
+      "part": "variants",
+      "type": "NativeGuardPrerequisiteClause"
+    },
+    {
+      "case_id": "g01-native-guard-staging/witness-variants",
+      "expected": [
+        "input_countermodel",
+        "missing_port",
+        "constant_type_mismatch",
+        "bound_failure",
+        "propagated_failure"
+      ],
+      "part": "variants",
+      "type": "NativeGuardWitness"
+    },
+    {
+      "case_id": "g01-native-guard-staging/native-subject-fields",
+      "expected": [
+        "owner_compiler",
+        "declaration",
+        "context",
+        "context_roles"
+      ],
+      "part": "fields",
+      "type": "NativeRecoveryGuardSubject"
+    },
+    {
+      "case_id": "g01-native-guard-staging/native-fragment-fields",
+      "expected": [
+        "shape",
+        "profile",
+        "scope",
+        "native_records",
+        "facts",
+        "prerequisites",
+        "obligations",
+        "identity_strings",
+        "blockers",
+        "contradictions"
+      ],
+      "part": "fields",
+      "type": "NativeGuardFragment"
+    }
+  ]
+}

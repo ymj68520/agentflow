@@ -28,6 +28,19 @@
       "status": "frozen"
     },
     {
+      "description": "IR-free local native guard subject, seven predicates, exact algorithm traces, witnesses and restricted imports.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a78b148a57babd488c7ab27348461a8f934e2a8ee87818cfe8d93b448f7da38f"
+        },
+        "logical_path": "spec/component/native-recovery-guard.md"
+      },
+      "specification_id": "agentflow.component.native-recovery-guard.semantics@1",
+      "status": "frozen"
+    },
+    {
       "description": "Exact versioned relation catalog snapshots and content-bound static proof assumptions.",
       "kind": "schema_language",
       "normative_source": {
@@ -80,6 +93,19 @@
       "status": "frozen"
     },
     {
+      "description": "Non-root native fragment, input/output separation and unchanged root/substitution authority.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "bf7b908c5442259aacdc15f0693eaa1620e9e35f478f772ca96562dc93210b32"
+        },
+        "logical_path": "spec/computation/proof-obligation-semantics-v3.md"
+      },
+      "specification_id": "agentflow.computation.proof-obligation.semantics@3",
+      "status": "frozen"
+    },
+    {
       "description": "Closed non-wire G01 semantic type model, typed order, finite value DAG and ACE1 canonical identity relation.",
       "kind": "closed_table",
       "normative_source": {
@@ -103,6 +129,19 @@
         "logical_path": "spec/tables/proof-report-model-v2.md"
       },
       "specification_id": "agentflow.computation.proof-report.model@2",
+      "status": "frozen"
+    },
+    {
+      "description": "Complete native successor graph and exact historical selected-import descriptors.",
+      "kind": "closed_table",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "296402ccab8234cd32dbe758788ef0e4bdb4a724128985c4c1f935e9459d259b"
+        },
+        "logical_path": "spec/tables/proof-report-model-v3.md"
+      },
+      "specification_id": "agentflow.computation.proof-report.model@3",
       "status": "frozen"
     },
     {
@@ -376,6 +415,19 @@
         "logical_path": "spec/portable/portable-proof-inputs-v3.md"
       },
       "specification_id": "agentflow.portable.proof.inputs.semantics@3",
+      "status": "frozen"
+    },
+    {
+      "description": "Exact current-only native staging tuple and denial at every capability boundary.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "8bfd73778fccb892c0f4e0712fb2a5048f7ef15a9533842caa8b341a7d53ce89"
+        },
+        "logical_path": "spec/portable/portable-proof-inputs-v4.md"
+      },
+      "specification_id": "agentflow.portable.proof.inputs.semantics@4",
       "status": "frozen"
     },
     {
