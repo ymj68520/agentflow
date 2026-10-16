@@ -1,0 +1,10 @@
+{
+  "kind": "ComparatorMutationManifest",
+  "outcome": "B",
+  "new_full_seed_comparator_mutations_executed": 0,
+  "required_both_sided_missing_field_law": "NOT_IMPLEMENTED",
+  "status": "STOPPED_BEFORE_FULL_SEED_COMPARATOR_CLOSURE",
+  "old_comparator_counts_not_relabelled": true,
+  "real_input_trace_vectors": 53,
+  "full_t3_real_input_mutation_coverage": false
+}

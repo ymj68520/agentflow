@@ -1,0 +1,91 @@
+{
+  "kind": "R3FormalProductionContradiction",
+  "finding_id": "R3-NG-B01",
+  "severity": "P1",
+  "status": "OPEN/BLOCKING",
+  "outcome": "B",
+  "false_proven": false,
+  "preexisting_at_start": true,
+  "source_head": "a0ef89e71ac31405ba05df619f585b5830aa8c92",
+  "root_cause": {
+    "path": "crates/af-effect/src/canonical.rs",
+    "function": "constant_value",
+    "line": 544,
+    "actual": "PrimitiveConstant::Bytes(value) => (\"bytes\", Value::String(value.clone()))",
+    "required_machine_payload": "Value::Bytes(decoded_canonical_base64url)",
+    "production_file_changed": false
+  },
+  "rules": [
+    "AF-ACE1-0011",
+    "AF-SEMANTIC-0245",
+    "AF-SEMANTIC-0253",
+    "AF-CONTRACT-0022"
+  ],
+  "schemas": [
+    "agentflow.semantic.core@1/PrimitiveConstant bytes:bytes",
+    "agentflow.effect.signature@1/EffectGuard input_equals"
+  ],
+  "minimal_input": {
+    "row": {
+      "closed": [
+        {
+          "atom": {
+            "operation": {
+              "catalog": "agentflow.effects@1",
+              "name": "reverse"
+            },
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": []
+            },
+            "qualifiers": []
+          },
+          "bounds": {
+            "lower": 0,
+            "upper": {
+              "finite": 2
+            }
+          },
+          "guard": {
+            "input_equals": {
+              "port_no": 1,
+              "expected": {
+                "bytes": ""
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "second_payload": "AQ",
+  "first_differing_typed_field": "EffectSignature.row.closed[0].guard.input_equals.expected.bytes machine payload tag: Bytes versus String",
+  "admission_difference": "$.canonical_admission true versus false",
+  "independent_expected": {
+    "structural_validation": "PASS",
+    "ace1_encoding": "PASS",
+    "empty_byte_payload_utf8": "\"\"",
+    "one_byte_payload_utf8": "\"AQ\""
+  },
+  "rust_actual": {
+    "structural_validation": "PASS",
+    "component_canonical_validation": "PASS",
+    "canonical_bytes": "FAIL",
+    "error": {
+      "rule_id": "AF-CONTRACT-0003",
+      "code": "ace1_encode",
+      "reference": null,
+      "detail": "type mismatch: expected bytes, got string"
+    }
+  },
+  "cases": [
+    "r3-ng/primitive-bytes-0",
+    "r3-ng/primitive-bytes-1"
+  ],
+  "implementation_action": "STOP R3-NG/R3-ALL; do not fix legacy checker or rewrite Expected without new authorization",
+  "evidence": [
+    "phase-04c1b4c4r3-native-oracle-report.json",
+    "phase-04c1b4c4r3-native-trace-actual.json"
+  ],
+  "repro": "cargo test -p af-computation --test native_capture_conformance minimal_unchanged_effect_bytes_lowering_contradiction -- --nocapture"
+}

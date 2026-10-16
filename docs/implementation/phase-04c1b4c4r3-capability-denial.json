@@ -1,0 +1,24 @@
+{
+  "kind": "CapabilityDenialManifest",
+  "status": "CURRENT_G2_DENIAL_REGRESSIONS_REEXECUTED_IN_CURRENT_CARGO_GATE",
+  "edition": "agentflow.root-export-checker@4",
+  "registration": "Registered",
+  "support": "NotImplemented",
+  "activation": "NotAuthorized",
+  "release": "NotAuthorized",
+  "local_capture": {
+    "scope": "PendingG02",
+    "complete_scope": false,
+    "can_issue_root_export": false
+  },
+  "entry_points": [
+    "Portable D4 default resource limit",
+    "Portable D4 explicit bounded 8 MiB rejection",
+    "Native RootExport analyzer",
+    "Direct RootExport checker",
+    "Private checked constructor",
+    "Alternate internal entry"
+  ],
+  "evidence": "crates/af-computation/tests/native_guard_staging.rs and crates/af-portable/tests/native_guard_staging.rs",
+  "no_limits_raised": true
+}

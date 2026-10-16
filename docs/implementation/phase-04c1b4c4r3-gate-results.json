@@ -1,0 +1,102 @@
+{
+  "kind": "R3GateEvidenceIndex",
+  "outcome": "B",
+  "rust_code_gate_head": "22c33492a388cf6af9106c5780f97a4648f06b5a",
+  "fmt": {
+    "exit_code": 0,
+    "log": "target/phase-04c1b4c4r3-resumption-final-fmt.log"
+  },
+  "clippy": {
+    "exit_code": 0,
+    "log": "target/phase-04c1b4c4r3-resumption-final-clippy.log"
+  },
+  "cargo": {
+    "exit_code": 0,
+    "passed": 361,
+    "failed": 0,
+    "ignored": 0,
+    "result_groups": 72,
+    "reused_old_fixture_tests": 21,
+    "new_rust_tests": 3,
+    "new_complete_seed_case_ids": 0,
+    "log": "target/phase-04c1b4c4r3-resumption-final-tests.log"
+  },
+  "spec": {
+    "exit_code": 0,
+    "specifications": 54,
+    "rules": 468,
+    "reference_covered": 467,
+    "intentional_exceptions": 1,
+    "missing": 0,
+    "abi": 775,
+    "afidl": 17,
+    "hash_domains": 14,
+    "log": "target/phase-04c1b4c4r3-resumption-final-spec.log"
+  },
+  "source_binding": {
+    "exit_code": 0,
+    "snapshot_bundles": 19,
+    "selected_imports": 97,
+    "live_declarations": 90,
+    "python_laws": 6,
+    "frozen_raw_paths": 1256,
+    "old_gate_report_preserved_raw_exact": true
+  },
+  "native_semantic_gate": {
+    "exit_code": 1,
+    "executed_inputs": 53,
+    "matched": 51,
+    "unexpected_mismatch": 2,
+    "status": "FAIL/FORMAL_PRODUCTION_CONTRADICTION",
+    "full_seed_conformance": false,
+    "log": "target/phase-04c1b4c4r3-resumption-native-semantic-gate.log"
+  },
+  "other_oracles": {
+    "standalone": "NOT_IMPLEMENTED",
+    "remaining_producers": "NOT_IMPLEMENTED",
+    "full_seed_comparator": "NOT_IMPLEMENTED"
+  },
+  "registration": {
+    "case_ids": 889,
+    "not_capture_case_ids": true,
+    "exit_code": 0
+  },
+  "historical_exact_builds": [
+    {
+      "edition": 1,
+      "source_head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+      "case_ids": 512,
+      "source_blobs": 1732
+    },
+    {
+      "edition": 2,
+      "source_head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+      "case_ids": 51,
+      "source_blobs": 1811
+    },
+    {
+      "edition": 3,
+      "source_head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+      "case_ids": 173,
+      "source_blobs": 1902
+    }
+  ],
+  "runtime_evidence": {
+    "note": "Actual historical/generator exits, elapsed times and final HEAD are recorded at handoff, never prefilled before execution. This index and all nonignored files remain unchanged during/after the final generator pair.",
+    "results": "target/phase-04c1b4c4r3-resumption-final-runtime-results.json",
+    "historical_logs": "target/phase-04c1b4c4r3-resumption-edition{1,2,3}-tests.log",
+    "generator_log": "target/phase-04c1b4c4r3-resumption-generators.log",
+    "generator_maps": "target/phase-04c1b4c4r3-resumption-generators-{baseline,round1,round2}.json"
+  },
+  "generator_policy": {
+    "original_directory": "E:/Projects/agent",
+    "scripts": 34,
+    "required_rounds": 2,
+    "complete_consecutive": true,
+    "all_nonignored_raw_paths": true,
+    "no_mirror": true,
+    "no_spliced_successes": true
+  },
+  "capability": "NotAuthorized",
+  "t4_eligibility": false
+}

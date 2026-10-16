@@ -1,0 +1,68 @@
+{
+  "kind": "T3ProducerCoverageManifest",
+  "outcome": "B",
+  "source_head": "a0ef89e71ac31405ba05df619f585b5830aa8c92",
+  "code_gate_head": "22c3349",
+  "unique_reviewed_lexical_anchors": 181,
+  "unique_semantic_producer_sites": null,
+  "unique_semantic_producer_sites_status": "NOT_CLOSED",
+  "categories": {
+    "root_direct": 6,
+    "inherited_constructors": 3,
+    "prerequisite_arms": 11,
+    "prerequisite_literal_occurrences": 20,
+    "control_constructors": 65,
+    "leaf_constructors": 27,
+    "native_dimension_constructors": 17,
+    "native_guard_record_locations": 11,
+    "standalone_set_calls": 17,
+    "standalone_return_locations": 4
+  },
+  "categories_overlap": true,
+  "native": {
+    "trace_inputs_executed": 53,
+    "trace_inputs_matched": 51,
+    "contradictions": 2,
+    "actual_runs": 50,
+    "actual_branch_tags": [
+      "action_upper_overflow",
+      "frozen_containment",
+      "missing_entries",
+      "missing_port",
+      "missing_usage",
+      "no_countermodel",
+      "same_atom_bounds_failure",
+      "schema_unresolved",
+      "type_mismatch",
+      "typed_countermodel",
+      "unisolated_forward",
+      "zero_potential"
+    ],
+    "countermodels_compared": 19,
+    "countermodel_immediate_fields_compared": 266,
+    "assignments_compared": 20,
+    "assignment_immediate_fields_compared": 60,
+    "full_seed_case_ids_certified": 0,
+    "full_seed_field_coverage": "INCOMPLETE",
+    "missing_required_sites": null,
+    "missing_required_fields": null,
+    "zero_gap_certified": false
+  },
+  "standalone": {
+    "case_roster": 27,
+    "status": "NOT_STARTED_AFTER_R3_NG_OUTCOME_B"
+  },
+  "remaining": {
+    "status": "NOT_STARTED_AFTER_R3_NG_OUTCOME_B"
+  },
+  "total": {
+    "source_site_closure": false,
+    "required_field_closure": false,
+    "unexpected_native_trace_mismatch": 2,
+    "full_seed_conformance": false,
+    "outcome_a": false
+  },
+  "scope": "PendingG02",
+  "normalizer": "NotImplemented",
+  "positive_capability": "NotAuthorized"
+}

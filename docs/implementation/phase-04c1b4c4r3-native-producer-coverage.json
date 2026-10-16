@@ -1,0 +1,32 @@
+{
+  "kind": "NativeGuardProducerCoverageManifest",
+  "trace_inputs_executed": 53,
+  "trace_inputs_matched": 51,
+  "contradictions": 2,
+  "actual_runs": 50,
+  "actual_branch_tags": [
+    "action_upper_overflow",
+    "frozen_containment",
+    "missing_entries",
+    "missing_port",
+    "missing_usage",
+    "no_countermodel",
+    "same_atom_bounds_failure",
+    "schema_unresolved",
+    "type_mismatch",
+    "typed_countermodel",
+    "unisolated_forward",
+    "zero_potential"
+  ],
+  "countermodels_compared": 19,
+  "countermodel_immediate_fields_compared": 266,
+  "assignments_compared": 20,
+  "assignment_immediate_fields_compared": 60,
+  "full_seed_case_ids_certified": 0,
+  "full_seed_field_coverage": "INCOMPLETE",
+  "missing_required_sites": null,
+  "missing_required_fields": null,
+  "zero_gap_certified": false,
+  "outcome": "B",
+  "r3_ng_complete": false
+}

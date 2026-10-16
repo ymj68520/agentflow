@@ -74,7 +74,11 @@ def main():
  # content, Expected, descriptor, ABI, AFIDL or hash-domain byte.
  r3_base='a0ef89e71ac31405ba05df619f585b5830aa8c92'
  known_changes|={'crates/af-computation/src/lib.rs','crates/af-contract/src/lib.rs',
-                 'crates/af-contract/src/recovery_guard.rs','crates/af-contract/src/validate.rs'}
+                 'crates/af-contract/src/recovery_guard.rs','crates/af-contract/src/validate.rs',
+                 'docs/implementation/phase-04c1b4c4r3-gate-report.md'}
+ prior_report='docs/implementation/phase-04c1b4c4r3-pre-resumption-gate-report.md'
+ if (ROOT/prior_report).exists():
+  assert (ROOT/prior_report).read_bytes()==subprocess.check_output(['git','show',r3_base+':docs/implementation/phase-04c1b4c4r3-gate-report.md'],cwd=ROOT)
  frozen_manifest=ROOT/'docs/implementation/phase-04c1b4c4r3-frozen-inputs.json'
  if frozen_manifest.exists():
   frozen=json.loads(frozen_manifest.read_bytes());assert frozen['baseline_head']==r3_base

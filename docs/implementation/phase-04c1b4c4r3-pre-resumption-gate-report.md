@@ -1,0 +1,17 @@
+# R3 gates and limits — Outcome C, not implementation acceptance
+
+Source/full-code gate HEAD: `8c84f663e446bf967d1a541d31275bb4112c33d5`. Current repository production/formal/test files are unchanged from this exact start;only additive read-only audit/docs are present. All1867 starting nonignored files are compared by full path/SHA256 using the initial clean snapshot. Formal/native source identity is not inferred merely from clean Git status.
+
+Fresh current commands actually exited0: cargo fmt --all -- --check;cargo clippy -j2 --all-targets --all-features -- -D warnings;cargo test --all -j2;cargo run -p af-spec --bin spec-check -- check. Current full log336 test passes/71 result groups/0 failed/ignored/filtered,including173 existing successor staging CaseIds. Spec-check50 specifications/452 rules/451 reference-covered/1 intentional exception/0 missing;ABI775/AFIDL17/xref0;HashV1 domains14 unchanged.
+
+Fresh focused native test: recovery_action_guard_compatibility_uses_frozen_direction_and_typed_witnesses passed1,failed0,ignored0,filtered20 because --exact was requested. Fresh final diagnostic cargo run exits0 and verifies the actual typed countermodel,positive input control,all five active/historical owner admissions,known-Scope owner controls and disabled capability. These are source/admission checks,not a new T3 capture corpus. The initial successful diagnostic without owner controls is retained separately,not represented as a failure. No production or Expected was repaired to make these probes pass.
+
+Read-only audit command intentionally exits2 for the formal-binding stop decision. This is not a Rust regression failure. It labels source locators,a native Actual and incomplete coverage;does not generate TrustedFact or Seed Expected. Complete code/reproduction logs and hashes are retained in [gate evidence](phase-04c1b4c4r3-gate-evidence.json). See [formal request](phase-04c1b4c4r3-formal-binding-request.md) for the limits of the inferred finding,including the pre-existing historical owner metadata limitation.
+
+Historical Edition1(512) and Edition2(51) full frozen tests were NOT rerun in this blocked R3 phase. Their original corpus/source bytes remain identical;prior R2 passes are historical only. No claim that those fresh R3 historical gates passed,or that R3 Outcome A is accepted,is made.
+
+## Original-directory generator gate at delivery
+
+Actual inventory32 tools/gen-*.py;no new generator. The final committed audit/document tree is the snapshot baseline before complete Round1 and complete Round2 in E:/Projects/agent. Every script must exit0 in each round;all nonignored path/byte hashes must equal baseline with0 added/removed/changed. No mirror substitute,retry-spliced pair or swallowed I/O failure. Full log target/phase-04c1b4c4r3-generators.log;full maps target/phase-04c1b4c4r3-generators-{baseline,round1,round2}.json. Actual exit/timings/file count are reported at delivery,not prefilled here. There are no nonignored edits during or after that final pair.
+
+Only audit/docs are committed;fast postcommit fmt/clippy/spec/audit/documentation checks are separate from the full current test run. Final HEAD and clean status are checked after the generator pair. Generator success establishes stability,not capture/Oracle coverage. T3 fields/sites/cases/mutations remain unimplemented and blockers remain explicit. No positive capability,formal type/rule/edition change,full Scope/normalizer or T4–T8 entry is authorized.
