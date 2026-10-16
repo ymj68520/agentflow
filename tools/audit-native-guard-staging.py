@@ -2,6 +2,7 @@
 import hashlib,json,re,subprocess,sys
 from pathlib import Path
 from native_guard_registration_data import BASELINE,MODEL,HISTORICAL,SOURCES,RULES,NATIVE_NAMES
+from native_guard_source_binding import check as check_source_binding
 ROOT=Path(__file__).resolve().parent.parent
 def read(p):return json.loads((ROOT/p).read_bytes())
 def sha(b):return hashlib.sha256(b).hexdigest()
@@ -44,8 +45,7 @@ def main():
   assert types[row['successor_key']]==row['successor_descriptor']
   if row['historical_declaration'] is not None:assert row['historical_declaration']==hist['semantic_model_declarations'][row['name']]
   assert all(HISTORICAL+'/'+dep in types for dep in row['recursive_dependencies'])
- for p,v in m['historical_import_sources'].items():
-  b=(ROOT/p).read_bytes();assert b.hex()==v['content_hex'] and sha(b)==v['sha256']
+ source_binding=check_source_binding(m,read('spec/conformance/g01-native-guard-staging/historical-imports.json'))
  projection=read('docs/implementation/phase-04c1b4c4r3g1-projection-contract.json')
  native14=types[HISTORICAL+'/af-contract::TypedGuardCountermodel']['fields']
  pfields=[x['field'] if 'field' in x else x['field_name'] for x in projection['fields']]
@@ -69,6 +69,20 @@ def main():
  for p in ['spec/registry/abi-numbers.json','spec/tables/hash-domains.json','Cargo.lock']:
   assert (ROOT/p).read_bytes()==gitraw(p),p
  known_changes={'crates/af-computation/Cargo.toml','crates/af-computation/src/registered_model.rs','crates/af-computation/src/root_export.rs','crates/af-portable/Cargo.toml','crates/af-portable/src/support.rs','spec/registry/rules.json','spec/registry/specifications.json','tools/gen-registry-instances.py','tools/gen-substitution-successor-staging.py'}
+ # R3 authorization permits real producer bodies and the user-approved dual
+ # source-binding regression. It does NOT permit changing any G2 normative
+ # content, Expected, descriptor, ABI, AFIDL or hash-domain byte.
+ r3_base='a0ef89e71ac31405ba05df619f585b5830aa8c92'
+ known_changes|={'crates/af-computation/src/lib.rs','crates/af-contract/src/lib.rs',
+                 'crates/af-contract/src/recovery_guard.rs','crates/af-contract/src/validate.rs'}
+ frozen_manifest=ROOT/'docs/implementation/phase-04c1b4c4r3-frozen-inputs.json'
+ if frozen_manifest.exists():
+  frozen=json.loads(frozen_manifest.read_bytes());assert frozen['baseline_head']==r3_base
+  original_spec=set(subprocess.check_output(['git','ls-tree','-r','--name-only',r3_base,'--','spec'],cwd=ROOT,text=True).splitlines())
+  assert {p for p in frozen['paths'] if p.startswith('spec/')}==original_spec
+  # Git blobs normalize some existing JSON CRLF; this manifest preserves
+  # actual initial raw bytes instead of silently normalizing the comparison.
+  for p,h in frozen['paths'].items():assert sha((ROOT/p).read_bytes())==h,('R3 frozen byte changed',p)
  changed=subprocess.check_output(['git','diff',BASELINE,'--name-only'],cwd=ROOT,text=True).splitlines()
  # Newly committed paths show in this diff too; non-baseline files are allowed.
  original=set(subprocess.check_output(['git','ls-tree','-r','--name-only',BASELINE],cwd=ROOT,text=True).splitlines())

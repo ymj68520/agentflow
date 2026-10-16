@@ -160,10 +160,22 @@ fn historical_imports_full_fields_recursive_edges_and_original_source_contents()
         }
     }
     for (path, s) in manifest["sources"].as_object().unwrap() {
-        let bytes = std::fs::read(root().join(path)).unwrap();
+        // Exact historical owner resolves its immutable registered snapshot,
+        // never whichever implementation currently occupies the source path.
+        assert_eq!(&m["historical_import_sources"][path], s);
+        let bytes = hex::decode(s["content_hex"].as_str().unwrap()).unwrap();
         assert_eq!(hex::encode(&bytes), s["content_hex"]);
         assert_eq!(hex::encode(Sha256::digest(&bytes)), s["sha256"]);
     }
+    let status = std::process::Command::new("python")
+        .arg(root().join("tools/native_guard_source_binding.py"))
+        .current_dir(root())
+        .status()
+        .expect("live imported declaration audit");
+    assert!(
+        status.success(),
+        "live declarations must retain exact fields/types/variant ranks"
+    );
 }
 #[test]
 fn old_complete_registry_rows_and_sources_stay_frozen() {
