@@ -52,6 +52,9 @@ path = "tests/scope_closure_conformance.rs"
 [[test]]
 name = "native_guard_staging"
 path = "tests/native_guard_staging.rs"
+[[test]]
+name = "native_capture_conformance"
+path = "tests/native_capture_conformance.rs"
 
 [lints]
 workspace = true
