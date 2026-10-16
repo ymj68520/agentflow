@@ -1,0 +1,2372 @@
+{
+  "kind": "G1 source/owner design adjudication evidence;NOT T3 Capture",
+  "baseline": "5bee948a033cfbf1233c65448e39d0c344993b52",
+  "registered_counts": {
+    "specifications": 50,
+    "rules": 452
+  },
+  "active_descriptors": 518,
+  "resolved_references": 1593,
+  "active_static_named_ref_reachable_names": 488,
+  "reachability_note": "Static named-ref reachability is distinct from ModelType dispatch over all518 catalogued descriptors;this is not a claim that30 definitions are illegal or unusable.",
+  "old_model_exactly_inherited": true,
+  "five_native_types": [
+    {
+      "name": "af-contract::ActionGuardCompatibility",
+      "historical_owner": "agentflow.computation.proof-report.model@1",
+      "declared": true,
+      "registered_source": true,
+      "included_as_historical_payload": true,
+      "active_materialized": false,
+      "reachable_from_active_roots": false,
+      "metadata_claimable": "See actual owner/schema/name matrix,not inferred from name absence",
+      "native_semantically_applicable": true,
+      "complete_current_projection": "NOT ESTABLISHED",
+      "native_declaration_order": [
+        "source_component",
+        "recovery_action",
+        "forward_entry_ordinal",
+        "action_entry_ordinal",
+        "forward_guard",
+        "declared_action_guard",
+        "action_upper",
+        "verdict",
+        "basis",
+        "countermodel",
+        "reason"
+      ],
+      "historical_descriptor": {
+        "fields": [
+          {
+            "collection": false,
+            "field": "source_component",
+            "full_type": "ComponentIdentity",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "recovery_action",
+            "full_type": "RecoveryActionIdentity",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "forward_entry_ordinal",
+            "full_type": "Option<usize>",
+            "option_presence": "explicit_none_or_some"
+          },
+          {
+            "collection": false,
+            "field": "action_entry_ordinal",
+            "full_type": "Option<usize>",
+            "option_presence": "explicit_none_or_some"
+          },
+          {
+            "collection": false,
+            "field": "forward_guard",
+            "full_type": "Option<EffectGuard>",
+            "option_presence": "explicit_none_or_some"
+          },
+          {
+            "collection": false,
+            "field": "declared_action_guard",
+            "full_type": "Option<EffectGuard>",
+            "option_presence": "explicit_none_or_some"
+          },
+          {
+            "collection": false,
+            "field": "action_upper",
+            "full_type": "Option<OccurrenceCeiling>",
+            "option_presence": "explicit_none_or_some"
+          },
+          {
+            "collection": false,
+            "field": "verdict",
+            "full_type": "ProofVerdict",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "basis",
+            "full_type": "GuardCompatibilityBasis",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "countermodel",
+            "full_type": "Option<TypedGuardCountermodel>",
+            "option_presence": "explicit_none_or_some"
+          },
+          {
+            "collection": false,
+            "field": "reason",
+            "full_type": "String",
+            "option_presence": "required"
+          }
+        ],
+        "kind": "struct",
+        "owner_type": "af-contract::ActionGuardCompatibility",
+        "source": "crates/af-contract/src/recovery_guard.rs"
+      }
+    },
+    {
+      "name": "af-contract::GuardCompatibilityBasis",
+      "historical_owner": "agentflow.computation.proof-report.model@1",
+      "declared": true,
+      "registered_source": true,
+      "included_as_historical_payload": true,
+      "active_materialized": false,
+      "reachable_from_active_roots": false,
+      "metadata_claimable": "See actual owner/schema/name matrix,not inferred from name absence",
+      "native_semantically_applicable": true,
+      "complete_current_projection": "NOT ESTABLISHED",
+      "native_declaration_order": [
+        "FrozenGuardContainment",
+        "ZeroPossibleActions",
+        "TypedCountermodel",
+        "InsufficientEvidence"
+      ],
+      "historical_descriptor": {
+        "kind": "enum",
+        "owner_type": "af-contract::GuardCompatibilityBasis",
+        "source": "crates/af-contract/src/recovery_guard.rs",
+        "variants": {
+          "FrozenGuardContainment": [],
+          "InsufficientEvidence": [],
+          "TypedCountermodel": [],
+          "ZeroPossibleActions": []
+        }
+      }
+    },
+    {
+      "name": "af-contract::TypedGuardCountermodel",
+      "historical_owner": "agentflow.computation.proof-report.model@1",
+      "declared": true,
+      "registered_source": true,
+      "included_as_historical_payload": true,
+      "active_materialized": false,
+      "reachable_from_active_roots": false,
+      "metadata_claimable": "See actual owner/schema/name matrix,not inferred from name absence",
+      "native_semantically_applicable": true,
+      "complete_current_projection": "NOT ESTABLISHED",
+      "native_declaration_order": [
+        "source_contract",
+        "source_component",
+        "recovery_action",
+        "forward_entry_ordinal",
+        "action_entry_ordinal",
+        "forward_guard",
+        "declared_action_guard",
+        "forward_bounds",
+        "activation_upper",
+        "attempt_upper",
+        "action_upper",
+        "assignments",
+        "reachability",
+        "related_rule_id"
+      ],
+      "historical_descriptor": {
+        "fields": [
+          {
+            "collection": false,
+            "field": "source_contract",
+            "full_type": "ComponentContract",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "source_component",
+            "full_type": "ComponentIdentity",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "recovery_action",
+            "full_type": "RecoveryActionIdentity",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "forward_entry_ordinal",
+            "full_type": "usize",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "action_entry_ordinal",
+            "full_type": "usize",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "forward_guard",
+            "full_type": "EffectGuard",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "declared_action_guard",
+            "full_type": "EffectGuard",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "forward_bounds",
+            "full_type": "OccurrenceBounds",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "activation_upper",
+            "full_type": "OccurrenceCeiling",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "attempt_upper",
+            "full_type": "OccurrenceCeiling",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "action_upper",
+            "full_type": "OccurrenceCeiling",
+            "option_presence": "required"
+          },
+          {
+            "collection": true,
+            "field": "assignments",
+            "full_type": "Vec<GuardInputAssignment>",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "reachability",
+            "full_type": "GuardCountermodelReachability",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "related_rule_id",
+            "full_type": "&'static str",
+            "option_presence": "required"
+          }
+        ],
+        "kind": "struct",
+        "owner_type": "af-contract::TypedGuardCountermodel",
+        "source": "crates/af-contract/src/recovery_guard.rs"
+      }
+    },
+    {
+      "name": "af-contract::GuardInputAssignment",
+      "historical_owner": "agentflow.computation.proof-report.model@1",
+      "declared": true,
+      "registered_source": true,
+      "included_as_historical_payload": true,
+      "active_materialized": false,
+      "reachable_from_active_roots": false,
+      "metadata_claimable": "See actual owner/schema/name matrix,not inferred from name absence",
+      "native_semantically_applicable": true,
+      "complete_current_projection": "NOT ESTABLISHED",
+      "native_declaration_order": [
+        "port_no",
+        "type_ref",
+        "value"
+      ],
+      "historical_descriptor": {
+        "fields": [
+          {
+            "collection": false,
+            "field": "port_no",
+            "full_type": "u32",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "type_ref",
+            "full_type": "TypeSchemaRef",
+            "option_presence": "required"
+          },
+          {
+            "collection": false,
+            "field": "value",
+            "full_type": "PrimitiveConstant",
+            "option_presence": "required"
+          }
+        ],
+        "kind": "struct",
+        "owner_type": "af-contract::GuardInputAssignment",
+        "source": "crates/af-contract/src/recovery_guard.rs"
+      }
+    },
+    {
+      "name": "af-contract::GuardCountermodelReachability",
+      "historical_owner": "agentflow.computation.proof-report.model@1",
+      "declared": true,
+      "registered_source": true,
+      "included_as_historical_payload": true,
+      "active_materialized": false,
+      "reachable_from_active_roots": false,
+      "metadata_claimable": "See actual owner/schema/name matrix,not inferred from name absence",
+      "native_semantically_applicable": true,
+      "complete_current_projection": "NOT ESTABLISHED",
+      "native_declaration_order": [
+        "WellTypedComponentInputDomain"
+      ],
+      "historical_descriptor": {
+        "kind": "enum",
+        "owner_type": "af-contract::GuardCountermodelReachability",
+        "source": "crates/af-contract/src/recovery_guard.rs",
+        "variants": {
+          "WellTypedComponentInputDomain": []
+        }
+      }
+    }
+  ],
+  "producer_locations": [
+    {
+      "path": "crates/af-contract/src/recovery_guard.rs",
+      "line": 200,
+      "role": "entry",
+      "audit_locator_only": true
+    },
+    {
+      "path": "crates/af-contract/src/recovery_guard.rs",
+      "line": 222,
+      "role": "native_record_site",
+      "audit_locator_only": true
+    },
+    {
+      "path": "crates/af-contract/src/recovery_guard.rs",
+      "line": 242,
+      "role": "native_record_site",
+      "audit_locator_only": true
+    },
+    {
+      "path": "crates/af-contract/src/recovery_guard.rs",
+      "line": 265,
+      "role": "native_record_site",
+      "audit_locator_only": true
+    },
+    {
+      "path": "crates/af-contract/src/recovery_guard.rs",
+      "line": 280,
+      "role": "native_record_site",
+      "audit_locator_only": true
+    },
+    {
+      "path": "crates/af-contract/src/recovery_guard.rs",
+      "line": 301,
+      "role": "native_record_site",
+      "audit_locator_only": true
+    },
+    {
+      "path": "crates/af-contract/src/recovery_guard.rs",
+      "line": 315,
+      "role": "native_record_site",
+      "audit_locator_only": true
+    },
+    {
+      "path": "crates/af-contract/src/recovery_guard.rs",
+      "line": 348,
+      "role": "native_record_site",
+      "audit_locator_only": true
+    },
+    {
+      "path": "crates/af-contract/src/recovery_guard.rs",
+      "line": 357,
+      "role": "native_record_site",
+      "audit_locator_only": true
+    },
+    {
+      "path": "crates/af-contract/src/recovery_guard.rs",
+      "line": 364,
+      "role": "native_record_site",
+      "audit_locator_only": true
+    },
+    {
+      "path": "crates/af-contract/src/recovery_guard.rs",
+      "line": 380,
+      "role": "native_record_site",
+      "audit_locator_only": true
+    },
+    {
+      "path": "crates/af-contract/src/recovery_guard.rs",
+      "line": 388,
+      "role": "native_record_site",
+      "audit_locator_only": true
+    },
+    {
+      "path": "crates/af-contract/src/recovery_guard.rs",
+      "line": 445,
+      "role": "countermodel_builder",
+      "audit_locator_only": true
+    },
+    {
+      "path": "crates/af-contract/src/recovery_guard.rs",
+      "line": 500,
+      "role": "typed_countermodel_constructor",
+      "audit_locator_only": true
+    }
+  ],
+  "existing_source": {
+    "kind": "enum",
+    "variants": [
+      [
+        "root",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "ir",
+              {
+                "ref": "DigestRef"
+              }
+            ],
+            [
+              "root_node",
+              {
+                "ref": "ComputationId"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "component",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "caller_ir",
+              {
+                "ref": "DigestRef"
+              }
+            ],
+            [
+              "node",
+              {
+                "ref": "ComputationId"
+              }
+            ],
+            [
+              "contract",
+              {
+                "ref": "DigestRef"
+              }
+            ],
+            [
+              "entry_ordinal",
+              {
+                "kind": "option",
+                "item": {
+                  "ref": "$Ordinal64"
+                },
+                "minimum": 0
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "subflow",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "caller_ir",
+              {
+                "ref": "DigestRef"
+              }
+            ],
+            [
+              "call_site",
+              {
+                "ref": "ComputationId"
+              }
+            ],
+            [
+              "target_ir",
+              {
+                "ref": "DigestRef"
+              }
+            ],
+            [
+              "export_state",
+              {
+                "ref": "ExportState"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "scope",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "caller_ir",
+              {
+                "ref": "DigestRef"
+              }
+            ],
+            [
+              "node",
+              {
+                "ref": "ComputationId"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "context",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "member",
+              {
+                "kind": "sequence",
+                "item": {
+                  "ref": "MemberStep"
+                },
+                "minimum": 0
+              }
+            ],
+            [
+              "catalog_role",
+              {
+                "kind": "option",
+                "item": {
+                  "ref": "ContextCatalogRole"
+                },
+                "minimum": 0
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "compiler",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "member",
+              {
+                "kind": "sequence",
+                "item": {
+                  "ref": "MemberStep"
+                },
+                "minimum": 0
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "control",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "caller_ir",
+              {
+                "ref": "DigestRef"
+              }
+            ],
+            [
+              "node",
+              {
+                "ref": "ComputationId"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "contract_operand",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "role",
+              {
+                "ref": "OperandRole"
+              }
+            ],
+            [
+              "subject",
+              {
+                "ref": "OperandSubject"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "substitution_application",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "application",
+              {
+                "ref": "ApplicationOrigin"
+              }
+            ],
+            [
+              "old",
+              {
+                "ref": "OperandSubject"
+              }
+            ],
+            [
+              "replacement",
+              {
+                "ref": "OperandSubject"
+              }
+            ]
+          ]
+        }
+      ]
+    ]
+  },
+  "existing_target": {
+    "kind": "enum",
+    "variants": [
+      [
+        "analysis_boundary",
+        {
+          "ref": "$unit"
+        }
+      ],
+      [
+        "export",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "digest",
+              {
+                "ref": "DigestRef"
+              }
+            ],
+            [
+              "port",
+              {
+                "kind": "option",
+                "item": {
+                  "ref": "PortIdentity"
+                },
+                "minimum": 0
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "component",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "digest",
+              {
+                "ref": "DigestRef"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "subflow",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "ir",
+              {
+                "ref": "DigestRef"
+              }
+            ],
+            [
+              "export_state",
+              {
+                "ref": "ExportState"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "relation",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "schema",
+              {
+                "ref": "af-semantic::TypeSchemaRef"
+              }
+            ],
+            [
+              "revision",
+              {
+                "ref": "$Text"
+              }
+            ],
+            [
+              "content",
+              {
+                "ref": "$Bytes"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "proof",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "key",
+              {
+                "ref": "FactKey"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "unresolved_request",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "caller_ir",
+              {
+                "ref": "DigestRef"
+              }
+            ],
+            [
+              "node",
+              {
+                "ref": "ComputationId"
+              }
+            ],
+            [
+              "request",
+              {
+                "ref": "Request"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "contract_operand",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "role",
+              {
+                "ref": "OperandRole"
+              }
+            ],
+            [
+              "subject",
+              {
+                "ref": "OperandSubject"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "substitution_pair",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "old",
+              {
+                "ref": "OperandSubject"
+              }
+            ],
+            [
+              "replacement",
+              {
+                "ref": "OperandSubject"
+              }
+            ]
+          ]
+        }
+      ]
+    ]
+  },
+  "existing_coordinate": {
+    "kind": "enum",
+    "variants": [
+      [
+        "whole",
+        {
+          "ref": "$unit"
+        }
+      ],
+      [
+        "input",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "binding",
+              {
+                "ref": "af-computation::RootInputPortBinding"
+              }
+            ],
+            [
+              "export_port",
+              {
+                "ref": "af-computation::ComponentInputPortIdentity"
+              }
+            ],
+            [
+              "run_parameter",
+              {
+                "ref": "RunParameterId"
+              }
+            ],
+            [
+              "slot",
+              {
+                "ref": "ValueSlotId"
+              }
+            ],
+            [
+              "use_site",
+              {
+                "kind": "option",
+                "item": {
+                  "ref": "af-computation::RootInputUseSite"
+                },
+                "minimum": 0
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "output",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "binding",
+              {
+                "ref": "af-computation::RootOutputPortBinding"
+              }
+            ],
+            [
+              "export_port",
+              {
+                "ref": "af-computation::ComponentOutputPortIdentity"
+              }
+            ],
+            [
+              "name",
+              {
+                "ref": "RawClaim"
+              }
+            ],
+            [
+              "expression",
+              {
+                "ref": "ExpressionId"
+              }
+            ],
+            [
+              "path",
+              {
+                "kind": "sequence",
+                "item": {
+                  "ref": "MemberStep"
+                },
+                "minimum": 0
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "resource",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "binding",
+              {
+                "ref": "af-computation::RootResourcePortBinding"
+              }
+            ],
+            [
+              "source_port",
+              {
+                "ref": "PortIdentity"
+              }
+            ],
+            [
+              "slot",
+              {
+                "ref": "ResourceSlotId"
+              }
+            ],
+            [
+              "export_port",
+              {
+                "ref": "af-computation::ResourceRequirementPortIdentity"
+              }
+            ],
+            [
+              "type",
+              {
+                "ref": "af-semantic::TypeSchemaRef"
+              }
+            ],
+            [
+              "attributes",
+              {
+                "kind": "set",
+                "item": {
+                  "ref": "af-resource::ResourceAttributeConstraint"
+                },
+                "minimum": 0
+              }
+            ],
+            [
+              "aliases",
+              {
+                "kind": "set",
+                "item": {
+                  "ref": "PortIdentity"
+                },
+                "minimum": 0
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "effect",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "binding",
+              {
+                "ref": "af-computation::RootEffectCoordinateBinding"
+              }
+            ],
+            [
+              "source",
+              {
+                "ref": "af-computation::RootEffectOccurrenceIdentity"
+              }
+            ],
+            [
+              "export_atom",
+              {
+                "ref": "af-effect::EffectAtom"
+              }
+            ],
+            [
+              "export_guard",
+              {
+                "ref": "af-effect::EffectGuard"
+              }
+            ],
+            [
+              "bounds",
+              {
+                "ref": "af-effect::OccurrenceBounds"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "flow",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "binding",
+              {
+                "ref": "af-computation::RootFlowCoordinateBinding"
+              }
+            ],
+            [
+              "source",
+              {
+                "kind": "option",
+                "item": {
+                  "ref": "af-flow::FlowSourceRef"
+                },
+                "minimum": 0
+              }
+            ],
+            [
+              "sink",
+              {
+                "kind": "option",
+                "item": {
+                  "ref": "af-flow::FlowConstraint"
+                },
+                "minimum": 0
+              }
+            ],
+            [
+              "kind",
+              {
+                "ref": "af-flow::FlowKind"
+              }
+            ],
+            [
+              "labels",
+              {
+                "kind": "set",
+                "item": {
+                  "ref": "af-flow::ConfidentialityLabelRef"
+                },
+                "minimum": 0
+              }
+            ],
+            [
+              "taints",
+              {
+                "kind": "set",
+                "item": {
+                  "ref": "af-flow::TaintRef"
+                },
+                "minimum": 0
+              }
+            ],
+            [
+              "partition",
+              {
+                "kind": "option",
+                "item": {
+                  "ref": "af-contract::EffectFlowPartition"
+                },
+                "minimum": 0
+              }
+            ],
+            [
+              "ordinal",
+              {
+                "ref": "$Ordinal64"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "usage",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "phase",
+              {
+                "ref": "af-usage::UsagePhase"
+              }
+            ],
+            [
+              "meter",
+              {
+                "ref": "af-usage::UsageMeterRef"
+              }
+            ],
+            [
+              "unit",
+              {
+                "ref": "af-usage::UsageUnitRef"
+              }
+            ],
+            [
+              "aggregation",
+              {
+                "ref": "af-usage::UsageAggregation"
+              }
+            ],
+            [
+              "coverage_role",
+              {
+                "ref": "UsageCoverageRole"
+              }
+            ],
+            [
+              "source_bound",
+              {
+                "ref": "af-usage::UsageUpperBound"
+              }
+            ],
+            [
+              "export_bound",
+              {
+                "ref": "af-usage::UsageUpperBound"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "recovery",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "binding",
+              {
+                "kind": "option",
+                "item": {
+                  "ref": "af-computation::RootRecoveryCoordinateBinding"
+                },
+                "minimum": 0
+              }
+            ],
+            [
+              "source",
+              {
+                "ref": "af-computation::RecoveryActionSourceIdentity"
+              }
+            ],
+            [
+              "action",
+              {
+                "ref": "af-contract::RecoveryActionIdentity"
+              }
+            ],
+            [
+              "profile",
+              {
+                "kind": "option",
+                "item": {
+                  "ref": "af-contract::RecoveryUsageBinding"
+                },
+                "minimum": 0
+              }
+            ],
+            [
+              "factors",
+              {
+                "kind": "sequence",
+                "item": {
+                  "ref": "MultiplicityFactor"
+                },
+                "minimum": 0
+              }
+            ],
+            [
+              "path",
+              {
+                "kind": "sequence",
+                "item": {
+                  "ref": "DeclaredStep"
+                },
+                "minimum": 0
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "execution",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "source_node",
+              {
+                "ref": "ComputationId"
+              }
+            ],
+            [
+              "contract",
+              {
+                "ref": "DigestRef"
+              }
+            ],
+            [
+              "requirements",
+              {
+                "ref": "af-execution::ExecutionRequirements"
+              }
+            ],
+            [
+              "aspect",
+              {
+                "ref": "ExecutionAspect"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "dependency",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "call_site",
+              {
+                "ref": "ComputationId"
+              }
+            ],
+            [
+              "target",
+              {
+                "ref": "DigestRef"
+              }
+            ],
+            [
+              "edge_ordinal",
+              {
+                "ref": "$Ordinal64"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "control",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "node",
+              {
+                "ref": "ComputationId"
+              }
+            ],
+            [
+              "operator",
+              {
+                "ref": "af-computation::ControlOperator"
+              }
+            ],
+            [
+              "predicate",
+              {
+                "ref": "PredicateId"
+              }
+            ],
+            [
+              "edge_path",
+              {
+                "kind": "sequence",
+                "item": {
+                  "ref": "DeclaredStep"
+                },
+                "minimum": 0
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "context_member",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "catalog",
+              {
+                "ref": "ContextCatalogRole"
+              }
+            ],
+            [
+              "member",
+              {
+                "ref": "TypedValue"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "pin",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "role",
+              {
+                "ref": "PinRole"
+              }
+            ],
+            [
+              "expected",
+              {
+                "ref": "ClaimValue"
+              }
+            ],
+            [
+              "observed",
+              {
+                "ref": "ClaimValue"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "substitution",
+        {
+          "kind": "record",
+          "fields": [
+            [
+              "application",
+              {
+                "ref": "ApplicationOrigin"
+              }
+            ],
+            [
+              "dimension",
+              {
+                "kind": "option",
+                "item": {
+                  "ref": "SubstitutionDimension"
+                },
+                "minimum": 0
+              }
+            ],
+            [
+              "clause",
+              {
+                "ref": "RequirementClause"
+              }
+            ],
+            [
+              "comparison",
+              {
+                "ref": "SubstitutionCoordinate"
+              }
+            ]
+          ]
+        }
+      ]
+    ]
+  },
+  "existing_predicate_families": {
+    "kind": "enum",
+    "variants": [
+      [
+        "root_preflight",
+        {
+          "kind": "unit"
+        }
+      ],
+      [
+        "root_dimension",
+        {
+          "kind": "unit"
+        }
+      ],
+      [
+        "execution_child",
+        {
+          "kind": "unit"
+        }
+      ],
+      [
+        "root_boundary",
+        {
+          "kind": "unit"
+        }
+      ],
+      [
+        "leaf",
+        {
+          "kind": "unit"
+        }
+      ],
+      [
+        "control",
+        {
+          "kind": "unit"
+        }
+      ],
+      [
+        "root_recovery",
+        {
+          "kind": "unit"
+        }
+      ],
+      [
+        "prerequisite",
+        {
+          "kind": "unit"
+        }
+      ],
+      [
+        "standalone_substitution",
+        {
+          "kind": "unit"
+        }
+      ]
+    ]
+  },
+  "closed_predicates": {
+    "control": [
+      "compensation-commit-order",
+      "compensation-forward-history",
+      "compensation-recovery-coverage",
+      "conditional-compensation-actions",
+      "control-contract-boundary",
+      "control-topology",
+      "control-tree-closure",
+      "effect-envelope",
+      "execution-per-child",
+      "failure-row",
+      "information-flow",
+      "local-k-action-bounds",
+      "occurrence-identity",
+      "parallel-fail-fast",
+      "proof-context-consistency",
+      "race-loser-effects",
+      "recovery-blocked-outcome",
+      "recovery-obligations",
+      "resource-port-provenance",
+      "retry-logical-effect-narrowing",
+      "retry-recovery-safety",
+      "root-export-compatibility",
+      "root-k-action-effect-envelope",
+      "root-k-action-epsilon-coverage",
+      "root-k-epsilon-coverage-requirement",
+      "root-k-recovery-usage",
+      "root-k-recovery-usage-coverage",
+      "root-recovery-action-totals",
+      "root-recovery-eligibility",
+      "root-recovery-guard-compatibility",
+      "root-recovery-multiplicity",
+      "root-recovery-source-closure",
+      "scope-authority-attenuation",
+      "scope-budget-attenuation",
+      "scope-child-summary",
+      "scope-owned-child-settlement",
+      "scope-resource-attenuation",
+      "select-case-totality",
+      "timeout-control-outcomes",
+      "typed-output-interface",
+      "unsupported-control",
+      "usage"
+    ],
+    "execution_child": [
+      "source",
+      "feasibility",
+      "security"
+    ],
+    "leaf": [
+      "await-control-semantics",
+      "await-signal-pin",
+      "contract-pin-validation",
+      "effect-and-recovery",
+      "failure-usage-execution",
+      "information-flow",
+      "input-binding",
+      "output-binding",
+      "proof-context-consistency",
+      "reference-resolution",
+      "resource-mapping",
+      "scoped-dataflow",
+      "subflow-body-conformance",
+      "subflow-dependency-closure",
+      "subflow-export-contract",
+      "subflow-interface",
+      "target-pin-validation",
+      "type-compatibility"
+    ],
+    "prerequisite": [
+      "closed_contract_schema",
+      "imported_module_closure",
+      "schema_universe",
+      "positive_unique_ports",
+      "failure_pins",
+      "effect_operation_membership",
+      "resource_universe",
+      "effect_resource_relation",
+      "flow_catalogs",
+      "io_resource_namespaces",
+      "additive_meter_units",
+      "recovery_usage_exhaustiveness",
+      "closed_effect_action_coverage",
+      "exact_k_identity",
+      "execution_universes",
+      "flow_execution_relation",
+      "required_dimensions",
+      "exact_relation_pins",
+      "epsilon_nonempty",
+      "flow_constraints_require_relation"
+    ],
+    "root_boundary": [
+      "body",
+      "implementation",
+      "scope_authority",
+      "scope_budget",
+      "runtime",
+      "publisher"
+    ],
+    "root_dimension": [
+      "I",
+      "O",
+      "Phi",
+      "epsilon",
+      "R",
+      "F",
+      "U",
+      "K",
+      "X"
+    ],
+    "root_preflight": [
+      "assertion_input",
+      "exact_pin",
+      "proof_context",
+      "compiler_identity",
+      "subflow_dependency"
+    ],
+    "root_recovery": [
+      "root-k-action-effect-envelope",
+      "root-k-action-epsilon-coverage",
+      "root-k-epsilon-coverage-requirement",
+      "root-k-recovery-usage",
+      "root-k-recovery-usage-coverage",
+      "root-recovery-action-totals",
+      "root-recovery-eligibility",
+      "root-recovery-guard-compatibility",
+      "root-recovery-multiplicity",
+      "root-recovery-source-closure"
+    ],
+    "standalone_substitution": [
+      "checked_operand",
+      "context_association",
+      "whole_body_equality",
+      "changed_pair_evidence_floor",
+      "lineage_equality",
+      "io_relation",
+      "failure_relation",
+      "effects_relation",
+      "resources_relation",
+      "flow_relation",
+      "usage_relation",
+      "recovery_relation",
+      "execution_feasibility_relation",
+      "execution_security_relation",
+      "execution_combined_relation",
+      "result_identity",
+      "result_io",
+      "result_failure",
+      "result_effects",
+      "result_resources",
+      "result_information_flow",
+      "result_usage",
+      "result_recovery",
+      "result_execution",
+      "result_execution_feasibility",
+      "result_execution_security",
+      "result_cross_dimension"
+    ]
+  },
+  "guard_contradiction": {
+    "kind": "record",
+    "fields": [
+      [
+        "source",
+        {
+          "ref": "af-computation::RecoveryActionSourceIdentity"
+        }
+      ],
+      [
+        "source_guard",
+        {
+          "ref": "af-effect::EffectGuard"
+        }
+      ],
+      [
+        "target_guard",
+        {
+          "ref": "af-effect::EffectGuard"
+        }
+      ],
+      [
+        "bounds",
+        {
+          "ref": "af-effect::OccurrenceBounds"
+        }
+      ],
+      [
+        "countermodel",
+        {
+          "ref": "TypedValue"
+        }
+      ]
+    ]
+  },
+  "root_guard_source": {
+    "kind": "record",
+    "fields": [
+      [
+        "caller_semantic_ir_digest",
+        {
+          "ref": "af-semantic::DigestRefValue"
+        }
+      ],
+      [
+        "source_node",
+        {
+          "ref": "ComputationId"
+        }
+      ],
+      [
+        "source_contract_digest",
+        {
+          "ref": "af-semantic::DigestRefValue"
+        }
+      ],
+      [
+        "forward_entry_ordinal",
+        {
+          "ref": "$usize"
+        }
+      ],
+      [
+        "action",
+        {
+          "ref": "af-contract::RecoveryActionIdentity"
+        }
+      ]
+    ]
+  },
+  "model_type_constraints": [
+    "ModelType={owner:SpecificationId,name:Text}: owner is an exact source-pinned imported AFIDL specification or the exact inherited RM@1 or successor RM@2; name must occur in its registered closed descriptor closure. Full descriptors are obtained from the complete owner/source bundle in Scope, not serialized recursively inside each ModelType. ClosedField/ClosedCase are exact text tokens present in that ModelType's approved ordered descriptor. Unknown owner/name/field/case is UnsupportedModel. This is type reference by full supported content, not an unbound local table index or arbitrary model-name string."
+  ],
+  "source_bindings": [
+    {
+      "path": "spec/tables/proof-report-model-v1.md",
+      "sha256": "e23ca47c05efe9f7ec22177011982ac47ca0cdc8642173de56a90e6e29a93099"
+    },
+    {
+      "path": "spec/tables/proof-report-model-v2.md",
+      "sha256": "86d97bdcbf17814f03bdab4f34090e90b53963a8a8ea8761be9d30822b3779d1"
+    },
+    {
+      "path": "crates/af-contract/src/recovery_guard.rs",
+      "sha256": "6bf6921902636e2bf729d3c29957b55a440b1cd28a955a205f722c8d23fe18a8"
+    },
+    {
+      "path": "crates/af-contract/src/validate.rs",
+      "sha256": "38e2ec3a5e4c92e0a044b2a7effbe2ba61589c619677ad007f354f23fc948130"
+    },
+    {
+      "path": "crates/af-contract/src/canonical.rs",
+      "sha256": "68f51bb521d075ae65a8103cacc81e2650831e8c6b228a2f504c17643bb306bc"
+    },
+    {
+      "path": "crates/af-computation/src/registered_model.rs",
+      "sha256": "29b92382627e68970eebf688f3ce02be6a2bffbb14e528e6ebdf79bab8e9f25e"
+    },
+    {
+      "path": "crates/af-computation/src/control.rs",
+      "sha256": "262d97a73e32e501490ffc7c9189e8cc83e45882d17b74239f6687f3c4f935fa"
+    },
+    {
+      "path": "crates/af-computation/src/root_recovery.rs",
+      "sha256": "f99cdde6060280605487973d6b0cb8b0aa0a573ceaa7e097d515af1172797bba"
+    },
+    {
+      "path": "spec/component/component-contract.md",
+      "sha256": "7f847a770dd0d92c289a06a6133e55bd239e5247d7eea63e1c9bc98bcf231f22"
+    },
+    {
+      "path": "spec/registry/specifications.json",
+      "sha256": "345ec14a89c6bc774991dc955dc1c7f4185a34ac2c8b0677646ae3d52a98a230"
+    },
+    {
+      "path": "spec/registry/rules.json",
+      "sha256": "034568ba56c84e0cd5715d06aa4302e682d0247bd9b4b9b81668de35ce545726"
+    }
+  ],
+  "scope_of_conclusion": "Complete exact reusable binding not established;generic containers and metadata rejection are not a semantic proof by themselves.",
+  "capture": "NOT IMPLEMENTED",
+  "positive_capability": "NOT AUTHORIZED",
+  "original_file_byte_audit": {
+    "files": 1879,
+    "changed": 0,
+    "removed": 0
+  },
+  "actual_diagnostic_artifact": {
+    "path": "target/phase-04c1b4c4r3g1-probe-final.log",
+    "kind": "G1 isolated diagnostics;NOT T3 Capture or execution of new design vectors",
+    "native": [
+      {
+        "action_entry_ordinal": 1,
+        "action_upper": {
+          "finite": 4
+        },
+        "basis": "FrozenGuardContainment",
+        "canonical_valid": true,
+        "component_checked": true,
+        "countermodel": null,
+        "declared_action_guard": {
+          "unconditional": null
+        },
+        "diagnostic_id": "positive",
+        "diagnostic_reason": "the exact K Forward guard is contained by the declared action Effect guard under frozen af-effect rules",
+        "forward_entry_ordinal": 0,
+        "forward_guard": {
+          "unconditional": null
+        },
+        "guard_verdict": "proven",
+        "input_diagnostic_json_sha256": "248fcbffd11b868d3e0197e93d75c77383e3e8191fec830ebfcb0c0b31a33c9c"
+      },
+      {
+        "action_entry_ordinal": 1,
+        "action_upper": {
+          "finite": 4
+        },
+        "basis": "TypedCountermodel",
+        "canonical_valid": true,
+        "component_checked": false,
+        "countermodel": {
+          "action_entry_ordinal": 1,
+          "action_upper": {
+            "finite": 4
+          },
+          "activation_upper": {
+            "finite": 1
+          },
+          "assignments": [
+            {
+              "port_no": 1,
+              "type_ref": {
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "395382f76ef8d9ac6c59fd873ee35ace1e321ad999259b228ac1521eb362b9ac"
+                },
+                "specification_id": "agentflow.test.guard-types@1",
+                "type_name": "GuardInt64"
+              },
+              "value": {
+                "int64": 1
+              }
+            }
+          ],
+          "attempt_upper": {
+            "finite": 2
+          },
+          "declared_action_guard": {
+            "input_equals": {
+              "expected": {
+                "int64": 0
+              },
+              "port_no": 1
+            }
+          },
+          "forward_bounds": {
+            "lower": 1,
+            "upper": {
+              "finite": 2
+            }
+          },
+          "forward_entry_ordinal": 0,
+          "forward_guard": {
+            "unconditional": null
+          },
+          "reachability": "WellTypedComponentInputDomain",
+          "recovery_action": {
+            "action_effect": {
+              "operation": {
+                "catalog": "agentflow.effects@1",
+                "name": "reverse"
+              },
+              "qualifiers": [],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            },
+            "action_kind": "compensation",
+            "forward_effect": {
+              "operation": {
+                "catalog": "agentflow.effects@1",
+                "name": "charge"
+              },
+              "qualifiers": [],
+              "resource_selector": {
+                "requirement_port_no": 1,
+                "scope_bindings": []
+              }
+            }
+          },
+          "related_rule_id": "AF-CONTRACT-0022",
+          "source_component": {
+            "catalog": "agentflow.components@1",
+            "name": "acme.transform"
+          },
+          "source_contract": {
+            "component_identity": {
+              "catalog": "agentflow.components@1",
+              "name": "acme.transform"
+            },
+            "effect_flow_partitions": [],
+            "effects": {
+              "row": {
+                "closed": [
+                  {
+                    "atom": {
+                      "operation": {
+                        "catalog": "agentflow.effects@1",
+                        "name": "charge"
+                      },
+                      "qualifiers": [],
+                      "resource_selector": {
+                        "requirement_port_no": "1",
+                        "scope_bindings": []
+                      }
+                    },
+                    "bounds": {
+                      "lower": "1",
+                      "upper": {
+                        "finite": "2"
+                      }
+                    },
+                    "guard": {
+                      "unconditional": null
+                    }
+                  },
+                  {
+                    "atom": {
+                      "operation": {
+                        "catalog": "agentflow.effects@1",
+                        "name": "reverse"
+                      },
+                      "qualifiers": [],
+                      "resource_selector": {
+                        "requirement_port_no": "1",
+                        "scope_bindings": []
+                      }
+                    },
+                    "bounds": {
+                      "lower": "0",
+                      "upper": {
+                        "finite": "2"
+                      }
+                    },
+                    "guard": {
+                      "input_equals": {
+                        "expected": {
+                          "int64": "0"
+                        },
+                        "port_no": "1"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "execution": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "failures": {
+              "failures": []
+            },
+            "information_flow": {
+              "confidentiality_restrictions": [],
+              "flow_constraints": [],
+              "summary": {
+                "influence_unknown": false,
+                "instruction_authority": "none",
+                "sources": [],
+                "taints": []
+              }
+            },
+            "inputs": [
+              {
+                "port_no": "1",
+                "type": {
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "395382f76ef8d9ac6c59fd873ee35ace1e321ad999259b228ac1521eb362b9ac"
+                  },
+                  "specification_id": "agentflow.test.guard-types@1",
+                  "type_name": "GuardInt64"
+                }
+              }
+            ],
+            "outputs": [],
+            "recovery": {
+              "effect_recovery_clauses": [
+                {
+                  "compensation": {
+                    "required": {
+                      "catalog": "agentflow.effects@1",
+                      "name": "reverse"
+                    }
+                  },
+                  "effect": {
+                    "operation": {
+                      "catalog": "agentflow.effects@1",
+                      "name": "charge"
+                    },
+                    "qualifiers": [],
+                    "resource_selector": {
+                      "requirement_port_no": "1",
+                      "scope_bindings": []
+                    }
+                  },
+                  "idempotency": "natural",
+                  "key_requirement": {
+                    "none": null
+                  },
+                  "reconciliation": "none",
+                  "unknown_effect_handling": "block"
+                }
+              ],
+              "replay_semantics": "recompute"
+            },
+            "recovery_action_bindings": [
+              {
+                "identity": {
+                  "action_effect": {
+                    "operation": {
+                      "catalog": "agentflow.effects@1",
+                      "name": "reverse"
+                    },
+                    "qualifiers": [],
+                    "resource_selector": {
+                      "requirement_port_no": "1",
+                      "scope_bindings": []
+                    }
+                  },
+                  "action_kind": "compensation",
+                  "forward_effect": {
+                    "operation": {
+                      "catalog": "agentflow.effects@1",
+                      "name": "charge"
+                    },
+                    "qualifiers": [],
+                    "resource_selector": {
+                      "requirement_port_no": "1",
+                      "scope_bindings": []
+                    }
+                  }
+                }
+              }
+            ],
+            "recovery_usage_bindings": [
+              {
+                "action": {
+                  "action_effect": {
+                    "operation": {
+                      "catalog": "agentflow.effects@1",
+                      "name": "reverse"
+                    },
+                    "qualifiers": [],
+                    "resource_selector": {
+                      "requirement_port_no": "1",
+                      "scope_bindings": []
+                    }
+                  },
+                  "action_kind": "compensation",
+                  "forward_effect": {
+                    "operation": {
+                      "catalog": "agentflow.effects@1",
+                      "name": "charge"
+                    },
+                    "qualifiers": [],
+                    "resource_selector": {
+                      "requirement_port_no": "1",
+                      "scope_bindings": []
+                    }
+                  }
+                },
+                "activations_per_forward": {
+                  "lower": "1",
+                  "upper": {
+                    "finite": "1"
+                  }
+                },
+                "attempts_per_activation": {
+                  "lower": "1",
+                  "upper": {
+                    "finite": "2"
+                  }
+                },
+                "per_attempt_usage": {
+                  "limits": [
+                    {
+                      "meter": {
+                        "catalog": "agentflow.meters@1",
+                        "name": "api_calls"
+                      },
+                      "phase": "recovery",
+                      "upper": {
+                        "finite": "3"
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "resources": {
+              "requirements": [
+                {
+                  "port_no": "1",
+                  "required_attributes": [],
+                  "resource_type": {
+                    "schema": {
+                      "schema_digest": {
+                        "algorithm": "sha256",
+                        "domain": "type-schema",
+                        "hex": "e1739609320518db9f8e00714ca67e9a79fcd5735a5eb8e8dae15911f15558e4"
+                      },
+                      "specification_id": "agentflow.semantic.core@1",
+                      "type_name": "TypeSchemaRef"
+                    }
+                  }
+                }
+              ]
+            },
+            "usage": {
+              "limits": [
+                {
+                  "meter": {
+                    "catalog": "agentflow.meters@1",
+                    "name": "api_calls"
+                  },
+                  "phase": "recovery",
+                  "upper": {
+                    "finite": "12"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "declared_action_guard": {
+          "input_equals": {
+            "expected": {
+              "int64": 0
+            },
+            "port_no": 1
+          }
+        },
+        "diagnostic_id": "typed_countermodel",
+        "diagnostic_reason": "a type-valid assignment makes the K Forward guard true while the exact declared action E guard is false",
+        "forward_entry_ordinal": 0,
+        "forward_guard": {
+          "unconditional": null
+        },
+        "guard_verdict": "violation",
+        "input_diagnostic_json_sha256": "420ff379368de58c56aab2f23423646d953c75862741c8bf0c4be9fbfe73aefb"
+      },
+      {
+        "action_entry_ordinal": 1,
+        "action_upper": {
+          "finite": 4
+        },
+        "basis": "InsufficientEvidence",
+        "canonical_valid": true,
+        "component_checked": false,
+        "countermodel": null,
+        "declared_action_guard": {
+          "input_equals": {
+            "expected": {
+              "unit": null
+            },
+            "port_no": 1
+          }
+        },
+        "diagnostic_id": "unit_unknown",
+        "diagnostic_reason": "frozen guard containment failed and no type-valid countermodel could be constructed; do not infer either compatibility or incompatibility",
+        "forward_entry_ordinal": 0,
+        "forward_guard": {
+          "unconditional": null
+        },
+        "guard_verdict": "unproven",
+        "input_diagnostic_json_sha256": "ee0f151c0e09a1764982661bb6cb6b39b466f71b05416477c1640ce772b9b74c"
+      },
+      {
+        "action_entry_ordinal": 1,
+        "action_upper": {
+          "finite": 0
+        },
+        "basis": "ZeroPossibleActions",
+        "canonical_valid": true,
+        "component_checked": false,
+        "countermodel": null,
+        "declared_action_guard": {
+          "input_equals": {
+            "expected": {
+              "int64": 0
+            },
+            "port_no": 1
+          }
+        },
+        "diagnostic_id": "zero",
+        "diagnostic_reason": "the checked forward/activation/attempt upper is zero, so no K action possibility requires guard coverage",
+        "forward_entry_ordinal": 0,
+        "forward_guard": {
+          "unconditional": null
+        },
+        "guard_verdict": "proven",
+        "input_diagnostic_json_sha256": "673fd3f519f061e66d360ff00df7556b2c8208385985ebbfa795335f38812abc"
+      },
+      {
+        "action_entry_ordinal": 1,
+        "action_upper": {
+          "finite": 0
+        },
+        "basis": "InsufficientEvidence",
+        "canonical_valid": true,
+        "component_checked": false,
+        "countermodel": null,
+        "declared_action_guard": {
+          "input_equals": {
+            "expected": {
+              "int64": 0
+            },
+            "port_no": 2
+          }
+        },
+        "diagnostic_id": "zero_missing_port",
+        "diagnostic_reason": "EffectGuard names an input port absent from the exact source ComponentContract",
+        "forward_entry_ordinal": 0,
+        "forward_guard": {
+          "unconditional": null
+        },
+        "guard_verdict": "violation",
+        "input_diagnostic_json_sha256": "e6c1f19c0fe9e20c4e708f8c5f6eb4660365ce1f8345352e94b1c72b5ca3c184"
+      },
+      {
+        "action_entry_ordinal": 1,
+        "action_upper": {
+          "finite": 4
+        },
+        "basis": "InsufficientEvidence",
+        "canonical_valid": true,
+        "component_checked": false,
+        "countermodel": null,
+        "declared_action_guard": {
+          "input_equals": {
+            "expected": {
+              "int64": 0
+            },
+            "port_no": 1
+          }
+        },
+        "diagnostic_id": "type_mismatch",
+        "diagnostic_reason": "the exact input TypeSchemaRef resolves to a type incompatible with the guard constant",
+        "forward_entry_ordinal": 0,
+        "forward_guard": {
+          "unconditional": null
+        },
+        "guard_verdict": "violation",
+        "input_diagnostic_json_sha256": "e77575c4509b84026f73a8fd055e3974ef5aa5a9c928c859a18d5ccdb4b8202e"
+      },
+      {
+        "action_entry_ordinal": 1,
+        "action_upper": null,
+        "basis": "InsufficientEvidence",
+        "canonical_valid": true,
+        "component_checked": false,
+        "countermodel": null,
+        "declared_action_guard": {
+          "input_equals": {
+            "expected": {
+              "int64": 0
+            },
+            "port_no": 1
+          }
+        },
+        "diagnostic_id": "missing_usage",
+        "diagnostic_reason": "matching RecoveryUsageBinding is unavailable, so K action possibility is not finite evidence",
+        "forward_entry_ordinal": 0,
+        "forward_guard": {
+          "unconditional": null
+        },
+        "guard_verdict": "unproven",
+        "input_diagnostic_json_sha256": "d060a1054ae3d335796fc0c36c9709a604736c75de7f05751ddace970a40921a"
+      },
+      {
+        "action_entry_ordinal": 0,
+        "action_upper": null,
+        "basis": "InsufficientEvidence",
+        "canonical_valid": true,
+        "component_checked": false,
+        "countermodel": null,
+        "declared_action_guard": {
+          "input_equals": {
+            "expected": {
+              "int64": 0
+            },
+            "port_no": 1
+          }
+        },
+        "diagnostic_id": "missing_forward",
+        "diagnostic_reason": "exact forward or action EffectEntry is unavailable in the declared row",
+        "forward_entry_ordinal": null,
+        "forward_guard": null,
+        "guard_verdict": "unproven",
+        "input_diagnostic_json_sha256": "a0157d0126fc282924698855bdd5dd25584533d9c1a5cbe7b1ca15bba70d07dc"
+      },
+      {
+        "action_entry_ordinal": 0,
+        "action_upper": null,
+        "basis": "InsufficientEvidence",
+        "canonical_valid": true,
+        "component_checked": false,
+        "countermodel": null,
+        "declared_action_guard": {
+          "unconditional": null
+        },
+        "diagnostic_id": "shared_bound_conflict",
+        "diagnostic_reason": "same-atom Forward/Action bounds conflict with the shared epsilon ceiling or overflow",
+        "forward_entry_ordinal": 0,
+        "forward_guard": {
+          "unconditional": null
+        },
+        "guard_verdict": "violation",
+        "input_diagnostic_json_sha256": "22b86dd778d975a4980a96b31cb1795d7d86587bac4bea73b690a5cd76594283"
+      },
+      {
+        "action_entry_ordinal": 1,
+        "action_upper": null,
+        "basis": "InsufficientEvidence",
+        "canonical_valid": true,
+        "component_checked": false,
+        "countermodel": null,
+        "declared_action_guard": {
+          "unconditional": null
+        },
+        "diagnostic_id": "overflow",
+        "diagnostic_reason": "checked K action upper multiplication overflowed",
+        "forward_entry_ordinal": 0,
+        "forward_guard": {
+          "unconditional": null
+        },
+        "guard_verdict": "violation",
+        "input_diagnostic_json_sha256": "d76d5be5e0af89104e533b494361a7e5a6cfc543c6e89845837e0945e7a37168"
+      },
+      {
+        "action_entry_ordinal": 1,
+        "action_upper": {
+          "finite": 4
+        },
+        "basis": "InsufficientEvidence",
+        "canonical_valid": true,
+        "component_checked": false,
+        "countermodel": null,
+        "declared_action_guard": {
+          "input_equals": {
+            "expected": {
+              "int64": 0
+            },
+            "port_no": 2
+          }
+        },
+        "diagnostic_id": "first_error_U_then_V",
+        "diagnostic_reason": "the exact input TypeSchemaRef or its primitive expansion is unavailable",
+        "forward_entry_ordinal": 0,
+        "forward_guard": {
+          "input_equals": {
+            "expected": {
+              "int64": 0
+            },
+            "port_no": 1
+          }
+        },
+        "guard_verdict": "unproven",
+        "input_diagnostic_json_sha256": "9eb4719cda681d07add8265ef55dbfdfea902376adda8fe818ec12394d0bbd5c"
+      }
+    ],
+    "nested_owner_claims": [
+      {
+        "actual": "Ok(())",
+        "claim": {
+          "field": {
+            "field": "subject",
+            "owner": {
+              "name": "Scope",
+              "owner": "agentflow.computation.proof-report.model@2"
+            }
+          }
+        },
+        "schema": "DeclaredStep"
+      },
+      {
+        "actual": "Err(UnsupportedModel)",
+        "claim": {
+          "field": {
+            "field": "subject",
+            "owner": {
+              "name": "Scope",
+              "owner": "agentflow.computation.proof-report.model@1"
+            }
+          }
+        },
+        "schema": "DeclaredStep"
+      },
+      {
+        "actual": "Err(UnsupportedModel)",
+        "claim": {
+          "field": {
+            "field": "related_rule_id",
+            "owner": {
+              "name": "af-contract::TypedGuardCountermodel",
+              "owner": "agentflow.computation.proof-report.model@2"
+            }
+          }
+        },
+        "schema": "DeclaredStep"
+      },
+      {
+        "actual": "Err(UnsupportedModel)",
+        "claim": {
+          "field": {
+            "field": "related_rule_id",
+            "owner": {
+              "name": "af-contract::TypedGuardCountermodel",
+              "owner": "agentflow.computation.proof-report.model@1"
+            }
+          }
+        },
+        "schema": "DeclaredStep"
+      }
+    ],
+    "full_owner_matrix": "phase-04c1b4c4r3g1-owner-matrix.json",
+    "capability_allowed": false,
+    "not_design_vector_execution": true
+  }
+}

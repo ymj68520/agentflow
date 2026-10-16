@@ -1,0 +1,258 @@
+{
+  "kind": "DRAFT NOT REGISTERED;full native witness design field contract",
+  "native_owner": "agentflow.computation.proof-report.model@1",
+  "native_type": "af-contract::TypedGuardCountermodel",
+  "proposed_owner": "<NativeGuardModelOwner>",
+  "fields": [
+    {
+      "field": "source_contract",
+      "native_type": "ComponentContract",
+      "option": "required",
+      "design": [
+        "ComponentContract",
+        "Complete canonical declaration,NOT CheckedContractContents;all13 fields",
+        "actual witness.source_contract()",
+        "existing exact ComponentContract machine value;no invented Checked pin",
+        "native source subject",
+        "equal admitted canonical source;not count/hash-only"
+      ]
+    },
+    {
+      "field": "source_component",
+      "native_type": "ComponentIdentity",
+      "option": "required",
+      "design": [
+        "ComponentIdentity",
+        "required catalogue AND name",
+        "source_component()",
+        "complete NFC catalog/name record",
+        "lineage association only",
+        "equals source_contract.component_identity"
+      ]
+    },
+    {
+      "field": "recovery_action",
+      "native_type": "RecoveryActionIdentity",
+      "option": "required",
+      "design": [
+        "RecoveryActionIdentity",
+        "full forward atom,action kind,full action atom",
+        "recovery_action()",
+        "full exact AtomKey-bearing values",
+        "action identity",
+        "matches exact unique binding,not operation-only"
+      ]
+    },
+    {
+      "field": "forward_entry_ordinal",
+      "native_type": "usize",
+      "option": "required",
+      "design": [
+        "usize → nominal logical u64",
+        "required;0 is a valid ordinal",
+        "forward_entry_ordinal()",
+        "mathematical unsigned64;native list indexing verified",
+        "Forward occurrence",
+        "selected Closed/Open.known entry equals action.forward_effect"
+      ]
+    },
+    {
+      "field": "action_entry_ordinal",
+      "native_type": "usize",
+      "option": "required",
+      "design": [
+        "usize → nominal logical u64",
+        "required;not binding ordinal",
+        "action_entry_ordinal()",
+        "mathematical unsigned64;not decimal text order",
+        "Action E occurrence",
+        "selected entry equals action.action_effect"
+      ]
+    },
+    {
+      "field": "forward_guard",
+      "native_type": "EffectGuard",
+      "option": "required",
+      "design": [
+        "EffectGuard",
+        "closed Unconditional/InputEquals payload",
+        "forward_guard()",
+        "exact enum/payload,including primitive constant",
+        "Forward possibility",
+        "equals actual selected Forward guard"
+      ]
+    },
+    {
+      "field": "declared_action_guard",
+      "native_type": "EffectGuard",
+      "option": "required",
+      "design": [
+        "EffectGuard",
+        "closed Unconditional/InputEquals payload",
+        "declared_action_guard()",
+        "exact enum/payload",
+        "public action ceiling guard",
+        "equals selected action E guard"
+      ]
+    },
+    {
+      "field": "forward_bounds",
+      "native_type": "OccurrenceBounds",
+      "option": "required",
+      "design": [
+        "OccurrenceBounds",
+        "lower u64,upper Finite(u64)/Unbounded",
+        "forward_bounds()",
+        "full exact lower/upper,not upper alone",
+        "effective Forward bounds passed to countermodel builder",
+        "retain recovered seed upper plus declared lower;separately retain original entry bounds in subject/trace"
+      ]
+    },
+    {
+      "field": "activation_upper",
+      "native_type": "OccurrenceCeiling",
+      "option": "required",
+      "design": [
+        "OccurrenceCeiling",
+        "Finite(u64)|Unbounded",
+        "activation_upper()",
+        "closed ceiling,zero distinct from absent",
+        "component-local K multiplier",
+        "equals matching RecoveryUsageBinding activation upper"
+      ]
+    },
+    {
+      "field": "attempt_upper",
+      "native_type": "OccurrenceCeiling",
+      "option": "required",
+      "design": [
+        "OccurrenceCeiling",
+        "Finite(u64)|Unbounded",
+        "attempt_upper()",
+        "closed ceiling",
+        "component-local attempts multiplier",
+        "equals matching usage attempts upper"
+      ]
+    },
+    {
+      "field": "action_upper",
+      "native_type": "OccurrenceCeiling",
+      "option": "required",
+      "design": [
+        "OccurrenceCeiling",
+        "Finite(u64)|Unbounded",
+        "action_upper()",
+        "checked mathematical ceiling product",
+        "derived native possibility bound",
+        "effective Forward×activation×attempt;no Root factors;positive for a countermodel"
+      ]
+    },
+    {
+      "field": "assignments",
+      "native_type": "Vec<GuardInputAssignment>",
+      "option": "required",
+      "design": [
+        "Vec<GuardInputAssignment>",
+        "sequence of full port_no/type_ref/value triples",
+        "assignments()",
+        "port-sorted native sequence;port u32,full schema pin,exact PrimitiveConstant",
+        "typed counterexample values",
+        "domain-valid assignments;Forward true and action false;no count/Debug-only projection"
+      ]
+    },
+    {
+      "field": "reachability",
+      "native_type": "GuardCountermodelReachability",
+      "option": "required",
+      "design": [
+        "GuardCountermodelReachability",
+        "sole variant WellTypedComponentInputDomain",
+        "reachability()",
+        "closed native variant with exact imported owner",
+        "LOCAL input-domain reachability",
+        "only local primitive domain;never Root-global reachability"
+      ]
+    },
+    {
+      "field": "related_rule_id",
+      "native_type": "&'static str",
+      "option": "required",
+      "design": [
+        "&'static str → RuleId",
+        "required exact AF-CONTRACT-0022",
+        "related_rule_id()",
+        "exact nominal RuleId token",
+        "governing substantive rule",
+        "no fabricated rule or parsed reason"
+      ]
+    }
+  ],
+  "native_field_count": 14,
+  "case_roster": [
+    {
+      "rank": 0,
+      "case": "canonical_source",
+      "kind": "native_recovery_guard_evidence",
+      "requirement": "native_guard:canonical_source",
+      "role": "mandatory_preflight",
+      "applicability": "admitted canonical declaration",
+      "draft_clause": "NG-SOURCE"
+    },
+    {
+      "rank": 1,
+      "case": "context_association",
+      "kind": "proof_context",
+      "requirement": "direct:proof_context",
+      "role": "mandatory_preflight",
+      "applicability": "admitted validation/analysis binding",
+      "draft_clause": "NG-CONTEXT"
+    },
+    {
+      "rank": 2,
+      "case": "action_sources",
+      "kind": "native_recovery_guard_evidence",
+      "requirement": "native_guard:action_sources",
+      "role": "supporting_fact",
+      "applicability": "each actual canonical action binding",
+      "draft_clause": "NG-SOURCES"
+    },
+    {
+      "rank": 3,
+      "case": "action_bounds",
+      "kind": "native_recovery_guard_evidence",
+      "requirement": "native_guard:action_bounds",
+      "role": "supporting_fact",
+      "applicability": "current E entries and usage resolved",
+      "draft_clause": "NG-BOUNDS"
+    },
+    {
+      "rank": 4,
+      "case": "guard_inputs",
+      "kind": "native_recovery_guard_evidence",
+      "requirement": "native_guard:guard_inputs",
+      "role": "supporting_fact",
+      "applicability": "bounds available;exact forward/action parameter",
+      "draft_clause": "NG-INPUTS"
+    },
+    {
+      "rank": 5,
+      "case": "guard_containment",
+      "kind": "native_recovery_guard_evidence",
+      "requirement": "native_guard:guard_containment",
+      "role": "supporting_fact",
+      "applicability": "inputs valid and action upper nonzero;actual frozen call",
+      "draft_clause": "NG-CONTAINMENT"
+    },
+    {
+      "rank": 6,
+      "case": "guard_evaluation",
+      "kind": "native_recovery_guard_evidence",
+      "requirement": "native_guard:guard_evaluation",
+      "role": "supporting_fact",
+      "applicability": "each actual native ActionGuardCompatibility result",
+      "draft_clause": "NG-EVALUATION"
+    }
+  ],
+  "case_count": 7,
+  "registered": false
+}

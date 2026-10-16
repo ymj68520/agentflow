@@ -1,0 +1,621 @@
+{
+  "kind": "Actual read-only metadata claim diagnostics;NOT capture/Oracle/activation",
+  "rows": [
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::ActionGuardCompatibility",
+        "owner": "agentflow.computation.proof-report.model@2"
+      },
+      "name": "af-contract::ActionGuardCompatibility",
+      "owner": "agentflow.computation.proof-report.model@2",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardCompatibilityBasis",
+        "owner": "agentflow.computation.proof-report.model@2"
+      },
+      "name": "af-contract::GuardCompatibilityBasis",
+      "owner": "agentflow.computation.proof-report.model@2",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::TypedGuardCountermodel",
+        "owner": "agentflow.computation.proof-report.model@2"
+      },
+      "name": "af-contract::TypedGuardCountermodel",
+      "owner": "agentflow.computation.proof-report.model@2",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardInputAssignment",
+        "owner": "agentflow.computation.proof-report.model@2"
+      },
+      "name": "af-contract::GuardInputAssignment",
+      "owner": "agentflow.computation.proof-report.model@2",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardCountermodelReachability",
+        "owner": "agentflow.computation.proof-report.model@2"
+      },
+      "name": "af-contract::GuardCountermodelReachability",
+      "owner": "agentflow.computation.proof-report.model@2",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::ActionGuardCompatibility",
+        "owner": "agentflow.computation.proof-report.model@1"
+      },
+      "name": "af-contract::ActionGuardCompatibility",
+      "owner": "agentflow.computation.proof-report.model@1",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardCompatibilityBasis",
+        "owner": "agentflow.computation.proof-report.model@1"
+      },
+      "name": "af-contract::GuardCompatibilityBasis",
+      "owner": "agentflow.computation.proof-report.model@1",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::TypedGuardCountermodel",
+        "owner": "agentflow.computation.proof-report.model@1"
+      },
+      "name": "af-contract::TypedGuardCountermodel",
+      "owner": "agentflow.computation.proof-report.model@1",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardInputAssignment",
+        "owner": "agentflow.computation.proof-report.model@1"
+      },
+      "name": "af-contract::GuardInputAssignment",
+      "owner": "agentflow.computation.proof-report.model@1",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardCountermodelReachability",
+        "owner": "agentflow.computation.proof-report.model@1"
+      },
+      "name": "af-contract::GuardCountermodelReachability",
+      "owner": "agentflow.computation.proof-report.model@1",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::ActionGuardCompatibility",
+        "owner": "agentflow.component.contract@1"
+      },
+      "name": "af-contract::ActionGuardCompatibility",
+      "owner": "agentflow.component.contract@1",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardCompatibilityBasis",
+        "owner": "agentflow.component.contract@1"
+      },
+      "name": "af-contract::GuardCompatibilityBasis",
+      "owner": "agentflow.component.contract@1",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::TypedGuardCountermodel",
+        "owner": "agentflow.component.contract@1"
+      },
+      "name": "af-contract::TypedGuardCountermodel",
+      "owner": "agentflow.component.contract@1",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardInputAssignment",
+        "owner": "agentflow.component.contract@1"
+      },
+      "name": "af-contract::GuardInputAssignment",
+      "owner": "agentflow.component.contract@1",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardCountermodelReachability",
+        "owner": "agentflow.component.contract@1"
+      },
+      "name": "af-contract::GuardCountermodelReachability",
+      "owner": "agentflow.component.contract@1",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::ActionGuardCompatibility",
+        "owner": "agentflow.unknown.model@999"
+      },
+      "name": "af-contract::ActionGuardCompatibility",
+      "owner": "agentflow.unknown.model@999",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardCompatibilityBasis",
+        "owner": "agentflow.unknown.model@999"
+      },
+      "name": "af-contract::GuardCompatibilityBasis",
+      "owner": "agentflow.unknown.model@999",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::TypedGuardCountermodel",
+        "owner": "agentflow.unknown.model@999"
+      },
+      "name": "af-contract::TypedGuardCountermodel",
+      "owner": "agentflow.unknown.model@999",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardInputAssignment",
+        "owner": "agentflow.unknown.model@999"
+      },
+      "name": "af-contract::GuardInputAssignment",
+      "owner": "agentflow.unknown.model@999",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardCountermodelReachability",
+        "owner": "agentflow.unknown.model@999"
+      },
+      "name": "af-contract::GuardCountermodelReachability",
+      "owner": "agentflow.unknown.model@999",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Ok(())",
+      "claim": {
+        "name": "Scope",
+        "owner": "agentflow.computation.proof-report.model@2"
+      },
+      "name": "Scope",
+      "owner": "agentflow.computation.proof-report.model@2",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "Scope",
+        "owner": "agentflow.computation.proof-report.model@1"
+      },
+      "name": "Scope",
+      "owner": "agentflow.computation.proof-report.model@1",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Ok(())",
+      "claim": {
+        "name": "af-semantic::TypeSchemaRef",
+        "owner": "agentflow.computation.proof-report.model@2"
+      },
+      "name": "af-semantic::TypeSchemaRef",
+      "owner": "agentflow.computation.proof-report.model@2",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Ok(())",
+      "claim": {
+        "name": "TypeSchemaRef",
+        "owner": "agentflow.semantic.core@1"
+      },
+      "name": "TypeSchemaRef",
+      "owner": "agentflow.semantic.core@1",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Ok(())",
+      "claim": {
+        "name": "agentflow.semantic.core@1/TypeSchemaRef",
+        "owner": "agentflow.computation.proof-report.model@2"
+      },
+      "name": "agentflow.semantic.core@1/TypeSchemaRef",
+      "owner": "agentflow.computation.proof-report.model@2",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "ComponentContract",
+        "owner": "agentflow.component.contract@1"
+      },
+      "name": "ComponentContract",
+      "owner": "agentflow.component.contract@1",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "Scope",
+        "owner": "agentflow.unknown.model@999"
+      },
+      "name": "Scope",
+      "owner": "agentflow.unknown.model@999",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "NoSuchDescriptor",
+        "owner": "agentflow.computation.proof-report.model@2"
+      },
+      "name": "NoSuchDescriptor",
+      "owner": "agentflow.computation.proof-report.model@2",
+      "schema": "ModelType"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::ActionGuardCompatibility",
+        "owner": "agentflow.computation.proof-report.model@2"
+      },
+      "name": "af-contract::ActionGuardCompatibility",
+      "owner": "agentflow.computation.proof-report.model@2",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardCompatibilityBasis",
+        "owner": "agentflow.computation.proof-report.model@2"
+      },
+      "name": "af-contract::GuardCompatibilityBasis",
+      "owner": "agentflow.computation.proof-report.model@2",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::TypedGuardCountermodel",
+        "owner": "agentflow.computation.proof-report.model@2"
+      },
+      "name": "af-contract::TypedGuardCountermodel",
+      "owner": "agentflow.computation.proof-report.model@2",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardInputAssignment",
+        "owner": "agentflow.computation.proof-report.model@2"
+      },
+      "name": "af-contract::GuardInputAssignment",
+      "owner": "agentflow.computation.proof-report.model@2",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardCountermodelReachability",
+        "owner": "agentflow.computation.proof-report.model@2"
+      },
+      "name": "af-contract::GuardCountermodelReachability",
+      "owner": "agentflow.computation.proof-report.model@2",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::ActionGuardCompatibility",
+        "owner": "agentflow.computation.proof-report.model@1"
+      },
+      "name": "af-contract::ActionGuardCompatibility",
+      "owner": "agentflow.computation.proof-report.model@1",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardCompatibilityBasis",
+        "owner": "agentflow.computation.proof-report.model@1"
+      },
+      "name": "af-contract::GuardCompatibilityBasis",
+      "owner": "agentflow.computation.proof-report.model@1",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::TypedGuardCountermodel",
+        "owner": "agentflow.computation.proof-report.model@1"
+      },
+      "name": "af-contract::TypedGuardCountermodel",
+      "owner": "agentflow.computation.proof-report.model@1",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardInputAssignment",
+        "owner": "agentflow.computation.proof-report.model@1"
+      },
+      "name": "af-contract::GuardInputAssignment",
+      "owner": "agentflow.computation.proof-report.model@1",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardCountermodelReachability",
+        "owner": "agentflow.computation.proof-report.model@1"
+      },
+      "name": "af-contract::GuardCountermodelReachability",
+      "owner": "agentflow.computation.proof-report.model@1",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::ActionGuardCompatibility",
+        "owner": "agentflow.component.contract@1"
+      },
+      "name": "af-contract::ActionGuardCompatibility",
+      "owner": "agentflow.component.contract@1",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardCompatibilityBasis",
+        "owner": "agentflow.component.contract@1"
+      },
+      "name": "af-contract::GuardCompatibilityBasis",
+      "owner": "agentflow.component.contract@1",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::TypedGuardCountermodel",
+        "owner": "agentflow.component.contract@1"
+      },
+      "name": "af-contract::TypedGuardCountermodel",
+      "owner": "agentflow.component.contract@1",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardInputAssignment",
+        "owner": "agentflow.component.contract@1"
+      },
+      "name": "af-contract::GuardInputAssignment",
+      "owner": "agentflow.component.contract@1",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardCountermodelReachability",
+        "owner": "agentflow.component.contract@1"
+      },
+      "name": "af-contract::GuardCountermodelReachability",
+      "owner": "agentflow.component.contract@1",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::ActionGuardCompatibility",
+        "owner": "agentflow.unknown.model@999"
+      },
+      "name": "af-contract::ActionGuardCompatibility",
+      "owner": "agentflow.unknown.model@999",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardCompatibilityBasis",
+        "owner": "agentflow.unknown.model@999"
+      },
+      "name": "af-contract::GuardCompatibilityBasis",
+      "owner": "agentflow.unknown.model@999",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::TypedGuardCountermodel",
+        "owner": "agentflow.unknown.model@999"
+      },
+      "name": "af-contract::TypedGuardCountermodel",
+      "owner": "agentflow.unknown.model@999",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardInputAssignment",
+        "owner": "agentflow.unknown.model@999"
+      },
+      "name": "af-contract::GuardInputAssignment",
+      "owner": "agentflow.unknown.model@999",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "af-contract::GuardCountermodelReachability",
+        "owner": "agentflow.unknown.model@999"
+      },
+      "name": "af-contract::GuardCountermodelReachability",
+      "owner": "agentflow.unknown.model@999",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Ok(())",
+      "claim": {
+        "name": "Scope",
+        "owner": "agentflow.computation.proof-report.model@2"
+      },
+      "name": "Scope",
+      "owner": "agentflow.computation.proof-report.model@2",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "Scope",
+        "owner": "agentflow.computation.proof-report.model@1"
+      },
+      "name": "Scope",
+      "owner": "agentflow.computation.proof-report.model@1",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Ok(())",
+      "claim": {
+        "name": "af-semantic::TypeSchemaRef",
+        "owner": "agentflow.computation.proof-report.model@2"
+      },
+      "name": "af-semantic::TypeSchemaRef",
+      "owner": "agentflow.computation.proof-report.model@2",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Ok(())",
+      "claim": {
+        "name": "TypeSchemaRef",
+        "owner": "agentflow.semantic.core@1"
+      },
+      "name": "TypeSchemaRef",
+      "owner": "agentflow.semantic.core@1",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Ok(())",
+      "claim": {
+        "name": "agentflow.semantic.core@1/TypeSchemaRef",
+        "owner": "agentflow.computation.proof-report.model@2"
+      },
+      "name": "agentflow.semantic.core@1/TypeSchemaRef",
+      "owner": "agentflow.computation.proof-report.model@2",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "ComponentContract",
+        "owner": "agentflow.component.contract@1"
+      },
+      "name": "ComponentContract",
+      "owner": "agentflow.component.contract@1",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "Scope",
+        "owner": "agentflow.unknown.model@999"
+      },
+      "name": "Scope",
+      "owner": "agentflow.unknown.model@999",
+      "schema": "ModelRef"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "name": "NoSuchDescriptor",
+        "owner": "agentflow.computation.proof-report.model@2"
+      },
+      "name": "NoSuchDescriptor",
+      "owner": "agentflow.computation.proof-report.model@2",
+      "schema": "ModelRef"
+    }
+  ],
+  "nested": [
+    {
+      "actual": "Ok(())",
+      "claim": {
+        "field": {
+          "field": "subject",
+          "owner": {
+            "name": "Scope",
+            "owner": "agentflow.computation.proof-report.model@2"
+          }
+        }
+      },
+      "schema": "DeclaredStep"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "field": {
+          "field": "subject",
+          "owner": {
+            "name": "Scope",
+            "owner": "agentflow.computation.proof-report.model@1"
+          }
+        }
+      },
+      "schema": "DeclaredStep"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "field": {
+          "field": "related_rule_id",
+          "owner": {
+            "name": "af-contract::TypedGuardCountermodel",
+            "owner": "agentflow.computation.proof-report.model@2"
+          }
+        }
+      },
+      "schema": "DeclaredStep"
+    },
+    {
+      "actual": "Err(UnsupportedModel)",
+      "claim": {
+        "field": {
+          "field": "related_rule_id",
+          "owner": {
+            "name": "af-contract::TypedGuardCountermodel",
+            "owner": "agentflow.computation.proof-report.model@1"
+          }
+        }
+      },
+      "schema": "DeclaredStep"
+    }
+  ],
+  "ordinary_accepted_metadata_only": 8,
+  "ordinary_rejected": 48
+}
