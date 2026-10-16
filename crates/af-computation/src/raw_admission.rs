@@ -1,6 +1,7 @@
 //! Unit-returning source/metadata admission, never a producer or Fact constructor.
 use crate::{
-    CompilerSemanticsIdentity, EditionRegistration, check_registered_compiler_identity,
+    CompilerSemanticsIdentity, EditionAdmissionFailure, EditionRegistration,
+    RegisteredModelFailure, check_registered_compiler_identity,
     current_registered_analysis_edition, validate_registered_model_shape,
 };
 use af_contract::{ComponentContract, StaticContractProofContext};
@@ -25,8 +26,10 @@ pub struct NativeRawDocument<'a> {
 }
 
 fn check_source_compiler(compiler: &CompilerSemanticsIdentity) -> Result<(), RawAdmissionFailure> {
-    check_registered_compiler_identity(compiler)
-        .map_err(|_| RawAdmissionFailure::InvalidIdentity)?;
+    check_registered_compiler_identity(compiler).map_err(|e| match e {
+        EditionAdmissionFailure::ResourceLimit => RawAdmissionFailure::ResourceLimit,
+        _ => RawAdmissionFailure::InvalidIdentity,
+    })?;
     if current_registered_analysis_edition().registration != EditionRegistration::Registered {
         return Err(RawAdmissionFailure::InvalidIdentity);
     }
@@ -48,6 +51,9 @@ pub fn admit_native_raw_source(
         return Err(RawAdmissionFailure::InvalidContextBinding);
     }
     let document = document.ok_or(RawAdmissionFailure::MissingDeclarativeOrigin)?;
+    if document.declarations.len() > 262_144 {
+        return Err(RawAdmissionFailure::ResourceLimit);
+    }
     if document.declarations.get(original_entry) != Some(candidate) {
         return Err(RawAdmissionFailure::InvalidSourceAssociation);
     }
@@ -99,8 +105,10 @@ pub fn admit_physical_raw_source(
         }
         .ok_or(RawAdmissionFailure::InvalidSourceAssociation)?;
     }
-    validate_registered_model_shape("RawCandidateContract", selected)
-        .map_err(|_| RawAdmissionFailure::UnsupportedModel)?;
+    validate_registered_model_shape("RawCandidateContract", selected).map_err(|e| match e {
+        RegisteredModelFailure::ResourceLimit => RawAdmissionFailure::ResourceLimit,
+        _ => RawAdmissionFailure::UnsupportedModel,
+    })?;
     if selected != candidate {
         return Err(RawAdmissionFailure::InvalidSourceAssociation);
     }

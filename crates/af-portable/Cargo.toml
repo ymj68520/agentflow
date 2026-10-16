@@ -43,5 +43,5 @@ workspace = true
 name = "static_surface"
 path = "tests/static_surface.rs"
 [[test]]
-name = "native_guard_staging"
-path = "tests/native_guard_staging.rs"
+name = "raw_validation_staging"
+path = "tests/raw_validation_staging.rs"

@@ -1,0 +1,5855 @@
+{
+  "cases": [
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawUtf8Bytes",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawUtf8Bytes",
+      "value": []
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawDocument",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawDocument",
+      "value": {
+        "physical_json_utf8": {
+          "bytes": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawDocument-physical_json_utf8",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawDocument",
+      "value": {
+        "physical_json_utf8": {
+          "bytes": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawDocument-physical_json_utf8-bytes",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawDocument",
+      "value": {
+        "physical_json_utf8": {}
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawDocument-physical_json_utf8",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawDocument",
+      "value": {
+        "physical_json_utf8": {
+          "bytes": [],
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawDocument-declared_native_document",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawDocument",
+      "value": {
+        "declared_native_document": {
+          "declarations": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawDocument-declared_native_document-declarations",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawDocument",
+      "value": {
+        "declared_native_document": {}
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawDocument-declared_native_document",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawDocument",
+      "value": {
+        "declared_native_document": {
+          "declarations": [],
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawDocument",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawDocument",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawDocumentMember",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawDocumentMember",
+      "value": {
+        "field": {
+          "name": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawDocumentMember-field",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawDocumentMember",
+      "value": {
+        "field": {
+          "name": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawDocumentMember-field-name",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawDocumentMember",
+      "value": {
+        "field": {}
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawDocumentMember-field",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawDocumentMember",
+      "value": {
+        "field": {
+          "name": [],
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawDocumentMember-entry",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawDocumentMember",
+      "value": {
+        "entry": {
+          "ordinal": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawDocumentMember-entry-ordinal",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawDocumentMember",
+      "value": {
+        "entry": {}
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawDocumentMember-entry",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawDocumentMember",
+      "value": {
+        "entry": {
+          "ordinal": 0,
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawDocumentMember",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawDocumentMember",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawInputOrigin",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawInputOrigin",
+      "value": {
+        "document": 0,
+        "path": []
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawInputOrigin-document",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawInputOrigin",
+      "value": {
+        "path": []
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawInputOrigin-path",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawInputOrigin",
+      "value": {
+        "document": 0
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawInputOrigin",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawInputOrigin",
+      "value": {
+        "document": 0,
+        "path": [],
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawPhysicalAssociation",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPhysicalAssociation",
+      "value": {
+        "not_supplied": null
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPhysicalAssociation-not_supplied",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPhysicalAssociation",
+      "value": {
+        "not_supplied": null
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPhysicalAssociation-supplied",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPhysicalAssociation",
+      "value": {
+        "supplied": {
+          "document": 0,
+          "value_path": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPhysicalAssociation-supplied-document",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPhysicalAssociation",
+      "value": {
+        "supplied": {
+          "value_path": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPhysicalAssociation-supplied-value_path",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPhysicalAssociation",
+      "value": {
+        "supplied": {
+          "document": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawPhysicalAssociation-supplied",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPhysicalAssociation",
+      "value": {
+        "supplied": {
+          "document": 0,
+          "unregistered_extra": null,
+          "value_path": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawPhysicalAssociation",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPhysicalAssociation",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawParsedInput",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawParsedInput",
+      "value": {
+        "candidate": {
+          "component_identity": {
+            "catalog": [],
+            "name": []
+          },
+          "effect_flow_partitions": [],
+          "effects": {
+            "row": {
+              "Closed": {
+                "0": []
+              }
+            }
+          },
+          "execution": {
+            "capabilities": [],
+            "implementation_abis": [],
+            "quantities": [],
+            "region_residency": {
+              "none": null
+            },
+            "runtime_profile": {
+              "none": null
+            },
+            "sandbox": {
+              "none": null
+            },
+            "soft_preferences": [],
+            "trust_domain": {
+              "none": null
+            }
+          },
+          "failures": {
+            "failures": []
+          },
+          "information_flow": {
+            "confidentiality_restrictions": [],
+            "flow_constraints": [],
+            "summary": {
+              "influence_unknown": false,
+              "instruction_authority": "None",
+              "sources": [],
+              "taints": []
+            }
+          },
+          "inputs": [],
+          "outputs": [],
+          "recovery": {
+            "effect_recovery_clauses": [],
+            "replay_semantics": "Recompute"
+          },
+          "recovery_action_bindings": [],
+          "recovery_usage_bindings": [],
+          "resources": {
+            "requirements": []
+          },
+          "usage": {
+            "limits": []
+          }
+        },
+        "origin": {
+          "document": 0,
+          "path": []
+        },
+        "physical": {
+          "not_supplied": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawParsedInput-candidate",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawParsedInput",
+      "value": {
+        "origin": {
+          "document": 0,
+          "path": []
+        },
+        "physical": {
+          "not_supplied": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawParsedInput-origin",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawParsedInput",
+      "value": {
+        "candidate": {
+          "component_identity": {
+            "catalog": [],
+            "name": []
+          },
+          "effect_flow_partitions": [],
+          "effects": {
+            "row": {
+              "Closed": {
+                "0": []
+              }
+            }
+          },
+          "execution": {
+            "capabilities": [],
+            "implementation_abis": [],
+            "quantities": [],
+            "region_residency": {
+              "none": null
+            },
+            "runtime_profile": {
+              "none": null
+            },
+            "sandbox": {
+              "none": null
+            },
+            "soft_preferences": [],
+            "trust_domain": {
+              "none": null
+            }
+          },
+          "failures": {
+            "failures": []
+          },
+          "information_flow": {
+            "confidentiality_restrictions": [],
+            "flow_constraints": [],
+            "summary": {
+              "influence_unknown": false,
+              "instruction_authority": "None",
+              "sources": [],
+              "taints": []
+            }
+          },
+          "inputs": [],
+          "outputs": [],
+          "recovery": {
+            "effect_recovery_clauses": [],
+            "replay_semantics": "Recompute"
+          },
+          "recovery_action_bindings": [],
+          "recovery_usage_bindings": [],
+          "resources": {
+            "requirements": []
+          },
+          "usage": {
+            "limits": []
+          }
+        },
+        "physical": {
+          "not_supplied": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawParsedInput-physical",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawParsedInput",
+      "value": {
+        "candidate": {
+          "component_identity": {
+            "catalog": [],
+            "name": []
+          },
+          "effect_flow_partitions": [],
+          "effects": {
+            "row": {
+              "Closed": {
+                "0": []
+              }
+            }
+          },
+          "execution": {
+            "capabilities": [],
+            "implementation_abis": [],
+            "quantities": [],
+            "region_residency": {
+              "none": null
+            },
+            "runtime_profile": {
+              "none": null
+            },
+            "sandbox": {
+              "none": null
+            },
+            "soft_preferences": [],
+            "trust_domain": {
+              "none": null
+            }
+          },
+          "failures": {
+            "failures": []
+          },
+          "information_flow": {
+            "confidentiality_restrictions": [],
+            "flow_constraints": [],
+            "summary": {
+              "influence_unknown": false,
+              "instruction_authority": "None",
+              "sources": [],
+              "taints": []
+            }
+          },
+          "inputs": [],
+          "outputs": [],
+          "recovery": {
+            "effect_recovery_clauses": [],
+            "replay_semantics": "Recompute"
+          },
+          "recovery_action_bindings": [],
+          "recovery_usage_bindings": [],
+          "resources": {
+            "requirements": []
+          },
+          "usage": {
+            "limits": []
+          }
+        },
+        "origin": {
+          "document": 0,
+          "path": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawParsedInput",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawParsedInput",
+      "value": {
+        "candidate": {
+          "component_identity": {
+            "catalog": [],
+            "name": []
+          },
+          "effect_flow_partitions": [],
+          "effects": {
+            "row": {
+              "Closed": {
+                "0": []
+              }
+            }
+          },
+          "execution": {
+            "capabilities": [],
+            "implementation_abis": [],
+            "quantities": [],
+            "region_residency": {
+              "none": null
+            },
+            "runtime_profile": {
+              "none": null
+            },
+            "sandbox": {
+              "none": null
+            },
+            "soft_preferences": [],
+            "trust_domain": {
+              "none": null
+            }
+          },
+          "failures": {
+            "failures": []
+          },
+          "information_flow": {
+            "confidentiality_restrictions": [],
+            "flow_constraints": [],
+            "summary": {
+              "influence_unknown": false,
+              "instruction_authority": "None",
+              "sources": [],
+              "taints": []
+            }
+          },
+          "inputs": [],
+          "outputs": [],
+          "recovery": {
+            "effect_recovery_clauses": [],
+            "replay_semantics": "Recompute"
+          },
+          "recovery_action_bindings": [],
+          "recovery_usage_bindings": [],
+          "resources": {
+            "requirements": []
+          },
+          "usage": {
+            "limits": []
+          }
+        },
+        "origin": {
+          "document": 0,
+          "path": []
+        },
+        "physical": {
+          "not_supplied": null
+        },
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawContextRole",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawContextRole",
+      "value": "analysis"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawContextRole-analysis",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawContextRole",
+      "value": "analysis"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawContextRole-canonical_validation",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawContextRole",
+      "value": "canonical_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawContextRole",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawContextRole",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawContextPartition",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawContextPartition",
+      "value": [
+        [
+          "analysis",
+          "canonical_validation"
+        ]
+      ]
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawContextBinding",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawContextBinding",
+      "value": {
+        "contents": {
+          "compiled_modules": [],
+          "effect_catalogs": [],
+          "execution_universes": {
+            "capabilities": [],
+            "region_compatibility": [],
+            "regions": [],
+            "runtime_profiles": [],
+            "trust_domains": []
+          },
+          "flow_catalogs": {
+            "confidentiality": [],
+            "sinks": [],
+            "taints": []
+          },
+          "recovery_operations": {
+            "effects": [],
+            "reconciliation_operations": []
+          },
+          "relation_snapshots": {
+            "effect_resource": {
+              "none": null
+            },
+            "flow_execution": {
+              "none": null
+            },
+            "recovery_usage": {
+              "none": null
+            }
+          },
+          "resource_types": {
+            "descriptors": [],
+            "schemas": []
+          },
+          "type_schemas": [],
+          "usage_meters": []
+        },
+        "roles": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawContextBinding-contents",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawContextBinding",
+      "value": {
+        "roles": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawContextBinding-roles",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawContextBinding",
+      "value": {
+        "contents": {
+          "compiled_modules": [],
+          "effect_catalogs": [],
+          "execution_universes": {
+            "capabilities": [],
+            "region_compatibility": [],
+            "regions": [],
+            "runtime_profiles": [],
+            "trust_domains": []
+          },
+          "flow_catalogs": {
+            "confidentiality": [],
+            "sinks": [],
+            "taints": []
+          },
+          "recovery_operations": {
+            "effects": [],
+            "reconciliation_operations": []
+          },
+          "relation_snapshots": {
+            "effect_resource": {
+              "none": null
+            },
+            "flow_execution": {
+              "none": null
+            },
+            "recovery_usage": {
+              "none": null
+            }
+          },
+          "resource_types": {
+            "descriptors": [],
+            "schemas": []
+          },
+          "type_schemas": [],
+          "usage_meters": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawContextBinding",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawContextBinding",
+      "value": {
+        "contents": {
+          "compiled_modules": [],
+          "effect_catalogs": [],
+          "execution_universes": {
+            "capabilities": [],
+            "region_compatibility": [],
+            "regions": [],
+            "runtime_profiles": [],
+            "trust_domains": []
+          },
+          "flow_catalogs": {
+            "confidentiality": [],
+            "sinks": [],
+            "taints": []
+          },
+          "recovery_operations": {
+            "effects": [],
+            "reconciliation_operations": []
+          },
+          "relation_snapshots": {
+            "effect_resource": {
+              "none": null
+            },
+            "flow_execution": {
+              "none": null
+            },
+            "recovery_usage": {
+              "none": null
+            }
+          },
+          "resource_types": {
+            "descriptors": [],
+            "schemas": []
+          },
+          "type_schemas": [],
+          "usage_meters": []
+        },
+        "roles": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ],
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawValidationSubject",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationSubject",
+      "value": {
+        "context": {
+          "contents": {
+            "compiled_modules": [],
+            "effect_catalogs": [],
+            "execution_universes": {
+              "capabilities": [],
+              "region_compatibility": [],
+              "regions": [],
+              "runtime_profiles": [],
+              "trust_domains": []
+            },
+            "flow_catalogs": {
+              "confidentiality": [],
+              "sinks": [],
+              "taints": []
+            },
+            "recovery_operations": {
+              "effects": [],
+              "reconciliation_operations": []
+            },
+            "relation_snapshots": {
+              "effect_resource": {
+                "none": null
+              },
+              "flow_execution": {
+                "none": null
+              },
+              "recovery_usage": {
+                "none": null
+              }
+            },
+            "resource_types": {
+              "descriptors": [],
+              "schemas": []
+            },
+            "type_schemas": [],
+            "usage_meters": []
+          },
+          "roles": [
+            [
+              "analysis",
+              "canonical_validation"
+            ]
+          ]
+        },
+        "input": {
+          "candidate": {
+            "component_identity": {
+              "catalog": [],
+              "name": []
+            },
+            "effect_flow_partitions": [],
+            "effects": {
+              "row": {
+                "Closed": {
+                  "0": []
+                }
+              }
+            },
+            "execution": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "failures": {
+              "failures": []
+            },
+            "information_flow": {
+              "confidentiality_restrictions": [],
+              "flow_constraints": [],
+              "summary": {
+                "influence_unknown": false,
+                "instruction_authority": "None",
+                "sources": [],
+                "taints": []
+              }
+            },
+            "inputs": [],
+            "outputs": [],
+            "recovery": {
+              "effect_recovery_clauses": [],
+              "replay_semantics": "Recompute"
+            },
+            "recovery_action_bindings": [],
+            "recovery_usage_bindings": [],
+            "resources": {
+              "requirements": []
+            },
+            "usage": {
+              "limits": []
+            }
+          },
+          "origin": {
+            "document": 0,
+            "path": []
+          },
+          "physical": {
+            "not_supplied": null
+          }
+        },
+        "owner_compiler": {
+          "analysis_semantics_version": "x",
+          "registry_content": [],
+          "rule_registry_content": [],
+          "rules": [],
+          "specifications": [],
+          "support_manifest": {
+            "applied_rules": [],
+            "attribution": {
+              "full_content_revalidation": {
+                "listed_rules": []
+              }
+            },
+            "closed_tables": {
+              "abi_numbers": [],
+              "afidl_primitives": [],
+              "hash_domains": [],
+              "rule_areas": []
+            },
+            "normative_sources": [],
+            "obligation_edition": "x",
+            "report_shape": "x",
+            "selected_specifications": [],
+            "semantic_roles": []
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationSubject-owner_compiler",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawValidationSubject",
+      "value": {
+        "context": {
+          "contents": {
+            "compiled_modules": [],
+            "effect_catalogs": [],
+            "execution_universes": {
+              "capabilities": [],
+              "region_compatibility": [],
+              "regions": [],
+              "runtime_profiles": [],
+              "trust_domains": []
+            },
+            "flow_catalogs": {
+              "confidentiality": [],
+              "sinks": [],
+              "taints": []
+            },
+            "recovery_operations": {
+              "effects": [],
+              "reconciliation_operations": []
+            },
+            "relation_snapshots": {
+              "effect_resource": {
+                "none": null
+              },
+              "flow_execution": {
+                "none": null
+              },
+              "recovery_usage": {
+                "none": null
+              }
+            },
+            "resource_types": {
+              "descriptors": [],
+              "schemas": []
+            },
+            "type_schemas": [],
+            "usage_meters": []
+          },
+          "roles": [
+            [
+              "analysis",
+              "canonical_validation"
+            ]
+          ]
+        },
+        "input": {
+          "candidate": {
+            "component_identity": {
+              "catalog": [],
+              "name": []
+            },
+            "effect_flow_partitions": [],
+            "effects": {
+              "row": {
+                "Closed": {
+                  "0": []
+                }
+              }
+            },
+            "execution": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "failures": {
+              "failures": []
+            },
+            "information_flow": {
+              "confidentiality_restrictions": [],
+              "flow_constraints": [],
+              "summary": {
+                "influence_unknown": false,
+                "instruction_authority": "None",
+                "sources": [],
+                "taints": []
+              }
+            },
+            "inputs": [],
+            "outputs": [],
+            "recovery": {
+              "effect_recovery_clauses": [],
+              "replay_semantics": "Recompute"
+            },
+            "recovery_action_bindings": [],
+            "recovery_usage_bindings": [],
+            "resources": {
+              "requirements": []
+            },
+            "usage": {
+              "limits": []
+            }
+          },
+          "origin": {
+            "document": 0,
+            "path": []
+          },
+          "physical": {
+            "not_supplied": null
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationSubject-input",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawValidationSubject",
+      "value": {
+        "context": {
+          "contents": {
+            "compiled_modules": [],
+            "effect_catalogs": [],
+            "execution_universes": {
+              "capabilities": [],
+              "region_compatibility": [],
+              "regions": [],
+              "runtime_profiles": [],
+              "trust_domains": []
+            },
+            "flow_catalogs": {
+              "confidentiality": [],
+              "sinks": [],
+              "taints": []
+            },
+            "recovery_operations": {
+              "effects": [],
+              "reconciliation_operations": []
+            },
+            "relation_snapshots": {
+              "effect_resource": {
+                "none": null
+              },
+              "flow_execution": {
+                "none": null
+              },
+              "recovery_usage": {
+                "none": null
+              }
+            },
+            "resource_types": {
+              "descriptors": [],
+              "schemas": []
+            },
+            "type_schemas": [],
+            "usage_meters": []
+          },
+          "roles": [
+            [
+              "analysis",
+              "canonical_validation"
+            ]
+          ]
+        },
+        "owner_compiler": {
+          "analysis_semantics_version": "x",
+          "registry_content": [],
+          "rule_registry_content": [],
+          "rules": [],
+          "specifications": [],
+          "support_manifest": {
+            "applied_rules": [],
+            "attribution": {
+              "full_content_revalidation": {
+                "listed_rules": []
+              }
+            },
+            "closed_tables": {
+              "abi_numbers": [],
+              "afidl_primitives": [],
+              "hash_domains": [],
+              "rule_areas": []
+            },
+            "normative_sources": [],
+            "obligation_edition": "x",
+            "report_shape": "x",
+            "selected_specifications": [],
+            "semantic_roles": []
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationSubject-context",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawValidationSubject",
+      "value": {
+        "input": {
+          "candidate": {
+            "component_identity": {
+              "catalog": [],
+              "name": []
+            },
+            "effect_flow_partitions": [],
+            "effects": {
+              "row": {
+                "Closed": {
+                  "0": []
+                }
+              }
+            },
+            "execution": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "failures": {
+              "failures": []
+            },
+            "information_flow": {
+              "confidentiality_restrictions": [],
+              "flow_constraints": [],
+              "summary": {
+                "influence_unknown": false,
+                "instruction_authority": "None",
+                "sources": [],
+                "taints": []
+              }
+            },
+            "inputs": [],
+            "outputs": [],
+            "recovery": {
+              "effect_recovery_clauses": [],
+              "replay_semantics": "Recompute"
+            },
+            "recovery_action_bindings": [],
+            "recovery_usage_bindings": [],
+            "resources": {
+              "requirements": []
+            },
+            "usage": {
+              "limits": []
+            }
+          },
+          "origin": {
+            "document": 0,
+            "path": []
+          },
+          "physical": {
+            "not_supplied": null
+          }
+        },
+        "owner_compiler": {
+          "analysis_semantics_version": "x",
+          "registry_content": [],
+          "rule_registry_content": [],
+          "rules": [],
+          "specifications": [],
+          "support_manifest": {
+            "applied_rules": [],
+            "attribution": {
+              "full_content_revalidation": {
+                "listed_rules": []
+              }
+            },
+            "closed_tables": {
+              "abi_numbers": [],
+              "afidl_primitives": [],
+              "hash_domains": [],
+              "rule_areas": []
+            },
+            "normative_sources": [],
+            "obligation_edition": "x",
+            "report_shape": "x",
+            "selected_specifications": [],
+            "semantic_roles": []
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawValidationSubject",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawValidationSubject",
+      "value": {
+        "context": {
+          "contents": {
+            "compiled_modules": [],
+            "effect_catalogs": [],
+            "execution_universes": {
+              "capabilities": [],
+              "region_compatibility": [],
+              "regions": [],
+              "runtime_profiles": [],
+              "trust_domains": []
+            },
+            "flow_catalogs": {
+              "confidentiality": [],
+              "sinks": [],
+              "taints": []
+            },
+            "recovery_operations": {
+              "effects": [],
+              "reconciliation_operations": []
+            },
+            "relation_snapshots": {
+              "effect_resource": {
+                "none": null
+              },
+              "flow_execution": {
+                "none": null
+              },
+              "recovery_usage": {
+                "none": null
+              }
+            },
+            "resource_types": {
+              "descriptors": [],
+              "schemas": []
+            },
+            "type_schemas": [],
+            "usage_meters": []
+          },
+          "roles": [
+            [
+              "analysis",
+              "canonical_validation"
+            ]
+          ]
+        },
+        "input": {
+          "candidate": {
+            "component_identity": {
+              "catalog": [],
+              "name": []
+            },
+            "effect_flow_partitions": [],
+            "effects": {
+              "row": {
+                "Closed": {
+                  "0": []
+                }
+              }
+            },
+            "execution": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "failures": {
+              "failures": []
+            },
+            "information_flow": {
+              "confidentiality_restrictions": [],
+              "flow_constraints": [],
+              "summary": {
+                "influence_unknown": false,
+                "instruction_authority": "None",
+                "sources": [],
+                "taints": []
+              }
+            },
+            "inputs": [],
+            "outputs": [],
+            "recovery": {
+              "effect_recovery_clauses": [],
+              "replay_semantics": "Recompute"
+            },
+            "recovery_action_bindings": [],
+            "recovery_usage_bindings": [],
+            "resources": {
+              "requirements": []
+            },
+            "usage": {
+              "limits": []
+            }
+          },
+          "origin": {
+            "document": 0,
+            "path": []
+          },
+          "physical": {
+            "not_supplied": null
+          }
+        },
+        "owner_compiler": {
+          "analysis_semantics_version": "x",
+          "registry_content": [],
+          "rule_registry_content": [],
+          "rules": [],
+          "specifications": [],
+          "support_manifest": {
+            "applied_rules": [],
+            "attribution": {
+              "full_content_revalidation": {
+                "listed_rules": []
+              }
+            },
+            "closed_tables": {
+              "abi_numbers": [],
+              "afidl_primitives": [],
+              "hash_domains": [],
+              "rule_areas": []
+            },
+            "normative_sources": [],
+            "obligation_edition": "x",
+            "report_shape": "x",
+            "selected_specifications": [],
+            "semantic_roles": []
+          }
+        },
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawValidationCase",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationCase",
+      "value": "positive_unique_io_ports"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationCase-positive_unique_io_ports",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationCase",
+      "value": "positive_unique_io_ports"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawValidationCase",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawValidationCase",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawValidationClause",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationClause",
+      "value": "positive_unique_io_ports"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationClause-positive_unique_io_ports",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationClause",
+      "value": "positive_unique_io_ports"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawValidationClause",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawValidationClause",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawValidationSubstage",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationSubstage",
+      "value": "canonical_validation/io_port_check"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationSubstage-canonical_validation/io_port_check",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationSubstage",
+      "value": "canonical_validation/io_port_check"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawValidationSubstage",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawValidationSubstage",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawPortDirection",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortDirection",
+      "value": "input"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortDirection-input",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortDirection",
+      "value": "input"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortDirection-output",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortDirection",
+      "value": "output"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawPortDirection",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPortDirection",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawPortMember",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortMember",
+      "value": "port_no"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortMember-port_no",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortMember",
+      "value": "port_no"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawPortMember",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPortMember",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawPortOccurrence",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortOccurrence",
+      "value": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "port_no": 0,
+        "sorted_ordinal": 0
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortOccurrence-direction",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortOccurrence",
+      "value": {
+        "original_ordinal": 0,
+        "port_no": 0,
+        "sorted_ordinal": 0
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortOccurrence-original_ordinal",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortOccurrence",
+      "value": {
+        "direction": "input",
+        "port_no": 0,
+        "sorted_ordinal": 0
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortOccurrence-sorted_ordinal",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortOccurrence",
+      "value": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "port_no": 0
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortOccurrence-port_no",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortOccurrence",
+      "value": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawPortOccurrence",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPortOccurrence",
+      "value": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "port_no": 0,
+        "sorted_ordinal": 0,
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawValidationOrigin",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationOrigin",
+      "value": {
+        "direction": "input",
+        "input_origin": {
+          "document": 0,
+          "path": []
+        },
+        "original_ordinal": 0
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationOrigin-input_origin",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawValidationOrigin",
+      "value": {
+        "direction": "input",
+        "original_ordinal": 0
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationOrigin-direction",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawValidationOrigin",
+      "value": {
+        "input_origin": {
+          "document": 0,
+          "path": []
+        },
+        "original_ordinal": 0
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationOrigin-original_ordinal",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawValidationOrigin",
+      "value": {
+        "direction": "input",
+        "input_origin": {
+          "document": 0,
+          "path": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawValidationOrigin",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawValidationOrigin",
+      "value": {
+        "direction": "input",
+        "input_origin": {
+          "document": 0,
+          "path": []
+        },
+        "original_ordinal": 0,
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-ExactCompiledComponentContractSchemaReference",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "ExactCompiledComponentContractSchemaReference",
+      "value": {
+        "definition": {
+          "body": {
+            "Alias": {
+              "0": {
+                "Primitive": {
+                  "0": "Unit"
+                }
+              }
+            }
+          },
+          "name": "x",
+          "schema": "x"
+        },
+        "module": "x",
+        "type_name": []
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-ExactCompiledComponentContractSchemaReference-module",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "ExactCompiledComponentContractSchemaReference",
+      "value": {
+        "definition": {
+          "body": {
+            "Alias": {
+              "0": {
+                "Primitive": {
+                  "0": "Unit"
+                }
+              }
+            }
+          },
+          "name": "x",
+          "schema": "x"
+        },
+        "type_name": []
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-ExactCompiledComponentContractSchemaReference-type_name",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "ExactCompiledComponentContractSchemaReference",
+      "value": {
+        "definition": {
+          "body": {
+            "Alias": {
+              "0": {
+                "Primitive": {
+                  "0": "Unit"
+                }
+              }
+            }
+          },
+          "name": "x",
+          "schema": "x"
+        },
+        "module": "x"
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-ExactCompiledComponentContractSchemaReference-definition",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "ExactCompiledComponentContractSchemaReference",
+      "value": {
+        "module": "x",
+        "type_name": []
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-ExactCompiledComponentContractSchemaReference",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "ExactCompiledComponentContractSchemaReference",
+      "value": {
+        "definition": {
+          "body": {
+            "Alias": {
+              "0": {
+                "Primitive": {
+                  "0": "Unit"
+                }
+              }
+            }
+          },
+          "name": "x",
+          "schema": "x"
+        },
+        "module": "x",
+        "type_name": [],
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-ExactRuleContentReference",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "ExactRuleContentReference",
+      "value": {
+        "identity": {
+          "normative_source": "x",
+          "rule_id": "x",
+          "short_statement": "x",
+          "source_anchor": "x"
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-ExactRuleContentReference-identity",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "ExactRuleContentReference",
+      "value": {}
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-ExactRuleContentReference",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "ExactRuleContentReference",
+      "value": {
+        "identity": {
+          "normative_source": "x",
+          "rule_id": "x",
+          "short_statement": "x",
+          "source_anchor": "x"
+        },
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawPortConstraint",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortConstraint",
+      "value": "positive_unique_io_ports"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortConstraint-positive_unique_io_ports",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortConstraint",
+      "value": "positive_unique_io_ports"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawPortConstraint",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPortConstraint",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawPortPredecessor",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortPredecessor",
+      "value": {
+        "none": null
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortPredecessor-none",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortPredecessor",
+      "value": {
+        "none": null
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortPredecessor-some",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortPredecessor",
+      "value": {
+        "some": {
+          "original_ordinal": 0,
+          "port_no": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortPredecessor-some-original_ordinal",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortPredecessor",
+      "value": {
+        "some": {
+          "port_no": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortPredecessor-some-port_no",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortPredecessor",
+      "value": {
+        "some": {
+          "original_ordinal": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawPortPredecessor-some",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPortPredecessor",
+      "value": {
+        "some": {
+          "original_ordinal": 0,
+          "port_no": 0,
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawPortPredecessor",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPortPredecessor",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawPortCondition",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortCondition",
+      "value": "zero"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortCondition-zero",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortCondition",
+      "value": "zero"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortCondition-duplicate",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortCondition",
+      "value": "duplicate"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortCondition-positive_fresh",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortCondition",
+      "value": "positive_fresh"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawPortCondition",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPortCondition",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawPortSelectedError",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortSelectedError",
+      "value": "invalid_or_duplicate_port"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortSelectedError-invalid_or_duplicate_port",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortSelectedError",
+      "value": "invalid_or_duplicate_port"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawPortSelectedError",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPortSelectedError",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawPortCheckBasis",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortCheckBasis",
+      "value": {
+        "condition": "zero",
+        "occurrence": {
+          "direction": "input",
+          "original_ordinal": 0,
+          "port_no": 0,
+          "sorted_ordinal": 0
+        },
+        "predecessor": {
+          "none": null
+        },
+        "rule": {
+          "identity": {
+            "normative_source": "x",
+            "rule_id": "x",
+            "short_statement": "x",
+            "source_anchor": "x"
+          }
+        },
+        "selected_error": {
+          "some": "invalid_or_duplicate_port"
+        },
+        "subject": 0
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortCheckBasis-subject",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortCheckBasis",
+      "value": {
+        "condition": "zero",
+        "occurrence": {
+          "direction": "input",
+          "original_ordinal": 0,
+          "port_no": 0,
+          "sorted_ordinal": 0
+        },
+        "predecessor": {
+          "none": null
+        },
+        "rule": {
+          "identity": {
+            "normative_source": "x",
+            "rule_id": "x",
+            "short_statement": "x",
+            "source_anchor": "x"
+          }
+        },
+        "selected_error": {
+          "some": "invalid_or_duplicate_port"
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortCheckBasis-occurrence",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortCheckBasis",
+      "value": {
+        "condition": "zero",
+        "predecessor": {
+          "none": null
+        },
+        "rule": {
+          "identity": {
+            "normative_source": "x",
+            "rule_id": "x",
+            "short_statement": "x",
+            "source_anchor": "x"
+          }
+        },
+        "selected_error": {
+          "some": "invalid_or_duplicate_port"
+        },
+        "subject": 0
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortCheckBasis-predecessor",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortCheckBasis",
+      "value": {
+        "condition": "zero",
+        "occurrence": {
+          "direction": "input",
+          "original_ordinal": 0,
+          "port_no": 0,
+          "sorted_ordinal": 0
+        },
+        "rule": {
+          "identity": {
+            "normative_source": "x",
+            "rule_id": "x",
+            "short_statement": "x",
+            "source_anchor": "x"
+          }
+        },
+        "selected_error": {
+          "some": "invalid_or_duplicate_port"
+        },
+        "subject": 0
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortCheckBasis-condition",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortCheckBasis",
+      "value": {
+        "occurrence": {
+          "direction": "input",
+          "original_ordinal": 0,
+          "port_no": 0,
+          "sorted_ordinal": 0
+        },
+        "predecessor": {
+          "none": null
+        },
+        "rule": {
+          "identity": {
+            "normative_source": "x",
+            "rule_id": "x",
+            "short_statement": "x",
+            "source_anchor": "x"
+          }
+        },
+        "selected_error": {
+          "some": "invalid_or_duplicate_port"
+        },
+        "subject": 0
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortCheckBasis-selected_error",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortCheckBasis",
+      "value": {
+        "condition": "zero",
+        "occurrence": {
+          "direction": "input",
+          "original_ordinal": 0,
+          "port_no": 0,
+          "sorted_ordinal": 0
+        },
+        "predecessor": {
+          "none": null
+        },
+        "rule": {
+          "identity": {
+            "normative_source": "x",
+            "rule_id": "x",
+            "short_statement": "x",
+            "source_anchor": "x"
+          }
+        },
+        "subject": 0
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortCheckBasis-rule",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortCheckBasis",
+      "value": {
+        "condition": "zero",
+        "occurrence": {
+          "direction": "input",
+          "original_ordinal": 0,
+          "port_no": 0,
+          "sorted_ordinal": 0
+        },
+        "predecessor": {
+          "none": null
+        },
+        "selected_error": {
+          "some": "invalid_or_duplicate_port"
+        },
+        "subject": 0
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawPortCheckBasis",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPortCheckBasis",
+      "value": {
+        "condition": "zero",
+        "occurrence": {
+          "direction": "input",
+          "original_ordinal": 0,
+          "port_no": 0,
+          "sorted_ordinal": 0
+        },
+        "predecessor": {
+          "none": null
+        },
+        "rule": {
+          "identity": {
+            "normative_source": "x",
+            "rule_id": "x",
+            "short_statement": "x",
+            "source_anchor": "x"
+          }
+        },
+        "selected_error": {
+          "some": "invalid_or_duplicate_port"
+        },
+        "subject": 0,
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawPortRejectionWitness",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortRejectionWitness",
+      "value": {
+        "zero": {
+          "minimum": 1,
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 0,
+            "port_no": 0,
+            "sorted_ordinal": 0
+          },
+          "raw_member_value": 0,
+          "subject": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortRejectionWitness-zero",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortRejectionWitness",
+      "value": {
+        "zero": {
+          "minimum": 1,
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 0,
+            "port_no": 0,
+            "sorted_ordinal": 0
+          },
+          "raw_member_value": 0,
+          "subject": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-zero-subject",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortRejectionWitness",
+      "value": {
+        "zero": {
+          "minimum": 1,
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 0,
+            "port_no": 0,
+            "sorted_ordinal": 0
+          },
+          "raw_member_value": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-zero-occurrence",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortRejectionWitness",
+      "value": {
+        "zero": {
+          "minimum": 1,
+          "raw_member_value": 0,
+          "subject": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-zero-raw_member_value",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortRejectionWitness",
+      "value": {
+        "zero": {
+          "minimum": 1,
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 0,
+            "port_no": 0,
+            "sorted_ordinal": 0
+          },
+          "subject": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-zero-minimum",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortRejectionWitness",
+      "value": {
+        "zero": {
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 0,
+            "port_no": 0,
+            "sorted_ordinal": 0
+          },
+          "raw_member_value": 0,
+          "subject": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawPortRejectionWitness-zero",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPortRejectionWitness",
+      "value": {
+        "zero": {
+          "minimum": 1,
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 0,
+            "port_no": 0,
+            "sorted_ordinal": 0
+          },
+          "raw_member_value": 0,
+          "subject": 0,
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortRejectionWitness-duplicate",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortRejectionWitness",
+      "value": {
+        "duplicate": {
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 1,
+            "port_no": 1,
+            "sorted_ordinal": 1
+          },
+          "previous_original_ordinal": 0,
+          "previous_port_no": 1,
+          "subject": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-duplicate-subject",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortRejectionWitness",
+      "value": {
+        "duplicate": {
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 1,
+            "port_no": 1,
+            "sorted_ordinal": 1
+          },
+          "previous_original_ordinal": 0,
+          "previous_port_no": 1
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-duplicate-occurrence",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortRejectionWitness",
+      "value": {
+        "duplicate": {
+          "previous_original_ordinal": 0,
+          "previous_port_no": 1,
+          "subject": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-duplicate-previous_original_ordinal",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortRejectionWitness",
+      "value": {
+        "duplicate": {
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 1,
+            "port_no": 1,
+            "sorted_ordinal": 1
+          },
+          "previous_port_no": 1,
+          "subject": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-duplicate-previous_port_no",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortRejectionWitness",
+      "value": {
+        "duplicate": {
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 1,
+            "port_no": 1,
+            "sorted_ordinal": 1
+          },
+          "previous_original_ordinal": 0,
+          "subject": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawPortRejectionWitness-duplicate",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPortRejectionWitness",
+      "value": {
+        "duplicate": {
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 1,
+            "port_no": 1,
+            "sorted_ordinal": 1
+          },
+          "previous_original_ordinal": 0,
+          "previous_port_no": 1,
+          "subject": 0,
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawPortRejectionWitness",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPortRejectionWitness",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawPrefixStop",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPrefixStop",
+      "value": {
+        "component_identity": null
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPrefixStop-component_identity",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPrefixStop",
+      "value": {
+        "component_identity": null
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPrefixStop-schema_resolution",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPrefixStop",
+      "value": {
+        "schema_resolution": {
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 0,
+            "port_no": 0,
+            "sorted_ordinal": 0
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPrefixStop-schema_resolution-occurrence",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPrefixStop",
+      "value": {
+        "schema_resolution": {}
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawPrefixStop-schema_resolution",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPrefixStop",
+      "value": {
+        "schema_resolution": {
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 0,
+            "port_no": 0,
+            "sorted_ordinal": 0
+          },
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPrefixStop-port_rejection",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPrefixStop",
+      "value": {
+        "port_rejection": {
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 0,
+            "port_no": 0,
+            "sorted_ordinal": 0
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPrefixStop-port_rejection-occurrence",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPrefixStop",
+      "value": {
+        "port_rejection": {}
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawPrefixStop-port_rejection",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPrefixStop",
+      "value": {
+        "port_rejection": {
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 0,
+            "port_no": 0,
+            "sorted_ordinal": 0
+          },
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawPrefixStop",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPrefixStop",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawPortApplicability",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortApplicability",
+      "value": {
+        "reached": {
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 0,
+            "port_no": 0,
+            "sorted_ordinal": 0
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortApplicability-reached",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortApplicability",
+      "value": {
+        "reached": {
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 0,
+            "port_no": 0,
+            "sorted_ordinal": 0
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortApplicability-reached-occurrence",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortApplicability",
+      "value": {
+        "reached": {}
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawPortApplicability-reached",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPortApplicability",
+      "value": {
+        "reached": {
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 0,
+            "port_no": 0,
+            "sorted_ordinal": 0
+          },
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortApplicability-not_reached",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortApplicability",
+      "value": {
+        "not_reached": {
+          "direction": "input",
+          "original_ordinal": 0,
+          "stopped_by": {
+            "component_identity": null
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortApplicability-not_reached-direction",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortApplicability",
+      "value": {
+        "not_reached": {
+          "original_ordinal": 0,
+          "stopped_by": {
+            "component_identity": null
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortApplicability-not_reached-original_ordinal",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortApplicability",
+      "value": {
+        "not_reached": {
+          "direction": "input",
+          "stopped_by": {
+            "component_identity": null
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortApplicability-not_reached-stopped_by",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortApplicability",
+      "value": {
+        "not_reached": {
+          "direction": "input",
+          "original_ordinal": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawPortApplicability-not_reached",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPortApplicability",
+      "value": {
+        "not_reached": {
+          "direction": "input",
+          "original_ordinal": 0,
+          "stopped_by": {
+            "component_identity": null
+          },
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortApplicability-stopped_by_earlier_failure",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortApplicability",
+      "value": {
+        "stopped_by_earlier_failure": {
+          "cause": {
+            "component_identity": null
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortApplicability-stopped_by_earlier_failure-cause",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortApplicability",
+      "value": {
+        "stopped_by_earlier_failure": {}
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawPortApplicability-stopped_by_earlier_failure",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPortApplicability",
+      "value": {
+        "stopped_by_earlier_failure": {
+          "cause": {
+            "component_identity": null
+          },
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortApplicability-no_port",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortApplicability",
+      "value": {
+        "no_port": {
+          "direction": "input"
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortApplicability-no_port-direction",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPortApplicability",
+      "value": {
+        "no_port": {}
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawPortApplicability-no_port",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPortApplicability",
+      "value": {
+        "no_port": {
+          "direction": "input",
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawPortApplicability",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPortApplicability",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawValidationStageState",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationStageState",
+      "value": "raw_physical"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationStageState-raw_physical",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationStageState",
+      "value": "raw_physical"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationStageState-parsed_declaration",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationStageState",
+      "value": "parsed_declaration"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationStageState-canonical_diagnostic_presentation",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationStageState",
+      "value": "canonical_diagnostic_presentation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationStageState-canonical_validated_declaration",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationStageState",
+      "value": "canonical_validated_declaration"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationStageState-checked_contract",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationStageState",
+      "value": "checked_contract"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawValidationStageState",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawValidationStageState",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawValidationAdmissionFailure",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "MissingRequiredSource"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-MissingRequiredSource",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "MissingRequiredSource"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-MissingDeclarativeOrigin",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "MissingDeclarativeOrigin"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-InvalidSourceAssociation",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "InvalidSourceAssociation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-InvalidContextBinding",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "InvalidContextBinding"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-IncompleteContent",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "IncompleteContent"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-InvalidPhysicalInput",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "InvalidPhysicalInput"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-UnsupportedPredicate",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "UnsupportedPredicate"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-NotImplemented",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "NotImplemented"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-InvalidIdentity",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "InvalidIdentity"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-UnsupportedModel",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "UnsupportedModel"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-ResourceLimit",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "ResourceLimit"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawValidationAdmissionFailure",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawValidationAdmissionFailure",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawValidationFragment",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationFragment",
+      "value": {
+        "applicability": [],
+        "facts": [],
+        "obligations": [],
+        "prerequisites": [],
+        "profile": "raw_contract_validation",
+        "scope": {
+          "analysis_semantics": "x",
+          "content": {
+            "nodes": [],
+            "roots": [
+              0
+            ]
+          },
+          "edition": "x",
+          "subject": {
+            "root_export": {
+              "assertion_inputs": 0,
+              "associations": [],
+              "caller_ir": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              },
+              "compiler": 0,
+              "context": 0,
+              "resolver_associations": 0,
+              "root_provenance": 0,
+              "top_export": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              }
+            }
+          }
+        },
+        "shape": "x"
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-shape",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawValidationFragment",
+      "value": {
+        "applicability": [],
+        "facts": [],
+        "obligations": [],
+        "prerequisites": [],
+        "profile": "raw_contract_validation",
+        "scope": {
+          "analysis_semantics": "x",
+          "content": {
+            "nodes": [],
+            "roots": [
+              0
+            ]
+          },
+          "edition": "x",
+          "subject": {
+            "root_export": {
+              "assertion_inputs": 0,
+              "associations": [],
+              "caller_ir": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              },
+              "compiler": 0,
+              "context": 0,
+              "resolver_associations": 0,
+              "root_provenance": 0,
+              "top_export": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-profile",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawValidationFragment",
+      "value": {
+        "applicability": [],
+        "facts": [],
+        "obligations": [],
+        "prerequisites": [],
+        "scope": {
+          "analysis_semantics": "x",
+          "content": {
+            "nodes": [],
+            "roots": [
+              0
+            ]
+          },
+          "edition": "x",
+          "subject": {
+            "root_export": {
+              "assertion_inputs": 0,
+              "associations": [],
+              "caller_ir": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              },
+              "compiler": 0,
+              "context": 0,
+              "resolver_associations": 0,
+              "root_provenance": 0,
+              "top_export": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              }
+            }
+          }
+        },
+        "shape": "x"
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-scope",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawValidationFragment",
+      "value": {
+        "applicability": [],
+        "facts": [],
+        "obligations": [],
+        "prerequisites": [],
+        "profile": "raw_contract_validation",
+        "shape": "x"
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-applicability",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawValidationFragment",
+      "value": {
+        "facts": [],
+        "obligations": [],
+        "prerequisites": [],
+        "profile": "raw_contract_validation",
+        "scope": {
+          "analysis_semantics": "x",
+          "content": {
+            "nodes": [],
+            "roots": [
+              0
+            ]
+          },
+          "edition": "x",
+          "subject": {
+            "root_export": {
+              "assertion_inputs": 0,
+              "associations": [],
+              "caller_ir": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              },
+              "compiler": 0,
+              "context": 0,
+              "resolver_associations": 0,
+              "root_provenance": 0,
+              "top_export": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              }
+            }
+          }
+        },
+        "shape": "x"
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-facts",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawValidationFragment",
+      "value": {
+        "applicability": [],
+        "obligations": [],
+        "prerequisites": [],
+        "profile": "raw_contract_validation",
+        "scope": {
+          "analysis_semantics": "x",
+          "content": {
+            "nodes": [],
+            "roots": [
+              0
+            ]
+          },
+          "edition": "x",
+          "subject": {
+            "root_export": {
+              "assertion_inputs": 0,
+              "associations": [],
+              "caller_ir": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              },
+              "compiler": 0,
+              "context": 0,
+              "resolver_associations": 0,
+              "root_provenance": 0,
+              "top_export": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              }
+            }
+          }
+        },
+        "shape": "x"
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-prerequisites",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawValidationFragment",
+      "value": {
+        "applicability": [],
+        "facts": [],
+        "obligations": [],
+        "profile": "raw_contract_validation",
+        "scope": {
+          "analysis_semantics": "x",
+          "content": {
+            "nodes": [],
+            "roots": [
+              0
+            ]
+          },
+          "edition": "x",
+          "subject": {
+            "root_export": {
+              "assertion_inputs": 0,
+              "associations": [],
+              "caller_ir": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              },
+              "compiler": 0,
+              "context": 0,
+              "resolver_associations": 0,
+              "root_provenance": 0,
+              "top_export": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              }
+            }
+          }
+        },
+        "shape": "x"
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-obligations",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawValidationFragment",
+      "value": {
+        "applicability": [],
+        "facts": [],
+        "prerequisites": [],
+        "profile": "raw_contract_validation",
+        "scope": {
+          "analysis_semantics": "x",
+          "content": {
+            "nodes": [],
+            "roots": [
+              0
+            ]
+          },
+          "edition": "x",
+          "subject": {
+            "root_export": {
+              "assertion_inputs": 0,
+              "associations": [],
+              "caller_ir": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              },
+              "compiler": 0,
+              "context": 0,
+              "resolver_associations": 0,
+              "root_provenance": 0,
+              "top_export": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              }
+            }
+          }
+        },
+        "shape": "x"
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-RawValidationFragment",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawValidationFragment",
+      "value": {
+        "applicability": [],
+        "facts": [],
+        "obligations": [],
+        "prerequisites": [],
+        "profile": "raw_contract_validation",
+        "scope": {
+          "analysis_semantics": "x",
+          "content": {
+            "nodes": [],
+            "roots": [
+              0
+            ]
+          },
+          "edition": "x",
+          "subject": {
+            "root_export": {
+              "assertion_inputs": 0,
+              "associations": [],
+              "caller_ir": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              },
+              "compiler": 0,
+              "context": 0,
+              "resolver_associations": 0,
+              "root_provenance": 0,
+              "top_export": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              }
+            }
+          }
+        },
+        "shape": "x",
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/shape-RawValidationProfile",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationProfile",
+      "value": "raw_contract_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationProfile-raw_contract_validation",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationProfile",
+      "value": "raw_contract_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/unknown-RawValidationProfile",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawValidationProfile",
+      "value": "unregistered_variant"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-ScopeSubject-raw_contract_validation",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "ScopeSubject",
+      "value": {
+        "raw_contract_validation": {
+          "context": {
+            "contents": {
+              "compiled_modules": [],
+              "effect_catalogs": [],
+              "execution_universes": {
+                "capabilities": [],
+                "region_compatibility": [],
+                "regions": [],
+                "runtime_profiles": [],
+                "trust_domains": []
+              },
+              "flow_catalogs": {
+                "confidentiality": [],
+                "sinks": [],
+                "taints": []
+              },
+              "recovery_operations": {
+                "effects": [],
+                "reconciliation_operations": []
+              },
+              "relation_snapshots": {
+                "effect_resource": {
+                  "none": null
+                },
+                "flow_execution": {
+                  "none": null
+                },
+                "recovery_usage": {
+                  "none": null
+                }
+              },
+              "resource_types": {
+                "descriptors": [],
+                "schemas": []
+              },
+              "type_schemas": [],
+              "usage_meters": []
+            },
+            "roles": [
+              [
+                "analysis",
+                "canonical_validation"
+              ]
+            ]
+          },
+          "input": {
+            "candidate": {
+              "component_identity": {
+                "catalog": [],
+                "name": []
+              },
+              "effect_flow_partitions": [],
+              "effects": {
+                "row": {
+                  "Closed": {
+                    "0": []
+                  }
+                }
+              },
+              "execution": {
+                "capabilities": [],
+                "implementation_abis": [],
+                "quantities": [],
+                "region_residency": {
+                  "none": null
+                },
+                "runtime_profile": {
+                  "none": null
+                },
+                "sandbox": {
+                  "none": null
+                },
+                "soft_preferences": [],
+                "trust_domain": {
+                  "none": null
+                }
+              },
+              "failures": {
+                "failures": []
+              },
+              "information_flow": {
+                "confidentiality_restrictions": [],
+                "flow_constraints": [],
+                "summary": {
+                  "influence_unknown": false,
+                  "instruction_authority": "None",
+                  "sources": [],
+                  "taints": []
+                }
+              },
+              "inputs": [],
+              "outputs": [],
+              "recovery": {
+                "effect_recovery_clauses": [],
+                "replay_semantics": "Recompute"
+              },
+              "recovery_action_bindings": [],
+              "recovery_usage_bindings": [],
+              "resources": {
+                "requirements": []
+              },
+              "usage": {
+                "limits": []
+              }
+            },
+            "origin": {
+              "document": 0,
+              "path": []
+            },
+            "physical": {
+              "not_supplied": null
+            }
+          },
+          "owner_compiler": {
+            "analysis_semantics_version": "x",
+            "registry_content": [],
+            "rule_registry_content": [],
+            "rules": [],
+            "specifications": [],
+            "support_manifest": {
+              "applied_rules": [],
+              "attribution": {
+                "full_content_revalidation": {
+                  "listed_rules": []
+                }
+              },
+              "closed_tables": {
+                "abi_numbers": [],
+                "afidl_primitives": [],
+                "hash_domains": [],
+                "rule_areas": []
+              },
+              "normative_sources": [],
+              "obligation_edition": "x",
+              "report_shape": "x",
+              "selected_specifications": [],
+              "semantic_roles": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-PredicateFamily-raw_contract_validation",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "PredicateFamily",
+      "value": "raw_contract_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-ClosedPredicateCase-raw_contract_validation",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "ClosedPredicateCase",
+      "value": {
+        "raw_contract_validation": "positive_unique_io_ports"
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-RequirementClause-raw_validation",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RequirementClause",
+      "value": {
+        "raw_validation": "positive_unique_io_ports"
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-Source-raw_validation",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "Source",
+      "value": {
+        "raw_validation": {
+          "subject": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Source-raw_validation-subject",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "Source",
+      "value": {
+        "raw_validation": {}
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-Source-raw_validation",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "Source",
+      "value": {
+        "raw_validation": {
+          "subject": 0,
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-Target-raw_declaration_constraint",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "Target",
+      "value": {
+        "raw_declaration_constraint": {
+          "constraint": "positive_unique_io_ports",
+          "direction": "input",
+          "rule": {
+            "identity": {
+              "normative_source": "x",
+              "rule_id": "x",
+              "short_statement": "x",
+              "source_anchor": "x"
+            }
+          },
+          "schema": {
+            "definition": {
+              "body": {
+                "Alias": {
+                  "0": {
+                    "Primitive": {
+                      "0": "Unit"
+                    }
+                  }
+                }
+              },
+              "name": "x",
+              "schema": "x"
+            },
+            "module": "x",
+            "type_name": []
+          },
+          "subject": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-subject",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "Target",
+      "value": {
+        "raw_declaration_constraint": {
+          "constraint": "positive_unique_io_ports",
+          "direction": "input",
+          "rule": {
+            "identity": {
+              "normative_source": "x",
+              "rule_id": "x",
+              "short_statement": "x",
+              "source_anchor": "x"
+            }
+          },
+          "schema": {
+            "definition": {
+              "body": {
+                "Alias": {
+                  "0": {
+                    "Primitive": {
+                      "0": "Unit"
+                    }
+                  }
+                }
+              },
+              "name": "x",
+              "schema": "x"
+            },
+            "module": "x",
+            "type_name": []
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-schema",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "Target",
+      "value": {
+        "raw_declaration_constraint": {
+          "constraint": "positive_unique_io_ports",
+          "direction": "input",
+          "rule": {
+            "identity": {
+              "normative_source": "x",
+              "rule_id": "x",
+              "short_statement": "x",
+              "source_anchor": "x"
+            }
+          },
+          "subject": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-rule",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "Target",
+      "value": {
+        "raw_declaration_constraint": {
+          "constraint": "positive_unique_io_ports",
+          "direction": "input",
+          "schema": {
+            "definition": {
+              "body": {
+                "Alias": {
+                  "0": {
+                    "Primitive": {
+                      "0": "Unit"
+                    }
+                  }
+                }
+              },
+              "name": "x",
+              "schema": "x"
+            },
+            "module": "x",
+            "type_name": []
+          },
+          "subject": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-direction",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "Target",
+      "value": {
+        "raw_declaration_constraint": {
+          "constraint": "positive_unique_io_ports",
+          "rule": {
+            "identity": {
+              "normative_source": "x",
+              "rule_id": "x",
+              "short_statement": "x",
+              "source_anchor": "x"
+            }
+          },
+          "schema": {
+            "definition": {
+              "body": {
+                "Alias": {
+                  "0": {
+                    "Primitive": {
+                      "0": "Unit"
+                    }
+                  }
+                }
+              },
+              "name": "x",
+              "schema": "x"
+            },
+            "module": "x",
+            "type_name": []
+          },
+          "subject": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-constraint",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "Target",
+      "value": {
+        "raw_declaration_constraint": {
+          "direction": "input",
+          "rule": {
+            "identity": {
+              "normative_source": "x",
+              "rule_id": "x",
+              "short_statement": "x",
+              "source_anchor": "x"
+            }
+          },
+          "schema": {
+            "definition": {
+              "body": {
+                "Alias": {
+                  "0": {
+                    "Primitive": {
+                      "0": "Unit"
+                    }
+                  }
+                }
+              },
+              "name": "x",
+              "schema": "x"
+            },
+            "module": "x",
+            "type_name": []
+          },
+          "subject": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-Target-raw_declaration_constraint",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "Target",
+      "value": {
+        "raw_declaration_constraint": {
+          "constraint": "positive_unique_io_ports",
+          "direction": "input",
+          "rule": {
+            "identity": {
+              "normative_source": "x",
+              "rule_id": "x",
+              "short_statement": "x",
+              "source_anchor": "x"
+            }
+          },
+          "schema": {
+            "definition": {
+              "body": {
+                "Alias": {
+                  "0": {
+                    "Primitive": {
+                      "0": "Unit"
+                    }
+                  }
+                }
+              },
+              "name": "x",
+              "schema": "x"
+            },
+            "module": "x",
+            "type_name": []
+          },
+          "subject": 0,
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-Coordinate-raw_port",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "Coordinate",
+      "value": {
+        "raw_port": {
+          "member": "port_no",
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 0,
+            "port_no": 0,
+            "sorted_ordinal": 0
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Coordinate-raw_port-occurrence",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "Coordinate",
+      "value": {
+        "raw_port": {
+          "member": "port_no"
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Coordinate-raw_port-member",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "Coordinate",
+      "value": {
+        "raw_port": {
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 0,
+            "port_no": 0,
+            "sorted_ordinal": 0
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-Coordinate-raw_port",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "Coordinate",
+      "value": {
+        "raw_port": {
+          "member": "port_no",
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 0,
+            "port_no": 0,
+            "sorted_ordinal": 0
+          },
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-TypedContradiction-raw_validation",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "TypedContradiction",
+      "value": {
+        "raw_validation": {
+          "witness": {
+            "zero": {
+              "minimum": 1,
+              "occurrence": {
+                "direction": "input",
+                "original_ordinal": 0,
+                "port_no": 0,
+                "sorted_ordinal": 0
+              },
+              "raw_member_value": 0,
+              "subject": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-TypedContradiction-raw_validation-witness",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "TypedContradiction",
+      "value": {
+        "raw_validation": {}
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-TypedContradiction-raw_validation",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "TypedContradiction",
+      "value": {
+        "raw_validation": {
+          "unregistered_extra": null,
+          "witness": {
+            "zero": {
+              "minimum": 1,
+              "occurrence": {
+                "direction": "input",
+                "original_ordinal": 0,
+                "port_no": 0,
+                "sorted_ordinal": 0
+              },
+              "raw_member_value": 0,
+              "subject": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-EvidenceRef-raw_validation_member",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "EvidenceRef",
+      "value": {
+        "raw_validation_member": {
+          "source_member_path": [],
+          "subject": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-EvidenceRef-raw_validation_member-subject",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "EvidenceRef",
+      "value": {
+        "raw_validation_member": {
+          "source_member_path": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-EvidenceRef-raw_validation_member-source_member_path",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "EvidenceRef",
+      "value": {
+        "raw_validation_member": {
+          "subject": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/extra-EvidenceRef-raw_validation_member",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "EvidenceRef",
+      "value": {
+        "raw_validation_member": {
+          "source_member_path": [],
+          "subject": 0,
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-ObservationOwner-raw_contract_validation",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "ObservationOwner",
+      "value": "raw_contract_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-Fact",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "Fact",
+      "value": {
+        "cause_fact_keys": [],
+        "companion_evidence_status": {
+          "none": null
+        },
+        "contradiction": {
+          "none": null
+        },
+        "evaluation": {
+          "evaluated": null
+        },
+        "key": {
+          "assertion_path": [],
+          "coordinate": {
+            "whole": null
+          },
+          "dimension": {
+            "none": null
+          },
+          "kind": "assertion_input",
+          "origin": {
+            "declared_path": [],
+            "mapping_ordinal": {
+              "none": null
+            },
+            "predicate": {
+              "case": {
+                "control": "compensation-commit-order"
+              },
+              "family": "root_preflight",
+              "rule": {
+                "anchor": "x",
+                "rule_id": "x",
+                "specification_id": "x"
+              }
+            },
+            "raw_validation_origin": {
+              "none": null
+            },
+            "source_ordinal": {
+              "none": null
+            }
+          },
+          "requirement": {
+            "clause": {
+              "direct": "assertion_input"
+            },
+            "evidence_class": "static_declaration"
+          },
+          "rule": {
+            "anchor": "x",
+            "rule_id": "x",
+            "specification_id": "x"
+          },
+          "source": {
+            "root": {
+              "ir": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              },
+              "root_node": 0
+            }
+          },
+          "stage": "D0",
+          "target": {
+            "analysis_boundary": null
+          }
+        },
+        "native_guard_basis": {
+          "none": null
+        },
+        "observations": [
+          {
+            "exposing_node": {
+              "none": null
+            },
+            "exposing_path": [],
+            "field_path": [],
+            "report_owner": "root_export"
+          }
+        ],
+        "prerequisites": [],
+        "primary": {
+          "none": null
+        },
+        "raw_validation_basis": {
+          "none": null
+        },
+        "references": [],
+        "role": "mandatory_preflight",
+        "status": {
+          "proof": "Proven"
+        },
+        "substitution_basis": {
+          "none": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-missing-Fact",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "Fact",
+      "value": {
+        "cause_fact_keys": [],
+        "companion_evidence_status": {
+          "none": null
+        },
+        "contradiction": {
+          "none": null
+        },
+        "evaluation": {
+          "evaluated": null
+        },
+        "key": {
+          "assertion_path": [],
+          "coordinate": {
+            "whole": null
+          },
+          "dimension": {
+            "none": null
+          },
+          "kind": "assertion_input",
+          "origin": {
+            "declared_path": [],
+            "mapping_ordinal": {
+              "none": null
+            },
+            "predicate": {
+              "case": {
+                "control": "compensation-commit-order"
+              },
+              "family": "root_preflight",
+              "rule": {
+                "anchor": "x",
+                "rule_id": "x",
+                "specification_id": "x"
+              }
+            },
+            "raw_validation_origin": {
+              "none": null
+            },
+            "source_ordinal": {
+              "none": null
+            }
+          },
+          "requirement": {
+            "clause": {
+              "direct": "assertion_input"
+            },
+            "evidence_class": "static_declaration"
+          },
+          "rule": {
+            "anchor": "x",
+            "rule_id": "x",
+            "specification_id": "x"
+          },
+          "source": {
+            "root": {
+              "ir": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              },
+              "root_node": 0
+            }
+          },
+          "stage": "D0",
+          "target": {
+            "analysis_boundary": null
+          }
+        },
+        "native_guard_basis": {
+          "none": null
+        },
+        "observations": [
+          {
+            "exposing_node": {
+              "none": null
+            },
+            "exposing_path": [],
+            "field_path": [],
+            "report_owner": "root_export"
+          }
+        ],
+        "prerequisites": [],
+        "primary": {
+          "none": null
+        },
+        "references": [],
+        "role": "mandatory_preflight",
+        "status": {
+          "proof": "Proven"
+        },
+        "substitution_basis": {
+          "none": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-some-Fact",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "Fact",
+      "value": {
+        "cause_fact_keys": [],
+        "companion_evidence_status": {
+          "none": null
+        },
+        "contradiction": {
+          "none": null
+        },
+        "evaluation": {
+          "evaluated": null
+        },
+        "key": {
+          "assertion_path": [],
+          "coordinate": {
+            "whole": null
+          },
+          "dimension": {
+            "none": null
+          },
+          "kind": "assertion_input",
+          "origin": {
+            "declared_path": [],
+            "mapping_ordinal": {
+              "none": null
+            },
+            "predicate": {
+              "case": {
+                "control": "compensation-commit-order"
+              },
+              "family": "root_preflight",
+              "rule": {
+                "anchor": "x",
+                "rule_id": "x",
+                "specification_id": "x"
+              }
+            },
+            "raw_validation_origin": {
+              "none": null
+            },
+            "source_ordinal": {
+              "none": null
+            }
+          },
+          "requirement": {
+            "clause": {
+              "direct": "assertion_input"
+            },
+            "evidence_class": "static_declaration"
+          },
+          "rule": {
+            "anchor": "x",
+            "rule_id": "x",
+            "specification_id": "x"
+          },
+          "source": {
+            "root": {
+              "ir": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              },
+              "root_node": 0
+            }
+          },
+          "stage": "D0",
+          "target": {
+            "analysis_boundary": null
+          }
+        },
+        "native_guard_basis": {
+          "none": null
+        },
+        "observations": [
+          {
+            "exposing_node": {
+              "none": null
+            },
+            "exposing_path": [],
+            "field_path": [],
+            "report_owner": "root_export"
+          }
+        ],
+        "prerequisites": [],
+        "primary": {
+          "none": null
+        },
+        "raw_validation_basis": {
+          "some": {
+            "condition": "zero",
+            "occurrence": {
+              "direction": "input",
+              "original_ordinal": 0,
+              "port_no": 0,
+              "sorted_ordinal": 0
+            },
+            "predecessor": {
+              "none": null
+            },
+            "rule": {
+              "identity": {
+                "normative_source": "x",
+                "rule_id": "x",
+                "short_statement": "x",
+                "source_anchor": "x"
+              }
+            },
+            "selected_error": {
+              "some": "invalid_or_duplicate_port"
+            },
+            "subject": 0
+          }
+        },
+        "references": [],
+        "role": "mandatory_preflight",
+        "status": {
+          "proof": "Proven"
+        },
+        "substitution_basis": {
+          "none": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-Origin",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "Origin",
+      "value": {
+        "declared_path": [],
+        "mapping_ordinal": {
+          "none": null
+        },
+        "predicate": {
+          "case": {
+            "control": "compensation-commit-order"
+          },
+          "family": "root_preflight",
+          "rule": {
+            "anchor": "x",
+            "rule_id": "x",
+            "specification_id": "x"
+          }
+        },
+        "raw_validation_origin": {
+          "none": null
+        },
+        "source_ordinal": {
+          "none": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-missing-Origin",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "Origin",
+      "value": {
+        "declared_path": [],
+        "mapping_ordinal": {
+          "none": null
+        },
+        "predicate": {
+          "case": {
+            "control": "compensation-commit-order"
+          },
+          "family": "root_preflight",
+          "rule": {
+            "anchor": "x",
+            "rule_id": "x",
+            "specification_id": "x"
+          }
+        },
+        "source_ordinal": {
+          "none": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-some-Origin",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "Origin",
+      "value": {
+        "declared_path": [],
+        "mapping_ordinal": {
+          "none": null
+        },
+        "predicate": {
+          "case": {
+            "control": "compensation-commit-order"
+          },
+          "family": "root_preflight",
+          "rule": {
+            "anchor": "x",
+            "rule_id": "x",
+            "specification_id": "x"
+          }
+        },
+        "raw_validation_origin": {
+          "some": {
+            "direction": "input",
+            "input_origin": {
+              "document": 0,
+              "path": []
+            },
+            "original_ordinal": 0
+          }
+        },
+        "source_ordinal": {
+          "none": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/context-missing-compiled_modules",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawContextBinding",
+      "value": {
+        "contents": {
+          "effect_catalogs": [],
+          "execution_universes": {
+            "capabilities": [],
+            "region_compatibility": [],
+            "regions": [],
+            "runtime_profiles": [],
+            "trust_domains": []
+          },
+          "flow_catalogs": {
+            "confidentiality": [],
+            "sinks": [],
+            "taints": []
+          },
+          "recovery_operations": {
+            "effects": [],
+            "reconciliation_operations": []
+          },
+          "relation_snapshots": {
+            "effect_resource": {
+              "none": null
+            },
+            "flow_execution": {
+              "none": null
+            },
+            "recovery_usage": {
+              "none": null
+            }
+          },
+          "resource_types": {
+            "descriptors": [],
+            "schemas": []
+          },
+          "type_schemas": [],
+          "usage_meters": []
+        },
+        "roles": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/context-missing-type_schemas",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawContextBinding",
+      "value": {
+        "contents": {
+          "compiled_modules": [],
+          "effect_catalogs": [],
+          "execution_universes": {
+            "capabilities": [],
+            "region_compatibility": [],
+            "regions": [],
+            "runtime_profiles": [],
+            "trust_domains": []
+          },
+          "flow_catalogs": {
+            "confidentiality": [],
+            "sinks": [],
+            "taints": []
+          },
+          "recovery_operations": {
+            "effects": [],
+            "reconciliation_operations": []
+          },
+          "relation_snapshots": {
+            "effect_resource": {
+              "none": null
+            },
+            "flow_execution": {
+              "none": null
+            },
+            "recovery_usage": {
+              "none": null
+            }
+          },
+          "resource_types": {
+            "descriptors": [],
+            "schemas": []
+          },
+          "usage_meters": []
+        },
+        "roles": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/context-missing-effect_catalogs",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawContextBinding",
+      "value": {
+        "contents": {
+          "compiled_modules": [],
+          "execution_universes": {
+            "capabilities": [],
+            "region_compatibility": [],
+            "regions": [],
+            "runtime_profiles": [],
+            "trust_domains": []
+          },
+          "flow_catalogs": {
+            "confidentiality": [],
+            "sinks": [],
+            "taints": []
+          },
+          "recovery_operations": {
+            "effects": [],
+            "reconciliation_operations": []
+          },
+          "relation_snapshots": {
+            "effect_resource": {
+              "none": null
+            },
+            "flow_execution": {
+              "none": null
+            },
+            "recovery_usage": {
+              "none": null
+            }
+          },
+          "resource_types": {
+            "descriptors": [],
+            "schemas": []
+          },
+          "type_schemas": [],
+          "usage_meters": []
+        },
+        "roles": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/context-missing-resource_types",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawContextBinding",
+      "value": {
+        "contents": {
+          "compiled_modules": [],
+          "effect_catalogs": [],
+          "execution_universes": {
+            "capabilities": [],
+            "region_compatibility": [],
+            "regions": [],
+            "runtime_profiles": [],
+            "trust_domains": []
+          },
+          "flow_catalogs": {
+            "confidentiality": [],
+            "sinks": [],
+            "taints": []
+          },
+          "recovery_operations": {
+            "effects": [],
+            "reconciliation_operations": []
+          },
+          "relation_snapshots": {
+            "effect_resource": {
+              "none": null
+            },
+            "flow_execution": {
+              "none": null
+            },
+            "recovery_usage": {
+              "none": null
+            }
+          },
+          "type_schemas": [],
+          "usage_meters": []
+        },
+        "roles": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/context-missing-flow_catalogs",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawContextBinding",
+      "value": {
+        "contents": {
+          "compiled_modules": [],
+          "effect_catalogs": [],
+          "execution_universes": {
+            "capabilities": [],
+            "region_compatibility": [],
+            "regions": [],
+            "runtime_profiles": [],
+            "trust_domains": []
+          },
+          "recovery_operations": {
+            "effects": [],
+            "reconciliation_operations": []
+          },
+          "relation_snapshots": {
+            "effect_resource": {
+              "none": null
+            },
+            "flow_execution": {
+              "none": null
+            },
+            "recovery_usage": {
+              "none": null
+            }
+          },
+          "resource_types": {
+            "descriptors": [],
+            "schemas": []
+          },
+          "type_schemas": [],
+          "usage_meters": []
+        },
+        "roles": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/context-missing-usage_meters",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawContextBinding",
+      "value": {
+        "contents": {
+          "compiled_modules": [],
+          "effect_catalogs": [],
+          "execution_universes": {
+            "capabilities": [],
+            "region_compatibility": [],
+            "regions": [],
+            "runtime_profiles": [],
+            "trust_domains": []
+          },
+          "flow_catalogs": {
+            "confidentiality": [],
+            "sinks": [],
+            "taints": []
+          },
+          "recovery_operations": {
+            "effects": [],
+            "reconciliation_operations": []
+          },
+          "relation_snapshots": {
+            "effect_resource": {
+              "none": null
+            },
+            "flow_execution": {
+              "none": null
+            },
+            "recovery_usage": {
+              "none": null
+            }
+          },
+          "resource_types": {
+            "descriptors": [],
+            "schemas": []
+          },
+          "type_schemas": []
+        },
+        "roles": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/context-missing-recovery_operations",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawContextBinding",
+      "value": {
+        "contents": {
+          "compiled_modules": [],
+          "effect_catalogs": [],
+          "execution_universes": {
+            "capabilities": [],
+            "region_compatibility": [],
+            "regions": [],
+            "runtime_profiles": [],
+            "trust_domains": []
+          },
+          "flow_catalogs": {
+            "confidentiality": [],
+            "sinks": [],
+            "taints": []
+          },
+          "relation_snapshots": {
+            "effect_resource": {
+              "none": null
+            },
+            "flow_execution": {
+              "none": null
+            },
+            "recovery_usage": {
+              "none": null
+            }
+          },
+          "resource_types": {
+            "descriptors": [],
+            "schemas": []
+          },
+          "type_schemas": [],
+          "usage_meters": []
+        },
+        "roles": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/context-missing-execution_universes",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawContextBinding",
+      "value": {
+        "contents": {
+          "compiled_modules": [],
+          "effect_catalogs": [],
+          "flow_catalogs": {
+            "confidentiality": [],
+            "sinks": [],
+            "taints": []
+          },
+          "recovery_operations": {
+            "effects": [],
+            "reconciliation_operations": []
+          },
+          "relation_snapshots": {
+            "effect_resource": {
+              "none": null
+            },
+            "flow_execution": {
+              "none": null
+            },
+            "recovery_usage": {
+              "none": null
+            }
+          },
+          "resource_types": {
+            "descriptors": [],
+            "schemas": []
+          },
+          "type_schemas": [],
+          "usage_meters": []
+        },
+        "roles": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/context-missing-relation_snapshots",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawContextBinding",
+      "value": {
+        "contents": {
+          "compiled_modules": [],
+          "effect_catalogs": [],
+          "execution_universes": {
+            "capabilities": [],
+            "region_compatibility": [],
+            "regions": [],
+            "runtime_profiles": [],
+            "trust_domains": []
+          },
+          "flow_catalogs": {
+            "confidentiality": [],
+            "sinks": [],
+            "taints": []
+          },
+          "recovery_operations": {
+            "effects": [],
+            "reconciliation_operations": []
+          },
+          "resource_types": {
+            "descriptors": [],
+            "schemas": []
+          },
+          "type_schemas": [],
+          "usage_meters": []
+        },
+        "roles": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/relation-slot-missing-effect_resource",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawContextBinding",
+      "value": {
+        "contents": {
+          "compiled_modules": [],
+          "effect_catalogs": [],
+          "execution_universes": {
+            "capabilities": [],
+            "region_compatibility": [],
+            "regions": [],
+            "runtime_profiles": [],
+            "trust_domains": []
+          },
+          "flow_catalogs": {
+            "confidentiality": [],
+            "sinks": [],
+            "taints": []
+          },
+          "recovery_operations": {
+            "effects": [],
+            "reconciliation_operations": []
+          },
+          "relation_snapshots": {
+            "flow_execution": {
+              "none": null
+            },
+            "recovery_usage": {
+              "none": null
+            }
+          },
+          "resource_types": {
+            "descriptors": [],
+            "schemas": []
+          },
+          "type_schemas": [],
+          "usage_meters": []
+        },
+        "roles": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/relation-slot-missing-recovery_usage",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawContextBinding",
+      "value": {
+        "contents": {
+          "compiled_modules": [],
+          "effect_catalogs": [],
+          "execution_universes": {
+            "capabilities": [],
+            "region_compatibility": [],
+            "regions": [],
+            "runtime_profiles": [],
+            "trust_domains": []
+          },
+          "flow_catalogs": {
+            "confidentiality": [],
+            "sinks": [],
+            "taints": []
+          },
+          "recovery_operations": {
+            "effects": [],
+            "reconciliation_operations": []
+          },
+          "relation_snapshots": {
+            "effect_resource": {
+              "none": null
+            },
+            "flow_execution": {
+              "none": null
+            }
+          },
+          "resource_types": {
+            "descriptors": [],
+            "schemas": []
+          },
+          "type_schemas": [],
+          "usage_meters": []
+        },
+        "roles": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/relation-slot-missing-flow_execution",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawContextBinding",
+      "value": {
+        "contents": {
+          "compiled_modules": [],
+          "effect_catalogs": [],
+          "execution_universes": {
+            "capabilities": [],
+            "region_compatibility": [],
+            "regions": [],
+            "runtime_profiles": [],
+            "trust_domains": []
+          },
+          "flow_catalogs": {
+            "confidentiality": [],
+            "sinks": [],
+            "taints": []
+          },
+          "recovery_operations": {
+            "effects": [],
+            "reconciliation_operations": []
+          },
+          "relation_snapshots": {
+            "effect_resource": {
+              "none": null
+            },
+            "recovery_usage": {
+              "none": null
+            }
+          },
+          "resource_types": {
+            "descriptors": [],
+            "schemas": []
+          },
+          "type_schemas": [],
+          "usage_meters": []
+        },
+        "roles": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-Fragment-profile",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "Fragment",
+      "value": {
+        "blockers": [],
+        "contradictions": [],
+        "facts": [],
+        "identity_strings": [],
+        "obligations": [],
+        "prerequisites": [],
+        "profile": "raw_contract_validation",
+        "scope": {
+          "analysis_semantics": "x",
+          "content": {
+            "nodes": [],
+            "roots": [
+              0
+            ]
+          },
+          "edition": "x",
+          "subject": {
+            "root_export": {
+              "assertion_inputs": 0,
+              "associations": [],
+              "caller_ir": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              },
+              "compiler": 0,
+              "context": 0,
+              "resolver_associations": 0,
+              "root_provenance": 0,
+              "top_export": {
+                "algorithm": "x",
+                "domain": "x",
+                "hex": "x"
+              }
+            }
+          }
+        },
+        "shape": "x"
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/partition-missing",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "InvalidFacts",
+      "type": "RawContextPartition",
+      "value": [
+        [
+          "analysis"
+        ]
+      ]
+    },
+    {
+      "case_id": "g01-raw-validation-staging/partition-split",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "InvalidFacts",
+      "type": "RawContextPartition",
+      "value": [
+        [
+          "analysis"
+        ],
+        [
+          "canonical_validation"
+        ]
+      ]
+    },
+    {
+      "case_id": "g01-raw-validation-staging/partition-duplicate",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "InvalidFacts",
+      "type": "RawContextPartition",
+      "value": [
+        [
+          "analysis",
+          "canonical_validation",
+          "analysis"
+        ]
+      ]
+    },
+    {
+      "case_id": "g01-raw-validation-staging/partition-reversed",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "InvalidFacts",
+      "type": "RawContextPartition",
+      "value": [
+        [
+          "canonical_validation",
+          "analysis"
+        ]
+      ]
+    },
+    {
+      "case_id": "g01-raw-validation-staging/resolver-not-supplied",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawContextBinding",
+      "value": {
+        "contents": {
+          "compiled_modules": [],
+          "effect_catalogs": [],
+          "execution_universes": {
+            "capabilities": [],
+            "region_compatibility": [],
+            "regions": [],
+            "runtime_profiles": [],
+            "trust_domains": []
+          },
+          "flow_catalogs": {
+            "confidentiality": [],
+            "sinks": [],
+            "taints": []
+          },
+          "recovery_operations": {
+            "effects": [],
+            "reconciliation_operations": []
+          },
+          "relation_snapshots": {
+            "effect_resource": {
+              "none": null
+            },
+            "flow_execution": {
+              "none": null
+            },
+            "recovery_usage": {
+              "none": null
+            }
+          },
+          "resource_types": {
+            "descriptors": [],
+            "schemas": []
+          },
+          "type_schemas": [],
+          "usage_meters": []
+        },
+        "roles": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/resolver-known-empty-not-native-absence",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawContextBinding",
+      "value": {
+        "contents": {
+          "compiled_modules": [],
+          "effect_catalogs": [],
+          "execution_universes": {
+            "capabilities": [],
+            "region_compatibility": [],
+            "regions": [],
+            "runtime_profiles": [],
+            "trust_domains": []
+          },
+          "flow_catalogs": {
+            "confidentiality": [],
+            "sinks": [],
+            "taints": []
+          },
+          "recovery_operations": {
+            "effects": [],
+            "reconciliation_operations": []
+          },
+          "relation_snapshots": {
+            "effect_resource": {
+              "none": null
+            },
+            "flow_execution": {
+              "none": null
+            },
+            "recovery_usage": {
+              "none": null
+            }
+          },
+          "resolver_dependencies": [],
+          "resource_types": {
+            "descriptors": [],
+            "schemas": []
+          },
+          "type_schemas": [],
+          "usage_meters": []
+        },
+        "roles": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/nfd-utf8-bytes",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawUtf8Bytes",
+      "value": [
+        101,
+        204,
+        129
+      ]
+    },
+    {
+      "case_id": "g01-raw-validation-staging/bad-utf8",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "InvalidFacts",
+      "type": "RawUtf8Bytes",
+      "value": [
+        255
+      ]
+    },
+    {
+      "case_id": "g01-raw-validation-staging/u32-zero",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortOccurrence",
+      "value": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "port_no": 0,
+        "sorted_ordinal": 0
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/distinct-original-sorted",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "RawPortOccurrence",
+      "value": {
+        "direction": "input",
+        "original_ordinal": 10,
+        "port_no": 3,
+        "sorted_ordinal": 2
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/u32-overflow",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPortOccurrence",
+      "value": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "port_no": 4294967296,
+        "sorted_ordinal": 0
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/owner-ModelRef-agentflow.computation.proof-report.model@4",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "ModelRef",
+      "value": {
+        "name": "RawValidationSubject",
+        "owner": "agentflow.computation.proof-report.model@4"
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/owner-ModelRef-agentflow.computation.proof-report.model@3",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "ModelRef",
+      "value": {
+        "name": "RawValidationSubject",
+        "owner": "agentflow.computation.proof-report.model@3"
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/owner-ModelRef-unknown.owner@99",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "ModelRef",
+      "value": {
+        "name": "RawValidationSubject",
+        "owner": "unknown.owner@99"
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/owner-ModelType-agentflow.computation.proof-report.model@4",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": null,
+      "type": "ModelType",
+      "value": {
+        "name": "RawValidationSubject",
+        "owner": "agentflow.computation.proof-report.model@4"
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/owner-ModelType-agentflow.computation.proof-report.model@3",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "ModelType",
+      "value": {
+        "name": "RawValidationSubject",
+        "owner": "agentflow.computation.proof-report.model@3"
+      }
+    },
+    {
+      "case_id": "g01-raw-validation-staging/owner-ModelType-unknown.owner@99",
+      "classification": "Registration Conformance;NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "ModelType",
+      "value": {
+        "name": "RawValidationSubject",
+        "owner": "unknown.owner@99"
+      }
+    }
+  ],
+  "claim": "Schema-derived shape coverage only; never validator-produced evidence",
+  "coverage": [
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawDocument-physical_json_utf8",
+      "type": "RawDocument",
+      "variant": "physical_json_utf8"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawDocument-physical_json_utf8-bytes",
+      "field": "bytes",
+      "type": "RawDocument",
+      "variant": "physical_json_utf8"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawDocument-declared_native_document",
+      "type": "RawDocument",
+      "variant": "declared_native_document"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawDocument-declared_native_document-declarations",
+      "field": "declarations",
+      "type": "RawDocument",
+      "variant": "declared_native_document"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawDocumentMember-field",
+      "type": "RawDocumentMember",
+      "variant": "field"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawDocumentMember-field-name",
+      "field": "name",
+      "type": "RawDocumentMember",
+      "variant": "field"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawDocumentMember-entry",
+      "type": "RawDocumentMember",
+      "variant": "entry"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawDocumentMember-entry-ordinal",
+      "field": "ordinal",
+      "type": "RawDocumentMember",
+      "variant": "entry"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawInputOrigin-document",
+      "field": "document",
+      "type": "RawInputOrigin",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawInputOrigin-path",
+      "field": "path",
+      "type": "RawInputOrigin",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPhysicalAssociation-not_supplied",
+      "type": "RawPhysicalAssociation",
+      "variant": "not_supplied"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPhysicalAssociation-supplied",
+      "type": "RawPhysicalAssociation",
+      "variant": "supplied"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPhysicalAssociation-supplied-document",
+      "field": "document",
+      "type": "RawPhysicalAssociation",
+      "variant": "supplied"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPhysicalAssociation-supplied-value_path",
+      "field": "value_path",
+      "type": "RawPhysicalAssociation",
+      "variant": "supplied"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawParsedInput-candidate",
+      "field": "candidate",
+      "type": "RawParsedInput",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawParsedInput-origin",
+      "field": "origin",
+      "type": "RawParsedInput",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawParsedInput-physical",
+      "field": "physical",
+      "type": "RawParsedInput",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawContextRole-analysis",
+      "type": "RawContextRole",
+      "variant": "analysis"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawContextRole-canonical_validation",
+      "type": "RawContextRole",
+      "variant": "canonical_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawContextBinding-contents",
+      "field": "contents",
+      "type": "RawContextBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawContextBinding-roles",
+      "field": "roles",
+      "type": "RawContextBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationSubject-owner_compiler",
+      "field": "owner_compiler",
+      "type": "RawValidationSubject",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationSubject-input",
+      "field": "input",
+      "type": "RawValidationSubject",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationSubject-context",
+      "field": "context",
+      "type": "RawValidationSubject",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationCase-positive_unique_io_ports",
+      "type": "RawValidationCase",
+      "variant": "positive_unique_io_ports"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationClause-positive_unique_io_ports",
+      "type": "RawValidationClause",
+      "variant": "positive_unique_io_ports"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationSubstage-canonical_validation/io_port_check",
+      "type": "RawValidationSubstage",
+      "variant": "canonical_validation/io_port_check"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortDirection-input",
+      "type": "RawPortDirection",
+      "variant": "input"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortDirection-output",
+      "type": "RawPortDirection",
+      "variant": "output"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortMember-port_no",
+      "type": "RawPortMember",
+      "variant": "port_no"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortOccurrence-direction",
+      "field": "direction",
+      "type": "RawPortOccurrence",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortOccurrence-original_ordinal",
+      "field": "original_ordinal",
+      "type": "RawPortOccurrence",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortOccurrence-sorted_ordinal",
+      "field": "sorted_ordinal",
+      "type": "RawPortOccurrence",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortOccurrence-port_no",
+      "field": "port_no",
+      "type": "RawPortOccurrence",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationOrigin-input_origin",
+      "field": "input_origin",
+      "type": "RawValidationOrigin",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationOrigin-direction",
+      "field": "direction",
+      "type": "RawValidationOrigin",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationOrigin-original_ordinal",
+      "field": "original_ordinal",
+      "type": "RawValidationOrigin",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-ExactCompiledComponentContractSchemaReference-module",
+      "field": "module",
+      "type": "ExactCompiledComponentContractSchemaReference",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-ExactCompiledComponentContractSchemaReference-type_name",
+      "field": "type_name",
+      "type": "ExactCompiledComponentContractSchemaReference",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-ExactCompiledComponentContractSchemaReference-definition",
+      "field": "definition",
+      "type": "ExactCompiledComponentContractSchemaReference",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-ExactRuleContentReference-identity",
+      "field": "identity",
+      "type": "ExactRuleContentReference",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortConstraint-positive_unique_io_ports",
+      "type": "RawPortConstraint",
+      "variant": "positive_unique_io_ports"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortPredecessor-none",
+      "type": "RawPortPredecessor",
+      "variant": "none"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortPredecessor-some",
+      "type": "RawPortPredecessor",
+      "variant": "some"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortPredecessor-some-original_ordinal",
+      "field": "original_ordinal",
+      "type": "RawPortPredecessor",
+      "variant": "some"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortPredecessor-some-port_no",
+      "field": "port_no",
+      "type": "RawPortPredecessor",
+      "variant": "some"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortCondition-zero",
+      "type": "RawPortCondition",
+      "variant": "zero"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortCondition-duplicate",
+      "type": "RawPortCondition",
+      "variant": "duplicate"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortCondition-positive_fresh",
+      "type": "RawPortCondition",
+      "variant": "positive_fresh"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortSelectedError-invalid_or_duplicate_port",
+      "type": "RawPortSelectedError",
+      "variant": "invalid_or_duplicate_port"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortCheckBasis-subject",
+      "field": "subject",
+      "type": "RawPortCheckBasis",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortCheckBasis-occurrence",
+      "field": "occurrence",
+      "type": "RawPortCheckBasis",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortCheckBasis-predecessor",
+      "field": "predecessor",
+      "type": "RawPortCheckBasis",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortCheckBasis-condition",
+      "field": "condition",
+      "type": "RawPortCheckBasis",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortCheckBasis-selected_error",
+      "field": "selected_error",
+      "type": "RawPortCheckBasis",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortCheckBasis-rule",
+      "field": "rule",
+      "type": "RawPortCheckBasis",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortRejectionWitness-zero",
+      "type": "RawPortRejectionWitness",
+      "variant": "zero"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-zero-subject",
+      "field": "subject",
+      "type": "RawPortRejectionWitness",
+      "variant": "zero"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-zero-occurrence",
+      "field": "occurrence",
+      "type": "RawPortRejectionWitness",
+      "variant": "zero"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-zero-raw_member_value",
+      "field": "raw_member_value",
+      "type": "RawPortRejectionWitness",
+      "variant": "zero"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-zero-minimum",
+      "field": "minimum",
+      "type": "RawPortRejectionWitness",
+      "variant": "zero"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortRejectionWitness-duplicate",
+      "type": "RawPortRejectionWitness",
+      "variant": "duplicate"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-duplicate-subject",
+      "field": "subject",
+      "type": "RawPortRejectionWitness",
+      "variant": "duplicate"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-duplicate-occurrence",
+      "field": "occurrence",
+      "type": "RawPortRejectionWitness",
+      "variant": "duplicate"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-duplicate-previous_original_ordinal",
+      "field": "previous_original_ordinal",
+      "type": "RawPortRejectionWitness",
+      "variant": "duplicate"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-duplicate-previous_port_no",
+      "field": "previous_port_no",
+      "type": "RawPortRejectionWitness",
+      "variant": "duplicate"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPrefixStop-component_identity",
+      "type": "RawPrefixStop",
+      "variant": "component_identity"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPrefixStop-schema_resolution",
+      "type": "RawPrefixStop",
+      "variant": "schema_resolution"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPrefixStop-schema_resolution-occurrence",
+      "field": "occurrence",
+      "type": "RawPrefixStop",
+      "variant": "schema_resolution"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPrefixStop-port_rejection",
+      "type": "RawPrefixStop",
+      "variant": "port_rejection"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPrefixStop-port_rejection-occurrence",
+      "field": "occurrence",
+      "type": "RawPrefixStop",
+      "variant": "port_rejection"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortApplicability-reached",
+      "type": "RawPortApplicability",
+      "variant": "reached"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortApplicability-reached-occurrence",
+      "field": "occurrence",
+      "type": "RawPortApplicability",
+      "variant": "reached"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortApplicability-not_reached",
+      "type": "RawPortApplicability",
+      "variant": "not_reached"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortApplicability-not_reached-direction",
+      "field": "direction",
+      "type": "RawPortApplicability",
+      "variant": "not_reached"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortApplicability-not_reached-original_ordinal",
+      "field": "original_ordinal",
+      "type": "RawPortApplicability",
+      "variant": "not_reached"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortApplicability-not_reached-stopped_by",
+      "field": "stopped_by",
+      "type": "RawPortApplicability",
+      "variant": "not_reached"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortApplicability-stopped_by_earlier_failure",
+      "type": "RawPortApplicability",
+      "variant": "stopped_by_earlier_failure"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortApplicability-stopped_by_earlier_failure-cause",
+      "field": "cause",
+      "type": "RawPortApplicability",
+      "variant": "stopped_by_earlier_failure"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortApplicability-no_port",
+      "type": "RawPortApplicability",
+      "variant": "no_port"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortApplicability-no_port-direction",
+      "field": "direction",
+      "type": "RawPortApplicability",
+      "variant": "no_port"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationStageState-raw_physical",
+      "type": "RawValidationStageState",
+      "variant": "raw_physical"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationStageState-parsed_declaration",
+      "type": "RawValidationStageState",
+      "variant": "parsed_declaration"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationStageState-canonical_diagnostic_presentation",
+      "type": "RawValidationStageState",
+      "variant": "canonical_diagnostic_presentation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationStageState-canonical_validated_declaration",
+      "type": "RawValidationStageState",
+      "variant": "canonical_validated_declaration"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationStageState-checked_contract",
+      "type": "RawValidationStageState",
+      "variant": "checked_contract"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-MissingRequiredSource",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "MissingRequiredSource"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-MissingDeclarativeOrigin",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "MissingDeclarativeOrigin"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-InvalidSourceAssociation",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "InvalidSourceAssociation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-InvalidContextBinding",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "InvalidContextBinding"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-IncompleteContent",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "IncompleteContent"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-InvalidPhysicalInput",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "InvalidPhysicalInput"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-UnsupportedPredicate",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "UnsupportedPredicate"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-NotImplemented",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "NotImplemented"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-InvalidIdentity",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "InvalidIdentity"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-UnsupportedModel",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "UnsupportedModel"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-ResourceLimit",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "ResourceLimit"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-shape",
+      "field": "shape",
+      "type": "RawValidationFragment",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-profile",
+      "field": "profile",
+      "type": "RawValidationFragment",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-scope",
+      "field": "scope",
+      "type": "RawValidationFragment",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-applicability",
+      "field": "applicability",
+      "type": "RawValidationFragment",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-facts",
+      "field": "facts",
+      "type": "RawValidationFragment",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-prerequisites",
+      "field": "prerequisites",
+      "type": "RawValidationFragment",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-obligations",
+      "field": "obligations",
+      "type": "RawValidationFragment",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationProfile-raw_contract_validation",
+      "type": "RawValidationProfile",
+      "variant": "raw_contract_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-ScopeSubject-raw_contract_validation",
+      "type": "ScopeSubject",
+      "variant": "raw_contract_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-PredicateFamily-raw_contract_validation",
+      "type": "PredicateFamily",
+      "variant": "raw_contract_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-ClosedPredicateCase-raw_contract_validation",
+      "type": "ClosedPredicateCase",
+      "variant": "raw_contract_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-RequirementClause-raw_validation",
+      "type": "RequirementClause",
+      "variant": "raw_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-Source-raw_validation",
+      "type": "Source",
+      "variant": "raw_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Source-raw_validation-subject",
+      "field": "subject",
+      "type": "Source",
+      "variant": "raw_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-Target-raw_declaration_constraint",
+      "type": "Target",
+      "variant": "raw_declaration_constraint"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-subject",
+      "field": "subject",
+      "type": "Target",
+      "variant": "raw_declaration_constraint"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-schema",
+      "field": "schema",
+      "type": "Target",
+      "variant": "raw_declaration_constraint"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-rule",
+      "field": "rule",
+      "type": "Target",
+      "variant": "raw_declaration_constraint"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-direction",
+      "field": "direction",
+      "type": "Target",
+      "variant": "raw_declaration_constraint"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-constraint",
+      "field": "constraint",
+      "type": "Target",
+      "variant": "raw_declaration_constraint"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-Coordinate-raw_port",
+      "type": "Coordinate",
+      "variant": "raw_port"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Coordinate-raw_port-occurrence",
+      "field": "occurrence",
+      "type": "Coordinate",
+      "variant": "raw_port"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Coordinate-raw_port-member",
+      "field": "member",
+      "type": "Coordinate",
+      "variant": "raw_port"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-TypedContradiction-raw_validation",
+      "type": "TypedContradiction",
+      "variant": "raw_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-TypedContradiction-raw_validation-witness",
+      "field": "witness",
+      "type": "TypedContradiction",
+      "variant": "raw_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-EvidenceRef-raw_validation_member",
+      "type": "EvidenceRef",
+      "variant": "raw_validation_member"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-EvidenceRef-raw_validation_member-subject",
+      "field": "subject",
+      "type": "EvidenceRef",
+      "variant": "raw_validation_member"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-EvidenceRef-raw_validation_member-source_member_path",
+      "field": "source_member_path",
+      "type": "EvidenceRef",
+      "variant": "raw_validation_member"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-ObservationOwner-raw_contract_validation",
+      "type": "ObservationOwner",
+      "variant": "raw_contract_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-Fact",
+      "field": "raw_validation_basis",
+      "type": "Fact"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-Origin",
+      "field": "raw_validation_origin",
+      "type": "Origin"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-Fragment-profile",
+      "field": "profile",
+      "type": "Fragment",
+      "variant": "raw_contract_validation"
+    }
+  ]
+}

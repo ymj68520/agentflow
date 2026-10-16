@@ -1,0 +1,1259 @@
+{
+  "analysis": "agentflow.root-export-checker@5",
+  "applied_rules": [
+    "AF-CONTRACT-0001",
+    "AF-CONTRACT-0002",
+    "AF-CONTRACT-0003",
+    "AF-CONTRACT-0004",
+    "AF-CONTRACT-0005",
+    "AF-CONTRACT-0006",
+    "AF-CONTRACT-0007",
+    "AF-CONTRACT-0008",
+    "AF-CONTRACT-0009",
+    "AF-CONTRACT-0010",
+    "AF-CONTRACT-0011",
+    "AF-CONTRACT-0012",
+    "AF-CONTRACT-0013",
+    "AF-CONTRACT-0014",
+    "AF-CONTRACT-0015",
+    "AF-CONTRACT-0016",
+    "AF-CONTRACT-0017",
+    "AF-CONTRACT-0018",
+    "AF-CONTRACT-0019",
+    "AF-CONTRACT-0020",
+    "AF-CONTRACT-0021",
+    "AF-CONTRACT-0022",
+    "AF-SEMANTIC-0111",
+    "AF-SEMANTIC-0112",
+    "AF-SEMANTIC-0113",
+    "AF-SEMANTIC-0114",
+    "AF-SEMANTIC-0115",
+    "AF-SEMANTIC-0116",
+    "AF-SEMANTIC-0117",
+    "AF-SEMANTIC-0118",
+    "AF-SEMANTIC-0119",
+    "AF-SEMANTIC-0120",
+    "AF-SEMANTIC-0121",
+    "AF-SEMANTIC-0122",
+    "AF-SEMANTIC-0123",
+    "AF-SEMANTIC-0124",
+    "AF-SEMANTIC-0125",
+    "AF-SEMANTIC-0126",
+    "AF-SEMANTIC-0127",
+    "AF-SEMANTIC-0128",
+    "AF-SEMANTIC-0129",
+    "AF-SEMANTIC-0130",
+    "AF-SEMANTIC-0131",
+    "AF-SEMANTIC-0132",
+    "AF-SEMANTIC-0133",
+    "AF-SEMANTIC-0134",
+    "AF-SEMANTIC-0135",
+    "AF-SEMANTIC-0136",
+    "AF-SEMANTIC-0137",
+    "AF-SEMANTIC-0138",
+    "AF-SEMANTIC-0139",
+    "AF-SEMANTIC-0140",
+    "AF-SEMANTIC-0141",
+    "AF-SEMANTIC-0142",
+    "AF-SEMANTIC-0143",
+    "AF-SEMANTIC-0144",
+    "AF-SEMANTIC-0145",
+    "AF-SEMANTIC-0146",
+    "AF-SEMANTIC-0147",
+    "AF-SEMANTIC-0148",
+    "AF-SEMANTIC-0149",
+    "AF-SEMANTIC-0150",
+    "AF-SEMANTIC-0151",
+    "AF-SEMANTIC-0152",
+    "AF-SEMANTIC-0153",
+    "AF-SEMANTIC-0154",
+    "AF-SEMANTIC-0155",
+    "AF-SEMANTIC-0156",
+    "AF-SEMANTIC-0157",
+    "AF-SEMANTIC-0158",
+    "AF-SEMANTIC-0159",
+    "AF-SEMANTIC-0160",
+    "AF-SEMANTIC-0161",
+    "AF-SEMANTIC-0162",
+    "AF-SEMANTIC-0163",
+    "AF-SEMANTIC-0164",
+    "AF-SEMANTIC-0165",
+    "AF-SEMANTIC-0166",
+    "AF-SEMANTIC-0167",
+    "AF-SEMANTIC-0168",
+    "AF-SEMANTIC-0169",
+    "AF-SEMANTIC-0170",
+    "AF-SEMANTIC-0171",
+    "AF-SEMANTIC-0172",
+    "AF-SEMANTIC-0173",
+    "AF-SEMANTIC-0174",
+    "AF-SEMANTIC-0175",
+    "AF-SEMANTIC-0176",
+    "AF-SEMANTIC-0177",
+    "AF-SEMANTIC-0178",
+    "AF-SEMANTIC-0179",
+    "AF-SEMANTIC-0180",
+    "AF-SEMANTIC-0181",
+    "AF-SEMANTIC-0182",
+    "AF-SEMANTIC-0183",
+    "AF-SEMANTIC-0184",
+    "AF-SEMANTIC-0185",
+    "AF-SEMANTIC-0186",
+    "AF-SEMANTIC-0187",
+    "AF-SEMANTIC-0189",
+    "AF-SEMANTIC-0191",
+    "AF-SEMANTIC-0192",
+    "AF-SEMANTIC-0193",
+    "AF-SEMANTIC-0194",
+    "AF-SEMANTIC-0195",
+    "AF-SEMANTIC-0196",
+    "AF-SEMANTIC-0197",
+    "AF-SEMANTIC-0198",
+    "AF-SEMANTIC-0199",
+    "AF-SEMANTIC-0200",
+    "AF-SEMANTIC-0201",
+    "AF-SEMANTIC-0202",
+    "AF-SEMANTIC-0203",
+    "AF-SEMANTIC-0204",
+    "AF-SEMANTIC-0205",
+    "AF-SEMANTIC-0206",
+    "AF-SEMANTIC-0207",
+    "AF-SEMANTIC-0208",
+    "AF-SEMANTIC-0209",
+    "AF-SEMANTIC-0210",
+    "AF-SEMANTIC-0211",
+    "AF-SEMANTIC-0212",
+    "AF-SEMANTIC-0213",
+    "AF-SEMANTIC-0214",
+    "AF-SEMANTIC-0215",
+    "AF-SEMANTIC-0216",
+    "AF-SEMANTIC-0217",
+    "AF-SEMANTIC-0218",
+    "AF-SEMANTIC-0219",
+    "AF-SEMANTIC-0220",
+    "AF-SEMANTIC-0221",
+    "AF-SEMANTIC-0222",
+    "AF-SEMANTIC-0228",
+    "AF-SEMANTIC-0229",
+    "AF-SEMANTIC-0230",
+    "AF-SEMANTIC-0231",
+    "AF-SEMANTIC-0232",
+    "AF-SEMANTIC-0233",
+    "AF-SEMANTIC-0234",
+    "AF-SEMANTIC-0235",
+    "AF-SEMANTIC-0236",
+    "AF-SEMANTIC-0237",
+    "AF-SEMANTIC-0238",
+    "AF-SEMANTIC-0239",
+    "AF-SEMANTIC-0240",
+    "AF-SEMANTIC-0241",
+    "AF-SEMANTIC-0242",
+    "AF-SEMANTIC-0245",
+    "AF-SEMANTIC-0246",
+    "AF-SEMANTIC-0247",
+    "AF-SEMANTIC-0248",
+    "AF-SEMANTIC-0249",
+    "AF-SEMANTIC-0250",
+    "AF-SEMANTIC-0251",
+    "AF-SEMANTIC-0252",
+    "AF-SEMANTIC-0253",
+    "AF-SEMANTIC-0254",
+    "AF-SEMANTIC-0255",
+    "AF-SEMANTIC-0256",
+    "AF-SEMANTIC-0257",
+    "AF-SEMANTIC-0258",
+    "AF-SEMANTIC-0259",
+    "AF-SEMANTIC-0260",
+    "AF-SEMANTIC-0261",
+    "AF-SEMANTIC-0262",
+    "AF-SEMANTIC-0263",
+    "AF-SEMANTIC-0264",
+    "AF-SEMANTIC-0265",
+    "AF-SEMANTIC-0266",
+    "AF-SEMANTIC-0267",
+    "AF-SEMANTIC-0268",
+    "AF-SEMANTIC-0269",
+    "AF-SEMANTIC-0270",
+    "AF-SEMANTIC-0271"
+  ],
+  "capture_case_ids": 0,
+  "case_ids": [
+    "g01-raw-validation-staging/shape-RawUtf8Bytes",
+    "g01-raw-validation-staging/shape-RawDocument",
+    "g01-raw-validation-staging/variant-RawDocument-physical_json_utf8",
+    "g01-raw-validation-staging/missing-RawDocument-physical_json_utf8-bytes",
+    "g01-raw-validation-staging/extra-RawDocument-physical_json_utf8",
+    "g01-raw-validation-staging/variant-RawDocument-declared_native_document",
+    "g01-raw-validation-staging/missing-RawDocument-declared_native_document-declarations",
+    "g01-raw-validation-staging/extra-RawDocument-declared_native_document",
+    "g01-raw-validation-staging/unknown-RawDocument",
+    "g01-raw-validation-staging/shape-RawDocumentMember",
+    "g01-raw-validation-staging/variant-RawDocumentMember-field",
+    "g01-raw-validation-staging/missing-RawDocumentMember-field-name",
+    "g01-raw-validation-staging/extra-RawDocumentMember-field",
+    "g01-raw-validation-staging/variant-RawDocumentMember-entry",
+    "g01-raw-validation-staging/missing-RawDocumentMember-entry-ordinal",
+    "g01-raw-validation-staging/extra-RawDocumentMember-entry",
+    "g01-raw-validation-staging/unknown-RawDocumentMember",
+    "g01-raw-validation-staging/shape-RawInputOrigin",
+    "g01-raw-validation-staging/missing-RawInputOrigin-document",
+    "g01-raw-validation-staging/missing-RawInputOrigin-path",
+    "g01-raw-validation-staging/extra-RawInputOrigin",
+    "g01-raw-validation-staging/shape-RawPhysicalAssociation",
+    "g01-raw-validation-staging/variant-RawPhysicalAssociation-not_supplied",
+    "g01-raw-validation-staging/variant-RawPhysicalAssociation-supplied",
+    "g01-raw-validation-staging/missing-RawPhysicalAssociation-supplied-document",
+    "g01-raw-validation-staging/missing-RawPhysicalAssociation-supplied-value_path",
+    "g01-raw-validation-staging/extra-RawPhysicalAssociation-supplied",
+    "g01-raw-validation-staging/unknown-RawPhysicalAssociation",
+    "g01-raw-validation-staging/shape-RawParsedInput",
+    "g01-raw-validation-staging/missing-RawParsedInput-candidate",
+    "g01-raw-validation-staging/missing-RawParsedInput-origin",
+    "g01-raw-validation-staging/missing-RawParsedInput-physical",
+    "g01-raw-validation-staging/extra-RawParsedInput",
+    "g01-raw-validation-staging/shape-RawContextRole",
+    "g01-raw-validation-staging/variant-RawContextRole-analysis",
+    "g01-raw-validation-staging/variant-RawContextRole-canonical_validation",
+    "g01-raw-validation-staging/unknown-RawContextRole",
+    "g01-raw-validation-staging/shape-RawContextPartition",
+    "g01-raw-validation-staging/shape-RawContextBinding",
+    "g01-raw-validation-staging/missing-RawContextBinding-contents",
+    "g01-raw-validation-staging/missing-RawContextBinding-roles",
+    "g01-raw-validation-staging/extra-RawContextBinding",
+    "g01-raw-validation-staging/shape-RawValidationSubject",
+    "g01-raw-validation-staging/missing-RawValidationSubject-owner_compiler",
+    "g01-raw-validation-staging/missing-RawValidationSubject-input",
+    "g01-raw-validation-staging/missing-RawValidationSubject-context",
+    "g01-raw-validation-staging/extra-RawValidationSubject",
+    "g01-raw-validation-staging/shape-RawValidationCase",
+    "g01-raw-validation-staging/variant-RawValidationCase-positive_unique_io_ports",
+    "g01-raw-validation-staging/unknown-RawValidationCase",
+    "g01-raw-validation-staging/shape-RawValidationClause",
+    "g01-raw-validation-staging/variant-RawValidationClause-positive_unique_io_ports",
+    "g01-raw-validation-staging/unknown-RawValidationClause",
+    "g01-raw-validation-staging/shape-RawValidationSubstage",
+    "g01-raw-validation-staging/variant-RawValidationSubstage-canonical_validation/io_port_check",
+    "g01-raw-validation-staging/unknown-RawValidationSubstage",
+    "g01-raw-validation-staging/shape-RawPortDirection",
+    "g01-raw-validation-staging/variant-RawPortDirection-input",
+    "g01-raw-validation-staging/variant-RawPortDirection-output",
+    "g01-raw-validation-staging/unknown-RawPortDirection",
+    "g01-raw-validation-staging/shape-RawPortMember",
+    "g01-raw-validation-staging/variant-RawPortMember-port_no",
+    "g01-raw-validation-staging/unknown-RawPortMember",
+    "g01-raw-validation-staging/shape-RawPortOccurrence",
+    "g01-raw-validation-staging/missing-RawPortOccurrence-direction",
+    "g01-raw-validation-staging/missing-RawPortOccurrence-original_ordinal",
+    "g01-raw-validation-staging/missing-RawPortOccurrence-sorted_ordinal",
+    "g01-raw-validation-staging/missing-RawPortOccurrence-port_no",
+    "g01-raw-validation-staging/extra-RawPortOccurrence",
+    "g01-raw-validation-staging/shape-RawValidationOrigin",
+    "g01-raw-validation-staging/missing-RawValidationOrigin-input_origin",
+    "g01-raw-validation-staging/missing-RawValidationOrigin-direction",
+    "g01-raw-validation-staging/missing-RawValidationOrigin-original_ordinal",
+    "g01-raw-validation-staging/extra-RawValidationOrigin",
+    "g01-raw-validation-staging/shape-ExactCompiledComponentContractSchemaReference",
+    "g01-raw-validation-staging/missing-ExactCompiledComponentContractSchemaReference-module",
+    "g01-raw-validation-staging/missing-ExactCompiledComponentContractSchemaReference-type_name",
+    "g01-raw-validation-staging/missing-ExactCompiledComponentContractSchemaReference-definition",
+    "g01-raw-validation-staging/extra-ExactCompiledComponentContractSchemaReference",
+    "g01-raw-validation-staging/shape-ExactRuleContentReference",
+    "g01-raw-validation-staging/missing-ExactRuleContentReference-identity",
+    "g01-raw-validation-staging/extra-ExactRuleContentReference",
+    "g01-raw-validation-staging/shape-RawPortConstraint",
+    "g01-raw-validation-staging/variant-RawPortConstraint-positive_unique_io_ports",
+    "g01-raw-validation-staging/unknown-RawPortConstraint",
+    "g01-raw-validation-staging/shape-RawPortPredecessor",
+    "g01-raw-validation-staging/variant-RawPortPredecessor-none",
+    "g01-raw-validation-staging/variant-RawPortPredecessor-some",
+    "g01-raw-validation-staging/missing-RawPortPredecessor-some-original_ordinal",
+    "g01-raw-validation-staging/missing-RawPortPredecessor-some-port_no",
+    "g01-raw-validation-staging/extra-RawPortPredecessor-some",
+    "g01-raw-validation-staging/unknown-RawPortPredecessor",
+    "g01-raw-validation-staging/shape-RawPortCondition",
+    "g01-raw-validation-staging/variant-RawPortCondition-zero",
+    "g01-raw-validation-staging/variant-RawPortCondition-duplicate",
+    "g01-raw-validation-staging/variant-RawPortCondition-positive_fresh",
+    "g01-raw-validation-staging/unknown-RawPortCondition",
+    "g01-raw-validation-staging/shape-RawPortSelectedError",
+    "g01-raw-validation-staging/variant-RawPortSelectedError-invalid_or_duplicate_port",
+    "g01-raw-validation-staging/unknown-RawPortSelectedError",
+    "g01-raw-validation-staging/shape-RawPortCheckBasis",
+    "g01-raw-validation-staging/missing-RawPortCheckBasis-subject",
+    "g01-raw-validation-staging/missing-RawPortCheckBasis-occurrence",
+    "g01-raw-validation-staging/missing-RawPortCheckBasis-predecessor",
+    "g01-raw-validation-staging/missing-RawPortCheckBasis-condition",
+    "g01-raw-validation-staging/missing-RawPortCheckBasis-selected_error",
+    "g01-raw-validation-staging/missing-RawPortCheckBasis-rule",
+    "g01-raw-validation-staging/extra-RawPortCheckBasis",
+    "g01-raw-validation-staging/shape-RawPortRejectionWitness",
+    "g01-raw-validation-staging/variant-RawPortRejectionWitness-zero",
+    "g01-raw-validation-staging/missing-RawPortRejectionWitness-zero-subject",
+    "g01-raw-validation-staging/missing-RawPortRejectionWitness-zero-occurrence",
+    "g01-raw-validation-staging/missing-RawPortRejectionWitness-zero-raw_member_value",
+    "g01-raw-validation-staging/missing-RawPortRejectionWitness-zero-minimum",
+    "g01-raw-validation-staging/extra-RawPortRejectionWitness-zero",
+    "g01-raw-validation-staging/variant-RawPortRejectionWitness-duplicate",
+    "g01-raw-validation-staging/missing-RawPortRejectionWitness-duplicate-subject",
+    "g01-raw-validation-staging/missing-RawPortRejectionWitness-duplicate-occurrence",
+    "g01-raw-validation-staging/missing-RawPortRejectionWitness-duplicate-previous_original_ordinal",
+    "g01-raw-validation-staging/missing-RawPortRejectionWitness-duplicate-previous_port_no",
+    "g01-raw-validation-staging/extra-RawPortRejectionWitness-duplicate",
+    "g01-raw-validation-staging/unknown-RawPortRejectionWitness",
+    "g01-raw-validation-staging/shape-RawPrefixStop",
+    "g01-raw-validation-staging/variant-RawPrefixStop-component_identity",
+    "g01-raw-validation-staging/variant-RawPrefixStop-schema_resolution",
+    "g01-raw-validation-staging/missing-RawPrefixStop-schema_resolution-occurrence",
+    "g01-raw-validation-staging/extra-RawPrefixStop-schema_resolution",
+    "g01-raw-validation-staging/variant-RawPrefixStop-port_rejection",
+    "g01-raw-validation-staging/missing-RawPrefixStop-port_rejection-occurrence",
+    "g01-raw-validation-staging/extra-RawPrefixStop-port_rejection",
+    "g01-raw-validation-staging/unknown-RawPrefixStop",
+    "g01-raw-validation-staging/shape-RawPortApplicability",
+    "g01-raw-validation-staging/variant-RawPortApplicability-reached",
+    "g01-raw-validation-staging/missing-RawPortApplicability-reached-occurrence",
+    "g01-raw-validation-staging/extra-RawPortApplicability-reached",
+    "g01-raw-validation-staging/variant-RawPortApplicability-not_reached",
+    "g01-raw-validation-staging/missing-RawPortApplicability-not_reached-direction",
+    "g01-raw-validation-staging/missing-RawPortApplicability-not_reached-original_ordinal",
+    "g01-raw-validation-staging/missing-RawPortApplicability-not_reached-stopped_by",
+    "g01-raw-validation-staging/extra-RawPortApplicability-not_reached",
+    "g01-raw-validation-staging/variant-RawPortApplicability-stopped_by_earlier_failure",
+    "g01-raw-validation-staging/missing-RawPortApplicability-stopped_by_earlier_failure-cause",
+    "g01-raw-validation-staging/extra-RawPortApplicability-stopped_by_earlier_failure",
+    "g01-raw-validation-staging/variant-RawPortApplicability-no_port",
+    "g01-raw-validation-staging/missing-RawPortApplicability-no_port-direction",
+    "g01-raw-validation-staging/extra-RawPortApplicability-no_port",
+    "g01-raw-validation-staging/unknown-RawPortApplicability",
+    "g01-raw-validation-staging/shape-RawValidationStageState",
+    "g01-raw-validation-staging/variant-RawValidationStageState-raw_physical",
+    "g01-raw-validation-staging/variant-RawValidationStageState-parsed_declaration",
+    "g01-raw-validation-staging/variant-RawValidationStageState-canonical_diagnostic_presentation",
+    "g01-raw-validation-staging/variant-RawValidationStageState-canonical_validated_declaration",
+    "g01-raw-validation-staging/variant-RawValidationStageState-checked_contract",
+    "g01-raw-validation-staging/unknown-RawValidationStageState",
+    "g01-raw-validation-staging/shape-RawValidationAdmissionFailure",
+    "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-MissingRequiredSource",
+    "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-MissingDeclarativeOrigin",
+    "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-InvalidSourceAssociation",
+    "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-InvalidContextBinding",
+    "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-IncompleteContent",
+    "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-InvalidPhysicalInput",
+    "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-UnsupportedPredicate",
+    "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-NotImplemented",
+    "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-InvalidIdentity",
+    "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-UnsupportedModel",
+    "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-ResourceLimit",
+    "g01-raw-validation-staging/unknown-RawValidationAdmissionFailure",
+    "g01-raw-validation-staging/shape-RawValidationFragment",
+    "g01-raw-validation-staging/missing-RawValidationFragment-shape",
+    "g01-raw-validation-staging/missing-RawValidationFragment-profile",
+    "g01-raw-validation-staging/missing-RawValidationFragment-scope",
+    "g01-raw-validation-staging/missing-RawValidationFragment-applicability",
+    "g01-raw-validation-staging/missing-RawValidationFragment-facts",
+    "g01-raw-validation-staging/missing-RawValidationFragment-prerequisites",
+    "g01-raw-validation-staging/missing-RawValidationFragment-obligations",
+    "g01-raw-validation-staging/extra-RawValidationFragment",
+    "g01-raw-validation-staging/shape-RawValidationProfile",
+    "g01-raw-validation-staging/variant-RawValidationProfile-raw_contract_validation",
+    "g01-raw-validation-staging/unknown-RawValidationProfile",
+    "g01-raw-validation-staging/parent-ScopeSubject-raw_contract_validation",
+    "g01-raw-validation-staging/parent-PredicateFamily-raw_contract_validation",
+    "g01-raw-validation-staging/parent-ClosedPredicateCase-raw_contract_validation",
+    "g01-raw-validation-staging/parent-RequirementClause-raw_validation",
+    "g01-raw-validation-staging/parent-Source-raw_validation",
+    "g01-raw-validation-staging/missing-Source-raw_validation-subject",
+    "g01-raw-validation-staging/extra-Source-raw_validation",
+    "g01-raw-validation-staging/parent-Target-raw_declaration_constraint",
+    "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-subject",
+    "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-schema",
+    "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-rule",
+    "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-direction",
+    "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-constraint",
+    "g01-raw-validation-staging/extra-Target-raw_declaration_constraint",
+    "g01-raw-validation-staging/parent-Coordinate-raw_port",
+    "g01-raw-validation-staging/missing-Coordinate-raw_port-occurrence",
+    "g01-raw-validation-staging/missing-Coordinate-raw_port-member",
+    "g01-raw-validation-staging/extra-Coordinate-raw_port",
+    "g01-raw-validation-staging/parent-TypedContradiction-raw_validation",
+    "g01-raw-validation-staging/missing-TypedContradiction-raw_validation-witness",
+    "g01-raw-validation-staging/extra-TypedContradiction-raw_validation",
+    "g01-raw-validation-staging/parent-EvidenceRef-raw_validation_member",
+    "g01-raw-validation-staging/missing-EvidenceRef-raw_validation_member-subject",
+    "g01-raw-validation-staging/missing-EvidenceRef-raw_validation_member-source_member_path",
+    "g01-raw-validation-staging/extra-EvidenceRef-raw_validation_member",
+    "g01-raw-validation-staging/parent-ObservationOwner-raw_contract_validation",
+    "g01-raw-validation-staging/parent-Fact",
+    "g01-raw-validation-staging/parent-missing-Fact",
+    "g01-raw-validation-staging/parent-some-Fact",
+    "g01-raw-validation-staging/parent-Origin",
+    "g01-raw-validation-staging/parent-missing-Origin",
+    "g01-raw-validation-staging/parent-some-Origin",
+    "g01-raw-validation-staging/context-missing-compiled_modules",
+    "g01-raw-validation-staging/context-missing-type_schemas",
+    "g01-raw-validation-staging/context-missing-effect_catalogs",
+    "g01-raw-validation-staging/context-missing-resource_types",
+    "g01-raw-validation-staging/context-missing-flow_catalogs",
+    "g01-raw-validation-staging/context-missing-usage_meters",
+    "g01-raw-validation-staging/context-missing-recovery_operations",
+    "g01-raw-validation-staging/context-missing-execution_universes",
+    "g01-raw-validation-staging/context-missing-relation_snapshots",
+    "g01-raw-validation-staging/relation-slot-missing-effect_resource",
+    "g01-raw-validation-staging/relation-slot-missing-recovery_usage",
+    "g01-raw-validation-staging/relation-slot-missing-flow_execution",
+    "g01-raw-validation-staging/parent-Fragment-profile",
+    "g01-raw-validation-staging/partition-missing",
+    "g01-raw-validation-staging/partition-split",
+    "g01-raw-validation-staging/partition-duplicate",
+    "g01-raw-validation-staging/partition-reversed",
+    "g01-raw-validation-staging/resolver-not-supplied",
+    "g01-raw-validation-staging/resolver-known-empty-not-native-absence",
+    "g01-raw-validation-staging/nfd-utf8-bytes",
+    "g01-raw-validation-staging/bad-utf8",
+    "g01-raw-validation-staging/u32-zero",
+    "g01-raw-validation-staging/distinct-original-sorted",
+    "g01-raw-validation-staging/u32-overflow",
+    "g01-raw-validation-staging/owner-ModelRef-agentflow.computation.proof-report.model@4",
+    "g01-raw-validation-staging/owner-ModelRef-agentflow.computation.proof-report.model@3",
+    "g01-raw-validation-staging/owner-ModelRef-unknown.owner@99",
+    "g01-raw-validation-staging/owner-ModelType-agentflow.computation.proof-report.model@4",
+    "g01-raw-validation-staging/owner-ModelType-agentflow.computation.proof-report.model@3",
+    "g01-raw-validation-staging/owner-ModelType-unknown.owner@99",
+    "g01-raw-validation-staging/rule-0261",
+    "g01-raw-validation-staging/rule-0262",
+    "g01-raw-validation-staging/rule-0263",
+    "g01-raw-validation-staging/rule-0264",
+    "g01-raw-validation-staging/rule-0265",
+    "g01-raw-validation-staging/rule-0266",
+    "g01-raw-validation-staging/rule-0267",
+    "g01-raw-validation-staging/rule-0268",
+    "g01-raw-validation-staging/rule-0269",
+    "g01-raw-validation-staging/rule-0270",
+    "g01-raw-validation-staging/rule-0271",
+    "g01-raw-validation-staging/portable-current-denied",
+    "g01-raw-validation-staging/portable-old-label-new-content-1",
+    "g01-raw-validation-staging/portable-old-label-new-content-2",
+    "g01-raw-validation-staging/portable-old-label-new-content-3",
+    "g01-raw-validation-staging/portable-old-label-new-content-4",
+    "g01-raw-validation-staging/portable-new-label-old-content",
+    "g01-raw-validation-staging/portable-unknown-edition",
+    "g01-raw-validation-staging/default-resource-limit"
+  ],
+  "coverage": [
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawDocument-physical_json_utf8",
+      "type": "RawDocument",
+      "variant": "physical_json_utf8"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawDocument-physical_json_utf8-bytes",
+      "field": "bytes",
+      "type": "RawDocument",
+      "variant": "physical_json_utf8"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawDocument-declared_native_document",
+      "type": "RawDocument",
+      "variant": "declared_native_document"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawDocument-declared_native_document-declarations",
+      "field": "declarations",
+      "type": "RawDocument",
+      "variant": "declared_native_document"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawDocumentMember-field",
+      "type": "RawDocumentMember",
+      "variant": "field"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawDocumentMember-field-name",
+      "field": "name",
+      "type": "RawDocumentMember",
+      "variant": "field"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawDocumentMember-entry",
+      "type": "RawDocumentMember",
+      "variant": "entry"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawDocumentMember-entry-ordinal",
+      "field": "ordinal",
+      "type": "RawDocumentMember",
+      "variant": "entry"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawInputOrigin-document",
+      "field": "document",
+      "type": "RawInputOrigin",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawInputOrigin-path",
+      "field": "path",
+      "type": "RawInputOrigin",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPhysicalAssociation-not_supplied",
+      "type": "RawPhysicalAssociation",
+      "variant": "not_supplied"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPhysicalAssociation-supplied",
+      "type": "RawPhysicalAssociation",
+      "variant": "supplied"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPhysicalAssociation-supplied-document",
+      "field": "document",
+      "type": "RawPhysicalAssociation",
+      "variant": "supplied"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPhysicalAssociation-supplied-value_path",
+      "field": "value_path",
+      "type": "RawPhysicalAssociation",
+      "variant": "supplied"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawParsedInput-candidate",
+      "field": "candidate",
+      "type": "RawParsedInput",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawParsedInput-origin",
+      "field": "origin",
+      "type": "RawParsedInput",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawParsedInput-physical",
+      "field": "physical",
+      "type": "RawParsedInput",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawContextRole-analysis",
+      "type": "RawContextRole",
+      "variant": "analysis"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawContextRole-canonical_validation",
+      "type": "RawContextRole",
+      "variant": "canonical_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawContextBinding-contents",
+      "field": "contents",
+      "type": "RawContextBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawContextBinding-roles",
+      "field": "roles",
+      "type": "RawContextBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationSubject-owner_compiler",
+      "field": "owner_compiler",
+      "type": "RawValidationSubject",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationSubject-input",
+      "field": "input",
+      "type": "RawValidationSubject",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationSubject-context",
+      "field": "context",
+      "type": "RawValidationSubject",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationCase-positive_unique_io_ports",
+      "type": "RawValidationCase",
+      "variant": "positive_unique_io_ports"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationClause-positive_unique_io_ports",
+      "type": "RawValidationClause",
+      "variant": "positive_unique_io_ports"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationSubstage-canonical_validation/io_port_check",
+      "type": "RawValidationSubstage",
+      "variant": "canonical_validation/io_port_check"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortDirection-input",
+      "type": "RawPortDirection",
+      "variant": "input"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortDirection-output",
+      "type": "RawPortDirection",
+      "variant": "output"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortMember-port_no",
+      "type": "RawPortMember",
+      "variant": "port_no"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortOccurrence-direction",
+      "field": "direction",
+      "type": "RawPortOccurrence",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortOccurrence-original_ordinal",
+      "field": "original_ordinal",
+      "type": "RawPortOccurrence",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortOccurrence-sorted_ordinal",
+      "field": "sorted_ordinal",
+      "type": "RawPortOccurrence",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortOccurrence-port_no",
+      "field": "port_no",
+      "type": "RawPortOccurrence",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationOrigin-input_origin",
+      "field": "input_origin",
+      "type": "RawValidationOrigin",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationOrigin-direction",
+      "field": "direction",
+      "type": "RawValidationOrigin",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationOrigin-original_ordinal",
+      "field": "original_ordinal",
+      "type": "RawValidationOrigin",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-ExactCompiledComponentContractSchemaReference-module",
+      "field": "module",
+      "type": "ExactCompiledComponentContractSchemaReference",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-ExactCompiledComponentContractSchemaReference-type_name",
+      "field": "type_name",
+      "type": "ExactCompiledComponentContractSchemaReference",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-ExactCompiledComponentContractSchemaReference-definition",
+      "field": "definition",
+      "type": "ExactCompiledComponentContractSchemaReference",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-ExactRuleContentReference-identity",
+      "field": "identity",
+      "type": "ExactRuleContentReference",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortConstraint-positive_unique_io_ports",
+      "type": "RawPortConstraint",
+      "variant": "positive_unique_io_ports"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortPredecessor-none",
+      "type": "RawPortPredecessor",
+      "variant": "none"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortPredecessor-some",
+      "type": "RawPortPredecessor",
+      "variant": "some"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortPredecessor-some-original_ordinal",
+      "field": "original_ordinal",
+      "type": "RawPortPredecessor",
+      "variant": "some"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortPredecessor-some-port_no",
+      "field": "port_no",
+      "type": "RawPortPredecessor",
+      "variant": "some"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortCondition-zero",
+      "type": "RawPortCondition",
+      "variant": "zero"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortCondition-duplicate",
+      "type": "RawPortCondition",
+      "variant": "duplicate"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortCondition-positive_fresh",
+      "type": "RawPortCondition",
+      "variant": "positive_fresh"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortSelectedError-invalid_or_duplicate_port",
+      "type": "RawPortSelectedError",
+      "variant": "invalid_or_duplicate_port"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortCheckBasis-subject",
+      "field": "subject",
+      "type": "RawPortCheckBasis",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortCheckBasis-occurrence",
+      "field": "occurrence",
+      "type": "RawPortCheckBasis",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortCheckBasis-predecessor",
+      "field": "predecessor",
+      "type": "RawPortCheckBasis",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortCheckBasis-condition",
+      "field": "condition",
+      "type": "RawPortCheckBasis",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortCheckBasis-selected_error",
+      "field": "selected_error",
+      "type": "RawPortCheckBasis",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortCheckBasis-rule",
+      "field": "rule",
+      "type": "RawPortCheckBasis",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortRejectionWitness-zero",
+      "type": "RawPortRejectionWitness",
+      "variant": "zero"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-zero-subject",
+      "field": "subject",
+      "type": "RawPortRejectionWitness",
+      "variant": "zero"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-zero-occurrence",
+      "field": "occurrence",
+      "type": "RawPortRejectionWitness",
+      "variant": "zero"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-zero-raw_member_value",
+      "field": "raw_member_value",
+      "type": "RawPortRejectionWitness",
+      "variant": "zero"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-zero-minimum",
+      "field": "minimum",
+      "type": "RawPortRejectionWitness",
+      "variant": "zero"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortRejectionWitness-duplicate",
+      "type": "RawPortRejectionWitness",
+      "variant": "duplicate"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-duplicate-subject",
+      "field": "subject",
+      "type": "RawPortRejectionWitness",
+      "variant": "duplicate"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-duplicate-occurrence",
+      "field": "occurrence",
+      "type": "RawPortRejectionWitness",
+      "variant": "duplicate"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-duplicate-previous_original_ordinal",
+      "field": "previous_original_ordinal",
+      "type": "RawPortRejectionWitness",
+      "variant": "duplicate"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortRejectionWitness-duplicate-previous_port_no",
+      "field": "previous_port_no",
+      "type": "RawPortRejectionWitness",
+      "variant": "duplicate"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPrefixStop-component_identity",
+      "type": "RawPrefixStop",
+      "variant": "component_identity"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPrefixStop-schema_resolution",
+      "type": "RawPrefixStop",
+      "variant": "schema_resolution"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPrefixStop-schema_resolution-occurrence",
+      "field": "occurrence",
+      "type": "RawPrefixStop",
+      "variant": "schema_resolution"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPrefixStop-port_rejection",
+      "type": "RawPrefixStop",
+      "variant": "port_rejection"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPrefixStop-port_rejection-occurrence",
+      "field": "occurrence",
+      "type": "RawPrefixStop",
+      "variant": "port_rejection"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortApplicability-reached",
+      "type": "RawPortApplicability",
+      "variant": "reached"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortApplicability-reached-occurrence",
+      "field": "occurrence",
+      "type": "RawPortApplicability",
+      "variant": "reached"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortApplicability-not_reached",
+      "type": "RawPortApplicability",
+      "variant": "not_reached"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortApplicability-not_reached-direction",
+      "field": "direction",
+      "type": "RawPortApplicability",
+      "variant": "not_reached"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortApplicability-not_reached-original_ordinal",
+      "field": "original_ordinal",
+      "type": "RawPortApplicability",
+      "variant": "not_reached"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortApplicability-not_reached-stopped_by",
+      "field": "stopped_by",
+      "type": "RawPortApplicability",
+      "variant": "not_reached"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortApplicability-stopped_by_earlier_failure",
+      "type": "RawPortApplicability",
+      "variant": "stopped_by_earlier_failure"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortApplicability-stopped_by_earlier_failure-cause",
+      "field": "cause",
+      "type": "RawPortApplicability",
+      "variant": "stopped_by_earlier_failure"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawPortApplicability-no_port",
+      "type": "RawPortApplicability",
+      "variant": "no_port"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawPortApplicability-no_port-direction",
+      "field": "direction",
+      "type": "RawPortApplicability",
+      "variant": "no_port"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationStageState-raw_physical",
+      "type": "RawValidationStageState",
+      "variant": "raw_physical"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationStageState-parsed_declaration",
+      "type": "RawValidationStageState",
+      "variant": "parsed_declaration"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationStageState-canonical_diagnostic_presentation",
+      "type": "RawValidationStageState",
+      "variant": "canonical_diagnostic_presentation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationStageState-canonical_validated_declaration",
+      "type": "RawValidationStageState",
+      "variant": "canonical_validated_declaration"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationStageState-checked_contract",
+      "type": "RawValidationStageState",
+      "variant": "checked_contract"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-MissingRequiredSource",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "MissingRequiredSource"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-MissingDeclarativeOrigin",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "MissingDeclarativeOrigin"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-InvalidSourceAssociation",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "InvalidSourceAssociation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-InvalidContextBinding",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "InvalidContextBinding"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-IncompleteContent",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "IncompleteContent"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-InvalidPhysicalInput",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "InvalidPhysicalInput"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-UnsupportedPredicate",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "UnsupportedPredicate"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-NotImplemented",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "NotImplemented"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-InvalidIdentity",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "InvalidIdentity"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-UnsupportedModel",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "UnsupportedModel"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationAdmissionFailure-ResourceLimit",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "ResourceLimit"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-shape",
+      "field": "shape",
+      "type": "RawValidationFragment",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-profile",
+      "field": "profile",
+      "type": "RawValidationFragment",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-scope",
+      "field": "scope",
+      "type": "RawValidationFragment",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-applicability",
+      "field": "applicability",
+      "type": "RawValidationFragment",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-facts",
+      "field": "facts",
+      "type": "RawValidationFragment",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-prerequisites",
+      "field": "prerequisites",
+      "type": "RawValidationFragment",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-RawValidationFragment-obligations",
+      "field": "obligations",
+      "type": "RawValidationFragment",
+      "variant": null
+    },
+    {
+      "case_id": "g01-raw-validation-staging/variant-RawValidationProfile-raw_contract_validation",
+      "type": "RawValidationProfile",
+      "variant": "raw_contract_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-ScopeSubject-raw_contract_validation",
+      "type": "ScopeSubject",
+      "variant": "raw_contract_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-PredicateFamily-raw_contract_validation",
+      "type": "PredicateFamily",
+      "variant": "raw_contract_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-ClosedPredicateCase-raw_contract_validation",
+      "type": "ClosedPredicateCase",
+      "variant": "raw_contract_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-RequirementClause-raw_validation",
+      "type": "RequirementClause",
+      "variant": "raw_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-Source-raw_validation",
+      "type": "Source",
+      "variant": "raw_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Source-raw_validation-subject",
+      "field": "subject",
+      "type": "Source",
+      "variant": "raw_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-Target-raw_declaration_constraint",
+      "type": "Target",
+      "variant": "raw_declaration_constraint"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-subject",
+      "field": "subject",
+      "type": "Target",
+      "variant": "raw_declaration_constraint"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-schema",
+      "field": "schema",
+      "type": "Target",
+      "variant": "raw_declaration_constraint"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-rule",
+      "field": "rule",
+      "type": "Target",
+      "variant": "raw_declaration_constraint"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-direction",
+      "field": "direction",
+      "type": "Target",
+      "variant": "raw_declaration_constraint"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Target-raw_declaration_constraint-constraint",
+      "field": "constraint",
+      "type": "Target",
+      "variant": "raw_declaration_constraint"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-Coordinate-raw_port",
+      "type": "Coordinate",
+      "variant": "raw_port"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Coordinate-raw_port-occurrence",
+      "field": "occurrence",
+      "type": "Coordinate",
+      "variant": "raw_port"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-Coordinate-raw_port-member",
+      "field": "member",
+      "type": "Coordinate",
+      "variant": "raw_port"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-TypedContradiction-raw_validation",
+      "type": "TypedContradiction",
+      "variant": "raw_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-TypedContradiction-raw_validation-witness",
+      "field": "witness",
+      "type": "TypedContradiction",
+      "variant": "raw_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-EvidenceRef-raw_validation_member",
+      "type": "EvidenceRef",
+      "variant": "raw_validation_member"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-EvidenceRef-raw_validation_member-subject",
+      "field": "subject",
+      "type": "EvidenceRef",
+      "variant": "raw_validation_member"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/missing-EvidenceRef-raw_validation_member-source_member_path",
+      "field": "source_member_path",
+      "type": "EvidenceRef",
+      "variant": "raw_validation_member"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-ObservationOwner-raw_contract_validation",
+      "type": "ObservationOwner",
+      "variant": "raw_contract_validation"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-Fact",
+      "field": "raw_validation_basis",
+      "type": "Fact"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-Origin",
+      "field": "raw_validation_origin",
+      "type": "Origin"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/parent-Fragment-profile",
+      "field": "profile",
+      "type": "Fragment",
+      "variant": "raw_contract_validation"
+    }
+  ],
+  "kind": "Registration Conformance;NOT Typed Capture",
+  "model": "agentflow.computation.proof-report.model@4",
+  "obligation": "agentflow.g01.obligation@4",
+  "portable_cases": [
+    {
+      "case_id": "g01-raw-validation-staging/portable-current-denied",
+      "decoder_policy": "bounded_16m_scalar",
+      "family": "UnsupportedSemantics",
+      "file": "portable/current-denied.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/portable-old-label-new-content-1",
+      "decoder_policy": "bounded_16m_scalar",
+      "family": "InvalidIdentity",
+      "file": "portable/old-label-new-content-1.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/portable-old-label-new-content-2",
+      "decoder_policy": "bounded_16m_scalar",
+      "family": "InvalidIdentity",
+      "file": "portable/old-label-new-content-2.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/portable-old-label-new-content-3",
+      "decoder_policy": "bounded_16m_scalar",
+      "family": "InvalidIdentity",
+      "file": "portable/old-label-new-content-3.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/portable-old-label-new-content-4",
+      "decoder_policy": "bounded_16m_scalar",
+      "family": "InvalidIdentity",
+      "file": "portable/old-label-new-content-4.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/portable-new-label-old-content",
+      "decoder_policy": "bounded_16m_scalar",
+      "family": "InvalidIdentity",
+      "file": "portable/new-label-old-content.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/portable-unknown-edition",
+      "decoder_policy": "bounded_16m_scalar",
+      "family": "UnsupportedSemantics",
+      "file": "portable/unknown-edition.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-raw-validation-staging/default-resource-limit",
+      "decoder_policy": "unchanged_default",
+      "family": "ResourceLimit",
+      "file": "portable/current-denied.ace1",
+      "stage": "D0"
+    }
+  ],
+  "positive_capability": "NotAuthorized",
+  "raw_producer": "NotImplemented",
+  "rule_cases": 11,
+  "selected_specifications": [
+    "agentflow.component.contract.semantics@1",
+    "agentflow.component.native-recovery-guard.semantics@1",
+    "agentflow.component.raw-validation.semantics@1",
+    "agentflow.component.relation-catalogs.semantics@1",
+    "agentflow.component.substitution-proof.semantics@1",
+    "agentflow.computation.proof-obligation.semantics@1",
+    "agentflow.computation.proof-obligation.semantics@2",
+    "agentflow.computation.proof-obligation.semantics@3",
+    "agentflow.computation.proof-obligation.semantics@4",
+    "agentflow.computation.proof-report.model@1",
+    "agentflow.computation.proof-report.model@2",
+    "agentflow.computation.proof-report.model@3",
+    "agentflow.computation.proof-report.model@4",
+    "agentflow.computation.root-export-contract-proof.semantics@1",
+    "agentflow.effect.signature.semantics@1",
+    "agentflow.execution.requirements.semantics@1",
+    "agentflow.failure.row.semantics@1",
+    "agentflow.information.flow.semantics@1",
+    "agentflow.portable.proof.inputs.semantics@1",
+    "agentflow.portable.proof.inputs.semantics@2",
+    "agentflow.portable.proof.inputs.semantics@3",
+    "agentflow.portable.proof.inputs.semantics@4",
+    "agentflow.portable.proof.inputs.semantics@5",
+    "agentflow.recovery.contract.semantics@1",
+    "agentflow.resource.requirement.semantics@1",
+    "agentflow.semantic.advanced-control-contract-algebra.semantics@1",
+    "agentflow.semantic.control-contract-algebra.semantics@1",
+    "agentflow.semantic.ir.semantics@1",
+    "agentflow.semantic.leaf-contract-resolution.semantics@1",
+    "agentflow.semantic.scope-compensation-contract-algebra.semantics@1",
+    "agentflow.semantic.types@1",
+    "agentflow.usage.signature.semantics@1"
+  ],
+  "shape": "agentflow.g01.report-shape@4",
+  "shape_cases": 241
+}
