@@ -119,7 +119,7 @@ impl EffectSignature {
     pub fn to_value(&self) -> Result<Value, EffectError> {
         Ok(Value::Record(vec![(
             "row".into(),
-            row_value(&self.canonical()?.row),
+            row_value(&self.canonical()?.row)?,
         )]))
     }
 }
@@ -391,18 +391,25 @@ fn resolve_row(
 // ACE1 value tree
 // ---------------------------------------------------------------------------
 
-fn row_value(row: &EffectRow) -> Value {
-    match row {
+fn row_value(row: &EffectRow) -> Result<Value, EffectError> {
+    Ok(match row {
         EffectRow::Closed(entries) => Value::Variant {
             case: "closed".into(),
-            value: Box::new(Value::List(entries.iter().map(entry_value).collect())),
+            value: Box::new(Value::List(
+                entries.iter().map(entry_value).collect::<Result<_, _>>()?,
+            )),
         },
         EffectRow::Open(open) => Value::Variant {
             case: "open".into(),
             value: Box::new(Value::Record(vec![
                 (
                     "known".into(),
-                    Value::List(open.known.iter().map(entry_value).collect()),
+                    Value::List(
+                        open.known
+                            .iter()
+                            .map(entry_value)
+                            .collect::<Result<_, _>>()?,
+                    ),
                 ),
                 (
                     "residual".into(),
@@ -414,15 +421,15 @@ fn row_value(row: &EffectRow) -> Value {
             case: "unknown".into(),
             value: Box::new(Value::Unit),
         },
-    }
+    })
 }
 
-fn entry_value(entry: &EffectEntry) -> Value {
-    Value::Record(vec![
+fn entry_value(entry: &EffectEntry) -> Result<Value, EffectError> {
+    Ok(Value::Record(vec![
         ("atom".into(), atom_value(&entry.atom)),
         ("bounds".into(), bounds_value(&entry.bounds)),
-        ("guard".into(), guard_value(&entry.guard)),
-    ])
+        ("guard".into(), guard_value(&entry.guard)?),
+    ]))
 }
 
 fn residual_value(residual: &EffectResidual) -> Value {
@@ -517,8 +524,8 @@ fn bounds_value(bounds: &OccurrenceBounds) -> Value {
     ])
 }
 
-fn guard_value(guard: &EffectGuard) -> Value {
-    match guard {
+fn guard_value(guard: &EffectGuard) -> Result<Value, EffectError> {
+    Ok(match guard {
         EffectGuard::Unconditional => Value::Variant {
             case: "unconditional".into(),
             value: Box::new(Value::Unit),
@@ -527,13 +534,13 @@ fn guard_value(guard: &EffectGuard) -> Value {
             case: "input_equals".into(),
             value: Box::new(Value::Record(vec![
                 ("port_no".into(), Value::UInt32(input.port_no)),
-                ("expected".into(), constant_value(&input.expected)),
+                ("expected".into(), constant_value(&input.expected)?),
             ])),
         },
-    }
+    })
 }
 
-fn constant_value(constant: &PrimitiveConstant) -> Value {
+fn constant_value(constant: &PrimitiveConstant) -> Result<Value, EffectError> {
     let (case, payload) = match constant {
         PrimitiveConstant::Unit => ("unit", Value::Unit),
         PrimitiveConstant::Null => ("null", Value::Null),
@@ -541,12 +548,22 @@ fn constant_value(constant: &PrimitiveConstant) -> Value {
         PrimitiveConstant::Int64(value) => ("int64", Value::Int64(*value)),
         PrimitiveConstant::Decimal(value) => ("decimal", Value::Decimal(value.clone())),
         PrimitiveConstant::String(value) => ("string", Value::String(value.clone())),
-        PrimitiveConstant::Bytes(value) => ("bytes", Value::String(value.clone())),
+        // The source String is canonical base64url, NOT the raw byte payload.
+        // Keep strict decode failures fallible; never substitute empty/String.
+        PrimitiveConstant::Bytes(value) => (
+            "bytes",
+            Value::Bytes(af_core::base64url::decode(value).map_err(|error| {
+                EffectError::new(
+                    kind::INVALID_EFFECT_GUARD,
+                    format!("guard bytes constant is not canonical: {error}"),
+                )
+            })?),
+        ),
         PrimitiveConstant::Timestamp(value) => ("timestamp", Value::Timestamp(*value)),
         PrimitiveConstant::Duration(value) => ("duration", Value::Duration(*value)),
     };
-    Value::Variant {
+    Ok(Value::Variant {
         case: case.into(),
         value: Box::new(payload),
-    }
+    })
 }
