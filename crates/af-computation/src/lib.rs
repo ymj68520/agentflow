@@ -12,6 +12,7 @@
 
 mod control;
 mod mapping;
+pub mod native_capture;
 mod proof;
 mod registered_model;
 mod resolution;

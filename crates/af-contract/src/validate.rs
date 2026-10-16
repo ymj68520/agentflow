@@ -1248,39 +1248,144 @@ pub(crate) fn recovery_forward_upper(
     action: &RecoveryActionIdentity,
     declared_bounds: &af_effect::OccurrenceBounds,
 ) -> Result<Option<OccurrenceCeiling>, ()> {
+    recovery_forward_upper_observed(contract, action, declared_bounds, None)
+}
+
+pub(crate) fn recovery_forward_upper_observed(
+    contract: &ComponentContract,
+    action: &RecoveryActionIdentity,
+    declared_bounds: &af_effect::OccurrenceBounds,
+    mut trace: Option<&mut crate::guard_observation::ObservedBounds>,
+) -> Result<Option<OccurrenceCeiling>, ()> {
+    use crate::guard_observation as obs;
     let atom = AtomKey::of(&action.forward_effect);
     if atom != AtomKey::of(&action.action_effect) {
+        if let Some(t) = trace.as_mut() {
+            t.effective_upper = obs::ObservedResolution::Present(declared_bounds.upper);
+        }
         return Ok(Some(declared_bounds.upper));
     }
     let mut multiplier = OccurrenceCeiling::Finite(0);
-    for binding in &contract.recovery_action_bindings {
+    let mut processed = Vec::new();
+    if let Some(t) = trace.as_mut() {
+        t.sum = obs::ObservedResolution::Present(multiplier);
+    }
+    for (ordinal, binding) in contract.recovery_action_bindings.iter().enumerate() {
         let identity = &binding.identity;
         if AtomKey::of(&identity.action_effect) != atom {
             continue;
         }
+        if let Some(t) = trace.as_mut() {
+            t.consulted_peer_bindings.push(obs::ObservedPeer {
+                binding_ordinal: ordinal,
+                binding: binding.clone(),
+                usage: obs::ObservedResolution::NotQueried,
+            });
+        }
         if AtomKey::of(&identity.forward_effect) != atom {
-            // Another source K action consumes the same shared epsilon
-            // ceiling but is based on a different Forward atom. Its exact
-            // contribution cannot be subtracted from this local equation.
+            if let Some(t) = trace.as_mut() {
+                t.unisolated = Some(obs::ObservedUnisolated::ForeignForward(
+                    t.consulted_peer_bindings
+                        .last()
+                        .expect("actual peer")
+                        .clone(),
+                ));
+                t.effective_upper = obs::ObservedResolution::Absent;
+            }
             return Ok(None);
         }
-        let Some(usage) = contract
+        let usage_query = contract
             .recovery_usage_bindings
             .iter()
-            .find(|candidate| candidate.action == *identity)
-        else {
+            .enumerate()
+            .find(|(_, candidate)| candidate.action == *identity);
+        if let Some(t) = trace.as_mut() {
+            t.consulted_peer_bindings
+                .last_mut()
+                .expect("actual peer")
+                .usage = usage_query.map_or(obs::ObservedResolution::Absent, |(i, u)| {
+                obs::ObservedResolution::Present((i, u.clone()))
+            });
+        }
+        let Some((_, usage)) = usage_query else {
+            if let Some(t) = trace.as_mut() {
+                t.unisolated = Some(obs::ObservedUnisolated::MissingPeerUsage(
+                    t.consulted_peer_bindings
+                        .last()
+                        .expect("actual peer")
+                        .clone(),
+                ));
+                t.effective_upper = obs::ObservedResolution::Absent;
+            }
             return Ok(None);
         };
-        let action_multiplier = usage
+        let product = usage
             .activations_per_forward
             .upper
-            .checked_mul(usage.attempts_per_activation.upper)
-            .map_err(|_| ())?;
-        multiplier = multiplier.checked_add(action_multiplier).map_err(|_| ())?;
+            .checked_mul(usage.attempts_per_activation.upper);
+        if let Some(t) = trace.as_mut() {
+            t.arithmetic.push(obs::ObservedArithmetic {
+                kind: obs::ObservedArithmeticKind::PeerProduct,
+                binding_ordinal: Some(ordinal),
+                left: usage.activations_per_forward.upper,
+                right: usage.attempts_per_activation.upper,
+                result: product.as_ref().ok().copied(),
+            });
+            if product.is_err() {
+                t.failure = Some(obs::ObservedBoundFailure::SameAtomProductOverflow {
+                    binding_ordinal: ordinal,
+                    activation_upper: usage.activations_per_forward.upper,
+                    attempt_upper: usage.attempts_per_activation.upper,
+                });
+                t.effective_upper = obs::ObservedResolution::Absent;
+            }
+        }
+        let action_multiplier = product.map_err(|_| ())?;
+        let sum = multiplier.checked_add(action_multiplier);
+        if let Some(t) = trace.as_mut() {
+            t.arithmetic.push(obs::ObservedArithmetic {
+                kind: obs::ObservedArithmeticKind::PeerSum,
+                binding_ordinal: Some(ordinal),
+                left: multiplier,
+                right: action_multiplier,
+                result: sum.as_ref().ok().copied(),
+            });
+            if sum.is_err() {
+                t.failure = Some(obs::ObservedBoundFailure::SameAtomSumOverflow {
+                    processed_binding_ordinals: processed.clone(),
+                    before: multiplier,
+                    next: action_multiplier,
+                });
+                t.sum = obs::ObservedResolution::Absent;
+                t.effective_upper = obs::ObservedResolution::Absent;
+            }
+        }
+        multiplier = sum.map_err(|_| ())?;
+        processed.push(ordinal);
+        if let Some(t) = trace.as_mut() {
+            t.sum = obs::ObservedResolution::Present(multiplier);
+        }
     }
-    let divisor = OccurrenceCeiling::Finite(1)
-        .checked_add(multiplier)
-        .map_err(|_| ())?;
+    let divisor_result = OccurrenceCeiling::Finite(1).checked_add(multiplier);
+    if let Some(t) = trace.as_mut() {
+        t.arithmetic.push(obs::ObservedArithmetic {
+            kind: obs::ObservedArithmeticKind::Divisor,
+            binding_ordinal: None,
+            left: OccurrenceCeiling::Finite(1),
+            right: multiplier,
+            result: divisor_result.as_ref().ok().copied(),
+        });
+        t.divisor = divisor_result.as_ref().ok().copied().map_or(
+            obs::ObservedResolution::Absent,
+            obs::ObservedResolution::Present,
+        );
+        if divisor_result.is_err() {
+            t.failure =
+                Some(obs::ObservedBoundFailure::SameAtomDivisorOverflow { sum: multiplier });
+            t.effective_upper = obs::ObservedResolution::Absent;
+        }
+    }
+    let divisor = divisor_result.map_err(|_| ())?;
     let forward_upper = match (declared_bounds.upper, divisor) {
         (OccurrenceCeiling::Unbounded, _) => OccurrenceCeiling::Unbounded,
         (OccurrenceCeiling::Finite(_), OccurrenceCeiling::Unbounded) => {
@@ -1290,7 +1395,18 @@ pub(crate) fn recovery_forward_upper(
             OccurrenceCeiling::Finite(ceiling / divisor)
         }
     };
-    if matches!(forward_upper, OccurrenceCeiling::Finite(upper) if upper < declared_bounds.lower) {
+    if let Some(t) = trace.as_mut() {
+        t.effective_upper = obs::ObservedResolution::Present(forward_upper);
+    }
+    if matches!(forward_upper,OccurrenceCeiling::Finite(upper) if upper<declared_bounds.lower) {
+        if let Some(t) = trace.as_mut() {
+            t.failure = Some(obs::ObservedBoundFailure::SameAtomLowerConflict {
+                declared_bounds: declared_bounds.clone(),
+                sum: multiplier,
+                divisor,
+                effective_upper: forward_upper,
+            });
+        }
         return Err(());
     }
     Ok(Some(forward_upper))

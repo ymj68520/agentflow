@@ -201,11 +201,34 @@ pub fn analyze_action_guard_compatibility(
     contract: &ComponentContract,
     context: &StaticContractProofContext<'_>,
 ) -> Vec<ActionGuardCompatibility> {
+    analyze_impl(contract, context, None)
+}
+
+pub(crate) fn analyze_observed(
+    contract: &ComponentContract,
+    context: &StaticContractProofContext<'_>,
+    runs: &mut Vec<crate::guard_observation::ObservedGuardRun>,
+) -> Vec<ActionGuardCompatibility> {
+    analyze_impl(contract, context, Some(runs))
+}
+
+fn analyze_impl(
+    contract: &ComponentContract,
+    context: &StaticContractProofContext<'_>,
+    mut observer: Option<&mut Vec<crate::guard_observation::ObservedGuardRun>>,
+) -> Vec<ActionGuardCompatibility> {
+    use crate::guard_observation as obs;
     let entries = entries(&contract.effects);
     contract
         .recovery_action_bindings
         .iter()
-        .map(|binding| {
+        .enumerate()
+        .map(|(binding_ordinal, binding)| {
+            let mut trace = observer.as_ref().map(|_| obs::ObservedGuardRun::new(binding_ordinal, &binding.identity,
+                match &contract.effects.row {af_effect::EffectRow::Closed(_)=>obs::ObservedEffectRowKind::Closed,
+                    af_effect::EffectRow::Open(_)=>obs::ObservedEffectRowKind::OpenKnown,
+                    af_effect::EffectRow::Unknown=>obs::ObservedEffectRowKind::Unknown}));
+            let result = (|| {
             let identity = &binding.identity;
             let forward = entries
                 .iter()
@@ -216,9 +239,14 @@ pub fn analyze_action_guard_compatibility(
                 .enumerate()
                 .find(|(_, entry)| AtomKey::of(&entry.atom) == AtomKey::of(&identity.action_effect));
 
+            if let Some(t)=trace.as_mut() {
+                t.forward=forward.map_or(obs::ObservedResolution::Absent,|(i,e)|obs::ObservedResolution::Present((i,e.clone())));
+                t.action=action.map_or(obs::ObservedResolution::Absent,|(i,e)|obs::ObservedResolution::Present((i,e.clone())));
+            }
             let (Some((forward_ordinal, forward_entry)), Some((action_ordinal, action_entry))) =
                 (forward, action)
             else {
+                select_branch(&mut trace, obs::ObservedGuardBranch::MissingEntries);
                 return ActionGuardCompatibility {
                     source_component: contract.component_identity.clone(),
                     recovery_action: identity.clone(),
@@ -234,11 +262,13 @@ pub fn analyze_action_guard_compatibility(
                 };
             };
 
-            let Some(usage) = contract
+            let usage_query = contract
                 .recovery_usage_bindings
                 .iter()
-                .find(|candidate| candidate.action == *identity)
-            else {
+                .enumerate().find(|(_, candidate)| candidate.action == *identity);
+            if let Some(t)=trace.as_mut(){t.usage=usage_query.map_or(obs::ObservedResolution::Absent,|(i,u)|obs::ObservedResolution::Present((i,u.clone())));}
+            let Some((_,usage))=usage_query else {
+                select_branch(&mut trace, obs::ObservedGuardBranch::MissingUsage);
                 return ActionGuardCompatibility {
                     source_component: contract.component_identity.clone(),
                     recovery_action: identity.clone(),
@@ -254,14 +284,17 @@ pub fn analyze_action_guard_compatibility(
                 };
             };
 
+            if let Some(t)=trace.as_mut(){t.bounds=Some(obs::ObservedBounds::new(&forward_entry.bounds));}
             let forward_seed_upper =
-                match crate::validate::recovery_forward_upper(
+                match crate::validate::recovery_forward_upper_observed(
                     contract,
                     identity,
                     &forward_entry.bounds,
+                    trace.as_mut().and_then(|t|t.bounds.as_mut()),
                 ) {
                     Ok(Some(upper)) => upper,
                     Ok(None) => {
+                        select_branch(&mut trace, obs::ObservedGuardBranch::UnisolatedForward);
                         return ActionGuardCompatibility {
                             source_component: contract.component_identity.clone(),
                             recovery_action: identity.clone(),
@@ -277,6 +310,7 @@ pub fn analyze_action_guard_compatibility(
                         };
                     }
                     Err(()) => {
+                        select_branch(&mut trace, obs::ObservedGuardBranch::SameAtomBoundsFailure);
                         return ActionGuardCompatibility {
                             source_component: contract.component_identity.clone(),
                             recovery_action: identity.clone(),
@@ -294,10 +328,15 @@ pub fn analyze_action_guard_compatibility(
                 };
             let mut forward_for_proof = forward_entry.clone();
             forward_for_proof.bounds.upper = forward_seed_upper;
-            let action_upper = forward_seed_upper
-                .checked_mul(usage.activations_per_forward.upper)
-                .and_then(|bound| bound.checked_mul(usage.attempts_per_activation.upper));
+            let first_product=forward_seed_upper.checked_mul(usage.activations_per_forward.upper);
+            observe_action_product(&mut trace,obs::ObservedMultiplyStep::ForwardTimesActivation,forward_seed_upper,usage.activations_per_forward.upper,first_product.as_ref().ok().copied());
+            let action_upper=first_product.and_then(|bound| {
+                let result=bound.checked_mul(usage.attempts_per_activation.upper);
+                observe_action_product(&mut trace,obs::ObservedMultiplyStep::PartialTimesAttempt,bound,usage.attempts_per_activation.upper,result.as_ref().ok().copied());
+                result
+            });
             let Ok(action_upper) = action_upper else {
+                select_branch(&mut trace, obs::ObservedGuardBranch::ActionUpperOverflow);
                 return ActionGuardCompatibility {
                     source_component: contract.component_identity.clone(),
                     recovery_action: identity.clone(),
@@ -312,6 +351,7 @@ pub fn analyze_action_guard_compatibility(
                     reason: "checked K action upper multiplication overflowed".into(),
                 };
             };
+            if let Some(b)=trace.as_mut().and_then(|t|t.bounds.as_mut()){b.action_upper=obs::ObservedResolution::Present(action_upper);}
             let base = ActionGuardCompatibility {
                 source_component: contract.component_identity.clone(),
                 recovery_action: identity.clone(),
@@ -326,11 +366,19 @@ pub fn analyze_action_guard_compatibility(
                 reason: String::new(),
             };
 
-            for validation in [
-                validate_guard_port(contract, context, &forward_entry.guard),
-                validate_guard_port(contract, context, &action_entry.guard),
-            ] {
+            let forward_validation=validate_guard_port_observed(contract,context,&forward_entry.guard,trace.is_some());
+            let action_validation=validate_guard_port_observed(contract,context,&action_entry.guard,trace.is_some());
+            if let Some(t)=trace.as_mut(){
+                t.forward_input=obs::ObservedResolution::Present(forward_validation.1.clone().expect("observed result"));
+                t.action_input=obs::ObservedResolution::Present(action_validation.1.clone().expect("observed result"));
+            }
+            for (role,validation) in [(obs::ObservedGuardRole::Forward,forward_validation.0),(obs::ObservedGuardRole::Action,action_validation.0)] {
                 if let Err(error) = validation {
+                    if let Some(t)=trace.as_mut(){t.primary_error=Some(role);}
+                    select_branch(&mut trace,match error {
+                        GuardPortValidationError::MissingPort=>obs::ObservedGuardBranch::MissingPort,
+                        GuardPortValidationError::UnresolvedSchema=>obs::ObservedGuardBranch::SchemaUnresolved,
+                        GuardPortValidationError::TypeMismatch=>obs::ObservedGuardBranch::TypeMismatch});
                     let (verdict, reason) = match error {
                         GuardPortValidationError::MissingPort => (
                             ProofVerdict::Violation,
@@ -354,13 +402,17 @@ pub fn analyze_action_guard_compatibility(
                 }
             }
             if action_upper.is_zero() {
+                select_branch(&mut trace,obs::ObservedGuardBranch::ZeroPotential);
                 return ActionGuardCompatibility {
                     basis: GuardCompatibilityBasis::ZeroPossibleActions,
                     reason: "the checked forward/activation/attempt upper is zero, so no K action possibility requires guard coverage".into(),
                     ..base
                 };
             }
-            if guard_contained(&forward_entry.guard, &action_entry.guard) {
+            let contained=guard_contained(&forward_entry.guard,&action_entry.guard);
+            if let Some(t)=trace.as_mut(){t.containment=obs::ObservedResolution::Present(contained);}
+            if contained {
+                select_branch(&mut trace,obs::ObservedGuardBranch::FrozenContainment);
                 return ActionGuardCompatibility {
                     reason: "the exact K Forward guard is contained by the declared action Effect guard under frozen af-effect rules".into(),
                     ..base
@@ -377,6 +429,7 @@ pub fn analyze_action_guard_compatibility(
                 usage.attempts_per_activation.upper,
                 action_upper,
             ) {
+                select_branch(&mut trace,obs::ObservedGuardBranch::TypedCountermodel);
                 return ActionGuardCompatibility {
                     verdict: ProofVerdict::Violation,
                     basis: GuardCompatibilityBasis::TypedCountermodel,
@@ -385,12 +438,16 @@ pub fn analyze_action_guard_compatibility(
                     ..base
                 };
             }
+            select_branch(&mut trace,obs::ObservedGuardBranch::NoCountermodel);
             ActionGuardCompatibility {
                 verdict: ProofVerdict::Unproven,
                 basis: GuardCompatibilityBasis::InsufficientEvidence,
                 reason: "frozen guard containment failed and no type-valid countermodel could be constructed; do not infer either compatibility or incompatibility".into(),
                 ..base
             }
+            })();
+            if let Some(mut t) = trace { t.record=Some(result.clone()); if let Some(sink)=observer.as_mut(){sink.push(t);} }
+            result
         })
         .collect()
 }
@@ -403,34 +460,117 @@ fn entries(signature: &EffectSignature) -> &[af_effect::EffectEntry] {
     }
 }
 
-fn validate_guard_port(
+fn select_branch(
+    trace: &mut Option<crate::guard_observation::ObservedGuardRun>,
+    branch: crate::guard_observation::ObservedGuardBranch,
+) {
+    if let Some(t) = trace.as_mut() {
+        t.branch = Some(branch);
+    }
+}
+
+fn observe_action_product(
+    trace: &mut Option<crate::guard_observation::ObservedGuardRun>,
+    step: crate::guard_observation::ObservedMultiplyStep,
+    left: OccurrenceCeiling,
+    right: OccurrenceCeiling,
+    result: Option<OccurrenceCeiling>,
+) {
+    use crate::guard_observation as obs;
+    if let Some(b) = trace.as_mut().and_then(|t| t.bounds.as_mut()) {
+        let resolution = result.map_or(
+            obs::ObservedResolution::Absent,
+            obs::ObservedResolution::Present,
+        );
+        let kind = match step {
+            obs::ObservedMultiplyStep::ForwardTimesActivation => {
+                b.forward_times_activation = resolution;
+                obs::ObservedArithmeticKind::ForwardTimesActivation
+            }
+            obs::ObservedMultiplyStep::PartialTimesAttempt => {
+                b.partial_times_attempt = resolution;
+                obs::ObservedArithmeticKind::PartialTimesAttempt
+            }
+        };
+        b.arithmetic.push(obs::ObservedArithmetic {
+            kind,
+            binding_ordinal: None,
+            left,
+            right,
+            result,
+        });
+        if result.is_none() {
+            b.action_upper = obs::ObservedResolution::Absent;
+            b.failure = Some(obs::ObservedBoundFailure::ActionUpperOverflow { step, left, right });
+        }
+    }
+}
+
+fn validate_guard_port_observed(
     contract: &ComponentContract,
     context: &StaticContractProofContext<'_>,
     guard: &EffectGuard,
-) -> Result<(), GuardPortValidationError> {
+    observe: bool,
+) -> (
+    Result<(), GuardPortValidationError>,
+    Option<crate::guard_observation::ObservedPortResult>,
+) {
+    use crate::guard_observation::{ObservedPortResult as P, ObservedSchemaStep};
     let EffectGuard::InputEquals(equals) = guard else {
-        return Ok(());
+        return (Ok(()), observe.then_some(P::UnconditionalNotRequired));
     };
     let Some(port) = contract
         .inputs
         .iter()
         .find(|port| port.port_no == equals.port_no)
     else {
-        return Err(GuardPortValidationError::MissingPort);
+        return (
+            Err(GuardPortValidationError::MissingPort),
+            observe.then(|| P::MissingPort {
+                guard: equals.clone(),
+                input_declarations: contract.inputs.clone(),
+            }),
+        );
     };
-    let schema = context
-        .schema_universe
-        .resolve(&port.type_ref)
-        .map_err(|_| GuardPortValidationError::UnresolvedSchema)?;
-    let structural = context
-        .schema_universe
-        .expand_named(&schema.identity())
-        .map_err(|_| GuardPortValidationError::UnresolvedSchema)?;
-    match structural {
-        StructuralType::Primitive(primitive) if primitive == equals.expected.semantic_type() => {
-            Ok(())
-        }
-        _ => Err(GuardPortValidationError::TypeMismatch),
+    let Ok(schema) = context.schema_universe.resolve(&port.type_ref) else {
+        return (
+            Err(GuardPortValidationError::UnresolvedSchema),
+            observe.then(|| P::UnresolvedSchema {
+                port: port.clone(),
+                guard: equals.clone(),
+                step: ObservedSchemaStep::Resolve,
+            }),
+        );
+    };
+    let Ok(structural) = context.schema_universe.expand_named(&schema.identity()) else {
+        return (
+            Err(GuardPortValidationError::UnresolvedSchema),
+            observe.then(|| P::UnresolvedSchema {
+                port: port.clone(),
+                guard: equals.clone(),
+                step: ObservedSchemaStep::Expand,
+            }),
+        );
+    };
+    match &structural {
+        StructuralType::Primitive(primitive) if *primitive == equals.expected.semantic_type() => (
+            Ok(()),
+            observe.then(|| P::Valid {
+                port: port.clone(),
+                guard: equals.clone(),
+                resolved: schema.clone(),
+                expanded: structural,
+            }),
+        ),
+        _ => (
+            Err(GuardPortValidationError::TypeMismatch),
+            observe.then(|| P::TypeMismatch {
+                port: port.clone(),
+                guard: equals.clone(),
+                resolved: schema.clone(),
+                expanded: structural,
+            }),
+        ),
     }
 }
 

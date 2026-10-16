@@ -10,6 +10,7 @@ pub mod effect_flow;
 pub mod effect_resource;
 pub mod error;
 pub mod flow_execution;
+pub mod guard_observation;
 pub mod model;
 pub mod ports;
 pub mod proof;
