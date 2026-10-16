@@ -1,0 +1,983 @@
+{
+  "kind": "IndependentRawDocumentIdentityBindingAudit",
+  "outcome": "C — ADDITIONAL FORMAL BINDING GAP",
+  "finding_id": "C2-GAP-01",
+  "severity": "P1 / OPEN / BLOCKING",
+  "source_head": "23a7c01ab616a268d600ea8b1be9d721341eee31",
+  "requirement": "Independent documents with identical complete contents and equal declaration paths must have distinct Source identities.",
+  "human_clarification": "是，也必须区分独立的同内容文档；如模型不足则按 Outcome C 交付缺口",
+  "minimal_input": {
+    "case_id": "c2-binding/independent-identical-native-documents",
+    "native_declarations": [
+      {
+        "component_identity": {
+          "catalog": "agentflow.components@1",
+          "name": "acme.transform"
+        },
+        "inputs": [
+          {
+            "port_no": 0,
+            "type": {
+              "specification_id": "agentflow.test.guard-types@1",
+              "type_name": "CaptureInput",
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "03c31e7af6d91c1ee4e19a624bc2cc075779ae45abdf4f428906e75b15ddca7e"
+              }
+            }
+          }
+        ],
+        "outputs": [],
+        "failures": {
+          "failures": []
+        },
+        "effects": {
+          "row": {
+            "closed": []
+          }
+        },
+        "resources": {
+          "requirements": []
+        },
+        "information_flow": {
+          "confidentiality_restrictions": [],
+          "summary": {
+            "sources": [],
+            "taints": [],
+            "instruction_authority": "none",
+            "influence_unknown": false
+          },
+          "flow_constraints": []
+        },
+        "usage": {
+          "limits": []
+        },
+        "recovery": {
+          "replay_semantics": "recompute",
+          "effect_recovery_clauses": []
+        },
+        "execution": {
+          "capabilities": [],
+          "quantities": [],
+          "sandbox": null,
+          "trust_domain": null,
+          "region_residency": null,
+          "runtime_profile": null,
+          "implementation_abis": [],
+          "soft_preferences": []
+        },
+        "effect_flow_partitions": [],
+        "recovery_action_bindings": [],
+        "recovery_usage_bindings": []
+      },
+      {
+        "component_identity": {
+          "catalog": "agentflow.components@1",
+          "name": "acme.transform"
+        },
+        "inputs": [
+          {
+            "port_no": 1,
+            "type": {
+              "specification_id": "agentflow.test.guard-types@1",
+              "type_name": "CaptureInput",
+              "schema_digest": {
+                "algorithm": "sha256",
+                "domain": "type-schema",
+                "hex": "03c31e7af6d91c1ee4e19a624bc2cc075779ae45abdf4f428906e75b15ddca7e"
+              }
+            }
+          }
+        ],
+        "outputs": [],
+        "failures": {
+          "failures": []
+        },
+        "effects": {
+          "row": {
+            "closed": []
+          }
+        },
+        "resources": {
+          "requirements": []
+        },
+        "information_flow": {
+          "confidentiality_restrictions": [],
+          "summary": {
+            "sources": [],
+            "taints": [],
+            "instruction_authority": "none",
+            "influence_unknown": false
+          },
+          "flow_constraints": []
+        },
+        "usage": {
+          "limits": []
+        },
+        "recovery": {
+          "replay_semantics": "recompute",
+          "effect_recovery_clauses": []
+        },
+        "execution": {
+          "capabilities": [],
+          "quantities": [],
+          "sandbox": null,
+          "trust_domain": null,
+          "region_residency": null,
+          "runtime_profile": null,
+          "implementation_abis": [],
+          "soft_preferences": []
+        },
+        "effect_flow_partitions": [],
+        "recovery_action_bindings": [],
+        "recovery_usage_bindings": []
+      }
+    ],
+    "independent_document_occurrences_required": true,
+    "selected_entry": 0,
+    "input_original_ordinal": 0,
+    "physical": "not_supplied"
+  },
+  "actual_admission_diagnostic": {
+    "actual_context_fields": [
+      "compiled_modules",
+      "type_schemas",
+      "effect_catalogs",
+      "resource_types",
+      "flow_catalogs",
+      "usage_meters",
+      "recovery_operations",
+      "execution_universes",
+      "relation_snapshots"
+    ],
+    "case_id": "c2-binding/independent-identical-native-documents",
+    "distinct_declaration_storage": true,
+    "distinct_document_objects": true,
+    "observations": [
+      {
+        "admission": "Ok(unit)",
+        "all_typed_declarations_equal": true,
+        "canonical_error": {
+          "code": "invalid_or_duplicate_port",
+          "rule_id": "AF-CONTRACT-0004"
+        },
+        "checked": false,
+        "equal_content_other_context": "InvalidContextBinding",
+        "missing_document": "MissingDeclarativeOrigin",
+        "native_guard_records": 0,
+        "physical": "not_supplied",
+        "retained_complete_native_input": [
+          {
+            "component_identity": {
+              "catalog": "agentflow.components@1",
+              "name": "acme.transform"
+            },
+            "effect_flow_partitions": [],
+            "effects": {
+              "row": {
+                "closed": []
+              }
+            },
+            "execution": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": null,
+              "runtime_profile": null,
+              "sandbox": null,
+              "soft_preferences": [],
+              "trust_domain": null
+            },
+            "failures": {
+              "failures": []
+            },
+            "information_flow": {
+              "confidentiality_restrictions": [],
+              "flow_constraints": [],
+              "summary": {
+                "influence_unknown": false,
+                "instruction_authority": "none",
+                "sources": [],
+                "taints": []
+              }
+            },
+            "inputs": [
+              {
+                "port_no": 0,
+                "type": {
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "03c31e7af6d91c1ee4e19a624bc2cc075779ae45abdf4f428906e75b15ddca7e"
+                  },
+                  "specification_id": "agentflow.test.guard-types@1",
+                  "type_name": "CaptureInput"
+                }
+              }
+            ],
+            "outputs": [],
+            "recovery": {
+              "effect_recovery_clauses": [],
+              "replay_semantics": "recompute"
+            },
+            "recovery_action_bindings": [],
+            "recovery_usage_bindings": [],
+            "resources": {
+              "requirements": []
+            },
+            "usage": {
+              "limits": []
+            }
+          },
+          {
+            "component_identity": {
+              "catalog": "agentflow.components@1",
+              "name": "acme.transform"
+            },
+            "effect_flow_partitions": [],
+            "effects": {
+              "row": {
+                "closed": []
+              }
+            },
+            "execution": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": null,
+              "runtime_profile": null,
+              "sandbox": null,
+              "soft_preferences": [],
+              "trust_domain": null
+            },
+            "failures": {
+              "failures": []
+            },
+            "information_flow": {
+              "confidentiality_restrictions": [],
+              "flow_constraints": [],
+              "summary": {
+                "influence_unknown": false,
+                "instruction_authority": "none",
+                "sources": [],
+                "taints": []
+              }
+            },
+            "inputs": [
+              {
+                "port_no": 1,
+                "type": {
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "03c31e7af6d91c1ee4e19a624bc2cc075779ae45abdf4f428906e75b15ddca7e"
+                  },
+                  "specification_id": "agentflow.test.guard-types@1",
+                  "type_name": "CaptureInput"
+                }
+              }
+            ],
+            "outputs": [],
+            "recovery": {
+              "effect_recovery_clauses": [],
+              "replay_semantics": "recompute"
+            },
+            "recovery_action_bindings": [],
+            "recovery_usage_bindings": [],
+            "resources": {
+              "requirements": []
+            },
+            "usage": {
+              "limits": []
+            }
+          }
+        ],
+        "retained_selected_candidate_input": {
+          "component_identity": {
+            "catalog": "agentflow.components@1",
+            "name": "acme.transform"
+          },
+          "effect_flow_partitions": [],
+          "effects": {
+            "row": {
+              "closed": []
+            }
+          },
+          "execution": {
+            "capabilities": [],
+            "implementation_abis": [],
+            "quantities": [],
+            "region_residency": null,
+            "runtime_profile": null,
+            "sandbox": null,
+            "soft_preferences": [],
+            "trust_domain": null
+          },
+          "failures": {
+            "failures": []
+          },
+          "information_flow": {
+            "confidentiality_restrictions": [],
+            "flow_constraints": [],
+            "summary": {
+              "influence_unknown": false,
+              "instruction_authority": "none",
+              "sources": [],
+              "taints": []
+            }
+          },
+          "inputs": [
+            {
+              "port_no": 0,
+              "type": {
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "03c31e7af6d91c1ee4e19a624bc2cc075779ae45abdf4f428906e75b15ddca7e"
+                },
+                "specification_id": "agentflow.test.guard-types@1",
+                "type_name": "CaptureInput"
+              }
+            }
+          ],
+          "outputs": [],
+          "recovery": {
+            "effect_recovery_clauses": [],
+            "replay_semantics": "recompute"
+          },
+          "recovery_action_bindings": [],
+          "recovery_usage_bindings": [],
+          "resources": {
+            "requirements": []
+          },
+          "usage": {
+            "limits": []
+          }
+        },
+        "selected_entry": 0,
+        "typed_candidate_equal": true,
+        "wrong_entry": "InvalidSourceAssociation"
+      },
+      {
+        "admission": "Ok(unit)",
+        "all_typed_declarations_equal": true,
+        "canonical_error": {
+          "code": "invalid_or_duplicate_port",
+          "rule_id": "AF-CONTRACT-0004"
+        },
+        "checked": false,
+        "equal_content_other_context": "InvalidContextBinding",
+        "missing_document": "MissingDeclarativeOrigin",
+        "native_guard_records": 0,
+        "physical": "not_supplied",
+        "retained_complete_native_input": [
+          {
+            "component_identity": {
+              "catalog": "agentflow.components@1",
+              "name": "acme.transform"
+            },
+            "effect_flow_partitions": [],
+            "effects": {
+              "row": {
+                "closed": []
+              }
+            },
+            "execution": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": null,
+              "runtime_profile": null,
+              "sandbox": null,
+              "soft_preferences": [],
+              "trust_domain": null
+            },
+            "failures": {
+              "failures": []
+            },
+            "information_flow": {
+              "confidentiality_restrictions": [],
+              "flow_constraints": [],
+              "summary": {
+                "influence_unknown": false,
+                "instruction_authority": "none",
+                "sources": [],
+                "taints": []
+              }
+            },
+            "inputs": [
+              {
+                "port_no": 0,
+                "type": {
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "03c31e7af6d91c1ee4e19a624bc2cc075779ae45abdf4f428906e75b15ddca7e"
+                  },
+                  "specification_id": "agentflow.test.guard-types@1",
+                  "type_name": "CaptureInput"
+                }
+              }
+            ],
+            "outputs": [],
+            "recovery": {
+              "effect_recovery_clauses": [],
+              "replay_semantics": "recompute"
+            },
+            "recovery_action_bindings": [],
+            "recovery_usage_bindings": [],
+            "resources": {
+              "requirements": []
+            },
+            "usage": {
+              "limits": []
+            }
+          },
+          {
+            "component_identity": {
+              "catalog": "agentflow.components@1",
+              "name": "acme.transform"
+            },
+            "effect_flow_partitions": [],
+            "effects": {
+              "row": {
+                "closed": []
+              }
+            },
+            "execution": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": null,
+              "runtime_profile": null,
+              "sandbox": null,
+              "soft_preferences": [],
+              "trust_domain": null
+            },
+            "failures": {
+              "failures": []
+            },
+            "information_flow": {
+              "confidentiality_restrictions": [],
+              "flow_constraints": [],
+              "summary": {
+                "influence_unknown": false,
+                "instruction_authority": "none",
+                "sources": [],
+                "taints": []
+              }
+            },
+            "inputs": [
+              {
+                "port_no": 1,
+                "type": {
+                  "schema_digest": {
+                    "algorithm": "sha256",
+                    "domain": "type-schema",
+                    "hex": "03c31e7af6d91c1ee4e19a624bc2cc075779ae45abdf4f428906e75b15ddca7e"
+                  },
+                  "specification_id": "agentflow.test.guard-types@1",
+                  "type_name": "CaptureInput"
+                }
+              }
+            ],
+            "outputs": [],
+            "recovery": {
+              "effect_recovery_clauses": [],
+              "replay_semantics": "recompute"
+            },
+            "recovery_action_bindings": [],
+            "recovery_usage_bindings": [],
+            "resources": {
+              "requirements": []
+            },
+            "usage": {
+              "limits": []
+            }
+          }
+        ],
+        "retained_selected_candidate_input": {
+          "component_identity": {
+            "catalog": "agentflow.components@1",
+            "name": "acme.transform"
+          },
+          "effect_flow_partitions": [],
+          "effects": {
+            "row": {
+              "closed": []
+            }
+          },
+          "execution": {
+            "capabilities": [],
+            "implementation_abis": [],
+            "quantities": [],
+            "region_residency": null,
+            "runtime_profile": null,
+            "sandbox": null,
+            "soft_preferences": [],
+            "trust_domain": null
+          },
+          "failures": {
+            "failures": []
+          },
+          "information_flow": {
+            "confidentiality_restrictions": [],
+            "flow_constraints": [],
+            "summary": {
+              "influence_unknown": false,
+              "instruction_authority": "none",
+              "sources": [],
+              "taints": []
+            }
+          },
+          "inputs": [
+            {
+              "port_no": 0,
+              "type": {
+                "schema_digest": {
+                  "algorithm": "sha256",
+                  "domain": "type-schema",
+                  "hex": "03c31e7af6d91c1ee4e19a624bc2cc075779ae45abdf4f428906e75b15ddca7e"
+                },
+                "specification_id": "agentflow.test.guard-types@1",
+                "type_name": "CaptureInput"
+              }
+            }
+          ],
+          "outputs": [],
+          "recovery": {
+            "effect_recovery_clauses": [],
+            "replay_semantics": "recompute"
+          },
+          "recovery_action_bindings": [],
+          "recovery_usage_bindings": [],
+          "resources": {
+            "requirements": []
+          },
+          "usage": {
+            "limits": []
+          }
+        },
+        "selected_entry": 0,
+        "typed_candidate_equal": true,
+        "wrong_entry": "InvalidSourceAssociation"
+      }
+    ],
+    "root_export_capability_issued": false,
+    "same_actual_context_for_both_roles_and_documents": true,
+    "same_compiler_object_for_both_documents": true,
+    "typed_raw_facts_produced": 0
+  },
+  "first_unbindable_requirement": "Stable independent document occurrence identity at RawInputOrigin.document / RawDocument",
+  "descriptor_exhaustion": {
+    "RawDocument": {
+      "kind": "enum",
+      "variants": [
+        [
+          "physical_json_utf8",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "bytes",
+                {
+                  "ref": "$Bytes"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "declared_native_document",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "declarations",
+                {
+                  "kind": "sequence",
+                  "item": {
+                    "ref": "RawCandidateContract"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    "RawInputOrigin": {
+      "kind": "record",
+      "fields": [
+        [
+          "document",
+          {
+            "kind": "dag_ref",
+            "target": {
+              "ref": "RawDocument"
+            }
+          }
+        ],
+        [
+          "path",
+          {
+            "kind": "sequence",
+            "item": {
+              "ref": "RawDocumentMember"
+            },
+            "minimum": 0
+          }
+        ]
+      ]
+    },
+    "RawParsedInput": {
+      "kind": "record",
+      "fields": [
+        [
+          "candidate",
+          {
+            "ref": "RawCandidateContract"
+          }
+        ],
+        [
+          "origin",
+          {
+            "ref": "RawInputOrigin"
+          }
+        ],
+        [
+          "physical",
+          {
+            "ref": "RawPhysicalAssociation"
+          }
+        ]
+      ]
+    },
+    "RawPhysicalAssociation": {
+      "kind": "enum",
+      "variants": [
+        [
+          "not_supplied",
+          {
+            "kind": "unit"
+          }
+        ],
+        [
+          "supplied",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "document",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "RawDocument"
+                  }
+                }
+              ],
+              [
+                "value_path",
+                {
+                  "kind": "sequence",
+                  "item": {
+                    "ref": "RawDocumentMember"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    "RawValidationSubject": {
+      "kind": "record",
+      "fields": [
+        [
+          "owner_compiler",
+          {
+            "ref": "CompleteCompiler"
+          }
+        ],
+        [
+          "input",
+          {
+            "ref": "RawParsedInput"
+          }
+        ],
+        [
+          "context",
+          {
+            "ref": "RawContextBinding"
+          }
+        ]
+      ]
+    },
+    "RawContextBinding": {
+      "kind": "record",
+      "fields": [
+        [
+          "contents",
+          {
+            "ref": "ContractProofContextContents"
+          }
+        ],
+        [
+          "roles",
+          {
+            "ref": "RawContextPartition"
+          }
+        ]
+      ]
+    },
+    "RawContextPartition": {
+      "kind": "sequence",
+      "item": {
+        "kind": "sequence",
+        "item": {
+          "ref": "RawContextRole"
+        },
+        "minimum": 1
+      },
+      "minimum": 1
+    },
+    "RawValidationOrigin": {
+      "kind": "record",
+      "fields": [
+        [
+          "input_origin",
+          {
+            "ref": "RawInputOrigin"
+          }
+        ],
+        [
+          "direction",
+          {
+            "ref": "RawPortDirection"
+          }
+        ],
+        [
+          "original_ordinal",
+          {
+            "ref": "$U64"
+          }
+        ]
+      ]
+    },
+    "Scope": {
+      "kind": "record",
+      "fields": [
+        [
+          "edition",
+          {
+            "ref": "ObligationEdition"
+          }
+        ],
+        [
+          "analysis_semantics",
+          {
+            "ref": "OwnerVersion"
+          }
+        ],
+        [
+          "content",
+          {
+            "ref": "CanonicalValueDag"
+          }
+        ],
+        [
+          "subject",
+          {
+            "ref": "ScopeSubject"
+          }
+        ]
+      ]
+    },
+    "CanonicalValueDag": {
+      "kind": "record",
+      "fields": [
+        [
+          "nodes",
+          {
+            "kind": "sequence",
+            "item": {
+              "ref": "DagNode"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "roots",
+          {
+            "kind": "sequence",
+            "item": {
+              "ref": "$U64"
+            },
+            "minimum": 1
+          }
+        ]
+      ]
+    },
+    "Origin": {
+      "kind": "record",
+      "fields": [
+        [
+          "predicate",
+          {
+            "ref": "PredicateId"
+          }
+        ],
+        [
+          "declared_path",
+          {
+            "kind": "sequence",
+            "item": {
+              "ref": "DeclaredStep"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "source_ordinal",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "$Ordinal64"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "mapping_ordinal",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "$Ordinal64"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "raw_validation_origin",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "RawValidationOrigin"
+            },
+            "minimum": 0
+          }
+        ]
+      ]
+    },
+    "FactKey": {
+      "kind": "record",
+      "fields": [
+        [
+          "stage",
+          {
+            "ref": "Stage"
+          }
+        ],
+        [
+          "assertion_path",
+          {
+            "ref": "AssertionPath"
+          }
+        ],
+        [
+          "kind",
+          {
+            "ref": "Kind"
+          }
+        ],
+        [
+          "dimension",
+          {
+            "ref": "Dimension"
+          }
+        ],
+        [
+          "source",
+          {
+            "ref": "Source"
+          }
+        ],
+        [
+          "target",
+          {
+            "ref": "Target"
+          }
+        ],
+        [
+          "coordinate",
+          {
+            "ref": "Coordinate"
+          }
+        ],
+        [
+          "rule",
+          {
+            "ref": "RuleRef"
+          }
+        ],
+        [
+          "requirement",
+          {
+            "ref": "Requirement"
+          }
+        ],
+        [
+          "origin",
+          {
+            "ref": "Origin"
+          }
+        ]
+      ]
+    }
+  },
+  "raw_source_descriptor": {
+    "kind": "record",
+    "fields": [
+      [
+        "subject",
+        {
+          "kind": "dag_ref",
+          "target": {
+            "ref": "RawValidationSubject"
+          }
+        }
+      ]
+    ]
+  },
+  "scope_subject_descriptor": {
+    "ref": "RawValidationSubject"
+  },
+  "canonical_dag_rule": "Validate acyclicity, widths/descriptors and semantic sets first. Intern equal typed values bottom-up (no hash-only equality); node height0 for scalars/empty containers, otherwise1+maximum child height. Sort each height by descriptor type identity then nonrecursive payload and ordered child ranks, assign contiguous ranks starting0; child ranks strictly smaller. Sets sort by their domain's typed key/full payload; sequence order is preserved. Require no duplicates,unreachable nodes,alternate node numbering or redundant equal nodes at decode. A duplicated equal subtree and shared subtree yield the same minimal DAG. No recursion through final report or digest fixed point exists.",
+  "proof": [
+    "Both real separately owned two-entry documents pass actual source admission.",
+    "All thirteen native declaration fields and both complete document values are equal.",
+    "The actual same compiler and same nine-member Context object are used in both calls.",
+    "Actual entry path, direction, original ordinal and declared member path coincide.",
+    "The closed RawDocument variants have content only; there is no occurrence owner binding.",
+    "All registered Source/Origin identity inputs therefore coincide by typed value equality.",
+    "Node<T> canonical ranks cannot distinguish equal documents: minimal DAG interns equals.",
+    "No existing Context partition distinguishes document occurrences; roles bind Context only.",
+    "Changing Observations cannot repair the missing Source identity input.",
+    "Pending G02 serialization cannot invent an unregistered semantic input."
+  ],
+  "scope_of_claim": "Structural expressibility proof plus live admission diagnostic and retained complete deserialization inputs with Rust typed Eq; not an actual full-field native projection, executed full Scope/Fact encoding or false-Proven finding.",
+  "different_contents_or_entry_paths_already_distinguishable": true,
+  "c1_gap_01": "FORMAL BINDING REGISTERED (not reopened)",
+  "full_raw_seed_conformance": false,
+  "raw_capture_case_ids": 0,
+  "raw_comparator_mutations": 0,
+  "producer_hook": "NotImplemented",
+  "required_event_coverage": "NOT IMPLEMENTED / NOT ZERO GAPS",
+  "required_field_coverage": "NOT IMPLEMENTED / NOT ZERO GAPS",
+  "positive_root_export": "NotAuthorized",
+  "t4": "NOT ELIGIBLE",
+  "required_next_authority": "Separate normative adjudication of actual document occurrence/owner binding. No registration changes in C2."
+}
