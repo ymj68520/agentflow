@@ -1,0 +1,168 @@
+{
+  "kind": "Actual native before/after regression observations;NOT Expected or Typed Capture",
+  "baseline_head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+  "actual_outputs_equal_byte_for_byte": true,
+  "actual_diagnostics_sha256": "6be009a00674218f081f931322685b7f6066c82107fcc7135df3dfb4855fb562",
+  "actual_current_path": "target/phase-04c1b4c4r3g2-native-current-2.json",
+  "actual_baseline_path": "target/phase-04c1b4c4r3g2-native-edition3-2.json",
+  "metadata_input_path": "target/phase-04c1b4c4r3g2-native-shape-input-2.json",
+  "rows": [
+    {
+      "diagnostic_id": "positive",
+      "canonical_valid": true,
+      "component_checked": true,
+      "native_verdict": "proven",
+      "native_basis": "FrozenGuardContainment",
+      "countermodel_field_count": 0,
+      "capability": false,
+      "capture": false,
+      "complete_native_record_shape_validated": true
+    },
+    {
+      "diagnostic_id": "typed_countermodel",
+      "canonical_valid": true,
+      "component_checked": false,
+      "native_verdict": "violation",
+      "native_basis": "TypedCountermodel",
+      "countermodel_field_count": 14,
+      "capability": false,
+      "capture": false,
+      "complete_native_record_shape_validated": true
+    },
+    {
+      "diagnostic_id": "unit_unknown",
+      "canonical_valid": true,
+      "component_checked": false,
+      "native_verdict": "unproven",
+      "native_basis": "InsufficientEvidence",
+      "countermodel_field_count": 0,
+      "capability": false,
+      "capture": false,
+      "complete_native_record_shape_validated": true
+    },
+    {
+      "diagnostic_id": "zero",
+      "canonical_valid": true,
+      "component_checked": false,
+      "native_verdict": "proven",
+      "native_basis": "ZeroPossibleActions",
+      "countermodel_field_count": 0,
+      "capability": false,
+      "capture": false,
+      "complete_native_record_shape_validated": true
+    },
+    {
+      "diagnostic_id": "zero_missing_port",
+      "canonical_valid": true,
+      "component_checked": false,
+      "native_verdict": "violation",
+      "native_basis": "InsufficientEvidence",
+      "countermodel_field_count": 0,
+      "capability": false,
+      "capture": false,
+      "complete_native_record_shape_validated": true
+    },
+    {
+      "diagnostic_id": "type_mismatch",
+      "canonical_valid": true,
+      "component_checked": false,
+      "native_verdict": "violation",
+      "native_basis": "InsufficientEvidence",
+      "countermodel_field_count": 0,
+      "capability": false,
+      "capture": false,
+      "complete_native_record_shape_validated": true
+    },
+    {
+      "diagnostic_id": "missing_usage",
+      "canonical_valid": true,
+      "component_checked": false,
+      "native_verdict": "unproven",
+      "native_basis": "InsufficientEvidence",
+      "countermodel_field_count": 0,
+      "capability": false,
+      "capture": false,
+      "complete_native_record_shape_validated": true
+    },
+    {
+      "diagnostic_id": "missing_forward",
+      "canonical_valid": true,
+      "component_checked": false,
+      "native_verdict": "unproven",
+      "native_basis": "InsufficientEvidence",
+      "countermodel_field_count": 0,
+      "capability": false,
+      "capture": false,
+      "complete_native_record_shape_validated": true
+    },
+    {
+      "diagnostic_id": "shared_bound_conflict",
+      "canonical_valid": true,
+      "component_checked": false,
+      "native_verdict": "violation",
+      "native_basis": "InsufficientEvidence",
+      "countermodel_field_count": 0,
+      "capability": false,
+      "capture": false,
+      "complete_native_record_shape_validated": true
+    },
+    {
+      "diagnostic_id": "overflow",
+      "canonical_valid": true,
+      "component_checked": false,
+      "native_verdict": "violation",
+      "native_basis": "InsufficientEvidence",
+      "countermodel_field_count": 0,
+      "capability": false,
+      "capture": false,
+      "complete_native_record_shape_validated": true
+    },
+    {
+      "diagnostic_id": "first_error_U_then_V",
+      "canonical_valid": true,
+      "component_checked": false,
+      "native_verdict": "unproven",
+      "native_basis": "InsufficientEvidence",
+      "countermodel_field_count": 0,
+      "capability": false,
+      "capture": false,
+      "complete_native_record_shape_validated": true
+    },
+    {
+      "diagnostic_id": "missing_action",
+      "canonical_valid": true,
+      "component_checked": false,
+      "native_verdict": "unproven",
+      "native_basis": "InsufficientEvidence",
+      "countermodel_field_count": 0,
+      "capability": false,
+      "capture": false,
+      "complete_native_record_shape_validated": true
+    },
+    {
+      "diagnostic_id": "missing_port",
+      "canonical_valid": true,
+      "component_checked": false,
+      "native_verdict": "violation",
+      "native_basis": "InsufficientEvidence",
+      "countermodel_field_count": 0,
+      "capability": false,
+      "capture": false,
+      "complete_native_record_shape_validated": true
+    },
+    {
+      "diagnostic_id": "schema_unresolved",
+      "canonical_valid": true,
+      "component_checked": false,
+      "native_verdict": "unproven",
+      "native_basis": "InsufficientEvidence",
+      "countermodel_field_count": 0,
+      "capability": false,
+      "capture": false,
+      "complete_native_record_shape_validated": true
+    }
+  ],
+  "capture_case_ids": 0,
+  "independent_semantic_oracle_implemented": false
+}
+

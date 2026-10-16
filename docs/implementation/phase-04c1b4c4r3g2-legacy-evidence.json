@@ -1,0 +1,129 @@
+{
+  "kind": "Fresh exact-source historical jobs;not relabelled current inputs",
+  "editions": [
+    {
+      "edition": 1,
+      "source_head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+      "analysis": "agentflow.root-export-checker@1",
+      "selected_source_count": 16,
+      "applied_rule_count": 84,
+      "registry_specifications": 43,
+      "registry_rules": 404,
+      "registry_sha256": "b3dd17ee9e4d2f8b1fb86108abfa5fb667a551fda49927db1bfb52bdaf12882c",
+      "rule_registry_sha256": "599b94622e446bb7ffb2ac0f39c3c252d891273d123eae32bbb35dbbb28ef329",
+      "complete_compiler_identity_receipt": {
+        "path": "target/phase-04c1b4c4r3g2-edition1-compiler.json",
+        "sha256": "435a13ecf694a2c97ac9a7594f731c9673264cd5c57b86e4b0d8456948035a3f",
+        "bytes": 973663
+      },
+      "exact_source_blob_count": 1732,
+      "post_regression_all_git_blobs_match": true,
+      "case_ids": 512,
+      "case_failed": 0,
+      "case_skipped": 0,
+      "expected_namespace": "nine original Edition1 conformance domains",
+      "cargo": {
+        "passed": 382,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 144,
+        "groups": 87,
+        "log": {
+          "path": "target/phase-04c1b4c4r3g2-edition1-tests.log",
+          "sha256": "b0dd761d9fce5642831300d5ab1ba14abd0a1d1643306b5c96c37f6cbc8eae47",
+          "bytes": 46356
+        }
+      },
+      "spec_check_exit": 0,
+      "spec_check_log": {
+        "path": "target/phase-04c1b4c4r3g2-edition1-spec-check.log",
+        "sha256": "b08f1ff369c0358f3156dfbf3df32dc7c4a95ef6bf1692e56ec7326e3475f996",
+        "bytes": 398
+      }
+    },
+    {
+      "edition": 2,
+      "source_head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+      "analysis": "agentflow.root-export-checker@2",
+      "selected_source_count": 20,
+      "applied_rule_count": 138,
+      "registry_specifications": 46,
+      "registry_rules": 436,
+      "registry_sha256": "d3afa5f16fba4cffb9f1a802e296ea1f33d844f5a75c792e116d8eef5254471f",
+      "rule_registry_sha256": "8f93ec2e54bbeb248b518f2f60152695b2708a7bf57d3239415f588463d7ff3f",
+      "complete_compiler_identity_receipt": {
+        "path": "target/phase-04c1b4c4r3g2-edition2-compiler.json",
+        "sha256": "47c9887c864af4076b167e460e3d3f0db1384af12788c6918e1d55c5be27e30c",
+        "bytes": 2496452
+      },
+      "exact_source_blob_count": 1811,
+      "post_regression_all_git_blobs_match": true,
+      "case_ids": 51,
+      "case_failed": 0,
+      "case_skipped": 0,
+      "expected_namespace": "spec/conformance/g01-edition2-staging",
+      "cargo": {
+        "passed": 335,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 0,
+        "groups": 71,
+        "log": {
+          "path": "target/phase-04c1b4c4r3g2-edition2-tests.log",
+          "sha256": "6ce61bbeef819b19e856158217997962e9be25955ad20b245bbb2cc351180ca2",
+          "bytes": 37876
+        }
+      },
+      "spec_check_exit": 0,
+      "spec_check_log": {
+        "path": "target/phase-04c1b4c4r3g2-edition2-spec-check.log",
+        "sha256": "5c2a165d6bd1dcc8cc5a35052ccf429fe11aab1f1cd7da5160aa88b4becb9970",
+        "bytes": 394
+      }
+    },
+    {
+      "edition": 3,
+      "source_head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+      "analysis": "agentflow.root-export-checker@3",
+      "selected_source_count": 24,
+      "applied_rule_count": 149,
+      "registry_specifications": 50,
+      "registry_rules": 452,
+      "registry_sha256": "345ec14a89c6bc774991dc955dc1c7f4185a34ac2c8b0677646ae3d52a98a230",
+      "rule_registry_sha256": "034568ba56c84e0cd5715d06aa4302e682d0247bd9b4b9b81668de35ce545726",
+      "complete_compiler_identity_receipt": {
+        "path": "target/phase-04c1b4c4r3g2-edition3-compiler.json",
+        "sha256": "20ca93b1939fc81f8b745d703955298d489275b97a181e0b05ed945abaf8bbb5",
+        "bytes": 3889274
+      },
+      "exact_source_blob_count": 1902,
+      "post_regression_all_git_blobs_match": true,
+      "case_ids": 173,
+      "case_failed": 0,
+      "case_skipped": 0,
+      "expected_namespace": "spec/conformance/g01-successor-staging",
+      "cargo": {
+        "passed": 336,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 0,
+        "groups": 71,
+        "log": {
+          "path": "target/phase-04c1b4c4r3g2-edition3-tests.log",
+          "sha256": "144b3ba2a7a75d68011bcf70f6f632cec56f660f7ceff6e02c046a4017eeedc0",
+          "bytes": 40192
+        }
+      },
+      "spec_check_exit": 0,
+      "spec_check_log": {
+        "path": "target/phase-04c1b4c4r3g2-edition3-spec-check.log",
+        "sha256": "0608e78d6e372351f6de59a09a9edcdfbd98c333e21c724fc623ae48df47fdd5",
+        "bytes": 451
+      }
+    }
+  ]
+}
+

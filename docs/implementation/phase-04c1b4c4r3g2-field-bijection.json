@@ -1,0 +1,140 @@
+{
+  "kind": "Registered field bijection;NOT Typed Capture",
+  "owner": "agentflow.computation.proof-report.model@1",
+  "type": "af-contract::TypedGuardCountermodel",
+  "fields": [
+    {
+      "rank": 0,
+      "native_field": "source_contract",
+      "native_type": "ComponentContract",
+      "source_getter": "source_contract()",
+      "successor_key": "agentflow.computation.proof-report.model@1/af-contract::TypedGuardCountermodel",
+      "successor_field": "source_contract",
+      "required": true
+    },
+    {
+      "rank": 1,
+      "native_field": "source_component",
+      "native_type": "ComponentIdentity",
+      "source_getter": "source_component()",
+      "successor_key": "agentflow.computation.proof-report.model@1/af-contract::TypedGuardCountermodel",
+      "successor_field": "source_component",
+      "required": true
+    },
+    {
+      "rank": 2,
+      "native_field": "recovery_action",
+      "native_type": "RecoveryActionIdentity",
+      "source_getter": "recovery_action()",
+      "successor_key": "agentflow.computation.proof-report.model@1/af-contract::TypedGuardCountermodel",
+      "successor_field": "recovery_action",
+      "required": true
+    },
+    {
+      "rank": 3,
+      "native_field": "forward_entry_ordinal",
+      "native_type": "usize",
+      "source_getter": "forward_entry_ordinal()",
+      "successor_key": "agentflow.computation.proof-report.model@1/af-contract::TypedGuardCountermodel",
+      "successor_field": "forward_entry_ordinal",
+      "required": true
+    },
+    {
+      "rank": 4,
+      "native_field": "action_entry_ordinal",
+      "native_type": "usize",
+      "source_getter": "action_entry_ordinal()",
+      "successor_key": "agentflow.computation.proof-report.model@1/af-contract::TypedGuardCountermodel",
+      "successor_field": "action_entry_ordinal",
+      "required": true
+    },
+    {
+      "rank": 5,
+      "native_field": "forward_guard",
+      "native_type": "EffectGuard",
+      "source_getter": "forward_guard()",
+      "successor_key": "agentflow.computation.proof-report.model@1/af-contract::TypedGuardCountermodel",
+      "successor_field": "forward_guard",
+      "required": true
+    },
+    {
+      "rank": 6,
+      "native_field": "declared_action_guard",
+      "native_type": "EffectGuard",
+      "source_getter": "declared_action_guard()",
+      "successor_key": "agentflow.computation.proof-report.model@1/af-contract::TypedGuardCountermodel",
+      "successor_field": "declared_action_guard",
+      "required": true
+    },
+    {
+      "rank": 7,
+      "native_field": "forward_bounds",
+      "native_type": "OccurrenceBounds",
+      "source_getter": "forward_bounds()",
+      "successor_key": "agentflow.computation.proof-report.model@1/af-contract::TypedGuardCountermodel",
+      "successor_field": "forward_bounds",
+      "required": true
+    },
+    {
+      "rank": 8,
+      "native_field": "activation_upper",
+      "native_type": "OccurrenceCeiling",
+      "source_getter": "activation_upper()",
+      "successor_key": "agentflow.computation.proof-report.model@1/af-contract::TypedGuardCountermodel",
+      "successor_field": "activation_upper",
+      "required": true
+    },
+    {
+      "rank": 9,
+      "native_field": "attempt_upper",
+      "native_type": "OccurrenceCeiling",
+      "source_getter": "attempt_upper()",
+      "successor_key": "agentflow.computation.proof-report.model@1/af-contract::TypedGuardCountermodel",
+      "successor_field": "attempt_upper",
+      "required": true
+    },
+    {
+      "rank": 10,
+      "native_field": "action_upper",
+      "native_type": "OccurrenceCeiling",
+      "source_getter": "action_upper()",
+      "successor_key": "agentflow.computation.proof-report.model@1/af-contract::TypedGuardCountermodel",
+      "successor_field": "action_upper",
+      "required": true
+    },
+    {
+      "rank": 11,
+      "native_field": "assignments",
+      "native_type": "Vec<GuardInputAssignment>",
+      "source_getter": "assignments()",
+      "successor_key": "agentflow.computation.proof-report.model@1/af-contract::TypedGuardCountermodel",
+      "successor_field": "assignments",
+      "required": true
+    },
+    {
+      "rank": 12,
+      "native_field": "reachability",
+      "native_type": "GuardCountermodelReachability",
+      "source_getter": "reachability()",
+      "successor_key": "agentflow.computation.proof-report.model@1/af-contract::TypedGuardCountermodel",
+      "successor_field": "reachability",
+      "required": true
+    },
+    {
+      "rank": 13,
+      "native_field": "related_rule_id",
+      "native_type": "&'static str",
+      "source_getter": "related_rule_id()",
+      "successor_key": "agentflow.computation.proof-report.model@1/af-contract::TypedGuardCountermodel",
+      "successor_field": "related_rule_id",
+      "required": true
+    }
+  ],
+  "assignment_fields": [
+    "port_no",
+    "type_ref",
+    "value"
+  ],
+  "capture_case_ids": 0
+}
+

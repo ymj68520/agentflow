@@ -1,0 +1,179 @@
+{
+  "kind": "G2 current registration/staging gate evidence;NOT Typed Capture",
+  "starting_head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+  "source_full_gate_head": "ff04beb2020e49d2214e25bbe0ab7d50616e2aa4",
+  "commands_exit": {
+    "fmt": 0,
+    "clippy": 0,
+    "cargo_test_all": 0,
+    "spec_check": 0
+  },
+  "cargo": {
+    "passed": 337,
+    "failed": 0,
+    "ignored": 0,
+    "measured": 0,
+    "filtered": 0,
+    "groups": 71,
+    "log": {
+      "path": "target/phase-04c1b4c4r3g2-verified-tests.log",
+      "sha256": "d70855dd4a46c2fa9bdcd42ca2cd61199e1f0ea366e168501dc3abcff1d7da3a",
+      "bytes": 36215
+    }
+  },
+  "registered_counts": {
+    "specifications": 54,
+    "rules": 468,
+    "reference_covered": 467,
+    "intentional_exception": 1,
+    "missing": 0,
+    "abi": 775,
+    "afidl": 17,
+    "hashv1_domains": 14
+  },
+  "model": {
+    "descriptors": 652,
+    "resolved_references": 1941,
+    "selected_imports": 97,
+    "guard_roots": 5,
+    "countermodel_fields": 14,
+    "assignment_fields": 3,
+    "native_branches": 12
+  },
+  "conformance": {
+    "case_ids": 889,
+    "shape": 844,
+    "descriptor_laws": 20,
+    "rules": 16,
+    "portable": 9,
+    "field_variant_inventory": 526,
+    "typed_capture_case_ids": 0,
+    "g1_design_vectors_capture": "48 Not Executed"
+  },
+  "logs": [
+    {
+      "path": "target/phase-04c1b4c4r3g2-verified-fmt.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "target/phase-04c1b4c4r3g2-verified-clippy.log",
+      "sha256": "19e62ee3feb4c22edca0ffa2d074641bb9ebb4a97f631f58511f25bb367989ba",
+      "bytes": 287
+    },
+    {
+      "path": "target/phase-04c1b4c4r3g2-verified-tests.log",
+      "sha256": "d70855dd4a46c2fa9bdcd42ca2cd61199e1f0ea366e168501dc3abcff1d7da3a",
+      "bytes": 36215
+    },
+    {
+      "path": "target/phase-04c1b4c4r3g2-verified-spec-check.log",
+      "sha256": "87c01f10d58737ad03f72b8e7ae9b2ee513cb5a0ccc51bf92be8de2ea51ac0b7",
+      "bytes": 362
+    },
+    {
+      "path": "target/phase-04c1b4c4r3g2-final-source-audit.json",
+      "sha256": "224276d9ca7e972abe9e56bda6c0a3fc74ebd139e6c61cca868f8b6dafb12262",
+      "bytes": 1248
+    },
+    {
+      "path": "target/phase-04c1b4c4r3g2-native-current-2.json",
+      "sha256": "6be009a00674218f081f931322685b7f6066c82107fcc7135df3dfb4855fb562",
+      "bytes": 119618
+    },
+    {
+      "path": "target/phase-04c1b4c4r3g2-native-edition3-2.json",
+      "sha256": "6be009a00674218f081f931322685b7f6066c82107fcc7135df3dfb4855fb562",
+      "bytes": 119618
+    },
+    {
+      "path": "target/phase-04c1b4c4r3g2-native-shape-input-2.json",
+      "sha256": "530abb134a16300903beb47b5bef0c7a1c99781eda6f5dac809a0c1ff5182cfd",
+      "bytes": 37621
+    },
+    {
+      "path": "target/phase-04c1b4c4r3g2-native-shape-output.json",
+      "sha256": "a3a81355bf02cf3db8eb034d95cbc988d0f78d1c1264a35ba1c0b9bf3d2f255f",
+      "bytes": 2896
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "crates/af-computation/src/registered_model.rs",
+      "sha256": "a7645db1e2199661552a185e3a67b7b322e9de024ca0294b90f396dfeea43e19",
+      "bytes": 16391
+    },
+    {
+      "path": "crates/af-computation/src/root_export.rs",
+      "sha256": "4d68feb3c854bfd8fd1b01a3e463eafda7433442c63d9d2809fdf2ee84ccb323",
+      "bytes": 169426
+    },
+    {
+      "path": "crates/af-portable/src/support.rs",
+      "sha256": "0885b2f9e160328bfd9dda01ceaed96b520016bd17444ee136c9d4ec89dd56cd",
+      "bytes": 25775
+    },
+    {
+      "path": "spec/component/native-recovery-guard.md",
+      "sha256": "a78b148a57babd488c7ab27348461a8f934e2a8ee87818cfe8d93b448f7da38f",
+      "bytes": 30128
+    },
+    {
+      "path": "spec/computation/proof-obligation-semantics-v3.md",
+      "sha256": "bf7b908c5442259aacdc15f0693eaa1620e9e35f478f772ca96562dc93210b32",
+      "bytes": 3279
+    },
+    {
+      "path": "spec/tables/proof-report-model-v3.md",
+      "sha256": "296402ccab8234cd32dbe758788ef0e4bdb4a724128985c4c1f935e9459d259b",
+      "bytes": 2822308
+    },
+    {
+      "path": "spec/portable/portable-proof-inputs-v4.md",
+      "sha256": "8bfd73778fccb892c0f4e0712fb2a5048f7ef15a9533842caa8b341a7d53ce89",
+      "bytes": 4641
+    },
+    {
+      "path": "spec/registry/specifications.json",
+      "sha256": "bf4036f9a7815b670684f0c617039bc16c16e5aecb0a9adbacbf897c4098cfb4",
+      "bytes": 31898
+    },
+    {
+      "path": "spec/registry/rules.json",
+      "sha256": "c6f32a0cfc36c98494a76a7d79131b189287086ed049a8fb49ece3a684ca8e4f",
+      "bytes": 266682
+    },
+    {
+      "path": "spec/conformance/g01-native-guard-staging/manifest.json",
+      "sha256": "51ca87f82adc7980875f022e6e6f61f58b277a8521ea1583d4c2300bb8489281",
+      "bytes": 195863
+    },
+    {
+      "path": "spec/conformance/g01-native-guard-staging/compiler-current.json",
+      "sha256": "8a4799c7df7faba35781f8bd45ffa35a54087b8cfb664d2c11b7a104c92ba507",
+      "bytes": 9635894
+    }
+  ],
+  "historical_regressions_exit": 0,
+  "history_detail": "phase-04c1b4c4r3g2-legacy-evidence.json",
+  "native_behavior": {
+    "diagnostics": 14,
+    "baseline_current_raw_bytes_equal": true,
+    "full_actual_records_shape_validated": 14,
+    "canonical_valid": 14,
+    "whole_contract_checked": 1,
+    "independent_native_oracle_implemented": false
+  },
+  "preliminary_failures_retained": [
+    "first-registration-test.log: test harness Value Ord compilation",
+    "registration-test-2.log and shape-diagnostic.log: new unit-enum authoring issue",
+    "first-clippy.log: test cast lint",
+    "current-tests-1.log: unchanged default scalar ResourceLimit encountered before D4",
+    "native-shape-projection.log: explicit canonical/native port spelling required",
+    "final-tests.log: precommit binary while new field-token corpus changed;not accepted stable-tree gate"
+  ],
+  "resource_finding": "Default policy unchanged;separate default D0 ResourceLimit and existing explicit bounded8MiB scalar D4 tests pass",
+  "positive_capability": "NotAuthorized",
+  "generator_receipt": "Final original-directory33-script consecutive pair log/maps are recorded after documentation commit. Completion,timings,HEAD and path/byte equality are reported at delivery,not inferred here."
+}
+

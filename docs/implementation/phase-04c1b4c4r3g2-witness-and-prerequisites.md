@@ -1,0 +1,6 @@
+# Typed witnesses, prerequisites and references
+
+NativeGuardWitness is input_countermodel(full imported14),missing_port{guard_role,requested_port,actual_input_declarations},constant_type_mismatch{guard_role,port,type_ref,expanded_type,constant},bound_failure(full closed failure),propagated_failure{cause_fact,exact_nonpropagated_witness}. The nonpropagated sum excludes propagation,so no witness recursion/self-cycle exists. Structural V gets its actual structural cause,not a fake input assignment. Missing required V witness must later fail IncompleteFacts rather than rewrite native verdict. U is not promoted by missing witness.
+
+PrerequisitePredicate.native_guard has canonical_source,context_association,action_sources_ready,action_bounds_ready,guard_input_valid(role),containment_outcome(expected). Actual applicability,original supporting fact,proof status,stage/source/origin and all consumer edges remain distinct. EvidenceRef.native_guard_member retains exact subject/member path. RuleRef is not EvidenceRef. No self-support or absence-of-missing-string proof is permitted. Native Fact's new optional native_guard_basis is Some exactly for native family;substitution_basis remains None for native. Complete association/normalization is not implemented.
+

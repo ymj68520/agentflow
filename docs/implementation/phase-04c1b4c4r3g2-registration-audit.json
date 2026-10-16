@@ -1,0 +1,43 @@
+{
+  "kind": "G2 read-only Registration Conformance audit;NOT native semantic Oracle",
+  "baseline": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+  "specifications": 54,
+  "rules": 468,
+  "old_rows_exact": [
+    50,
+    452
+  ],
+  "old_sources_byte_equal": 50,
+  "model": "agentflow.computation.proof-report.model@3",
+  "types": 652,
+  "resolved_refs": 1941,
+  "selected_imports": 97,
+  "five_guard_roots": [
+    "af-contract::ActionGuardCompatibility",
+    "af-contract::GuardCompatibilityBasis",
+    "af-contract::TypedGuardCountermodel",
+    "af-contract::GuardInputAssignment",
+    "af-contract::GuardCountermodelReachability"
+  ],
+  "countermodel_fields": [
+    "source_contract",
+    "source_component",
+    "recovery_action",
+    "forward_entry_ordinal",
+    "action_entry_ordinal",
+    "forward_guard",
+    "declared_action_guard",
+    "forward_bounds",
+    "activation_upper",
+    "attempt_upper",
+    "action_upper",
+    "assignments",
+    "reachability",
+    "related_rule_id"
+  ],
+  "registration_case_ids": 889,
+  "native_field_variant_inventory": 526,
+  "capture_case_ids": 0,
+  "positive_capability": "NotAuthorized",
+  "frozen_assets": "ABI/AFIDL/HashV1/old models/old Expected preserved"
+}
