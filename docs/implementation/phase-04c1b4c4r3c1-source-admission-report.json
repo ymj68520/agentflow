@@ -1,0 +1,12 @@
+{
+  "kind": "IndependentNativeSourceNfcAdmissionAudit;not full Seed Oracle",
+  "outcome": "SOURCE_ADMISSION_MATCH",
+  "source_head": "98c7f0a8df1da880da104d0f322aa0727d0bcfb4",
+  "executed": 2,
+  "matched": 2,
+  "unexpected_mismatch": 0,
+  "differences": [],
+  "equal_canonical_bytes": true,
+  "full_seed_conformance": false,
+  "positive_root_export": "NotAuthorized"
+}

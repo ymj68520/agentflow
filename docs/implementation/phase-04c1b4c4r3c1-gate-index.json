@@ -1,0 +1,21 @@
+{
+  "baseline": "98c7f0a8df1da880da104d0f322aa0727d0bcfb4",
+  "complete_code_gate_head": "dd1492ed1d790571d2c72b37114d67baaea9c9d7",
+  "outcome": "C — FORMAL BINDING GAP",
+  "runtime_results": "target/phase-04c1b4c4r3c1-final-runtime-results.json",
+  "runtime_results_policy": "Populate only after observed complete job exits, clean final HEAD, and exact final raw tree equals both generator rounds. No prefilled completion.",
+  "quality_logs": "target/phase-04c1b4c4r3c1-final-{fmt,clippy,tests,spec}.log",
+  "history_logs": "target/phase-04c1b4c4r3c1-edition{1,2,3}-tests.log",
+  "history_blob_audits": "target/phase-04c1b4c4r3c1-history-source-{before,after}.json",
+  "generator_log": "target/phase-04c1b4c4r3c1-generators.log",
+  "generator_maps": "target/phase-04c1b4c4r3c1-generators-{baseline,round1,round2}.json",
+  "source_admission_actual": "target/phase-04c1b4c4r3c1-native-source-actual.json",
+  "raw_binding_actual": "target/phase-04c1b4c4r3c1-raw-binding-actual.json",
+  "raw_binding_default_expected_exit": 2,
+  "raw_binding_exit_2_meaning": "Formal gap diagnostic; not passing T3 conformance",
+  "f1_actual_prefix": "target/phase-04c1b4c4r3f1-",
+  "independent_rerun_log": "target/phase-04c1b4c4r3c1-independent-gates.json",
+  "freeze_audit": "python tools/audit-g01-c1.py",
+  "full_t3_acceptance": false,
+  "positive_root_export": "NotAuthorized"
+}

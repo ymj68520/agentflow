@@ -1,0 +1,22 @@
+{
+  "outcome": "C — FORMAL BINDING GAP",
+  "finding": "C1-GAP-01",
+  "checkpoints": {"C1-A": "PARTIAL / NOT COMPLETE", "C1-B": "NOT COMPLETE", "C1-C": "NOT COMPLETE", "C1-D": "NOT STARTED", "C1-E": "NOT STARTED", "C1-F": "NOT CLOSED", "C1-G": "runtime regression gates only; not full T3 acceptance"},
+  "certified_complete_t3_case_ids": {"native": 0, "standalone": 0, "root_control_leaf": 0, "total": 0},
+  "new_full_t3_comparator_mutations": 0,
+  "new_diagnostic_input_cases": {"source_admission": 2, "raw_binding_gap": 1},
+  "full_seed_comparison": {"applicable_instances": null, "required_field_instances": null, "independently_derived_instances": null, "actual_instances": null, "compared_instances": null, "missing_expected": null, "missing_actual": null, "unexpected_full_seed_mismatch": null, "null_meaning": "NOT CLOSED, not zero"},
+  "unique_semantic_producer_sites": "NOT CLOSED",
+  "fresh_lexical_census": {"unique_anchors": 181, "root_direct": 6, "inherited": 3, "control": 65, "leaf": 27, "native_dimension": 17, "native_record": 11, "standalone_set": 17, "standalone_return": 4, "prerequisite_arms": 11, "prerequisite_literals": 20, "categories_overlap": true},
+  "runtime_census": "target/phase-04c1b4c4r3c1-freeze-census.json",
+  "inherited_corpora_not_new_t3": {"edition1": 512, "edition2": 51, "edition3": 173, "analysis4_registration": 889, "original_native": 53, "f1_input_cases": 62, "f1_comparator_mutations": 40},
+  "required_site_gaps": "NOT ZERO-GAP CERTIFIED",
+  "required_field_gaps": "NOT ZERO-GAP CERTIFIED",
+  "uncompared_required_instances": "NOT CLOSED",
+  "native_full_seed_oracle": "INCOMPLETE",
+  "standalone_full_seed_oracle": "NOT IMPLEMENTED",
+  "remaining_full_seed_oracle": "NOT IMPLEMENTED",
+  "positive_root_export": "NotAuthorized",
+  "r3_complete": false,
+  "t4_admission": "NOT ELIGIBLE"
+}
