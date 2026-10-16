@@ -211,12 +211,25 @@ pub enum GuardObservationFailure {
 /// Private construction binds fresh actual canonical validation and actual
 /// context lifetime. Public trace data alone cannot manufacture this binding.
 pub struct CanonicalGuardObservation<'c, 'u> {
+    pub(crate) raw: ComponentContract,
     pub(crate) declaration: crate::CanonicalComponentContract,
     pub(crate) bytes: Vec<u8>,
     pub(crate) context: &'c StaticContractProofContext<'u>,
     pub(crate) runs: Vec<ObservedGuardRun>,
 }
 impl<'c, 'u> CanonicalGuardObservation<'c, 'u> {
+    /// The supplied raw declaration from this fresh execution; not a claim
+    /// about an unavailable historical validation or originating raw stream.
+    pub fn raw_declaration(&self) -> &ComponentContract {
+        &self.raw
+    }
+    /// Actual whole-contract validation is a separate operation from native
+    /// diagnostics. It never turns a negative diagnostic into Checked input.
+    pub fn check_whole_contract(
+        &self,
+    ) -> Result<crate::CheckedComponentContract<'c, 'u>, crate::ProofReport> {
+        crate::check_contract(&self.raw, self.context)
+    }
     pub fn declaration(&self) -> &ComponentContract {
         self.declaration.contract()
     }
@@ -279,6 +292,7 @@ pub fn observe_canonical_guard<'c, 'u>(
         ));
     }
     Ok(CanonicalGuardObservation {
+        raw: raw.clone(),
         declaration,
         bytes,
         context,
