@@ -1,0 +1,7245 @@
+{
+  "capture_case_ids": 0,
+  "cases": [
+    {
+      "case_id": "g01-document-occurrence-staging/shape-DocumentSourceKey",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentSourceKey",
+      "value": [
+        120
+      ]
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-DocumentSourceDomain",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentSourceDomain",
+      "value": {
+        "domain_key": [
+          120
+        ],
+        "namespace": [
+          120
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentSourceDomain-namespace",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentSourceDomain",
+      "value": {
+        "domain_key": [
+          120
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentSourceDomain-domain_key",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentSourceDomain",
+      "value": {
+        "namespace": [
+          120
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-DocumentSourceDomain",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "DocumentSourceDomain",
+      "value": {
+        "domain_key": [
+          120
+        ],
+        "namespace": [
+          120
+        ],
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-DocumentOwnerAnchor",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOwnerAnchor",
+      "value": {
+        "domain": {
+          "domain_key": [
+            120
+          ],
+          "namespace": [
+            120
+          ]
+        },
+        "owner_key": [
+          120
+        ],
+        "revision_key": [
+          120
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerAnchor-domain",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOwnerAnchor",
+      "value": {
+        "owner_key": [
+          120
+        ],
+        "revision_key": [
+          120
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerAnchor-owner_key",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOwnerAnchor",
+      "value": {
+        "domain": {
+          "domain_key": [
+            120
+          ],
+          "namespace": [
+            120
+          ]
+        },
+        "revision_key": [
+          120
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerAnchor-revision_key",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOwnerAnchor",
+      "value": {
+        "domain": {
+          "domain_key": [
+            120
+          ],
+          "namespace": [
+            120
+          ]
+        },
+        "owner_key": [
+          120
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-DocumentOwnerAnchor",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "DocumentOwnerAnchor",
+      "value": {
+        "domain": {
+          "domain_key": [
+            120
+          ],
+          "namespace": [
+            120
+          ]
+        },
+        "owner_key": [
+          120
+        ],
+        "revision_key": [
+          120
+        ],
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-DeclarationDocumentEntry",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DeclarationDocumentEntry",
+      "value": {
+        "declaration_name": [
+          120
+        ],
+        "document": 0
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DeclarationDocumentEntry-declaration_name",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DeclarationDocumentEntry",
+      "value": {
+        "document": 0
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DeclarationDocumentEntry-document",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DeclarationDocumentEntry",
+      "value": {
+        "declaration_name": [
+          120
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-DeclarationDocumentEntry",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "DeclarationDocumentEntry",
+      "value": {
+        "declaration_name": [
+          120
+        ],
+        "document": 0,
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-ImportDocumentEntry",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "ImportDocumentEntry",
+      "value": {
+        "document": 0,
+        "import_name": [
+          120
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-ImportDocumentEntry-import_name",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "ImportDocumentEntry",
+      "value": {
+        "document": 0
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-ImportDocumentEntry-document",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "ImportDocumentEntry",
+      "value": {
+        "import_name": [
+          120
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-ImportDocumentEntry",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "ImportDocumentEntry",
+      "value": {
+        "document": 0,
+        "import_name": [
+          120
+        ],
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-WorkflowDocumentEntry",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "WorkflowDocumentEntry",
+      "value": {
+        "document": 0,
+        "source_name": [
+          120
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-WorkflowDocumentEntry-source_name",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "WorkflowDocumentEntry",
+      "value": {
+        "document": 0
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-WorkflowDocumentEntry-document",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "WorkflowDocumentEntry",
+      "value": {
+        "source_name": [
+          120
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-WorkflowDocumentEntry",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "WorkflowDocumentEntry",
+      "value": {
+        "document": 0,
+        "source_name": [
+          120
+        ],
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-DocumentOwnerContainer",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOwnerContainer",
+      "value": {
+        "declaration_bundle": {
+          "bundle_name": [
+            120
+          ],
+          "declarations": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOwnerContainer-declaration_bundle",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOwnerContainer",
+      "value": {
+        "declaration_bundle": {
+          "bundle_name": [
+            120
+          ],
+          "declarations": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerContainer-declaration_bundle-bundle_name",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOwnerContainer",
+      "value": {
+        "declaration_bundle": {
+          "declarations": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerContainer-declaration_bundle-declarations",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOwnerContainer",
+      "value": {
+        "declaration_bundle": {
+          "bundle_name": [
+            120
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-DocumentOwnerContainer-declaration_bundle",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "DocumentOwnerContainer",
+      "value": {
+        "declaration_bundle": {
+          "bundle_name": [
+            120
+          ],
+          "declarations": [],
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOwnerContainer-import_manifest",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOwnerContainer",
+      "value": {
+        "import_manifest": {
+          "imports": [],
+          "manifest_name": [
+            120
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerContainer-import_manifest-manifest_name",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOwnerContainer",
+      "value": {
+        "import_manifest": {
+          "imports": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerContainer-import_manifest-imports",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOwnerContainer",
+      "value": {
+        "import_manifest": {
+          "manifest_name": [
+            120
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-DocumentOwnerContainer-import_manifest",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "DocumentOwnerContainer",
+      "value": {
+        "import_manifest": {
+          "imports": [],
+          "manifest_name": [
+            120
+          ],
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOwnerContainer-workflow_source_collection",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOwnerContainer",
+      "value": {
+        "workflow_source_collection": {
+          "collection_name": [
+            120
+          ],
+          "sources": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerContainer-workflow_source_collection-collection_name",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOwnerContainer",
+      "value": {
+        "workflow_source_collection": {
+          "sources": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerContainer-workflow_source_collection-sources",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOwnerContainer",
+      "value": {
+        "workflow_source_collection": {
+          "collection_name": [
+            120
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-DocumentOwnerContainer-workflow_source_collection",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "DocumentOwnerContainer",
+      "value": {
+        "workflow_source_collection": {
+          "collection_name": [
+            120
+          ],
+          "sources": [],
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/unknown-DocumentOwnerContainer",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "DocumentOwnerContainer",
+      "value": "future"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-DocumentOwnerRecord",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOwnerRecord",
+      "value": {
+        "anchor": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owner_key": [
+            120
+          ],
+          "revision_key": [
+            120
+          ]
+        },
+        "container": {
+          "declaration_bundle": {
+            "bundle_name": [
+              120
+            ],
+            "declarations": []
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerRecord-anchor",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOwnerRecord",
+      "value": {
+        "container": {
+          "declaration_bundle": {
+            "bundle_name": [
+              120
+            ],
+            "declarations": []
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerRecord-container",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOwnerRecord",
+      "value": {
+        "anchor": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owner_key": [
+            120
+          ],
+          "revision_key": [
+            120
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-DocumentOwnerRecord",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "DocumentOwnerRecord",
+      "value": {
+        "anchor": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owner_key": [
+            120
+          ],
+          "revision_key": [
+            120
+          ]
+        },
+        "container": {
+          "declaration_bundle": {
+            "bundle_name": [
+              120
+            ],
+            "declarations": []
+          }
+        },
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-SourcePackage",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "SourcePackage",
+      "value": {
+        "domain": {
+          "domain_key": [
+            120
+          ],
+          "namespace": [
+            120
+          ]
+        },
+        "owners": []
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-SourcePackage-domain",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "SourcePackage",
+      "value": {
+        "owners": []
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-SourcePackage-owners",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "SourcePackage",
+      "value": {
+        "domain": {
+          "domain_key": [
+            120
+          ],
+          "namespace": [
+            120
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-SourcePackage",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "SourcePackage",
+      "value": {
+        "domain": {
+          "domain_key": [
+            120
+          ],
+          "namespace": [
+            120
+          ]
+        },
+        "owners": [],
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-DocumentOccurrenceKey",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceKey",
+      "value": {
+        "entry_ordinal": 0
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceKey-entry_ordinal",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOccurrenceKey",
+      "value": {}
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-DocumentOccurrenceKey",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "DocumentOccurrenceKey",
+      "value": {
+        "entry_ordinal": 0,
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-DocumentOccurrenceBinding",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceBinding",
+      "value": {
+        "actual_document": 0,
+        "occurrence_key": {
+          "entry_ordinal": 0
+        },
+        "source_owner": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owner_key": [
+            120
+          ],
+          "revision_key": [
+            120
+          ]
+        },
+        "source_package": 0
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceBinding-source_package",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOccurrenceBinding",
+      "value": {
+        "actual_document": 0,
+        "occurrence_key": {
+          "entry_ordinal": 0
+        },
+        "source_owner": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owner_key": [
+            120
+          ],
+          "revision_key": [
+            120
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceBinding-source_owner",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOccurrenceBinding",
+      "value": {
+        "actual_document": 0,
+        "occurrence_key": {
+          "entry_ordinal": 0
+        },
+        "source_package": 0
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceBinding-occurrence_key",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOccurrenceBinding",
+      "value": {
+        "actual_document": 0,
+        "source_owner": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owner_key": [
+            120
+          ],
+          "revision_key": [
+            120
+          ]
+        },
+        "source_package": 0
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceBinding-actual_document",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOccurrenceBinding",
+      "value": {
+        "occurrence_key": {
+          "entry_ordinal": 0
+        },
+        "source_owner": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owner_key": [
+            120
+          ],
+          "revision_key": [
+            120
+          ]
+        },
+        "source_package": 0
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-DocumentOccurrenceBinding",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "DocumentOccurrenceBinding",
+      "value": {
+        "actual_document": 0,
+        "occurrence_key": {
+          "entry_ordinal": 0
+        },
+        "source_owner": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owner_key": [
+            120
+          ],
+          "revision_key": [
+            120
+          ]
+        },
+        "source_package": 0,
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-DocumentSourceAssurance",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentSourceAssurance",
+      "value": "declared_only"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentSourceAssurance-declared_only",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentSourceAssurance",
+      "value": "declared_only"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/unknown-DocumentSourceAssurance",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "DocumentSourceAssurance",
+      "value": "future"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-DocumentOccurrenceAdmissionFailure",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "value": "MissingDocumentOccurrenceBinding"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-MissingDocumentOccurrenceBinding",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "value": "MissingDocumentOccurrenceBinding"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-InvalidOccurrenceAssociation",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "value": "InvalidOccurrenceAssociation"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-BindingConflict",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "value": "BindingConflict"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-OwnerBindingConflict",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "value": "OwnerBindingConflict"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-MalformedSourcePackage",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "value": "MalformedSourcePackage"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-UnsupportedOwnerVariant",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "value": "UnsupportedOwnerVariant"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-UnsupportedSourceDomain",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "value": "UnsupportedSourceDomain"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-UnsupportedPhysicalAssociation",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "value": "UnsupportedPhysicalAssociation"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-InvalidPhysicalInput",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "value": "InvalidPhysicalInput"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-InvalidContextBinding",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "value": "InvalidContextBinding"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-InvalidIdentity",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "value": "InvalidIdentity"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-IncompleteFacts",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "value": "IncompleteFacts"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-UnsupportedModel",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "value": "UnsupportedModel"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-ResourceLimit",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "value": "ResourceLimit"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/unknown-DocumentOccurrenceAdmissionFailure",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "value": "future"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-DocumentSourceMigrationState",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentSourceMigrationState",
+      "value": "exact_old_content_only"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentSourceMigrationState-exact_old_content_only",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentSourceMigrationState",
+      "value": "exact_old_content_only"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentSourceMigrationState-unmigratable_missing_occurrence",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentSourceMigrationState",
+      "value": "unmigratable_missing_occurrence"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentSourceMigrationState-new_declared_occurrence",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentSourceMigrationState",
+      "value": "new_declared_occurrence"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/unknown-DocumentSourceMigrationState",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "DocumentSourceMigrationState",
+      "value": "future"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-MetadataDeclarationDocumentEntry",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "MetadataDeclarationDocumentEntry",
+      "value": {
+        "declaration_name": [
+          120
+        ],
+        "document": {
+          "physical_json_utf8": {
+            "bytes": []
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDeclarationDocumentEntry-declaration_name",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "MetadataDeclarationDocumentEntry",
+      "value": {
+        "document": {
+          "physical_json_utf8": {
+            "bytes": []
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDeclarationDocumentEntry-document",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "MetadataDeclarationDocumentEntry",
+      "value": {
+        "declaration_name": [
+          120
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-MetadataDeclarationDocumentEntry",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "MetadataDeclarationDocumentEntry",
+      "value": {
+        "declaration_name": [
+          120
+        ],
+        "document": {
+          "physical_json_utf8": {
+            "bytes": []
+          }
+        },
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-MetadataImportDocumentEntry",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "MetadataImportDocumentEntry",
+      "value": {
+        "document": {
+          "physical_json_utf8": {
+            "bytes": []
+          }
+        },
+        "import_name": [
+          120
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataImportDocumentEntry-import_name",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "MetadataImportDocumentEntry",
+      "value": {
+        "document": {
+          "physical_json_utf8": {
+            "bytes": []
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataImportDocumentEntry-document",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "MetadataImportDocumentEntry",
+      "value": {
+        "import_name": [
+          120
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-MetadataImportDocumentEntry",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "MetadataImportDocumentEntry",
+      "value": {
+        "document": {
+          "physical_json_utf8": {
+            "bytes": []
+          }
+        },
+        "import_name": [
+          120
+        ],
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-MetadataWorkflowDocumentEntry",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "MetadataWorkflowDocumentEntry",
+      "value": {
+        "document": {
+          "physical_json_utf8": {
+            "bytes": []
+          }
+        },
+        "source_name": [
+          120
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataWorkflowDocumentEntry-source_name",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "MetadataWorkflowDocumentEntry",
+      "value": {
+        "document": {
+          "physical_json_utf8": {
+            "bytes": []
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataWorkflowDocumentEntry-document",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "MetadataWorkflowDocumentEntry",
+      "value": {
+        "source_name": [
+          120
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-MetadataWorkflowDocumentEntry",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "MetadataWorkflowDocumentEntry",
+      "value": {
+        "document": {
+          "physical_json_utf8": {
+            "bytes": []
+          }
+        },
+        "source_name": [
+          120
+        ],
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-MetadataDocumentOwnerContainer",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "MetadataDocumentOwnerContainer",
+      "value": {
+        "declaration_bundle": {
+          "bundle_name": [
+            120
+          ],
+          "declarations": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-MetadataDocumentOwnerContainer-declaration_bundle",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "MetadataDocumentOwnerContainer",
+      "value": {
+        "declaration_bundle": {
+          "bundle_name": [
+            120
+          ],
+          "declarations": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-declaration_bundle-bundle_name",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "MetadataDocumentOwnerContainer",
+      "value": {
+        "declaration_bundle": {
+          "declarations": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-declaration_bundle-declarations",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "MetadataDocumentOwnerContainer",
+      "value": {
+        "declaration_bundle": {
+          "bundle_name": [
+            120
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-MetadataDocumentOwnerContainer-declaration_bundle",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "MetadataDocumentOwnerContainer",
+      "value": {
+        "declaration_bundle": {
+          "bundle_name": [
+            120
+          ],
+          "declarations": [],
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-MetadataDocumentOwnerContainer-import_manifest",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "MetadataDocumentOwnerContainer",
+      "value": {
+        "import_manifest": {
+          "imports": [],
+          "manifest_name": [
+            120
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-import_manifest-manifest_name",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "MetadataDocumentOwnerContainer",
+      "value": {
+        "import_manifest": {
+          "imports": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-import_manifest-imports",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "MetadataDocumentOwnerContainer",
+      "value": {
+        "import_manifest": {
+          "manifest_name": [
+            120
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-MetadataDocumentOwnerContainer-import_manifest",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "MetadataDocumentOwnerContainer",
+      "value": {
+        "import_manifest": {
+          "imports": [],
+          "manifest_name": [
+            120
+          ],
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-MetadataDocumentOwnerContainer-workflow_source_collection",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "MetadataDocumentOwnerContainer",
+      "value": {
+        "workflow_source_collection": {
+          "collection_name": [
+            120
+          ],
+          "sources": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-workflow_source_collection-collection_name",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "MetadataDocumentOwnerContainer",
+      "value": {
+        "workflow_source_collection": {
+          "sources": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-workflow_source_collection-sources",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "MetadataDocumentOwnerContainer",
+      "value": {
+        "workflow_source_collection": {
+          "collection_name": [
+            120
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-MetadataDocumentOwnerContainer-workflow_source_collection",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "MetadataDocumentOwnerContainer",
+      "value": {
+        "workflow_source_collection": {
+          "collection_name": [
+            120
+          ],
+          "sources": [],
+          "unregistered_extra": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/unknown-MetadataDocumentOwnerContainer",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "MetadataDocumentOwnerContainer",
+      "value": "future"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-MetadataDocumentOwnerRecord",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "MetadataDocumentOwnerRecord",
+      "value": {
+        "anchor": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owner_key": [
+            120
+          ],
+          "revision_key": [
+            120
+          ]
+        },
+        "container": {
+          "declaration_bundle": {
+            "bundle_name": [
+              120
+            ],
+            "declarations": []
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerRecord-anchor",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "MetadataDocumentOwnerRecord",
+      "value": {
+        "container": {
+          "declaration_bundle": {
+            "bundle_name": [
+              120
+            ],
+            "declarations": []
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerRecord-container",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "MetadataDocumentOwnerRecord",
+      "value": {
+        "anchor": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owner_key": [
+            120
+          ],
+          "revision_key": [
+            120
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-MetadataDocumentOwnerRecord",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "MetadataDocumentOwnerRecord",
+      "value": {
+        "anchor": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owner_key": [
+            120
+          ],
+          "revision_key": [
+            120
+          ]
+        },
+        "container": {
+          "declaration_bundle": {
+            "bundle_name": [
+              120
+            ],
+            "declarations": []
+          }
+        },
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-SourcePackageMetadata",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "SourcePackageMetadata",
+      "value": {
+        "domain": {
+          "domain_key": [
+            120
+          ],
+          "namespace": [
+            120
+          ]
+        },
+        "owners": []
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-SourcePackageMetadata-domain",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "SourcePackageMetadata",
+      "value": {
+        "owners": []
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-SourcePackageMetadata-owners",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "SourcePackageMetadata",
+      "value": {
+        "domain": {
+          "domain_key": [
+            120
+          ],
+          "namespace": [
+            120
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-SourcePackageMetadata",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "SourcePackageMetadata",
+      "value": {
+        "domain": {
+          "domain_key": [
+            120
+          ],
+          "namespace": [
+            120
+          ]
+        },
+        "owners": [],
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-DocumentOccurrenceMetadataBinding",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceMetadataBinding",
+      "value": {
+        "actual_document": {
+          "physical_json_utf8": {
+            "bytes": []
+          }
+        },
+        "occurrence_key": {
+          "entry_ordinal": 0
+        },
+        "source_owner": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owner_key": [
+            120
+          ],
+          "revision_key": [
+            120
+          ]
+        },
+        "source_package": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owners": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceMetadataBinding-source_package",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOccurrenceMetadataBinding",
+      "value": {
+        "actual_document": {
+          "physical_json_utf8": {
+            "bytes": []
+          }
+        },
+        "occurrence_key": {
+          "entry_ordinal": 0
+        },
+        "source_owner": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owner_key": [
+            120
+          ],
+          "revision_key": [
+            120
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceMetadataBinding-source_owner",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOccurrenceMetadataBinding",
+      "value": {
+        "actual_document": {
+          "physical_json_utf8": {
+            "bytes": []
+          }
+        },
+        "occurrence_key": {
+          "entry_ordinal": 0
+        },
+        "source_package": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owners": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceMetadataBinding-occurrence_key",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOccurrenceMetadataBinding",
+      "value": {
+        "actual_document": {
+          "physical_json_utf8": {
+            "bytes": []
+          }
+        },
+        "source_owner": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owner_key": [
+            120
+          ],
+          "revision_key": [
+            120
+          ]
+        },
+        "source_package": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owners": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceMetadataBinding-actual_document",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentOccurrenceMetadataBinding",
+      "value": {
+        "occurrence_key": {
+          "entry_ordinal": 0
+        },
+        "source_owner": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owner_key": [
+            120
+          ],
+          "revision_key": [
+            120
+          ]
+        },
+        "source_package": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owners": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-DocumentOccurrenceMetadataBinding",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "DocumentOccurrenceMetadataBinding",
+      "value": {
+        "actual_document": {
+          "physical_json_utf8": {
+            "bytes": []
+          }
+        },
+        "occurrence_key": {
+          "entry_ordinal": 0
+        },
+        "source_owner": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owner_key": [
+            120
+          ],
+          "revision_key": [
+            120
+          ]
+        },
+        "source_package": {
+          "domain": {
+            "domain_key": [
+              120
+            ],
+            "namespace": [
+              120
+            ]
+          },
+          "owners": []
+        },
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-RawInputOrigin",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawInputOrigin",
+      "value": {
+        "document_binding": 0,
+        "path": []
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-RawInputOrigin-document_binding",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawInputOrigin",
+      "value": {
+        "path": []
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-RawInputOrigin-path",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawInputOrigin",
+      "value": {
+        "document_binding": 0
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-RawInputOrigin",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawInputOrigin",
+      "value": {
+        "document_binding": 0,
+        "path": [],
+        "unregistered_extra": null
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-RawPhysicalAssociation",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawPhysicalAssociation",
+      "value": {
+        "not_supplied": null
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawPhysicalAssociation-not_supplied",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawPhysicalAssociation",
+      "value": {
+        "not_supplied": null
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawPhysicalAssociation-supplied",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawPhysicalAssociation",
+      "value": {
+        "supplied": {
+          "document_binding": 0,
+          "value_path": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-RawPhysicalAssociation-supplied-document_binding",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPhysicalAssociation",
+      "value": {
+        "supplied": {
+          "value_path": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-RawPhysicalAssociation-supplied-value_path",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawPhysicalAssociation",
+      "value": {
+        "supplied": {
+          "document_binding": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/extra-RawPhysicalAssociation-supplied",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPhysicalAssociation",
+      "value": {
+        "supplied": {
+          "document_binding": 0,
+          "unregistered_extra": null,
+          "value_path": []
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/unknown-RawPhysicalAssociation",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawPhysicalAssociation",
+      "value": "future"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/shape-RawValidationAdmissionFailure",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "MissingRequiredSource"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-MissingRequiredSource",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "MissingRequiredSource"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-MissingDeclarativeOrigin",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "MissingDeclarativeOrigin"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-InvalidSourceAssociation",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "InvalidSourceAssociation"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-InvalidContextBinding",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "InvalidContextBinding"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-IncompleteContent",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "IncompleteContent"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-InvalidPhysicalInput",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "InvalidPhysicalInput"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-UnsupportedPredicate",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "UnsupportedPredicate"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-NotImplemented",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "NotImplemented"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-InvalidIdentity",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "InvalidIdentity"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-UnsupportedModel",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "UnsupportedModel"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-ResourceLimit",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "ResourceLimit"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-MissingDocumentOccurrenceBinding",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationAdmissionFailure",
+      "value": "MissingDocumentOccurrenceBinding"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/unknown-RawValidationAdmissionFailure",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "RawValidationAdmissionFailure",
+      "value": "future"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/closure-RawParsedInput",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawParsedInput",
+      "value": {
+        "candidate": {
+          "component_identity": {
+            "catalog": [],
+            "name": []
+          },
+          "effect_flow_partitions": [],
+          "effects": {
+            "row": {
+              "Closed": {
+                "0": []
+              }
+            }
+          },
+          "execution": {
+            "capabilities": [],
+            "implementation_abis": [],
+            "quantities": [],
+            "region_residency": {
+              "none": null
+            },
+            "runtime_profile": {
+              "none": null
+            },
+            "sandbox": {
+              "none": null
+            },
+            "soft_preferences": [],
+            "trust_domain": {
+              "none": null
+            }
+          },
+          "failures": {
+            "failures": []
+          },
+          "information_flow": {
+            "confidentiality_restrictions": [],
+            "flow_constraints": [],
+            "summary": {
+              "influence_unknown": false,
+              "instruction_authority": "None",
+              "sources": [],
+              "taints": []
+            }
+          },
+          "inputs": [],
+          "outputs": [],
+          "recovery": {
+            "effect_recovery_clauses": [],
+            "replay_semantics": "Recompute"
+          },
+          "recovery_action_bindings": [],
+          "recovery_usage_bindings": [],
+          "resources": {
+            "requirements": []
+          },
+          "usage": {
+            "limits": []
+          }
+        },
+        "origin": {
+          "document_binding": 0,
+          "path": []
+        },
+        "physical": {
+          "not_supplied": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/closure-RawValidationSubject",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationSubject",
+      "value": {
+        "context": {
+          "contents": {
+            "compiled_modules": [],
+            "effect_catalogs": [],
+            "execution_universes": {
+              "capabilities": [],
+              "region_compatibility": [],
+              "regions": [],
+              "runtime_profiles": [],
+              "trust_domains": []
+            },
+            "flow_catalogs": {
+              "confidentiality": [],
+              "sinks": [],
+              "taints": []
+            },
+            "recovery_operations": {
+              "effects": [],
+              "reconciliation_operations": []
+            },
+            "relation_snapshots": {
+              "effect_resource": {
+                "none": null
+              },
+              "flow_execution": {
+                "none": null
+              },
+              "recovery_usage": {
+                "none": null
+              }
+            },
+            "resource_types": {
+              "descriptors": [],
+              "schemas": []
+            },
+            "type_schemas": [],
+            "usage_meters": []
+          },
+          "roles": [
+            [
+              "analysis",
+              "canonical_validation"
+            ]
+          ]
+        },
+        "input": {
+          "candidate": {
+            "component_identity": {
+              "catalog": [],
+              "name": []
+            },
+            "effect_flow_partitions": [],
+            "effects": {
+              "row": {
+                "Closed": {
+                  "0": []
+                }
+              }
+            },
+            "execution": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "failures": {
+              "failures": []
+            },
+            "information_flow": {
+              "confidentiality_restrictions": [],
+              "flow_constraints": [],
+              "summary": {
+                "influence_unknown": false,
+                "instruction_authority": "None",
+                "sources": [],
+                "taints": []
+              }
+            },
+            "inputs": [],
+            "outputs": [],
+            "recovery": {
+              "effect_recovery_clauses": [],
+              "replay_semantics": "Recompute"
+            },
+            "recovery_action_bindings": [],
+            "recovery_usage_bindings": [],
+            "resources": {
+              "requirements": []
+            },
+            "usage": {
+              "limits": []
+            }
+          },
+          "origin": {
+            "document_binding": 0,
+            "path": []
+          },
+          "physical": {
+            "not_supplied": null
+          }
+        },
+        "owner_compiler": {
+          "analysis_semantics_version": "x",
+          "registry_content": [],
+          "rule_registry_content": [],
+          "rules": [],
+          "specifications": [],
+          "support_manifest": {
+            "applied_rules": [],
+            "attribution": {
+              "full_content_revalidation": {
+                "listed_rules": []
+              }
+            },
+            "closed_tables": {
+              "abi_numbers": [],
+              "afidl_primitives": [],
+              "hash_domains": [],
+              "rule_areas": []
+            },
+            "normative_sources": [],
+            "obligation_edition": "x",
+            "report_shape": "x",
+            "selected_specifications": [],
+            "semantic_roles": []
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/closure-RawValidationOrigin",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "RawValidationOrigin",
+      "value": {
+        "direction": "input",
+        "input_origin": {
+          "document_binding": 0,
+          "path": []
+        },
+        "original_ordinal": 0
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/closure-Source",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "Source",
+      "value": {
+        "root": {
+          "ir": {
+            "algorithm": "x",
+            "domain": "x",
+            "hex": "x"
+          },
+          "root_node": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/closure-Origin",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "Origin",
+      "value": {
+        "declared_path": [],
+        "mapping_ordinal": {
+          "none": null
+        },
+        "predicate": {
+          "case": {
+            "control": "compensation-commit-order"
+          },
+          "family": "root_preflight",
+          "rule": {
+            "anchor": "x",
+            "rule_id": "x",
+            "specification_id": "x"
+          }
+        },
+        "raw_validation_origin": {
+          "none": null
+        },
+        "source_ordinal": {
+          "none": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/closure-FactKey",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "FactKey",
+      "value": {
+        "assertion_path": [],
+        "coordinate": {
+          "whole": null
+        },
+        "dimension": {
+          "none": null
+        },
+        "kind": "assertion_input",
+        "origin": {
+          "declared_path": [],
+          "mapping_ordinal": {
+            "none": null
+          },
+          "predicate": {
+            "case": {
+              "control": "compensation-commit-order"
+            },
+            "family": "root_preflight",
+            "rule": {
+              "anchor": "x",
+              "rule_id": "x",
+              "specification_id": "x"
+            }
+          },
+          "raw_validation_origin": {
+            "none": null
+          },
+          "source_ordinal": {
+            "none": null
+          }
+        },
+        "requirement": {
+          "clause": {
+            "direct": "assertion_input"
+          },
+          "evidence_class": "static_declaration"
+        },
+        "rule": {
+          "anchor": "x",
+          "rule_id": "x",
+          "specification_id": "x"
+        },
+        "source": {
+          "root": {
+            "ir": {
+              "algorithm": "x",
+              "domain": "x",
+              "hex": "x"
+            },
+            "root_node": 0
+          }
+        },
+        "stage": "D0",
+        "target": {
+          "analysis_boundary": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/closure-Scope",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "Scope",
+      "value": {
+        "analysis_semantics": "x",
+        "content": {
+          "nodes": [],
+          "roots": [
+            0
+          ]
+        },
+        "edition": "x",
+        "subject": {
+          "root_export": {
+            "assertion_inputs": 0,
+            "associations": [],
+            "caller_ir": {
+              "algorithm": "x",
+              "domain": "x",
+              "hex": "x"
+            },
+            "compiler": 0,
+            "context": 0,
+            "resolver_associations": 0,
+            "root_provenance": 0,
+            "top_export": {
+              "algorithm": "x",
+              "domain": "x",
+              "hex": "x"
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/closure-CanonicalValueDag",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "CanonicalValueDag",
+      "value": {
+        "nodes": [],
+        "roots": [
+          0
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/closure-Source-raw-validation",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "Source",
+      "value": {
+        "raw_validation": {
+          "subject": 0
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/closure-Origin-raw-validation",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "Origin",
+      "value": {
+        "declared_path": [],
+        "mapping_ordinal": {
+          "none": null
+        },
+        "predicate": {
+          "case": {
+            "control": "compensation-commit-order"
+          },
+          "family": "root_preflight",
+          "rule": {
+            "anchor": "x",
+            "rule_id": "x",
+            "specification_id": "x"
+          }
+        },
+        "raw_validation_origin": {
+          "some": {
+            "direction": "input",
+            "input_origin": {
+              "document_binding": 0,
+              "path": []
+            },
+            "original_ordinal": 0
+          }
+        },
+        "source_ordinal": {
+          "none": null
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/dag-envelope-missing-roots",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "CanonicalValueDag",
+      "value": {
+        "nodes": []
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/dag-envelope-negative-root",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "CanonicalValueDag",
+      "value": {
+        "nodes": [],
+        "roots": [
+          -1
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/dag-envelope-bad-node",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "CanonicalValueDag",
+      "value": {
+        "nodes": [
+          {
+            "type": {
+              "name": "DocumentSourceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          }
+        ],
+        "roots": [
+          0
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/key-nfd-preserved",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentSourceKey",
+      "value": [
+        101,
+        204,
+        129
+      ]
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/source-missing-context",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "RawValidationSubject",
+      "value": {
+        "input": {
+          "candidate": {
+            "component_identity": {
+              "catalog": [],
+              "name": []
+            },
+            "effect_flow_partitions": [],
+            "effects": {
+              "row": {
+                "Closed": {
+                  "0": []
+                }
+              }
+            },
+            "execution": {
+              "capabilities": [],
+              "implementation_abis": [],
+              "quantities": [],
+              "region_residency": {
+                "none": null
+              },
+              "runtime_profile": {
+                "none": null
+              },
+              "sandbox": {
+                "none": null
+              },
+              "soft_preferences": [],
+              "trust_domain": {
+                "none": null
+              }
+            },
+            "failures": {
+              "failures": []
+            },
+            "information_flow": {
+              "confidentiality_restrictions": [],
+              "flow_constraints": [],
+              "summary": {
+                "influence_unknown": false,
+                "instruction_authority": "None",
+                "sources": [],
+                "taints": []
+              }
+            },
+            "inputs": [],
+            "outputs": [],
+            "recovery": {
+              "effect_recovery_clauses": [],
+              "replay_semantics": "Recompute"
+            },
+            "recovery_action_bindings": [],
+            "recovery_usage_bindings": [],
+            "resources": {
+              "requirements": []
+            },
+            "usage": {
+              "limits": []
+            }
+          },
+          "origin": {
+            "document_binding": 0,
+            "path": []
+          },
+          "physical": {
+            "not_supplied": null
+          }
+        },
+        "owner_compiler": {
+          "analysis_semantics_version": "x",
+          "registry_content": [],
+          "rule_registry_content": [],
+          "rules": [],
+          "specifications": [],
+          "support_manifest": {
+            "applied_rules": [],
+            "attribution": {
+              "full_content_revalidation": {
+                "listed_rules": []
+              }
+            },
+            "closed_tables": {
+              "abi_numbers": [],
+              "afidl_primitives": [],
+              "hash_domains": [],
+              "rule_areas": []
+            },
+            "normative_sources": [],
+            "obligation_edition": "x",
+            "report_shape": "x",
+            "selected_specifications": [],
+            "semantic_roles": []
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/context-roles-split",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "InvalidFacts",
+      "type": "RawContextPartition",
+      "value": [
+        [
+          "analysis"
+        ],
+        [
+          "canonical_validation"
+        ]
+      ]
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/slot-u64-max",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "DocumentOccurrenceKey",
+      "value": {
+        "entry_ordinal": 18446744073709551615
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/slot-u64-negative",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "DocumentOccurrenceKey",
+      "value": {
+        "entry_ordinal": -1
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/slot-u64-float",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "DocumentOccurrenceKey",
+      "value": {
+        "entry_ordinal": 1.5
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/owner-ModelRef-agentflow.computation.proof-report.model@5",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "ModelRef",
+      "value": {
+        "name": "DocumentOccurrenceBinding",
+        "owner": "agentflow.computation.proof-report.model@5"
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/owner-ModelRef-agentflow.computation.proof-report.model@4",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "ModelRef",
+      "value": {
+        "name": "DocumentOccurrenceBinding",
+        "owner": "agentflow.computation.proof-report.model@4"
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/owner-ModelRef-unknown.owner@999",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "ModelRef",
+      "value": {
+        "name": "DocumentOccurrenceBinding",
+        "owner": "unknown.owner@999"
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/owner-ModelType-agentflow.computation.proof-report.model@5",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": null,
+      "type": "ModelType",
+      "value": {
+        "name": "DocumentOccurrenceBinding",
+        "owner": "agentflow.computation.proof-report.model@5"
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/owner-ModelType-agentflow.computation.proof-report.model@4",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "ModelType",
+      "value": {
+        "name": "DocumentOccurrenceBinding",
+        "owner": "agentflow.computation.proof-report.model@4"
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/owner-ModelType-unknown.owner@999",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "UnsupportedModel",
+      "type": "ModelType",
+      "value": {
+        "name": "DocumentOccurrenceBinding",
+        "owner": "unknown.owner@999"
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/empty-key",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "IncompleteFacts",
+      "type": "DocumentSourceKey",
+      "value": []
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/invalid-key-utf8",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "InvalidFacts",
+      "type": "DocumentSourceKey",
+      "value": [
+        255
+      ]
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/key-resource-limit",
+      "classification": "Registration shape; NOT Capture",
+      "expected_failure": "ResourceLimit",
+      "type": "DocumentSourceKey",
+      "value": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentSourceDomain-namespace",
+      "field": "namespace",
+      "type": "DocumentSourceDomain",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentSourceDomain-domain_key",
+      "field": "domain_key",
+      "type": "DocumentSourceDomain",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerAnchor-domain",
+      "field": "domain",
+      "type": "DocumentOwnerAnchor",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerAnchor-owner_key",
+      "field": "owner_key",
+      "type": "DocumentOwnerAnchor",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerAnchor-revision_key",
+      "field": "revision_key",
+      "type": "DocumentOwnerAnchor",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DeclarationDocumentEntry-declaration_name",
+      "field": "declaration_name",
+      "type": "DeclarationDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DeclarationDocumentEntry-document",
+      "field": "document",
+      "type": "DeclarationDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-ImportDocumentEntry-import_name",
+      "field": "import_name",
+      "type": "ImportDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-ImportDocumentEntry-document",
+      "field": "document",
+      "type": "ImportDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-WorkflowDocumentEntry-source_name",
+      "field": "source_name",
+      "type": "WorkflowDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-WorkflowDocumentEntry-document",
+      "field": "document",
+      "type": "WorkflowDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOwnerContainer-declaration_bundle",
+      "type": "DocumentOwnerContainer",
+      "variant": "declaration_bundle"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerContainer-declaration_bundle-bundle_name",
+      "field": "bundle_name",
+      "type": "DocumentOwnerContainer",
+      "variant": "declaration_bundle"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerContainer-declaration_bundle-declarations",
+      "field": "declarations",
+      "type": "DocumentOwnerContainer",
+      "variant": "declaration_bundle"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOwnerContainer-import_manifest",
+      "type": "DocumentOwnerContainer",
+      "variant": "import_manifest"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerContainer-import_manifest-manifest_name",
+      "field": "manifest_name",
+      "type": "DocumentOwnerContainer",
+      "variant": "import_manifest"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerContainer-import_manifest-imports",
+      "field": "imports",
+      "type": "DocumentOwnerContainer",
+      "variant": "import_manifest"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOwnerContainer-workflow_source_collection",
+      "type": "DocumentOwnerContainer",
+      "variant": "workflow_source_collection"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerContainer-workflow_source_collection-collection_name",
+      "field": "collection_name",
+      "type": "DocumentOwnerContainer",
+      "variant": "workflow_source_collection"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerContainer-workflow_source_collection-sources",
+      "field": "sources",
+      "type": "DocumentOwnerContainer",
+      "variant": "workflow_source_collection"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerRecord-anchor",
+      "field": "anchor",
+      "type": "DocumentOwnerRecord",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerRecord-container",
+      "field": "container",
+      "type": "DocumentOwnerRecord",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-SourcePackage-domain",
+      "field": "domain",
+      "type": "SourcePackage",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-SourcePackage-owners",
+      "field": "owners",
+      "type": "SourcePackage",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceKey-entry_ordinal",
+      "field": "entry_ordinal",
+      "type": "DocumentOccurrenceKey",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceBinding-source_package",
+      "field": "source_package",
+      "type": "DocumentOccurrenceBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceBinding-source_owner",
+      "field": "source_owner",
+      "type": "DocumentOccurrenceBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceBinding-occurrence_key",
+      "field": "occurrence_key",
+      "type": "DocumentOccurrenceBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceBinding-actual_document",
+      "field": "actual_document",
+      "type": "DocumentOccurrenceBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentSourceAssurance-declared_only",
+      "type": "DocumentSourceAssurance",
+      "variant": "declared_only"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-MissingDocumentOccurrenceBinding",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "MissingDocumentOccurrenceBinding"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-InvalidOccurrenceAssociation",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "InvalidOccurrenceAssociation"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-BindingConflict",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "BindingConflict"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-OwnerBindingConflict",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "OwnerBindingConflict"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-MalformedSourcePackage",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "MalformedSourcePackage"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-UnsupportedOwnerVariant",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "UnsupportedOwnerVariant"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-UnsupportedSourceDomain",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "UnsupportedSourceDomain"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-UnsupportedPhysicalAssociation",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "UnsupportedPhysicalAssociation"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-InvalidPhysicalInput",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "InvalidPhysicalInput"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-InvalidContextBinding",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "InvalidContextBinding"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-InvalidIdentity",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "InvalidIdentity"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-IncompleteFacts",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "IncompleteFacts"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-UnsupportedModel",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "UnsupportedModel"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-ResourceLimit",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "ResourceLimit"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentSourceMigrationState-exact_old_content_only",
+      "type": "DocumentSourceMigrationState",
+      "variant": "exact_old_content_only"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentSourceMigrationState-unmigratable_missing_occurrence",
+      "type": "DocumentSourceMigrationState",
+      "variant": "unmigratable_missing_occurrence"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentSourceMigrationState-new_declared_occurrence",
+      "type": "DocumentSourceMigrationState",
+      "variant": "new_declared_occurrence"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDeclarationDocumentEntry-declaration_name",
+      "field": "declaration_name",
+      "type": "MetadataDeclarationDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDeclarationDocumentEntry-document",
+      "field": "document",
+      "type": "MetadataDeclarationDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataImportDocumentEntry-import_name",
+      "field": "import_name",
+      "type": "MetadataImportDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataImportDocumentEntry-document",
+      "field": "document",
+      "type": "MetadataImportDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataWorkflowDocumentEntry-source_name",
+      "field": "source_name",
+      "type": "MetadataWorkflowDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataWorkflowDocumentEntry-document",
+      "field": "document",
+      "type": "MetadataWorkflowDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-MetadataDocumentOwnerContainer-declaration_bundle",
+      "type": "MetadataDocumentOwnerContainer",
+      "variant": "declaration_bundle"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-declaration_bundle-bundle_name",
+      "field": "bundle_name",
+      "type": "MetadataDocumentOwnerContainer",
+      "variant": "declaration_bundle"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-declaration_bundle-declarations",
+      "field": "declarations",
+      "type": "MetadataDocumentOwnerContainer",
+      "variant": "declaration_bundle"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-MetadataDocumentOwnerContainer-import_manifest",
+      "type": "MetadataDocumentOwnerContainer",
+      "variant": "import_manifest"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-import_manifest-manifest_name",
+      "field": "manifest_name",
+      "type": "MetadataDocumentOwnerContainer",
+      "variant": "import_manifest"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-import_manifest-imports",
+      "field": "imports",
+      "type": "MetadataDocumentOwnerContainer",
+      "variant": "import_manifest"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-MetadataDocumentOwnerContainer-workflow_source_collection",
+      "type": "MetadataDocumentOwnerContainer",
+      "variant": "workflow_source_collection"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-workflow_source_collection-collection_name",
+      "field": "collection_name",
+      "type": "MetadataDocumentOwnerContainer",
+      "variant": "workflow_source_collection"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-workflow_source_collection-sources",
+      "field": "sources",
+      "type": "MetadataDocumentOwnerContainer",
+      "variant": "workflow_source_collection"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerRecord-anchor",
+      "field": "anchor",
+      "type": "MetadataDocumentOwnerRecord",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerRecord-container",
+      "field": "container",
+      "type": "MetadataDocumentOwnerRecord",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-SourcePackageMetadata-domain",
+      "field": "domain",
+      "type": "SourcePackageMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-SourcePackageMetadata-owners",
+      "field": "owners",
+      "type": "SourcePackageMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceMetadataBinding-source_package",
+      "field": "source_package",
+      "type": "DocumentOccurrenceMetadataBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceMetadataBinding-source_owner",
+      "field": "source_owner",
+      "type": "DocumentOccurrenceMetadataBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceMetadataBinding-occurrence_key",
+      "field": "occurrence_key",
+      "type": "DocumentOccurrenceMetadataBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceMetadataBinding-actual_document",
+      "field": "actual_document",
+      "type": "DocumentOccurrenceMetadataBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-RawInputOrigin-document_binding",
+      "field": "document_binding",
+      "type": "RawInputOrigin",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-RawInputOrigin-path",
+      "field": "path",
+      "type": "RawInputOrigin",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawPhysicalAssociation-not_supplied",
+      "type": "RawPhysicalAssociation",
+      "variant": "not_supplied"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawPhysicalAssociation-supplied",
+      "type": "RawPhysicalAssociation",
+      "variant": "supplied"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-RawPhysicalAssociation-supplied-document_binding",
+      "field": "document_binding",
+      "type": "RawPhysicalAssociation",
+      "variant": "supplied"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-RawPhysicalAssociation-supplied-value_path",
+      "field": "value_path",
+      "type": "RawPhysicalAssociation",
+      "variant": "supplied"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-MissingRequiredSource",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "MissingRequiredSource"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-MissingDeclarativeOrigin",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "MissingDeclarativeOrigin"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-InvalidSourceAssociation",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "InvalidSourceAssociation"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-InvalidContextBinding",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "InvalidContextBinding"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-IncompleteContent",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "IncompleteContent"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-InvalidPhysicalInput",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "InvalidPhysicalInput"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-UnsupportedPredicate",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "UnsupportedPredicate"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-NotImplemented",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "NotImplemented"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-InvalidIdentity",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "InvalidIdentity"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-UnsupportedModel",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "UnsupportedModel"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-ResourceLimit",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "ResourceLimit"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-MissingDocumentOccurrenceBinding",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "MissingDocumentOccurrenceBinding"
+    }
+  ]
+}

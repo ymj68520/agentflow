@@ -28,6 +28,19 @@
       "status": "frozen"
     },
     {
+      "description": "Declared SourcePackage, immutable owner anchors, exact document slots and fail-closed non-authoritative source association.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a41eb465d0f504bedae4e95db1a15891d7e0a578032ae3aa8d10a4f0dec1ffa7"
+        },
+        "logical_path": "spec/component/document-occurrence.md"
+      },
+      "specification_id": "agentflow.component.document-occurrence.semantics@1",
+      "status": "frozen"
+    },
+    {
       "description": "IR-free local native guard subject, seven predicates, exact algorithm traces, witnesses and restricted imports.",
       "kind": "schema_language",
       "normative_source": {
@@ -132,6 +145,19 @@
       "status": "frozen"
     },
     {
+      "description": "Occurrence-aware input provenance and unchanged same-origin observation, input DAG and proof authority boundaries.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "e04f487a5d68edcd1ed76df0a96b5165e40bfabe6df708fb1800ec2921049bf8"
+        },
+        "logical_path": "spec/computation/proof-obligation-semantics-v5.md"
+      },
+      "specification_id": "agentflow.computation.proof-obligation.semantics@5",
+      "status": "frozen"
+    },
+    {
       "description": "Closed non-wire G01 semantic type model, typed order, finite value DAG and ACE1 canonical identity relation.",
       "kind": "closed_table",
       "normative_source": {
@@ -181,6 +207,19 @@
         "logical_path": "spec/tables/proof-report-model-v4.md"
       },
       "specification_id": "agentflow.computation.proof-report.model@4",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed occurrence successor descriptors with exact embedded frozen model@4 and unchanged selected historical imports.",
+      "kind": "closed_table",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "d56cd394bf889c4a31a9b96566db1198f31ec1dc1a2181c96ca46206a7d94824"
+        },
+        "logical_path": "spec/tables/proof-report-model-v5.md"
+      },
+      "specification_id": "agentflow.computation.proof-report.model@5",
       "status": "frozen"
     },
     {
@@ -480,6 +519,19 @@
         "logical_path": "spec/portable/portable-proof-inputs-v5.md"
       },
       "specification_id": "agentflow.portable.proof.inputs.semantics@5",
+      "status": "frozen"
+    },
+    {
+      "description": "Exact occurrence successor tuple, explicit old-source nonmigration and Registered/NotImplemented/NotAuthorized admission.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "546388ea20c2ec22684111a59c9dd99b01929c1271136f752839a19d5ae59370"
+        },
+        "logical_path": "spec/portable/portable-proof-inputs-v6.md"
+      },
+      "specification_id": "agentflow.portable.proof.inputs.semantics@6",
       "status": "frozen"
     },
     {

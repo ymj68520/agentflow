@@ -160,7 +160,8 @@ def corpus(m):
  # Independent native/portable compiler inputs derive from frozen declarations.
  spec=importlib.util.spec_from_file_location('raw_codec',R/'tools/gen-portable-proof-codec-corpus.py');codec=importlib.util.module_from_spec(spec);spec.loader.exec_module(codec)
  old=load('spec/conformance/g01-native-guard-staging/manifest.json');ids=sorted(old['selected_specifications']+[v[0] for v in SOURCES.values()]);rids=sorted(old['applied_rules']+[v['rule_id'] for v in RULES])
- sb=(R/'spec/registry/specifications.json').read_bytes();rb=(R/'spec/registry/rules.json').read_bytes();profile=dict(specification_bytes=sb,rule_bytes=rb,version=OWNER,spec_ids=ids,rule_ids=rids)
+ frozen=R/'spec/conformance/g01-document-occurrence-staging'
+ sb=(frozen/'edition5-specifications.json').read_bytes();rb=(frozen/'edition5-rules.json').read_bytes();profile=dict(specification_bytes=sb,rule_bytes=rb,version=OWNER,spec_ids=ids,rule_ids=rids)
  identity={'analysis_semantics_version':OWNER,'registry_hex':sb.hex(),'rule_registry_hex':rb.hex(),'specifications':[{'specification_id':x['specification_id'],'logical_path':x['normative_source']['logical_path'],'content_sha256':sha((R/x['normative_source']['logical_path']).read_bytes()),'content_hex':(R/x['normative_source']['logical_path']).read_bytes().hex()} for x in json.loads(sb)['specifications'] if x['specification_id'] in ids],'rules':[codec.rule_identity(x) for x in json.loads(rb)['rules'] if x['rule_id'] in rids]}
  js('spec/conformance/g01-raw-validation-staging/compiler-current.json',identity)
  from portable_proof_python_oracle import canonical_bytes

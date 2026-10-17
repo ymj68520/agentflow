@@ -2602,6 +2602,12 @@ from raw_validation_registration_data import RULES as RAW_RULES, SOURCES as RAW_
 for item in RAW_RULES:
     RULES.append(rule(item["rule_id"], "SEMANTIC", RAW_SOURCES[item["source"]][2],
         item["anchor"], item["statement"], [item["case_id"]]))
+from document_occurrence_registration_data import RULES as DO_RULES, SOURCES as DO_SOURCES
+for item in DO_RULES:
+    RULES.append(rule(item["rule_id"], "SEMANTIC", DO_SOURCES[item["source"]][2],
+        item["anchor"], item["statement"], [item["case_id"]]))
+edition5_rules = json.loads((ROOT/"spec/conformance/g01-document-occurrence-staging/edition5-rules.json").read_bytes())["rules"]
+assert all(next((r for r in RULES if r["rule_id"]==old["rule_id"]),None)==old for old in edition5_rules), "old479 complete rule record changed"
 edition4_rules = json.loads((ROOT/"spec/conformance/g01-raw-validation-staging/edition4-rules.json").read_bytes())["rules"]
 assert all(next((r for r in RULES if r["rule_id"]==old["rule_id"]),None)==old for old in edition4_rules), "old468 complete rule row changed"
 edition3_rules = json.loads((ROOT/"spec/conformance/g01-native-guard-staging/edition3-rules.json").read_bytes())["rules"]
@@ -2845,6 +2851,7 @@ SPECS.extend([
 SPECS.extend(SUB_SOURCES.values())
 SPECS.extend(NG_SOURCES.values())
 SPECS.extend(RAW_SOURCES.values())
+SPECS.extend(DO_SOURCES.values())
 spec_entries = [
     {
         "specification_id": spec_id,
@@ -2858,6 +2865,8 @@ spec_entries = [
 spec_entries.sort(key=lambda e: e["specification_id"])
 legacy_specs = json.loads((ROOT/"spec/conformance/g01-edition2-staging/legacy-specifications.json").read_bytes())["specifications"]
 new_spec_map = {item["specification_id"]:item for item in spec_entries}
+edition5_specs = json.loads((ROOT/"spec/conformance/g01-document-occurrence-staging/edition5-specifications.json").read_bytes())["specifications"]
+assert all(new_spec_map.get(item["specification_id"]) == item for item in edition5_specs), "old58 complete specification record changed"
 edition4_specs = json.loads((ROOT/"spec/conformance/g01-raw-validation-staging/edition4-specifications.json").read_bytes())["specifications"]
 assert all(new_spec_map.get(item["specification_id"]) == item for item in edition4_specs), "old54 complete specification row changed"
 assert all(new_spec_map.get(item["specification_id"]) == item for item in legacy_specs), "old specification descriptor changed"

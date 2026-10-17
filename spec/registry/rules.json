@@ -5646,6 +5646,160 @@
       "source_anchor": "raw-migration"
     },
     {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-document-occurrence-staging/rule-0272"
+      ],
+      "normative_source": "spec/component/document-occurrence.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0272",
+      "short_statement": "Complete document content, declared occurrence, internal member and output observation are distinct identities; equal content does not imply equal occurrence.",
+      "source_anchor": "document-identities"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-document-occurrence-staging/rule-0273"
+      ],
+      "normative_source": "spec/component/document-occurrence.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0273",
+      "short_statement": "Occurrence admission requires an actual supplied complete SourcePackage and real owner revision and document slot; missing provenance cannot be synthesized from a candidate or invocation.",
+      "source_anchor": "actual-source"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-document-occurrence-staging/rule-0274"
+      ],
+      "normative_source": "spec/tables/proof-report-model-v5.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0274",
+      "short_statement": "Owner containers are exactly declaration_bundle, import_manifest and workflow_source_collection with complete closed entries; unknown domains, owner schemas and variants reject.",
+      "source_anchor": "closed-owners"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-document-occurrence-staging/rule-0275"
+      ],
+      "normative_source": "spec/component/document-occurrence.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0275",
+      "short_statement": "Exact UTF8 namespace, domain, owner and revision keys establish only declared source identity and never external authentication or global ownership.",
+      "source_anchor": "declared-authority"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-document-occurrence-staging/rule-0276"
+      ],
+      "normative_source": "spec/component/document-occurrence.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0276",
+      "short_statement": "All submitted owners must match the package domain and have unique complete anchors; conflicting complete records in explicit joint packages are owner binding conflicts.",
+      "source_anchor": "owner-conflicts"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-document-occurrence-staging/rule-0277"
+      ],
+      "normative_source": "spec/component/document-occurrence.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0277",
+      "short_statement": "Owner anchor and actual U64 document-entry ordinal define occurrence; equal content reuses it and unequal content at the same key fails BindingConflict.",
+      "source_anchor": "occurrence-conflicts"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-document-occurrence-staging/rule-0278"
+      ],
+      "normative_source": "spec/component/document-occurrence.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0278",
+      "short_statement": "External document slot, internal document path, port original and sorted ordinals and observation site remain separate and all selected input members must agree.",
+      "source_anchor": "member-paths"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-document-occurrence-staging/rule-0279"
+      ],
+      "normative_source": "spec/component/document-occurrence.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0279",
+      "short_statement": "Physical sources require original bytes and supplied matching occurrence; native sources require complete declarations and not_supplied physical history; other combinations reject UnsupportedPhysicalAssociation.",
+      "source_anchor": "physical-native"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-document-occurrence-staging/rule-0280"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics-v5.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0280",
+      "short_statement": "Occurrence binding starts at RawInputOrigin and propagates through subject, source, raw origin, FactKey, basis, witness and references without mixed occurrences.",
+      "source_anchor": "identity-propagation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-document-occurrence-staging/rule-0281"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics-v5.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0281",
+      "short_statement": "Equal typed content still interns under the finite minimal reachable DAG; different real occurrence bindings are different typed values and source packages cannot refer to generated outputs.",
+      "source_anchor": "input-dag"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-document-occurrence-staging/rule-0282"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics-v5.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0282",
+      "short_statement": "Only equal complete scoped originating facts with equal non-observation payload union legitimate observations; conflicting payloads fail InvalidFacts and observations never generate occurrences.",
+      "source_anchor": "observation-copy"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-document-occurrence-staging/rule-0283"
+      ],
+      "normative_source": "spec/component/document-occurrence.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0283",
+      "short_statement": "The one Raw port predicate, actual execution prefix and nine-member same-object context partition remain unchanged; no context role, resolver or generic schema profile supplies document identity.",
+      "source_anchor": "frozen-port-context"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-document-occurrence-staging/rule-0284"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs-v6.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0284",
+      "short_statement": "Exact old content-only sources retain old-edition meaning and cannot acquire occurrence history without actual extra evidence; old and mixed tuple contents reject without relabelling.",
+      "source_anchor": "migration"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-document-occurrence-staging/rule-0285"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs-v6.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0285",
+      "short_statement": "Registered occurrence metadata and shape admission produce no predicate fact, Checked, full Scope, normalization, external authority or RootExport capability; all unsupported and resource failures remain fail-closed.",
+      "source_anchor": "staging-denial"
+    },
+    {
       "area": "SPEC",
       "conformance_refs": [
         "spec-registry/duplicate-specification-id"

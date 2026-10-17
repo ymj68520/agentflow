@@ -1,0 +1,634 @@
+{
+  "cases": [
+    {
+      "case_id": "g01-document-occurrence-staging/dag-shared-scalar-and-distinct-ordinals",
+      "classification": "Registered bounded scalar/ordinal subgraph validation; NOT full Scope or normalization",
+      "expected_failure": null,
+      "value": {
+        "nodes": [
+          {
+            "body": {
+              "scalar": {
+                "uint64": 2
+              }
+            },
+            "type": {
+              "name": "$U64",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "scalar": {
+                "uint64": 10
+              }
+            },
+            "type": {
+              "name": "$U64",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "scalar": {
+                "bytes": [
+                  88
+                ]
+              }
+            },
+            "type": {
+              "name": "DocumentSourceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "record": [
+                {
+                  "field": "entry_ordinal",
+                  "value": 0
+                }
+              ]
+            },
+            "type": {
+              "name": "DocumentOccurrenceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "record": [
+                {
+                  "field": "entry_ordinal",
+                  "value": 1
+                }
+              ]
+            },
+            "type": {
+              "name": "DocumentOccurrenceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          }
+        ],
+        "roots": [
+          2,
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/dag-duplicate-equal-node",
+      "classification": "Registered bounded scalar/ordinal subgraph validation; NOT full Scope or normalization",
+      "expected_failure": "InvalidFacts",
+      "value": {
+        "nodes": [
+          {
+            "body": {
+              "scalar": {
+                "uint64": 2
+              }
+            },
+            "type": {
+              "name": "$U64",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "scalar": {
+                "uint64": 10
+              }
+            },
+            "type": {
+              "name": "$U64",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "scalar": {
+                "bytes": [
+                  88
+                ]
+              }
+            },
+            "type": {
+              "name": "DocumentSourceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "record": [
+                {
+                  "field": "entry_ordinal",
+                  "value": 0
+                }
+              ]
+            },
+            "type": {
+              "name": "DocumentOccurrenceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "record": [
+                {
+                  "field": "entry_ordinal",
+                  "value": 1
+                }
+              ]
+            },
+            "type": {
+              "name": "DocumentOccurrenceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "scalar": {
+                "bytes": [
+                  88
+                ]
+              }
+            },
+            "type": {
+              "name": "DocumentSourceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          }
+        ],
+        "roots": [
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/dag-alternate-rank-order",
+      "classification": "Registered bounded scalar/ordinal subgraph validation; NOT full Scope or normalization",
+      "expected_failure": "InvalidFacts",
+      "value": {
+        "nodes": [
+          {
+            "body": {
+              "scalar": {
+                "uint64": 10
+              }
+            },
+            "type": {
+              "name": "$U64",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "scalar": {
+                "uint64": 2
+              }
+            },
+            "type": {
+              "name": "$U64",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "scalar": {
+                "bytes": [
+                  88
+                ]
+              }
+            },
+            "type": {
+              "name": "DocumentSourceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "record": [
+                {
+                  "field": "entry_ordinal",
+                  "value": 0
+                }
+              ]
+            },
+            "type": {
+              "name": "DocumentOccurrenceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "record": [
+                {
+                  "field": "entry_ordinal",
+                  "value": 1
+                }
+              ]
+            },
+            "type": {
+              "name": "DocumentOccurrenceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          }
+        ],
+        "roots": [
+          2,
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/dag-unreachable-content",
+      "classification": "Registered bounded scalar/ordinal subgraph validation; NOT full Scope or normalization",
+      "expected_failure": "InvalidFacts",
+      "value": {
+        "nodes": [
+          {
+            "body": {
+              "scalar": {
+                "uint64": 2
+              }
+            },
+            "type": {
+              "name": "$U64",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "scalar": {
+                "uint64": 10
+              }
+            },
+            "type": {
+              "name": "$U64",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "scalar": {
+                "bytes": [
+                  88
+                ]
+              }
+            },
+            "type": {
+              "name": "DocumentSourceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "record": [
+                {
+                  "field": "entry_ordinal",
+                  "value": 0
+                }
+              ]
+            },
+            "type": {
+              "name": "DocumentOccurrenceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "record": [
+                {
+                  "field": "entry_ordinal",
+                  "value": 1
+                }
+              ]
+            },
+            "type": {
+              "name": "DocumentOccurrenceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          }
+        ],
+        "roots": [
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/dag-self-cycle",
+      "classification": "Registered bounded scalar/ordinal subgraph validation; NOT full Scope or normalization",
+      "expected_failure": "InvalidFacts",
+      "value": {
+        "nodes": [
+          {
+            "body": {
+              "scalar": {
+                "uint64": 2
+              }
+            },
+            "type": {
+              "name": "$U64",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "scalar": {
+                "uint64": 10
+              }
+            },
+            "type": {
+              "name": "$U64",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "scalar": {
+                "bytes": [
+                  88
+                ]
+              }
+            },
+            "type": {
+              "name": "DocumentSourceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "record": [
+                {
+                  "field": "entry_ordinal",
+                  "value": 3
+                }
+              ]
+            },
+            "type": {
+              "name": "DocumentOccurrenceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "record": [
+                {
+                  "field": "entry_ordinal",
+                  "value": 1
+                }
+              ]
+            },
+            "type": {
+              "name": "DocumentOccurrenceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          }
+        ],
+        "roots": [
+          2,
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/dag-dangling-reference",
+      "classification": "Registered bounded scalar/ordinal subgraph validation; NOT full Scope or normalization",
+      "expected_failure": "InvalidFacts",
+      "value": {
+        "nodes": [
+          {
+            "body": {
+              "scalar": {
+                "uint64": 2
+              }
+            },
+            "type": {
+              "name": "$U64",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "scalar": {
+                "uint64": 10
+              }
+            },
+            "type": {
+              "name": "$U64",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "scalar": {
+                "bytes": [
+                  88
+                ]
+              }
+            },
+            "type": {
+              "name": "DocumentSourceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "record": [
+                {
+                  "field": "entry_ordinal",
+                  "value": 99
+                }
+              ]
+            },
+            "type": {
+              "name": "DocumentOccurrenceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "record": [
+                {
+                  "field": "entry_ordinal",
+                  "value": 1
+                }
+              ]
+            },
+            "type": {
+              "name": "DocumentOccurrenceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          }
+        ],
+        "roots": [
+          2,
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/dag-output-node-in-input",
+      "classification": "Registered bounded scalar/ordinal subgraph validation; NOT full Scope or normalization",
+      "expected_failure": "UnsupportedModel",
+      "value": {
+        "nodes": [
+          {
+            "body": {
+              "scalar": {
+                "uint64": 2
+              }
+            },
+            "type": {
+              "name": "$U64",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "scalar": {
+                "uint64": 10
+              }
+            },
+            "type": {
+              "name": "$U64",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "scalar": {
+                "bytes": [
+                  88
+                ]
+              }
+            },
+            "type": {
+              "name": "Fact",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "record": [
+                {
+                  "field": "entry_ordinal",
+                  "value": 0
+                }
+              ]
+            },
+            "type": {
+              "name": "DocumentOccurrenceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "record": [
+                {
+                  "field": "entry_ordinal",
+                  "value": 1
+                }
+              ]
+            },
+            "type": {
+              "name": "DocumentOccurrenceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          }
+        ],
+        "roots": [
+          2,
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/dag-unknown-salt-field",
+      "classification": "Registered bounded scalar/ordinal subgraph validation; NOT full Scope or normalization",
+      "expected_failure": "UnsupportedModel",
+      "value": {
+        "nodes": [
+          {
+            "body": {
+              "scalar": {
+                "uint64": 2
+              }
+            },
+            "type": {
+              "name": "$U64",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "scalar": {
+                "uint64": 10
+              }
+            },
+            "type": {
+              "name": "$U64",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "scalar": {
+                "bytes": [
+                  88
+                ]
+              }
+            },
+            "random_source_salt": 7,
+            "type": {
+              "name": "DocumentSourceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "record": [
+                {
+                  "field": "entry_ordinal",
+                  "value": 0
+                }
+              ]
+            },
+            "type": {
+              "name": "DocumentOccurrenceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          },
+          {
+            "body": {
+              "record": [
+                {
+                  "field": "entry_ordinal",
+                  "value": 1
+                }
+              ]
+            },
+            "type": {
+              "name": "DocumentOccurrenceKey",
+              "owner": "agentflow.computation.proof-report.model@5"
+            }
+          }
+        ],
+        "roots": [
+          2,
+          3,
+          4
+        ]
+      }
+    }
+  ]
+}

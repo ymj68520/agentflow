@@ -1,0 +1,165 @@
+{
+  "cases": [
+    {
+      "anchor": "document-identities",
+      "case_id": "g01-document-occurrence-staging/rule-0272",
+      "dependencies": [
+        "AF-SEMANTIC-0200",
+        "AF-SEMANTIC-0210"
+      ],
+      "draft": "DO-01",
+      "rule_id": "AF-SEMANTIC-0272",
+      "source": "DO",
+      "statement": "Complete document content, declared occurrence, internal member and output observation are distinct identities; equal content does not imply equal occurrence."
+    },
+    {
+      "anchor": "actual-source",
+      "case_id": "g01-document-occurrence-staging/rule-0273",
+      "dependencies": [
+        "AF-SEMANTIC-0261"
+      ],
+      "draft": "DO-02",
+      "rule_id": "AF-SEMANTIC-0273",
+      "source": "DO",
+      "statement": "Occurrence admission requires an actual supplied complete SourcePackage and real owner revision and document slot; missing provenance cannot be synthesized from a candidate or invocation."
+    },
+    {
+      "anchor": "closed-owners",
+      "case_id": "g01-document-occurrence-staging/rule-0274",
+      "dependencies": [
+        "AF-SEMANTIC-0270"
+      ],
+      "draft": "DO-03",
+      "rule_id": "AF-SEMANTIC-0274",
+      "source": "RM",
+      "statement": "Owner containers are exactly declaration_bundle, import_manifest and workflow_source_collection with complete closed entries; unknown domains, owner schemas and variants reject."
+    },
+    {
+      "anchor": "declared-authority",
+      "case_id": "g01-document-occurrence-staging/rule-0275",
+      "dependencies": [
+        "AF-SEMANTIC-0213"
+      ],
+      "draft": "DO-04",
+      "rule_id": "AF-SEMANTIC-0275",
+      "source": "DO",
+      "statement": "Exact UTF8 namespace, domain, owner and revision keys establish only declared source identity and never external authentication or global ownership."
+    },
+    {
+      "anchor": "owner-conflicts",
+      "case_id": "g01-document-occurrence-staging/rule-0276",
+      "dependencies": [
+        "AF-SEMANTIC-0200"
+      ],
+      "draft": "DO-05",
+      "rule_id": "AF-SEMANTIC-0276",
+      "source": "DO",
+      "statement": "All submitted owners must match the package domain and have unique complete anchors; conflicting complete records in explicit joint packages are owner binding conflicts."
+    },
+    {
+      "anchor": "occurrence-conflicts",
+      "case_id": "g01-document-occurrence-staging/rule-0277",
+      "dependencies": [
+        "AF-SEMANTIC-0210"
+      ],
+      "draft": "DO-06",
+      "rule_id": "AF-SEMANTIC-0277",
+      "source": "DO",
+      "statement": "Owner anchor and actual U64 document-entry ordinal define occurrence; equal content reuses it and unequal content at the same key fails BindingConflict."
+    },
+    {
+      "anchor": "member-paths",
+      "case_id": "g01-document-occurrence-staging/rule-0278",
+      "dependencies": [
+        "AF-SEMANTIC-0265"
+      ],
+      "draft": "DO-07",
+      "rule_id": "AF-SEMANTIC-0278",
+      "source": "DO",
+      "statement": "External document slot, internal document path, port original and sorted ordinals and observation site remain separate and all selected input members must agree."
+    },
+    {
+      "anchor": "physical-native",
+      "case_id": "g01-document-occurrence-staging/rule-0279",
+      "dependencies": [
+        "AF-SEMANTIC-0263"
+      ],
+      "draft": "DO-08",
+      "rule_id": "AF-SEMANTIC-0279",
+      "source": "DO",
+      "statement": "Physical sources require original bytes and supplied matching occurrence; native sources require complete declarations and not_supplied physical history; other combinations reject UnsupportedPhysicalAssociation."
+    },
+    {
+      "anchor": "identity-propagation",
+      "case_id": "g01-document-occurrence-staging/rule-0280",
+      "dependencies": [
+        "AF-SEMANTIC-0200",
+        "AF-SEMANTIC-0267"
+      ],
+      "draft": "DO-09",
+      "rule_id": "AF-SEMANTIC-0280",
+      "source": "OS",
+      "statement": "Occurrence binding starts at RawInputOrigin and propagates through subject, source, raw origin, FactKey, basis, witness and references without mixed occurrences."
+    },
+    {
+      "anchor": "input-dag",
+      "case_id": "g01-document-occurrence-staging/rule-0281",
+      "dependencies": [
+        "AF-SEMANTIC-0217",
+        "AF-SEMANTIC-0269"
+      ],
+      "draft": "DO-10",
+      "rule_id": "AF-SEMANTIC-0281",
+      "source": "OS",
+      "statement": "Equal typed content still interns under the finite minimal reachable DAG; different real occurrence bindings are different typed values and source packages cannot refer to generated outputs."
+    },
+    {
+      "anchor": "observation-copy",
+      "case_id": "g01-document-occurrence-staging/rule-0282",
+      "dependencies": [
+        "AF-SEMANTIC-0210",
+        "AF-SEMANTIC-0211"
+      ],
+      "draft": "DO-11",
+      "rule_id": "AF-SEMANTIC-0282",
+      "source": "OS",
+      "statement": "Only equal complete scoped originating facts with equal non-observation payload union legitimate observations; conflicting payloads fail InvalidFacts and observations never generate occurrences."
+    },
+    {
+      "anchor": "frozen-port-context",
+      "case_id": "g01-document-occurrence-staging/rule-0283",
+      "dependencies": [
+        "AF-SEMANTIC-0262",
+        "AF-SEMANTIC-0264"
+      ],
+      "draft": "DO-12",
+      "rule_id": "AF-SEMANTIC-0283",
+      "source": "DO",
+      "statement": "The one Raw port predicate, actual execution prefix and nine-member same-object context partition remain unchanged; no context role, resolver or generic schema profile supplies document identity."
+    },
+    {
+      "anchor": "migration",
+      "case_id": "g01-document-occurrence-staging/rule-0284",
+      "dependencies": [
+        "AF-SEMANTIC-0271"
+      ],
+      "draft": "DO-13",
+      "rule_id": "AF-SEMANTIC-0284",
+      "source": "PP",
+      "statement": "Exact old content-only sources retain old-edition meaning and cannot acquire occurrence history without actual extra evidence; old and mixed tuple contents reject without relabelling."
+    },
+    {
+      "anchor": "staging-denial",
+      "case_id": "g01-document-occurrence-staging/rule-0285",
+      "dependencies": [
+        "AF-SEMANTIC-0212",
+        "AF-SEMANTIC-0218",
+        "AF-SEMANTIC-0244"
+      ],
+      "draft": "DO-14",
+      "rule_id": "AF-SEMANTIC-0285",
+      "source": "PP",
+      "statement": "Registered occurrence metadata and shape admission produce no predicate fact, Checked, full Scope, normalization, external authority or RootExport capability; all unsupported and resource failures remain fail-closed."
+    }
+  ]
+}

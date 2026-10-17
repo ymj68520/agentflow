@@ -1,0 +1,1069 @@
+{
+  "admission_cases": 51,
+  "analysis": "agentflow.root-export-checker@6",
+  "applied_rules": [
+    "AF-CONTRACT-0001",
+    "AF-CONTRACT-0002",
+    "AF-CONTRACT-0003",
+    "AF-CONTRACT-0004",
+    "AF-CONTRACT-0005",
+    "AF-CONTRACT-0006",
+    "AF-CONTRACT-0007",
+    "AF-CONTRACT-0008",
+    "AF-CONTRACT-0009",
+    "AF-CONTRACT-0010",
+    "AF-CONTRACT-0011",
+    "AF-CONTRACT-0012",
+    "AF-CONTRACT-0013",
+    "AF-CONTRACT-0014",
+    "AF-CONTRACT-0015",
+    "AF-CONTRACT-0016",
+    "AF-CONTRACT-0017",
+    "AF-CONTRACT-0018",
+    "AF-CONTRACT-0019",
+    "AF-CONTRACT-0020",
+    "AF-CONTRACT-0021",
+    "AF-CONTRACT-0022",
+    "AF-SEMANTIC-0111",
+    "AF-SEMANTIC-0112",
+    "AF-SEMANTIC-0113",
+    "AF-SEMANTIC-0114",
+    "AF-SEMANTIC-0115",
+    "AF-SEMANTIC-0116",
+    "AF-SEMANTIC-0117",
+    "AF-SEMANTIC-0118",
+    "AF-SEMANTIC-0119",
+    "AF-SEMANTIC-0120",
+    "AF-SEMANTIC-0121",
+    "AF-SEMANTIC-0122",
+    "AF-SEMANTIC-0123",
+    "AF-SEMANTIC-0124",
+    "AF-SEMANTIC-0125",
+    "AF-SEMANTIC-0126",
+    "AF-SEMANTIC-0127",
+    "AF-SEMANTIC-0128",
+    "AF-SEMANTIC-0129",
+    "AF-SEMANTIC-0130",
+    "AF-SEMANTIC-0131",
+    "AF-SEMANTIC-0132",
+    "AF-SEMANTIC-0133",
+    "AF-SEMANTIC-0134",
+    "AF-SEMANTIC-0135",
+    "AF-SEMANTIC-0136",
+    "AF-SEMANTIC-0137",
+    "AF-SEMANTIC-0138",
+    "AF-SEMANTIC-0139",
+    "AF-SEMANTIC-0140",
+    "AF-SEMANTIC-0141",
+    "AF-SEMANTIC-0142",
+    "AF-SEMANTIC-0143",
+    "AF-SEMANTIC-0144",
+    "AF-SEMANTIC-0145",
+    "AF-SEMANTIC-0146",
+    "AF-SEMANTIC-0147",
+    "AF-SEMANTIC-0148",
+    "AF-SEMANTIC-0149",
+    "AF-SEMANTIC-0150",
+    "AF-SEMANTIC-0151",
+    "AF-SEMANTIC-0152",
+    "AF-SEMANTIC-0153",
+    "AF-SEMANTIC-0154",
+    "AF-SEMANTIC-0155",
+    "AF-SEMANTIC-0156",
+    "AF-SEMANTIC-0157",
+    "AF-SEMANTIC-0158",
+    "AF-SEMANTIC-0159",
+    "AF-SEMANTIC-0160",
+    "AF-SEMANTIC-0161",
+    "AF-SEMANTIC-0162",
+    "AF-SEMANTIC-0163",
+    "AF-SEMANTIC-0164",
+    "AF-SEMANTIC-0165",
+    "AF-SEMANTIC-0166",
+    "AF-SEMANTIC-0167",
+    "AF-SEMANTIC-0168",
+    "AF-SEMANTIC-0169",
+    "AF-SEMANTIC-0170",
+    "AF-SEMANTIC-0171",
+    "AF-SEMANTIC-0172",
+    "AF-SEMANTIC-0173",
+    "AF-SEMANTIC-0174",
+    "AF-SEMANTIC-0175",
+    "AF-SEMANTIC-0176",
+    "AF-SEMANTIC-0177",
+    "AF-SEMANTIC-0178",
+    "AF-SEMANTIC-0179",
+    "AF-SEMANTIC-0180",
+    "AF-SEMANTIC-0181",
+    "AF-SEMANTIC-0182",
+    "AF-SEMANTIC-0183",
+    "AF-SEMANTIC-0184",
+    "AF-SEMANTIC-0185",
+    "AF-SEMANTIC-0186",
+    "AF-SEMANTIC-0187",
+    "AF-SEMANTIC-0189",
+    "AF-SEMANTIC-0191",
+    "AF-SEMANTIC-0192",
+    "AF-SEMANTIC-0193",
+    "AF-SEMANTIC-0194",
+    "AF-SEMANTIC-0195",
+    "AF-SEMANTIC-0196",
+    "AF-SEMANTIC-0197",
+    "AF-SEMANTIC-0198",
+    "AF-SEMANTIC-0199",
+    "AF-SEMANTIC-0200",
+    "AF-SEMANTIC-0201",
+    "AF-SEMANTIC-0202",
+    "AF-SEMANTIC-0203",
+    "AF-SEMANTIC-0204",
+    "AF-SEMANTIC-0205",
+    "AF-SEMANTIC-0206",
+    "AF-SEMANTIC-0207",
+    "AF-SEMANTIC-0208",
+    "AF-SEMANTIC-0209",
+    "AF-SEMANTIC-0210",
+    "AF-SEMANTIC-0211",
+    "AF-SEMANTIC-0212",
+    "AF-SEMANTIC-0213",
+    "AF-SEMANTIC-0214",
+    "AF-SEMANTIC-0215",
+    "AF-SEMANTIC-0216",
+    "AF-SEMANTIC-0217",
+    "AF-SEMANTIC-0218",
+    "AF-SEMANTIC-0219",
+    "AF-SEMANTIC-0220",
+    "AF-SEMANTIC-0221",
+    "AF-SEMANTIC-0222",
+    "AF-SEMANTIC-0228",
+    "AF-SEMANTIC-0229",
+    "AF-SEMANTIC-0230",
+    "AF-SEMANTIC-0231",
+    "AF-SEMANTIC-0232",
+    "AF-SEMANTIC-0233",
+    "AF-SEMANTIC-0234",
+    "AF-SEMANTIC-0235",
+    "AF-SEMANTIC-0236",
+    "AF-SEMANTIC-0237",
+    "AF-SEMANTIC-0238",
+    "AF-SEMANTIC-0239",
+    "AF-SEMANTIC-0240",
+    "AF-SEMANTIC-0241",
+    "AF-SEMANTIC-0242",
+    "AF-SEMANTIC-0245",
+    "AF-SEMANTIC-0246",
+    "AF-SEMANTIC-0247",
+    "AF-SEMANTIC-0248",
+    "AF-SEMANTIC-0249",
+    "AF-SEMANTIC-0250",
+    "AF-SEMANTIC-0251",
+    "AF-SEMANTIC-0252",
+    "AF-SEMANTIC-0253",
+    "AF-SEMANTIC-0254",
+    "AF-SEMANTIC-0255",
+    "AF-SEMANTIC-0256",
+    "AF-SEMANTIC-0257",
+    "AF-SEMANTIC-0258",
+    "AF-SEMANTIC-0259",
+    "AF-SEMANTIC-0260",
+    "AF-SEMANTIC-0261",
+    "AF-SEMANTIC-0262",
+    "AF-SEMANTIC-0263",
+    "AF-SEMANTIC-0264",
+    "AF-SEMANTIC-0265",
+    "AF-SEMANTIC-0266",
+    "AF-SEMANTIC-0267",
+    "AF-SEMANTIC-0268",
+    "AF-SEMANTIC-0269",
+    "AF-SEMANTIC-0270",
+    "AF-SEMANTIC-0271",
+    "AF-SEMANTIC-0272",
+    "AF-SEMANTIC-0273",
+    "AF-SEMANTIC-0274",
+    "AF-SEMANTIC-0275",
+    "AF-SEMANTIC-0276",
+    "AF-SEMANTIC-0277",
+    "AF-SEMANTIC-0278",
+    "AF-SEMANTIC-0279",
+    "AF-SEMANTIC-0280",
+    "AF-SEMANTIC-0281",
+    "AF-SEMANTIC-0282",
+    "AF-SEMANTIC-0283",
+    "AF-SEMANTIC-0284",
+    "AF-SEMANTIC-0285"
+  ],
+  "capture_case_ids": 0,
+  "case_ids": [
+    "g01-document-occurrence-staging/shape-DocumentSourceKey",
+    "g01-document-occurrence-staging/shape-DocumentSourceDomain",
+    "g01-document-occurrence-staging/missing-DocumentSourceDomain-namespace",
+    "g01-document-occurrence-staging/missing-DocumentSourceDomain-domain_key",
+    "g01-document-occurrence-staging/extra-DocumentSourceDomain",
+    "g01-document-occurrence-staging/shape-DocumentOwnerAnchor",
+    "g01-document-occurrence-staging/missing-DocumentOwnerAnchor-domain",
+    "g01-document-occurrence-staging/missing-DocumentOwnerAnchor-owner_key",
+    "g01-document-occurrence-staging/missing-DocumentOwnerAnchor-revision_key",
+    "g01-document-occurrence-staging/extra-DocumentOwnerAnchor",
+    "g01-document-occurrence-staging/shape-DeclarationDocumentEntry",
+    "g01-document-occurrence-staging/missing-DeclarationDocumentEntry-declaration_name",
+    "g01-document-occurrence-staging/missing-DeclarationDocumentEntry-document",
+    "g01-document-occurrence-staging/extra-DeclarationDocumentEntry",
+    "g01-document-occurrence-staging/shape-ImportDocumentEntry",
+    "g01-document-occurrence-staging/missing-ImportDocumentEntry-import_name",
+    "g01-document-occurrence-staging/missing-ImportDocumentEntry-document",
+    "g01-document-occurrence-staging/extra-ImportDocumentEntry",
+    "g01-document-occurrence-staging/shape-WorkflowDocumentEntry",
+    "g01-document-occurrence-staging/missing-WorkflowDocumentEntry-source_name",
+    "g01-document-occurrence-staging/missing-WorkflowDocumentEntry-document",
+    "g01-document-occurrence-staging/extra-WorkflowDocumentEntry",
+    "g01-document-occurrence-staging/shape-DocumentOwnerContainer",
+    "g01-document-occurrence-staging/variant-DocumentOwnerContainer-declaration_bundle",
+    "g01-document-occurrence-staging/missing-DocumentOwnerContainer-declaration_bundle-bundle_name",
+    "g01-document-occurrence-staging/missing-DocumentOwnerContainer-declaration_bundle-declarations",
+    "g01-document-occurrence-staging/extra-DocumentOwnerContainer-declaration_bundle",
+    "g01-document-occurrence-staging/variant-DocumentOwnerContainer-import_manifest",
+    "g01-document-occurrence-staging/missing-DocumentOwnerContainer-import_manifest-manifest_name",
+    "g01-document-occurrence-staging/missing-DocumentOwnerContainer-import_manifest-imports",
+    "g01-document-occurrence-staging/extra-DocumentOwnerContainer-import_manifest",
+    "g01-document-occurrence-staging/variant-DocumentOwnerContainer-workflow_source_collection",
+    "g01-document-occurrence-staging/missing-DocumentOwnerContainer-workflow_source_collection-collection_name",
+    "g01-document-occurrence-staging/missing-DocumentOwnerContainer-workflow_source_collection-sources",
+    "g01-document-occurrence-staging/extra-DocumentOwnerContainer-workflow_source_collection",
+    "g01-document-occurrence-staging/unknown-DocumentOwnerContainer",
+    "g01-document-occurrence-staging/shape-DocumentOwnerRecord",
+    "g01-document-occurrence-staging/missing-DocumentOwnerRecord-anchor",
+    "g01-document-occurrence-staging/missing-DocumentOwnerRecord-container",
+    "g01-document-occurrence-staging/extra-DocumentOwnerRecord",
+    "g01-document-occurrence-staging/shape-SourcePackage",
+    "g01-document-occurrence-staging/missing-SourcePackage-domain",
+    "g01-document-occurrence-staging/missing-SourcePackage-owners",
+    "g01-document-occurrence-staging/extra-SourcePackage",
+    "g01-document-occurrence-staging/shape-DocumentOccurrenceKey",
+    "g01-document-occurrence-staging/missing-DocumentOccurrenceKey-entry_ordinal",
+    "g01-document-occurrence-staging/extra-DocumentOccurrenceKey",
+    "g01-document-occurrence-staging/shape-DocumentOccurrenceBinding",
+    "g01-document-occurrence-staging/missing-DocumentOccurrenceBinding-source_package",
+    "g01-document-occurrence-staging/missing-DocumentOccurrenceBinding-source_owner",
+    "g01-document-occurrence-staging/missing-DocumentOccurrenceBinding-occurrence_key",
+    "g01-document-occurrence-staging/missing-DocumentOccurrenceBinding-actual_document",
+    "g01-document-occurrence-staging/extra-DocumentOccurrenceBinding",
+    "g01-document-occurrence-staging/shape-DocumentSourceAssurance",
+    "g01-document-occurrence-staging/variant-DocumentSourceAssurance-declared_only",
+    "g01-document-occurrence-staging/unknown-DocumentSourceAssurance",
+    "g01-document-occurrence-staging/shape-DocumentOccurrenceAdmissionFailure",
+    "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-MissingDocumentOccurrenceBinding",
+    "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-InvalidOccurrenceAssociation",
+    "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-BindingConflict",
+    "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-OwnerBindingConflict",
+    "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-MalformedSourcePackage",
+    "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-UnsupportedOwnerVariant",
+    "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-UnsupportedSourceDomain",
+    "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-UnsupportedPhysicalAssociation",
+    "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-InvalidPhysicalInput",
+    "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-InvalidContextBinding",
+    "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-InvalidIdentity",
+    "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-IncompleteFacts",
+    "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-UnsupportedModel",
+    "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-ResourceLimit",
+    "g01-document-occurrence-staging/unknown-DocumentOccurrenceAdmissionFailure",
+    "g01-document-occurrence-staging/shape-DocumentSourceMigrationState",
+    "g01-document-occurrence-staging/variant-DocumentSourceMigrationState-exact_old_content_only",
+    "g01-document-occurrence-staging/variant-DocumentSourceMigrationState-unmigratable_missing_occurrence",
+    "g01-document-occurrence-staging/variant-DocumentSourceMigrationState-new_declared_occurrence",
+    "g01-document-occurrence-staging/unknown-DocumentSourceMigrationState",
+    "g01-document-occurrence-staging/shape-MetadataDeclarationDocumentEntry",
+    "g01-document-occurrence-staging/missing-MetadataDeclarationDocumentEntry-declaration_name",
+    "g01-document-occurrence-staging/missing-MetadataDeclarationDocumentEntry-document",
+    "g01-document-occurrence-staging/extra-MetadataDeclarationDocumentEntry",
+    "g01-document-occurrence-staging/shape-MetadataImportDocumentEntry",
+    "g01-document-occurrence-staging/missing-MetadataImportDocumentEntry-import_name",
+    "g01-document-occurrence-staging/missing-MetadataImportDocumentEntry-document",
+    "g01-document-occurrence-staging/extra-MetadataImportDocumentEntry",
+    "g01-document-occurrence-staging/shape-MetadataWorkflowDocumentEntry",
+    "g01-document-occurrence-staging/missing-MetadataWorkflowDocumentEntry-source_name",
+    "g01-document-occurrence-staging/missing-MetadataWorkflowDocumentEntry-document",
+    "g01-document-occurrence-staging/extra-MetadataWorkflowDocumentEntry",
+    "g01-document-occurrence-staging/shape-MetadataDocumentOwnerContainer",
+    "g01-document-occurrence-staging/variant-MetadataDocumentOwnerContainer-declaration_bundle",
+    "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-declaration_bundle-bundle_name",
+    "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-declaration_bundle-declarations",
+    "g01-document-occurrence-staging/extra-MetadataDocumentOwnerContainer-declaration_bundle",
+    "g01-document-occurrence-staging/variant-MetadataDocumentOwnerContainer-import_manifest",
+    "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-import_manifest-manifest_name",
+    "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-import_manifest-imports",
+    "g01-document-occurrence-staging/extra-MetadataDocumentOwnerContainer-import_manifest",
+    "g01-document-occurrence-staging/variant-MetadataDocumentOwnerContainer-workflow_source_collection",
+    "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-workflow_source_collection-collection_name",
+    "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-workflow_source_collection-sources",
+    "g01-document-occurrence-staging/extra-MetadataDocumentOwnerContainer-workflow_source_collection",
+    "g01-document-occurrence-staging/unknown-MetadataDocumentOwnerContainer",
+    "g01-document-occurrence-staging/shape-MetadataDocumentOwnerRecord",
+    "g01-document-occurrence-staging/missing-MetadataDocumentOwnerRecord-anchor",
+    "g01-document-occurrence-staging/missing-MetadataDocumentOwnerRecord-container",
+    "g01-document-occurrence-staging/extra-MetadataDocumentOwnerRecord",
+    "g01-document-occurrence-staging/shape-SourcePackageMetadata",
+    "g01-document-occurrence-staging/missing-SourcePackageMetadata-domain",
+    "g01-document-occurrence-staging/missing-SourcePackageMetadata-owners",
+    "g01-document-occurrence-staging/extra-SourcePackageMetadata",
+    "g01-document-occurrence-staging/shape-DocumentOccurrenceMetadataBinding",
+    "g01-document-occurrence-staging/missing-DocumentOccurrenceMetadataBinding-source_package",
+    "g01-document-occurrence-staging/missing-DocumentOccurrenceMetadataBinding-source_owner",
+    "g01-document-occurrence-staging/missing-DocumentOccurrenceMetadataBinding-occurrence_key",
+    "g01-document-occurrence-staging/missing-DocumentOccurrenceMetadataBinding-actual_document",
+    "g01-document-occurrence-staging/extra-DocumentOccurrenceMetadataBinding",
+    "g01-document-occurrence-staging/shape-RawInputOrigin",
+    "g01-document-occurrence-staging/missing-RawInputOrigin-document_binding",
+    "g01-document-occurrence-staging/missing-RawInputOrigin-path",
+    "g01-document-occurrence-staging/extra-RawInputOrigin",
+    "g01-document-occurrence-staging/shape-RawPhysicalAssociation",
+    "g01-document-occurrence-staging/variant-RawPhysicalAssociation-not_supplied",
+    "g01-document-occurrence-staging/variant-RawPhysicalAssociation-supplied",
+    "g01-document-occurrence-staging/missing-RawPhysicalAssociation-supplied-document_binding",
+    "g01-document-occurrence-staging/missing-RawPhysicalAssociation-supplied-value_path",
+    "g01-document-occurrence-staging/extra-RawPhysicalAssociation-supplied",
+    "g01-document-occurrence-staging/unknown-RawPhysicalAssociation",
+    "g01-document-occurrence-staging/shape-RawValidationAdmissionFailure",
+    "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-MissingRequiredSource",
+    "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-MissingDeclarativeOrigin",
+    "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-InvalidSourceAssociation",
+    "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-InvalidContextBinding",
+    "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-IncompleteContent",
+    "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-InvalidPhysicalInput",
+    "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-UnsupportedPredicate",
+    "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-NotImplemented",
+    "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-InvalidIdentity",
+    "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-UnsupportedModel",
+    "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-ResourceLimit",
+    "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-MissingDocumentOccurrenceBinding",
+    "g01-document-occurrence-staging/unknown-RawValidationAdmissionFailure",
+    "g01-document-occurrence-staging/closure-RawParsedInput",
+    "g01-document-occurrence-staging/closure-RawValidationSubject",
+    "g01-document-occurrence-staging/closure-RawValidationOrigin",
+    "g01-document-occurrence-staging/closure-Source",
+    "g01-document-occurrence-staging/closure-Origin",
+    "g01-document-occurrence-staging/closure-FactKey",
+    "g01-document-occurrence-staging/closure-Scope",
+    "g01-document-occurrence-staging/closure-CanonicalValueDag",
+    "g01-document-occurrence-staging/closure-Source-raw-validation",
+    "g01-document-occurrence-staging/closure-Origin-raw-validation",
+    "g01-document-occurrence-staging/dag-envelope-missing-roots",
+    "g01-document-occurrence-staging/dag-envelope-negative-root",
+    "g01-document-occurrence-staging/dag-envelope-bad-node",
+    "g01-document-occurrence-staging/key-nfd-preserved",
+    "g01-document-occurrence-staging/source-missing-context",
+    "g01-document-occurrence-staging/context-roles-split",
+    "g01-document-occurrence-staging/slot-u64-max",
+    "g01-document-occurrence-staging/slot-u64-negative",
+    "g01-document-occurrence-staging/slot-u64-float",
+    "g01-document-occurrence-staging/owner-ModelRef-agentflow.computation.proof-report.model@5",
+    "g01-document-occurrence-staging/owner-ModelRef-agentflow.computation.proof-report.model@4",
+    "g01-document-occurrence-staging/owner-ModelRef-unknown.owner@999",
+    "g01-document-occurrence-staging/owner-ModelType-agentflow.computation.proof-report.model@5",
+    "g01-document-occurrence-staging/owner-ModelType-agentflow.computation.proof-report.model@4",
+    "g01-document-occurrence-staging/owner-ModelType-unknown.owner@999",
+    "g01-document-occurrence-staging/empty-key",
+    "g01-document-occurrence-staging/invalid-key-utf8",
+    "g01-document-occurrence-staging/key-resource-limit",
+    "g01-document-occurrence-staging/rule-0272",
+    "g01-document-occurrence-staging/rule-0273",
+    "g01-document-occurrence-staging/rule-0274",
+    "g01-document-occurrence-staging/rule-0275",
+    "g01-document-occurrence-staging/rule-0276",
+    "g01-document-occurrence-staging/rule-0277",
+    "g01-document-occurrence-staging/rule-0278",
+    "g01-document-occurrence-staging/rule-0279",
+    "g01-document-occurrence-staging/rule-0280",
+    "g01-document-occurrence-staging/rule-0281",
+    "g01-document-occurrence-staging/rule-0282",
+    "g01-document-occurrence-staging/rule-0283",
+    "g01-document-occurrence-staging/rule-0284",
+    "g01-document-occurrence-staging/rule-0285",
+    "g01-document-occurrence-staging/portable-current-denied",
+    "g01-document-occurrence-staging/portable-old-label-new-content-1",
+    "g01-document-occurrence-staging/portable-old-label-new-content-2",
+    "g01-document-occurrence-staging/portable-old-label-new-content-3",
+    "g01-document-occurrence-staging/portable-old-label-new-content-4",
+    "g01-document-occurrence-staging/portable-old-label-new-content-5",
+    "g01-document-occurrence-staging/portable-new-label-old-content",
+    "g01-document-occurrence-staging/portable-unknown",
+    "g01-document-occurrence-staging/default-resource-limit",
+    "g01-document-occurrence-staging/admission-native-declaration_bundle",
+    "g01-document-occurrence-staging/admission-physical-declaration_bundle",
+    "g01-document-occurrence-staging/admission-native-import_manifest",
+    "g01-document-occurrence-staging/admission-physical-import_manifest",
+    "g01-document-occurrence-staging/admission-native-workflow_source_collection",
+    "g01-document-occurrence-staging/admission-physical-workflow_source_collection",
+    "g01-document-occurrence-staging/admission-same-slot-repeat",
+    "g01-document-occurrence-staging/admission-different-slots",
+    "g01-document-occurrence-staging/admission-different-owners",
+    "g01-document-occurrence-staging/admission-missing-package",
+    "g01-document-occurrence-staging/admission-missing-owner",
+    "g01-document-occurrence-staging/admission-missing-slot",
+    "g01-document-occurrence-staging/admission-missing-namespace",
+    "g01-document-occurrence-staging/admission-missing-domain_key",
+    "g01-document-occurrence-staging/admission-missing-owner_key",
+    "g01-document-occurrence-staging/admission-missing-revision_key",
+    "g01-document-occurrence-staging/admission-owner-domain-mismatch",
+    "g01-document-occurrence-staging/admission-unknown-owner",
+    "g01-document-occurrence-staging/admission-unknown-domain-schema",
+    "g01-document-occurrence-staging/admission-undeclared-owner",
+    "g01-document-occurrence-staging/admission-out-of-range",
+    "g01-document-occurrence-staging/admission-duplicate-owner",
+    "g01-document-occurrence-staging/admission-wrong-content",
+    "g01-document-occurrence-staging/admission-equal-copy-wrong-borrow",
+    "g01-document-occurrence-staging/admission-wrong-owner-borrow",
+    "g01-document-occurrence-staging/admission-wrong-declaration",
+    "g01-document-occurrence-staging/admission-wrong-internal-entry",
+    "g01-document-occurrence-staging/admission-native-supplied",
+    "g01-document-occurrence-staging/admission-physical-not-supplied",
+    "g01-document-occurrence-staging/admission-physical-cross-occurrence",
+    "g01-document-occurrence-staging/admission-context-split",
+    "g01-document-occurrence-staging/admission-compiler-wrong",
+    "g01-document-occurrence-staging/admission-physical-invalid-utf8",
+    "g01-document-occurrence-staging/admission-physical-duplicate-json-key",
+    "g01-document-occurrence-staging/admission-physical-malformed-json",
+    "g01-document-occurrence-staging/admission-physical-wrong-candidate",
+    "g01-document-occurrence-staging/admission-physical-bytes-conflict",
+    "g01-document-occurrence-staging/admission-joint-same",
+    "g01-document-occurrence-staging/admission-joint-conflict",
+    "g01-document-occurrence-staging/admission-context-digest-is-not-owner",
+    "g01-document-occurrence-staging/admission-pointer-only",
+    "g01-document-occurrence-staging/admission-call-counter-only",
+    "g01-document-occurrence-staging/admission-random-uuid-only",
+    "g01-document-occurrence-staging/admission-fabricated-wrapper-only",
+    "g01-document-occurrence-staging/admission-package-output-backedge",
+    "g01-document-occurrence-staging/admission-key-invalid-utf8",
+    "g01-document-occurrence-staging/admission-key-empty",
+    "g01-document-occurrence-staging/admission-key-resource-limit",
+    "g01-document-occurrence-staging/admission-native-full-thirteen-raw-not-checked",
+    "g01-document-occurrence-staging/admission-caller-authentication-claim",
+    "g01-document-occurrence-staging/admission-trusted-name-is-only-declared",
+    "g01-document-occurrence-staging/portable-caller-support-flag",
+    "g01-document-occurrence-staging/portable-noncanonical-current-tuple",
+    "g01-document-occurrence-staging/dag-shared-scalar-and-distinct-ordinals",
+    "g01-document-occurrence-staging/dag-duplicate-equal-node",
+    "g01-document-occurrence-staging/dag-alternate-rank-order",
+    "g01-document-occurrence-staging/dag-unreachable-content",
+    "g01-document-occurrence-staging/dag-self-cycle",
+    "g01-document-occurrence-staging/dag-dangling-reference",
+    "g01-document-occurrence-staging/dag-output-node-in-input",
+    "g01-document-occurrence-staging/dag-unknown-salt-field"
+  ],
+  "coverage": [
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentSourceDomain-namespace",
+      "field": "namespace",
+      "type": "DocumentSourceDomain",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentSourceDomain-domain_key",
+      "field": "domain_key",
+      "type": "DocumentSourceDomain",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerAnchor-domain",
+      "field": "domain",
+      "type": "DocumentOwnerAnchor",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerAnchor-owner_key",
+      "field": "owner_key",
+      "type": "DocumentOwnerAnchor",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerAnchor-revision_key",
+      "field": "revision_key",
+      "type": "DocumentOwnerAnchor",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DeclarationDocumentEntry-declaration_name",
+      "field": "declaration_name",
+      "type": "DeclarationDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DeclarationDocumentEntry-document",
+      "field": "document",
+      "type": "DeclarationDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-ImportDocumentEntry-import_name",
+      "field": "import_name",
+      "type": "ImportDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-ImportDocumentEntry-document",
+      "field": "document",
+      "type": "ImportDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-WorkflowDocumentEntry-source_name",
+      "field": "source_name",
+      "type": "WorkflowDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-WorkflowDocumentEntry-document",
+      "field": "document",
+      "type": "WorkflowDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOwnerContainer-declaration_bundle",
+      "type": "DocumentOwnerContainer",
+      "variant": "declaration_bundle"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerContainer-declaration_bundle-bundle_name",
+      "field": "bundle_name",
+      "type": "DocumentOwnerContainer",
+      "variant": "declaration_bundle"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerContainer-declaration_bundle-declarations",
+      "field": "declarations",
+      "type": "DocumentOwnerContainer",
+      "variant": "declaration_bundle"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOwnerContainer-import_manifest",
+      "type": "DocumentOwnerContainer",
+      "variant": "import_manifest"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerContainer-import_manifest-manifest_name",
+      "field": "manifest_name",
+      "type": "DocumentOwnerContainer",
+      "variant": "import_manifest"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerContainer-import_manifest-imports",
+      "field": "imports",
+      "type": "DocumentOwnerContainer",
+      "variant": "import_manifest"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOwnerContainer-workflow_source_collection",
+      "type": "DocumentOwnerContainer",
+      "variant": "workflow_source_collection"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerContainer-workflow_source_collection-collection_name",
+      "field": "collection_name",
+      "type": "DocumentOwnerContainer",
+      "variant": "workflow_source_collection"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerContainer-workflow_source_collection-sources",
+      "field": "sources",
+      "type": "DocumentOwnerContainer",
+      "variant": "workflow_source_collection"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerRecord-anchor",
+      "field": "anchor",
+      "type": "DocumentOwnerRecord",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOwnerRecord-container",
+      "field": "container",
+      "type": "DocumentOwnerRecord",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-SourcePackage-domain",
+      "field": "domain",
+      "type": "SourcePackage",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-SourcePackage-owners",
+      "field": "owners",
+      "type": "SourcePackage",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceKey-entry_ordinal",
+      "field": "entry_ordinal",
+      "type": "DocumentOccurrenceKey",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceBinding-source_package",
+      "field": "source_package",
+      "type": "DocumentOccurrenceBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceBinding-source_owner",
+      "field": "source_owner",
+      "type": "DocumentOccurrenceBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceBinding-occurrence_key",
+      "field": "occurrence_key",
+      "type": "DocumentOccurrenceBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceBinding-actual_document",
+      "field": "actual_document",
+      "type": "DocumentOccurrenceBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentSourceAssurance-declared_only",
+      "type": "DocumentSourceAssurance",
+      "variant": "declared_only"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-MissingDocumentOccurrenceBinding",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "MissingDocumentOccurrenceBinding"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-InvalidOccurrenceAssociation",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "InvalidOccurrenceAssociation"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-BindingConflict",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "BindingConflict"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-OwnerBindingConflict",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "OwnerBindingConflict"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-MalformedSourcePackage",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "MalformedSourcePackage"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-UnsupportedOwnerVariant",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "UnsupportedOwnerVariant"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-UnsupportedSourceDomain",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "UnsupportedSourceDomain"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-UnsupportedPhysicalAssociation",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "UnsupportedPhysicalAssociation"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-InvalidPhysicalInput",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "InvalidPhysicalInput"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-InvalidContextBinding",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "InvalidContextBinding"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-InvalidIdentity",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "InvalidIdentity"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-IncompleteFacts",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "IncompleteFacts"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-UnsupportedModel",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "UnsupportedModel"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentOccurrenceAdmissionFailure-ResourceLimit",
+      "type": "DocumentOccurrenceAdmissionFailure",
+      "variant": "ResourceLimit"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentSourceMigrationState-exact_old_content_only",
+      "type": "DocumentSourceMigrationState",
+      "variant": "exact_old_content_only"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentSourceMigrationState-unmigratable_missing_occurrence",
+      "type": "DocumentSourceMigrationState",
+      "variant": "unmigratable_missing_occurrence"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-DocumentSourceMigrationState-new_declared_occurrence",
+      "type": "DocumentSourceMigrationState",
+      "variant": "new_declared_occurrence"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDeclarationDocumentEntry-declaration_name",
+      "field": "declaration_name",
+      "type": "MetadataDeclarationDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDeclarationDocumentEntry-document",
+      "field": "document",
+      "type": "MetadataDeclarationDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataImportDocumentEntry-import_name",
+      "field": "import_name",
+      "type": "MetadataImportDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataImportDocumentEntry-document",
+      "field": "document",
+      "type": "MetadataImportDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataWorkflowDocumentEntry-source_name",
+      "field": "source_name",
+      "type": "MetadataWorkflowDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataWorkflowDocumentEntry-document",
+      "field": "document",
+      "type": "MetadataWorkflowDocumentEntry",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-MetadataDocumentOwnerContainer-declaration_bundle",
+      "type": "MetadataDocumentOwnerContainer",
+      "variant": "declaration_bundle"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-declaration_bundle-bundle_name",
+      "field": "bundle_name",
+      "type": "MetadataDocumentOwnerContainer",
+      "variant": "declaration_bundle"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-declaration_bundle-declarations",
+      "field": "declarations",
+      "type": "MetadataDocumentOwnerContainer",
+      "variant": "declaration_bundle"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-MetadataDocumentOwnerContainer-import_manifest",
+      "type": "MetadataDocumentOwnerContainer",
+      "variant": "import_manifest"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-import_manifest-manifest_name",
+      "field": "manifest_name",
+      "type": "MetadataDocumentOwnerContainer",
+      "variant": "import_manifest"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-import_manifest-imports",
+      "field": "imports",
+      "type": "MetadataDocumentOwnerContainer",
+      "variant": "import_manifest"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-MetadataDocumentOwnerContainer-workflow_source_collection",
+      "type": "MetadataDocumentOwnerContainer",
+      "variant": "workflow_source_collection"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-workflow_source_collection-collection_name",
+      "field": "collection_name",
+      "type": "MetadataDocumentOwnerContainer",
+      "variant": "workflow_source_collection"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerContainer-workflow_source_collection-sources",
+      "field": "sources",
+      "type": "MetadataDocumentOwnerContainer",
+      "variant": "workflow_source_collection"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerRecord-anchor",
+      "field": "anchor",
+      "type": "MetadataDocumentOwnerRecord",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-MetadataDocumentOwnerRecord-container",
+      "field": "container",
+      "type": "MetadataDocumentOwnerRecord",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-SourcePackageMetadata-domain",
+      "field": "domain",
+      "type": "SourcePackageMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-SourcePackageMetadata-owners",
+      "field": "owners",
+      "type": "SourcePackageMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceMetadataBinding-source_package",
+      "field": "source_package",
+      "type": "DocumentOccurrenceMetadataBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceMetadataBinding-source_owner",
+      "field": "source_owner",
+      "type": "DocumentOccurrenceMetadataBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceMetadataBinding-occurrence_key",
+      "field": "occurrence_key",
+      "type": "DocumentOccurrenceMetadataBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-DocumentOccurrenceMetadataBinding-actual_document",
+      "field": "actual_document",
+      "type": "DocumentOccurrenceMetadataBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-RawInputOrigin-document_binding",
+      "field": "document_binding",
+      "type": "RawInputOrigin",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-RawInputOrigin-path",
+      "field": "path",
+      "type": "RawInputOrigin",
+      "variant": null
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawPhysicalAssociation-not_supplied",
+      "type": "RawPhysicalAssociation",
+      "variant": "not_supplied"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawPhysicalAssociation-supplied",
+      "type": "RawPhysicalAssociation",
+      "variant": "supplied"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-RawPhysicalAssociation-supplied-document_binding",
+      "field": "document_binding",
+      "type": "RawPhysicalAssociation",
+      "variant": "supplied"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/missing-RawPhysicalAssociation-supplied-value_path",
+      "field": "value_path",
+      "type": "RawPhysicalAssociation",
+      "variant": "supplied"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-MissingRequiredSource",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "MissingRequiredSource"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-MissingDeclarativeOrigin",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "MissingDeclarativeOrigin"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-InvalidSourceAssociation",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "InvalidSourceAssociation"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-InvalidContextBinding",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "InvalidContextBinding"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-IncompleteContent",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "IncompleteContent"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-InvalidPhysicalInput",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "InvalidPhysicalInput"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-UnsupportedPredicate",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "UnsupportedPredicate"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-NotImplemented",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "NotImplemented"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-InvalidIdentity",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "InvalidIdentity"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-UnsupportedModel",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "UnsupportedModel"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-ResourceLimit",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "ResourceLimit"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/variant-RawValidationAdmissionFailure-MissingDocumentOccurrenceBinding",
+      "type": "RawValidationAdmissionFailure",
+      "variant": "MissingDocumentOccurrenceBinding"
+    }
+  ],
+  "dag_cases": 8,
+  "kind": "Registration/Metadata Admission ONLY; NOT Producer Capture",
+  "model": "agentflow.computation.proof-report.model@5",
+  "normalizer": "NotImplemented",
+  "obligation": "agentflow.g01.obligation@5",
+  "portable_cases": [
+    {
+      "case_id": "g01-document-occurrence-staging/portable-current-denied",
+      "decoder_policy": "bounded_16m_scalar",
+      "family": "UnsupportedSemantics",
+      "file": "portable/current-denied.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/portable-old-label-new-content-1",
+      "decoder_policy": "bounded_16m_scalar",
+      "family": "InvalidIdentity",
+      "file": "portable/old-label-new-content-1.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/portable-old-label-new-content-2",
+      "decoder_policy": "bounded_16m_scalar",
+      "family": "InvalidIdentity",
+      "file": "portable/old-label-new-content-2.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/portable-old-label-new-content-3",
+      "decoder_policy": "bounded_16m_scalar",
+      "family": "InvalidIdentity",
+      "file": "portable/old-label-new-content-3.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/portable-old-label-new-content-4",
+      "decoder_policy": "bounded_16m_scalar",
+      "family": "InvalidIdentity",
+      "file": "portable/old-label-new-content-4.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/portable-old-label-new-content-5",
+      "decoder_policy": "bounded_16m_scalar",
+      "family": "InvalidIdentity",
+      "file": "portable/old-label-new-content-5.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/portable-new-label-old-content",
+      "decoder_policy": "bounded_16m_scalar",
+      "family": "InvalidIdentity",
+      "file": "portable/new-label-old-content.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/portable-unknown",
+      "decoder_policy": "bounded_16m_scalar",
+      "family": "UnsupportedSemantics",
+      "file": "portable/unknown.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/default-resource-limit",
+      "decoder_policy": "unchanged_default",
+      "family": "ResourceLimit",
+      "file": "portable/current-denied.ace1",
+      "stage": "D0"
+    }
+  ],
+  "positive_capability": "NotAuthorized",
+  "producer": "NotImplemented",
+  "rule_cases": 14,
+  "runtime_portable_cases": [
+    {
+      "case_id": "g01-document-occurrence-staging/portable-caller-support-flag",
+      "family": "InvalidCanonicalEncoding",
+      "stage": "D0"
+    },
+    {
+      "case_id": "g01-document-occurrence-staging/portable-noncanonical-current-tuple",
+      "family": "InvalidCanonicalEncoding",
+      "stage": "D0"
+    }
+  ],
+  "scope": "NotImplemented",
+  "selected_specifications": [
+    "agentflow.component.contract.semantics@1",
+    "agentflow.component.document-occurrence.semantics@1",
+    "agentflow.component.native-recovery-guard.semantics@1",
+    "agentflow.component.raw-validation.semantics@1",
+    "agentflow.component.relation-catalogs.semantics@1",
+    "agentflow.component.substitution-proof.semantics@1",
+    "agentflow.computation.proof-obligation.semantics@1",
+    "agentflow.computation.proof-obligation.semantics@2",
+    "agentflow.computation.proof-obligation.semantics@3",
+    "agentflow.computation.proof-obligation.semantics@4",
+    "agentflow.computation.proof-obligation.semantics@5",
+    "agentflow.computation.proof-report.model@1",
+    "agentflow.computation.proof-report.model@2",
+    "agentflow.computation.proof-report.model@3",
+    "agentflow.computation.proof-report.model@4",
+    "agentflow.computation.proof-report.model@5",
+    "agentflow.computation.root-export-contract-proof.semantics@1",
+    "agentflow.effect.signature.semantics@1",
+    "agentflow.execution.requirements.semantics@1",
+    "agentflow.failure.row.semantics@1",
+    "agentflow.information.flow.semantics@1",
+    "agentflow.portable.proof.inputs.semantics@1",
+    "agentflow.portable.proof.inputs.semantics@2",
+    "agentflow.portable.proof.inputs.semantics@3",
+    "agentflow.portable.proof.inputs.semantics@4",
+    "agentflow.portable.proof.inputs.semantics@5",
+    "agentflow.portable.proof.inputs.semantics@6",
+    "agentflow.recovery.contract.semantics@1",
+    "agentflow.resource.requirement.semantics@1",
+    "agentflow.semantic.advanced-control-contract-algebra.semantics@1",
+    "agentflow.semantic.control-contract-algebra.semantics@1",
+    "agentflow.semantic.ir.semantics@1",
+    "agentflow.semantic.leaf-contract-resolution.semantics@1",
+    "agentflow.semantic.scope-compensation-contract-algebra.semantics@1",
+    "agentflow.semantic.types@1",
+    "agentflow.usage.signature.semantics@1"
+  ],
+  "shape": "agentflow.g01.report-shape@5",
+  "shape_cases": 170
+}
