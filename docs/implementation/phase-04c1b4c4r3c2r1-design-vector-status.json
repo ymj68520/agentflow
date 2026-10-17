@@ -1,0 +1,345 @@
+{
+  "original_48_vector_file_unchanged": true,
+  "prior_metadata_only_count": 24,
+  "original_statuses": "All remain Not Executed in the frozen C2G1 artifact",
+  "production_conformance_upgraded": 0,
+  "reason": "full Raw independent field conformance INCOMPLETE",
+  "vectors": [
+    {
+      "case_id": "c2g1-design/01",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/02",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/03",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/04",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/05",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/06",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/07",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/08",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/09",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/10",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/11",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/12",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-missing-package"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/13",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-missing-namespace"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/14",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-missing-domain_key"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/15",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-missing-owner_key"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/16",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-missing-revision_key"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/17",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-missing-slot"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/18",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-owner-domain-mismatch"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/19",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-unknown-owner"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/20",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-undeclared-owner"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/21",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-out-of-range"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/22",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-joint-conflict"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/23",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-wrong-content"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/24",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-duplicate-owner"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/25",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/26",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/27",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-native-declaration_bundle"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/28",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-native-supplied"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/29",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-physical-not-supplied"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/30",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-physical-cross-occurrence"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/31",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-physical-bytes-conflict"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/32",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/33",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-context-split"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/34",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-context-digest-is-not-owner"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/35",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/36",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/37",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/38",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/39",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/40",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/41",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-package-output-backedge"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/42",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/43",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/44",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-missing-slot"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/45",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-native-declaration_bundle"
+      ],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/46",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/47",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "full_raw_production_verified": false
+    },
+    {
+      "case_id": "c2g1-design/48",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-random-uuid-only"
+      ],
+      "full_raw_production_verified": false
+    }
+  ]
+}

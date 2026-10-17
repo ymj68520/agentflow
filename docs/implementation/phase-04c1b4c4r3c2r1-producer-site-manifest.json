@@ -1,0 +1,25 @@
+{
+  "predicate": [
+    "raw_contract_validation",
+    "positive_unique_io_ports"
+  ],
+  "source_adapter": {
+    "path": "crates/af-computation/src/raw_capture.rs",
+    "function": "capture_raw_ports",
+    "creates_source_package": false
+  },
+  "admission": {
+    "path": "crates/af-computation/src/occurrence_admission.rs",
+    "function": "admit_document_occurrence_metadata"
+  },
+  "actual_branch": {
+    "path": "crates/af-contract/src/canonical.rs",
+    "function": "canonical_ports",
+    "sort": "stable numeric U32; original ordinal sidecar",
+    "evidence_before_error_string": true,
+    "positive_before_schema_resolve": true
+  },
+  "collector": "RawLocalCollector::insert",
+  "origin_is_not_site_id": true,
+  "complete_formal_seed": false
+}

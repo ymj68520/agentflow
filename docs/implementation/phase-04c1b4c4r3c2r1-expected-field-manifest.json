@@ -1,0 +1,1425 @@
+{
+  "model": "agentflow.computation.proof-report.model@5",
+  "descriptors": {
+    "Fact": {
+      "kind": "record",
+      "fields": [
+        [
+          "key",
+          {
+            "ref": "FactKey"
+          }
+        ],
+        [
+          "role",
+          {
+            "ref": "Role"
+          }
+        ],
+        [
+          "evaluation",
+          {
+            "ref": "Evaluation"
+          }
+        ],
+        [
+          "status",
+          {
+            "ref": "Status"
+          }
+        ],
+        [
+          "prerequisites",
+          {
+            "kind": "set",
+            "item": {
+              "ref": "PrerequisiteKey"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "references",
+          {
+            "kind": "set",
+            "item": {
+              "ref": "EvidenceRef"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "primary",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "EvidenceRef"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "contradiction",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "TypedContradiction"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "cause_fact_keys",
+          {
+            "kind": "set",
+            "item": {
+              "ref": "FactKey"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "companion_evidence_status",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "ProofVerdict"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "observations",
+          {
+            "kind": "set",
+            "item": {
+              "ref": "ObservationSite"
+            },
+            "minimum": 1
+          }
+        ],
+        [
+          "substitution_basis",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "SubstitutionBasis"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "native_guard_basis",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "NativeGuardBasis"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "raw_validation_basis",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "RawPortCheckBasis"
+            },
+            "minimum": 0
+          }
+        ]
+      ]
+    },
+    "FactKey": {
+      "kind": "record",
+      "fields": [
+        [
+          "stage",
+          {
+            "ref": "Stage"
+          }
+        ],
+        [
+          "assertion_path",
+          {
+            "ref": "AssertionPath"
+          }
+        ],
+        [
+          "kind",
+          {
+            "ref": "Kind"
+          }
+        ],
+        [
+          "dimension",
+          {
+            "ref": "Dimension"
+          }
+        ],
+        [
+          "source",
+          {
+            "ref": "Source"
+          }
+        ],
+        [
+          "target",
+          {
+            "ref": "Target"
+          }
+        ],
+        [
+          "coordinate",
+          {
+            "ref": "Coordinate"
+          }
+        ],
+        [
+          "rule",
+          {
+            "ref": "RuleRef"
+          }
+        ],
+        [
+          "requirement",
+          {
+            "ref": "Requirement"
+          }
+        ],
+        [
+          "origin",
+          {
+            "ref": "Origin"
+          }
+        ]
+      ]
+    },
+    "Origin": {
+      "kind": "record",
+      "fields": [
+        [
+          "predicate",
+          {
+            "ref": "PredicateId"
+          }
+        ],
+        [
+          "declared_path",
+          {
+            "kind": "sequence",
+            "item": {
+              "ref": "DeclaredStep"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "source_ordinal",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "$Ordinal64"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "mapping_ordinal",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "$Ordinal64"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "raw_validation_origin",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "RawValidationOrigin"
+            },
+            "minimum": 0
+          }
+        ]
+      ]
+    },
+    "RawValidationSubject": {
+      "kind": "record",
+      "fields": [
+        [
+          "owner_compiler",
+          {
+            "ref": "CompleteCompiler"
+          }
+        ],
+        [
+          "input",
+          {
+            "ref": "RawParsedInput"
+          }
+        ],
+        [
+          "context",
+          {
+            "ref": "RawContextBinding"
+          }
+        ]
+      ]
+    },
+    "RawParsedInput": {
+      "kind": "record",
+      "fields": [
+        [
+          "candidate",
+          {
+            "ref": "RawCandidateContract"
+          }
+        ],
+        [
+          "origin",
+          {
+            "ref": "RawInputOrigin"
+          }
+        ],
+        [
+          "physical",
+          {
+            "ref": "RawPhysicalAssociation"
+          }
+        ]
+      ]
+    },
+    "RawInputOrigin": {
+      "kind": "record",
+      "fields": [
+        [
+          "document_binding",
+          {
+            "kind": "dag_ref",
+            "target": {
+              "ref": "DocumentOccurrenceBinding"
+            }
+          }
+        ],
+        [
+          "path",
+          {
+            "kind": "sequence",
+            "item": {
+              "ref": "RawDocumentMember"
+            },
+            "minimum": 0
+          }
+        ]
+      ]
+    },
+    "DocumentOccurrenceBinding": {
+      "kind": "record",
+      "fields": [
+        [
+          "source_package",
+          {
+            "kind": "dag_ref",
+            "target": {
+              "ref": "SourcePackage"
+            }
+          }
+        ],
+        [
+          "source_owner",
+          {
+            "ref": "DocumentOwnerAnchor"
+          }
+        ],
+        [
+          "occurrence_key",
+          {
+            "ref": "DocumentOccurrenceKey"
+          }
+        ],
+        [
+          "actual_document",
+          {
+            "kind": "dag_ref",
+            "target": {
+              "ref": "RawDocument"
+            }
+          }
+        ]
+      ]
+    },
+    "RawContextBinding": {
+      "kind": "record",
+      "fields": [
+        [
+          "contents",
+          {
+            "ref": "ContractProofContextContents"
+          }
+        ],
+        [
+          "roles",
+          {
+            "ref": "RawContextPartition"
+          }
+        ]
+      ]
+    },
+    "ContractProofContextContents": {
+      "kind": "record",
+      "fields": [
+        [
+          "compiled_modules",
+          {
+            "kind": "map",
+            "key": {
+              "ref": "SpecificationId"
+            },
+            "value": {
+              "ref": "CompiledModuleContents"
+            }
+          }
+        ],
+        [
+          "type_schemas",
+          {
+            "kind": "map",
+            "key": {
+              "ref": "LogicalTypeIdentity"
+            },
+            "value": {
+              "ref": "af-idl::CanonicalTypeSchema"
+            }
+          }
+        ],
+        [
+          "effect_catalogs",
+          {
+            "kind": "map",
+            "key": {
+              "ref": "SpecificationId"
+            },
+            "value": {
+              "kind": "set",
+              "item": {
+                "ref": "$Text"
+              },
+              "minimum": 0
+            }
+          }
+        ],
+        [
+          "resource_types",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "schemas",
+                {
+                  "kind": "map",
+                  "key": {
+                    "ref": "LogicalTypeIdentity"
+                  },
+                  "value": {
+                    "ref": "af-idl::CanonicalTypeSchema"
+                  }
+                }
+              ],
+              [
+                "descriptors",
+                {
+                  "kind": "map",
+                  "key": {
+                    "ref": "LogicalTypeIdentity"
+                  },
+                  "value": {
+                    "ref": "ResourceTypeDescriptor"
+                  }
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "flow_catalogs",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "confidentiality",
+                {
+                  "kind": "set",
+                  "item": {
+                    "ref": "af-flow::ConfidentialityLabelRef"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "taints",
+                {
+                  "kind": "set",
+                  "item": {
+                    "ref": "af-flow::TaintRef"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "sinks",
+                {
+                  "kind": "map",
+                  "key": {
+                    "ref": "af-effect::EffectOperationRef"
+                  },
+                  "value": {
+                    "ref": "$Bool"
+                  }
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "usage_meters",
+          {
+            "kind": "map",
+            "key": {
+              "ref": "af-usage::UsageMeterRef"
+            },
+            "value": {
+              "kind": "record",
+              "fields": [
+                [
+                  "meter",
+                  {
+                    "ref": "af-usage::UsageMeterRef"
+                  }
+                ],
+                [
+                  "unit",
+                  {
+                    "ref": "af-usage::UsageUnitRef"
+                  }
+                ],
+                [
+                  "aggregation",
+                  {
+                    "ref": "af-usage::UsageAggregation"
+                  }
+                ]
+              ]
+            }
+          }
+        ],
+        [
+          "recovery_operations",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "effects",
+                {
+                  "kind": "map",
+                  "key": {
+                    "ref": "SpecificationId"
+                  },
+                  "value": {
+                    "kind": "set",
+                    "item": {
+                      "ref": "$Text"
+                    },
+                    "minimum": 0
+                  }
+                }
+              ],
+              [
+                "reconciliation_operations",
+                {
+                  "kind": "set",
+                  "item": {
+                    "kind": "record",
+                    "fields": [
+                      [
+                        "catalog",
+                        {
+                          "ref": "$Text"
+                        }
+                      ],
+                      [
+                        "name",
+                        {
+                          "ref": "$Text"
+                        }
+                      ]
+                    ]
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "execution_universes",
+          {
+            "ref": "ExecutionUniverseContents"
+          }
+        ],
+        [
+          "relation_snapshots",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "effect_resource",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "RelationSnapshotContent"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "recovery_usage",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "RelationSnapshotContent"
+                  },
+                  "minimum": 0
+                }
+              ],
+              [
+                "flow_execution",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "RelationSnapshotContent"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    "CompleteCompiler": {
+      "ref": "Compiler"
+    },
+    "Compiler": {
+      "kind": "record",
+      "fields": [
+        [
+          "analysis_semantics_version",
+          {
+            "ref": "OwnerVersion"
+          }
+        ],
+        [
+          "registry_content",
+          {
+            "ref": "$Bytes"
+          }
+        ],
+        [
+          "rule_registry_content",
+          {
+            "ref": "$Bytes"
+          }
+        ],
+        [
+          "specifications",
+          {
+            "kind": "sequence",
+            "item": {
+              "ref": "af-computation::SpecificationContentIdentity"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "rules",
+          {
+            "kind": "sequence",
+            "item": {
+              "ref": "af-computation::RuleContentIdentity"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "support_manifest",
+          {
+            "ref": "FullSupportManifest"
+          }
+        ]
+      ]
+    },
+    "RawPortOccurrence": {
+      "kind": "record",
+      "fields": [
+        [
+          "direction",
+          {
+            "ref": "RawPortDirection"
+          }
+        ],
+        [
+          "original_ordinal",
+          {
+            "ref": "$U64"
+          }
+        ],
+        [
+          "sorted_ordinal",
+          {
+            "ref": "$U64"
+          }
+        ],
+        [
+          "port_no",
+          {
+            "ref": "$U32"
+          }
+        ]
+      ]
+    },
+    "RawPortCheckBasis": {
+      "kind": "record",
+      "fields": [
+        [
+          "subject",
+          {
+            "kind": "dag_ref",
+            "target": {
+              "ref": "RawValidationSubject"
+            }
+          }
+        ],
+        [
+          "occurrence",
+          {
+            "ref": "RawPortOccurrence"
+          }
+        ],
+        [
+          "predecessor",
+          {
+            "ref": "RawPortPredecessor"
+          }
+        ],
+        [
+          "condition",
+          {
+            "ref": "RawPortCondition"
+          }
+        ],
+        [
+          "selected_error",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "RawPortSelectedError"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "rule",
+          {
+            "ref": "ExactRuleContentReference"
+          }
+        ]
+      ]
+    },
+    "RawPortRejectionWitness": {
+      "kind": "enum",
+      "variants": [
+        [
+          "zero",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "subject",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "RawValidationSubject"
+                  }
+                }
+              ],
+              [
+                "occurrence",
+                {
+                  "ref": "RawPortOccurrence"
+                }
+              ],
+              [
+                "raw_member_value",
+                {
+                  "ref": "$U32"
+                }
+              ],
+              [
+                "minimum",
+                {
+                  "ref": "$U32"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "duplicate",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "subject",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "RawValidationSubject"
+                  }
+                }
+              ],
+              [
+                "occurrence",
+                {
+                  "ref": "RawPortOccurrence"
+                }
+              ],
+              [
+                "previous_original_ordinal",
+                {
+                  "ref": "$U64"
+                }
+              ],
+              [
+                "previous_port_no",
+                {
+                  "ref": "$U32"
+                }
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    "EvidenceRef": {
+      "kind": "enum",
+      "variants": [
+        [
+          "computation",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "caller_ir",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "node",
+                {
+                  "ref": "ComputationId"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "digest",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "role",
+                {
+                  "ref": "DigestRole"
+                }
+              ],
+              [
+                "pin",
+                {
+                  "ref": "DigestRef"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "schema",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "pin",
+                {
+                  "ref": "af-semantic::TypeSchemaRef"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "port",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "owner",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "direction",
+                {
+                  "ref": "PortDirection"
+                }
+              ],
+              [
+                "number",
+                {
+                  "ref": "PortNo"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "operation",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "operation",
+                {
+                  "ref": "af-effect::EffectOperationRef"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "effect_atom",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "source",
+                {
+                  "ref": "af-computation::RootEffectOccurrenceIdentity"
+                }
+              ],
+              [
+                "atom",
+                {
+                  "ref": "af-effect::EffectAtom"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "contract_ref",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "caller_ir",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "id",
+                {
+                  "ref": "ContractRefId"
+                }
+              ],
+              [
+                "resolved",
+                {
+                  "ref": "ExportState"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "control_edge",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "caller_ir",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "owner",
+                {
+                  "ref": "ComputationId"
+                }
+              ],
+              [
+                "child",
+                {
+                  "ref": "ComputationId"
+                }
+              ],
+              [
+                "path",
+                {
+                  "kind": "sequence",
+                  "item": {
+                    "ref": "DeclaredStep"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "opcode",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "caller_ir",
+                {
+                  "ref": "DigestRef"
+                }
+              ],
+              [
+                "node",
+                {
+                  "ref": "ComputationId"
+                }
+              ],
+              [
+                "operator",
+                {
+                  "ref": "af-computation::ControlOperator"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "resolver_difference",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "case",
+                {
+                  "ref": "ResolverDifference"
+                }
+              ],
+              [
+                "expected",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "ResolverAssociations"
+                  }
+                }
+              ],
+              [
+                "observed",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "ResolverAssociations"
+                  }
+                }
+              ],
+              [
+                "target",
+                {
+                  "kind": "option",
+                  "item": {
+                    "ref": "DigestRef"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "fact",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "key",
+                {
+                  "ref": "FactKey"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "scope_member",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "path",
+                {
+                  "kind": "sequence",
+                  "item": {
+                    "ref": "MemberStep"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "unresolved_request",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "request",
+                {
+                  "ref": "Request"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "contract_operand",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "role",
+                {
+                  "ref": "OperandRole"
+                }
+              ],
+              [
+                "subject",
+                {
+                  "ref": "OperandSubject"
+                }
+              ],
+              [
+                "member_path",
+                {
+                  "kind": "sequence",
+                  "item": {
+                    "ref": "MemberStep"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "application_declaration",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "application",
+                {
+                  "ref": "ApplicationOrigin"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "native_guard_member",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "subject",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "NativeRecoveryGuardSubject"
+                  }
+                }
+              ],
+              [
+                "member",
+                {
+                  "ref": "NativeGuardMemberPath"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "raw_validation_member",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "subject",
+                {
+                  "kind": "dag_ref",
+                  "target": {
+                    "ref": "RawValidationSubject"
+                  }
+                }
+              ],
+              [
+                "source_member_path",
+                {
+                  "kind": "sequence",
+                  "item": {
+                    "ref": "DeclaredStep"
+                  },
+                  "minimum": 0
+                }
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    "ObservationSite": {
+      "kind": "record",
+      "fields": [
+        [
+          "report_owner",
+          {
+            "ref": "ObservationOwner"
+          }
+        ],
+        [
+          "field_path",
+          {
+            "kind": "sequence",
+            "item": {
+              "ref": "MemberStep"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "exposing_path",
+          {
+            "ref": "AssertionPath"
+          }
+        ],
+        [
+          "exposing_node",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "ComputationId"
+            },
+            "minimum": 0
+          }
+        ]
+      ]
+    },
+    "Prerequisite": {
+      "kind": "record",
+      "fields": [
+        [
+          "key",
+          {
+            "ref": "PrerequisiteKey"
+          }
+        ],
+        [
+          "applicability",
+          {
+            "ref": "Applicability"
+          }
+        ],
+        [
+          "status",
+          {
+            "ref": "PrerequisiteStatus"
+          }
+        ],
+        [
+          "supporting_fact",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "FactKey"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "contradiction",
+          {
+            "kind": "option",
+            "item": {
+              "ref": "TypedContradiction"
+            },
+            "minimum": 0
+          }
+        ],
+        [
+          "consumers",
+          {
+            "kind": "set",
+            "item": {
+              "ref": "ConsumerEdge"
+            },
+            "minimum": 1
+          }
+        ]
+      ]
+    },
+    "DeclaredStep": {
+      "kind": "enum",
+      "variants": [
+        [
+          "field",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "owner",
+                {
+                  "ref": "ModelType"
+                }
+              ],
+              [
+                "field",
+                {
+                  "ref": "ClosedField"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "entry",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "index",
+                {
+                  "ref": "$Ordinal64"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "member",
+          {
+            "kind": "record",
+            "fields": [
+              [
+                "key",
+                {
+                  "ref": "TypedValue"
+                }
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    "ModelType": {
+      "kind": "record",
+      "fields": [
+        [
+          "owner",
+          {
+            "ref": "SpecificationId"
+          }
+        ],
+        [
+          "name",
+          {
+            "ref": "$Text"
+          }
+        ]
+      ]
+    }
+  },
+  "contract": {
+    "model": "agentflow.computation.proof-report.model@5",
+    "required_fields": [
+      "key",
+      "role",
+      "evaluation",
+      "status",
+      "prerequisites",
+      "references",
+      "primary",
+      "contradiction",
+      "cause_fact_keys",
+      "companion_evidence_status",
+      "observations",
+      "substitution_basis",
+      "native_guard_basis",
+      "raw_validation_basis"
+    ],
+    "locally_mapped_fields": [
+      "evaluation",
+      "raw_validation_basis",
+      "role",
+      "status"
+    ],
+    "missing_formal_fields": [
+      "key",
+      "prerequisites",
+      "references",
+      "primary",
+      "contradiction",
+      "cause_fact_keys",
+      "companion_evidence_status",
+      "observations",
+      "substitution_basis",
+      "native_guard_basis"
+    ],
+    "required_instances": 1750,
+    "unmaterialized_instances": 1250,
+    "complete": false
+  },
+  "additional_required_field_gaps": [
+    "CompleteCompiler full-field independent projection",
+    "ContractProofContextContents nine complete member values independent projection",
+    "Raw witness subject/full TypedContradiction materialization",
+    "Exact typed evidence set and primary minimum",
+    "Formal ObservationSite paths and consumer/prerequisite references",
+    "DeclaredStep full ModelType owner/name projection"
+  ],
+  "local_projection_fields_are_not_formal_coverage": {
+    "required_instances": 26167,
+    "expected": 26167,
+    "actual": 26167,
+    "compared": 26167,
+    "missing_expected": 0,
+    "missing_actual": 0,
+    "unexpected_extra": 0,
+    "mismatch": 0
+  },
+  "complete": false
+}

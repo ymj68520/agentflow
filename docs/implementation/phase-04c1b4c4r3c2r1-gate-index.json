@@ -1,0 +1,26 @@
+{
+  "code_head": "dbdbba88e22e064b50e63c6b168b248d84ab3e9b",
+  "outcome": "D \u2014 CONFORMANCE INCOMPLETE",
+  "quality_logs": [
+    "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r1-final-fmt.log",
+    "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r1-final-clippy.log",
+    "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r1-final-tests.log",
+    "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r1-final-spec.log"
+  ],
+  "raw_strict_oracle_exit_required": 2,
+  "raw_full_field_complete": false,
+  "runtime_ledger": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r1-final-runtime-results.json",
+  "generator_raw_byte_maps": [
+    "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r1-generators-baseline.json",
+    "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r1-generators-round1.json",
+    "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r1-generators-round2.json"
+  ],
+  "history_exact_heads": [
+    "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+    "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+    "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+    "875e6e41f16845c78d4f6d31573826c547d48c07",
+    "e623aab705c5f8269807201e112a32e67e6869bf"
+  ],
+  "positive_root_export": "NotAuthorized"
+}

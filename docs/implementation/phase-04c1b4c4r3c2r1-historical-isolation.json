@@ -1,0 +1,122 @@
+{
+  "kind": "Five exact independent historical source/build regressions",
+  "git_blobs": 9542,
+  "all_sources_exact_before_after": true,
+  "versions": [
+    {
+      "edition": 1,
+      "head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+      "source": "target/phase-04c1b4c4r3g2-edition1/source",
+      "build": "target/phase-04c1b4c3-legacy-abc91d5/build",
+      "frozen_case_ids": 512,
+      "cargo_pass_records": 382,
+      "groups": 87,
+      "failed": 0,
+      "ignored": 0,
+      "log": {
+        "path": "target/phase-04c1b4c4r3c2r1-edition1-tests.log",
+        "bytes": 46254,
+        "sha256": "c60d54cec382167a57b1397176685892853dfc79ec8cdfdea9cee7ceef48fead"
+      },
+      "source_receipt": {
+        "edition": 1,
+        "head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+        "git_blobs": 1732,
+        "raw_sha256": "df794dc65120ac91ba5d6121bb9bdd1b3b0869c98b8e1b06629a0924450e9d80",
+        "all_exact": true
+      }
+    },
+    {
+      "edition": 2,
+      "head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+      "source": "target/phase-04c1b4c4r3g2-edition2/source",
+      "build": "target/phase-04c1b4c4r2-edition2/build",
+      "frozen_case_ids": 51,
+      "cargo_pass_records": 335,
+      "groups": 71,
+      "failed": 0,
+      "ignored": 0,
+      "log": {
+        "path": "target/phase-04c1b4c4r3c2r1-edition2-tests.log",
+        "bytes": 37887,
+        "sha256": "364aabf6f573a94759751bc0a859e5cf042701dcc069edccf67e11c9044992f9"
+      },
+      "source_receipt": {
+        "edition": 2,
+        "head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+        "git_blobs": 1811,
+        "raw_sha256": "66faa1fdbce2b52e3a0549f43d7b9d897f41bfd0d696445a5cde3f02622b3c26",
+        "all_exact": true
+      }
+    },
+    {
+      "edition": 3,
+      "head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+      "source": "target/phase-04c1b4c4r3g2-edition3/source",
+      "build": "target/phase-04c1b4c4r3g2-edition3/build",
+      "frozen_case_ids": 173,
+      "cargo_pass_records": 336,
+      "groups": 71,
+      "failed": 0,
+      "ignored": 0,
+      "log": {
+        "path": "target/phase-04c1b4c4r3c2r1-edition3-tests.log",
+        "bytes": 38019,
+        "sha256": "35c454e1e6610ac31eb4641101e84b4f1514410b3fb9331027a0ed03e8d77913"
+      },
+      "source_receipt": {
+        "edition": 3,
+        "head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+        "git_blobs": 1902,
+        "raw_sha256": "7247bdf09f4e27dac020ff201146c7e2e0599f1cfb30f9b3f9abe91222ca078c",
+        "all_exact": true
+      }
+    },
+    {
+      "edition": 4,
+      "head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+      "source": "target/phase-04c1b4c4r3c1g2-edition4/source",
+      "build": "target/phase-04c1b4c4r3c1g2-edition4/build",
+      "frozen_case_ids": 889,
+      "cargo_pass_records": 390,
+      "groups": 74,
+      "failed": 0,
+      "ignored": 0,
+      "log": {
+        "path": "target/phase-04c1b4c4r3c2r1-edition4-tests.log",
+        "bytes": 47201,
+        "sha256": "9c2345321ec36f448905dbcfb19c704a92bf2aff679077f72e0ceb8d08721f37"
+      },
+      "source_receipt": {
+        "edition": 4,
+        "head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+        "git_blobs": 2021,
+        "raw_sha256": "f5806b6052f8ee20be2fc282b9ff16ed6e0cfe4bd382ac490e9e1ea11aceb0b2",
+        "all_exact": true
+      }
+    },
+    {
+      "edition": 5,
+      "head": "e623aab705c5f8269807201e112a32e67e6869bf",
+      "source": "target/phase-04c1b4c4r3c2g2-analysis5/source",
+      "build": "target/phase-04c1b4c4r3c2g2-analysis5/build",
+      "frozen_case_ids": 262,
+      "cargo_pass_records": 434,
+      "groups": 75,
+      "failed": 0,
+      "ignored": 0,
+      "log": {
+        "path": "target/phase-04c1b4c4r3c2r1-edition5-tests.log",
+        "bytes": 47953,
+        "sha256": "cbc39b877e8136b3f8c442ea2f7f4e45dae34e16e26c00e9c6329822177f94e8"
+      },
+      "source_receipt": {
+        "edition": 5,
+        "head": "e623aab705c5f8269807201e112a32e67e6869bf",
+        "git_blobs": 2076,
+        "raw_sha256": "5ee34b013c2e742ac9bfbf04e64cf428641342699183c4ffad3169a093819284",
+        "all_exact": true
+      }
+    }
+  ]
+}

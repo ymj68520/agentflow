@@ -1,0 +1,183 @@
+{
+  "mutations": [
+    {
+      "mutation_id": "c2r1-mutation/direction",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/original",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/sorted",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/number",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/sentinel",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/condition",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/false-proven",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/missing-witness",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/zero-minimum",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/stage",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/role",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/rule-content",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/selected-error",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/declared-path",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/source-ordinal",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/target-schema",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/target-direction",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/owner-revision",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/owner-slot",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/full-document",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/candidate-body",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/package-domain",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/context-role",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/scope-capability",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/root-capability",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/checked-stage",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/duplicate-observation",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/extra-event",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/missing-event",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/both-missing-event",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "mutation_id": "c2r1-mutation/missing-field",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/both-missing-field",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "mutation_id": "c2r1-mutation/extra-field",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/duplicate-previous-original",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "mutation_id": "c2r1-mutation/duplicate-previous-number",
+      "rejected": true,
+      "both_sides": false
+    }
+  ],
+  "comparator_rejections": 35,
+  "real_source_input_negatives": 24,
+  "rust_private_collector_payload_mutations": 8,
+  "does_not_close_full_field_gaps": true
+}

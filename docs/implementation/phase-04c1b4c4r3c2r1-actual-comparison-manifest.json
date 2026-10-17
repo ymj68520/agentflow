@@ -1,0 +1,533 @@
+{
+  "code_head": "dbdbba88e22e064b50e63c6b168b248d84ab3e9b",
+  "actual_path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r1-raw-actual.json",
+  "actual_sha256": "bedb29d6b9c70dd6ee98a8bbf0b82a5c887cb166f54795c4f946008442481fc2",
+  "outcome": "D \u2014 CONFORMANCE INCOMPLETE",
+  "local_projection_conformance": "PASS",
+  "full_raw_seed_conformance": "INCOMPLETE",
+  "required_event_coverage_scope": "primary capture records only; no complete-coverage claim for the remaining Raw pipeline",
+  "cases": [
+    {
+      "case_id": "c2r1/declaration_bundle/empty",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/input-zero",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/output-zero",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/input-duplicate",
+      "local_projection_matched": true,
+      "primary_port_events": 3,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/output-duplicate",
+      "local_projection_matched": true,
+      "primary_port_events": 3,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/namespaces",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/numeric",
+      "local_projection_matched": true,
+      "primary_port_events": 6,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/stable",
+      "local_projection_matched": true,
+      "primary_port_events": 3,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/sentinel",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/output-only",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/input-only",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/zero-duplicate",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/reversed-duplicate",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/max",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/all-positive",
+      "local_projection_matched": true,
+      "primary_port_events": 5,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/output-sentinel",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/empty",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/input-zero",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/output-zero",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/input-duplicate",
+      "local_projection_matched": true,
+      "primary_port_events": 3,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/output-duplicate",
+      "local_projection_matched": true,
+      "primary_port_events": 3,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/namespaces",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/numeric",
+      "local_projection_matched": true,
+      "primary_port_events": 6,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/stable",
+      "local_projection_matched": true,
+      "primary_port_events": 3,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/sentinel",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/output-only",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/input-only",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/zero-duplicate",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/reversed-duplicate",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/max",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/all-positive",
+      "local_projection_matched": true,
+      "primary_port_events": 5,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/output-sentinel",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/empty",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/input-zero",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/output-zero",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/input-duplicate",
+      "local_projection_matched": true,
+      "primary_port_events": 3,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/output-duplicate",
+      "local_projection_matched": true,
+      "primary_port_events": 3,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/namespaces",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/numeric",
+      "local_projection_matched": true,
+      "primary_port_events": 6,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/stable",
+      "local_projection_matched": true,
+      "primary_port_events": 3,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/sentinel",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/output-only",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/input-only",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/zero-duplicate",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/reversed-duplicate",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/max",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/all-positive",
+      "local_projection_matched": true,
+      "primary_port_events": 5,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/output-sentinel",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/bad-identity",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/schema-stop",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/source/missing-package",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "MissingDocumentOccurrenceBinding"
+    },
+    {
+      "case_id": "c2r1/source/missing-owner",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "MissingDocumentOccurrenceBinding"
+    },
+    {
+      "case_id": "c2r1/source/missing-slot",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "MissingDocumentOccurrenceBinding"
+    },
+    {
+      "case_id": "c2r1/source/wrong-slot",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "InvalidOccurrenceAssociation"
+    },
+    {
+      "case_id": "c2r1/source/wrong-owner",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "InvalidOccurrenceAssociation"
+    },
+    {
+      "case_id": "c2r1/source/wrong-revision",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "InvalidOccurrenceAssociation"
+    },
+    {
+      "case_id": "c2r1/source/clone-document",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "InvalidOccurrenceAssociation"
+    },
+    {
+      "case_id": "c2r1/source/wrong-candidate",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "InvalidOccurrenceAssociation"
+    },
+    {
+      "case_id": "c2r1/source/wrong-entry",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "InvalidOccurrenceAssociation"
+    },
+    {
+      "case_id": "c2r1/source/different-context-object",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "InvalidContextBinding"
+    },
+    {
+      "case_id": "c2r1/source/native-supplied",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "UnsupportedPhysicalAssociation"
+    },
+    {
+      "case_id": "c2r1/source/physical-not-supplied",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "UnsupportedPhysicalAssociation"
+    },
+    {
+      "case_id": "c2r1/source/malformed-key",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "MissingDocumentOccurrenceBinding"
+    },
+    {
+      "case_id": "c2r1/source/duplicate-owner",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "MalformedSourcePackage"
+    },
+    {
+      "case_id": "c2r1/source/joint-conflict",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "OwnerBindingConflict"
+    },
+    {
+      "case_id": "c2r1/source/binding-conflict",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "BindingConflict"
+    },
+    {
+      "case_id": "c2r1/reuse/distinct-owner",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/reuse/distinct-slot",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/reuse/same-occurrence",
+      "local_projection_matched": true,
+      "primary_port_events": 2,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/complete-thirteen-fields/unit",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/complete-thirteen-fields/null",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/complete-thirteen-fields/bool",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/complete-thirteen-fields/int64",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/complete-thirteen-fields/decimal",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/complete-thirteen-fields/string",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/complete-thirteen-fields/bytes",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/complete-thirteen-fields/timestamp",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/complete-thirteen-fields/duration",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    },
+    {
+      "case_id": "c2r1/source/duplicate-json-key",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "InvalidPhysicalInput"
+    },
+    {
+      "case_id": "c2r1/source/invalid-utf8",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "InvalidPhysicalInput"
+    },
+    {
+      "case_id": "c2r1/source/unknown-selected-field",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "InvalidOccurrenceAssociation"
+    },
+    {
+      "case_id": "c2r1/source/wrong-u32-width",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "InvalidOccurrenceAssociation"
+    },
+    {
+      "case_id": "c2r1/source/physical-path-mismatch",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "InvalidOccurrenceAssociation"
+    },
+    {
+      "case_id": "c2r1/source/unknown-package-field",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "UnsupportedModel"
+    },
+    {
+      "case_id": "c2r1/source/foreign-domain",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "InvalidOccurrenceAssociation"
+    },
+    {
+      "case_id": "c2r1/source/unsupported-container",
+      "local_projection_matched": true,
+      "primary_port_events": 0,
+      "source_failure": "UnsupportedOwnerVariant"
+    },
+    {
+      "case_id": "c2r1/declared-namespace-is-not-an-authentication-whitelist",
+      "local_projection_matched": true,
+      "primary_port_events": 1,
+      "source_failure": null
+    }
+  ]
+}
