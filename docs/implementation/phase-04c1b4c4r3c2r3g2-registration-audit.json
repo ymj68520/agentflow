@@ -1,0 +1,97 @@
+{
+  "registration": {
+    "tuple": {
+      "analysis": "agentflow.root-export-checker@7",
+      "model": "agentflow.computation.proof-report.model@6",
+      "report": "agentflow.g01.report-shape@6",
+      "obligation": "agentflow.g01.obligation@6"
+    },
+    "specifications": 66,
+    "new_specifications": 4,
+    "rules": 509,
+    "new_rules": 16,
+    "reference_covered": 508,
+    "intentional_exception": 1,
+    "missing": 0,
+    "old_spec_records_equal": 62,
+    "old_rule_records_equal": 493,
+    "old_descriptor_identities": 704,
+    "old_references": 2064,
+    "old_ranks_preserved": true,
+    "historical_imports": 97,
+    "descriptors": 774,
+    "references": 2204,
+    "added_descriptors": 70,
+    "successor_reference_delta": 140,
+    "input_closure_types": 81,
+    "input_output_separation": true,
+    "abi": 775,
+    "afidl": 17,
+    "hash_domains": 14
+  },
+  "field_coverage": {
+    "stable_case_ids": 534,
+    "shape_cases": 389,
+    "field_variant_sites": 226,
+    "required_sites": 226,
+    "missing_sites": [],
+    "real_slot_admission_cases": 96,
+    "aggregate_context_cases": 8,
+    "dag_cases": 10,
+    "rule_cases": 16,
+    "portable_cases": 10,
+    "native_equality_cases": 3,
+    "portable_runtime_cases": 2,
+    "actual_raw_producer_capture_cases": 0
+  },
+  "freeze": {
+    "original_paths": 2170,
+    "allowed_existing": [
+      "crates/af-computation/Cargo.toml",
+      "crates/af-computation/src/lib.rs",
+      "crates/af-computation/src/registered_model.rs",
+      "crates/af-computation/src/root_export.rs",
+      "crates/af-portable/Cargo.toml",
+      "crates/af-portable/src/support.rs",
+      "spec/registry/rules.json",
+      "spec/registry/specifications.json",
+      "tools/gen-document-occurrence-staging.py",
+      "tools/gen-registry-instances.py"
+    ],
+    "unauthorized_changes": [],
+    "all_other_original_raw_bytes_equal": true
+  },
+  "fresh_execution_receipts": {
+    "independent": {
+      "scope": "Registration/Metadata Admission ONLY",
+      "matched": 96,
+      "slots": [
+        "effect_resource",
+        "recovery_usage",
+        "flow_execution"
+      ],
+      "omission_mutations_rejected": [
+        "source",
+        "lookup",
+        "validation",
+        "current_modules",
+        "algorithm",
+        "target"
+      ],
+      "raw_full_field_oracle": false,
+      "raw_capture_conformance_cases": 0,
+      "positive_root_export": false
+    },
+    "executed_case_ids": 534,
+    "actual_shape": 389,
+    "actual_admission": 96,
+    "actual_context": 8,
+    "actual_dag": 10,
+    "actual_equality": 3,
+    "actual_rules": 16,
+    "actual_portable": 12,
+    "raw_full_field_oracle": false,
+    "raw_producer_complete": false,
+    "positive_root_export": false
+  }
+}

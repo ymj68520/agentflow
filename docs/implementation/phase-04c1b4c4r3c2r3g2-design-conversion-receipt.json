@@ -1,0 +1,1389 @@
+{
+  "original_file_frozen": true,
+  "original_vectors": 48,
+  "exact_metadata_vectors_executed": 13,
+  "vectors": [
+    {
+      "design_vector": "G1-D01",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/native-equality-effect_resource"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D02",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/native-equality-effect_resource"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D03",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/native-equality-effect_resource"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D04",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-fabricated-history"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D05",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — out of current implementation scope",
+      "subset_executed": false,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D06",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-fabricated-history"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D07",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-schema-name"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D08",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-malformed-family"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D09",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — out of current implementation scope",
+      "subset_executed": false,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D10",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-source-checksum"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D11",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — out of current implementation scope",
+      "subset_executed": false,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D12",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/native-equality-effect_resource"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D13",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-valid"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Executed — exact metadata conditions",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D14",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-missing-module"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D15",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-ambiguous-boundary"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D16",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-wrong-expected-family"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D17",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-revision-mismatch"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D18",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-nonempty-under-B"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Executed — exact metadata conditions",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D19",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-current-B"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Executed — exact metadata conditions",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D20",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-valid",
+        "g01-relation-schema-staging/admission-effect_resource-current-B"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D21",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — out of current implementation scope",
+      "subset_executed": false,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D22",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-split-context"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Executed — exact metadata conditions",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D23",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — out of current implementation scope",
+      "subset_executed": false,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D24",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-invalid-current"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D25",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-valid"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Executed — exact metadata conditions",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D26",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-recovery_usage-valid"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Executed — exact metadata conditions",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D27",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-flow_execution-valid"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Executed — exact metadata conditions",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D28",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/context-all-none"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Executed — exact metadata conditions",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D29",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-schema-nominal-owner"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D30",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-schema-name"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Executed — exact metadata conditions",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D31",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-schema-digest"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Executed — exact metadata conditions",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D32",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-catalog-checksum-as-schema"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Executed — exact metadata conditions",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D33",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-split-context",
+        "g01-relation-schema-staging/admission-effect_resource-false-alias-claim"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Executed — exact metadata conditions",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D34",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-slot-swap"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D35",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/context-recovery-missing"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Executed — exact metadata conditions",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D36",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/context-all-valid"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D37",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — out of current implementation scope",
+      "subset_executed": false,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D38",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/portable-new-label-old-content"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D39",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-unknown-validation"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D40",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/dag-output-backedge"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D41",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/dag-output-as-input"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D42",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-missing-module"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D43",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-invalid-current"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D44",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/admission-effect_resource-nonempty"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D45",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/portable-current-denied"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D46",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/portable-old-label-new-content-6"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D47",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/portable-current-denied"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    },
+    {
+      "design_vector": "G1-D48",
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-relation-schema-staging/portable-current-denied"
+      ],
+      "rules": [
+        "AF-SEMANTIC-0286",
+        "AF-SEMANTIC-0287",
+        "AF-SEMANTIC-0288",
+        "AF-SEMANTIC-0289",
+        "AF-SEMANTIC-0290",
+        "AF-SEMANTIC-0291",
+        "AF-SEMANTIC-0292",
+        "AF-SEMANTIC-0293",
+        "AF-SEMANTIC-0294",
+        "AF-SEMANTIC-0295",
+        "AF-SEMANTIC-0296",
+        "AF-SEMANTIC-0297",
+        "AF-SEMANTIC-0298",
+        "AF-SEMANTIC-0299",
+        "AF-SEMANTIC-0300",
+        "AF-SEMANTIC-0301"
+      ],
+      "expected_source": "independent frozen AFIDL/native inputs; never Rust Actual",
+      "new_status": "Not Executed — full design condition; registered subset only",
+      "subset_executed": true,
+      "full_raw_capture_credit": 0
+    }
+  ]
+}
