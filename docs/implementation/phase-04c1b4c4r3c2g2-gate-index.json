@@ -1,0 +1,71 @@
+{
+  "kind": "Registered staging engineering gate contract; no Producer acceptance",
+  "start_head": "e623aab705c5f8269807201e112a32e67e6869bf",
+  "complete_code_gate_head": "4ce26eb5ce32d291d638ddb7a6d1c2fd602fa385",
+  "runtime_ledger": "target/phase-04c1b4c4r3c2g2-final-runtime-results.json",
+  "tuple": [
+    "agentflow.root-export-checker@6",
+    "agentflow.computation.proof-report.model@5",
+    "agentflow.g01.report-shape@5",
+    "agentflow.g01.obligation@5"
+  ],
+  "old_spec_records_full_equal": 58,
+  "old_rule_records_full_equal": 479,
+  "specifications": 62,
+  "rules": 493,
+  "covered": 492,
+  "exception": 1,
+  "missing": 0,
+  "descriptors": 704,
+  "references": 2064,
+  "new_descriptors": 21,
+  "new_references": 46,
+  "old_ranks_preserved": 683,
+  "historical_imports": 97,
+  "registration_case_ids": 254,
+  "shape_case_ids": 170,
+  "metadata_admission_case_ids": 51,
+  "dag_subgraph_cases": 8,
+  "rule_cases": 14,
+  "portable_case_ids": 11,
+  "required_field_variant_sites": 88,
+  "field_variant_gaps": 0,
+  "raw_capture_case_ids": 0,
+  "design_vectors": {
+    "original_48_frozen": "Not Executed",
+    "metadata_only_executed": 24,
+    "not_executed": 24
+  },
+  "historical_case_ids": [
+    512,
+    51,
+    173,
+    889,
+    262
+  ],
+  "historical_cargo_pass_records": [
+    382,
+    335,
+    336,
+    390,
+    434
+  ],
+  "historical_git_blobs": 9542,
+  "generators_required": {
+    "directory": "E:/Projects/agent",
+    "scripts": 36,
+    "complete_rounds": 2,
+    "script_runs": 72,
+    "all_exit_codes": 0,
+    "raw_maps_equal_final_tree": true,
+    "added": 0,
+    "removed": 0,
+    "changed": 0
+  },
+  "raw_producer": "NotImplemented",
+  "full_scope": "NotImplemented",
+  "normalizer": "NotImplemented",
+  "positive_root_export": "NotAuthorized",
+  "t4": "NOT ELIGIBLE",
+  "pushed": false
+}

@@ -1,0 +1,41 @@
+{
+  "baseline": "e623aab705c5f8269807201e112a32e67e6869bf",
+  "old_specifications": 58,
+  "old_rules": 479,
+  "tuple": [
+    "agentflow.root-export-checker@6",
+    "agentflow.computation.proof-report.model@5",
+    "agentflow.g01.report-shape@5",
+    "agentflow.g01.obligation@5"
+  ],
+  "specification_ids": [
+    "agentflow.component.document-occurrence.semantics@1",
+    "agentflow.computation.proof-obligation.semantics@5",
+    "agentflow.computation.proof-report.model@5",
+    "agentflow.portable.proof.inputs.semantics@6"
+  ],
+  "rule_ids": [
+    "AF-SEMANTIC-0272",
+    "AF-SEMANTIC-0273",
+    "AF-SEMANTIC-0274",
+    "AF-SEMANTIC-0275",
+    "AF-SEMANTIC-0276",
+    "AF-SEMANTIC-0277",
+    "AF-SEMANTIC-0278",
+    "AF-SEMANTIC-0279",
+    "AF-SEMANTIC-0280",
+    "AF-SEMANTIC-0281",
+    "AF-SEMANTIC-0282",
+    "AF-SEMANTIC-0283",
+    "AF-SEMANTIC-0284",
+    "AF-SEMANTIC-0285"
+  ],
+  "source_paths": [
+    "spec/component/document-occurrence.md",
+    "spec/computation/proof-obligation-semantics-v5.md",
+    "spec/tables/proof-report-model-v5.md",
+    "spec/portable/portable-proof-inputs-v6.md"
+  ],
+  "collisions": 0,
+  "allocated_after_census": true
+}

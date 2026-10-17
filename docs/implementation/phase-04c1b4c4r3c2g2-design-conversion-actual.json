@@ -1,0 +1,1646 @@
+{
+  "vectors": [
+    {
+      "design_case_id": "c2g1-design/01",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "content_equal": true,
+        "port_judgment": "Violation/Violation",
+        "relation": "DistinctOccurrencesAndSources",
+        "source_count": 2
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/02",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "observation_count": 2,
+        "relation": "SameFact",
+        "source_count": 1
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/03",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "relation": "DistinctOccurrencesAndSources",
+        "source_count": 2
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/04",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "relation": "SameOccurrenceAndFact",
+        "source_count": 1
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/05",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "relation": "DistinctOccurrencesAndSources",
+        "source_count": 2
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/06",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "consumer_edges": 2,
+        "relation": "SameFact",
+        "source_count": 1
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/07",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "observation_count": 1,
+        "relation": "SameFactAndObservationSet",
+        "source_count": 1
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/08",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "relation": "SameFactAndCanonicalObservationSet",
+        "source_count": 1
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/09",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "port_judgment": "Violation/Proven",
+        "relation": "SameOccurrenceDistinctMembersAndRawSources",
+        "source_count": 2
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/10",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "relation": "DistinctOccurrencesAndSources",
+        "source_count": 2
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/11",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "externally_authenticated": false,
+        "relation": "DistinctDeclaredOccurrences"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/12",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "MissingDocumentOccurrenceBinding",
+        "source_facts": 0
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-missing-package"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "MissingDocumentOccurrenceBinding",
+          "case_id": "g01-document-occurrence-staging/admission-missing-package",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/13",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "MissingDocumentOccurrenceBinding"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-missing-namespace"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "MissingDocumentOccurrenceBinding",
+          "case_id": "g01-document-occurrence-staging/admission-missing-namespace",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/14",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "MissingDocumentOccurrenceBinding"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-missing-domain_key"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "MissingDocumentOccurrenceBinding",
+          "case_id": "g01-document-occurrence-staging/admission-missing-domain_key",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/15",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "MissingDocumentOccurrenceBinding"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-missing-owner_key"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "MissingDocumentOccurrenceBinding",
+          "case_id": "g01-document-occurrence-staging/admission-missing-owner_key",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/16",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "MissingDocumentOccurrenceBinding"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-missing-revision_key"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "MissingDocumentOccurrenceBinding",
+          "case_id": "g01-document-occurrence-staging/admission-missing-revision_key",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/17",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "MissingDocumentOccurrenceBinding"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-missing-slot"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "MissingDocumentOccurrenceBinding",
+          "case_id": "g01-document-occurrence-staging/admission-missing-slot",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/18",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "InvalidOccurrenceAssociation"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-owner-domain-mismatch"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "InvalidOccurrenceAssociation",
+          "case_id": "g01-document-occurrence-staging/admission-owner-domain-mismatch",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/19",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "authenticated": false,
+        "reject": "UnsupportedOwnerVariant"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-unknown-owner"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "UnsupportedOwnerVariant",
+          "case_id": "g01-document-occurrence-staging/admission-unknown-owner",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/20",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "InvalidOccurrenceAssociation"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-undeclared-owner"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "InvalidOccurrenceAssociation",
+          "case_id": "g01-document-occurrence-staging/admission-undeclared-owner",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/21",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "InvalidOccurrenceAssociation"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-out-of-range"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "InvalidOccurrenceAssociation",
+          "case_id": "g01-document-occurrence-staging/admission-out-of-range",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/22",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "failure_family": "BindingConflict",
+        "reject": "OwnerBindingConflict"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-joint-conflict"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "OwnerBindingConflict",
+          "case_id": "g01-document-occurrence-staging/admission-joint-conflict",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/23",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "BindingConflict",
+        "source_facts": 0
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-wrong-content"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "BindingConflict",
+          "case_id": "g01-document-occurrence-staging/admission-wrong-content",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/24",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "MalformedSourcePackage"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-duplicate-owner"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "MalformedSourcePackage",
+          "case_id": "g01-document-occurrence-staging/admission-duplicate-owner",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/25",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "content_equal": true,
+        "relation": "DistinctOccurrencesAndSources"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/26",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "relation": "SameFact",
+        "source_count": 1
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/27",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "admission": "DeclaredOnly",
+        "historical_physical_provenance": "NotSupplied"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-native-declaration_bundle"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "Admitted",
+          "case_id": "g01-document-occurrence-staging/admission-native-declaration_bundle",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/28",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "UnsupportedPhysicalAssociation"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-native-supplied"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "UnsupportedPhysicalAssociation",
+          "case_id": "g01-document-occurrence-staging/admission-native-supplied",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/29",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "UnsupportedPhysicalAssociation"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-physical-not-supplied"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "UnsupportedPhysicalAssociation",
+          "case_id": "g01-document-occurrence-staging/admission-physical-not-supplied",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/30",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "InvalidOccurrenceAssociation"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-physical-cross-occurrence"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "InvalidOccurrenceAssociation",
+          "case_id": "g01-document-occurrence-staging/admission-physical-cross-occurrence",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/31",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "parsed_values_may_equal": true,
+        "reject": "BindingConflict"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-physical-bytes-conflict"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "BindingConflict",
+          "case_id": "g01-document-occurrence-staging/admission-physical-bytes-conflict",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/32",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "context_partition": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ],
+        "relation": "DistinctSourcesWithSameContext"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/33",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "InvalidContextBinding"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-context-split"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "InvalidContextBinding",
+          "case_id": "g01-document-occurrence-staging/admission-context-split",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/34",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "MissingDocumentOccurrenceBinding"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-context-digest-is-not-owner"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "MissingDocumentOccurrenceBinding",
+          "case_id": "g01-document-occurrence-staging/admission-context-digest-is-not-owner",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/35",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "note": "Portable fresh A revalidation is not evidence of original B object history",
+        "reject": "InvalidOccurrenceAssociation"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/36",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "port_events": [
+          [
+            "Violation"
+          ],
+          [
+            "Proven"
+          ],
+          [
+            "Proven",
+            "Violation"
+          ]
+        ],
+        "whole_contract_proven": false
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/37",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "content_subtrees": 1,
+        "dag_rule_unchanged": true,
+        "distinct_binding_values": 2
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/38",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "NonCanonicalValueDag"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/39",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "NonCanonicalValueDag"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/40",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "InvalidScopeOrNonCanonicalValueDag"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/41",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "law": "Closed input schema forbids output/back edges",
+        "reject": "UnsupportedModel"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-package-output-backedge"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "UnsupportedModel",
+          "case_id": "g01-document-occurrence-staging/admission-package-output-backedge",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/42",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "interpretation": "ExactOldEditionContentIdentity",
+        "new_occurrence_identity": "NotAvailable",
+        "old_support_rules_unchanged": true
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/43",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "UnsupportedModel"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/44",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "codec_if_unformable": "IncompleteFacts",
+        "reject": "MissingDocumentOccurrenceBinding"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-missing-slot"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "MissingDocumentOccurrenceBinding",
+          "case_id": "g01-document-occurrence-staging/admission-missing-slot",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/45",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "admission": "DeclaredOnly",
+        "capture_implemented_by_this_phase": false,
+        "root_capability": false
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-native-declaration_bundle"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "Admitted",
+          "case_id": "g01-document-occurrence-staging/admission-native-declaration_bundle",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/46",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "migration": "UnmigratableMissingOccurrence",
+        "synthesized_owner": false
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/47",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "publisher_authentication": "NotEstablished",
+        "root_export": "NotAuthorized",
+        "scope_authority": "Unproven"
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [],
+      "scope": "Not Executed: full source/fact/observation/port/scope or migration implementation not supplied by this phase",
+      "actual_status": "Not Executed",
+      "actual_results": [],
+      "producer_conformance": false
+    },
+    {
+      "design_case_id": "c2g1-design/48",
+      "formal_rules": [
+        "AF-SEMANTIC-0272",
+        "AF-SEMANTIC-0273",
+        "AF-SEMANTIC-0274",
+        "AF-SEMANTIC-0275",
+        "AF-SEMANTIC-0276",
+        "AF-SEMANTIC-0277",
+        "AF-SEMANTIC-0278",
+        "AF-SEMANTIC-0279",
+        "AF-SEMANTIC-0280",
+        "AF-SEMANTIC-0281",
+        "AF-SEMANTIC-0282",
+        "AF-SEMANTIC-0283",
+        "AF-SEMANTIC-0284",
+        "AF-SEMANTIC-0285"
+      ],
+      "new_expected_manual": {
+        "reject": "MissingDocumentOccurrenceBinding",
+        "source_facts": 0
+      },
+      "original_actual_status": "Not Executed",
+      "registered_case_ids": [
+        "g01-document-occurrence-staging/admission-random-uuid-only"
+      ],
+      "scope": "Metadata admission ONLY",
+      "actual_status": "Executed — Metadata Admission Only",
+      "actual_results": [
+        {
+          "actual": "MissingDocumentOccurrenceBinding",
+          "case_id": "g01-document-occurrence-staging/admission-random-uuid-only",
+          "predicate_evaluated": false,
+          "raw_facts_produced": 0,
+          "root_capability": false
+        }
+      ],
+      "producer_conformance": false
+    }
+  ],
+  "executed_metadata_only": 24,
+  "not_executed": 24
+}
