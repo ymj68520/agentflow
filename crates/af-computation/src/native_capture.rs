@@ -1,5 +1,7 @@
 //! Local, non-authoritative T3 native seeds. No Scope, ObligationIdentity,
 //! normalized report, or CheckedRootExport constructor exists in this module.
+/// Explicit occurrence-bound raw entry; old anonymous APIs do not gain Origin.
+pub use crate::raw_capture::capture_raw_ports as collect_raw_ports;
 use crate::{
     EditionRegistration, RegisteredAnalysisEdition, current_registered_analysis_edition,
     registered_model_catalogue,

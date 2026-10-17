@@ -12,6 +12,7 @@ pub mod error;
 pub mod flow_execution;
 pub mod guard_observation;
 pub mod model;
+pub mod port_observation;
 pub mod ports;
 pub mod proof;
 pub mod recovery_effect;

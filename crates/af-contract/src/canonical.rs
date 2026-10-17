@@ -48,9 +48,34 @@ pub fn canonicalize_contract(
     raw: &ComponentContract,
     context: &StaticContractProofContext<'_>,
 ) -> Result<CanonicalComponentContract, ContractError> {
-    crate::validate::validate_component_identity(&raw.component_identity)?;
-    let inputs = canonical_ports(&raw.inputs, context.schema_universe, "input")?;
-    let outputs = canonical_ports(&raw.outputs, context.schema_universe, "output")?;
+    canonicalize_observed(
+        raw,
+        context,
+        &mut crate::port_observation::PortTrace::default(),
+    )
+}
+
+pub(crate) fn canonicalize_observed(
+    raw: &ComponentContract,
+    context: &StaticContractProofContext<'_>,
+    trace: &mut crate::port_observation::PortTrace,
+) -> Result<CanonicalComponentContract, ContractError> {
+    use crate::port_observation::{PortDirection, PortPrefixStop};
+    crate::validate::validate_component_identity(&raw.component_identity).inspect_err(|_| {
+        trace.stop = Some(PortPrefixStop::ComponentIdentity);
+    })?;
+    let inputs = canonical_ports(
+        &raw.inputs,
+        context.schema_universe,
+        PortDirection::Input,
+        trace,
+    )?;
+    let outputs = canonical_ports(
+        &raw.outputs,
+        context.schema_universe,
+        PortDirection::Output,
+        trace,
+    )?;
     let failures = raw
         .failures
         .validate(context.schema_universe)
@@ -238,17 +263,42 @@ fn canonical_atom(
 fn canonical_ports<T>(
     ports: &[T],
     schemas: &af_semantic::TypeSchemaUniverse,
-    direction: &'static str,
+    direction: crate::port_observation::PortDirection,
+    trace: &mut crate::port_observation::PortTrace,
 ) -> Result<Vec<T>, ContractError>
 where
     T: PortRef + Clone,
 {
-    let mut result = ports.to_vec();
-    result.sort_by_key(PortRef::number);
+    use crate::port_observation::{
+        PortCondition, PortDirection, PortEvent, PortOccurrence, PortPrefixStop,
+    };
+    let mut result: Vec<_> = ports.iter().cloned().enumerate().collect();
+    result.sort_by_key(|(_, port)| port.number());
     let mut previous = 0;
-    for port in &result {
+    let mut predecessor = None;
+    for (sorted_ordinal, (original_ordinal, port)) in result.iter().enumerate() {
         let number = port.number();
+        let occurrence = PortOccurrence {
+            direction,
+            original_ordinal: *original_ordinal,
+            sorted_ordinal,
+            port_no: number,
+        };
         if number == 0 || number == previous {
+            trace.events.push(PortEvent {
+                occurrence,
+                predecessor,
+                condition: if number == 0 {
+                    PortCondition::Zero
+                } else {
+                    PortCondition::Duplicate
+                },
+            });
+            trace.stop = Some(PortPrefixStop::PortRejection(occurrence));
+            let direction = match direction {
+                PortDirection::Input => "input",
+                PortDirection::Output => "output",
+            };
             return Err(ContractError::new(
                 "AF-CONTRACT-0004",
                 "invalid_or_duplicate_port",
@@ -256,8 +306,15 @@ where
             )
             .at(number.to_string()));
         }
+        trace.events.push(PortEvent {
+            occurrence,
+            predecessor,
+            condition: PortCondition::PositiveFresh,
+        });
         previous = number;
+        predecessor = Some((*original_ordinal, number));
         schemas.resolve(port.type_ref()).map_err(|error| {
+            trace.stop = Some(PortPrefixStop::SchemaResolution(occurrence));
             ContractError::new(
                 "AF-CONTRACT-0004",
                 "unknown_or_wrong_type_pin",
@@ -266,7 +323,7 @@ where
             .at(format!("port {number}"))
         })?;
     }
-    Ok(result)
+    Ok(result.into_iter().map(|(_, port)| port).collect())
 }
 
 trait PortRef {

@@ -16,6 +16,7 @@ pub mod native_capture;
 mod occurrence_admission;
 mod proof;
 mod raw_admission;
+pub mod raw_capture;
 mod registered_model;
 mod resolution;
 mod root_export;
