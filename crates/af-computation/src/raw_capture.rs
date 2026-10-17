@@ -444,6 +444,16 @@ pub enum RawLocalObservation {
     CaptureFacts,
     ContractDiagnostic,
 }
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum RawCollectorFailure {
+    Model(crate::RegisteredModelFailure),
+    Source(Failure),
+}
+impl From<crate::RegisteredModelFailure> for RawCollectorFailure {
+    fn from(value: crate::RegisteredModelFailure) -> Self {
+        Self::Model(value)
+    }
+}
 pub struct CollectedRawSeed<'s, 'a, 'c, 'u> {
     capture: &'s RawLocalCapture<'a, 'c, 'u>,
     seed_ordinal: usize,
@@ -463,6 +473,7 @@ impl<'s, 'a, 'c, 'u> CollectedRawSeed<'s, 'a, 'c, 'u> {
 #[derive(Default)]
 pub struct RawLocalCollector<'s, 'a, 'c, 'u> {
     facts: Vec<CollectedRawSeed<'s, 'a, 'c, 'u>>,
+    source_packages: Vec<&'a Value>,
 }
 impl<'s, 'a, 'c, 'u> RawLocalCollector<'s, 'a, 'c, 'u> {
     pub fn facts(&self) -> &[CollectedRawSeed<'s, 'a, 'c, 'u>] {
@@ -472,12 +483,12 @@ impl<'s, 'a, 'c, 'u> RawLocalCollector<'s, 'a, 'c, 'u> {
         &mut self,
         capture: &'s RawLocalCapture<'a, 'c, 'u>,
         observation: RawLocalObservation,
-    ) -> Result<(), crate::RegisteredModelFailure> {
+    ) -> Result<(), RawCollectorFailure> {
         use crate::RegisteredModelFailure::{InvalidFacts, ResourceLimit};
         capture.validate()?;
         let selected = if observation == RawLocalObservation::ContractDiagnostic {
             let Some(PortPrefixStop::PortRejection(o)) = capture.stop else {
-                return Err(InvalidFacts);
+                return Err(InvalidFacts.into());
             };
             let report = af_contract::analyze_contract(&capture.raw, capture.context);
             if !report.dimensions.iter().any(|d| {
@@ -485,12 +496,25 @@ impl<'s, 'a, 'c, 'u> RawLocalCollector<'s, 'a, 'c, 'u> {
                     && d.verdict == ProofVerdict::Violation
                     && d.rule_id == "AF-CONTRACT-0004"
             }) {
-                return Err(InvalidFacts);
+                return Err(InvalidFacts.into());
             }
             Some(o)
         } else {
             None
         };
+        // The collector itself is an explicit finite joint review. Different
+        // complete subjects must not conceal conflicting records at one anchor.
+        // Retain packages even when an admitted run has no applicable facts.
+        let package = capture
+            .request
+            .source_package
+            .ok_or(crate::RegisteredModelFailure::IncompleteFacts)?;
+        let mut source_packages = self.source_packages.clone();
+        if !source_packages.contains(&package) {
+            source_packages.push(package);
+            crate::check_joint_source_packages_metadata(&source_packages)
+                .map_err(RawCollectorFailure::Source)?;
+        }
         // Preflight every collision, then mutate atomically. Status is payload,
         // not part of this originating key; no last-writer/verdict-max merge.
         for s in capture
@@ -503,7 +527,7 @@ impl<'s, 'a, 'c, 'u> RawLocalCollector<'s, 'a, 'c, 'u> {
                     && prior.seed().event.occurrence == s.event.occurrence
                     && prior.seed() != s
                 {
-                    return Err(InvalidFacts);
+                    return Err(InvalidFacts.into());
                 }
             }
         }
@@ -519,8 +543,9 @@ impl<'s, 'a, 'c, 'u> RawLocalCollector<'s, 'a, 'c, 'u> {
             })
             .count();
         if self.facts.len().saturating_add(additions) > 65_536 {
-            return Err(ResourceLimit);
+            return Err(ResourceLimit.into());
         }
+        self.source_packages = source_packages;
         for (i, s) in capture
             .seeds
             .iter()
@@ -759,7 +784,9 @@ mod tests {
                 .unwrap();
             assert_eq!(
                 test_collector.insert(&changed, RawLocalObservation::CaptureFacts),
-                Err(RegisteredModelFailure::InvalidFacts)
+                Err(RawCollectorFailure::Model(
+                    RegisteredModelFailure::InvalidFacts
+                ))
             );
             assert_eq!(test_collector.facts().len(), 1);
             assert_eq!(
@@ -780,5 +807,27 @@ mod tests {
             .insert(&original, RawLocalObservation::ContractDiagnostic)
             .unwrap();
         assert_eq!(test_collector.facts()[0].observations().len(), 2);
+        let mut conflicting_package = package.clone();
+        conflicting_package["owners"][0]["container"]["declaration_bundle"]["bundle_name"] =
+            json!([122]);
+        let conflicting_doc = &conflicting_package["owners"][0]["container"]["declaration_bundle"]
+            ["declarations"][0]["document"];
+        let conflicting_request = DocumentOccurrenceMetadataRequest {
+            source_package: Some(&conflicting_package),
+            source_owner: Some(&conflicting_package["owners"][0]["anchor"]),
+            entry_ordinal: Some(0),
+            actual_document: conflicting_doc,
+            candidate: &conflicting_doc["declared_native_document"]["declarations"][0],
+            internal_path: &path,
+            physical: OccurrencePhysicalMetadata::NotSupplied,
+        };
+        let conflicting_capture =
+            capture_raw_ports(&conflicting_request, &c, &c, &compiler).unwrap();
+        assert_eq!(
+            test_collector.insert(&conflicting_capture, RawLocalObservation::CaptureFacts),
+            Err(RawCollectorFailure::Source(Failure::OwnerBindingConflict))
+        );
+        assert_eq!(test_collector.facts().len(), 1);
+        assert_eq!(test_collector.source_packages.len(), 1);
     }
 }
