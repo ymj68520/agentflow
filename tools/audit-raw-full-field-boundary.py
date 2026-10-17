@@ -408,6 +408,15 @@ def attach_subset(result):
                              "registered_roots": r["registered_roots"]} for r in expected],
         "missing_formal_roots": comparison["remaining_fields"],
     }
+    by_event = {tuple([r["case_id"], r["occurrence"]["direction"], r["occurrence"]["original_ordinal"]]): (r, a)
+                for r, a in zip(expected, actual)}
+    for relation in result["RawReferenceExpectedManifest"]["instances"]:
+        if relation["field"] == "prerequisites":
+            want, got = by_event[tuple(relation["event_id"])]
+            relation["expected"] = want["registered_roots"]["prerequisites"]
+            relation["actual"] = got["registered_roots"]["prerequisites"]
+            relation["required_applicability"] = "NO_QUERIED_FACT_PREMISES_FOR_THIS_LOCAL_PORT_PREDICATE"
+            relation["comparison_status"] = "LOCAL_EMPTY_PREREQUISITE_SET_COMPARED"
     result["RawNestedExpectedManifest"] = {
         "complete": False,
         "value_instances": [{"event_id": [r["case_id"], r["occurrence"]["direction"], r["occurrence"]["original_ordinal"]],
