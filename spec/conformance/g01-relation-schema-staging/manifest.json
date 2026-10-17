@@ -1,0 +1,2150 @@
+{
+  "admission_cases": 96,
+  "analysis": "agentflow.root-export-checker@7",
+  "applied_rules": [
+    "AF-CONTRACT-0001",
+    "AF-CONTRACT-0002",
+    "AF-CONTRACT-0003",
+    "AF-CONTRACT-0004",
+    "AF-CONTRACT-0005",
+    "AF-CONTRACT-0006",
+    "AF-CONTRACT-0007",
+    "AF-CONTRACT-0008",
+    "AF-CONTRACT-0009",
+    "AF-CONTRACT-0010",
+    "AF-CONTRACT-0011",
+    "AF-CONTRACT-0012",
+    "AF-CONTRACT-0013",
+    "AF-CONTRACT-0014",
+    "AF-CONTRACT-0015",
+    "AF-CONTRACT-0016",
+    "AF-CONTRACT-0017",
+    "AF-CONTRACT-0018",
+    "AF-CONTRACT-0019",
+    "AF-CONTRACT-0020",
+    "AF-CONTRACT-0021",
+    "AF-CONTRACT-0022",
+    "AF-SEMANTIC-0111",
+    "AF-SEMANTIC-0112",
+    "AF-SEMANTIC-0113",
+    "AF-SEMANTIC-0114",
+    "AF-SEMANTIC-0115",
+    "AF-SEMANTIC-0116",
+    "AF-SEMANTIC-0117",
+    "AF-SEMANTIC-0118",
+    "AF-SEMANTIC-0119",
+    "AF-SEMANTIC-0120",
+    "AF-SEMANTIC-0121",
+    "AF-SEMANTIC-0122",
+    "AF-SEMANTIC-0123",
+    "AF-SEMANTIC-0124",
+    "AF-SEMANTIC-0125",
+    "AF-SEMANTIC-0126",
+    "AF-SEMANTIC-0127",
+    "AF-SEMANTIC-0128",
+    "AF-SEMANTIC-0129",
+    "AF-SEMANTIC-0130",
+    "AF-SEMANTIC-0131",
+    "AF-SEMANTIC-0132",
+    "AF-SEMANTIC-0133",
+    "AF-SEMANTIC-0134",
+    "AF-SEMANTIC-0135",
+    "AF-SEMANTIC-0136",
+    "AF-SEMANTIC-0137",
+    "AF-SEMANTIC-0138",
+    "AF-SEMANTIC-0139",
+    "AF-SEMANTIC-0140",
+    "AF-SEMANTIC-0141",
+    "AF-SEMANTIC-0142",
+    "AF-SEMANTIC-0143",
+    "AF-SEMANTIC-0144",
+    "AF-SEMANTIC-0145",
+    "AF-SEMANTIC-0146",
+    "AF-SEMANTIC-0147",
+    "AF-SEMANTIC-0148",
+    "AF-SEMANTIC-0149",
+    "AF-SEMANTIC-0150",
+    "AF-SEMANTIC-0151",
+    "AF-SEMANTIC-0152",
+    "AF-SEMANTIC-0153",
+    "AF-SEMANTIC-0154",
+    "AF-SEMANTIC-0155",
+    "AF-SEMANTIC-0156",
+    "AF-SEMANTIC-0157",
+    "AF-SEMANTIC-0158",
+    "AF-SEMANTIC-0159",
+    "AF-SEMANTIC-0160",
+    "AF-SEMANTIC-0161",
+    "AF-SEMANTIC-0162",
+    "AF-SEMANTIC-0163",
+    "AF-SEMANTIC-0164",
+    "AF-SEMANTIC-0165",
+    "AF-SEMANTIC-0166",
+    "AF-SEMANTIC-0167",
+    "AF-SEMANTIC-0168",
+    "AF-SEMANTIC-0169",
+    "AF-SEMANTIC-0170",
+    "AF-SEMANTIC-0171",
+    "AF-SEMANTIC-0172",
+    "AF-SEMANTIC-0173",
+    "AF-SEMANTIC-0174",
+    "AF-SEMANTIC-0175",
+    "AF-SEMANTIC-0176",
+    "AF-SEMANTIC-0177",
+    "AF-SEMANTIC-0178",
+    "AF-SEMANTIC-0179",
+    "AF-SEMANTIC-0180",
+    "AF-SEMANTIC-0181",
+    "AF-SEMANTIC-0182",
+    "AF-SEMANTIC-0183",
+    "AF-SEMANTIC-0184",
+    "AF-SEMANTIC-0185",
+    "AF-SEMANTIC-0186",
+    "AF-SEMANTIC-0187",
+    "AF-SEMANTIC-0189",
+    "AF-SEMANTIC-0191",
+    "AF-SEMANTIC-0192",
+    "AF-SEMANTIC-0193",
+    "AF-SEMANTIC-0194",
+    "AF-SEMANTIC-0195",
+    "AF-SEMANTIC-0196",
+    "AF-SEMANTIC-0197",
+    "AF-SEMANTIC-0198",
+    "AF-SEMANTIC-0199",
+    "AF-SEMANTIC-0200",
+    "AF-SEMANTIC-0201",
+    "AF-SEMANTIC-0202",
+    "AF-SEMANTIC-0203",
+    "AF-SEMANTIC-0204",
+    "AF-SEMANTIC-0205",
+    "AF-SEMANTIC-0206",
+    "AF-SEMANTIC-0207",
+    "AF-SEMANTIC-0208",
+    "AF-SEMANTIC-0209",
+    "AF-SEMANTIC-0210",
+    "AF-SEMANTIC-0211",
+    "AF-SEMANTIC-0212",
+    "AF-SEMANTIC-0213",
+    "AF-SEMANTIC-0214",
+    "AF-SEMANTIC-0215",
+    "AF-SEMANTIC-0216",
+    "AF-SEMANTIC-0217",
+    "AF-SEMANTIC-0218",
+    "AF-SEMANTIC-0219",
+    "AF-SEMANTIC-0220",
+    "AF-SEMANTIC-0221",
+    "AF-SEMANTIC-0222",
+    "AF-SEMANTIC-0228",
+    "AF-SEMANTIC-0229",
+    "AF-SEMANTIC-0230",
+    "AF-SEMANTIC-0231",
+    "AF-SEMANTIC-0232",
+    "AF-SEMANTIC-0233",
+    "AF-SEMANTIC-0234",
+    "AF-SEMANTIC-0235",
+    "AF-SEMANTIC-0236",
+    "AF-SEMANTIC-0237",
+    "AF-SEMANTIC-0238",
+    "AF-SEMANTIC-0239",
+    "AF-SEMANTIC-0240",
+    "AF-SEMANTIC-0241",
+    "AF-SEMANTIC-0242",
+    "AF-SEMANTIC-0245",
+    "AF-SEMANTIC-0246",
+    "AF-SEMANTIC-0247",
+    "AF-SEMANTIC-0248",
+    "AF-SEMANTIC-0249",
+    "AF-SEMANTIC-0250",
+    "AF-SEMANTIC-0251",
+    "AF-SEMANTIC-0252",
+    "AF-SEMANTIC-0253",
+    "AF-SEMANTIC-0254",
+    "AF-SEMANTIC-0255",
+    "AF-SEMANTIC-0256",
+    "AF-SEMANTIC-0257",
+    "AF-SEMANTIC-0258",
+    "AF-SEMANTIC-0259",
+    "AF-SEMANTIC-0260",
+    "AF-SEMANTIC-0261",
+    "AF-SEMANTIC-0262",
+    "AF-SEMANTIC-0263",
+    "AF-SEMANTIC-0264",
+    "AF-SEMANTIC-0265",
+    "AF-SEMANTIC-0266",
+    "AF-SEMANTIC-0267",
+    "AF-SEMANTIC-0268",
+    "AF-SEMANTIC-0269",
+    "AF-SEMANTIC-0270",
+    "AF-SEMANTIC-0271",
+    "AF-SEMANTIC-0272",
+    "AF-SEMANTIC-0273",
+    "AF-SEMANTIC-0274",
+    "AF-SEMANTIC-0275",
+    "AF-SEMANTIC-0276",
+    "AF-SEMANTIC-0277",
+    "AF-SEMANTIC-0278",
+    "AF-SEMANTIC-0279",
+    "AF-SEMANTIC-0280",
+    "AF-SEMANTIC-0281",
+    "AF-SEMANTIC-0282",
+    "AF-SEMANTIC-0283",
+    "AF-SEMANTIC-0284",
+    "AF-SEMANTIC-0285",
+    "AF-SEMANTIC-0286",
+    "AF-SEMANTIC-0287",
+    "AF-SEMANTIC-0288",
+    "AF-SEMANTIC-0289",
+    "AF-SEMANTIC-0290",
+    "AF-SEMANTIC-0291",
+    "AF-SEMANTIC-0292",
+    "AF-SEMANTIC-0293",
+    "AF-SEMANTIC-0294",
+    "AF-SEMANTIC-0295",
+    "AF-SEMANTIC-0296",
+    "AF-SEMANTIC-0297",
+    "AF-SEMANTIC-0298",
+    "AF-SEMANTIC-0299",
+    "AF-SEMANTIC-0300",
+    "AF-SEMANTIC-0301"
+  ],
+  "case_ids": [
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.effect.resource.compatibility@1_EffectResourceCompatibilityCatalog",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_EffectResourceCompatibilityCatalog-complete_operations",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_EffectResourceCompatibilityCatalog-supported_pairs",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.effect.resource.compatibility@1_EffectResourceCompatibilityCatalog",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.effect.signature@1_EffectOperationRef",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.signature@1_EffectOperationRef-catalog",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.signature@1_EffectOperationRef-name",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.effect.signature@1_EffectOperationRef",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.effect.signature@1_CatalogId",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.effect.signature@1_OperationName",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.effect.resource.compatibility@1_SupportedEffectResourcePair",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_SupportedEffectResourcePair-operation",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_SupportedEffectResourcePair-resource_type",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_SupportedEffectResourcePair-selector_keys",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_SupportedEffectResourcePair-allowed_qualifier_profiles",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.effect.resource.compatibility@1_SupportedEffectResourcePair",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.resource.requirement@1_ResourceTypeRef",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.resource.requirement@1_ResourceTypeRef-schema",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.resource.requirement@1_ResourceTypeRef",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.semantic.core@1_TypeSchemaRef",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.semantic.core@1_TypeSchemaRef-specification_id",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.semantic.core@1_TypeSchemaRef-type_name",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.semantic.core@1_TypeSchemaRef-schema_digest",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.semantic.core@1_TypeSchemaRef",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.semantic.core@1_DigestRefValue",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.semantic.core@1_DigestRefValue-algorithm",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.semantic.core@1_DigestRefValue-domain",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.semantic.core@1_DigestRefValue-hex",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.semantic.core@1_DigestRefValue",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.effect.resource.compatibility@1_SelectorKeyRule",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_SelectorKeyRule-selector_key",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_SelectorKeyRule-resource_attribute_key",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_SelectorKeyRule-required",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_SelectorKeyRule-values",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.effect.resource.compatibility@1_SelectorKeyRule",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.effect.resource.compatibility@1_ScopeValueRule",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.effect.resource.compatibility@1_ScopeValueRule-finite_exact_values",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.effect.resource.compatibility@1_ScopeValueRule-opaque_nfc_exact_string",
+    "g01-relation-schema-staging/unknown-RelationWire_agentflow.effect.resource.compatibility@1_ScopeValueRule",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.effect.resource.compatibility@1_EffectQualifierProfile",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_EffectQualifierProfile-qualifiers",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.effect.resource.compatibility@1_EffectQualifierProfile",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.effect.signature@1_EffectQualifier",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.effect.signature@1_EffectQualifier-idempotency",
+    "g01-relation-schema-staging/unknown-RelationWire_agentflow.effect.signature@1_EffectQualifier",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.effect.signature@1_EffectIdempotencyQualifier",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.effect.signature@1_EffectIdempotencyQualifier-natural",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.effect.signature@1_EffectIdempotencyQualifier-none",
+    "g01-relation-schema-staging/unknown-RelationWire_agentflow.effect.signature@1_EffectIdempotencyQualifier",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.recovery.usage.coverage@1_RecoveryUsageCoverageCatalog",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.recovery.usage.coverage@1_RecoveryUsageCoverageCatalog-rules",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.recovery.usage.coverage@1_RecoveryUsageCoverageCatalog",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.recovery.usage.coverage@1_RecoveryUsageCoverageRule",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.recovery.usage.coverage@1_RecoveryUsageCoverageRule-action",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.recovery.usage.coverage@1_RecoveryUsageCoverageRule-complete_meters",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.recovery.usage.coverage@1_RecoveryUsageCoverageRule",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.component.contract@1_RecoveryActionIdentity",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.component.contract@1_RecoveryActionIdentity-forward_effect",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.component.contract@1_RecoveryActionIdentity-action_kind",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.component.contract@1_RecoveryActionIdentity-action_effect",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.component.contract@1_RecoveryActionIdentity",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.effect.signature@1_EffectAtom",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.signature@1_EffectAtom-operation",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.signature@1_EffectAtom-resource_selector",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.signature@1_EffectAtom-qualifiers",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.effect.signature@1_EffectAtom",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.effect.signature@1_ResourceSelector",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.signature@1_ResourceSelector-requirement_port_no",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.signature@1_ResourceSelector-scope_bindings",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.effect.signature@1_ResourceSelector",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.effect.signature@1_RequirementPortNo",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.effect.signature@1_ScopeBinding",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.signature@1_ScopeBinding-key",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.signature@1_ScopeBinding-value",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.effect.signature@1_ScopeBinding",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.effect.signature@1_ScopeKey",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.effect.signature@1_ScopeValue",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.component.contract@1_RecoveryActionKind",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.component.contract@1_RecoveryActionKind-reconciliation",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.component.contract@1_RecoveryActionKind-compensation",
+    "g01-relation-schema-staging/unknown-RelationWire_agentflow.component.contract@1_RecoveryActionKind",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.usage.signature@1_UsageMeterRef",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.usage.signature@1_UsageMeterRef-catalog",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.usage.signature@1_UsageMeterRef-name",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.usage.signature@1_UsageMeterRef",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.usage.signature@1_MeterCatalogId",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.usage.signature@1_MeterName",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.flow.execution.relation@1_InformationFlowExecutionCatalog",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_InformationFlowExecutionCatalog-closed_regions",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_InformationFlowExecutionCatalog-closed_trust_domains",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_InformationFlowExecutionCatalog-confidentiality_rules",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_InformationFlowExecutionCatalog-taint_rules",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_InformationFlowExecutionCatalog-authority_rules",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_InformationFlowExecutionCatalog-sink_rules",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.flow.execution.relation@1_InformationFlowExecutionCatalog",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.execution.requirements@1_RegionRef",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.execution.requirements@1_RegionRef-catalog",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.execution.requirements@1_RegionRef-name",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.execution.requirements@1_RegionRef",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.execution.requirements@1_TrustDomainRef",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.execution.requirements@1_TrustDomainRef-catalog",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.execution.requirements@1_TrustDomainRef-name",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.execution.requirements@1_TrustDomainRef",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.flow.execution.relation@1_ConfidentialityExecutionRule",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_ConfidentialityExecutionRule-label",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_ConfidentialityExecutionRule-region_pairs",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.flow.execution.relation@1_ConfidentialityExecutionRule",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.information.flow@1_ConfidentialityLabelRef",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.information.flow@1_ConfidentialityLabelRef-catalog",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.information.flow@1_ConfidentialityLabelRef-name",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.information.flow@1_ConfidentialityLabelRef",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.information.flow@1_LabelCatalogId",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.information.flow@1_LabelName",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.flow.execution.relation@1_RegionPairPolicy",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.flow.execution.relation@1_RegionPairPolicy-finite_exact_pairs",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.flow.execution.relation@1_RegionPairPolicy-all_pairs_in_closed_region_snapshot",
+    "g01-relation-schema-staging/unknown-RelationWire_agentflow.flow.execution.relation@1_RegionPairPolicy",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.flow.execution.relation@1_RegionPair",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_RegionPair-execution_region",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_RegionPair-residency_region",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.flow.execution.relation@1_RegionPair",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.flow.execution.relation@1_TaintExecutionRule",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_TaintExecutionRule-taint",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_TaintExecutionRule-trust_domains",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_TaintExecutionRule-sandbox",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.flow.execution.relation@1_TaintExecutionRule",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.information.flow@1_TaintRef",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.information.flow@1_TaintRef-catalog",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.information.flow@1_TaintRef-name",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.information.flow@1_TaintRef",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.flow.execution.relation@1_TrustDomainPolicy",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.flow.execution.relation@1_TrustDomainPolicy-exact_allowlist",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.flow.execution.relation@1_TrustDomainPolicy-all_domains_in_closed_trust_snapshot",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.flow.execution.relation@1_TrustDomainPolicy-no_additional_trust_requirement",
+    "g01-relation-schema-staging/unknown-RelationWire_agentflow.flow.execution.relation@1_TrustDomainPolicy",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.flow.execution.relation@1_SandboxFloor",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.flow.execution.relation@1_SandboxFloor-no_additional_minimum",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.flow.execution.relation@1_SandboxFloor-minimum",
+    "g01-relation-schema-staging/unknown-RelationWire_agentflow.flow.execution.relation@1_SandboxFloor",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.execution.requirements@1_SandboxLevel",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.execution.requirements@1_SandboxLevel-basic",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.execution.requirements@1_SandboxLevel-strong",
+    "g01-relation-schema-staging/unknown-RelationWire_agentflow.execution.requirements@1_SandboxLevel",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.flow.execution.relation@1_AuthorityExecutionRule",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_AuthorityExecutionRule-authority",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_AuthorityExecutionRule-trust_domains",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_AuthorityExecutionRule-sandbox",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.flow.execution.relation@1_AuthorityExecutionRule",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.information.flow@1_InstructionAuthority",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.information.flow@1_InstructionAuthority-none",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.information.flow@1_InstructionAuthority-external_data",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.information.flow@1_InstructionAuthority-delegated_agent",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.information.flow@1_InstructionAuthority-user",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.information.flow@1_InstructionAuthority-workflow",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.information.flow@1_InstructionAuthority-platform",
+    "g01-relation-schema-staging/unknown-RelationWire_agentflow.information.flow@1_InstructionAuthority",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.flow.execution.relation@1_FlowExecutionRule",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_FlowExecutionRule-kind",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_FlowExecutionRule-sink",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_FlowExecutionRule-trust_domains",
+    "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_FlowExecutionRule-sandbox",
+    "g01-relation-schema-staging/extra-RelationWire_agentflow.flow.execution.relation@1_FlowExecutionRule",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.information.flow@1_FlowKind",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.information.flow@1_FlowKind-data_egress",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.information.flow@1_FlowKind-decision_influence",
+    "g01-relation-schema-staging/unknown-RelationWire_agentflow.information.flow@1_FlowKind",
+    "g01-relation-schema-staging/shape-RelationWire_agentflow.flow.execution.relation@1_FlowExecutionSink",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.flow.execution.relation@1_FlowExecutionSink-workflow_output",
+    "g01-relation-schema-staging/variant-RelationWire_agentflow.flow.execution.relation@1_FlowExecutionSink-exact_effect",
+    "g01-relation-schema-staging/unknown-RelationWire_agentflow.flow.execution.relation@1_FlowExecutionSink",
+    "g01-relation-schema-staging/shape-RelationSlot",
+    "g01-relation-schema-staging/variant-RelationSlot-effect_resource",
+    "g01-relation-schema-staging/variant-RelationSlot-recovery_usage",
+    "g01-relation-schema-staging/variant-RelationSlot-flow_execution",
+    "g01-relation-schema-staging/unknown-RelationSlot",
+    "g01-relation-schema-staging/shape-RelationSourceFamily",
+    "g01-relation-schema-staging/shape-RelationPlainChecksum",
+    "g01-relation-schema-staging/missing-RelationPlainChecksum-algorithm",
+    "g01-relation-schema-staging/missing-RelationPlainChecksum-hex",
+    "g01-relation-schema-staging/extra-RelationPlainChecksum",
+    "g01-relation-schema-staging/shape-NativeRelationFamilyPin",
+    "g01-relation-schema-staging/missing-NativeRelationFamilyPin-family",
+    "g01-relation-schema-staging/missing-NativeRelationFamilyPin-revision",
+    "g01-relation-schema-staging/missing-NativeRelationFamilyPin-canonical_content_checksum",
+    "g01-relation-schema-staging/extra-NativeRelationFamilyPin",
+    "g01-relation-schema-staging/shape-NativeRelationCatalog",
+    "g01-relation-schema-staging/variant-NativeRelationCatalog-effect_resource",
+    "g01-relation-schema-staging/variant-NativeRelationCatalog-recovery_usage",
+    "g01-relation-schema-staging/variant-NativeRelationCatalog-flow_execution",
+    "g01-relation-schema-staging/unknown-NativeRelationCatalog",
+    "g01-relation-schema-staging/shape-NativeRelationSnapshotSource",
+    "g01-relation-schema-staging/missing-NativeRelationSnapshotSource-kind",
+    "g01-relation-schema-staging/missing-NativeRelationSnapshotSource-schema_family",
+    "g01-relation-schema-staging/missing-NativeRelationSnapshotSource-revision",
+    "g01-relation-schema-staging/missing-NativeRelationSnapshotSource-pin",
+    "g01-relation-schema-staging/missing-NativeRelationSnapshotSource-canonical_content",
+    "g01-relation-schema-staging/missing-NativeRelationSnapshotSource-catalog",
+    "g01-relation-schema-staging/extra-NativeRelationSnapshotSource",
+    "g01-relation-schema-staging/shape-RelationMissingPart",
+    "g01-relation-schema-staging/variant-RelationMissingPart-module",
+    "g01-relation-schema-staging/variant-RelationMissingPart-root",
+    "g01-relation-schema-staging/variant-RelationMissingPart-definition",
+    "g01-relation-schema-staging/unknown-RelationMissingPart",
+    "g01-relation-schema-staging/shape-RelationValidationStep",
+    "g01-relation-schema-staging/variant-RelationValidationStep-catalog_canonicalization",
+    "g01-relation-schema-staging/variant-RelationValidationStep-current_encode",
+    "g01-relation-schema-staging/variant-RelationValidationStep-current_decode",
+    "g01-relation-schema-staging/variant-RelationValidationStep-native_decode",
+    "g01-relation-schema-staging/variant-RelationValidationStep-catalog_equality",
+    "g01-relation-schema-staging/variant-RelationValidationStep-byte_roundtrip",
+    "g01-relation-schema-staging/unknown-RelationValidationStep",
+    "g01-relation-schema-staging/shape-RelationInvalidInputSite",
+    "g01-relation-schema-staging/variant-RelationInvalidInputSite-source_catalog",
+    "g01-relation-schema-staging/variant-RelationInvalidInputSite-current_schema",
+    "g01-relation-schema-staging/variant-RelationInvalidInputSite-canonical_content",
+    "g01-relation-schema-staging/unknown-RelationInvalidInputSite",
+    "g01-relation-schema-staging/shape-RelationCodecFailure",
+    "g01-relation-schema-staging/variant-RelationCodecFailure-invalid_integer",
+    "g01-relation-schema-staging/missing-RelationCodecFailure-invalid_integer-input",
+    "g01-relation-schema-staging/extra-RelationCodecFailure-invalid_integer",
+    "g01-relation-schema-staging/variant-RelationCodecFailure-integer_out_of_range",
+    "g01-relation-schema-staging/missing-RelationCodecFailure-integer_out_of_range-input",
+    "g01-relation-schema-staging/missing-RelationCodecFailure-integer_out_of_range-type_name",
+    "g01-relation-schema-staging/extra-RelationCodecFailure-integer_out_of_range",
+    "g01-relation-schema-staging/variant-RelationCodecFailure-invalid_decimal",
+    "g01-relation-schema-staging/missing-RelationCodecFailure-invalid_decimal-input",
+    "g01-relation-schema-staging/extra-RelationCodecFailure-invalid_decimal",
+    "g01-relation-schema-staging/variant-RelationCodecFailure-non_finite_float",
+    "g01-relation-schema-staging/variant-RelationCodecFailure-invalid_unicode",
+    "g01-relation-schema-staging/missing-RelationCodecFailure-invalid_unicode-detail",
+    "g01-relation-schema-staging/extra-RelationCodecFailure-invalid_unicode",
+    "g01-relation-schema-staging/variant-RelationCodecFailure-duplicate_normalized_key",
+    "g01-relation-schema-staging/missing-RelationCodecFailure-duplicate_normalized_key-key",
+    "g01-relation-schema-staging/extra-RelationCodecFailure-duplicate_normalized_key",
+    "g01-relation-schema-staging/variant-RelationCodecFailure-duplicate_field",
+    "g01-relation-schema-staging/missing-RelationCodecFailure-duplicate_field-field",
+    "g01-relation-schema-staging/extra-RelationCodecFailure-duplicate_field",
+    "g01-relation-schema-staging/variant-RelationCodecFailure-unknown_field",
+    "g01-relation-schema-staging/missing-RelationCodecFailure-unknown_field-field",
+    "g01-relation-schema-staging/extra-RelationCodecFailure-unknown_field",
+    "g01-relation-schema-staging/variant-RelationCodecFailure-missing_field",
+    "g01-relation-schema-staging/missing-RelationCodecFailure-missing_field-field",
+    "g01-relation-schema-staging/extra-RelationCodecFailure-missing_field",
+    "g01-relation-schema-staging/variant-RelationCodecFailure-invalid_bytes_encoding",
+    "g01-relation-schema-staging/missing-RelationCodecFailure-invalid_bytes_encoding-detail",
+    "g01-relation-schema-staging/extra-RelationCodecFailure-invalid_bytes_encoding",
+    "g01-relation-schema-staging/variant-RelationCodecFailure-unknown_enum_value",
+    "g01-relation-schema-staging/missing-RelationCodecFailure-unknown_enum_value-value",
+    "g01-relation-schema-staging/extra-RelationCodecFailure-unknown_enum_value",
+    "g01-relation-schema-staging/variant-RelationCodecFailure-unknown_variant_case",
+    "g01-relation-schema-staging/missing-RelationCodecFailure-unknown_variant_case-case",
+    "g01-relation-schema-staging/extra-RelationCodecFailure-unknown_variant_case",
+    "g01-relation-schema-staging/variant-RelationCodecFailure-invalid_option_encoding",
+    "g01-relation-schema-staging/missing-RelationCodecFailure-invalid_option_encoding-detail",
+    "g01-relation-schema-staging/extra-RelationCodecFailure-invalid_option_encoding",
+    "g01-relation-schema-staging/variant-RelationCodecFailure-type_mismatch",
+    "g01-relation-schema-staging/missing-RelationCodecFailure-type_mismatch-expected",
+    "g01-relation-schema-staging/missing-RelationCodecFailure-type_mismatch-actual",
+    "g01-relation-schema-staging/extra-RelationCodecFailure-type_mismatch",
+    "g01-relation-schema-staging/variant-RelationCodecFailure-non_canonical_encoding",
+    "g01-relation-schema-staging/missing-RelationCodecFailure-non_canonical_encoding-detail",
+    "g01-relation-schema-staging/extra-RelationCodecFailure-non_canonical_encoding",
+    "g01-relation-schema-staging/variant-RelationCodecFailure-invalid_shape",
+    "g01-relation-schema-staging/missing-RelationCodecFailure-invalid_shape-detail",
+    "g01-relation-schema-staging/extra-RelationCodecFailure-invalid_shape",
+    "g01-relation-schema-staging/unknown-RelationCodecFailure",
+    "g01-relation-schema-staging/shape-RelationPriorFailure",
+    "g01-relation-schema-staging/variant-RelationPriorFailure-invalid_identity",
+    "g01-relation-schema-staging/variant-RelationPriorFailure-invalid_context",
+    "g01-relation-schema-staging/variant-RelationPriorFailure-missing_source",
+    "g01-relation-schema-staging/variant-RelationPriorFailure-invalid_source",
+    "g01-relation-schema-staging/variant-RelationPriorFailure-unsupported_model",
+    "g01-relation-schema-staging/variant-RelationPriorFailure-source_association",
+    "g01-relation-schema-staging/unknown-RelationPriorFailure",
+    "g01-relation-schema-staging/shape-RelationLookupTarget",
+    "g01-relation-schema-staging/missing-RelationLookupTarget-slot",
+    "g01-relation-schema-staging/missing-RelationLookupTarget-family",
+    "g01-relation-schema-staging/missing-RelationLookupTarget-root_type",
+    "g01-relation-schema-staging/extra-RelationLookupTarget",
+    "g01-relation-schema-staging/shape-RelationFoundSchema",
+    "g01-relation-schema-staging/missing-RelationFoundSchema-target",
+    "g01-relation-schema-staging/missing-RelationFoundSchema-schema",
+    "g01-relation-schema-staging/missing-RelationFoundSchema-definition",
+    "g01-relation-schema-staging/missing-RelationFoundSchema-definition_closure",
+    "g01-relation-schema-staging/extra-RelationFoundSchema",
+    "g01-relation-schema-staging/shape-RelationLookupResult",
+    "g01-relation-schema-staging/variant-RelationLookupResult-not_reached",
+    "g01-relation-schema-staging/missing-RelationLookupResult-not_reached-cause",
+    "g01-relation-schema-staging/extra-RelationLookupResult-not_reached",
+    "g01-relation-schema-staging/variant-RelationLookupResult-missing",
+    "g01-relation-schema-staging/missing-RelationLookupResult-missing-target",
+    "g01-relation-schema-staging/missing-RelationLookupResult-missing-part",
+    "g01-relation-schema-staging/missing-RelationLookupResult-missing-missing_identity",
+    "g01-relation-schema-staging/extra-RelationLookupResult-missing",
+    "g01-relation-schema-staging/variant-RelationLookupResult-ambiguous",
+    "g01-relation-schema-staging/missing-RelationLookupResult-ambiguous-target",
+    "g01-relation-schema-staging/missing-RelationLookupResult-ambiguous-definitions",
+    "g01-relation-schema-staging/extra-RelationLookupResult-ambiguous",
+    "g01-relation-schema-staging/variant-RelationLookupResult-family_mismatch",
+    "g01-relation-schema-staging/missing-RelationLookupResult-family_mismatch-target",
+    "g01-relation-schema-staging/missing-RelationLookupResult-family_mismatch-source_family",
+    "g01-relation-schema-staging/extra-RelationLookupResult-family_mismatch",
+    "g01-relation-schema-staging/variant-RelationLookupResult-revision_mismatch",
+    "g01-relation-schema-staging/missing-RelationLookupResult-revision_mismatch-actual",
+    "g01-relation-schema-staging/missing-RelationLookupResult-revision_mismatch-expected",
+    "g01-relation-schema-staging/extra-RelationLookupResult-revision_mismatch",
+    "g01-relation-schema-staging/variant-RelationLookupResult-found",
+    "g01-relation-schema-staging/unknown-RelationLookupResult",
+    "g01-relation-schema-staging/shape-RelationValidationResult",
+    "g01-relation-schema-staging/variant-RelationValidationResult-not_reached",
+    "g01-relation-schema-staging/variant-RelationValidationResult-invalid",
+    "g01-relation-schema-staging/missing-RelationValidationResult-invalid-found",
+    "g01-relation-schema-staging/missing-RelationValidationResult-invalid-step",
+    "g01-relation-schema-staging/missing-RelationValidationResult-invalid-codec_failure",
+    "g01-relation-schema-staging/missing-RelationValidationResult-invalid-input_sites",
+    "g01-relation-schema-staging/missing-RelationValidationResult-invalid-completed_steps",
+    "g01-relation-schema-staging/extra-RelationValidationResult-invalid",
+    "g01-relation-schema-staging/variant-RelationValidationResult-valid",
+    "g01-relation-schema-staging/missing-RelationValidationResult-valid-found",
+    "g01-relation-schema-staging/missing-RelationValidationResult-valid-validated_catalog",
+    "g01-relation-schema-staging/missing-RelationValidationResult-valid-canonical_content",
+    "g01-relation-schema-staging/missing-RelationValidationResult-valid-completed_steps",
+    "g01-relation-schema-staging/extra-RelationValidationResult-valid",
+    "g01-relation-schema-staging/unknown-RelationValidationResult",
+    "g01-relation-schema-staging/shape-RelationPartitionAdmission",
+    "g01-relation-schema-staging/variant-RelationPartitionAdmission-absent",
+    "g01-relation-schema-staging/variant-RelationPartitionAdmission-incomplete",
+    "g01-relation-schema-staging/variant-RelationPartitionAdmission-validated",
+    "g01-relation-schema-staging/unknown-RelationPartitionAdmission",
+    "g01-relation-schema-staging/shape-RelationMetadataAssurance",
+    "g01-relation-schema-staging/variant-RelationMetadataAssurance-relation_slot_only",
+    "g01-relation-schema-staging/unknown-RelationMetadataAssurance",
+    "g01-relation-schema-staging/shape-RelationAlgorithmIdentity",
+    "g01-relation-schema-staging/missing-RelationAlgorithmIdentity-analysis",
+    "g01-relation-schema-staging/missing-RelationAlgorithmIdentity-model",
+    "g01-relation-schema-staging/missing-RelationAlgorithmIdentity-lookup_rule",
+    "g01-relation-schema-staging/missing-RelationAlgorithmIdentity-validation_rule",
+    "g01-relation-schema-staging/extra-RelationAlgorithmIdentity",
+    "g01-relation-schema-staging/shape-RelationObservedContextRoles",
+    "g01-relation-schema-staging/shape-RelationCurrentValidationMetadata",
+    "g01-relation-schema-staging/missing-RelationCurrentValidationMetadata-assurance",
+    "g01-relation-schema-staging/missing-RelationCurrentValidationMetadata-algorithm",
+    "g01-relation-schema-staging/missing-RelationCurrentValidationMetadata-target",
+    "g01-relation-schema-staging/missing-RelationCurrentValidationMetadata-source",
+    "g01-relation-schema-staging/missing-RelationCurrentValidationMetadata-context_roles",
+    "g01-relation-schema-staging/missing-RelationCurrentValidationMetadata-current_modules",
+    "g01-relation-schema-staging/missing-RelationCurrentValidationMetadata-lookup",
+    "g01-relation-schema-staging/missing-RelationCurrentValidationMetadata-validation",
+    "g01-relation-schema-staging/missing-RelationCurrentValidationMetadata-admission",
+    "g01-relation-schema-staging/extra-RelationCurrentValidationMetadata",
+    "g01-relation-schema-staging/shape-RelationRemainingScope",
+    "g01-relation-schema-staging/variant-RelationRemainingScope-remaining_scope_incomplete",
+    "g01-relation-schema-staging/unknown-RelationRemainingScope",
+    "g01-relation-schema-staging/shape-RelationContextAdmissionMetadata",
+    "g01-relation-schema-staging/missing-RelationContextAdmissionMetadata-effect_resource",
+    "g01-relation-schema-staging/missing-RelationContextAdmissionMetadata-recovery_usage",
+    "g01-relation-schema-staging/missing-RelationContextAdmissionMetadata-flow_execution",
+    "g01-relation-schema-staging/missing-RelationContextAdmissionMetadata-relation_partition_complete",
+    "g01-relation-schema-staging/missing-RelationContextAdmissionMetadata-scope_state",
+    "g01-relation-schema-staging/extra-RelationContextAdmissionMetadata",
+    "g01-relation-schema-staging/shape-CurrentContextRelationSchemaValidation",
+    "g01-relation-schema-staging/missing-CurrentContextRelationSchemaValidation-source",
+    "g01-relation-schema-staging/missing-CurrentContextRelationSchemaValidation-context",
+    "g01-relation-schema-staging/missing-CurrentContextRelationSchemaValidation-algorithm",
+    "g01-relation-schema-staging/missing-CurrentContextRelationSchemaValidation-target",
+    "g01-relation-schema-staging/missing-CurrentContextRelationSchemaValidation-lookup",
+    "g01-relation-schema-staging/missing-CurrentContextRelationSchemaValidation-validation",
+    "g01-relation-schema-staging/extra-CurrentContextRelationSchemaValidation",
+    "g01-relation-schema-staging/shape-RelationSubjectAdmission",
+    "g01-relation-schema-staging/missing-RelationSubjectAdmission-subject",
+    "g01-relation-schema-staging/missing-RelationSubjectAdmission-observations",
+    "g01-relation-schema-staging/missing-RelationSubjectAdmission-relation_partition_complete",
+    "g01-relation-schema-staging/extra-RelationSubjectAdmission",
+    "g01-relation-schema-staging/shape-RelationSourceDagMetadata",
+    "g01-relation-schema-staging/missing-RelationSourceDagMetadata-nodes",
+    "g01-relation-schema-staging/missing-RelationSourceDagMetadata-roots",
+    "g01-relation-schema-staging/extra-RelationSourceDagMetadata",
+    "g01-relation-schema-staging/propagation-RawValidationSubject",
+    "g01-relation-schema-staging/propagation-Source",
+    "g01-relation-schema-staging/propagation-RawPortCheckBasis",
+    "g01-relation-schema-staging/propagation-RawPortRejectionWitness",
+    "g01-relation-schema-staging/propagation-TypedContradiction",
+    "g01-relation-schema-staging/propagation-EvidenceRef",
+    "g01-relation-schema-staging/propagation-Origin",
+    "g01-relation-schema-staging/propagation-FactKey",
+    "g01-relation-schema-staging/owner-ModelType-agentflow.computation.proof-report.model@6",
+    "g01-relation-schema-staging/owner-ModelType-agentflow.computation.proof-report.model@5",
+    "g01-relation-schema-staging/owner-ModelRef-agentflow.computation.proof-report.model@6",
+    "g01-relation-schema-staging/owner-ModelRef-agentflow.computation.proof-report.model@5",
+    "g01-relation-schema-staging/rule-0286",
+    "g01-relation-schema-staging/rule-0287",
+    "g01-relation-schema-staging/rule-0288",
+    "g01-relation-schema-staging/rule-0289",
+    "g01-relation-schema-staging/rule-0290",
+    "g01-relation-schema-staging/rule-0291",
+    "g01-relation-schema-staging/rule-0292",
+    "g01-relation-schema-staging/rule-0293",
+    "g01-relation-schema-staging/rule-0294",
+    "g01-relation-schema-staging/rule-0295",
+    "g01-relation-schema-staging/rule-0296",
+    "g01-relation-schema-staging/rule-0297",
+    "g01-relation-schema-staging/rule-0298",
+    "g01-relation-schema-staging/rule-0299",
+    "g01-relation-schema-staging/rule-0300",
+    "g01-relation-schema-staging/rule-0301",
+    "g01-relation-schema-staging/admission-effect_resource-valid",
+    "g01-relation-schema-staging/admission-effect_resource-none",
+    "g01-relation-schema-staging/admission-effect_resource-current-B",
+    "g01-relation-schema-staging/admission-effect_resource-missing-module",
+    "g01-relation-schema-staging/admission-effect_resource-missing-root",
+    "g01-relation-schema-staging/admission-effect_resource-invalid-current",
+    "g01-relation-schema-staging/admission-effect_resource-wrong-family-context",
+    "g01-relation-schema-staging/admission-effect_resource-nonempty",
+    "g01-relation-schema-staging/admission-effect_resource-nonempty-under-B",
+    "g01-relation-schema-staging/admission-effect_resource-wrong-expected-family",
+    "g01-relation-schema-staging/admission-effect_resource-revision-mismatch",
+    "g01-relation-schema-staging/admission-effect_resource-wrong-compiler",
+    "g01-relation-schema-staging/admission-effect_resource-split-context",
+    "g01-relation-schema-staging/admission-effect_resource-ambiguous-boundary",
+    "g01-relation-schema-staging/admission-effect_resource-schema-owner",
+    "g01-relation-schema-staging/admission-effect_resource-schema-name",
+    "g01-relation-schema-staging/admission-effect_resource-schema-digest",
+    "g01-relation-schema-staging/admission-effect_resource-checksum-as-schema",
+    "g01-relation-schema-staging/admission-effect_resource-missing-source",
+    "g01-relation-schema-staging/admission-effect_resource-malformed-family",
+    "g01-relation-schema-staging/admission-effect_resource-slot-swap",
+    "g01-relation-schema-staging/admission-effect_resource-missing-result",
+    "g01-relation-schema-staging/admission-effect_resource-unknown-validation",
+    "g01-relation-schema-staging/admission-effect_resource-fabricated-history",
+    "g01-relation-schema-staging/admission-effect_resource-wrong-stage",
+    "g01-relation-schema-staging/admission-effect_resource-old-model",
+    "g01-relation-schema-staging/admission-effect_resource-false-authority",
+    "g01-relation-schema-staging/admission-effect_resource-schema-nominal-owner",
+    "g01-relation-schema-staging/admission-effect_resource-schema-family",
+    "g01-relation-schema-staging/admission-effect_resource-catalog-checksum-as-schema",
+    "g01-relation-schema-staging/admission-effect_resource-source-checksum",
+    "g01-relation-schema-staging/admission-effect_resource-false-alias-claim",
+    "g01-relation-schema-staging/admission-recovery_usage-valid",
+    "g01-relation-schema-staging/admission-recovery_usage-none",
+    "g01-relation-schema-staging/admission-recovery_usage-current-B",
+    "g01-relation-schema-staging/admission-recovery_usage-missing-module",
+    "g01-relation-schema-staging/admission-recovery_usage-missing-root",
+    "g01-relation-schema-staging/admission-recovery_usage-invalid-current",
+    "g01-relation-schema-staging/admission-recovery_usage-wrong-family-context",
+    "g01-relation-schema-staging/admission-recovery_usage-nonempty",
+    "g01-relation-schema-staging/admission-recovery_usage-nonempty-under-B",
+    "g01-relation-schema-staging/admission-recovery_usage-wrong-expected-family",
+    "g01-relation-schema-staging/admission-recovery_usage-revision-mismatch",
+    "g01-relation-schema-staging/admission-recovery_usage-wrong-compiler",
+    "g01-relation-schema-staging/admission-recovery_usage-split-context",
+    "g01-relation-schema-staging/admission-recovery_usage-ambiguous-boundary",
+    "g01-relation-schema-staging/admission-recovery_usage-schema-owner",
+    "g01-relation-schema-staging/admission-recovery_usage-schema-name",
+    "g01-relation-schema-staging/admission-recovery_usage-schema-digest",
+    "g01-relation-schema-staging/admission-recovery_usage-checksum-as-schema",
+    "g01-relation-schema-staging/admission-recovery_usage-missing-source",
+    "g01-relation-schema-staging/admission-recovery_usage-malformed-family",
+    "g01-relation-schema-staging/admission-recovery_usage-slot-swap",
+    "g01-relation-schema-staging/admission-recovery_usage-missing-result",
+    "g01-relation-schema-staging/admission-recovery_usage-unknown-validation",
+    "g01-relation-schema-staging/admission-recovery_usage-fabricated-history",
+    "g01-relation-schema-staging/admission-recovery_usage-wrong-stage",
+    "g01-relation-schema-staging/admission-recovery_usage-old-model",
+    "g01-relation-schema-staging/admission-recovery_usage-false-authority",
+    "g01-relation-schema-staging/admission-recovery_usage-schema-nominal-owner",
+    "g01-relation-schema-staging/admission-recovery_usage-schema-family",
+    "g01-relation-schema-staging/admission-recovery_usage-catalog-checksum-as-schema",
+    "g01-relation-schema-staging/admission-recovery_usage-source-checksum",
+    "g01-relation-schema-staging/admission-recovery_usage-false-alias-claim",
+    "g01-relation-schema-staging/admission-flow_execution-valid",
+    "g01-relation-schema-staging/admission-flow_execution-none",
+    "g01-relation-schema-staging/admission-flow_execution-current-B",
+    "g01-relation-schema-staging/admission-flow_execution-missing-module",
+    "g01-relation-schema-staging/admission-flow_execution-missing-root",
+    "g01-relation-schema-staging/admission-flow_execution-invalid-current",
+    "g01-relation-schema-staging/admission-flow_execution-wrong-family-context",
+    "g01-relation-schema-staging/admission-flow_execution-nonempty",
+    "g01-relation-schema-staging/admission-flow_execution-nonempty-under-B",
+    "g01-relation-schema-staging/admission-flow_execution-wrong-expected-family",
+    "g01-relation-schema-staging/admission-flow_execution-revision-mismatch",
+    "g01-relation-schema-staging/admission-flow_execution-wrong-compiler",
+    "g01-relation-schema-staging/admission-flow_execution-split-context",
+    "g01-relation-schema-staging/admission-flow_execution-ambiguous-boundary",
+    "g01-relation-schema-staging/admission-flow_execution-schema-owner",
+    "g01-relation-schema-staging/admission-flow_execution-schema-name",
+    "g01-relation-schema-staging/admission-flow_execution-schema-digest",
+    "g01-relation-schema-staging/admission-flow_execution-checksum-as-schema",
+    "g01-relation-schema-staging/admission-flow_execution-missing-source",
+    "g01-relation-schema-staging/admission-flow_execution-malformed-family",
+    "g01-relation-schema-staging/admission-flow_execution-slot-swap",
+    "g01-relation-schema-staging/admission-flow_execution-missing-result",
+    "g01-relation-schema-staging/admission-flow_execution-unknown-validation",
+    "g01-relation-schema-staging/admission-flow_execution-fabricated-history",
+    "g01-relation-schema-staging/admission-flow_execution-wrong-stage",
+    "g01-relation-schema-staging/admission-flow_execution-old-model",
+    "g01-relation-schema-staging/admission-flow_execution-false-authority",
+    "g01-relation-schema-staging/admission-flow_execution-schema-nominal-owner",
+    "g01-relation-schema-staging/admission-flow_execution-schema-family",
+    "g01-relation-schema-staging/admission-flow_execution-catalog-checksum-as-schema",
+    "g01-relation-schema-staging/admission-flow_execution-source-checksum",
+    "g01-relation-schema-staging/admission-flow_execution-false-alias-claim",
+    "g01-relation-schema-staging/dag-empty",
+    "g01-relation-schema-staging/dag-single",
+    "g01-relation-schema-staging/dag-distinct",
+    "g01-relation-schema-staging/dag-duplicate-content",
+    "g01-relation-schema-staging/dag-unreachable",
+    "g01-relation-schema-staging/dag-missing-roots",
+    "g01-relation-schema-staging/dag-out-of-range",
+    "g01-relation-schema-staging/dag-wrong-root-order",
+    "g01-relation-schema-staging/dag-output-backedge",
+    "g01-relation-schema-staging/dag-output-as-input",
+    "g01-relation-schema-staging/portable-current-denied",
+    "g01-relation-schema-staging/portable-old-label-new-content-1",
+    "g01-relation-schema-staging/portable-old-label-new-content-2",
+    "g01-relation-schema-staging/portable-old-label-new-content-3",
+    "g01-relation-schema-staging/portable-old-label-new-content-4",
+    "g01-relation-schema-staging/portable-old-label-new-content-5",
+    "g01-relation-schema-staging/portable-old-label-new-content-6",
+    "g01-relation-schema-staging/portable-new-label-old-content",
+    "g01-relation-schema-staging/portable-unknown",
+    "g01-relation-schema-staging/portable-default-resource-limit",
+    "g01-relation-schema-staging/context-all-none",
+    "g01-relation-schema-staging/context-all-valid",
+    "g01-relation-schema-staging/context-recovery-missing",
+    "g01-relation-schema-staging/context-flow-invalid",
+    "g01-relation-schema-staging/context-split",
+    "g01-relation-schema-staging/context-wrong-compiler",
+    "g01-relation-schema-staging/context-missing-observation",
+    "g01-relation-schema-staging/context-false-complete",
+    "g01-relation-schema-staging/native-equality-effect_resource",
+    "g01-relation-schema-staging/native-equality-recovery_usage",
+    "g01-relation-schema-staging/native-equality-flow_execution",
+    "g01-relation-schema-staging/portable-caller-support-flag",
+    "g01-relation-schema-staging/portable-noncanonical"
+  ],
+  "context_cases": 8,
+  "coverage": [
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_EffectResourceCompatibilityCatalog-complete_operations",
+      "field": "complete_operations",
+      "type": "RelationWire/agentflow.effect.resource.compatibility@1/EffectResourceCompatibilityCatalog",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_EffectResourceCompatibilityCatalog-supported_pairs",
+      "field": "supported_pairs",
+      "type": "RelationWire/agentflow.effect.resource.compatibility@1/EffectResourceCompatibilityCatalog",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.signature@1_EffectOperationRef-catalog",
+      "field": "catalog",
+      "type": "RelationWire/agentflow.effect.signature@1/EffectOperationRef",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.signature@1_EffectOperationRef-name",
+      "field": "name",
+      "type": "RelationWire/agentflow.effect.signature@1/EffectOperationRef",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_SupportedEffectResourcePair-operation",
+      "field": "operation",
+      "type": "RelationWire/agentflow.effect.resource.compatibility@1/SupportedEffectResourcePair",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_SupportedEffectResourcePair-resource_type",
+      "field": "resource_type",
+      "type": "RelationWire/agentflow.effect.resource.compatibility@1/SupportedEffectResourcePair",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_SupportedEffectResourcePair-selector_keys",
+      "field": "selector_keys",
+      "type": "RelationWire/agentflow.effect.resource.compatibility@1/SupportedEffectResourcePair",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_SupportedEffectResourcePair-allowed_qualifier_profiles",
+      "field": "allowed_qualifier_profiles",
+      "type": "RelationWire/agentflow.effect.resource.compatibility@1/SupportedEffectResourcePair",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.resource.requirement@1_ResourceTypeRef-schema",
+      "field": "schema",
+      "type": "RelationWire/agentflow.resource.requirement@1/ResourceTypeRef",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.semantic.core@1_TypeSchemaRef-specification_id",
+      "field": "specification_id",
+      "type": "RelationWire/agentflow.semantic.core@1/TypeSchemaRef",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.semantic.core@1_TypeSchemaRef-type_name",
+      "field": "type_name",
+      "type": "RelationWire/agentflow.semantic.core@1/TypeSchemaRef",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.semantic.core@1_TypeSchemaRef-schema_digest",
+      "field": "schema_digest",
+      "type": "RelationWire/agentflow.semantic.core@1/TypeSchemaRef",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.semantic.core@1_DigestRefValue-algorithm",
+      "field": "algorithm",
+      "type": "RelationWire/agentflow.semantic.core@1/DigestRefValue",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.semantic.core@1_DigestRefValue-domain",
+      "field": "domain",
+      "type": "RelationWire/agentflow.semantic.core@1/DigestRefValue",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.semantic.core@1_DigestRefValue-hex",
+      "field": "hex",
+      "type": "RelationWire/agentflow.semantic.core@1/DigestRefValue",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_SelectorKeyRule-selector_key",
+      "field": "selector_key",
+      "type": "RelationWire/agentflow.effect.resource.compatibility@1/SelectorKeyRule",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_SelectorKeyRule-resource_attribute_key",
+      "field": "resource_attribute_key",
+      "type": "RelationWire/agentflow.effect.resource.compatibility@1/SelectorKeyRule",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_SelectorKeyRule-required",
+      "field": "required",
+      "type": "RelationWire/agentflow.effect.resource.compatibility@1/SelectorKeyRule",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_SelectorKeyRule-values",
+      "field": "values",
+      "type": "RelationWire/agentflow.effect.resource.compatibility@1/SelectorKeyRule",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.effect.resource.compatibility@1_ScopeValueRule-finite_exact_values",
+      "type": "RelationWire/agentflow.effect.resource.compatibility@1/ScopeValueRule",
+      "variant": "finite_exact_values"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.effect.resource.compatibility@1_ScopeValueRule-opaque_nfc_exact_string",
+      "type": "RelationWire/agentflow.effect.resource.compatibility@1/ScopeValueRule",
+      "variant": "opaque_nfc_exact_string"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.resource.compatibility@1_EffectQualifierProfile-qualifiers",
+      "field": "qualifiers",
+      "type": "RelationWire/agentflow.effect.resource.compatibility@1/EffectQualifierProfile",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.effect.signature@1_EffectQualifier-idempotency",
+      "type": "RelationWire/agentflow.effect.signature@1/EffectQualifier",
+      "variant": "idempotency"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.effect.signature@1_EffectIdempotencyQualifier-natural",
+      "type": "RelationWire/agentflow.effect.signature@1/EffectIdempotencyQualifier",
+      "variant": "natural"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.effect.signature@1_EffectIdempotencyQualifier-none",
+      "type": "RelationWire/agentflow.effect.signature@1/EffectIdempotencyQualifier",
+      "variant": "none"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.recovery.usage.coverage@1_RecoveryUsageCoverageCatalog-rules",
+      "field": "rules",
+      "type": "RelationWire/agentflow.recovery.usage.coverage@1/RecoveryUsageCoverageCatalog",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.recovery.usage.coverage@1_RecoveryUsageCoverageRule-action",
+      "field": "action",
+      "type": "RelationWire/agentflow.recovery.usage.coverage@1/RecoveryUsageCoverageRule",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.recovery.usage.coverage@1_RecoveryUsageCoverageRule-complete_meters",
+      "field": "complete_meters",
+      "type": "RelationWire/agentflow.recovery.usage.coverage@1/RecoveryUsageCoverageRule",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.component.contract@1_RecoveryActionIdentity-forward_effect",
+      "field": "forward_effect",
+      "type": "RelationWire/agentflow.component.contract@1/RecoveryActionIdentity",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.component.contract@1_RecoveryActionIdentity-action_kind",
+      "field": "action_kind",
+      "type": "RelationWire/agentflow.component.contract@1/RecoveryActionIdentity",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.component.contract@1_RecoveryActionIdentity-action_effect",
+      "field": "action_effect",
+      "type": "RelationWire/agentflow.component.contract@1/RecoveryActionIdentity",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.signature@1_EffectAtom-operation",
+      "field": "operation",
+      "type": "RelationWire/agentflow.effect.signature@1/EffectAtom",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.signature@1_EffectAtom-resource_selector",
+      "field": "resource_selector",
+      "type": "RelationWire/agentflow.effect.signature@1/EffectAtom",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.signature@1_EffectAtom-qualifiers",
+      "field": "qualifiers",
+      "type": "RelationWire/agentflow.effect.signature@1/EffectAtom",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.signature@1_ResourceSelector-requirement_port_no",
+      "field": "requirement_port_no",
+      "type": "RelationWire/agentflow.effect.signature@1/ResourceSelector",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.signature@1_ResourceSelector-scope_bindings",
+      "field": "scope_bindings",
+      "type": "RelationWire/agentflow.effect.signature@1/ResourceSelector",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.signature@1_ScopeBinding-key",
+      "field": "key",
+      "type": "RelationWire/agentflow.effect.signature@1/ScopeBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.effect.signature@1_ScopeBinding-value",
+      "field": "value",
+      "type": "RelationWire/agentflow.effect.signature@1/ScopeBinding",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.component.contract@1_RecoveryActionKind-reconciliation",
+      "type": "RelationWire/agentflow.component.contract@1/RecoveryActionKind",
+      "variant": "reconciliation"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.component.contract@1_RecoveryActionKind-compensation",
+      "type": "RelationWire/agentflow.component.contract@1/RecoveryActionKind",
+      "variant": "compensation"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.usage.signature@1_UsageMeterRef-catalog",
+      "field": "catalog",
+      "type": "RelationWire/agentflow.usage.signature@1/UsageMeterRef",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.usage.signature@1_UsageMeterRef-name",
+      "field": "name",
+      "type": "RelationWire/agentflow.usage.signature@1/UsageMeterRef",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_InformationFlowExecutionCatalog-closed_regions",
+      "field": "closed_regions",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/InformationFlowExecutionCatalog",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_InformationFlowExecutionCatalog-closed_trust_domains",
+      "field": "closed_trust_domains",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/InformationFlowExecutionCatalog",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_InformationFlowExecutionCatalog-confidentiality_rules",
+      "field": "confidentiality_rules",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/InformationFlowExecutionCatalog",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_InformationFlowExecutionCatalog-taint_rules",
+      "field": "taint_rules",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/InformationFlowExecutionCatalog",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_InformationFlowExecutionCatalog-authority_rules",
+      "field": "authority_rules",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/InformationFlowExecutionCatalog",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_InformationFlowExecutionCatalog-sink_rules",
+      "field": "sink_rules",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/InformationFlowExecutionCatalog",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.execution.requirements@1_RegionRef-catalog",
+      "field": "catalog",
+      "type": "RelationWire/agentflow.execution.requirements@1/RegionRef",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.execution.requirements@1_RegionRef-name",
+      "field": "name",
+      "type": "RelationWire/agentflow.execution.requirements@1/RegionRef",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.execution.requirements@1_TrustDomainRef-catalog",
+      "field": "catalog",
+      "type": "RelationWire/agentflow.execution.requirements@1/TrustDomainRef",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.execution.requirements@1_TrustDomainRef-name",
+      "field": "name",
+      "type": "RelationWire/agentflow.execution.requirements@1/TrustDomainRef",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_ConfidentialityExecutionRule-label",
+      "field": "label",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/ConfidentialityExecutionRule",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_ConfidentialityExecutionRule-region_pairs",
+      "field": "region_pairs",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/ConfidentialityExecutionRule",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.information.flow@1_ConfidentialityLabelRef-catalog",
+      "field": "catalog",
+      "type": "RelationWire/agentflow.information.flow@1/ConfidentialityLabelRef",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.information.flow@1_ConfidentialityLabelRef-name",
+      "field": "name",
+      "type": "RelationWire/agentflow.information.flow@1/ConfidentialityLabelRef",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.flow.execution.relation@1_RegionPairPolicy-finite_exact_pairs",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/RegionPairPolicy",
+      "variant": "finite_exact_pairs"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.flow.execution.relation@1_RegionPairPolicy-all_pairs_in_closed_region_snapshot",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/RegionPairPolicy",
+      "variant": "all_pairs_in_closed_region_snapshot"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_RegionPair-execution_region",
+      "field": "execution_region",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/RegionPair",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_RegionPair-residency_region",
+      "field": "residency_region",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/RegionPair",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_TaintExecutionRule-taint",
+      "field": "taint",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/TaintExecutionRule",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_TaintExecutionRule-trust_domains",
+      "field": "trust_domains",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/TaintExecutionRule",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_TaintExecutionRule-sandbox",
+      "field": "sandbox",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/TaintExecutionRule",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.information.flow@1_TaintRef-catalog",
+      "field": "catalog",
+      "type": "RelationWire/agentflow.information.flow@1/TaintRef",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.information.flow@1_TaintRef-name",
+      "field": "name",
+      "type": "RelationWire/agentflow.information.flow@1/TaintRef",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.flow.execution.relation@1_TrustDomainPolicy-exact_allowlist",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/TrustDomainPolicy",
+      "variant": "exact_allowlist"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.flow.execution.relation@1_TrustDomainPolicy-all_domains_in_closed_trust_snapshot",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/TrustDomainPolicy",
+      "variant": "all_domains_in_closed_trust_snapshot"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.flow.execution.relation@1_TrustDomainPolicy-no_additional_trust_requirement",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/TrustDomainPolicy",
+      "variant": "no_additional_trust_requirement"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.flow.execution.relation@1_SandboxFloor-no_additional_minimum",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/SandboxFloor",
+      "variant": "no_additional_minimum"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.flow.execution.relation@1_SandboxFloor-minimum",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/SandboxFloor",
+      "variant": "minimum"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.execution.requirements@1_SandboxLevel-basic",
+      "type": "RelationWire/agentflow.execution.requirements@1/SandboxLevel",
+      "variant": "basic"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.execution.requirements@1_SandboxLevel-strong",
+      "type": "RelationWire/agentflow.execution.requirements@1/SandboxLevel",
+      "variant": "strong"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_AuthorityExecutionRule-authority",
+      "field": "authority",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/AuthorityExecutionRule",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_AuthorityExecutionRule-trust_domains",
+      "field": "trust_domains",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/AuthorityExecutionRule",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_AuthorityExecutionRule-sandbox",
+      "field": "sandbox",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/AuthorityExecutionRule",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.information.flow@1_InstructionAuthority-none",
+      "type": "RelationWire/agentflow.information.flow@1/InstructionAuthority",
+      "variant": "none"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.information.flow@1_InstructionAuthority-external_data",
+      "type": "RelationWire/agentflow.information.flow@1/InstructionAuthority",
+      "variant": "external_data"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.information.flow@1_InstructionAuthority-delegated_agent",
+      "type": "RelationWire/agentflow.information.flow@1/InstructionAuthority",
+      "variant": "delegated_agent"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.information.flow@1_InstructionAuthority-user",
+      "type": "RelationWire/agentflow.information.flow@1/InstructionAuthority",
+      "variant": "user"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.information.flow@1_InstructionAuthority-workflow",
+      "type": "RelationWire/agentflow.information.flow@1/InstructionAuthority",
+      "variant": "workflow"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.information.flow@1_InstructionAuthority-platform",
+      "type": "RelationWire/agentflow.information.flow@1/InstructionAuthority",
+      "variant": "platform"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_FlowExecutionRule-kind",
+      "field": "kind",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/FlowExecutionRule",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_FlowExecutionRule-sink",
+      "field": "sink",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/FlowExecutionRule",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_FlowExecutionRule-trust_domains",
+      "field": "trust_domains",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/FlowExecutionRule",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationWire_agentflow.flow.execution.relation@1_FlowExecutionRule-sandbox",
+      "field": "sandbox",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/FlowExecutionRule",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.information.flow@1_FlowKind-data_egress",
+      "type": "RelationWire/agentflow.information.flow@1/FlowKind",
+      "variant": "data_egress"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.information.flow@1_FlowKind-decision_influence",
+      "type": "RelationWire/agentflow.information.flow@1/FlowKind",
+      "variant": "decision_influence"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.flow.execution.relation@1_FlowExecutionSink-workflow_output",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/FlowExecutionSink",
+      "variant": "workflow_output"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationWire_agentflow.flow.execution.relation@1_FlowExecutionSink-exact_effect",
+      "type": "RelationWire/agentflow.flow.execution.relation@1/FlowExecutionSink",
+      "variant": "exact_effect"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationSlot-effect_resource",
+      "type": "RelationSlot",
+      "variant": "effect_resource"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationSlot-recovery_usage",
+      "type": "RelationSlot",
+      "variant": "recovery_usage"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationSlot-flow_execution",
+      "type": "RelationSlot",
+      "variant": "flow_execution"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationPlainChecksum-algorithm",
+      "field": "algorithm",
+      "type": "RelationPlainChecksum",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationPlainChecksum-hex",
+      "field": "hex",
+      "type": "RelationPlainChecksum",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-NativeRelationFamilyPin-family",
+      "field": "family",
+      "type": "NativeRelationFamilyPin",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-NativeRelationFamilyPin-revision",
+      "field": "revision",
+      "type": "NativeRelationFamilyPin",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-NativeRelationFamilyPin-canonical_content_checksum",
+      "field": "canonical_content_checksum",
+      "type": "NativeRelationFamilyPin",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-NativeRelationCatalog-effect_resource",
+      "type": "NativeRelationCatalog",
+      "variant": "effect_resource"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-NativeRelationCatalog-recovery_usage",
+      "type": "NativeRelationCatalog",
+      "variant": "recovery_usage"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-NativeRelationCatalog-flow_execution",
+      "type": "NativeRelationCatalog",
+      "variant": "flow_execution"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-NativeRelationSnapshotSource-kind",
+      "field": "kind",
+      "type": "NativeRelationSnapshotSource",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-NativeRelationSnapshotSource-schema_family",
+      "field": "schema_family",
+      "type": "NativeRelationSnapshotSource",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-NativeRelationSnapshotSource-revision",
+      "field": "revision",
+      "type": "NativeRelationSnapshotSource",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-NativeRelationSnapshotSource-pin",
+      "field": "pin",
+      "type": "NativeRelationSnapshotSource",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-NativeRelationSnapshotSource-canonical_content",
+      "field": "canonical_content",
+      "type": "NativeRelationSnapshotSource",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-NativeRelationSnapshotSource-catalog",
+      "field": "catalog",
+      "type": "NativeRelationSnapshotSource",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationMissingPart-module",
+      "type": "RelationMissingPart",
+      "variant": "module"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationMissingPart-root",
+      "type": "RelationMissingPart",
+      "variant": "root"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationMissingPart-definition",
+      "type": "RelationMissingPart",
+      "variant": "definition"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationValidationStep-catalog_canonicalization",
+      "type": "RelationValidationStep",
+      "variant": "catalog_canonicalization"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationValidationStep-current_encode",
+      "type": "RelationValidationStep",
+      "variant": "current_encode"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationValidationStep-current_decode",
+      "type": "RelationValidationStep",
+      "variant": "current_decode"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationValidationStep-native_decode",
+      "type": "RelationValidationStep",
+      "variant": "native_decode"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationValidationStep-catalog_equality",
+      "type": "RelationValidationStep",
+      "variant": "catalog_equality"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationValidationStep-byte_roundtrip",
+      "type": "RelationValidationStep",
+      "variant": "byte_roundtrip"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationInvalidInputSite-source_catalog",
+      "type": "RelationInvalidInputSite",
+      "variant": "source_catalog"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationInvalidInputSite-current_schema",
+      "type": "RelationInvalidInputSite",
+      "variant": "current_schema"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationInvalidInputSite-canonical_content",
+      "type": "RelationInvalidInputSite",
+      "variant": "canonical_content"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationCodecFailure-invalid_integer",
+      "type": "RelationCodecFailure",
+      "variant": "invalid_integer"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCodecFailure-invalid_integer-input",
+      "field": "input",
+      "type": "RelationCodecFailure",
+      "variant": "invalid_integer"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationCodecFailure-integer_out_of_range",
+      "type": "RelationCodecFailure",
+      "variant": "integer_out_of_range"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCodecFailure-integer_out_of_range-input",
+      "field": "input",
+      "type": "RelationCodecFailure",
+      "variant": "integer_out_of_range"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCodecFailure-integer_out_of_range-type_name",
+      "field": "type_name",
+      "type": "RelationCodecFailure",
+      "variant": "integer_out_of_range"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationCodecFailure-invalid_decimal",
+      "type": "RelationCodecFailure",
+      "variant": "invalid_decimal"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCodecFailure-invalid_decimal-input",
+      "field": "input",
+      "type": "RelationCodecFailure",
+      "variant": "invalid_decimal"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationCodecFailure-non_finite_float",
+      "type": "RelationCodecFailure",
+      "variant": "non_finite_float"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationCodecFailure-invalid_unicode",
+      "type": "RelationCodecFailure",
+      "variant": "invalid_unicode"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCodecFailure-invalid_unicode-detail",
+      "field": "detail",
+      "type": "RelationCodecFailure",
+      "variant": "invalid_unicode"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationCodecFailure-duplicate_normalized_key",
+      "type": "RelationCodecFailure",
+      "variant": "duplicate_normalized_key"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCodecFailure-duplicate_normalized_key-key",
+      "field": "key",
+      "type": "RelationCodecFailure",
+      "variant": "duplicate_normalized_key"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationCodecFailure-duplicate_field",
+      "type": "RelationCodecFailure",
+      "variant": "duplicate_field"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCodecFailure-duplicate_field-field",
+      "field": "field",
+      "type": "RelationCodecFailure",
+      "variant": "duplicate_field"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationCodecFailure-unknown_field",
+      "type": "RelationCodecFailure",
+      "variant": "unknown_field"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCodecFailure-unknown_field-field",
+      "field": "field",
+      "type": "RelationCodecFailure",
+      "variant": "unknown_field"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationCodecFailure-missing_field",
+      "type": "RelationCodecFailure",
+      "variant": "missing_field"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCodecFailure-missing_field-field",
+      "field": "field",
+      "type": "RelationCodecFailure",
+      "variant": "missing_field"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationCodecFailure-invalid_bytes_encoding",
+      "type": "RelationCodecFailure",
+      "variant": "invalid_bytes_encoding"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCodecFailure-invalid_bytes_encoding-detail",
+      "field": "detail",
+      "type": "RelationCodecFailure",
+      "variant": "invalid_bytes_encoding"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationCodecFailure-unknown_enum_value",
+      "type": "RelationCodecFailure",
+      "variant": "unknown_enum_value"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCodecFailure-unknown_enum_value-value",
+      "field": "value",
+      "type": "RelationCodecFailure",
+      "variant": "unknown_enum_value"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationCodecFailure-unknown_variant_case",
+      "type": "RelationCodecFailure",
+      "variant": "unknown_variant_case"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCodecFailure-unknown_variant_case-case",
+      "field": "case",
+      "type": "RelationCodecFailure",
+      "variant": "unknown_variant_case"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationCodecFailure-invalid_option_encoding",
+      "type": "RelationCodecFailure",
+      "variant": "invalid_option_encoding"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCodecFailure-invalid_option_encoding-detail",
+      "field": "detail",
+      "type": "RelationCodecFailure",
+      "variant": "invalid_option_encoding"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationCodecFailure-type_mismatch",
+      "type": "RelationCodecFailure",
+      "variant": "type_mismatch"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCodecFailure-type_mismatch-expected",
+      "field": "expected",
+      "type": "RelationCodecFailure",
+      "variant": "type_mismatch"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCodecFailure-type_mismatch-actual",
+      "field": "actual",
+      "type": "RelationCodecFailure",
+      "variant": "type_mismatch"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationCodecFailure-non_canonical_encoding",
+      "type": "RelationCodecFailure",
+      "variant": "non_canonical_encoding"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCodecFailure-non_canonical_encoding-detail",
+      "field": "detail",
+      "type": "RelationCodecFailure",
+      "variant": "non_canonical_encoding"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationCodecFailure-invalid_shape",
+      "type": "RelationCodecFailure",
+      "variant": "invalid_shape"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCodecFailure-invalid_shape-detail",
+      "field": "detail",
+      "type": "RelationCodecFailure",
+      "variant": "invalid_shape"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationPriorFailure-invalid_identity",
+      "type": "RelationPriorFailure",
+      "variant": "invalid_identity"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationPriorFailure-invalid_context",
+      "type": "RelationPriorFailure",
+      "variant": "invalid_context"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationPriorFailure-missing_source",
+      "type": "RelationPriorFailure",
+      "variant": "missing_source"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationPriorFailure-invalid_source",
+      "type": "RelationPriorFailure",
+      "variant": "invalid_source"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationPriorFailure-unsupported_model",
+      "type": "RelationPriorFailure",
+      "variant": "unsupported_model"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationPriorFailure-source_association",
+      "type": "RelationPriorFailure",
+      "variant": "source_association"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationLookupTarget-slot",
+      "field": "slot",
+      "type": "RelationLookupTarget",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationLookupTarget-family",
+      "field": "family",
+      "type": "RelationLookupTarget",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationLookupTarget-root_type",
+      "field": "root_type",
+      "type": "RelationLookupTarget",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationFoundSchema-target",
+      "field": "target",
+      "type": "RelationFoundSchema",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationFoundSchema-schema",
+      "field": "schema",
+      "type": "RelationFoundSchema",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationFoundSchema-definition",
+      "field": "definition",
+      "type": "RelationFoundSchema",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationFoundSchema-definition_closure",
+      "field": "definition_closure",
+      "type": "RelationFoundSchema",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationLookupResult-not_reached",
+      "type": "RelationLookupResult",
+      "variant": "not_reached"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationLookupResult-not_reached-cause",
+      "field": "cause",
+      "type": "RelationLookupResult",
+      "variant": "not_reached"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationLookupResult-missing",
+      "type": "RelationLookupResult",
+      "variant": "missing"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationLookupResult-missing-target",
+      "field": "target",
+      "type": "RelationLookupResult",
+      "variant": "missing"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationLookupResult-missing-part",
+      "field": "part",
+      "type": "RelationLookupResult",
+      "variant": "missing"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationLookupResult-missing-missing_identity",
+      "field": "missing_identity",
+      "type": "RelationLookupResult",
+      "variant": "missing"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationLookupResult-ambiguous",
+      "type": "RelationLookupResult",
+      "variant": "ambiguous"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationLookupResult-ambiguous-target",
+      "field": "target",
+      "type": "RelationLookupResult",
+      "variant": "ambiguous"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationLookupResult-ambiguous-definitions",
+      "field": "definitions",
+      "type": "RelationLookupResult",
+      "variant": "ambiguous"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationLookupResult-family_mismatch",
+      "type": "RelationLookupResult",
+      "variant": "family_mismatch"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationLookupResult-family_mismatch-target",
+      "field": "target",
+      "type": "RelationLookupResult",
+      "variant": "family_mismatch"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationLookupResult-family_mismatch-source_family",
+      "field": "source_family",
+      "type": "RelationLookupResult",
+      "variant": "family_mismatch"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationLookupResult-revision_mismatch",
+      "type": "RelationLookupResult",
+      "variant": "revision_mismatch"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationLookupResult-revision_mismatch-actual",
+      "field": "actual",
+      "type": "RelationLookupResult",
+      "variant": "revision_mismatch"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationLookupResult-revision_mismatch-expected",
+      "field": "expected",
+      "type": "RelationLookupResult",
+      "variant": "revision_mismatch"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationLookupResult-found",
+      "type": "RelationLookupResult",
+      "variant": "found"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationValidationResult-not_reached",
+      "type": "RelationValidationResult",
+      "variant": "not_reached"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationValidationResult-invalid",
+      "type": "RelationValidationResult",
+      "variant": "invalid"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationValidationResult-invalid-found",
+      "field": "found",
+      "type": "RelationValidationResult",
+      "variant": "invalid"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationValidationResult-invalid-step",
+      "field": "step",
+      "type": "RelationValidationResult",
+      "variant": "invalid"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationValidationResult-invalid-codec_failure",
+      "field": "codec_failure",
+      "type": "RelationValidationResult",
+      "variant": "invalid"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationValidationResult-invalid-input_sites",
+      "field": "input_sites",
+      "type": "RelationValidationResult",
+      "variant": "invalid"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationValidationResult-invalid-completed_steps",
+      "field": "completed_steps",
+      "type": "RelationValidationResult",
+      "variant": "invalid"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationValidationResult-valid",
+      "type": "RelationValidationResult",
+      "variant": "valid"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationValidationResult-valid-found",
+      "field": "found",
+      "type": "RelationValidationResult",
+      "variant": "valid"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationValidationResult-valid-validated_catalog",
+      "field": "validated_catalog",
+      "type": "RelationValidationResult",
+      "variant": "valid"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationValidationResult-valid-canonical_content",
+      "field": "canonical_content",
+      "type": "RelationValidationResult",
+      "variant": "valid"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationValidationResult-valid-completed_steps",
+      "field": "completed_steps",
+      "type": "RelationValidationResult",
+      "variant": "valid"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationPartitionAdmission-absent",
+      "type": "RelationPartitionAdmission",
+      "variant": "absent"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationPartitionAdmission-incomplete",
+      "type": "RelationPartitionAdmission",
+      "variant": "incomplete"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationPartitionAdmission-validated",
+      "type": "RelationPartitionAdmission",
+      "variant": "validated"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationMetadataAssurance-relation_slot_only",
+      "type": "RelationMetadataAssurance",
+      "variant": "relation_slot_only"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationAlgorithmIdentity-analysis",
+      "field": "analysis",
+      "type": "RelationAlgorithmIdentity",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationAlgorithmIdentity-model",
+      "field": "model",
+      "type": "RelationAlgorithmIdentity",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationAlgorithmIdentity-lookup_rule",
+      "field": "lookup_rule",
+      "type": "RelationAlgorithmIdentity",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationAlgorithmIdentity-validation_rule",
+      "field": "validation_rule",
+      "type": "RelationAlgorithmIdentity",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCurrentValidationMetadata-assurance",
+      "field": "assurance",
+      "type": "RelationCurrentValidationMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCurrentValidationMetadata-algorithm",
+      "field": "algorithm",
+      "type": "RelationCurrentValidationMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCurrentValidationMetadata-target",
+      "field": "target",
+      "type": "RelationCurrentValidationMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCurrentValidationMetadata-source",
+      "field": "source",
+      "type": "RelationCurrentValidationMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCurrentValidationMetadata-context_roles",
+      "field": "context_roles",
+      "type": "RelationCurrentValidationMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCurrentValidationMetadata-current_modules",
+      "field": "current_modules",
+      "type": "RelationCurrentValidationMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCurrentValidationMetadata-lookup",
+      "field": "lookup",
+      "type": "RelationCurrentValidationMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCurrentValidationMetadata-validation",
+      "field": "validation",
+      "type": "RelationCurrentValidationMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationCurrentValidationMetadata-admission",
+      "field": "admission",
+      "type": "RelationCurrentValidationMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/variant-RelationRemainingScope-remaining_scope_incomplete",
+      "type": "RelationRemainingScope",
+      "variant": "remaining_scope_incomplete"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationContextAdmissionMetadata-effect_resource",
+      "field": "effect_resource",
+      "type": "RelationContextAdmissionMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationContextAdmissionMetadata-recovery_usage",
+      "field": "recovery_usage",
+      "type": "RelationContextAdmissionMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationContextAdmissionMetadata-flow_execution",
+      "field": "flow_execution",
+      "type": "RelationContextAdmissionMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationContextAdmissionMetadata-relation_partition_complete",
+      "field": "relation_partition_complete",
+      "type": "RelationContextAdmissionMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationContextAdmissionMetadata-scope_state",
+      "field": "scope_state",
+      "type": "RelationContextAdmissionMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-CurrentContextRelationSchemaValidation-source",
+      "field": "source",
+      "type": "CurrentContextRelationSchemaValidation",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-CurrentContextRelationSchemaValidation-context",
+      "field": "context",
+      "type": "CurrentContextRelationSchemaValidation",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-CurrentContextRelationSchemaValidation-algorithm",
+      "field": "algorithm",
+      "type": "CurrentContextRelationSchemaValidation",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-CurrentContextRelationSchemaValidation-target",
+      "field": "target",
+      "type": "CurrentContextRelationSchemaValidation",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-CurrentContextRelationSchemaValidation-lookup",
+      "field": "lookup",
+      "type": "CurrentContextRelationSchemaValidation",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-CurrentContextRelationSchemaValidation-validation",
+      "field": "validation",
+      "type": "CurrentContextRelationSchemaValidation",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationSubjectAdmission-subject",
+      "field": "subject",
+      "type": "RelationSubjectAdmission",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationSubjectAdmission-observations",
+      "field": "observations",
+      "type": "RelationSubjectAdmission",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationSubjectAdmission-relation_partition_complete",
+      "field": "relation_partition_complete",
+      "type": "RelationSubjectAdmission",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationSourceDagMetadata-nodes",
+      "field": "nodes",
+      "type": "RelationSourceDagMetadata",
+      "variant": null
+    },
+    {
+      "case_id": "g01-relation-schema-staging/missing-RelationSourceDagMetadata-roots",
+      "field": "roots",
+      "type": "RelationSourceDagMetadata",
+      "variant": null
+    }
+  ],
+  "dag_cases": 10,
+  "model": "agentflow.computation.proof-report.model@6",
+  "normalizer": "NotImplemented",
+  "obligation": "agentflow.g01.obligation@6",
+  "portable_cases": [
+    {
+      "case_id": "g01-relation-schema-staging/portable-current-denied",
+      "decoder_policy": "bounded_32m_scalar",
+      "family": "UnsupportedSemantics",
+      "file": "portable/current-denied.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/portable-old-label-new-content-1",
+      "decoder_policy": "bounded_32m_scalar",
+      "family": "InvalidIdentity",
+      "file": "portable/old-label-new-content-1.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/portable-old-label-new-content-2",
+      "decoder_policy": "bounded_32m_scalar",
+      "family": "InvalidIdentity",
+      "file": "portable/old-label-new-content-2.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/portable-old-label-new-content-3",
+      "decoder_policy": "bounded_32m_scalar",
+      "family": "InvalidIdentity",
+      "file": "portable/old-label-new-content-3.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/portable-old-label-new-content-4",
+      "decoder_policy": "bounded_32m_scalar",
+      "family": "InvalidIdentity",
+      "file": "portable/old-label-new-content-4.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/portable-old-label-new-content-5",
+      "decoder_policy": "bounded_32m_scalar",
+      "family": "InvalidIdentity",
+      "file": "portable/old-label-new-content-5.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/portable-old-label-new-content-6",
+      "decoder_policy": "bounded_32m_scalar",
+      "family": "InvalidIdentity",
+      "file": "portable/old-label-new-content-6.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/portable-new-label-old-content",
+      "decoder_policy": "bounded_32m_scalar",
+      "family": "InvalidIdentity",
+      "file": "portable/new-label-old-content.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/portable-unknown",
+      "decoder_policy": "bounded_32m_scalar",
+      "family": "UnsupportedSemantics",
+      "file": "portable/unknown.ace1",
+      "stage": "D4"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/portable-default-resource-limit",
+      "decoder_policy": "unchanged_default",
+      "family": "ResourceLimit",
+      "file": "portable/current-denied.ace1",
+      "stage": "D0"
+    }
+  ],
+  "positive_capability": "NotAuthorized",
+  "raw_capture_case_ids": 0,
+  "raw_producer": "Incomplete",
+  "report": "agentflow.g01.report-shape@6",
+  "rule_cases": 16,
+  "scope": "NotImplemented",
+  "selected_specifications": [
+    "agentflow.component.contract.semantics@1",
+    "agentflow.component.document-occurrence.semantics@1",
+    "agentflow.component.native-recovery-guard.semantics@1",
+    "agentflow.component.raw-validation.semantics@1",
+    "agentflow.component.relation-catalogs.semantics@1",
+    "agentflow.component.relation-snapshot-validation.semantics@1",
+    "agentflow.component.substitution-proof.semantics@1",
+    "agentflow.computation.proof-obligation.semantics@1",
+    "agentflow.computation.proof-obligation.semantics@2",
+    "agentflow.computation.proof-obligation.semantics@3",
+    "agentflow.computation.proof-obligation.semantics@4",
+    "agentflow.computation.proof-obligation.semantics@5",
+    "agentflow.computation.proof-obligation.semantics@6",
+    "agentflow.computation.proof-report.model@1",
+    "agentflow.computation.proof-report.model@2",
+    "agentflow.computation.proof-report.model@3",
+    "agentflow.computation.proof-report.model@4",
+    "agentflow.computation.proof-report.model@5",
+    "agentflow.computation.proof-report.model@6",
+    "agentflow.computation.root-export-contract-proof.semantics@1",
+    "agentflow.effect.signature.semantics@1",
+    "agentflow.execution.requirements.semantics@1",
+    "agentflow.failure.row.semantics@1",
+    "agentflow.information.flow.semantics@1",
+    "agentflow.portable.proof.inputs.semantics@1",
+    "agentflow.portable.proof.inputs.semantics@2",
+    "agentflow.portable.proof.inputs.semantics@3",
+    "agentflow.portable.proof.inputs.semantics@4",
+    "agentflow.portable.proof.inputs.semantics@5",
+    "agentflow.portable.proof.inputs.semantics@6",
+    "agentflow.portable.proof.inputs.semantics@7",
+    "agentflow.recovery.contract.semantics@1",
+    "agentflow.resource.requirement.semantics@1",
+    "agentflow.semantic.advanced-control-contract-algebra.semantics@1",
+    "agentflow.semantic.control-contract-algebra.semantics@1",
+    "agentflow.semantic.ir.semantics@1",
+    "agentflow.semantic.leaf-contract-resolution.semantics@1",
+    "agentflow.semantic.scope-compensation-contract-algebra.semantics@1",
+    "agentflow.semantic.types@1",
+    "agentflow.usage.signature.semantics@1"
+  ],
+  "shape_cases": 389
+}

@@ -43,5 +43,5 @@ workspace = true
 name = "static_surface"
 path = "tests/static_surface.rs"
 [[test]]
-name = "document_occurrence_staging"
-path = "tests/document_occurrence_staging.rs"
+name = "relation_schema_staging"
+path = "tests/relation_schema_staging.rs"

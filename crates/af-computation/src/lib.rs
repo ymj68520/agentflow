@@ -18,6 +18,7 @@ mod proof;
 mod raw_admission;
 pub mod raw_capture;
 mod registered_model;
+mod relation_admission;
 mod resolution;
 mod root_export;
 mod root_recovery;
@@ -48,6 +49,14 @@ pub use raw_admission::{
 pub use registered_model::{
     RegisteredModelFailure, SUCCESSOR_MODEL_ID, admit_registered_profile,
     registered_descriptor_integrity, registered_model_catalogue, validate_registered_model_shape,
+};
+pub use relation_admission::{
+    RELATION_MODEL_ID, RelationContextMetadataAdmission, RelationMetadataObservation,
+    RelationMetadataSlot, admit_relation_context_observation_metadata,
+    admit_relation_observation_metadata, inspect_relation_context_metadata,
+    inspect_relation_definition_candidates, inspect_relation_metadata,
+    relation_descriptor_integrity, relation_model_catalogue, relation_schema_definition_metadata,
+    validate_relation_registered_shape, validate_relation_source_dag_metadata,
 };
 pub use resolution::{
     LeafResolutionError, ResolverSnapshotIdentity, ResolverSubflowIdentity, SnapshotError,

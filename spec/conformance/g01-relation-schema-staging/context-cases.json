@@ -1,0 +1,36 @@
+{
+  "cases": [
+    {
+      "case_id": "g01-relation-schema-staging/context-all-none",
+      "mode": "all-none"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/context-all-valid",
+      "mode": "all-valid"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/context-recovery-missing",
+      "mode": "recovery-missing"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/context-flow-invalid",
+      "mode": "flow-invalid"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/context-split",
+      "mode": "split"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/context-wrong-compiler",
+      "mode": "wrong-compiler"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/context-missing-observation",
+      "mode": "missing-observation"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/context-false-complete",
+      "mode": "false-complete"
+    }
+  ]
+}

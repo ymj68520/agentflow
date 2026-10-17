@@ -135,7 +135,8 @@ def corpus(m):
  # Exact successor metadata/Portable inputs, independent of Rust Actual.
  codec=load('occurrence_codec','tools/gen-portable-proof-codec-corpus.py')
  old=read('spec/conformance/g01-raw-validation-staging/manifest.json');ids=sorted(old['selected_specifications']+[v[0] for v in SOURCES.values()]);rids=sorted(old['applied_rules']+[r['rule_id'] for r in RULES])
- sb=(R/'spec/registry/specifications.json').read_bytes();rb=(R/'spec/registry/rules.json').read_bytes()
+ frozen=R/'spec/conformance/g01-relation-schema-staging'
+ sb=(frozen/'analysis6-specifications.json').read_bytes();rb=(frozen/'analysis6-rules.json').read_bytes()
  profile=dict(specification_bytes=sb,rule_bytes=rb,version=OWNER,spec_ids=ids,rule_ids=rids)
  identity={'analysis_semantics_version':OWNER,'registry_hex':sb.hex(),'rule_registry_hex':rb.hex(),'specifications':[{'specification_id':s['specification_id'],'logical_path':s['normative_source']['logical_path'],'content_sha256':sha((R/s['normative_source']['logical_path']).read_bytes()),'content_hex':(R/s['normative_source']['logical_path']).read_bytes().hex()} for s in json.loads(sb)['specifications'] if s['specification_id'] in ids],'rules':[codec.rule_identity(s) for s in json.loads(rb)['rules'] if s['rule_id'] in rids]}
  js('spec/conformance/g01-document-occurrence-staging/compiler-current.json',identity)

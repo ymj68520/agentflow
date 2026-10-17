@@ -1,0 +1,31 @@
+{
+  "slots": [
+    {
+      "family": "agentflow.effect.resource.compatibility@1",
+      "lookup_rule": "AF-SEMANTIC-0288",
+      "native_type": "af-contract::EffectResourceCompatibilityCatalog",
+      "root_type": "EffectResourceCompatibilityCatalog",
+      "slot": "effect_resource",
+      "source_rule": "AF-SEMANTIC-0286",
+      "validation_rule": "AF-SEMANTIC-0292"
+    },
+    {
+      "family": "agentflow.recovery.usage.coverage@1",
+      "lookup_rule": "AF-SEMANTIC-0288",
+      "native_type": "af-contract::RecoveryUsageCoverageCatalog",
+      "root_type": "RecoveryUsageCoverageCatalog",
+      "slot": "recovery_usage",
+      "source_rule": "AF-SEMANTIC-0286",
+      "validation_rule": "AF-SEMANTIC-0292"
+    },
+    {
+      "family": "agentflow.flow.execution.relation@1",
+      "lookup_rule": "AF-SEMANTIC-0288",
+      "native_type": "af-contract::InformationFlowExecutionCatalog",
+      "root_type": "InformationFlowExecutionCatalog",
+      "slot": "flow_execution",
+      "source_rule": "AF-SEMANTIC-0286",
+      "validation_rule": "AF-SEMANTIC-0292"
+    }
+  ]
+}

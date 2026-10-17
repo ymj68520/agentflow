@@ -7,6 +7,10 @@ use std::collections::BTreeSet;
 
 const CURRENT_VERSION: &str = af_computation::ROOT_EXPORT_ANALYSIS_SEMANTICS_VERSION;
 const STATIC_SPECS: &[&str] = &[
+    "agentflow.component.relation-snapshot-validation.semantics@1",
+    "agentflow.computation.proof-obligation.semantics@6",
+    "agentflow.computation.proof-report.model@6",
+    "agentflow.portable.proof.inputs.semantics@7",
     "agentflow.component.document-occurrence.semantics@1",
     "agentflow.computation.proof-obligation.semantics@5",
     "agentflow.computation.proof-report.model@5",
@@ -133,6 +137,7 @@ pub(crate) fn validate_d4(
                 | "agentflow.root-export-checker@3"
                 | "agentflow.root-export-checker@4"
                 | "agentflow.root-export-checker@5"
+                | "agentflow.root-export-checker@6"
         ) && embedded_blob(compiler, "registries", "specifications")?
             == SPECIFICATION_REGISTRY_BYTES
         {
@@ -174,7 +179,7 @@ pub(crate) fn validate_d4(
             )
         })?;
     if specification_file.specifications.len() != CURRENT_NORMATIVE_SOURCES.len()
-        || CURRENT_NORMATIVE_SOURCES.len() != 50
+        || CURRENT_NORMATIVE_SOURCES.len() != 66
     {
         return Err(d4(
             "$.compiler_semantics_manifests.normative_sources",
@@ -560,6 +565,7 @@ fn expected_rule_rows(rules: &[RuleJson]) -> Result<Vec<&RuleJson>, PortableProo
                 .chain(228..=242)
                 .chain(245..=260)
                 .chain(261..=271)
+                .chain(272..=301)
                 .map(|n| format!("AF-SEMANTIC-{n:04}")),
         )
         .collect::<Vec<_>>();

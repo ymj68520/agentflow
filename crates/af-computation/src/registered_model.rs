@@ -1,4 +1,5 @@
-//! Non-authoritative registration/shape admission. No fact, Scope identity,
+//! Frozen model@5 non-authoritative metadata probe retained for partial traces.
+//! Current model@6 uses the separate relation registration API. No fact, Scope identity,
 //! normalizer, encoder, report, or Checked capability is constructed here.
 use serde_json::Value;
 use std::collections::BTreeSet;
@@ -41,9 +42,9 @@ pub fn registered_model_catalogue() -> Result<&'static Value, RegisteredModelFai
 pub fn registered_descriptor_integrity() -> Result<(), RegisteredModelFailure> {
     let catalogue = registered_model_catalogue()?;
     if catalogue["model_id"] != SUCCESSOR_MODEL_ID
-        || catalogue["analysis_owner"] != crate::ROOT_EXPORT_ANALYSIS_SEMANTICS_VERSION
-        || catalogue["model_edition"] != crate::REPORT_SHAPE_EDITION
-        || catalogue["obligation_edition"] != crate::OBLIGATION_IDENTITY_EDITION
+        || catalogue["analysis_owner"] != "agentflow.root-export-checker@6"
+        || catalogue["model_edition"] != "agentflow.g01.report-shape@5"
+        || catalogue["obligation_edition"] != "agentflow.g01.obligation@5"
     {
         return Err(RegisteredModelFailure::UnsupportedModel);
     }
@@ -170,11 +171,18 @@ pub(crate) fn validate_registered_descriptor_value(
     check_shape(catalogue, descriptor, value, 0, &mut work)
 }
 
-fn check_named_constraints(
+pub(crate) fn check_named_constraints(
     catalogue: &Value,
     name: &str,
     value: &Value,
 ) -> Result<(), RegisteredModelFailure> {
+    if name == "RelationSourceFamily"
+        && value
+            .as_str()
+            .is_none_or(|v| af_idl::SpecificationId::parse(v).is_err())
+    {
+        return Err(RegisteredModelFailure::InvalidFacts);
+    }
     if matches!(name, "NativeGuardContextPartition" | "RawContextPartition")
         && *value != serde_json::json!([["analysis", "canonical_validation"]])
     {
@@ -268,7 +276,7 @@ fn check_named_constraints(
             .as_str()
             .ok_or(RegisteredModelFailure::IncompleteFacts)?;
         let qualified = format!("{owner}/{ty}");
-        if !((owner == SUCCESSOR_MODEL_ID
+        if !((catalogue["model_id"] == owner
             && !ty.starts_with("agentflow.computation.proof-report.model@1/")
             && catalogue["types"].get(ty).is_some())
             || catalogue["types"].get(&qualified).is_some())
@@ -279,7 +287,7 @@ fn check_named_constraints(
     Ok(())
 }
 
-fn check_shape(
+pub(crate) fn check_shape(
     catalogue: &Value,
     descriptor: &Value,
     value: &Value,

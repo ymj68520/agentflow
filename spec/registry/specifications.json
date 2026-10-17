@@ -80,6 +80,19 @@
       "status": "frozen"
     },
     {
+      "description": "Native family source and independently current-context relation schema validation; non-authoritative admission only.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "44a3945f6492edbea713746a454c86069bc7a70119ce54cbeaae4f25f010f316"
+        },
+        "logical_path": "spec/component/relation-snapshot-validation.md"
+      },
+      "specification_id": "agentflow.component.relation-snapshot-validation.semantics@1",
+      "status": "frozen"
+    },
+    {
       "description": "Closed standalone substitution profile, ordered checked operands, three branches and exact conservative judgments.",
       "kind": "schema_language",
       "normative_source": {
@@ -158,6 +171,19 @@
       "status": "frozen"
     },
     {
+      "description": "Separate immutable relation input and derived current validation observations with exact source, witness and DAG propagation.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "406fd2c745f534a79f7cb57ed73585f7abe9e50d888142e65f9abc1b3f470396"
+        },
+        "logical_path": "spec/computation/proof-obligation-semantics-v6.md"
+      },
+      "specification_id": "agentflow.computation.proof-obligation.semantics@6",
+      "status": "frozen"
+    },
+    {
       "description": "Closed non-wire G01 semantic type model, typed order, finite value DAG and ACE1 canonical identity relation.",
       "kind": "closed_table",
       "normative_source": {
@@ -220,6 +246,19 @@
         "logical_path": "spec/tables/proof-report-model-v5.md"
       },
       "specification_id": "agentflow.computation.proof-report.model@5",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed relation family/current-validation successor model retaining the exact frozen model@5 and historical imports.",
+      "kind": "closed_table",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "2c789175457454d205a11f6b9a04ba7b8c18d65e8d266cab88a2e68baaf835b2"
+        },
+        "logical_path": "spec/tables/proof-report-model-v6.md"
+      },
+      "specification_id": "agentflow.computation.proof-report.model@6",
       "status": "frozen"
     },
     {
@@ -532,6 +571,19 @@
         "logical_path": "spec/portable/portable-proof-inputs-v6.md"
       },
       "specification_id": "agentflow.portable.proof.inputs.semantics@6",
+      "status": "frozen"
+    },
+    {
+      "description": "Exact current relation successor tuple with isolated history, metadata-only support and no RootExport activation.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "0845b69972b21f25acf7906e846882903fa59349c5643085b65a0c806b7614f8"
+        },
+        "logical_path": "spec/portable/portable-proof-inputs-v7.md"
+      },
+      "specification_id": "agentflow.portable.proof.inputs.semantics@7",
       "status": "frozen"
     },
     {

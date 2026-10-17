@@ -1,0 +1,1600 @@
+{
+  "cases": [
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-valid",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-none",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "native",
+      "present": false,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-current-B",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "B",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-missing-module",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "missing_module",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-missing-root",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "missing_root",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-invalid-current",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "invalid",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-wrong-family-context",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "wrong_family",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-nonempty",
+      "catalog": "nonempty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-nonempty-under-B",
+      "catalog": "nonempty",
+      "compiler": "current",
+      "current": "B",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-wrong-expected-family",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": "family",
+      "mode": "native",
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-revision-mismatch",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": "revision",
+      "mode": "native",
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-wrong-compiler",
+      "catalog": "empty",
+      "compiler": "wrong",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "split",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-split-context",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-ambiguous-boundary",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "ambiguous",
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-schema-owner",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "algorithm",
+          "model"
+        ],
+        "value": "wrong.model@1"
+      },
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-schema-name",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation",
+          "valid",
+          "found",
+          "schema",
+          "type_name"
+        ],
+        "value": "WrongRoot"
+      },
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-schema-digest",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation",
+          "valid",
+          "found",
+          "schema",
+          "schema_digest",
+          "hex"
+        ],
+        "value": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-checksum-as-schema",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation",
+          "valid",
+          "found",
+          "schema",
+          "schema_digest",
+          "domain"
+        ],
+        "value": "catalog-content"
+      },
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-missing-source",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "source"
+        ],
+        "value": {
+          "none": null
+        }
+      },
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-malformed-family",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "source",
+          "some",
+          "schema_family"
+        ],
+        "value": "INVALID@01"
+      },
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-slot-swap",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "source",
+          "some",
+          "kind"
+        ],
+        "value": "recovery_usage"
+      },
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-missing-result",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "remove",
+        "path": [
+          "validation",
+          "valid",
+          "found"
+        ],
+        "value": null
+      },
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-unknown-validation",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation"
+        ],
+        "value": {
+          "future": null
+        }
+      },
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-fabricated-history",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "source",
+          "some",
+          "construction_schema"
+        ],
+        "value": {}
+      },
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-wrong-stage",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "lookup"
+        ],
+        "value": {
+          "not_reached": {
+            "cause": "missing_source"
+          }
+        }
+      },
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-old-model",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "algorithm",
+          "model"
+        ],
+        "value": "agentflow.computation.proof-report.model@5"
+      },
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-false-authority",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "positive_root_export"
+        ],
+        "value": true
+      },
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-schema-nominal-owner",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation",
+          "valid",
+          "found",
+          "schema",
+          "owner"
+        ],
+        "value": "unregistered.schema.owner@1"
+      },
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-schema-family",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation",
+          "valid",
+          "found",
+          "schema",
+          "specification_id"
+        ],
+        "value": "wrong.family@1"
+      },
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-catalog-checksum-as-schema",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation",
+          "valid",
+          "found",
+          "schema",
+          "schema_digest",
+          "hex"
+        ],
+        "value": "13a08406a48eac360235eee1f6370820835a015f87329c0694b3f3bb2e9e759c"
+      },
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-source-checksum",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "source",
+          "some",
+          "pin",
+          "canonical_content_checksum",
+          "hex"
+        ],
+        "value": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "split",
+      "case_id": "g01-relation-schema-staging/admission-effect_resource-false-alias-claim",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "context_roles"
+        ],
+        "value": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      },
+      "present": true,
+      "slot": "effect_resource"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-valid",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-none",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "native",
+      "present": false,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-current-B",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "B",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-missing-module",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "missing_module",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-missing-root",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "missing_root",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-invalid-current",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "invalid",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-wrong-family-context",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "wrong_family",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-nonempty",
+      "catalog": "nonempty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-nonempty-under-B",
+      "catalog": "nonempty",
+      "compiler": "current",
+      "current": "B",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-wrong-expected-family",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": "family",
+      "mode": "native",
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-revision-mismatch",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": "revision",
+      "mode": "native",
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-wrong-compiler",
+      "catalog": "empty",
+      "compiler": "wrong",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "split",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-split-context",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-ambiguous-boundary",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "ambiguous",
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-schema-owner",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "algorithm",
+          "model"
+        ],
+        "value": "wrong.model@1"
+      },
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-schema-name",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation",
+          "valid",
+          "found",
+          "schema",
+          "type_name"
+        ],
+        "value": "WrongRoot"
+      },
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-schema-digest",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation",
+          "valid",
+          "found",
+          "schema",
+          "schema_digest",
+          "hex"
+        ],
+        "value": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-checksum-as-schema",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation",
+          "valid",
+          "found",
+          "schema",
+          "schema_digest",
+          "domain"
+        ],
+        "value": "catalog-content"
+      },
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-missing-source",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "source"
+        ],
+        "value": {
+          "none": null
+        }
+      },
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-malformed-family",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "source",
+          "some",
+          "schema_family"
+        ],
+        "value": "INVALID@01"
+      },
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-slot-swap",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "source",
+          "some",
+          "kind"
+        ],
+        "value": "effect_resource"
+      },
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-missing-result",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "remove",
+        "path": [
+          "validation",
+          "valid",
+          "found"
+        ],
+        "value": null
+      },
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-unknown-validation",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation"
+        ],
+        "value": {
+          "future": null
+        }
+      },
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-fabricated-history",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "source",
+          "some",
+          "construction_schema"
+        ],
+        "value": {}
+      },
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-wrong-stage",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "lookup"
+        ],
+        "value": {
+          "not_reached": {
+            "cause": "missing_source"
+          }
+        }
+      },
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-old-model",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "algorithm",
+          "model"
+        ],
+        "value": "agentflow.computation.proof-report.model@5"
+      },
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-false-authority",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "positive_root_export"
+        ],
+        "value": true
+      },
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-schema-nominal-owner",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation",
+          "valid",
+          "found",
+          "schema",
+          "owner"
+        ],
+        "value": "unregistered.schema.owner@1"
+      },
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-schema-family",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation",
+          "valid",
+          "found",
+          "schema",
+          "specification_id"
+        ],
+        "value": "wrong.family@1"
+      },
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-catalog-checksum-as-schema",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation",
+          "valid",
+          "found",
+          "schema",
+          "schema_digest",
+          "hex"
+        ],
+        "value": "da506c8a9c8a9f31aa00eaeef23d49764b9ace97158a1a0a7aa628e6d446b0fb"
+      },
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-source-checksum",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "source",
+          "some",
+          "pin",
+          "canonical_content_checksum",
+          "hex"
+        ],
+        "value": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "split",
+      "case_id": "g01-relation-schema-staging/admission-recovery_usage-false-alias-claim",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "context_roles"
+        ],
+        "value": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      },
+      "present": true,
+      "slot": "recovery_usage"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-valid",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-none",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "native",
+      "present": false,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-current-B",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "B",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-missing-module",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "missing_module",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-missing-root",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "missing_root",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-invalid-current",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "invalid",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-wrong-family-context",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "wrong_family",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-nonempty",
+      "catalog": "nonempty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-nonempty-under-B",
+      "catalog": "nonempty",
+      "compiler": "current",
+      "current": "B",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-wrong-expected-family",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": "family",
+      "mode": "native",
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-revision-mismatch",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": "revision",
+      "mode": "native",
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-wrong-compiler",
+      "catalog": "empty",
+      "compiler": "wrong",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "split",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-split-context",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "native",
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-ambiguous-boundary",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "ambiguous",
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-schema-owner",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "algorithm",
+          "model"
+        ],
+        "value": "wrong.model@1"
+      },
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-schema-name",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation",
+          "valid",
+          "found",
+          "schema",
+          "type_name"
+        ],
+        "value": "WrongRoot"
+      },
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-schema-digest",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation",
+          "valid",
+          "found",
+          "schema",
+          "schema_digest",
+          "hex"
+        ],
+        "value": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-checksum-as-schema",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation",
+          "valid",
+          "found",
+          "schema",
+          "schema_digest",
+          "domain"
+        ],
+        "value": "catalog-content"
+      },
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-missing-source",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "source"
+        ],
+        "value": {
+          "none": null
+        }
+      },
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-malformed-family",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "source",
+          "some",
+          "schema_family"
+        ],
+        "value": "INVALID@01"
+      },
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-slot-swap",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "source",
+          "some",
+          "kind"
+        ],
+        "value": "recovery_usage"
+      },
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-missing-result",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "remove",
+        "path": [
+          "validation",
+          "valid",
+          "found"
+        ],
+        "value": null
+      },
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-unknown-validation",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation"
+        ],
+        "value": {
+          "future": null
+        }
+      },
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-fabricated-history",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "source",
+          "some",
+          "construction_schema"
+        ],
+        "value": {}
+      },
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-wrong-stage",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "lookup"
+        ],
+        "value": {
+          "not_reached": {
+            "cause": "missing_source"
+          }
+        }
+      },
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-old-model",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "algorithm",
+          "model"
+        ],
+        "value": "agentflow.computation.proof-report.model@5"
+      },
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-false-authority",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "positive_root_export"
+        ],
+        "value": true
+      },
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-schema-nominal-owner",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation",
+          "valid",
+          "found",
+          "schema",
+          "owner"
+        ],
+        "value": "unregistered.schema.owner@1"
+      },
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-schema-family",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation",
+          "valid",
+          "found",
+          "schema",
+          "specification_id"
+        ],
+        "value": "wrong.family@1"
+      },
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-catalog-checksum-as-schema",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "validation",
+          "valid",
+          "found",
+          "schema",
+          "schema_digest",
+          "hex"
+        ],
+        "value": "230c5cfa61402fa1acedb17f35b9fb408fa475890f817de40621b54f2aa1944e"
+      },
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "same",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-source-checksum",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "source",
+          "some",
+          "pin",
+          "canonical_content_checksum",
+          "hex"
+        ],
+        "value": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "present": true,
+      "slot": "flow_execution"
+    },
+    {
+      "association": "split",
+      "case_id": "g01-relation-schema-staging/admission-flow_execution-false-alias-claim",
+      "catalog": "empty",
+      "compiler": "current",
+      "current": "A",
+      "expected_pin": null,
+      "mode": "proposal",
+      "mutation": {
+        "op": "set",
+        "path": [
+          "context_roles"
+        ],
+        "value": [
+          [
+            "analysis",
+            "canonical_validation"
+          ]
+        ]
+      },
+      "present": true,
+      "slot": "flow_execution"
+    }
+  ]
+}

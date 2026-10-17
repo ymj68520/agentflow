@@ -5800,6 +5800,182 @@
       "source_anchor": "staging-denial"
     },
     {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-relation-schema-staging/rule-0286"
+      ],
+      "normative_source": "spec/component/relation-snapshot-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0286",
+      "short_statement": "A preserves actual kind, schema family, revision, complete pin, bytes and full typed native catalog without a construction schema claim.",
+      "source_anchor": "native-source"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-relation-schema-staging/rule-0287"
+      ],
+      "normative_source": "spec/component/relation-snapshot-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0287",
+      "short_statement": "Native family follows exact SpecificationId grammar; duplicate stored family/revision values agree and plain SHA256 binds complete canonical bytes.",
+      "source_anchor": "source-integrity"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-relation-schema-staging/rule-0288"
+      ],
+      "normative_source": "spec/component/relation-snapshot-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0288",
+      "short_statement": "C queries only the actual Context modules by exact named Slot/Family/Root; no global, latest, schema-universe or construction-cache fallback.",
+      "source_anchor": "current-lookup"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-relation-schema-staging/rule-0289"
+      ],
+      "normative_source": "spec/component/relation-snapshot-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0289",
+      "short_statement": "Current lookup requires unique full canonical root and complete actual acyclic imported-definition closure; malformed candidate ambiguity rejects before native context assembly.",
+      "source_anchor": "definition-closure"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-relation-schema-staging/rule-0290"
+      ],
+      "normative_source": "spec/component/relation-snapshot-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0290",
+      "short_statement": "Current TypeSchemaRef contains actual specification_id, type_name and sha256/type-schema HashV1 of complete canonical root; catalog checksum is not schema identity.",
+      "source_anchor": "schema-digest"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-relation-schema-staging/rule-0291"
+      ],
+      "normative_source": "spec/component/relation-snapshot-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0291",
+      "short_statement": "NotReached, Missing, Ambiguous, FamilyMismatch, applicable RevisionMismatch, Found, Invalid and Valid have separate closed typed payloads and actual stage applicability.",
+      "source_anchor": "staged-results"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-relation-schema-staging/rule-0292"
+      ],
+      "normative_source": "spec/component/relation-snapshot-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0292",
+      "short_statement": "Valid requires actual full native catalog semantic canonicalization and current-schema encode/decode/native-catalog equality and exact byte round-trip; Found alone is not Valid.",
+      "source_anchor": "catalog-revalidation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-relation-schema-staging/rule-0293"
+      ],
+      "normative_source": "spec/component/relation-snapshot-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0293",
+      "short_statement": "Each of effect_resource, recovery_usage and flow_execution has its exact closed native type/family/root association and independent Some/None validation; absent snapshots are not positive relation evidence.",
+      "source_anchor": "three-slots"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-relation-schema-staging/rule-0294"
+      ],
+      "normative_source": "spec/component/relation-snapshot-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0294",
+      "short_statement": "Analysis and canonical_validation refer to the same actual nine-member native Context object; equal contents or digests never establish aliases and no resolver is invented.",
+      "source_anchor": "context-association"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-relation-schema-staging/rule-0295"
+      ],
+      "normative_source": "spec/component/relation-snapshot-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0295",
+      "short_statement": "Every actual Some requires C Valid for the relation portion of complete Subject admission; preserve actual source and failure otherwise without issuing a Fact or rewriting port verdicts.",
+      "source_anchor": "subject-admission"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-relation-schema-staging/rule-0296"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics-v6.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0296",
+      "short_statement": "A source and C observation retain distinct identities; Raw Source/Origin/Basis/Witness/Contradiction/EvidenceRef share the exact Subject while Raw Target and port coordinates retain their actual meanings.",
+      "source_anchor": "source-propagation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-relation-schema-staging/rule-0297"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics-v6.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0297",
+      "short_statement": "Immutable source/context inputs cannot reference their derived validation/admission/Fact outputs; outputs only reference prior inputs and retain minimal reachable typed DAG rules.",
+      "source_anchor": "input-output-dag"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-relation-schema-staging/rule-0298"
+      ],
+      "normative_source": "spec/component/relation-snapshot-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0298",
+      "short_statement": "Equal legacy snapshots remain equal; missing construction provenance is unavailable and cannot be recovered from a new edition, current schema, revision or checksum.",
+      "source_anchor": "construction-history"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-relation-schema-staging/rule-0299"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs-v7.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0299",
+      "short_statement": "New Analysis/Model/Report/Obligation require exact new registered compiler contents; old and mixed tuples reject without relabeling and all old normative records remain exact.",
+      "source_anchor": "edition-isolation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-relation-schema-staging/rule-0300"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs-v7.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0300",
+      "short_statement": "Registered relation Metadata Admission never enables complete Raw, Scope, Normalizer, publication or Checked RootExport; default D0 limits and explicit bounded D4 denial remain separate.",
+      "source_anchor": "capability-denial"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-relation-schema-staging/rule-0301"
+      ],
+      "normative_source": "spec/tables/proof-report-model-v6.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0301",
+      "short_statement": "Every new source/result/field/variant and required association has a closed nominal descriptor and executed registration coverage; shape success is not actual lookup or producer conformance.",
+      "source_anchor": "closed-model"
+    },
+    {
       "area": "SPEC",
       "conformance_refs": [
         "spec-registry/duplicate-specification-id"

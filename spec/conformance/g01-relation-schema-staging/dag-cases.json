@@ -1,0 +1,943 @@
+{
+  "cases": [
+    {
+      "case_id": "g01-relation-schema-staging/dag-empty",
+      "expected_failure": null,
+      "input": {
+        "nodes": [],
+        "roots": []
+      },
+      "scope": "source-only closed metadata DAG; NOT Scope normalizer"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/dag-single",
+      "expected_failure": null,
+      "input": {
+        "nodes": [
+          {
+            "canonical_content": [
+              123,
+              34,
+              99,
+              111,
+              109,
+              112,
+              108,
+              101,
+              116,
+              101,
+              95,
+              111,
+              112,
+              101,
+              114,
+              97,
+              116,
+              105,
+              111,
+              110,
+              115,
+              34,
+              58,
+              91,
+              93,
+              44,
+              34,
+              115,
+              117,
+              112,
+              112,
+              111,
+              114,
+              116,
+              101,
+              100,
+              95,
+              112,
+              97,
+              105,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ],
+            "catalog": {
+              "effect_resource": {
+                "complete_operations": [],
+                "supported_pairs": []
+              }
+            },
+            "kind": "effect_resource",
+            "pin": {
+              "canonical_content_checksum": {
+                "algorithm": "sha256",
+                "hex": "13a08406a48eac360235eee1f6370820835a015f87329c0694b3f3bb2e9e759c"
+              },
+              "family": "agentflow.effect.resource.compatibility@1",
+              "revision": "g2-fixture"
+            },
+            "revision": "g2-fixture",
+            "schema_family": "agentflow.effect.resource.compatibility@1"
+          }
+        ],
+        "roots": [
+          0
+        ]
+      },
+      "scope": "source-only closed metadata DAG; NOT Scope normalizer"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/dag-distinct",
+      "expected_failure": null,
+      "input": {
+        "nodes": [
+          {
+            "canonical_content": [
+              123,
+              34,
+              99,
+              111,
+              109,
+              112,
+              108,
+              101,
+              116,
+              101,
+              95,
+              111,
+              112,
+              101,
+              114,
+              97,
+              116,
+              105,
+              111,
+              110,
+              115,
+              34,
+              58,
+              91,
+              93,
+              44,
+              34,
+              115,
+              117,
+              112,
+              112,
+              111,
+              114,
+              116,
+              101,
+              100,
+              95,
+              112,
+              97,
+              105,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ],
+            "catalog": {
+              "effect_resource": {
+                "complete_operations": [],
+                "supported_pairs": []
+              }
+            },
+            "kind": "effect_resource",
+            "pin": {
+              "canonical_content_checksum": {
+                "algorithm": "sha256",
+                "hex": "13a08406a48eac360235eee1f6370820835a015f87329c0694b3f3bb2e9e759c"
+              },
+              "family": "agentflow.effect.resource.compatibility@1",
+              "revision": "g2-fixture"
+            },
+            "revision": "g2-fixture",
+            "schema_family": "agentflow.effect.resource.compatibility@1"
+          },
+          {
+            "canonical_content": [
+              123,
+              34,
+              99,
+              111,
+              109,
+              112,
+              108,
+              101,
+              116,
+              101,
+              95,
+              111,
+              112,
+              101,
+              114,
+              97,
+              116,
+              105,
+              111,
+              110,
+              115,
+              34,
+              58,
+              91,
+              93,
+              44,
+              34,
+              115,
+              117,
+              112,
+              112,
+              111,
+              114,
+              116,
+              101,
+              100,
+              95,
+              112,
+              97,
+              105,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ],
+            "catalog": {
+              "effect_resource": {
+                "complete_operations": [],
+                "supported_pairs": []
+              }
+            },
+            "kind": "effect_resource",
+            "pin": {
+              "canonical_content_checksum": {
+                "algorithm": "sha256",
+                "hex": "13a08406a48eac360235eee1f6370820835a015f87329c0694b3f3bb2e9e759c"
+              },
+              "family": "agentflow.effect.resource.compatibility@1",
+              "revision": "another"
+            },
+            "revision": "another",
+            "schema_family": "agentflow.effect.resource.compatibility@1"
+          }
+        ],
+        "roots": [
+          0,
+          1
+        ]
+      },
+      "scope": "source-only closed metadata DAG; NOT Scope normalizer"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/dag-duplicate-content",
+      "expected_failure": "InvalidFacts",
+      "input": {
+        "nodes": [
+          {
+            "canonical_content": [
+              123,
+              34,
+              99,
+              111,
+              109,
+              112,
+              108,
+              101,
+              116,
+              101,
+              95,
+              111,
+              112,
+              101,
+              114,
+              97,
+              116,
+              105,
+              111,
+              110,
+              115,
+              34,
+              58,
+              91,
+              93,
+              44,
+              34,
+              115,
+              117,
+              112,
+              112,
+              111,
+              114,
+              116,
+              101,
+              100,
+              95,
+              112,
+              97,
+              105,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ],
+            "catalog": {
+              "effect_resource": {
+                "complete_operations": [],
+                "supported_pairs": []
+              }
+            },
+            "kind": "effect_resource",
+            "pin": {
+              "canonical_content_checksum": {
+                "algorithm": "sha256",
+                "hex": "13a08406a48eac360235eee1f6370820835a015f87329c0694b3f3bb2e9e759c"
+              },
+              "family": "agentflow.effect.resource.compatibility@1",
+              "revision": "g2-fixture"
+            },
+            "revision": "g2-fixture",
+            "schema_family": "agentflow.effect.resource.compatibility@1"
+          },
+          {
+            "canonical_content": [
+              123,
+              34,
+              99,
+              111,
+              109,
+              112,
+              108,
+              101,
+              116,
+              101,
+              95,
+              111,
+              112,
+              101,
+              114,
+              97,
+              116,
+              105,
+              111,
+              110,
+              115,
+              34,
+              58,
+              91,
+              93,
+              44,
+              34,
+              115,
+              117,
+              112,
+              112,
+              111,
+              114,
+              116,
+              101,
+              100,
+              95,
+              112,
+              97,
+              105,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ],
+            "catalog": {
+              "effect_resource": {
+                "complete_operations": [],
+                "supported_pairs": []
+              }
+            },
+            "kind": "effect_resource",
+            "pin": {
+              "canonical_content_checksum": {
+                "algorithm": "sha256",
+                "hex": "13a08406a48eac360235eee1f6370820835a015f87329c0694b3f3bb2e9e759c"
+              },
+              "family": "agentflow.effect.resource.compatibility@1",
+              "revision": "g2-fixture"
+            },
+            "revision": "g2-fixture",
+            "schema_family": "agentflow.effect.resource.compatibility@1"
+          }
+        ],
+        "roots": [
+          0,
+          1
+        ]
+      },
+      "scope": "source-only closed metadata DAG; NOT Scope normalizer"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/dag-unreachable",
+      "expected_failure": "InvalidFacts",
+      "input": {
+        "nodes": [
+          {
+            "canonical_content": [
+              123,
+              34,
+              99,
+              111,
+              109,
+              112,
+              108,
+              101,
+              116,
+              101,
+              95,
+              111,
+              112,
+              101,
+              114,
+              97,
+              116,
+              105,
+              111,
+              110,
+              115,
+              34,
+              58,
+              91,
+              93,
+              44,
+              34,
+              115,
+              117,
+              112,
+              112,
+              111,
+              114,
+              116,
+              101,
+              100,
+              95,
+              112,
+              97,
+              105,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ],
+            "catalog": {
+              "effect_resource": {
+                "complete_operations": [],
+                "supported_pairs": []
+              }
+            },
+            "kind": "effect_resource",
+            "pin": {
+              "canonical_content_checksum": {
+                "algorithm": "sha256",
+                "hex": "13a08406a48eac360235eee1f6370820835a015f87329c0694b3f3bb2e9e759c"
+              },
+              "family": "agentflow.effect.resource.compatibility@1",
+              "revision": "g2-fixture"
+            },
+            "revision": "g2-fixture",
+            "schema_family": "agentflow.effect.resource.compatibility@1"
+          },
+          {
+            "canonical_content": [
+              123,
+              34,
+              99,
+              111,
+              109,
+              112,
+              108,
+              101,
+              116,
+              101,
+              95,
+              111,
+              112,
+              101,
+              114,
+              97,
+              116,
+              105,
+              111,
+              110,
+              115,
+              34,
+              58,
+              91,
+              93,
+              44,
+              34,
+              115,
+              117,
+              112,
+              112,
+              111,
+              114,
+              116,
+              101,
+              100,
+              95,
+              112,
+              97,
+              105,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ],
+            "catalog": {
+              "effect_resource": {
+                "complete_operations": [],
+                "supported_pairs": []
+              }
+            },
+            "kind": "effect_resource",
+            "pin": {
+              "canonical_content_checksum": {
+                "algorithm": "sha256",
+                "hex": "13a08406a48eac360235eee1f6370820835a015f87329c0694b3f3bb2e9e759c"
+              },
+              "family": "agentflow.effect.resource.compatibility@1",
+              "revision": "another"
+            },
+            "revision": "another",
+            "schema_family": "agentflow.effect.resource.compatibility@1"
+          }
+        ],
+        "roots": [
+          0
+        ]
+      },
+      "scope": "source-only closed metadata DAG; NOT Scope normalizer"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/dag-missing-roots",
+      "expected_failure": "IncompleteFacts",
+      "input": {
+        "nodes": [
+          {
+            "canonical_content": [
+              123,
+              34,
+              99,
+              111,
+              109,
+              112,
+              108,
+              101,
+              116,
+              101,
+              95,
+              111,
+              112,
+              101,
+              114,
+              97,
+              116,
+              105,
+              111,
+              110,
+              115,
+              34,
+              58,
+              91,
+              93,
+              44,
+              34,
+              115,
+              117,
+              112,
+              112,
+              111,
+              114,
+              116,
+              101,
+              100,
+              95,
+              112,
+              97,
+              105,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ],
+            "catalog": {
+              "effect_resource": {
+                "complete_operations": [],
+                "supported_pairs": []
+              }
+            },
+            "kind": "effect_resource",
+            "pin": {
+              "canonical_content_checksum": {
+                "algorithm": "sha256",
+                "hex": "13a08406a48eac360235eee1f6370820835a015f87329c0694b3f3bb2e9e759c"
+              },
+              "family": "agentflow.effect.resource.compatibility@1",
+              "revision": "g2-fixture"
+            },
+            "revision": "g2-fixture",
+            "schema_family": "agentflow.effect.resource.compatibility@1"
+          }
+        ]
+      },
+      "scope": "source-only closed metadata DAG; NOT Scope normalizer"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/dag-out-of-range",
+      "expected_failure": "InvalidFacts",
+      "input": {
+        "nodes": [
+          {
+            "canonical_content": [
+              123,
+              34,
+              99,
+              111,
+              109,
+              112,
+              108,
+              101,
+              116,
+              101,
+              95,
+              111,
+              112,
+              101,
+              114,
+              97,
+              116,
+              105,
+              111,
+              110,
+              115,
+              34,
+              58,
+              91,
+              93,
+              44,
+              34,
+              115,
+              117,
+              112,
+              112,
+              111,
+              114,
+              116,
+              101,
+              100,
+              95,
+              112,
+              97,
+              105,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ],
+            "catalog": {
+              "effect_resource": {
+                "complete_operations": [],
+                "supported_pairs": []
+              }
+            },
+            "kind": "effect_resource",
+            "pin": {
+              "canonical_content_checksum": {
+                "algorithm": "sha256",
+                "hex": "13a08406a48eac360235eee1f6370820835a015f87329c0694b3f3bb2e9e759c"
+              },
+              "family": "agentflow.effect.resource.compatibility@1",
+              "revision": "g2-fixture"
+            },
+            "revision": "g2-fixture",
+            "schema_family": "agentflow.effect.resource.compatibility@1"
+          }
+        ],
+        "roots": [
+          1
+        ]
+      },
+      "scope": "source-only closed metadata DAG; NOT Scope normalizer"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/dag-wrong-root-order",
+      "expected_failure": "InvalidFacts",
+      "input": {
+        "nodes": [
+          {
+            "canonical_content": [
+              123,
+              34,
+              99,
+              111,
+              109,
+              112,
+              108,
+              101,
+              116,
+              101,
+              95,
+              111,
+              112,
+              101,
+              114,
+              97,
+              116,
+              105,
+              111,
+              110,
+              115,
+              34,
+              58,
+              91,
+              93,
+              44,
+              34,
+              115,
+              117,
+              112,
+              112,
+              111,
+              114,
+              116,
+              101,
+              100,
+              95,
+              112,
+              97,
+              105,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ],
+            "catalog": {
+              "effect_resource": {
+                "complete_operations": [],
+                "supported_pairs": []
+              }
+            },
+            "kind": "effect_resource",
+            "pin": {
+              "canonical_content_checksum": {
+                "algorithm": "sha256",
+                "hex": "13a08406a48eac360235eee1f6370820835a015f87329c0694b3f3bb2e9e759c"
+              },
+              "family": "agentflow.effect.resource.compatibility@1",
+              "revision": "g2-fixture"
+            },
+            "revision": "g2-fixture",
+            "schema_family": "agentflow.effect.resource.compatibility@1"
+          },
+          {
+            "canonical_content": [
+              123,
+              34,
+              99,
+              111,
+              109,
+              112,
+              108,
+              101,
+              116,
+              101,
+              95,
+              111,
+              112,
+              101,
+              114,
+              97,
+              116,
+              105,
+              111,
+              110,
+              115,
+              34,
+              58,
+              91,
+              93,
+              44,
+              34,
+              115,
+              117,
+              112,
+              112,
+              111,
+              114,
+              116,
+              101,
+              100,
+              95,
+              112,
+              97,
+              105,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ],
+            "catalog": {
+              "effect_resource": {
+                "complete_operations": [],
+                "supported_pairs": []
+              }
+            },
+            "kind": "effect_resource",
+            "pin": {
+              "canonical_content_checksum": {
+                "algorithm": "sha256",
+                "hex": "13a08406a48eac360235eee1f6370820835a015f87329c0694b3f3bb2e9e759c"
+              },
+              "family": "agentflow.effect.resource.compatibility@1",
+              "revision": "another"
+            },
+            "revision": "another",
+            "schema_family": "agentflow.effect.resource.compatibility@1"
+          }
+        ],
+        "roots": [
+          1,
+          0
+        ]
+      },
+      "scope": "source-only closed metadata DAG; NOT Scope normalizer"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/dag-output-backedge",
+      "expected_failure": "UnsupportedModel",
+      "input": {
+        "nodes": [
+          {
+            "canonical_content": [
+              123,
+              34,
+              99,
+              111,
+              109,
+              112,
+              108,
+              101,
+              116,
+              101,
+              95,
+              111,
+              112,
+              101,
+              114,
+              97,
+              116,
+              105,
+              111,
+              110,
+              115,
+              34,
+              58,
+              91,
+              93,
+              44,
+              34,
+              115,
+              117,
+              112,
+              112,
+              111,
+              114,
+              116,
+              101,
+              100,
+              95,
+              112,
+              97,
+              105,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ],
+            "catalog": {
+              "effect_resource": {
+                "complete_operations": [],
+                "supported_pairs": []
+              }
+            },
+            "kind": "effect_resource",
+            "pin": {
+              "canonical_content_checksum": {
+                "algorithm": "sha256",
+                "hex": "13a08406a48eac360235eee1f6370820835a015f87329c0694b3f3bb2e9e759c"
+              },
+              "family": "agentflow.effect.resource.compatibility@1",
+              "revision": "g2-fixture"
+            },
+            "revision": "g2-fixture",
+            "schema_family": "agentflow.effect.resource.compatibility@1",
+            "validation_backedge": 0
+          }
+        ],
+        "roots": [
+          0
+        ]
+      },
+      "scope": "source-only closed metadata DAG; NOT Scope normalizer"
+    },
+    {
+      "case_id": "g01-relation-schema-staging/dag-output-as-input",
+      "expected_failure": "IncompleteFacts",
+      "input": {
+        "nodes": [
+          {
+            "validation": {
+              "valid": null
+            }
+          }
+        ],
+        "roots": [
+          0
+        ]
+      },
+      "scope": "source-only closed metadata DAG; NOT Scope normalizer"
+    }
+  ]
+}

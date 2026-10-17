@@ -1,0 +1,811 @@
+{
+  "registry_revision": 1,
+  "specifications": [
+    {
+      "description": "Component identity and digest scope, exact public port ABI, cross-dimension static proof, typed K-to-epsilon guard compatibility, and substitution limits.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "7f847a770dd0d92c289a06a6133e55bd239e5247d7eea63e1c9bc98bcf231f22"
+        },
+        "logical_path": "spec/component/component-contract.md"
+      },
+      "specification_id": "agentflow.component.contract.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed thirteen-field ComponentContract ABI using exact pins to the existing semantic dimension schemas.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "421a6e6357d76864208099053a027e837b73bb8e0075612a374d0ea8f5e0f3c5"
+        },
+        "logical_path": "spec/idl/component-contract.afidl"
+      },
+      "specification_id": "agentflow.component.contract@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Declared SourcePackage, immutable owner anchors, exact document slots and fail-closed non-authoritative source association.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a41eb465d0f504bedae4e95db1a15891d7e0a578032ae3aa8d10a4f0dec1ffa7"
+        },
+        "logical_path": "spec/component/document-occurrence.md"
+      },
+      "specification_id": "agentflow.component.document-occurrence.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "IR-free local native guard subject, seven predicates, exact algorithm traces, witnesses and restricted imports.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a78b148a57babd488c7ab27348461a8f934e2a8ee87818cfe8d93b448f7da38f"
+        },
+        "logical_path": "spec/component/native-recovery-guard.md"
+      },
+      "specification_id": "agentflow.component.native-recovery-guard.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Raw input source admission, one exact port predicate, declarative origin and non-authoritative typed evidence.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "2d4ff247ccd4c7a2aaf9d9da4e25e2e22426f74f2034faca98138a07ec02bb19"
+        },
+        "logical_path": "spec/component/raw-contract-validation.md"
+      },
+      "specification_id": "agentflow.component.raw-validation.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Exact versioned relation catalog snapshots and content-bound static proof assumptions.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "742027e8b8c60312a7a6b0a4a39d3469be22cba71b02b5d92e726e4814c0a7db"
+        },
+        "logical_path": "spec/component/relation-catalogs.md"
+      },
+      "specification_id": "agentflow.component.relation-catalogs.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed standalone substitution profile, ordered checked operands, three branches and exact conservative judgments.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "b7231217d2dd40b6756f7372018092336938036d929429ae44e982fd5e404d88"
+        },
+        "logical_path": "spec/component/standalone-substitution-proof.md"
+      },
+      "specification_id": "agentflow.component.substitution-proof.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Complete typed obligation identity, derivation, provenance, evidence boundaries and capability consistency.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "c8d4cf135c28db286b0a598c3fb69814dece936fcf888ce3e46296a336186f5c"
+        },
+        "logical_path": "spec/computation/proof-obligation-semantics.md"
+      },
+      "specification_id": "agentflow.computation.proof-obligation.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Successor profile applicability, exact scoped facts and independent non-root fragments.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a614692e839403fbd8a55c5642236083435870fe2e9fe0d2aae05b7125ff7b91"
+        },
+        "logical_path": "spec/computation/proof-obligation-semantics-v2.md"
+      },
+      "specification_id": "agentflow.computation.proof-obligation.semantics@2",
+      "status": "frozen"
+    },
+    {
+      "description": "Non-root native fragment, input/output separation and unchanged root/substitution authority.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "bf7b908c5442259aacdc15f0693eaa1620e9e35f478f772ca96562dc93210b32"
+        },
+        "logical_path": "spec/computation/proof-obligation-semantics-v3.md"
+      },
+      "specification_id": "agentflow.computation.proof-obligation.semantics@3",
+      "status": "frozen"
+    },
+    {
+      "description": "Independent Raw fragment, explicit Origin extension and input/output separation without CompleteView.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "6e9b5464e2fa6743899df5535a1ea67c31978a19293be455dcbe0fde84c6107c"
+        },
+        "logical_path": "spec/computation/proof-obligation-semantics-v4.md"
+      },
+      "specification_id": "agentflow.computation.proof-obligation.semantics@4",
+      "status": "frozen"
+    },
+    {
+      "description": "Occurrence-aware input provenance and unchanged same-origin observation, input DAG and proof authority boundaries.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "e04f487a5d68edcd1ed76df0a96b5165e40bfabe6df708fb1800ec2921049bf8"
+        },
+        "logical_path": "spec/computation/proof-obligation-semantics-v5.md"
+      },
+      "specification_id": "agentflow.computation.proof-obligation.semantics@5",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed non-wire G01 semantic type model, typed order, finite value DAG and ACE1 canonical identity relation.",
+      "kind": "closed_table",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "e23ca47c05efe9f7ec22177011982ac47ca0cdc8642173de56a90e6e29a93099"
+        },
+        "logical_path": "spec/tables/proof-report-model-v1.md"
+      },
+      "specification_id": "agentflow.computation.proof-report.model@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Materialized successor non-wire semantic descriptor graph, substitution cases, bases, witnesses and complete error imports.",
+      "kind": "closed_table",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "86d97bdcbf17814f03bdab4f34090e90b53963a8a8ea8761be9d30822b3779d1"
+        },
+        "logical_path": "spec/tables/proof-report-model-v2.md"
+      },
+      "specification_id": "agentflow.computation.proof-report.model@2",
+      "status": "frozen"
+    },
+    {
+      "description": "Complete native successor graph and exact historical selected-import descriptors.",
+      "kind": "closed_table",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "296402ccab8234cd32dbe758788ef0e4bdb4a724128985c4c1f935e9459d259b"
+        },
+        "logical_path": "spec/tables/proof-report-model-v3.md"
+      },
+      "specification_id": "agentflow.computation.proof-report.model@3",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed Raw validation successor descriptors and unchanged embedded historical models.",
+      "kind": "closed_table",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "52150b387c48b8c6e0800e80cf0c82607cd295d91fd53de5f96c499a7c655a8b"
+        },
+        "logical_path": "spec/tables/proof-report-model-v4.md"
+      },
+      "specification_id": "agentflow.computation.proof-report.model@4",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed occurrence successor descriptors with exact embedded frozen model@4 and unchanged selected historical imports.",
+      "kind": "closed_table",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "d56cd394bf889c4a31a9b96566db1198f31ec1dc1a2181c96ca46206a7d94824"
+        },
+        "logical_path": "spec/tables/proof-report-model-v5.md"
+      },
+      "specification_id": "agentflow.computation.proof-report.model@5",
+      "status": "frozen"
+    },
+    {
+      "description": "Pure in-process RootExportAssertion proof: exact typed coordinates and nine-dimension static root/export compatibility, with body, publisher, authority, budget and runtime evidence kept separate.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "b264b384c37f61055ddbaee70d38ed2d66c8dc2ac81d25fd52d0a3271b2294b5"
+        },
+        "logical_path": "spec/computation/root-export-contract-proof.md"
+      },
+      "specification_id": "agentflow.computation.root-export-contract-proof.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "The AFIDL1 builtin machine primitive universe expressed as a parseable nominal-alias module; its 13 alias digests are frozen in the AFIDL corpus.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a9cf9903bf1ad64f66a349dc60775eae3938a92b4f6bd8e65ee63f89d9f68c95"
+        },
+        "logical_path": "spec/idl/core/machine-primitives.afidl"
+      },
+      "specification_id": "agentflow.core.machine-primitives@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed central registry of HashV1 digest domains.",
+      "kind": "digest_domain_registry",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "b8731a3591f30becde2bf22a77c129664d718fa5fc291930c8fbc1bdd26aa3c3"
+        },
+        "logical_path": "spec/tables/hash-domains.json"
+      },
+      "specification_id": "agentflow.digest.hash-domains@1",
+      "status": "frozen"
+    },
+    {
+      "description": "HashV1 digest foundation: exact formula, SHA-256 only, DigestRef and the domain separation invariant.",
+      "kind": "digest",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "2b61a9351d2ee7bb0c7b39de29c5fa6035237e00ace109f741507f996f98d755"
+        },
+        "logical_path": "spec/digest/hash-v1.md"
+      },
+      "specification_id": "agentflow.digest.hash-v1@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Exact operation/resource-type compatibility relation, selector mappings and complete qualifier profiles.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a0e480086b68549c8c1831b086acb270d51c1225a30f785f65ce642e164b6364"
+        },
+        "logical_path": "spec/idl/effect-resource-compatibility.afidl"
+      },
+      "specification_id": "agentflow.effect.resource.compatibility@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Effect Signature semantics: the declaration/authorization boundary, atom identity, fail-closed catalog resolution, occurrence bound and guard rules, the closed/open/top row distinction, the effect algebra (containment, accumulation, branch join, repetition) and static control-opcode propagation.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "667baa267e7f4d310f41bf7e10d5267b488a5d343e8e6f8d957c329adcf19c00"
+        },
+        "logical_path": "spec/effect/effect-signature.md"
+      },
+      "specification_id": "agentflow.effect.signature.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the Effect Signature: effect atoms (operation identity, logical resource selector, closed qualifiers), explicit occurrence bounds, the closed guard language and the four capability row states (pure, closed, bounded-open, unknown). Reuses the semantic core's PrimitiveConstant by exact cross-module import.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "c488c3b9ff53ea709ea7eee6d80f1e001125b0153bccb4c0808f966ef614d8ab"
+        },
+        "logical_path": "spec/idl/effect-signature.afidl"
+      },
+      "specification_id": "agentflow.effect.signature@1",
+      "status": "frozen"
+    },
+    {
+      "description": "ACE1: the deterministic, schema-directed, UTF-8 canonical encoding of AgentFlow values (strict JSON subset).",
+      "kind": "encoding",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "994fed624985e28b166e6038a714e43702c571aa77e29e8c25aa89aab829072e"
+        },
+        "logical_path": "spec/encoding/ace1-grammar.md"
+      },
+      "specification_id": "agentflow.encoding.ace1@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Static X semantics: hard/soft separation, explicit capability/profile universes, canonicalization, descriptor matching, separate feasibility and security-preservation proofs, compatibility and the no-authority boundary.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "44717f9e878564e2a7aba4eaef878e65d51db14d8834654285a9bc688d95c911"
+        },
+        "logical_path": "spec/execution/execution-requirements.md"
+      },
+      "specification_id": "agentflow.execution.requirements.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of static Execution Requirements: exact capability and attribute requirements, independent nominal compute quantities, sandbox, trust, region/residency, runtime profile, implementation ABI obligations and closed soft preferences.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "6914020b3e9b0d900274fc5d75daac9f27e3b02bb889920c676278b84fff0576"
+        },
+        "logical_path": "spec/idl/execution-requirements.afidl"
+      },
+      "specification_id": "agentflow.execution.requirements@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Failure Row semantics: the six error planes, nominal identity and exact pinning, the closed-row and empty-not-success rules, canonical ordering, exact containment, the union algebra, HANDLE residual and handler propagation, control propagation, and the Unproven analysis result.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "37b6af04d221c82dba07136b95e98f91375adea35b1267d729b0efd699c30d84"
+        },
+        "logical_path": "spec/failure/failure-row.md"
+      },
+      "specification_id": "agentflow.failure.row.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the static Typed Failure Row: the nominal FailureTypeRef (an exact TypeSchemaRef pin reused from the semantic core) and the closed FailureRow set. Only typed business failures enter the row; control outcomes, recovery states, infrastructure facts and incidents are structurally outside it.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "2269b03fa0e19152bd7b769773fc9ffc5c4bb894fec9e657acd269c8d20e60b9"
+        },
+        "logical_path": "spec/idl/failure-row.afidl"
+      },
+      "specification_id": "agentflow.failure.row@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Exact information-flow and execution region, trust, sandbox and sink relation.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "c8601246b7864b45a333dd63161941a66508f0a2fe103b08ce5bb9d0181e3217"
+        },
+        "logical_path": "spec/idl/flow-execution-relation.afidl"
+      },
+      "specification_id": "agentflow.flow.execution.relation@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed normative table of the AFIDL1 builtin primitive universe.",
+      "kind": "closed_table",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "e0cd1ed7c69027dad593b0090668ad03baa97b145afe59b294d207f786ae03c5"
+        },
+        "logical_path": "spec/tables/afidl-primitives.json"
+      },
+      "specification_id": "agentflow.idl.afidl-primitives@1",
+      "status": "frozen"
+    },
+    {
+      "description": "AFIDL1: the closed schema definition language, its grammar, its identity model and (Phase 2C) its cross-module import capability. Imports are an additive AFIDL1 source feature: the language major stays 1 and every module without imports keeps its exact previous meaning and digests.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "074fb124d4d5ae90df64ffa23205eb30bfe81c10a3c8db6784adcd81b26a81a8"
+        },
+        "logical_path": "spec/idl/afidl1-grammar.md"
+      },
+      "specification_id": "agentflow.idl.afidl@1",
+      "status": "frozen"
+    },
+    {
+      "description": "The canonical TypeSchema machine representation and the TypeSchemaDigest identity formula (sections 6-7 of the AFIDL1 grammar).",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "074fb124d4d5ae90df64ffa23205eb30bfe81c10a3c8db6784adcd81b26a81a8"
+        },
+        "logical_path": "spec/idl/afidl1-grammar.md"
+      },
+      "specification_id": "agentflow.idl.type-schema@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Information Flow semantics: the four-concept separation (provenance/trust/taint/flow), the frozen security invariants, label and taint identity, instruction authority with no self-elevation, conservative may-influence propagation, the LLM strong taint mixer, the egress/influence split, declassification/endorsement obligations, persistence without trust upgrade, unknown handling, flow non-relaxation and the static-vs-runtime boundary.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "5e26d3101b33c41095944a794f46108aa6a226d565f47e8b69f3b7d85ac1ed87"
+        },
+        "logical_path": "spec/information-flow/information-flow.md"
+      },
+      "specification_id": "agentflow.information.flow.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the static Information Flow Contract: confidentiality and taint labels as separate nominal types, the closed instruction-authority scale, typed logical source categories, the conservative static influence summary, data-egress vs decision-influence flow kinds, workflow-output and structured effect-operation sinks, and the closed flow contract. The external effect sink reuses the effect signature's EffectOperationRef by exact cross-module import.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a0dfccd988d0499c728da4fbc2772dd93069405aac468408747dc32152a5ece3"
+        },
+        "logical_path": "spec/idl/information-flow.afidl"
+      },
+      "specification_id": "agentflow.information.flow@1",
+      "status": "frozen"
+    },
+    {
+      "description": "ACE1 portable proof input semantics, closed D0-D4 validation, exact content identity, scoped references and current static semantic support.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "7d6fe7ea14b472d1df95f0a02cd0f1b19d1ff560cd7ac11ca1dad8d77e1ff74a"
+        },
+        "logical_path": "spec/portable/portable-proof-inputs.md"
+      },
+      "specification_id": "agentflow.portable.proof.inputs.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Exact Edition2 content binding, current-only fail-closed staging and isolated historical evidence without positive activation.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "751b46630198e82b99e58eb9ee31ab7c95edd373a1c938e2c1edd470f54dc8c0"
+        },
+        "logical_path": "spec/portable/portable-proof-inputs-v2.md"
+      },
+      "specification_id": "agentflow.portable.proof.inputs.semantics@2",
+      "status": "frozen"
+    },
+    {
+      "description": "Exact successor identity and current-only non-activatable staging, isolated Edition1 and Edition2 evidence.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "57d9ec10b5cc2ec0ef1e2ad20389b9018e03a868129482ef7ec10cc2386fb658"
+        },
+        "logical_path": "spec/portable/portable-proof-inputs-v3.md"
+      },
+      "specification_id": "agentflow.portable.proof.inputs.semantics@3",
+      "status": "frozen"
+    },
+    {
+      "description": "Exact current-only native staging tuple and denial at every capability boundary.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "8bfd73778fccb892c0f4e0712fb2a5048f7ef15a9533842caa8b341a7d53ce89"
+        },
+        "logical_path": "spec/portable/portable-proof-inputs-v4.md"
+      },
+      "specification_id": "agentflow.portable.proof.inputs.semantics@4",
+      "status": "frozen"
+    },
+    {
+      "description": "Exact Raw successor tuple, current-only content identity and unconditional staging capability denial.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "1e2a5c6392fbf9c3df87ed481eb404879d68d1aae01d5981dfb2e582a726c49d"
+        },
+        "logical_path": "spec/portable/portable-proof-inputs-v5.md"
+      },
+      "specification_id": "agentflow.portable.proof.inputs.semantics@5",
+      "status": "frozen"
+    },
+    {
+      "description": "Exact occurrence successor tuple, explicit old-source nonmigration and Registered/NotImplemented/NotAuthorized admission.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "546388ea20c2ec22684111a59c9dd99b01929c1271136f752839a19d5ae59370"
+        },
+        "logical_path": "spec/portable/portable-proof-inputs-v6.md"
+      },
+      "specification_id": "agentflow.portable.proof.inputs.semantics@6",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed ten-field portable static proof Bundle and its typed inline content, context, resolver, compiler and assertion records.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "3e1244fd88cf5bdb1d8c0e4dea44b999df8ccb99acf7c97fabb89e2cbb7efcf5"
+        },
+        "logical_path": "spec/idl/portable-proof-inputs.afidl"
+      },
+      "specification_id": "agentflow.portable.proof.inputs@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Static Recovery semantics: replay boundaries, idempotency declarations, unknown and partial effect safety, reconciliation/compensation obligations, forward-history preservation, static proofs and conservative compatibility.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "738365753c4f404563789782fa71a3e8e5f2a5d967f5f952b3411e89f20287a8"
+        },
+        "logical_path": "spec/recovery/recovery-contract.md"
+      },
+      "specification_id": "agentflow.recovery.contract.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the static Recovery Contract: replay and idempotency semantics, key obligations, exact EffectAtom recovery clauses, reconciliation requirements, unknown-effect handling and compensation obligations.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "c38aa9e1a5452cb7724b02d08a22d79e2a6762680b4f6c390454519f682724a9"
+        },
+        "logical_path": "spec/idl/recovery-contract.afidl"
+      },
+      "specification_id": "agentflow.recovery.contract@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Exhaustive exact recovery-action to usage-meter coverage catalog.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "2472b1aed0eab71c3be176010b6eb9f744675c31f17e22346c1ea95ffa30c887"
+        },
+        "logical_path": "spec/idl/recovery-usage-coverage.afidl"
+      },
+      "specification_id": "agentflow.recovery.usage.coverage@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Registry mechanics: Specification Registry, RuleId system, Stable ABI Number Registry, ConformanceCaseId and canonical registry form.",
+      "kind": "registry",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a0573197172296f89810a113fc8946acdeb3ccded5cbdff2198e1682cf69a405"
+        },
+        "logical_path": "spec/registry/registry-spec.md"
+      },
+      "specification_id": "agentflow.registry.core@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed table of RuleId areas.",
+      "kind": "closed_table",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "5b33545c54cc94518ca5263931a6cef527e69f3d316c2e89157efa41cbb4d942"
+        },
+        "logical_path": "spec/tables/rule-areas.json"
+      },
+      "specification_id": "agentflow.registry.rule-areas@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Resource Requirement semantics: nominal identity and exact pinning, the explicit resource-type universe, the requirement port namespace, exact-value attributes, the closed row, canonical ordering, static satisfaction, requirement non-strengthening, the Unproven result, the requirement/capability/grant distinction and the deferred binding/handle boundary.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a4c9334ba134073a53cfbf9f6335f9065855eb880904fbec834e32b3b3e8e50a"
+        },
+        "logical_path": "spec/resource/resource-requirement.md"
+      },
+      "specification_id": "agentflow.resource.requirement.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the static Resource Requirement Row: the nominal ResourceTypeRef (an exact TypeSchemaRef pin reused from the semantic core), the exact-value ResourceAttributeConstraint, the port-keyed ResourceRequirement and the closed ResourceRequirementRow. Only static need is declared here; binding, handles, adapters and authority are structurally outside.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "75c850fa5a55ef5eb1873b865b1d9f293fffb4e276bf6ec0834b0deb1d854b08"
+        },
+        "logical_path": "spec/idl/resource-requirement.afidl"
+      },
+      "specification_id": "agentflow.resource.requirement@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Derived-only static propagation for existing ITERATE, RETRY, TIMEOUT and HANDLE opcodes without changing Semantic IR or ComponentContract ABI.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "615eeae850e47cf01f72791eaeba570ac075c65a8abae8439d3130bde5ce7b3b"
+        },
+        "logical_path": "spec/computation/advanced-control-contract-algebra.md"
+      },
+      "specification_id": "agentflow.semantic.advanced-control-contract-algebra.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Conservative, provenance-preserving static composition for SEQUENCE, SELECT, PARALLEL and RACE without workflow ABI or runtime authority.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "14c4cb7b8e6311e91fe63fcf091fb496e41681bb64d28c7fbbef0a47a2601bc9"
+        },
+        "logical_path": "spec/computation/control-contract-algebra.md"
+      },
+      "specification_id": "agentflow.semantic.control-contract-algebra.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the workflow semantic core: primitive universe, semantic type DAG, digest-pinned references, value slots, pure expressions and logical resource slots.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "44054abf93fb21a10eca43d9397ba2151bc3ccda96fefef562a35e288931e250"
+        },
+        "logical_path": "spec/idl/semantic-core.afidl"
+      },
+      "specification_id": "agentflow.semantic.core@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Canonical Semantic IR semantics: static scope, ownership tree, value producer rules, interface equality, per-opcode static schemas, canonical ordering and the SemanticIrDigest.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "8e92214da8df308a81775e1910727f4d9f0985555e0170f757777ca22949a48f"
+        },
+        "logical_path": "spec/semantic/semantic-ir.md"
+      },
+      "specification_id": "agentflow.semantic.ir.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the canonical Semantic IR: the closed 13-opcode computation set, structured ownership, run parameters, workflow outputs, the closed contract table and the SemanticIrDocument. The first production consumer of the AFIDL1 cross-module import.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "9fb3292a0fe90b207db037575c50ef3ca50174411b3c5a461c09c37d53f616a3"
+        },
+        "logical_path": "spec/idl/semantic-ir.afidl"
+      },
+      "specification_id": "agentflow.semantic.ir@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Exact, source-preserving static contract resolution for INVOKE, AWAIT and CALL_SUBFLOW computation leaves; no workflow control algebra or runtime authority.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "36c0ba9434cedc68669e1cbd3300c8f6073aa1cf701aa94c8ba974232af5cfa7"
+        },
+        "logical_path": "spec/computation/leaf-contract-resolution.md"
+      },
+      "specification_id": "agentflow.semantic.leaf-contract-resolution.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Derived-only SCOPE and COMPENSATION_SCOPE algebra, checked full control-tree closure, and root-relative K action/Recovery-Usage proof with runtime authority, receipts, export assertions, reservations, and execution explicitly outside this static proof boundary.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "1b4d631fe24cd9ea0c3462dcb875f5d0d2f13f2b4d99ab9135347d58a9a61537"
+        },
+        "logical_path": "spec/computation/scope-compensation-contract-algebra.md"
+      },
+      "specification_id": "agentflow.semantic.scope-compensation-contract-algebra.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Workflow semantic core semantics: machine vs workflow primitives, type DAG rules, exact pinning, SSA value slots, expression purity and type checking, resource slot scope.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "cf389a50fe8dbc553973f98422dc5603c421bfb75cfeb6db915458b85ea1597b"
+        },
+        "logical_path": "spec/semantic/core-semantic-types.md"
+      },
+      "specification_id": "agentflow.semantic.types@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the Specification, Rule and ABI-number registries (self-hosting bootstrap module).",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "b54a2ee9fc70d3e2222b31ff07766151a2acf16f3301817c0dff93eb0631f80f"
+        },
+        "logical_path": "spec/idl/specification-registry.afidl"
+      },
+      "specification_id": "agentflow.spec.registry@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Static Cost Projection semantics: currency identity, atomic units, fixed rational pricing, conservative per-meter-unit rounding, meter coverage, static cost and budget proofs, cost non-increase and the runtime billing boundary.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "0d9702482268978e43f52a3d6fe8f51db817a81a8e7aae52287a9ce318906992"
+        },
+        "logical_path": "spec/usage/cost-projection.md"
+      },
+      "specification_id": "agentflow.usage.cost.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the static Cost Projection declaration: explicit currency and atomic money, rational fixed price entries, immutable price table snapshot and forward/recovery static cost ceiling.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "b6f32783b87ca08b7f861fad697770e7e751e1cb73217a6ba4f92343348bf76a"
+        },
+        "logical_path": "spec/idl/cost-projection.afidl"
+      },
+      "specification_id": "agentflow.usage.cost@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Static Usage semantics: explicit meter universe and units, additive upper bounds, phase separation, canonicalization, conservative usage algebra and control propagation, static ceiling proof, non-increase compatibility and the runtime ledger boundary.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "d8fa91b7c50ff78e865357c13286d0f9584709e7337d37043e2dc6d1aa140500"
+        },
+        "logical_path": "spec/usage/usage-signature.md"
+      },
+      "specification_id": "agentflow.usage.signature.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Normative shape of the static Usage Signature: exact additive meter identity, forward/recovery phases, finite/unbounded upper bounds and the closed Usage Signature declaration.",
+      "kind": "schema",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "6cf26c6829f9a084e54164ccea4f4734683a8acf290e946ee388a3c545b2070d"
+        },
+        "logical_path": "spec/idl/usage-signature.afidl"
+      },
+      "specification_id": "agentflow.usage.signature@1",
+      "status": "frozen"
+    }
+  ]
+}
