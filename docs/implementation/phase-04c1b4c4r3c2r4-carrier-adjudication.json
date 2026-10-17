@@ -1,0 +1,11 @@
+{
+  "source": "Direct human clarification in the active C2R4 task",
+  "question_item_id": "[\"request_user_input_async\",\"call_19f775d73e1e44c2bbd41d30f81a8c8f\",0]",
+  "answer": "必须符合现有 Node<T>/DagRank 载体；缺少正式阶段绑定则 Outcome C",
+  "require_existing_registered_node_dagrank_carrier": true,
+  "complete_borrowed_target_view_is_accepted_as_substitute": false,
+  "canonical_rank_generation_or_g02_implementation_authorized": false,
+  "normative_specification_rule_or_descriptor_changed": false,
+  "outcome_if_formal_stage_binding_missing": "C",
+  "interpretation": "This is a task acceptance constraint, not a new normative RuleId, descriptor, edition or permission to implement G02/T4."
+}
