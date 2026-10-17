@@ -242,6 +242,98 @@ pub struct RawSubjectRef<'a, 'c, 'u> {
     pub context: &'c StaticContractProofContext<'u>,
 }
 impl<'c, 'u> RawLocalCapture<'_, 'c, 'u> {
+    /// A checked subset of registered Fact fields, NOT a complete Fact/seed.
+    /// Empty relations here mean this *local port predicate* has no queried
+    /// fact prerequisites, not that a complete contract has no prerequisites.
+    /// No caller-provided payload is accepted by this projection.
+    pub fn registered_root_subset(
+        &self,
+        seed: &LocalRawSeed,
+    ) -> Result<Value, crate::RegisteredModelFailure> {
+        use crate::RegisteredModelFailure::InvalidFacts;
+        if !self.owns(seed) {
+            return Err(InvalidFacts);
+        }
+        self.validate()?;
+        let verdict = match seed.status {
+            ProofVerdict::Proven => "Proven",
+            ProofVerdict::Violation => "Violation",
+            _ => return Err(InvalidFacts),
+        };
+        let fields = json!({
+            "role": "supporting_fact",
+            "evaluation": {"evaluated": null},
+            "status": {"proof": verdict},
+            "prerequisites": [],
+            "cause_fact_keys": [],
+            "companion_evidence_status": {"none": null},
+            "substitution_basis": {"none": null},
+            "native_guard_basis": {"none": null}
+        });
+        let catalogue = registered_model_catalogue()?;
+        // Check the exact registered types, not a hand-authored Fact descriptor.
+        // This deliberately does not admit a Fact with the other roots absent.
+        for row in catalogue["types"]["Fact"]["fields"]
+            .as_array()
+            .ok_or(InvalidFacts)?
+        {
+            let name = row[0].as_str().ok_or(InvalidFacts)?;
+            if let Some(value) = fields.get(name) {
+                crate::registered_model::validate_registered_descriptor_value(&row[1], value)?;
+            }
+        }
+        Ok(fields)
+    }
+
+    /// Full nominal path labels for the existing borrowed source path.
+    /// This is not an encoded identity, a Scope DAG, or a new path variant.
+    pub fn registered_declared_path(
+        &self,
+        seed: &LocalRawSeed,
+    ) -> Result<Value, crate::RegisteredModelFailure> {
+        use crate::RegisteredModelFailure::InvalidFacts;
+        use crate::native_capture::NativeDeclaredStep;
+        let catalogue = registered_model_catalogue()?;
+        let path = self.declared_path(seed).ok_or(InvalidFacts)?;
+        let mut out = Vec::new();
+        for step in path {
+            let value = match step {
+                NativeDeclaredStep::Field { owner, field } => {
+                    let descriptor = &catalogue["types"][owner];
+                    if !descriptor["fields"]
+                        .as_array()
+                        .is_some_and(|fields| fields.iter().any(|row| row[0] == field))
+                    {
+                        return Err(InvalidFacts);
+                    }
+                    json!({"field":{"owner":{"owner":crate::registered_model::SUCCESSOR_MODEL_ID,"name":owner},"field":field}})
+                }
+                NativeDeclaredStep::Entry { index } => {
+                    json!({"entry":{"index":u64::try_from(index).map_err(|_| InvalidFacts)?}})
+                }
+            };
+            crate::validate_registered_model_shape("DeclaredStep", &value)?;
+            out.push(value);
+        }
+        Ok(Value::Array(out))
+    }
+
+    /// Subject-bound witness input. The subject remains the actual borrowed
+    /// value; no invented Node rank or complete compiler projection is issued.
+    pub fn bound_rejection_witness(
+        &self,
+        seed: &LocalRawSeed,
+    ) -> Result<Option<BoundRawWitness<'_, 'c, 'u>>, crate::RegisteredModelFailure> {
+        if !self.owns(seed) {
+            return Err(crate::RegisteredModelFailure::InvalidFacts);
+        }
+        self.validate()?;
+        Ok(seed.witness.map(|witness| BoundRawWitness {
+            subject: self.subject(),
+            witness,
+        }))
+    }
+
     pub fn seeds(&self) -> &[LocalRawSeed] {
         &self.seeds
     }
@@ -437,6 +529,13 @@ impl<'c, 'u> RawLocalCapture<'_, 'c, 'u> {
         }
         Ok(())
     }
+}
+
+/// Borrowed constitutive inputs, not a registered RawPortRejectionWitness
+/// encoding: in particular `subject` is not a canonical DAG reference.
+pub struct BoundRawWitness<'a, 'c, 'u> {
+    pub subject: RawSubjectRef<'a, 'c, 'u>,
+    pub witness: RawRejectionWitness,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
@@ -741,6 +840,26 @@ mod tests {
         };
         let compiler = crate::current_compiler_semantics_identity();
         let original = capture_raw_ports(&request, &c, &c, &compiler).unwrap();
+        let detached = original.seeds()[0].clone();
+        assert_eq!(
+            original.registered_root_subset(&detached).err(),
+            Some(RegisteredModelFailure::InvalidFacts)
+        );
+        assert_eq!(
+            original.registered_declared_path(&detached).err(),
+            Some(RegisteredModelFailure::InvalidFacts)
+        );
+        assert_eq!(
+            original.bound_rejection_witness(&detached).err(),
+            Some(RegisteredModelFailure::InvalidFacts)
+        );
+        let subset = original
+            .registered_root_subset(&original.seeds()[0])
+            .unwrap();
+        assert_eq!(
+            crate::validate_registered_model_shape("Fact", &subset),
+            Err(RegisteredModelFailure::IncompleteFacts)
+        );
         let mut changed = capture_raw_ports(&request, &c, &c, &compiler).unwrap();
         let saved = changed.seeds[0].clone();
         let mut collector = RawLocalCollector::default();

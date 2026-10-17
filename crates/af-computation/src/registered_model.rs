@@ -159,6 +159,17 @@ pub fn validate_registered_model_shape(
     check_named_constraints(catalogue, name, value)
 }
 
+/// Internal metadata-only check for a field whose descriptor was selected
+/// directly from the compiled closed catalogue. No fact/capability is issued.
+pub(crate) fn validate_registered_descriptor_value(
+    descriptor: &Value,
+    value: &Value,
+) -> Result<(), RegisteredModelFailure> {
+    let catalogue = registered_model_catalogue()?;
+    let mut work = 0;
+    check_shape(catalogue, descriptor, value, 0, &mut work)
+}
+
 fn check_named_constraints(
     catalogue: &Value,
     name: &str,
