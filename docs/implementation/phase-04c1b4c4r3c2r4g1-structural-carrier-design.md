@@ -111,6 +111,31 @@ At equal height, compare type identity, the registered nonrecursive body key,
 and ordered child ranks. No successful result is returned before complete
 acyclicity/reachability/minimality/canonical ordering checks pass.
 
+For the proposed map body specifically, its local children are the key then
+value of each entry in typed-key order. The ordered child-rank vector is the
+flattened sequence of these pairs; entry count is nonrecursive metadata. Empty
+maps have height zero; otherwise height is one plus the maximum of those local
+child heights. Entry metadata is not a synthetic extra value node. Within one
+registered map type, constructor and K/V binding are fixed, so count and ordered
+complete children determine the body without a hash or insertion-order tie.
+The successor appends the map constructor's declared case order without changing
+the seven existing cases. External G references in W are separately declared
+reference payloads, not extra W-local children or implicit inputs to G. Their
+exact typed targets are still checked before W can be accepted. These are draft
+body/order rules, not a generated rank example or a current model@6 extension.
+
+Under W's fixed verified G environment, external-reference payload comparison
+uses complete typed target values, never mathematical comparison of G rank
+spellings. Those target keys participate in nonrecursive payload comparison;
+they contribute no W-local height. Envelope equality also compares the complete
+G, exact tuple and profile/root environment. An equal numeric W body in two
+different G environments does not establish equal complete evidence or source.
+For that explicitly registered successor W grammar, no local child means local
+height zero; otherwise use one plus the maximum local-child height. The exact
+body/reference-domain declarations must classify external payloads versus local
+children, not let a caller reinterpret current NodeBody edges. This is proposed
+new descriptor/profile content; the input graph G's0217 law stays unchanged.
+
 Profile-declared source roots have fixed field order; repeated equal roots remain
 permitted. Source identities retain their declared data; a synthetic root may
 not rescue an otherwise unreachable node. Bounds intersect existing D0–D10 and

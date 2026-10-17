@@ -79,6 +79,11 @@ and [amendment draft](phase-04c1b4c4r3c2r4g1-amendment-draft.md).
 27. Current Portable default D0/bounded D4 and native analyzer/direct/private/
     alternate/current-only capability refusals remain mandatory and unchanged.
     Input structural success can never authorize RootExport/publication/runtime.
+    Current Cargo excludes old autotest names. A separate current-library
+    diagnostic checks35 actual fixtures with2 Context selections,70 observations,
+    no historical Expected comparison or new-vector credit; see gate report and
+    final receipt. The direct checker guards the private constructor, not a claim
+    to invoke that constructor independently.
 28. C1-GAP-01/C2-GAP-01/R3-CTX-REL-01 remain FORMAL BINDING REGISTERED.
     New structural carrier amendment registration and Raw adaptation remain pending.
 29. G01 partial; G02 OPEN/P1; G03 OPEN/P2; F01/F02 CLOSED; F03/F04 OPEN/P2;

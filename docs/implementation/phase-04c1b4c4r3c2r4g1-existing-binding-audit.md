@@ -19,7 +19,17 @@ their original source owners, including model@1 anchors and 97 historical import
 | OS@4, 0269 `raw-fragment`; OS@6, 0297 `input-output-dag` | Outputs cannot establish input identity; separate finite graphs |
 | Raw validation@1, 0261–0268 `raw-subject` … `raw-hook-contract` | Actual 13-field input, actual shared Context, real port prefix, source-bound evidence |
 | Native guard@1, 0255 `native-links`, NG-LINKS prose | Existing Native T3 may expose lifetime-bound PendingScope/local references; complete FactKey/Scope is T4/T5 |
+| Native guard@1, 0256 `native-imports` | Historical imports bind exact owner/name/full source/recursive descriptor; no same-name latest fallback |
 | PP@2, 0223–0228 `edition-*`; PP@7, 0299/0300 | Exact contents/current-only staging and capability refusal |
+
+Supplementary exact authority for SB-02's0256 reference (the machine authority
+array lists0255 and0257 but does not repeat this middle row): SpecificationId
+`agentflow.component.native-recovery-guard.semantics@1`, source
+`spec/component/native-recovery-guard.md#native-imports`, RuleId
+`AF-SEMANTIC-0256`. Registry-pinned source SHA-256:
+`a78b148a57babd488c7ab27348461a8f934e2a8ee87818cfe8d93b448f7da38f`.
+Its application to model@6's97 selected historical imports does not replace
+their actual declaring owners with the descriptor application's current owner.
 
 The source `spec/tables/proof-report-model-v6.md#closed-model` / 0301 registers
 new closed descriptors and metadata tests, not executable full Raw capture.
@@ -64,6 +74,12 @@ one of these a global first failure.
 `first-unbound-field.json` contains the full actual 16-module map value, exact
 R4 Actual path/checksum provenance, expected enclosing Node and U64 rank domain,
 native source types, source file paths, producing stage and missing binding.
+The complete reviewed R4 `target/phase-04c1b4c4r3c2r4-binding-actual.json`
+raw SHA-256 is
+`b75784770fd8c1ef7eaec84a36819b68b407c7cdb2010b677e93f8e50395bb83`.
+Its `/context/compiled_modules` value is copied as source evidence, not an Oracle
+Expected. Fresh current diagnostics are separately executed in this phase;
+reviewing this prior actual file is not counted as new vector execution.
 Native source: `StaticContractProofContext.modules: &CompiledModuleSet` in
 `crates/af-contract/src/validate.rs`; `CompiledModuleSet` privately owns
 `BTreeMap<String, CompiledSchema>` in `af-idl/src/resolve.rs`; each CompiledSchema

@@ -41,6 +41,10 @@ Facts and C outputs may be ordinary typed output records outside a value DAG;
 their declared input references still resolve only in their envelope's G.
 These domain bindings are part of the proposed amendment, not already supplied
 by an arbitrary U64 or changed globally for all old profiles.
+W's external-reference comparison resolves complete typed G targets rather than
+ordering their rank spellings. Its complete envelope also retains and compares
+the full G/tuple/profile/root environment, so comparing bare W payloads across
+different input carriers is not valid complete-evidence equality.
 
 Complete carrier contents, tuple and declared profile/root environment establish
 which graph is meant. A checksum, allocation address, per-run UUID or arbitrary

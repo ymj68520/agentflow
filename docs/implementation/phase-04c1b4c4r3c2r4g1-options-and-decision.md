@@ -16,6 +16,22 @@ tuple; no same-edition hotfix or silent ModelType naming convention is permitted
 Future registration must approve the candidate-Subject-before-admission rule and
 reference environments together; omitting either makes the design incomplete.
 
+## Graph direction for each candidate
+
+| Candidate | Input graph | Derived carrier | Produced local Fact | Canonicalization result / allowed reference direction |
+|---|---|---|---|---|
+| A | hypothetical already complete registered input graph; absent for the actual R4 inputs | verified existing ranks, never local indices | complete Fact only after genuine input/source/admission proof; currently unavailable | outputs may reference the verified inputs; Fact/Scope output cannot establish that prior graph |
+| B | actual complete declared input closure only | proposed pre-capture immutable G | sealed local events first; full Fact only after actual admission against G | T4 produces semantic output; G is immutable, outputs reference G, and no output points back into G's construction |
+| C | actual declared inputs entering one separately approved atomic transaction | input-only subpass constructs G before output subpasses | internal local events are not published complete Facts before admission | only input-binding -> admission -> Fact -> normalization is legal; a final Scope/Fact prerequisite for the first subpass is a dependency conflict, not an atomicity solution |
+| D | direct Rust/borrowed structural values | no admitted canonical carrier | genuine local evidence can remain, but cannot become a complete registered Fact | no legal canonical result follows from projection alone; adding fabricated ranks or completing Scope backward is forbidden |
+
+Option C would require separate approval of source/stage ownership clauses,
+complete model/report/reference-domain changes, exact analysis/obligation/Portable
+content and versions, then joint producer/normalizer/Scope implementation and
+independent conformance. This comparison grants none of those approvals. Option
+A's missing executable source binding is an actual availability gap, not an
+assertion that every mathematically valid pre-existing graph is impossible.
+
 The G1 acceptance covers this complete amendment design, not an executable proof
 that existing binding works. R4-DAG-STRUCT-01 remains blocking pending formal
 registration and later authorized implementation/conformance. This is not an

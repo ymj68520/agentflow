@@ -63,3 +63,7 @@ A-equal/C-different, historical-content-only, C failure, stage bootstrap and
 authority negatives. No formal rank numbers are constructed even as example
 outputs. Prior74 R4 boundary deletion mutations remain separately executed
 diagnostics; their source is not a substitute for any of these48 future cases.
+
+[Symbolic input refinements for all 48 IDs](phase-04c1b4c4r3c2r4g1-design-vector-notes.md)
+make nested Map/Set, tuple position and target-value distinctions explicit.
+They supply no Rust Actual or assigned rank and execute none of the vectors.

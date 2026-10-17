@@ -48,6 +48,11 @@ silent deduplication. Sort entries by the exact registered typed K comparator.
 String-map NFC/key behavior follows ACE1-0005/0006/0007 only in its actual domain;
 general nominal/Raw key domains do not inherit that normalization by shape.
 No generic runtime Map Encoder or implicit Map-as-JSON-string fallback is permitted.
+The map's local child vector MUST flatten key then value for every entry in
+typed-key order; its entry count is nonrecursive metadata. Empty map height is
+zero, otherwise one plus the maximum local key/value child height. No extra
+entry value nodes are invented. The new case order MUST append without changing
+existing NodeBody case order; no constructor/rank number is allocated here.
 Dependencies:0214/0215/0217; ACE1 `ace1-map-key-*`/`ace1-duplicate-key-rejection`.
 
 ## SB-05 — Set versus sequence
@@ -99,6 +104,19 @@ height dependencies. No numeric fallback to another graph/edition, relocation
 guess, dangling child or untyped graph-hash ID is permitted. Exact binding domains
 and envelope descriptors require registration together; old bare-rank meanings
 are not changed retrospectively. Dependencies:0214/0217,0257/0269/0297.
+
+W equality and ordering MUST be evaluated under its fixed, fully verified G
+environment. External-reference payload comparison uses the complete typed
+target value under its declared target type, not the numeric G rank as a
+semantic scalar. External targets contribute no W-local height; their typed
+payload key participates in nonrecursive comparison before ordered local child
+ranks. A W node with no local children has local height zero; otherwise its
+height is one plus the maximum local-child height. This external-payload grammar
+and its local-edge classification MUST be explicitly registered as successor
+reference-domain/body content; an ordinary current NodeBody child cannot simply
+be reclassified by a caller. G retains the unmodified0217 input-graph law.
+The complete envelope's equality includes exact G contents/root/profile/
+tuple, so an equal bare W rank/body under another G is never sufficient.
 
 ## SB-09 — pure input graph and acyclic admission
 
