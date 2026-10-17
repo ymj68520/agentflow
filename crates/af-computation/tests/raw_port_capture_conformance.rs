@@ -50,6 +50,171 @@ mod fixtures {
         }][slot]["document"]
     }
     #[test]
+    fn relation_schema_pin_binding_requires_formal_adjudication() {
+        use af_contract::{ProofVerdict, RelationCatalogSnapshot, RelationSnapshots};
+        fn sources(dir: &std::path::Path, out: &mut Vec<(String, String)>) {
+            for entry in std::fs::read_dir(dir).unwrap() {
+                let path = entry.unwrap().path();
+                if path.is_dir() {
+                    sources(&path, out);
+                } else if path.extension().is_some_and(|ext| ext == "afidl") {
+                    out.push((
+                        path.to_string_lossy().into_owned(),
+                        std::fs::read_to_string(path).unwrap(),
+                    ));
+                }
+            }
+        }
+        let root = repo_root();
+        let mut inputs = Vec::new();
+        sources(&root.join("spec/idl"), &mut inputs);
+        inputs.sort_by(|a, b| a.0.cmp(&b.0));
+        let original = af_idl::compile_module_set(&inputs).unwrap();
+        let old_member = "2 supported_pairs: list<SupportedEffectResourcePair>;";
+        let new_member = "2 supported_pairs: list<string>;";
+        let mut changed_inputs = inputs.clone();
+        let relation_source = changed_inputs
+            .iter_mut()
+            .find(|(path, _)| path.ends_with("effect-resource-compatibility.afidl"))
+            .unwrap();
+        assert_eq!(relation_source.1.matches(old_member).count(), 1);
+        let original_relation_source = relation_source.1.clone();
+        relation_source.1 = relation_source.1.replace(old_member, new_member);
+        let changed_relation_source = relation_source.1.clone();
+        let changed = af_idl::compile_module_set(&changed_inputs).unwrap();
+        let family = "agentflow.effect.resource.compatibility@1";
+        let type_name = "EffectResourceCompatibilityCatalog";
+        let schema_a = original.module(family).unwrap().by_name(type_name).unwrap();
+        let schema_b = changed.module(family).unwrap().by_name(type_name).unwrap();
+        assert_ne!(schema_a, schema_b);
+        assert_ne!(schema_a.digest().unwrap(), schema_b.digest().unwrap());
+        let a = RelationCatalogSnapshot::new(
+            "binding-probe",
+            EffectResourceCompatibilityCatalog::default(),
+            &original,
+        )
+        .unwrap();
+        let b = RelationCatalogSnapshot::new(
+            "binding-probe",
+            EffectResourceCompatibilityCatalog::default(),
+            &changed,
+        )
+        .unwrap();
+        assert_eq!(
+            a, b,
+            "real snapshots do not retain construction schema definition/pin"
+        );
+        assert_eq!(a.canonical_bytes(), b.canonical_bytes());
+        assert_eq!(a.pin(), b.pin());
+        let native_projection = json!({"pin":{"schema":a.pin().schema,"revision":a.pin().revision,
+            "canonical_content_checksum":{"algorithm":a.pin().canonical_content_checksum.algorithm,"hex":a.pin().canonical_content_checksum.hex}},
+            "canonical_content":a.canonical_bytes()});
+        let shape_failure =
+            validate_registered_model_shape("RelationSnapshotContent", &native_projection)
+                .unwrap_err();
+        assert_eq!(shape_failure, RegisteredModelFailure::UnsupportedModel);
+        let without_relation: Vec<_> = inputs
+            .iter()
+            .filter(|(path, _)| !path.ends_with("effect-resource-compatibility.afidl"))
+            .cloned()
+            .collect();
+        let absent_modules = af_idl::compile_module_set(&without_relation).unwrap();
+        assert!(absent_modules.module(family).is_none());
+        let generated = std::process::Command::new("python")
+            .env("PYTHONUTF8", "1")
+            .args(["tools/oracle/raw_port_capture.py", "--vectors"])
+            .current_dir(&root)
+            .output()
+            .unwrap();
+        assert!(generated.status.success());
+        let vectors: Vec<Value> = serde_json::from_slice(&generated.stdout).unwrap();
+        let input = vectors
+            .iter()
+            .find(|v| v["case_id"] == "c2r1/declaration_bundle/input-zero")
+            .unwrap();
+        let package = &input["package"];
+        let owner = &package["owners"][0]["anchor"];
+        let doc = document(package, 0, 0);
+        let path = [RawDocumentMember::Entry(0)];
+        let request = DocumentOccurrenceMetadataRequest {
+            source_package: Some(package),
+            source_owner: Some(owner),
+            entry_ordinal: Some(0),
+            actual_document: doc,
+            candidate: &input["candidate"],
+            internal_path: &path,
+            physical: OccurrencePhysicalMetadata::NotSupplied,
+        };
+        let mut left = FixtureContext::new();
+        left.modules = original.clone();
+        left.relations = RelationSnapshots {
+            effect_resource: Some(a.clone()),
+            ..RelationSnapshots::default()
+        };
+        let mut right = FixtureContext::new();
+        right.modules = original.clone();
+        right.relations = RelationSnapshots {
+            effect_resource: Some(b),
+            ..RelationSnapshots::default()
+        };
+        let mut absent = FixtureContext::new();
+        absent.modules = absent_modules;
+        absent.schemas = TypeSchemaUniverse::new();
+        absent.resources = ResourceTypeUniverse::new();
+        absent.relations = RelationSnapshots {
+            effect_resource: Some(a.clone()),
+            ..RelationSnapshots::default()
+        };
+        let lc = left.view();
+        let rc = right.view();
+        let ac = absent.view();
+        let compiler = current_compiler_semantics_identity();
+        let l = capture_raw_ports(&request, &lc, &lc, &compiler).unwrap();
+        let r = capture_raw_ports(&request, &rc, &rc, &compiler).unwrap();
+        let missing = capture_raw_ports(&request, &ac, &ac, &compiler).unwrap();
+        assert!(l.same_subject(&r));
+        assert!(!l.same_subject(&missing));
+        for capture in [&l, &r, &missing] {
+            capture.validate().unwrap();
+            assert_eq!(capture.seeds().len(), 1);
+            assert_eq!(capture.seeds()[0].status(), ProofVerdict::Violation);
+            assert!(matches!(
+                capture.seeds()[0].witness(),
+                Some(RawRejectionWitness::Zero { .. })
+            ));
+            assert!(!capture.can_issue_root_export());
+        }
+        let source_names: Vec<_> = inputs
+            .iter()
+            .map(|(path, _)| {
+                std::path::Path::new(path)
+                    .strip_prefix(&root)
+                    .unwrap()
+                    .to_string_lossy()
+                    .replace('\\', "/")
+            })
+            .collect();
+        let output = json!({"diagnostic_id":"c2r3/relation-snapshot-schema-pin",
+            "family":family,"type_name":type_name,"source_files":source_names,
+            "original_relation_source":original_relation_source,"changed_relation_source":changed_relation_source,
+            "construction_schema_a":{"algorithm":"sha256","domain":"type-schema","hex":schema_a.digest().unwrap().hex()},
+            "construction_schema_b":{"algorithm":"sha256","domain":"type-schema","hex":schema_b.digest().unwrap().hex()},
+            "schema_a_ace1":hex::encode(schema_a.ace1_bytes().unwrap()),"schema_b_ace1":hex::encode(schema_b.ace1_bytes().unwrap()),
+            "native_snapshots_equal":a==right.relations.effect_resource.clone().unwrap(),
+            "native_pin_projection_failure":"UnsupportedModel",
+            "native_pin":{"schema":a.pin().schema,"revision":a.pin().revision,"canonical_content_checksum":{"algorithm":a.pin().canonical_content_checksum.algorithm,"hex":a.pin().canonical_content_checksum.hex}},
+            "canonical_content":a.canonical_bytes(),"same_current_context_values":l.same_subject(&r),
+            "current_context_without_relation_schema_admitted":true,
+            "raw_verdicts":[l.seeds()[0].status().as_str(),r.seeds()[0].status().as_str(),missing.seeds()[0].status().as_str()],
+            "source_input":{"package":package,"candidate":input["candidate"],"owner":owner,"slot":0,"internal_entry":0},
+            "full_fact_materialized":false,"positive_root_export":false});
+        std::fs::write(
+            root.join("target/phase-04c1b4c4r3c2r3-binding-actual.json"),
+            serde_json::to_vec_pretty(&output).unwrap(),
+        )
+        .unwrap();
+    }
+    #[test]
     fn real_source_and_occurrence_input_sensitivity_subset() {
         let generated = std::process::Command::new("python")
             .env("PYTHONUTF8", "1")
