@@ -1022,7 +1022,7 @@
     {
       "case_id": "g01-document-occurrence-staging/portable-noncanonical-current-tuple",
       "family": "InvalidCanonicalEncoding",
-      "stage": "D0"
+      "stage": "D1"
     }
   ],
   "scope": "NotImplemented",

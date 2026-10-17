@@ -153,7 +153,7 @@ def corpus(m):
  admission=admission_cases();js('spec/conformance/g01-document-occurrence-staging/admission-cases.json',{'cases':admission,'classification':'Metadata association only; NOT Raw predicate execution'})
  from document_occurrence_admission_cases import dag_cases
  dags=dag_cases();js('spec/conformance/g01-document-occurrence-staging/dag-cases.json',{'cases':dags})
- runtime=[{'case_id':PREFIX+'portable-caller-support-flag','stage':'D0','family':'InvalidCanonicalEncoding'},{'case_id':PREFIX+'portable-noncanonical-current-tuple','stage':'D0','family':'InvalidCanonicalEncoding'}]
+ runtime=[{'case_id':PREFIX+'portable-caller-support-flag','stage':'D0','family':'InvalidCanonicalEncoding'},{'case_id':PREFIX+'portable-noncanonical-current-tuple','stage':'D1','family':'InvalidCanonicalEncoding'}]
  manifest={'kind':'Registration/Metadata Admission ONLY; NOT Producer Capture','analysis':OWNER,'model':MODEL,'shape':SHAPE,'obligation':OBLIGATION,'case_ids':[c['case_id'] for c in cases+RULES+portable+admission+runtime+dags],'shape_cases':len(cases),'admission_cases':len(admission),'dag_cases':len(dags),'rule_cases':len(RULES),'portable_cases':portable,'runtime_portable_cases':runtime,'coverage':coverage,'selected_specifications':ids,'applied_rules':rids,'capture_case_ids':0,'producer':'NotImplemented','scope':'NotImplemented','normalizer':'NotImplemented','positive_capability':'NotAuthorized'}
  js('spec/conformance/g01-document-occurrence-staging/manifest.json',manifest)
  types_by_draft={

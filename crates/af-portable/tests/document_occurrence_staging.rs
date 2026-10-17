@@ -62,6 +62,7 @@ fn support_flags_and_noncanonical_tuple_bytes_are_not_authority() {
         .validate_supported(&serde_json::to_vec(&input).unwrap())
         .unwrap_err();
     assert_eq!(error.family, "InvalidCanonicalEncoding");
+    assert_eq!(format!("{:?}", error.stage), "D0");
     let caller_actual = serde_json::json!({"case_id":"g01-document-occurrence-staging/portable-caller-support-flag","stage":format!("{:?}",error.stage),"family":error.family});
     let mut noncanonical = vec![b' '];
     noncanonical.extend_from_slice(&data);
@@ -69,6 +70,7 @@ fn support_flags_and_noncanonical_tuple_bytes_are_not_authority() {
         .validate_supported(&noncanonical)
         .unwrap_err();
     assert_eq!(error.family, "InvalidCanonicalEncoding");
+    assert_eq!(format!("{:?}", error.stage), "D1");
     let runtime_actual = vec![
         caller_actual,
         serde_json::json!({"case_id":"g01-document-occurrence-staging/portable-noncanonical-current-tuple","stage":format!("{:?}",error.stage),"family":error.family}),
