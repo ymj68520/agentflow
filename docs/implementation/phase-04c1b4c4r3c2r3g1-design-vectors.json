@@ -1,0 +1,485 @@
+{
+  "kind": "DESIGN ONLY; artifact audit is not vector execution",
+  "vectors": [
+    {
+      "id": "G1-D01",
+      "category": "family-construction",
+      "title": "A/B empty catalog",
+      "independent_input": "same family/revision, A=list<Pair>, B=list<string>, both empty",
+      "hand_derived_expected": "native values equal; construction provenance unavailable; current-A observations equal",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D02",
+      "category": "family-construction",
+      "title": "Digest versus bytes",
+      "independent_input": "A/B distinct full TypeSchema; equal catalog ACE1",
+      "hand_derived_expected": "schema digests differ; checksums equal; no hash collision",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D03",
+      "category": "family-construction",
+      "title": "Revision is opaque",
+      "independent_input": "same family and binding-probe revision under A/B",
+      "hand_derived_expected": "revision cannot select one definition",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D04",
+      "category": "family-construction",
+      "title": "Missing construction receipt",
+      "independent_input": "legacy snapshot stores five native fields only",
+      "hand_derived_expected": "construction Unavailable; never infer A",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D05",
+      "category": "family-construction",
+      "title": "Explicit authentic receipt",
+      "independent_input": "hypothetical future constructor retains exact A schema and source association",
+      "hand_derived_expected": "B design could preserve A; not accepted as legacy A+C proof or implemented here",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D06",
+      "category": "family-construction",
+      "title": "False receipt",
+      "independent_input": "caller labels old snapshot constructed-under-A without evidence",
+      "hand_derived_expected": "reject construction claim; no authority from tag",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D07",
+      "category": "family-construction",
+      "title": "Wrong schema name",
+      "independent_input": "source kind effect_resource; proposed construction root RecoveryUsageCoverageCatalog",
+      "hand_derived_expected": "reject kind/root association",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D08",
+      "category": "family-construction",
+      "title": "Family grammar",
+      "independent_input": "family agentflow.effect.resource.compatibility@01",
+      "hand_derived_expected": "reject source: noncanonical SpecificationId",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D09",
+      "category": "family-construction",
+      "title": "Revision invalid",
+      "independent_input": "empty or non-NFC revision",
+      "hand_derived_expected": "reject source integrity, not port Violation",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D10",
+      "category": "family-construction",
+      "title": "Checksum corruption",
+      "independent_input": "full native bytes unchanged; checksum hex changed",
+      "hand_derived_expected": "reject source integrity",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D11",
+      "category": "family-construction",
+      "title": "Changed full catalog",
+      "independent_input": "nonempty supported_pairs added but retained empty catalog bytes",
+      "hand_derived_expected": "current re-encoding invalid; no valid observation",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D12",
+      "category": "family-construction",
+      "title": "Native equality preserved",
+      "independent_input": "native A and native B compared in old edition",
+      "hand_derived_expected": "true remains true; no construction-sensitive rewrite",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D13",
+      "category": "current-validation",
+      "title": "Current A valid",
+      "independent_input": "source empty effect catalog; actual current modules A",
+      "hand_derived_expected": "Found then Valid; exact current pin A, no construction claim",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D14",
+      "category": "current-validation",
+      "title": "Current missing",
+      "independent_input": "genuine source Some; actual current modules omit relation module",
+      "hand_derived_expected": "Missing; no pin; full Subject incomplete; raw zero remains Violation",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D15",
+      "category": "current-validation",
+      "title": "Ambiguous inputs",
+      "independent_input": "portable/imported input contains duplicate family roots",
+      "hand_derived_expected": "reject context association as Ambiguous before validation; native CompiledModuleSet cannot represent it",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D16",
+      "category": "current-validation",
+      "title": "Family mismatch",
+      "independent_input": "source pin family differs from selected slot family",
+      "hand_derived_expected": "FamilyMismatch; no current lookup fallback",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D17",
+      "category": "current-validation",
+      "title": "Revision mismatch",
+      "independent_input": "actual consuming comparison expects revision r1; source revision r2",
+      "hand_derived_expected": "RevisionMismatch for that comparison; schema has no catalog revision to guess",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D18",
+      "category": "current-validation",
+      "title": "Current incompatible",
+      "independent_input": "source Pair-valued nonempty supported_pairs; actual current schema B list<string>",
+      "hand_derived_expected": "Found then Invalid during real shape validation; no Valid pin",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D19",
+      "category": "current-validation",
+      "title": "Current B empty",
+      "independent_input": "equal empty native source; actual modules B",
+      "hand_derived_expected": "Valid pin B if full round-trip/catalog checks succeed; distinct current observation, not distinct construction history",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D20",
+      "category": "current-validation",
+      "title": "Across contexts",
+      "independent_input": "one equal source; current A versus current B",
+      "hand_derived_expected": "source equality unchanged; current schema observations distinct",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D21",
+      "category": "current-validation",
+      "title": "Missing import",
+      "independent_input": "actual current root references absent external type",
+      "hand_derived_expected": "reject/incomplete module closure before catalog validation; no global import",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D22",
+      "category": "current-validation",
+      "title": "Not reached",
+      "independent_input": "context/source association fails before lookup",
+      "hand_derived_expected": "later schema/catalog validation NotReached; not automatic Invalid",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D23",
+      "category": "current-validation",
+      "title": "Invalid catalog semantics",
+      "independent_input": "shape-valid rows contain duplicate exact catalog keys",
+      "hand_derived_expected": "actual catalog validation Invalid with structured offending rows",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D24",
+      "category": "current-validation",
+      "title": "Found not valid",
+      "independent_input": "lookup found root but round-trip never executed",
+      "hand_derived_expected": "Found alone cannot discharge full-schema consumer or Subject admission",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D25",
+      "category": "slots-and-pins",
+      "title": "Effect Some",
+      "independent_input": "effect_resource Some correct kind/family/root/current modules",
+      "hand_derived_expected": "project full EffectResourceCompatibilityCatalog; require C Valid",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D26",
+      "category": "slots-and-pins",
+      "title": "Recovery Some",
+      "independent_input": "recovery_usage Some correct kind/family/root/current modules",
+      "hand_derived_expected": "project full RecoveryUsageCoverageCatalog; require C Valid; no dynamic credit here",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D27",
+      "category": "slots-and-pins",
+      "title": "Flow Some",
+      "independent_input": "flow_execution Some correct kind/family/root/current modules",
+      "hand_derived_expected": "project full InformationFlowExecutionCatalog; require C Valid; no dynamic credit here",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D28",
+      "category": "slots-and-pins",
+      "title": "All None",
+      "independent_input": "all three real source options None",
+      "hand_derived_expected": "preserve three None; no invented validation success or relation coverage",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D29",
+      "category": "slots-and-pins",
+      "title": "Wrong nominal owner",
+      "independent_input": "same structural fields supplied as unrelated model-owned schema ref",
+      "hand_derived_expected": "reject nominal association, no structural duck typing",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D30",
+      "category": "slots-and-pins",
+      "title": "Wrong root name",
+      "independent_input": "effect source pin accompanied by TypeSchemaRef for another current type",
+      "hand_derived_expected": "reject exact root association",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D31",
+      "category": "slots-and-pins",
+      "title": "Wrong digest",
+      "independent_input": "correct family/name; schema digest changed one hex nibble",
+      "hand_derived_expected": "reject complete schema pin mismatch",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D32",
+      "category": "slots-and-pins",
+      "title": "Checksum as schema digest",
+      "independent_input": "catalog SHA256 substituted for TypeSchemaDigest",
+      "hand_derived_expected": "reject: distinct preimage and domain",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D33",
+      "category": "slots-and-pins",
+      "title": "Same contents not alias",
+      "independent_input": "analysis/canonical_validation refer to equal but distinct objects",
+      "hand_derived_expected": "reject role association; equality cannot establish pointer alias",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D34",
+      "category": "slots-and-pins",
+      "title": "Swapped slot",
+      "independent_input": "recovery source placed in effect_resource slot",
+      "hand_derived_expected": "reject closed slot/kind/family association",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D35",
+      "category": "slots-and-pins",
+      "title": "Two Some one missing",
+      "independent_input": "effect valid and recovery missing current schema",
+      "hand_derived_expected": "effect observation may be Valid; complete Subject admission still incomplete",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D36",
+      "category": "slots-and-pins",
+      "title": "Other eight members",
+      "independent_input": "relation binding valid but usage_meters content omitted",
+      "hand_derived_expected": "reject incomplete nine-member Subject; relation design cannot repair rest",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D37",
+      "category": "migration-dag-capability",
+      "title": "Old source lacks history",
+      "independent_input": "old five-field snapshot asks construction-sensitive migration",
+      "hand_derived_expected": "not migratable without genuine retained receipt; current validation is not history",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D38",
+      "category": "migration-dag-capability",
+      "title": "Cross-edition",
+      "independent_input": "family source draft labeled as frozen model@5 RelationSnapshotContent",
+      "hand_derived_expected": "reject UnsupportedModel/type mismatch; no relabel",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D39",
+      "category": "migration-dag-capability",
+      "title": "Unknown variant",
+      "independent_input": "unregistered source or validation tag in current edition",
+      "hand_derived_expected": "reject closed descriptor; draft tag is not supported",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D40",
+      "category": "migration-dag-capability",
+      "title": "Source-to-observation cycle",
+      "independent_input": "input snapshot points to its derived C validation output",
+      "hand_derived_expected": "reject cycle; output may point to input only",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D41",
+      "category": "migration-dag-capability",
+      "title": "Witness-to-input cycle",
+      "independent_input": "source identity includes Raw contradiction referencing same Fact",
+      "hand_derived_expected": "reject; canonical input DAG excludes report output",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D42",
+      "category": "migration-dag-capability",
+      "title": "Raw zero with missing schema",
+      "independent_input": "actual reached input port_no=0, current schema Missing",
+      "hand_derived_expected": "local Violation remains; no full typed Fact with fabricated relation pin",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D43",
+      "category": "migration-dag-capability",
+      "title": "Raw positive",
+      "independent_input": "actual fresh port>0; relation validation Invalid",
+      "hand_derived_expected": "local Proven remains; full Subject admission blocked; no whole-contract Proven",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D44",
+      "category": "migration-dag-capability",
+      "title": "Duplicate witness",
+      "independent_input": "two actual duplicate sorted ports and valid relation observation",
+      "hand_derived_expected": "both original member references retained; no reason parsing or schema substitution",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D45",
+      "category": "migration-dag-capability",
+      "title": "Current-only routing",
+      "independent_input": "draft observation supplied to existing D4/current route",
+      "hand_derived_expected": "deny unsupported successor; no automatic activation",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D46",
+      "category": "migration-dag-capability",
+      "title": "Historical Expected",
+      "independent_input": "migration wants recomputed old Expected with family-only schema",
+      "hand_derived_expected": "deny rewrite; frozen old exact Expected retained",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D47",
+      "category": "migration-dag-capability",
+      "title": "Positive RootExport",
+      "independent_input": "all G1 documents and 48 design vectors exist",
+      "hand_derived_expected": "NotAuthorized; T4 NOT ELIGIBLE; strict Raw Total 2",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    },
+    {
+      "id": "G1-D48",
+      "category": "migration-dag-capability",
+      "title": "No registration authority",
+      "independent_input": "design Outcome A complete",
+      "hand_derived_expected": "registration pending; no edition/RuleId allocation; C2R3 remains incomplete",
+      "ActualStatus": "Not Executed",
+      "actual": null,
+      "production_conformance_credit": 0
+    }
+  ]
+}

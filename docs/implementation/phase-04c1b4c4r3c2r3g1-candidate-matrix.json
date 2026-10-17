@@ -1,0 +1,145 @@
+{
+  "binding_candidates": [
+    {
+      "candidate": "RelationCatalogPin",
+      "Registered": "No",
+      "SemanticallyApplicable": "Yes",
+      "ExactSource": "Present",
+      "TypeMapping": "Incomplete",
+      "ConstructionHistory": "Unrecoverable",
+      "CurrentContextDependence": "Not Required",
+      "Lossless": "Yes",
+      "source": "crates/af-contract/src/proof.rs:92; native String/revision/checksum only",
+      "existing_native_to_formal_binding": false
+    },
+    {
+      "candidate": "RelationSnapshotContent",
+      "Registered": "Yes",
+      "SemanticallyApplicable": "Yes",
+      "ExactSource": "Missing",
+      "TypeMapping": "Incomplete",
+      "ConstructionHistory": "Unrecoverable",
+      "CurrentContextDependence": "Not Required",
+      "Lossless": "No",
+      "source": "model@5 canonical_constraints + types.RelationSnapshotContent; TypeSchemaRef required, source unstated",
+      "existing_native_to_formal_binding": false
+    },
+    {
+      "candidate": "ContractProofContextContents",
+      "Registered": "Yes",
+      "SemanticallyApplicable": "Yes",
+      "ExactSource": "Present",
+      "TypeMapping": "Incomplete",
+      "ConstructionHistory": "Unrecoverable",
+      "CurrentContextDependence": "Required",
+      "Lossless": "No",
+      "source": "model@5 exact nine members; AF-SEMANTIC-0198/0262 supplies actual context, not old schema",
+      "existing_native_to_formal_binding": false
+    },
+    {
+      "candidate": "af-semantic::TypeSchemaRef",
+      "Registered": "Yes",
+      "SemanticallyApplicable": "Yes",
+      "ExactSource": "Missing",
+      "TypeMapping": "Incomplete",
+      "ConstructionHistory": "Unrecoverable",
+      "CurrentContextDependence": "Not Required",
+      "Lossless": "No",
+      "source": "model@5 imported three-field record; af-semantic/src/types.rs authored-against meaning",
+      "existing_native_to_formal_binding": false
+    },
+    {
+      "candidate": "SpecificationId",
+      "Registered": "Yes",
+      "SemanticallyApplicable": "Yes",
+      "ExactSource": "Present",
+      "TypeMapping": "Incomplete",
+      "ConstructionHistory": "Unrecoverable",
+      "CurrentContextDependence": "Not Required",
+      "Lossless": "Yes",
+      "source": "model@5 nominal nfc_text; af-idl/src/specification.rs strict family syntax only",
+      "existing_native_to_formal_binding": false
+    },
+    {
+      "candidate": "Relation Catalog Schema",
+      "Registered": "Yes",
+      "SemanticallyApplicable": "Yes",
+      "ExactSource": "Present",
+      "TypeMapping": "Incomplete",
+      "ConstructionHistory": "Unrecoverable",
+      "CurrentContextDependence": "Required",
+      "Lossless": "No",
+      "source": "17 AFIDL inputs and catalog roots exist; current definition cannot recover unretained construction input",
+      "existing_native_to_formal_binding": false
+    },
+    {
+      "candidate": "Source Reference",
+      "Registered": "Yes",
+      "SemanticallyApplicable": "Yes",
+      "ExactSource": "Present",
+      "TypeMapping": "Incomplete",
+      "ConstructionHistory": "Unrecoverable",
+      "CurrentContextDependence": "Not Required",
+      "Lossless": "No",
+      "source": "AF-SEMANTIC-0200/0265/0266; association preserves content, no missing schema rule",
+      "existing_native_to_formal_binding": false
+    },
+    {
+      "candidate": "Compiler Source Identity",
+      "Registered": "Yes",
+      "SemanticallyApplicable": "Yes",
+      "ExactSource": "Present",
+      "TypeMapping": "Incomplete",
+      "ConstructionHistory": "Unrecoverable",
+      "CurrentContextDependence": "Not Required",
+      "Lossless": "No",
+      "source": "AF-SEMANTIC-0198; complete current normative/compiler bytes, not snapshot creation receipt",
+      "existing_native_to_formal_binding": false
+    },
+    {
+      "candidate": "Context Relation Snapshot",
+      "Registered": "Yes",
+      "SemanticallyApplicable": "Yes",
+      "ExactSource": "Present",
+      "TypeMapping": "Incomplete",
+      "ConstructionHistory": "Unrecoverable",
+      "CurrentContextDependence": "Required",
+      "Lossless": "No",
+      "source": "AF-SEMANTIC-0262; actual context may omit relation module; no fallback permitted",
+      "existing_native_to_formal_binding": false
+    },
+    {
+      "candidate": "Portable relation header",
+      "Registered": "Yes",
+      "SemanticallyApplicable": "Yes",
+      "ExactSource": "Present",
+      "TypeMapping": "Complete",
+      "ConstructionHistory": "Unrecoverable",
+      "CurrentContextDependence": "Required",
+      "Lossless": "Yes",
+      "source": "portable-proof-inputs.afidl + af-portable/reconstruction.rs build_relation: explicitly supplied full pin checked against current modules; not native source conversion",
+      "existing_native_to_formal_binding": false
+    }
+  ],
+  "options": [
+    {
+      "option": "A",
+      "source": "exact legacy family",
+      "current_schema_precision": "insufficient alone",
+      "selected": "source layer only"
+    },
+    {
+      "option": "B",
+      "source": "new authentic construction receipt",
+      "current_schema_precision": "historical, not current",
+      "selected": false
+    },
+    {
+      "option": "C",
+      "source": "actual current context and executed revalidation",
+      "current_schema_precision": "exact current TypeSchemaRef",
+      "selected": "validation layer only"
+    }
+  ],
+  "unique_recommendation": "A+C; separate immutable source and derived current validation; B not selected"
+}

@@ -1,0 +1,81 @@
+{
+  "context_members": [
+    "compiled_modules",
+    "type_schemas",
+    "effect_catalogs",
+    "resource_types",
+    "flow_catalogs",
+    "usage_meters",
+    "recovery_operations",
+    "execution_universes",
+    "relation_snapshots"
+  ],
+  "slots": [
+    {
+      "slot": "effect_resource",
+      "registered_descriptor": {
+        "kind": "option",
+        "item": {
+          "ref": "RelationSnapshotContent"
+        },
+        "minimum": 0
+      },
+      "owner": "agentflow.computation.proof-report.model@5",
+      "native_source": "StaticContractProofContext.relations.effect_resource",
+      "native_type": "Option<af-contract::RelationCatalogSnapshot<EffectResourceCompatibilityCatalog>>",
+      "family": "agentflow.effect.resource.compatibility@1",
+      "root_type": "EffectResourceCompatibilityCatalog",
+      "construction": "new(revision, catalog, &CompiledModuleSet); schema not retained",
+      "current_lookup": "actual_context.modules.type_by_identity(agentflow.effect.resource.compatibility@1/EffectResourceCompatibilityCatalog)",
+      "required_meaning": "source: family; successful current-validation output: exact TypeSchemaRef; never construction history",
+      "missing_source": "None preserved; Some without current schema blocks complete Subject admission, not local port verdict",
+      "typed_projection": "DRAFT A native-family source + separate DRAFT C validation observation",
+      "new_design_actual_status": "Not Executed",
+      "inherited_dynamic_diagnostic": true
+    },
+    {
+      "slot": "recovery_usage",
+      "registered_descriptor": {
+        "kind": "option",
+        "item": {
+          "ref": "RelationSnapshotContent"
+        },
+        "minimum": 0
+      },
+      "owner": "agentflow.computation.proof-report.model@5",
+      "native_source": "StaticContractProofContext.relations.recovery_usage",
+      "native_type": "Option<af-contract::RelationCatalogSnapshot<RecoveryUsageCoverageCatalog>>",
+      "family": "agentflow.recovery.usage.coverage@1",
+      "root_type": "RecoveryUsageCoverageCatalog",
+      "construction": "new(revision, catalog, &CompiledModuleSet); schema not retained",
+      "current_lookup": "actual_context.modules.type_by_identity(agentflow.recovery.usage.coverage@1/RecoveryUsageCoverageCatalog)",
+      "required_meaning": "source: family; successful current-validation output: exact TypeSchemaRef; never construction history",
+      "missing_source": "None preserved; Some without current schema blocks complete Subject admission, not local port verdict",
+      "typed_projection": "DRAFT A native-family source + separate DRAFT C validation observation",
+      "new_design_actual_status": "Not Executed",
+      "inherited_dynamic_diagnostic": false
+    },
+    {
+      "slot": "flow_execution",
+      "registered_descriptor": {
+        "kind": "option",
+        "item": {
+          "ref": "RelationSnapshotContent"
+        },
+        "minimum": 0
+      },
+      "owner": "agentflow.computation.proof-report.model@5",
+      "native_source": "StaticContractProofContext.relations.flow_execution",
+      "native_type": "Option<af-contract::RelationCatalogSnapshot<InformationFlowExecutionCatalog>>",
+      "family": "agentflow.flow.execution.relation@1",
+      "root_type": "InformationFlowExecutionCatalog",
+      "construction": "new(revision, catalog, &CompiledModuleSet); schema not retained",
+      "current_lookup": "actual_context.modules.type_by_identity(agentflow.flow.execution.relation@1/InformationFlowExecutionCatalog)",
+      "required_meaning": "source: family; successful current-validation output: exact TypeSchemaRef; never construction history",
+      "missing_source": "None preserved; Some without current schema blocks complete Subject admission, not local port verdict",
+      "typed_projection": "DRAFT A native-family source + separate DRAFT C validation observation",
+      "new_design_actual_status": "Not Executed",
+      "inherited_dynamic_diagnostic": false
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "search_command": [
+    "rg",
+    "-n",
+    "RelationCatalogPin|RelationSnapshotContent|relation_snapshots|RelationCatalogSnapshot|RelationSnapshotSlots",
+    "crates",
+    "spec/component",
+    "spec/computation",
+    "spec/idl",
+    "-g",
+    "*.rs",
+    "-g",
+    "*.md",
+    "-g",
+    "*.afidl"
+  ],
+  "hits": [
+    "crates\\af-computation\\src\\lib.rs:62:    RelationSnapshotContent, ResolverDependencyManifest, ResourceRequirementPortIdentity,",
+    "crates\\af-computation\\src\\root_export.rs:17:    RelationCatalogPin, StaticContractProofContext, component_contract_digest,",
+    "crates\\af-computation\\src\\root_export.rs:297:pub struct RelationSnapshotContent {",
+    "crates\\af-computation\\src\\root_export.rs:298:    pub pin: RelationCatalogPin,",
+    "crates\\af-computation\\src\\root_export.rs:327:    pub relation_snapshots: Vec<RelationSnapshotContent>,",
+    "crates\\af-computation\\src\\root_export.rs:338:        let mut relation_snapshots = Vec::new();",
+    "crates\\af-computation\\src\\root_export.rs:340:            relation_snapshots.push(RelationSnapshotContent {",
+    "crates\\af-computation\\src\\root_export.rs:346:            relation_snapshots.push(RelationSnapshotContent {",
+    "crates\\af-computation\\src\\root_export.rs:352:            relation_snapshots.push(RelationSnapshotContent {",
+    "crates\\af-computation\\src\\root_export.rs:357:        relation_snapshots.sort_by(|left, right| left.pin.schema.cmp(&right.pin.schema));",
+    "crates\\af-computation\\src\\root_export.rs:384:            relation_snapshots,",
+    "crates\\af-computation\\src\\summary.rs:190:    relation_catalog_pins: Vec<RelationCatalogPin>,",
+    "crates\\af-computation\\src\\summary.rs:205:    pub fn relation_catalog_pins(&self) -> &[RelationCatalogPin] {",
+    "crates\\af-computation\\src\\summary.rs:311:    pub fn context_relation_pins(&self) -> &[af_contract::RelationCatalogPin] {",
+    "crates\\af-computation\\src\\summary.rs:5:    RecoveryUsageBinding, RelationCatalogPin, StaticContractProofContext,",
+    "crates\\af-computation\\tests\\leaf_resolution.rs:1312:        RelationCatalogSnapshot::new(",
+    "crates\\af-computation\\tests\\leaf_resolution.rs:234:            RelationCatalogSnapshot::new(",
+    "crates\\af-computation\\tests\\leaf_resolution.rs:8:    RecoveryActionBinding, RecoveryUsageBinding, RelationCatalogSnapshot, RelationSnapshots,",
+    "crates\\af-computation\\tests\\native_seed_source_conformance.rs:130:            \"actual_context_fields\":[\"compiled_modules\",\"type_schemas\",\"effect_catalogs\",\"resource_types\",\"flow_catalogs\",\"usage_meters\",\"recovery_operations\",\"execution_universes\",\"relation_snapshots\"],",
+    "crates\\af-computation\\tests\\raw_document_identity_c2.rs:128:            \"actual_context_fields\":[\"compiled_modules\",\"type_schemas\",\"effect_catalogs\",\"resource_types\",\"flow_catalogs\",\"usage_meters\",\"recovery_operations\",\"execution_universes\",\"relation_snapshots\"],",
+    "crates\\af-computation\\tests\\raw_port_capture_conformance.rs:113:            validate_registered_model_shape(\"RelationSnapshotContent\", &native_projection)",
+    "crates\\af-computation\\tests\\raw_port_capture_conformance.rs:54:        use af_contract::{ProofVerdict, RelationCatalogSnapshot, RelationSnapshots};",
+    "crates\\af-computation\\tests\\raw_port_capture_conformance.rs:91:        let a = RelationCatalogSnapshot::new(",
+    "crates\\af-computation\\tests\\raw_port_capture_conformance.rs:97:        let b = RelationCatalogSnapshot::new(",
+    "crates\\af-computation\\tests\\root_export_conformance.rs:474:            v[\"assertion_identity\"][\"manifest\"][\"relation_snapshots\"][0][\"checksum\"] = json!(\"00\")",
+    "crates\\af-computation\\tests\\support\\control_fixture.rs:1751:                .relation_snapshots",
+    "crates\\af-computation\\tests\\support\\control_fixture.rs:1864:                \"relation_snapshots\":assertion.proof_context_manifest.relation_snapshots.iter().map(|item|json!({\"schema\":item.pin.schema,\"revision\":item.pin.revision,\"checksum\":item.pin.canonical_content_checksum.hex,\"content_bytes\":item.canonical_content.len()})).collect::<Vec<_>>(),",
+    "crates\\af-computation\\tests\\support\\control_fixture.rs:18:    RecoveryUsageCoverageRule, RelationCatalogSnapshot, RelationSnapshots, SandboxFloor,",
+    "crates\\af-computation\\tests\\support\\control_fixture.rs:314:            RelationCatalogSnapshot::new(",
+    "crates\\af-computation\\tests\\support\\control_fixture.rs:397:            RelationCatalogSnapshot::new(",
+    "crates\\af-computation\\tests\\support\\control_fixture.rs:462:            RelationCatalogSnapshot::new(",
+    "crates\\af-contract\\src\\lib.rs:35:    CatalogContentChecksum, DimensionProof, ProofReport, ProofVerdict, RelationCatalogPin,",
+    "crates\\af-contract\\src\\lib.rs:45:    RegionPair, RegionPairPolicy, RelationCatalogSnapshot, RelationCatalogWire, RelationSnapshots,",
+    "crates\\af-contract\\src\\proof.rs:101:    pub relation_catalogs: Vec<RelationCatalogPin>,",
+    "crates\\af-contract\\src\\proof.rs:92:pub struct RelationCatalogPin {",
+    "crates\\af-contract\\src\\universe.rs:4:use crate::proof::{CatalogContentChecksum, RelationCatalogPin};",
+    "crates\\af-contract\\src\\universe.rs:872:pub struct RelationCatalogSnapshot<T> {",
+    "crates\\af-contract\\src\\universe.rs:877:    pin: RelationCatalogPin,",
+    "crates\\af-contract\\src\\universe.rs:880:impl<T: RelationCatalogWire> RelationCatalogSnapshot<T> {",
+    "crates\\af-contract\\src\\universe.rs:898:        let pin = RelationCatalogPin {",
+    "crates\\af-contract\\src\\universe.rs:916:    pub fn pin(&self) -> &RelationCatalogPin {",
+    "crates\\af-contract\\src\\universe.rs:939:    pub effect_resource: Option<RelationCatalogSnapshot<EffectResourceCompatibilityCatalog>>,",
+    "crates\\af-contract\\src\\universe.rs:940:    pub recovery_usage: Option<RelationCatalogSnapshot<RecoveryUsageCoverageCatalog>>,",
+    "crates\\af-contract\\src\\universe.rs:941:    pub flow_execution: Option<RelationCatalogSnapshot<InformationFlowExecutionCatalog>>,",
+    "crates\\af-contract\\src\\universe.rs:946:    pub fn pins(&self) -> Vec<RelationCatalogPin> {",
+    "crates\\af-contract\\src\\universe.rs:950:                .map(RelationCatalogSnapshot::pin),",
+    "crates\\af-contract\\src\\universe.rs:953:                .map(RelationCatalogSnapshot::pin),",
+    "crates\\af-contract\\src\\universe.rs:956:                .map(RelationCatalogSnapshot::pin),",
+    "crates\\af-contract\\src\\validate.rs:250:            .map(crate::universe::RelationCatalogSnapshot::catalog),",
+    "crates\\af-contract\\src\\validate.rs:273:            .map(crate::universe::RelationCatalogSnapshot::catalog),",
+    "crates\\af-contract\\tests\\component_contract_conformance.rs:1009:    let effect_resource = RelationCatalogSnapshot::new(",
+    "crates\\af-contract\\tests\\component_contract_conformance.rs:1015:    let recovery_usage = RelationCatalogSnapshot::new(",
+    "crates\\af-contract\\tests\\component_contract_conformance.rs:1021:    let flow_execution = RelationCatalogSnapshot::new(",
+    "crates\\af-contract\\tests\\component_contract_conformance.rs:1081:    let effect_resource = RelationCatalogSnapshot::new(",
+    "crates\\af-contract\\tests\\component_contract_conformance.rs:1134:    let recovery_usage = RelationCatalogSnapshot::new(",
+    "crates\\af-contract\\tests\\component_contract_conformance.rs:1168:    let flow_execution = RelationCatalogSnapshot::new(",
+    "crates\\af-contract\\tests\\component_contract_conformance.rs:1230:        RelationCatalogSnapshot::new(",
+    "crates\\af-contract\\tests\\component_contract_conformance.rs:293:        RelationCatalogSnapshot::new(",
+    "crates\\af-contract\\tests\\component_contract_conformance.rs:307:        RelationCatalogSnapshot::new(",
+    "crates\\af-contract\\tests\\component_contract_conformance.rs:5:    RecoveryUsageCoverageRule, RegionPair, RegionPairPolicy, RelationCatalogSnapshot,",
+    "crates\\af-contract\\tests\\component_contract_conformance.rs:632:    let snapshot = af_contract::RelationCatalogSnapshot::new(",
+    "crates\\af-contract\\tests\\component_contract_conformance.rs:704:        RelationCatalogSnapshot::new(",
+    "crates\\af-contract\\tests\\component_contract_conformance.rs:845:    assert!(RelationCatalogSnapshot::new(\"fixture-invalid\", invalid, &fixture.modules).is_err());",
+    "crates\\af-contract\\tests\\component_contract_conformance.rs:878:        RelationCatalogSnapshot::new(",
+    "crates\\af-contract\\tests\\component_contract_conformance.rs:953:        RelationCatalogSnapshot::new(",
+    "crates\\af-portable\\src\\reconstruction.rs:12:    RecoveryUsageCoverageCatalog, RelationCatalogSnapshot, RelationSnapshots,",
+    "crates\\af-portable\\src\\reconstruction.rs:1448:) -> Result<RelationCatalogSnapshot<T>, PortableProofError>",
+    "crates\\af-portable\\src\\reconstruction.rs:1456:            format!(\"$.context.relation_snapshots.{slot}\"),",
+    "crates\\af-portable\\src\\reconstruction.rs:1464:            format!(\"$.context.relation_snapshots.{slot}.header.schema\"),",
+    "crates\\af-portable\\src\\reconstruction.rs:1472:                \"$.context.relation_snapshots\",",
+    "crates\\af-portable\\src\\reconstruction.rs:1478:        .map_err(|error| reconstruction_error(\"$.context.relation_snapshots\", error.to_string()))?;",
+    "crates\\af-portable\\src\\reconstruction.rs:1484:            format!(\"$.context.relation_snapshots.{slot}.header.schema\"),",
+    "crates\\af-portable\\src\\reconstruction.rs:1490:        .map_err(|error| reconstruction_error(\"$.context.relation_snapshots\", error.to_string()))?;",
+    "crates\\af-portable\\src\\reconstruction.rs:1492:        .map_err(|error| reconstruction_error(\"$.context.relation_snapshots\", error.to_string()))?;",
+    "crates\\af-portable\\src\\reconstruction.rs:1494:        .map_err(|error| reconstruction_error(\"$.context.relation_snapshots\", error))?;",
+    "crates\\af-portable\\src\\reconstruction.rs:1496:        .map_err(|error| reconstruction_error(\"$.context.relation_snapshots\", error.to_string()))?;",
+    "crates\\af-portable\\src\\reconstruction.rs:1497:    let snapshot = RelationCatalogSnapshot::new(relation.revision.clone(), catalog, modules)",
+    "crates\\af-portable\\src\\reconstruction.rs:1498:        .map_err(|error| reconstruction_error(\"$.context.relation_snapshots\", error))?;",
+    "crates\\af-portable\\src\\reconstruction.rs:1506:            format!(\"$.context.relation_snapshots.{slot}\"),",
+    "crates\\af-portable\\src\\reconstruction.rs:1698:    snapshot: Option<&RelationCatalogSnapshot<T>>,",
+    "crates\\af-portable\\src\\reconstruction.rs:1707:                        \"$.context.relation_snapshots\",",
+    "crates\\af-portable\\src\\reconstruction.rs:1712:                reconstruction_error(\"$.context.relation_snapshots\", error.to_string())",
+    "crates\\af-portable\\src\\reconstruction.rs:393:    let relations = field(content, \"relation_snapshots\", \"$.context\")?;",
+    "crates\\af-portable\\src\\reconstruction.rs:413:            field(relations, \"effect_resource\", \"$.context.relation_snapshots\")?,",
+    "crates\\af-portable\\src\\reconstruction.rs:414:            \"$.context.relation_snapshots.effect_resource\",",
+    "crates\\af-portable\\src\\reconstruction.rs:417:            field(relations, \"recovery_usage\", \"$.context.relation_snapshots\")?,",
+    "crates\\af-portable\\src\\reconstruction.rs:418:            \"$.context.relation_snapshots.recovery_usage\",",
+    "crates\\af-portable\\src\\reconstruction.rs:421:            field(relations, \"flow_execution\", \"$.context.relation_snapshots\")?,",
+    "crates\\af-portable\\src\\reconstruction.rs:422:            \"$.context.relation_snapshots.flow_execution\",",
+    "crates\\af-portable\\src\\root_revalidation.rs:1646:            \"relation_snapshots\":assertion.proof_context_manifest.relation_snapshots.iter().map(|item|json!({\"schema\":item.pin.schema,\"revision\":item.pin.revision,\"canonical_content_checksum\":{\"algorithm\":item.pin.canonical_content_checksum.algorithm,\"hex\":item.pin.canonical_content_checksum.hex},\"content_bytes\":item.canonical_content.len()})).collect::<Vec<_>>(),",
+    "crates\\af-portable\\src\\validation\\content.rs:378:        let relations = field(content, \"relation_snapshots\", \"$.proof_contexts.content\")?;",
+    "crates\\af-portable\\src\\validation\\content.rs:401:    let candidate = field(value, name, \"$.relation_snapshots\")?;",
+    "crates\\af-portable\\src\\validation\\content.rs:407:            \"$.relation_snapshots\",",
+    "spec/idl\\portable-proof-inputs.afidl:175:    9 relation_snapshots: RelationSnapshotSlots;",
+    "spec/idl\\portable-proof-inputs.afidl:352:record RelationSnapshotSlots {"
+  ],
+  "sources": [
+    {
+      "path": "crates/af-computation/src/lib.rs",
+      "raw_sha256": "22b18eee5d13b9a46b31fe22f25c4109d40b2920f962c43ae2287c8b2397fe2c"
+    },
+    {
+      "path": "crates/af-computation/src/root_export.rs",
+      "raw_sha256": "b4a928800388963c2fe9f54fd8686d2995f952c93c59085e016f90a4fd4abd70"
+    },
+    {
+      "path": "crates/af-computation/src/summary.rs",
+      "raw_sha256": "bbb53b814aea7a7612100e53bd2b0ee38bb5592ddc1fc5f21de11ed790498e01"
+    },
+    {
+      "path": "crates/af-computation/tests/leaf_resolution.rs",
+      "raw_sha256": "d43974f71a94dc149f10574e5a4768f0353a02d7c436367f3f35e0b4272cd6a3"
+    },
+    {
+      "path": "crates/af-computation/tests/native_seed_source_conformance.rs",
+      "raw_sha256": "b0d98e8b60320a4c28a01266bd0e948ec2e72b542916bfb39bf13e25cb6eb8cd"
+    },
+    {
+      "path": "crates/af-computation/tests/raw_document_identity_c2.rs",
+      "raw_sha256": "1aff27c5708767f1370c4630601ae72a28c3ceccd3103812a9335e51a2081c8a"
+    },
+    {
+      "path": "crates/af-computation/tests/raw_port_capture_conformance.rs",
+      "raw_sha256": "c44d15ee31bacfced1053db5d4f6e6495b869516edd6ff0d858401f91b18a6f3"
+    },
+    {
+      "path": "crates/af-computation/tests/root_export_conformance.rs",
+      "raw_sha256": "33b1dd4d15ae8cb4e09bd6aded027677bac30f5e34320ec033c3973ebd644e8e"
+    },
+    {
+      "path": "crates/af-computation/tests/support/control_fixture.rs",
+      "raw_sha256": "5867d57034d29fffc81a569200610dcb0c68387b2088544e6db8936659c52806"
+    },
+    {
+      "path": "crates/af-contract/src/lib.rs",
+      "raw_sha256": "c58337995289b24da017f8ce55a84ba361be83014e790aa205fbddacff9eca24"
+    },
+    {
+      "path": "crates/af-contract/src/proof.rs",
+      "raw_sha256": "fb3b24a43d6c766e2117276bbb5caf4d9d1379f8a916fc7c7e52a48e2676a0f0"
+    },
+    {
+      "path": "crates/af-contract/src/universe.rs",
+      "raw_sha256": "3b6a0e4fd5c112499e857298bb0a6b5c3c88e2aaba6527e5ef07ebae775dc8fb"
+    },
+    {
+      "path": "crates/af-contract/src/validate.rs",
+      "raw_sha256": "b27dfc028aa16947779eca0aac55699d234652af015bc2b62292af51536798a5"
+    },
+    {
+      "path": "crates/af-contract/tests/component_contract_conformance.rs",
+      "raw_sha256": "5c82c3980a3cccebd5f1372749e7eb3cadb01a3817feacfa4de76bbcca2ac09f"
+    },
+    {
+      "path": "crates/af-portable/src/reconstruction.rs",
+      "raw_sha256": "56a515a296947ab10596ea4b184e9f20b6e39a2c31e6e7bebfa8ff804ae52f72"
+    },
+    {
+      "path": "crates/af-portable/src/root_revalidation.rs",
+      "raw_sha256": "920d4282efdedfe811464e0d6a77dcff74ea6b767eacbbfdc1a592d9b9ca9475"
+    },
+    {
+      "path": "crates/af-portable/src/validation/content.rs",
+      "raw_sha256": "7997212da30c20f62751677a22636984485e78d3559f93dd847cc300fd201bf5"
+    },
+    {
+      "path": "spec/idl/portable-proof-inputs.afidl",
+      "raw_sha256": "3e1244fd88cf5bdb1d8c0e4dea44b999df8ccb99acf7c97fabb89e2cbb7efcf5"
+    }
+  ]
+}

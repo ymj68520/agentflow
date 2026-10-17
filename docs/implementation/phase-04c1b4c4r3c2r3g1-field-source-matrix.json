@@ -1,0 +1,155 @@
+{
+  "status": "unregistered amendment DESIGN",
+  "fields": [
+    {
+      "field": "source.kind",
+      "ActualSourceEvidence": "actual named optional slot + concrete T",
+      "SourceStage": "borrowed source",
+      "NominalOwner": "draft closed kind, owner unallocated",
+      "ExactSchemaType": "effect_resource | recovery_usage | flow_execution",
+      "CompleteDigest": "no digest",
+      "AssociationRule": "slot/T/family/root all agree",
+      "ValidationStatus": "required"
+    },
+    {
+      "field": "source.pin.family",
+      "ActualSourceEvidence": "snapshot.schema() and snapshot.pin().schema and T::SCHEMA_ID",
+      "SourceStage": "borrowed source",
+      "NominalOwner": "draft family nominal wrapping existing SpecificationId grammar",
+      "ExactSchemaType": "strict exact SpecificationId",
+      "CompleteDigest": "NOT TypeSchemaDigest",
+      "AssociationRule": "all three byte-equal; no alias normalization",
+      "ValidationStatus": "required"
+    },
+    {
+      "field": "source.pin.revision",
+      "ActualSourceEvidence": "snapshot.revision() and snapshot.pin().revision",
+      "SourceStage": "borrowed source",
+      "NominalOwner": "draft source pin",
+      "ExactSchemaType": "nonempty NFC text",
+      "CompleteDigest": "NOT schema identity",
+      "AssociationRule": "both exact; expected revision only if an actual consumer supplies one",
+      "ValidationStatus": "required"
+    },
+    {
+      "field": "source.pin.checksum.algorithm",
+      "ActualSourceEvidence": "snapshot.pin().canonical_content_checksum.algorithm",
+      "SourceStage": "borrowed source + integrity check",
+      "NominalOwner": "af-contract source",
+      "ExactSchemaType": "sha256 literal",
+      "CompleteDigest": "plain SHA256",
+      "AssociationRule": "no HashV1 domain",
+      "ValidationStatus": "required"
+    },
+    {
+      "field": "source.pin.checksum.hex",
+      "ActualSourceEvidence": "snapshot.pin().canonical_content_checksum.hex",
+      "SourceStage": "borrowed source + integrity check",
+      "NominalOwner": "af-contract source",
+      "ExactSchemaType": "64 lowercase hex",
+      "CompleteDigest": "SHA256(full canonical bytes)",
+      "AssociationRule": "independently recompute and compare",
+      "ValidationStatus": "required"
+    },
+    {
+      "field": "source.canonical_content",
+      "ActualSourceEvidence": "snapshot.canonical_bytes()",
+      "SourceStage": "borrowed source",
+      "NominalOwner": "draft exact bytes",
+      "ExactSchemaType": "complete bytes",
+      "CompleteDigest": "content checksum only",
+      "AssociationRule": "never count/hex-summary substitute",
+      "ValidationStatus": "required"
+    },
+    {
+      "field": "source.catalog",
+      "ActualSourceEvidence": "snapshot.catalog() full T",
+      "SourceStage": "borrowed source",
+      "NominalOwner": "draft closed per-kind native catalog projection",
+      "ExactSchemaType": "all native catalog fields/variants",
+      "CompleteDigest": "none invented",
+      "AssociationRule": "to_value/canonicalization/bytes must agree in C validation",
+      "ValidationStatus": "required"
+    },
+    {
+      "field": "construction",
+      "ActualSourceEvidence": "no stored value in legacy native snapshot",
+      "SourceStage": "construction history",
+      "NominalOwner": "not selected; future provenance type requires separate authorization",
+      "ExactSchemaType": "Unavailable, not guessed TypeSchemaRef",
+      "CompleteDigest": "cannot recover from family/revision/content",
+      "AssociationRule": "a future authentic receipt would bind actual constructor input and source occurrence",
+      "ValidationStatus": "Unavailable"
+    },
+    {
+      "field": "validation.schema.specification_id",
+      "ActualSourceEvidence": "uniquely selected actual_context.modules root.schema",
+      "SourceStage": "current validation output only",
+      "NominalOwner": "existing TypeSchemaRef shape in successor-owned observation",
+      "ExactSchemaType": "exact String representing SpecificationId",
+      "CompleteDigest": "included in canonical TypeSchema",
+      "AssociationRule": "equals source family AND slot family",
+      "ValidationStatus": "only full lookup result; never default"
+    },
+    {
+      "field": "validation.schema.type_name",
+      "ActualSourceEvidence": "uniquely selected root.name, checked against closed kind root",
+      "SourceStage": "current validation output only",
+      "NominalOwner": "af-semantic::TypeSchemaRef shape",
+      "ExactSchemaType": "exact String",
+      "CompleteDigest": "included in canonical TypeSchema",
+      "AssociationRule": "closed table selects query but never supplies missing evidence",
+      "ValidationStatus": "only successful resolution"
+    },
+    {
+      "field": "validation.schema.schema_digest",
+      "ActualSourceEvidence": "actual full canonical TypeSchema encoded independently",
+      "SourceStage": "current validation output only",
+      "NominalOwner": "af-semantic::DigestRefValue shape",
+      "ExactSchemaType": "{algorithm,domain,hex}",
+      "CompleteDigest": "sha256 / type-schema / SHA256(AF\\0type-schema\\0 || ACE1(schema))",
+      "AssociationRule": "complete imported closure also retained in input context",
+      "ValidationStatus": "resolved pin may occur on Invalid; admission requires Valid"
+    },
+    {
+      "field": "validation.association",
+      "ActualSourceEvidence": "full source snapshot + exact context input reference + closed slot + actual validation algorithm",
+      "SourceStage": "current validation output",
+      "NominalOwner": "draft observation, no allocated edition",
+      "ExactSchemaType": "typed refs to preceding immutable input nodes",
+      "CompleteDigest": "no context digest proves aliases",
+      "AssociationRule": "analysis/canonical_validation same actual object; distinct contexts stay distinct classes",
+      "ValidationStatus": "mandatory"
+    },
+    {
+      "field": "raw.Source/Origin",
+      "ActualSourceEvidence": "unchanged occurrence-bound Raw input/owner/document and complete nine-member context",
+      "SourceStage": "Raw capture",
+      "NominalOwner": "successor Source.raw_validation/RawValidationOrigin",
+      "ExactSchemaType": "full typed subject; no added resolver",
+      "CompleteDigest": "compiler/context full values",
+      "AssociationRule": "all occurrences reuse one source binding; no diagnostic labels as identity",
+      "ValidationStatus": "incomplete today"
+    },
+    {
+      "field": "raw.Target/Coordinate",
+      "ActualSourceEvidence": "actual full compiled ComponentContract schema + AF-CONTRACT-0004; reached side/original/sorted U32 entry",
+      "SourceStage": "actual port branch",
+      "NominalOwner": "successor Target/Coordinate exact existing nominal owners",
+      "ExactSchemaType": "not the relation schema target",
+      "CompleteDigest": "real ComponentContract digest retained",
+      "AssociationRule": "relation binding cannot overwrite port constraint or predecessor",
+      "ValidationStatus": "incomplete today"
+    },
+    {
+      "field": "raw.Basis/Witness/EvidenceRef",
+      "ActualSourceEvidence": "same subject and actual sealed branch evidence; duplicate both real members",
+      "SourceStage": "output graph",
+      "NominalOwner": "successor RawPortCheckBasis/typed contradiction/evidence",
+      "ExactSchemaType": "typed references only; primary typed minimum",
+      "CompleteDigest": "no report reason supplies pin",
+      "AssociationRule": "input references strictly prior; no observation as Source prerequisite",
+      "ValidationStatus": "incomplete today"
+    }
+  ]
+}
