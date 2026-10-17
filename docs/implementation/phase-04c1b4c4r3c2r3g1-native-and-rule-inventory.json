@@ -1,0 +1,443 @@
+{
+  "native_catalog_owner": "af-contract",
+  "declarations": [
+    {
+      "name": "af-contract::ScopeValueRule",
+      "source": "crates/af-contract/src/universe.rs",
+      "line": 19,
+      "exact_declaration": "pub enum ScopeValueRule {\n    FiniteExactValues(Vec<String>),\n    OpaqueNfcExactString,\n}"
+    },
+    {
+      "name": "af-contract::SelectorKeyRule",
+      "source": "crates/af-contract/src/universe.rs",
+      "line": 25,
+      "exact_declaration": "pub struct SelectorKeyRule {\n    pub selector_key: String,\n    pub resource_attribute_key: String,\n    pub required: bool,\n    pub values: ScopeValueRule,\n}"
+    },
+    {
+      "name": "af-contract::EffectQualifierProfile",
+      "source": "crates/af-contract/src/universe.rs",
+      "line": 33,
+      "exact_declaration": "pub struct EffectQualifierProfile {\n    /// An empty vector explicitly denotes the unqualified profile.\n    pub qualifiers: Vec<EffectQualifier>,\n}"
+    },
+    {
+      "name": "af-contract::SupportedEffectResourcePair",
+      "source": "crates/af-contract/src/universe.rs",
+      "line": 39,
+      "exact_declaration": "pub struct SupportedEffectResourcePair {\n    pub operation: EffectOperationRef,\n    pub resource_type: ResourceTypeRef,\n    pub selector_keys: Vec<SelectorKeyRule>,\n    pub allowed_qualifier_profiles: Vec<EffectQualifierProfile>,\n}"
+    },
+    {
+      "name": "af-contract::EffectResourceCompatibilityCatalog",
+      "source": "crates/af-contract/src/universe.rs",
+      "line": 47,
+      "exact_declaration": "pub struct EffectResourceCompatibilityCatalog {\n    pub complete_operations: Vec<EffectOperationRef>,\n    pub supported_pairs: Vec<SupportedEffectResourcePair>,\n}"
+    },
+    {
+      "name": "af-contract::RecoveryUsageCoverageRule",
+      "source": "crates/af-contract/src/universe.rs",
+      "line": 199,
+      "exact_declaration": "pub struct RecoveryUsageCoverageRule {\n    pub action: RecoveryActionIdentity,\n    pub complete_meters: Vec<UsageMeterRef>,\n}"
+    },
+    {
+      "name": "af-contract::RecoveryUsageCoverageCatalog",
+      "source": "crates/af-contract/src/universe.rs",
+      "line": 205,
+      "exact_declaration": "pub struct RecoveryUsageCoverageCatalog {\n    pub rules: Vec<RecoveryUsageCoverageRule>,\n}"
+    },
+    {
+      "name": "af-contract::RegionPair",
+      "source": "crates/af-contract/src/universe.rs",
+      "line": 259,
+      "exact_declaration": "pub struct RegionPair {\n    pub execution_region: RegionRef,\n    pub residency_region: RegionRef,\n}"
+    },
+    {
+      "name": "af-contract::RegionPairPolicy",
+      "source": "crates/af-contract/src/universe.rs",
+      "line": 266,
+      "exact_declaration": "pub enum RegionPairPolicy {\n    FiniteExactPairs(Vec<RegionPair>),\n    AllPairsInClosedRegionSnapshot,\n}"
+    },
+    {
+      "name": "af-contract::TrustDomainPolicy",
+      "source": "crates/af-contract/src/universe.rs",
+      "line": 273,
+      "exact_declaration": "pub enum TrustDomainPolicy {\n    ExactAllowlist(Vec<TrustDomainRef>),\n    AllDomainsInClosedTrustSnapshot,\n    NoAdditionalTrustRequirement,\n}"
+    },
+    {
+      "name": "af-contract::SandboxFloor",
+      "source": "crates/af-contract/src/universe.rs",
+      "line": 281,
+      "exact_declaration": "pub enum SandboxFloor {\n    NoAdditionalMinimum,\n    Minimum(SandboxLevel),\n}"
+    },
+    {
+      "name": "af-contract::ConfidentialityExecutionRule",
+      "source": "crates/af-contract/src/universe.rs",
+      "line": 287,
+      "exact_declaration": "pub struct ConfidentialityExecutionRule {\n    pub label: ConfidentialityLabelRef,\n    pub region_pairs: RegionPairPolicy,\n}"
+    },
+    {
+      "name": "af-contract::TaintExecutionRule",
+      "source": "crates/af-contract/src/universe.rs",
+      "line": 293,
+      "exact_declaration": "pub struct TaintExecutionRule {\n    pub taint: TaintRef,\n    pub trust_domains: TrustDomainPolicy,\n    pub sandbox: SandboxFloor,\n}"
+    },
+    {
+      "name": "af-contract::AuthorityExecutionRule",
+      "source": "crates/af-contract/src/universe.rs",
+      "line": 300,
+      "exact_declaration": "pub struct AuthorityExecutionRule {\n    pub authority: af_flow::InstructionAuthority,\n    pub trust_domains: TrustDomainPolicy,\n    pub sandbox: SandboxFloor,\n}"
+    },
+    {
+      "name": "af-contract::FlowExecutionSink",
+      "source": "crates/af-contract/src/universe.rs",
+      "line": 308,
+      "exact_declaration": "pub enum FlowExecutionSink {\n    WorkflowOutput(u32),\n    ExactEffect(EffectAtom),\n}"
+    },
+    {
+      "name": "af-contract::FlowExecutionRule",
+      "source": "crates/af-contract/src/universe.rs",
+      "line": 314,
+      "exact_declaration": "pub struct FlowExecutionRule {\n    pub kind: FlowKind,\n    pub sink: FlowExecutionSink,\n    pub trust_domains: TrustDomainPolicy,\n    pub sandbox: SandboxFloor,\n}"
+    },
+    {
+      "name": "af-contract::InformationFlowExecutionCatalog",
+      "source": "crates/af-contract/src/universe.rs",
+      "line": 322,
+      "exact_declaration": "pub struct InformationFlowExecutionCatalog {\n    pub closed_regions: Vec<RegionRef>,\n    pub closed_trust_domains: Vec<TrustDomainRef>,\n    pub confidentiality_rules: Vec<ConfidentialityExecutionRule>,\n    pub taint_rules: Vec<TaintExecutionRule>,\n    pub authority_rules: Vec<AuthorityExecutionRule>,\n    pub sink_rules: Vec<FlowExecutionRule>,\n}"
+    }
+  ],
+  "source_sha256": "3b6a0e4fd5c112499e857298bb0a6b5c3c88e2aaba6527e5ef07ebae775dc8fb",
+  "registered_rules": [
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-STATIC",
+        "SUITE-COMPONENT-CONTRACT-COMPATIBILITY"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0004",
+      "short_statement": "Public I/O ports use independent positive namespaces and exact nominal TypeSchemaRef pins.",
+      "source_anchor": "component-contract-ports"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-STATIC"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0013",
+      "short_statement": "An effect selector requires a declared resource port, exact resource pin, full qualifier profile and closed operation support.",
+      "source_anchor": "component-contract-effect-resource-closure"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-CONTRACT-STATIC"
+      ],
+      "normative_source": "spec/component/component-contract.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0016",
+      "short_statement": "Recovery meter coverage is exhaustive and activation, attempt and usage bounds use checked arithmetic.",
+      "source_anchor": "component-contract-recovery-usage-checked"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-RELATION-CATALOGS",
+        "SUITE-COMPONENT-CONTRACT-STATIC"
+      ],
+      "normative_source": "spec/component/relation-catalogs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0018",
+      "short_statement": "F/X relations match exact labels, taints, authority levels, flow kinds, sinks, regions and trust domains.",
+      "source_anchor": "flow-execution-catalog-exact-relations"
+    },
+    {
+      "area": "CONTRACT",
+      "conformance_refs": [
+        "SUITE-COMPONENT-RELATION-CATALOGS"
+      ],
+      "normative_source": "spec/component/relation-catalogs.md",
+      "requirement_level": "must",
+      "rule_id": "AF-CONTRACT-0019",
+      "short_statement": "Proof context pins canonical relation content and changed snapshots invalidate prior proof results.",
+      "source_anchor": "component-relation-catalogs-snapshots"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0198"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0198",
+      "short_statement": "Scope retains complete compiler/context/resolver/root/assertion values and context-role partition.",
+      "source_anchor": "g01-exact-scope"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0200"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0200",
+      "short_statement": "Source, target, coordinate and declared occurrence origin must be complete and consistent.",
+      "source_anchor": "g01-subject-origin"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0206"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0206",
+      "short_statement": "Prerequisites retain original predicate/stage/subject/origin and all consumer edges.",
+      "source_anchor": "g01-prerequisite-identity"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0208"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0208",
+      "short_statement": "References are complete typed evidence coordinates, not RuleIds or prose identities.",
+      "source_anchor": "g01-evidence-coordinate"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0209"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0209",
+      "short_statement": "Derived complete reference sets use the typed minimum except six root boundary primaries None.",
+      "source_anchor": "g01-primary-reference"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0210"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0210",
+      "short_statement": "Only equal originating facts merge observations; distinct origins stay distinct.",
+      "source_anchor": "g01-origin-copy-merge"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0211"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0211",
+      "short_statement": "Status, disposition, links, contradiction and observations remain required alongside identity.",
+      "source_anchor": "g01-status-preservation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-edition2-staging/rule-0212"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0212",
+      "short_statement": "The private successor constructor requires proof eligibility and successful complete bounded normalization.",
+      "source_anchor": "g01-private-capability-gate"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0261"
+      ],
+      "normative_source": "spec/component/raw-contract-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0261",
+      "short_statement": "Raw subjects preserve all thirteen parsed Raw fields, real declarative documents and physical byte associations without inventing historical input.",
+      "source_anchor": "raw-subject"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0262"
+      ],
+      "normative_source": "spec/component/raw-contract-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0262",
+      "short_statement": "Raw analysis and canonical validation use the actual same nine-member context object and exact partition without a fabricated resolver.",
+      "source_anchor": "raw-context"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0263"
+      ],
+      "normative_source": "spec/component/raw-contract-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0263",
+      "short_statement": "Raw physical bytes, parsed declarations, diagnostic presentation, canonical validation and Checked states remain distinct; parser failure is not a port predicate.",
+      "source_anchor": "raw-stages"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0264"
+      ],
+      "normative_source": "spec/component/raw-contract-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0264",
+      "short_statement": "The single positive_unique_io_ports case preserves the actual input-before-output stable numeric sort and reached positivity/uniqueness check before schema resolution.",
+      "source_anchor": "raw-port-predicate"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0265"
+      ],
+      "normative_source": "spec/component/raw-contract-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0265",
+      "short_statement": "Raw Source, exact schema constraint Target, original and sorted port Coordinate and both declarative paths identify the same real occurrence.",
+      "source_anchor": "raw-origin"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0266"
+      ],
+      "normative_source": "spec/component/raw-contract-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0266",
+      "short_statement": "Zero and duplicate violations retain complete typed U32 occurrences and real predecessor evidence; positive facts have no contradiction and diagnostic strings cannot supply evidence.",
+      "source_anchor": "raw-witness"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0267"
+      ],
+      "normative_source": "spec/component/raw-contract-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0267",
+      "short_statement": "Raw prerequisites and typed member references retain original stage and origin, all observations and consumers; one local positive port does not prove namespace coverage.",
+      "source_anchor": "raw-links"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-raw-validation-staging/rule-0268"
+      ],
+      "normative_source": "spec/component/raw-contract-validation.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0268",
+      "short_statement": "Future branch-created evidence is borrowed before diagnostic reduction; source, context and evidence lifetimes cannot produce a Checked token or trusted caller assertion.",
+      "source_anchor": "raw-hook-contract"
+    }
+  ],
+  "specifications": 62,
+  "rules": 493,
+  "covered": 492,
+  "intentional_exceptions": [
+    "AF-ACE1-0001"
+  ],
+  "coverage_summary": {
+    "coverage_revision": 1,
+    "intentionally_uncovered": [
+      {
+        "reason": "Architectural invariant: not falsifiable by a data-driven fixture. Enforced by the typed encode(shape, value) API surface and the Phase 1 no-reflection / no-Any self-checks (docs/implementation/phase-01-canonical-encoding.md section 5).",
+        "rule_id": "AF-ACE1-0001"
+      }
+    ],
+    "missing_coverage": []
+  },
+  "abi_active": 775,
+  "afidl": 17,
+  "hash_domains": 14,
+  "exact_hash_domain_registry": {
+    "kind": "agentflow.hash-domains",
+    "version": "v1",
+    "hash_algorithm": "sha256",
+    "prefix_ascii": "AF",
+    "separator": "0x00",
+    "formula": "HashV1(domain, payload) = SHA256(prefix_ascii || 0x00 || domain || 0x00 || payload)",
+    "note": "Central registry of digest domains (docs/ \u00a724.1: 'Opaque ID prefix \u4e0e derived-ID domain \u5fc5\u987b\u96c6\u4e2d\u767b\u8bb0'). Domains are normative strings; do not abbreviate. This table and the DigestDomain enum in crates/af-core/src/digest.rs are checked for drift by conformance tests.",
+    "domains": [
+      {
+        "domain": "type-schema",
+        "status": "frozen_v1",
+        "description": "Canonical type/schema objects"
+      },
+      {
+        "domain": "value",
+        "status": "frozen_v1",
+        "description": "Canonical semantic Values"
+      },
+      {
+        "domain": "provenance",
+        "status": "frozen_v1",
+        "description": "Provenance DAG nodes"
+      },
+      {
+        "domain": "artifact",
+        "status": "frozen_v1",
+        "description": "Immutable artifact content identities"
+      },
+      {
+        "domain": "semantic-ir",
+        "status": "frozen_v1",
+        "description": "Canonical Semantic IR"
+      },
+      {
+        "domain": "plan-core",
+        "status": "frozen_v1",
+        "description": "Executable Plan core (durable state-machine program)"
+      },
+      {
+        "domain": "run-manifest",
+        "status": "frozen_v1",
+        "description": "Immutable per-Run admission manifests"
+      },
+      {
+        "domain": "lock-graph",
+        "status": "frozen_v1",
+        "description": "Immutable resolver LockGraphs"
+      },
+      {
+        "domain": "journal-event-payload",
+        "status": "frozen_v1",
+        "description": "Canonical Journal event payloads"
+      },
+      {
+        "domain": "runtime-command-payload",
+        "status": "frozen_v1",
+        "description": "Canonical Runtime Command payloads"
+      },
+      {
+        "domain": "semantic-execution-state",
+        "status": "frozen_v1",
+        "description": "Canonical SemanticExecutionState materializations"
+      },
+      {
+        "domain": "component-contract",
+        "status": "frozen_v1",
+        "description": "Component contracts"
+      },
+      {
+        "domain": "resource-contract",
+        "status": "frozen_v1",
+        "description": "Resource contracts"
+      },
+      {
+        "domain": "conformance",
+        "status": "frozen_v1",
+        "description": "Conformance objects (golden/invariant corpus entries)"
+      }
+    ]
+  }
+}

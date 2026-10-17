@@ -34,6 +34,7 @@ def refs(value, path=()):
 
 
 def descriptors(m):
+    assert len(m['historical_selected_imports']) == 97
     rows = []
     for n, t in m['types'].items():
         rows.append(dict(name=n, owner=OWNER, rank=m['type_ranks'][n],
@@ -211,6 +212,45 @@ def source_inventory():
         sources=[dict(path=p, raw_sha256=hashlib.sha256((R/p).read_bytes()).hexdigest()) for p in files])
 
 
+def native_and_rule_inventory():
+    path = 'crates/af-contract/src/universe.rs'
+    text = (R/path).read_text(encoding='utf8')
+    names = ['ScopeValueRule', 'SelectorKeyRule', 'EffectQualifierProfile',
+        'SupportedEffectResourcePair', 'EffectResourceCompatibilityCatalog',
+        'RecoveryUsageCoverageRule', 'RecoveryUsageCoverageCatalog', 'RegionPair',
+        'RegionPairPolicy', 'TrustDomainPolicy', 'SandboxFloor',
+        'ConfidentialityExecutionRule', 'TaintExecutionRule', 'AuthorityExecutionRule',
+        'FlowExecutionSink', 'FlowExecutionRule', 'InformationFlowExecutionCatalog']
+    declarations = []
+    for name in names:
+        match = re.search(r'pub (?:struct|enum) '+name+r' \{', text)
+        assert match, name
+        start = match.start(); end = text.index('\n}', match.end()) + 2
+        declarations.append(dict(name='af-contract::'+name, source=path,
+            line=text.count('\n', 0, start)+1, exact_declaration=text[start:end]))
+    rules = json.loads((R/'spec/registry/rules.json').read_bytes())['rules']
+    assert len(rules) == 493
+    covered = [r for r in rules if r['conformance_refs']]
+    assert len(covered) == 492
+    specs = json.loads((R/'spec/registry/specifications.json').read_bytes())
+    assert len(specs['specifications']) == 62
+    abi = json.loads((R/'spec/registry/abi-numbers.json').read_bytes())
+    assert sum(a['status']=='active' for a in abi['assignments']) == 775
+    domains = json.loads((R/'spec/tables/hash-domains.json').read_bytes())
+    assert len(domains['domains']) == 14
+    wanted = {'AF-SEMANTIC-%04d' % n for n in [198,200,206,208,209,210,211,212,261,262,263,264,265,266,267,268]}
+    wanted |= {'AF-CONTRACT-%04d' % n for n in [4,13,16,18,19]}
+    selected = [r for r in rules if r['rule_id'] in wanted]
+    assert len(selected) == len(wanted)
+    return dict(native_catalog_owner='af-contract', declarations=declarations,
+        source_sha256=hashlib.sha256((R/path).read_bytes()).hexdigest(),
+        registered_rules=selected, specifications=62, rules=493, covered=492,
+        intentional_exceptions=[r['rule_id'] for r in rules if not r['conformance_refs']],
+        coverage_summary=json.loads((R/'spec/registry/coverage-summary.json').read_bytes()),
+        abi_active=775, afidl=len(list((R/'spec/idl').rglob('*.afidl'))), hash_domains=14,
+        exact_hash_domain_registry=domains)
+
+
 def artifacts():
     m = read_model()
     sp = importlib.util.spec_from_file_location('independent_g1_gap', R/'tools/oracle/raw_relation_schema_binding.py')
@@ -227,6 +267,7 @@ def artifacts():
         'design-vectors.json': vectors(),
         'minimal-expected.json': oracle.expected(),
         'source-inventory.json': source_inventory(),
+        'native-and-rule-inventory.json': native_and_rule_inventory(),
     }
 
 
