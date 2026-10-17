@@ -59,6 +59,9 @@ path = "tests/native_capture_conformance.rs"
 [[test]]
 name = "native_seed_source_conformance"
 path = "tests/native_seed_source_conformance.rs"
+[[test]]
+name = "raw_port_capture_conformance"
+path = "tests/raw_port_capture_conformance.rs"
 # Frozen Analysis@5 raw registration and C2 diagnostic execute unchanged
 # from the exact e623aab source archive, not under the new global Registry.
 
