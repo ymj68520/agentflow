@@ -50,6 +50,129 @@ mod fixtures {
         }][slot]["document"]
     }
     #[test]
+    fn real_source_and_occurrence_input_sensitivity_subset() {
+        let generated = std::process::Command::new("python")
+            .env("PYTHONUTF8", "1")
+            .args(["tools/oracle/raw_root_subset.py", "--sensitivity-vectors"])
+            .current_dir(repo_root())
+            .output()
+            .unwrap();
+        assert!(
+            generated.status.success(),
+            "{}",
+            String::from_utf8_lossy(&generated.stderr)
+        );
+        let inputs: Vec<Value> = serde_json::from_slice(&generated.stdout).unwrap();
+        let mut fixture = FixtureContext::new();
+        let _ = guard_input_type(&mut fixture, "CaptureInput", Primitive::Int64);
+        let context = fixture.view();
+        let other_context = fixture.view();
+        let compiler = current_compiler_semantics_identity();
+        let mut actual = Vec::new();
+        for input in inputs {
+            let package = &input["package"];
+            let slot = input["slot"].as_u64().unwrap();
+            let owner_index = input["owner"].as_u64().unwrap() as usize;
+            let owner = &package["owners"][owner_index]["anchor"];
+            let doc = document(package, owner_index, slot as usize);
+            let candidate = &input["candidate"];
+            let path = [RawDocumentMember::Entry(
+                input["path_entry"].as_u64().unwrap(),
+            )];
+            let request = DocumentOccurrenceMetadataRequest {
+                source_package: Some(package),
+                source_owner: Some(owner),
+                entry_ordinal: Some(slot),
+                actual_document: doc,
+                candidate,
+                internal_path: &path,
+                physical: if input["physical"] == "matching" {
+                    OccurrencePhysicalMetadata::Supplied {
+                        source_owner: owner,
+                        entry_ordinal: slot,
+                        actual_document: doc,
+                        value_path: &path,
+                    }
+                } else {
+                    OccurrencePhysicalMetadata::NotSupplied
+                },
+            };
+            let result = capture_raw_ports(
+                &request,
+                &context,
+                if input["operation"] == "other_context" {
+                    &other_context
+                } else {
+                    &context
+                },
+                &compiler,
+            );
+            let capture = match result {
+                Ok(capture) => capture,
+                Err(failure) => {
+                    assert_eq!(input["operation"], "other_context");
+                    assert_eq!(
+                        failure,
+                        DocumentOccurrenceAdmissionFailure::InvalidContextBinding
+                    );
+                    actual.push(json!({"case_id":input["case_id"],"failure":"InvalidContextBinding","events":[]}));
+                    continue;
+                }
+            };
+            capture.validate().unwrap();
+            let typed: ComponentContract =
+                serde_json::from_value(input["wire_candidate"].clone()).unwrap();
+            assert_eq!(capture.subject().candidate, &typed);
+            let events: Vec<_> = capture.seeds().iter().map(|seed| {
+                let event = seed.event();
+                json!({"occurrence":occurrence(event.occurrence),
+                    "predecessor":event.predecessor.map(|(original_ordinal,port_no)|json!({"original_ordinal":original_ordinal,"port_no":port_no})),
+                    "condition":match event.condition { PortCondition::PositiveFresh=>"positive_fresh",PortCondition::Zero=>"zero",PortCondition::Duplicate=>"duplicate" }})
+            }).collect();
+            let subject = capture.subject();
+            assert!(std::ptr::eq(subject.context, &raw const context));
+            let source_path: Vec<_> = subject
+                .internal_path
+                .iter()
+                .map(|step| match step {
+                    RawDocumentMember::Entry(index) => json!({"entry":index}),
+                    _ => panic!("input corpus uses registered declaration entry paths"),
+                })
+                .collect();
+            actual.push(json!({"case_id":input["case_id"],"failure":null,"events":events,
+                "source_package":subject.source_package,"owner":subject.source_owner,"slot":subject.entry_ordinal,
+                "document":subject.document,"candidate":subject.candidate_metadata,"internal_path":source_path,
+                "context_roles":capture.context_roles(),"root_export":capture.can_issue_root_export(),"complete_scope":capture.complete_scope()}));
+        }
+        let payload = serde_json::to_vec_pretty(&actual).unwrap();
+        std::fs::write(
+            repo_root().join("target/phase-04c1b4c4r3c2r2-input-sensitivity-actual.json"),
+            &payload,
+        )
+        .unwrap();
+        let mut child = std::process::Command::new("python")
+            .env("PYTHONUTF8", "1")
+            .args(["tools/oracle/raw_root_subset.py", "--sensitivity-report"])
+            .current_dir(repo_root())
+            .stdin(std::process::Stdio::piped())
+            .stdout(std::process::Stdio::piped())
+            .stderr(std::process::Stdio::piped())
+            .spawn()
+            .unwrap();
+        child.stdin.take().unwrap().write_all(&payload).unwrap();
+        let checked = child.wait_with_output().unwrap();
+        assert!(
+            checked.status.success(),
+            "{}",
+            String::from_utf8_lossy(&checked.stderr)
+        );
+        std::fs::write(
+            repo_root().join("target/phase-04c1b4c4r3c2r2-input-sensitivity-report.json"),
+            checked.stdout,
+        )
+        .unwrap();
+    }
+    #[test]
     fn actual_occurrence_bound_raw_ports() {
         let output = std::process::Command::new("python")
             .env("PYTHONUTF8", "1")
@@ -69,6 +192,7 @@ mod fixtures {
         let other = f.view();
         let compiler = current_compiler_semantics_identity();
         let mut rows = Vec::new();
+        let mut registered_rows = Vec::new();
         for v in vectors {
             println!("CAPTURE {}", v["case_id"]);
             let mut package = v["package"].clone();
@@ -200,6 +324,25 @@ mod fixtures {
             }).collect();
             let subject = capture.subject();
             assert!(std::ptr::eq(subject.context, &raw const c));
+            for seed in capture.seeds() {
+                let fields = capture.registered_root_subset(seed).unwrap();
+                let path = capture.registered_declared_path(seed).unwrap();
+                let bound = capture.bound_rejection_witness(seed).unwrap();
+                let witness_subject = bound.as_ref().map(|bound| {
+                    assert!(std::ptr::eq(bound.subject.context, &raw const c));
+                    assert!(std::ptr::eq(bound.subject.candidate, subject.candidate));
+                    assert!(std::ptr::eq(bound.subject.compiler, subject.compiler));
+                    assert_eq!(bound.witness, seed.witness().unwrap());
+                    json!({"source_package":bound.subject.source_package,
+                           "owner":bound.subject.source_owner,"slot":bound.subject.entry_ordinal,
+                           "document":bound.subject.document,"candidate":bound.subject.candidate_metadata})
+                });
+                registered_rows.push(json!({"case_id":v["case_id"],
+                    "occurrence":occurrence(seed.event().occurrence),
+                    "registered_roots":fields,"registered_declared_path":path,
+                    "witness_subject_input":witness_subject,
+                    "complete_fact":false,"root_export":capture.can_issue_root_export()}));
+            }
             let mut collector = RawLocalCollector::default();
             collector
                 .insert(&capture, RawLocalObservation::CaptureFacts)
@@ -261,6 +404,38 @@ mod fixtures {
         std::fs::write(
             repo_root().join("target/phase-04c1b4c4r3c2r1-raw-actual.json"),
             &payload,
+        )
+        .unwrap();
+        let registered_payload = serde_json::to_vec_pretty(&registered_rows).unwrap();
+        std::fs::write(
+            repo_root().join("target/phase-04c1b4c4r3c2r2-root-subset-actual.json"),
+            &registered_payload,
+        )
+        .unwrap();
+        let mut child = std::process::Command::new("python")
+            .env("PYTHONUTF8", "1")
+            .args(["tools/oracle/raw_root_subset.py", "--report"])
+            .current_dir(repo_root())
+            .stdin(std::process::Stdio::piped())
+            .stdout(std::process::Stdio::piped())
+            .stderr(std::process::Stdio::piped())
+            .spawn()
+            .unwrap();
+        child
+            .stdin
+            .take()
+            .unwrap()
+            .write_all(&registered_payload)
+            .unwrap();
+        let checked = child.wait_with_output().unwrap();
+        assert!(
+            checked.status.success(),
+            "{}",
+            String::from_utf8_lossy(&checked.stderr)
+        );
+        std::fs::write(
+            repo_root().join("target/phase-04c1b4c4r3c2r2-root-subset-report.json"),
+            checked.stdout,
         )
         .unwrap();
         for diagnostic in [true, false] {
