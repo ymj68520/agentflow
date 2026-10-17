@@ -38,6 +38,20 @@ def closure(types, root):
     return sorted(seen)
 
 
+def nominal(model, key):
+    # Selected historical imports and qualified AFIDL declarations keep their
+    # actual owner/name, never (current_owner, historical_owner/name).
+    prefix, slash, suffix = key.partition('/')
+    if slash and re.fullmatch(r'[a-z][a-z0-9-]*(?:\.[a-z][a-z0-9-]*)*@[1-9][0-9]*', prefix):
+        value = dict(owner=prefix, name=suffix)
+    else:
+        value = dict(owner=model['model_id'], name=key)
+    assert (value['owner'] == model['model_id'] and value['name'] in model['types']
+            and not value['name'].startswith('agentflow.computation.proof-report.model@1/')) or (
+                value['owner'] + '/' + value['name'] in model['types'])
+    return value
+
+
 def report():
     old, new = model(5), model(6)
     assert new['inherited_registered_model'] == old
@@ -112,7 +126,7 @@ def report():
                 added_descriptors=sorted(set(b)-set(a)), removed_descriptors=sorted(set(a)-set(b)),
                 changed_descriptors=[dict(name=n, old=a[n], new=b[n]) for n in direct],
                 fact_root_fields=roots, fact_root_count=len(roots), field_diff=rows,
-                full_fact_static_roster=[dict(owner=new['model_id'], type=n, descriptor=b[n],
+                full_fact_static_roster=[dict(**nominal(new, n), catalogue_key=n, descriptor=b[n],
                                              references=list(refs(b[n]))) for n in closure(b, 'Fact')],
                 historical_baseline=dict(main_cases=59, reached_events=125, root_instances=1750,
                                          legacy_model5_compared=1000, legacy_model5_incomplete=750,
