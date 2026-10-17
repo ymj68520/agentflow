@@ -72,9 +72,9 @@ mod fixtures {
         for input in inputs {
             let package = &input["package"];
             let slot = input["slot"].as_u64().unwrap();
-            let owner_index = input["owner"].as_u64().unwrap() as usize;
+            let owner_index = usize::try_from(input["owner"].as_u64().unwrap()).unwrap();
             let owner = &package["owners"][owner_index]["anchor"];
-            let doc = document(package, owner_index, slot as usize);
+            let doc = document(package, owner_index, usize::try_from(slot).unwrap());
             let candidate = &input["candidate"];
             let path = [RawDocumentMember::Entry(
                 input["path_entry"].as_u64().unwrap(),
@@ -136,7 +136,9 @@ mod fixtures {
                 .iter()
                 .map(|step| match step {
                     RawDocumentMember::Entry(index) => json!({"entry":index}),
-                    _ => panic!("input corpus uses registered declaration entry paths"),
+                    RawDocumentMember::Field(_) => {
+                        panic!("input corpus uses registered declaration entry paths")
+                    }
                 })
                 .collect();
             actual.push(json!({"case_id":input["case_id"],"failure":null,"events":events,

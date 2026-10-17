@@ -4,7 +4,6 @@ The default strict gate fails closed. --materialize saves diagnostic manifests;
 it does not grant conformance, produce a FactKey, or change a frozen Expected.
 """
 import argparse
-import copy
 import functools
 import hashlib
 import importlib.util
@@ -242,7 +241,7 @@ def boundary(m):
             "resolution": "Accepted typed-schema materialization section 3 allows descriptive report-carrier paths. Therefore the descriptor chain alone does not prove a mandatory canonical FactKey dependency in T3.",
             "not_claimed": ["model cannot express SourcePackage/Occurrence", "all observations must use a map selector",
                             "empty field_path is structurally forbidden", "a checker false-Proven", "new edition required"],
-            "alternatives_requiring_adjudication": [
+            "possible_implementation_routes_not_chosen": [
                 "Explicitly bind a noncanonical borrowed FactKey selector as T3 input to T4's TypedValue construction, and define what full T3 comparison covers",
                 "Identify a real registered observation output site that reaches this actual fact without a canonical map key, with complete source/site correspondence",
                 "Explicitly authorize the needed canonical selector construction and clarify its boundary with the prohibited canonical FactKey encoding"],
@@ -271,6 +270,11 @@ def build():
             name = root["exact_field_name"]
             root_gaps.append({"event_id": event_id(event), "root_field": name,
                               "exact_registered_type": root["exact_registered_type"],
+                              "field_presence_required": True,
+                              "known_option_case": ("some" if name in ("raw_validation_basis", "primary")
+                                                    or (name == "contradiction" and event["condition"] != "positive_fresh")
+                                                    else "none" if name in ("contradiction", "companion_evidence_status", "substitution_basis", "native_guard_basis")
+                                                    else None),
                               "initial_status": root["current_local_mapping"],
                               "final_status": root["current_local_mapping"],
                               "closed_in_c2r2": False})
@@ -307,6 +311,13 @@ def build():
                                  "partially_mapped_instances": len(partial),
                                  "closed_instances": 0, "instances": root_gaps},
         "NestedFieldGapBaseline": {"enumerated_direct_slot_obligations": len(nested_gaps),
+                                   "direct_slot_categories_not_full_closure": {
+                                       "compiler_and_support_manifest": 1750,
+                                       "context_binding_and_contents": 1375,
+                                       "raw_subject_direct_fields": 375,
+                                       "raw_basis_direct_fields": 750,
+                                       "root_referenced_direct_slots": 2875,
+                                   },
                                    "full_value_closure_count": None,
                                    "full_value_closure_count_status": "UNDETERMINED_NOT_ZERO",
                                    "closed_instances": 0, "instances": nested_gaps},
