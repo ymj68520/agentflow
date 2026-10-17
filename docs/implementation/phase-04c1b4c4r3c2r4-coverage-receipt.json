@@ -38816,6 +38816,27 @@
     "expected_events": 177,
     "missing": 0,
     "unexpected": 0,
+    "otherwise_applicable_full_fact_events": 176,
+    "forbidden_full_fact_events": [
+      {
+        "event": {
+          "case_id": "c2r3/relation-snapshot-schema-pin/missing",
+          "occurrence": {
+            "direction": "input",
+            "original_ordinal": 0,
+            "sorted_ordinal": 0,
+            "port_no": 0
+          },
+          "condition": "zero",
+          "predecessor": null
+        },
+        "expected_full_fact": "FORBIDDEN",
+        "reason": "Some relation snapshot with exact current module missing",
+        "required_output": "A source + C Missing + fail-closed Subject admission; preserve zero Violation",
+        "actual_complete_c_admission": "NOT MATERIALIZED",
+        "rule": "AF-SEMANTIC-0295"
+      }
+    ],
     "complete_event_coordinate_comparisons": 174,
     "legacy_binding_events_with_verdict_only": 3,
     "legacy_binding_coordinates_not_inferred_from_expected": true,
@@ -38828,12 +38849,12 @@
     }
   },
   "root_coverage": {
-    "required_instances": 2478,
+    "required_instances": 2464,
     "compared_full_field_instances": 0,
-    "missing_or_partial_instances": 2478,
+    "missing_or_partial_instances": 2464,
     "full_fact_comparisons": 0,
     "main_required": 1750,
-    "additional_required": 728,
+    "additional_required": 714,
     "legacy_model5_subset_compared": 1000,
     "legacy_model5_incomplete": 750,
     "legacy_credit_is_not_model6_full_field_reacceptance": true
@@ -65781,160 +65802,6 @@
     {
       "event": [
         "c2r3/relation-snapshot-schema-pin/right-A",
-        "input",
-        0
-      ],
-      "owner": "agentflow.computation.proof-report.model@6",
-      "type": "Fact",
-      "field": "raw_validation_basis",
-      "status": "NOT MATERIALIZED / NOT COMPARED"
-    },
-    {
-      "event": [
-        "c2r3/relation-snapshot-schema-pin/missing",
-        "input",
-        0
-      ],
-      "owner": "agentflow.computation.proof-report.model@6",
-      "type": "Fact",
-      "field": "key",
-      "status": "NOT MATERIALIZED / NOT COMPARED"
-    },
-    {
-      "event": [
-        "c2r3/relation-snapshot-schema-pin/missing",
-        "input",
-        0
-      ],
-      "owner": "agentflow.computation.proof-report.model@6",
-      "type": "Fact",
-      "field": "role",
-      "status": "NOT MATERIALIZED / NOT COMPARED"
-    },
-    {
-      "event": [
-        "c2r3/relation-snapshot-schema-pin/missing",
-        "input",
-        0
-      ],
-      "owner": "agentflow.computation.proof-report.model@6",
-      "type": "Fact",
-      "field": "evaluation",
-      "status": "NOT MATERIALIZED / NOT COMPARED"
-    },
-    {
-      "event": [
-        "c2r3/relation-snapshot-schema-pin/missing",
-        "input",
-        0
-      ],
-      "owner": "agentflow.computation.proof-report.model@6",
-      "type": "Fact",
-      "field": "status",
-      "status": "NOT MATERIALIZED / NOT COMPARED"
-    },
-    {
-      "event": [
-        "c2r3/relation-snapshot-schema-pin/missing",
-        "input",
-        0
-      ],
-      "owner": "agentflow.computation.proof-report.model@6",
-      "type": "Fact",
-      "field": "prerequisites",
-      "status": "NOT MATERIALIZED / NOT COMPARED"
-    },
-    {
-      "event": [
-        "c2r3/relation-snapshot-schema-pin/missing",
-        "input",
-        0
-      ],
-      "owner": "agentflow.computation.proof-report.model@6",
-      "type": "Fact",
-      "field": "references",
-      "status": "NOT MATERIALIZED / NOT COMPARED"
-    },
-    {
-      "event": [
-        "c2r3/relation-snapshot-schema-pin/missing",
-        "input",
-        0
-      ],
-      "owner": "agentflow.computation.proof-report.model@6",
-      "type": "Fact",
-      "field": "primary",
-      "status": "NOT MATERIALIZED / NOT COMPARED"
-    },
-    {
-      "event": [
-        "c2r3/relation-snapshot-schema-pin/missing",
-        "input",
-        0
-      ],
-      "owner": "agentflow.computation.proof-report.model@6",
-      "type": "Fact",
-      "field": "contradiction",
-      "status": "NOT MATERIALIZED / NOT COMPARED"
-    },
-    {
-      "event": [
-        "c2r3/relation-snapshot-schema-pin/missing",
-        "input",
-        0
-      ],
-      "owner": "agentflow.computation.proof-report.model@6",
-      "type": "Fact",
-      "field": "cause_fact_keys",
-      "status": "NOT MATERIALIZED / NOT COMPARED"
-    },
-    {
-      "event": [
-        "c2r3/relation-snapshot-schema-pin/missing",
-        "input",
-        0
-      ],
-      "owner": "agentflow.computation.proof-report.model@6",
-      "type": "Fact",
-      "field": "companion_evidence_status",
-      "status": "NOT MATERIALIZED / NOT COMPARED"
-    },
-    {
-      "event": [
-        "c2r3/relation-snapshot-schema-pin/missing",
-        "input",
-        0
-      ],
-      "owner": "agentflow.computation.proof-report.model@6",
-      "type": "Fact",
-      "field": "observations",
-      "status": "NOT MATERIALIZED / NOT COMPARED"
-    },
-    {
-      "event": [
-        "c2r3/relation-snapshot-schema-pin/missing",
-        "input",
-        0
-      ],
-      "owner": "agentflow.computation.proof-report.model@6",
-      "type": "Fact",
-      "field": "substitution_basis",
-      "status": "NOT MATERIALIZED / NOT COMPARED"
-    },
-    {
-      "event": [
-        "c2r3/relation-snapshot-schema-pin/missing",
-        "input",
-        0
-      ],
-      "owner": "agentflow.computation.proof-report.model@6",
-      "type": "Fact",
-      "field": "native_guard_basis",
-      "status": "NOT MATERIALIZED / NOT COMPARED"
-    },
-    {
-      "event": [
-        "c2r3/relation-snapshot-schema-pin/missing",
         "input",
         0
       ],

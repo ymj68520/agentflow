@@ -135,10 +135,23 @@ def event_roster_and_actual():
     probe = json.loads((R / 'target' / (P + 'binding-actual.json')).read_bytes())
     compare(expected(), expected(), probe)
     fresh = dict(case_id=probe['case_id'], occurrence=probe['occurrence'], condition=probe['condition'], predecessor=None)
-    roster = main + sensitivity_events + old_binding + [fresh]
-    assert len(roster) == 177
-    return roster, dict(main=125, main_case_ids=59, sensitivity=48, legacy_binding=3,
+    port_roster = main + sensitivity_events + old_binding + [fresh]
+    assert len(port_roster) == 177
+    # Under model@6, the original missing-current-schema relation Context
+    # requires an explicit failed C admission and MUST NOT issue a full Fact.
+    # Its already executed zero event remains required event evidence. It is
+    # NOT fourteen missing positive Fact fields. The other two contexts use A.
+    applicable = main + sensitivity_events + old_binding[:2] + [fresh]
+    assert len(applicable) == 176
+    non_fact = [dict(event=old_binding[2], expected_full_fact='FORBIDDEN',
+                    reason='Some relation snapshot with exact current module missing',
+                    required_output='A source + C Missing + fail-closed Subject admission; preserve zero Violation',
+                    actual_complete_c_admission='NOT MATERIALIZED',
+                    rule='AF-SEMANTIC-0295')]
+    return applicable, dict(main=125, main_case_ids=59, sensitivity=48, legacy_binding=3,
                         new_binding=1, actual_events=177, expected_events=177, missing=0, unexpected=0,
+                        otherwise_applicable_full_fact_events=176,
+                        forbidden_full_fact_events=non_fact,
                         complete_event_coordinate_comparisons=174,
                         legacy_binding_events_with_verdict_only=3,
                         legacy_binding_coordinates_not_inferred_from_expected=True,
@@ -161,12 +174,12 @@ def report():
     required = [dict(event=[e['case_id'], e['occurrence']['direction'], e['occurrence']['original_ordinal']],
                      owner=C.MODEL, type='Fact', field=f, status='NOT MATERIALIZED / NOT COMPARED')
                 for e in roster for f in root_names]
-    assert len(required) == 2478
+    assert len(required) == 2464
     return dict(outcome='C — FORMAL BINDING / STAGE GAP', checkpoint='R4-A', finding=gap,
                 descriptor_diff=audit, events=events,
                 root_coverage=dict(required_instances=len(required), compared_full_field_instances=0,
                                    missing_or_partial_instances=len(required), full_fact_comparisons=0,
-                                   main_required=1750, additional_required=728,
+                                   main_required=1750, additional_required=714,
                                    legacy_model5_subset_compared=1000, legacy_model5_incomplete=750,
                                    legacy_credit_is_not_model6_full_field_reacceptance=True),
                 required_root_roster=required,
