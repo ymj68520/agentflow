@@ -51,17 +51,16 @@ name = "scope_closure_conformance"
 path = "tests/scope_closure_conformance.rs"
 [[test]]
 # The frozen889 Analysis@4 cases execute in the exact Edition4 archive.
-name = "raw_validation_staging"
-path = "tests/raw_validation_staging.rs"
+name = "document_occurrence_staging"
+path = "tests/document_occurrence_staging.rs"
 [[test]]
 name = "native_capture_conformance"
 path = "tests/native_capture_conformance.rs"
 [[test]]
 name = "native_seed_source_conformance"
 path = "tests/native_seed_source_conformance.rs"
-[[test]]
-name = "raw_document_identity_c2"
-path = "tests/raw_document_identity_c2.rs"
+# Frozen Analysis@5 raw registration and C2 diagnostic execute unchanged
+# from the exact e623aab source archive, not under the new global Registry.
 
 [lints]
 workspace = true

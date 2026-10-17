@@ -18,6 +18,7 @@ pub enum RawAdmissionFailure {
     InvalidPhysicalInput,
     UnsupportedModel,
     ResourceLimit,
+    MissingDocumentOccurrenceBinding,
 }
 
 /// A borrowed actual declarative document. No implicit per-call document exists.
@@ -57,7 +58,7 @@ pub fn admit_native_raw_source(
     if document.declarations.get(original_entry) != Some(candidate) {
         return Err(RawAdmissionFailure::InvalidSourceAssociation);
     }
-    Ok(())
+    Err(RawAdmissionFailure::MissingDocumentOccurrenceBinding)
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -81,6 +82,16 @@ pub fn admit_physical_raw_source(
         return Err(RawAdmissionFailure::InvalidContextBinding);
     }
     let bytes = original_bytes.ok_or(RawAdmissionFailure::MissingDeclarativeOrigin)?;
+    validate_physical_metadata(candidate, bytes, path)?;
+    Err(RawAdmissionFailure::MissingDocumentOccurrenceBinding)
+}
+
+/// Strict non-wire physical metadata association; no trusted source or fact.
+pub(crate) fn validate_physical_metadata(
+    candidate: &Value,
+    bytes: &[u8],
+    path: &[RawDocumentMember],
+) -> Result<(), RawAdmissionFailure> {
     if bytes.len() > 8 * 1024 * 1024 || path.len() > 96 {
         return Err(RawAdmissionFailure::ResourceLimit);
     }

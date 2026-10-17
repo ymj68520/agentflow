@@ -5,8 +5,8 @@ use std::collections::BTreeSet;
 use std::sync::OnceLock;
 use unicode_normalization::UnicodeNormalization;
 
-const SOURCE: &str = include_str!("../../../spec/tables/proof-report-model-v4.md");
-pub const SUCCESSOR_MODEL_ID: &str = "agentflow.computation.proof-report.model@4";
+const SOURCE: &str = include_str!("../../../spec/tables/proof-report-model-v5.md");
+pub const SUCCESSOR_MODEL_ID: &str = "agentflow.computation.proof-report.model@5";
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum RegisteredModelFailure {
@@ -169,7 +169,7 @@ fn check_named_constraints(
     {
         return Err(RegisteredModelFailure::InvalidFacts);
     }
-    if name == "RawUtf8Bytes" {
+    if matches!(name, "RawUtf8Bytes" | "DocumentSourceKey") {
         let bytes = value
             .as_array()
             .ok_or(RegisteredModelFailure::IncompleteFacts)?
@@ -182,6 +182,14 @@ fn check_named_constraints(
             .collect::<Result<Vec<_>, _>>()?;
         if std::str::from_utf8(&bytes).is_err() {
             return Err(RegisteredModelFailure::InvalidFacts);
+        }
+        if name == "DocumentSourceKey" {
+            if bytes.is_empty() {
+                return Err(RegisteredModelFailure::IncompleteFacts);
+            }
+            if bytes.len() > 4096 {
+                return Err(RegisteredModelFailure::ResourceLimit);
+            }
         }
     }
     // A selected historical field token is not an arbitrary NFC string and

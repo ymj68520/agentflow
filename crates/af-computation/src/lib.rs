@@ -13,6 +13,7 @@
 mod control;
 mod mapping;
 pub mod native_capture;
+mod occurrence_admission;
 mod proof;
 mod raw_admission;
 mod registered_model;
@@ -32,6 +33,11 @@ pub use control::{
     RecoverySourceSummary, ResourcePortOccurrence, RootExportCompatibilityStatus,
     ScopeBoundarySummary, SelectDecisionEvidence, SequenceDataflowDependency, TimeoutOutcome,
     derive_control_contract, derive_workflow_contract_summary,
+};
+pub use occurrence_admission::{
+    DocumentOccurrenceAdmissionFailure, DocumentOccurrenceMetadataRequest,
+    OccurrencePhysicalMetadata, admit_document_occurrence_metadata, admit_source_package_metadata,
+    check_joint_source_packages_metadata,
 };
 pub use proof::{LeafDimensionProof, LeafProofReport, LeafVerdict};
 pub use raw_admission::{
