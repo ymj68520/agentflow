@@ -11,6 +11,9 @@
 //! handle, plan, or workflow attestation.
 
 mod control;
+mod input_binder;
+mod input_graph;
+mod input_source;
 mod mapping;
 pub mod native_capture;
 mod occurrence_admission;
@@ -37,6 +40,9 @@ pub use control::{
     RecoverySourceSummary, ResourcePortOccurrence, RootExportCompatibilityStatus,
     ScopeBoundarySummary, SelectDecisionEvidence, SequenceDataflowDependency, TimeoutOutcome,
     derive_control_contract, derive_workflow_contract_summary,
+};
+pub use input_binder::{
+    InputBindingFailure, RawSubjectInputNode, VerifiedInputGraph, bind_raw_input_graph,
 };
 pub use occurrence_admission::{
     DocumentOccurrenceAdmissionFailure, DocumentOccurrenceMetadataRequest,

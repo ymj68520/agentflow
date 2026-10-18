@@ -55,6 +55,9 @@ path = "tests/scope_closure_conformance.rs"
 name = "structural_binding_staging"
 path = "tests/structural_binding_staging.rs"
 [[test]]
+name = "production_input_graph"
+path = "tests/production_input_graph.rs"
+[[test]]
 name = "native_capture_conformance"
 path = "tests/native_capture_conformance.rs"
 [[test]]
