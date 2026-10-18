@@ -10,7 +10,7 @@ BASE='5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea'
 D=R/'docs/implementation'
 def read(path):return json.loads((R/path).read_bytes())
 def save(name,value):
-    (D/(P+name+'.json')).write_text(json.dumps(value,indent=2)+'\n',encoding='utf8')
+    (D/(P+name+'.json')).write_bytes((json.dumps(value,indent=2)+'\n').encode('utf8'))
 def frozen():
     # Raw map is locked before the first G3 edit, including non-ignored files.
     baseline=read('target/'+P+'start-raw-map.json')
