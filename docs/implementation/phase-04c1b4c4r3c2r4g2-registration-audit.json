@@ -1,0 +1,96 @@
+{
+  "registration": {
+    "descriptors": 1131,
+    "references": 2559,
+    "sites": 317,
+    "reference_policies": 66,
+    "source_rank_free": true,
+    "old_ranks_preserved": 774,
+    "old_imports_preserved": 97,
+    "required_field_variants": 1297,
+    "production_capture_case_ids": 0,
+    "analysis": "agentflow.root-export-checker@8",
+    "model": "agentflow.computation.proof-report.model@7",
+    "report": "agentflow.g01.report-shape@7",
+    "obligation": "agentflow.g01.obligation@7",
+    "specifications": 70,
+    "rules": 522,
+    "new_specifications": 4,
+    "new_rules": 13,
+    "new_descriptors": 357,
+    "reference_covered": 521,
+    "intentional_exception": 1,
+    "missing": 0,
+    "abi": 775,
+    "afidl": 17,
+    "hashv1_domains": 14,
+    "native_identity_bytes": 27182424,
+    "unchanged_native_identity_limit": 33554432,
+    "lossless_closed_source_composition": true
+  },
+  "coverage": {
+    "case_ids": 3662,
+    "metadata_case_ids": 3579,
+    "categories": {
+      "admission_negative": 161,
+      "capability_denial": 74,
+      "dag_subgraph": 48,
+      "edition_portable": 13,
+      "native_module_source": 7,
+      "rule": 13,
+      "shape": 2532,
+      "structural_site": 814
+    },
+    "required_field_variants": 1297,
+    "covered_field_variants": 1297,
+    "structural_sites": 317,
+    "reference_use_policies": 66,
+    "missing_fields_sites_variants": [],
+    "production_binder_capture_case_ids": 0,
+    "raw_full_field_comparator_mutations": 0,
+    "prior_r4_boundary_mutations_credit_to_production": 0
+  },
+  "freeze": {
+    "start_files": 2235,
+    "authorized_existing_changes": [
+      "crates/af-computation/Cargo.toml",
+      "crates/af-computation/src/lib.rs",
+      "crates/af-computation/src/relation_admission.rs",
+      "crates/af-computation/src/root_export.rs",
+      "crates/af-portable/Cargo.toml",
+      "crates/af-portable/src/support.rs",
+      "spec/conformance/suites.json",
+      "spec/registry/rules.json",
+      "spec/registry/specifications.json",
+      "tools/gen-registry-instances.py",
+      "tools/gen-relation-schema-staging.py"
+    ],
+    "allowed_existing_changes": [
+      "crates/af-computation/Cargo.toml",
+      "crates/af-computation/src/lib.rs",
+      "crates/af-computation/src/relation_admission.rs",
+      "crates/af-computation/src/root_export.rs",
+      "crates/af-portable/Cargo.toml",
+      "crates/af-portable/src/support.rs",
+      "spec/conformance/suites.json",
+      "spec/registry/rules.json",
+      "spec/registry/specifications.json",
+      "tools/gen-registry-instances.py",
+      "tools/gen-relation-schema-staging.py"
+    ],
+    "all_other_original_raw_bytes_equal": true,
+    "old_registry_objects": {
+      "specifications": {
+        "previous_records": 66,
+        "previous_records_exact": true,
+        "current_records": 70
+      },
+      "rules": {
+        "previous_records": 509,
+        "previous_records_exact": true,
+        "current_records": 522
+      }
+    },
+    "old_expected_oracles_and_normative_sources_unchanged": true
+  }
+}

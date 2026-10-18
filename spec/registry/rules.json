@@ -5976,6 +5976,149 @@
       "source_anchor": "closed-model"
     },
     {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-structural-binding-staging/rule-0302"
+      ],
+      "normative_source": "spec/computation/structural-binding.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0302",
+      "short_statement": "Every eligible inline value site has one exact owner/parent/selector binding, complete descriptor and child types; missing or extra source-less sites reject.",
+      "source_anchor": "sites"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-structural-binding-staging/rule-0303"
+      ],
+      "normative_source": "spec/computation/structural-binding.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0303",
+      "short_statement": "Nominal types and site identities remain exact; aliases delegate declaration bodies without casts and type-order integration preserves all old ranks.",
+      "source_anchor": "nominal-order"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-structural-binding-staging/rule-0304"
+      ],
+      "normative_source": "spec/computation/structural-binding.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0304",
+      "short_statement": "Map uses typed key/value child entries with canonical typed order and duplicate canonical key rejection before interning; native module mapping is full and source-exact.",
+      "source_anchor": "map-body"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-structural-binding-staging/rule-0305"
+      ],
+      "normative_source": "spec/computation/structural-binding.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0305",
+      "short_statement": "Only the future pre-capture binder constructs bounded minimal input graphs under0217 full typed equality, canonical height/type/body/child ordering and exact roots.",
+      "source_anchor": "canonical-ranks"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-structural-binding-staging/rule-0306"
+      ],
+      "normative_source": "spec/computation/structural-binding.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0306",
+      "short_statement": "G references resolve exact typed inputs in their fixed complete carrier; ordinary integers, other arenas, output backedges and synthetic roots never repair missing bindings.",
+      "source_anchor": "input-environment"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-structural-binding-staging/rule-0307"
+      ],
+      "normative_source": "spec/computation/structural-binding.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0307",
+      "short_statement": "W local/input edges are explicit; external G targets use full typed comparison without W-local height and complete envelope equality includes G and exact tuple.",
+      "source_anchor": "witness-environment"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-structural-binding-staging/rule-0308"
+      ],
+      "normative_source": "spec/computation/structural-binding.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0308",
+      "short_statement": "Complete rank-free declared inputs and genuine native source associations precede immutable G, actual C admission and complete Fact assembly; T4 cannot backfill input ranks.",
+      "source_anchor": "source-stage"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-structural-binding-staging/rule-0309"
+      ],
+      "normative_source": "spec/computation/structural-binding.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0309",
+      "short_statement": "Structural diagnostics use closed applicable domain/reason/stage/source paths, preserve complete source and never become evaluated port predicates or partial successful graphs.",
+      "source_anchor": "failures"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-structural-binding-staging/rule-0310"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics-v7.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0310",
+      "short_statement": "Successor candidate Subject data may be bound before C but complete Fact use requires genuine source admission and every actual Some C Valid; failures preserve port events without Facts.",
+      "source_anchor": "candidate-admission"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-structural-binding-staging/rule-0311"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics-v7.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0311",
+      "short_statement": "Raw ScopeSubject declares its exact Subject input root and all affected Source/Target/Origin/Basis/Witness/Evidence/C references retain explicit G/W domains without output-dependent input identity.",
+      "source_anchor": "consumer-propagation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-structural-binding-staging/rule-0312"
+      ],
+      "normative_source": "spec/tables/proof-report-model-v7.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0312",
+      "short_statement": "Independent source-derived site/field/variant/node rosters and two-sided omission rejection cover the closed current model; metadata success is not production capture.",
+      "source_anchor": "closed-model"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-structural-binding-staging/rule-0313"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs-v8.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0313",
+      "short_statement": "Structural binding uses exact successor source/rule/model/report/obligation contents with frozen previous records and current-only refusal of old or mixed identity.",
+      "source_anchor": "edition-isolation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-structural-binding-staging/rule-0314"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs-v8.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0314",
+      "short_statement": "Registered structural staging leaves production binder, full Raw, Scope, normalizer and positive proof/publication/runtime unimplemented or unauthorized; default resource and bounded D4 gates remain separate.",
+      "source_anchor": "non-activation"
+    },
+    {
       "area": "SPEC",
       "conformance_refs": [
         "spec-registry/duplicate-specification-id"

@@ -184,6 +184,19 @@
       "status": "frozen"
     },
     {
+      "description": "Candidate input data versus admitted Subject and explicit immutable input / witness consumer environments.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "83ba554b44a4e2d8f2f8a8b2b8c3deb3563fd7f553d5b6affd814d040f64accf"
+        },
+        "logical_path": "spec/computation/proof-obligation-semantics-v7.md"
+      },
+      "specification_id": "agentflow.computation.proof-obligation.semantics@7",
+      "status": "frozen"
+    },
+    {
       "description": "Closed non-wire G01 semantic type model, typed order, finite value DAG and ACE1 canonical identity relation.",
       "kind": "closed_table",
       "normative_source": {
@@ -262,6 +275,19 @@
       "status": "frozen"
     },
     {
+      "description": "Closed structural sites, map body, witness edges, source/stage/failure declarations and exact frozen historical owners.",
+      "kind": "closed_table",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "d0f2200097d4e4705e2d200125b1afd438d7d25916d75f9f07085e84b9802641"
+        },
+        "logical_path": "spec/tables/proof-report-model-v7.md"
+      },
+      "specification_id": "agentflow.computation.proof-report.model@7",
+      "status": "frozen"
+    },
+    {
       "description": "Pure in-process RootExportAssertion proof: exact typed coordinates and nine-dimension static root/export compatibility, with body, publisher, authority, budget and runtime evidence kept separate.",
       "kind": "schema_language",
       "normative_source": {
@@ -272,6 +298,19 @@
         "logical_path": "spec/computation/root-export-contract-proof.md"
       },
       "specification_id": "agentflow.computation.root-export-contract-proof.semantics@1",
+      "status": "frozen"
+    },
+    {
+      "description": "Independent rank-free source admission and pre-capture structural input binding contract; registration staging only.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "91af86908862fb40b151eea9998e44d41ff834e3685d3f608ac6906375f9fec3"
+        },
+        "logical_path": "spec/computation/structural-binding.md"
+      },
+      "specification_id": "agentflow.computation.structural-binding.semantics@1",
       "status": "frozen"
     },
     {
@@ -584,6 +623,19 @@
         "logical_path": "spec/portable/portable-proof-inputs-v7.md"
       },
       "specification_id": "agentflow.portable.proof.inputs.semantics@7",
+      "status": "frozen"
+    },
+    {
+      "description": "Exact structural-binding successor contents and current-only non-activated staging.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "c0adb717794833f2e4fbe903acfc4214ea3cf9148cf8afee9854aa357da9303e"
+        },
+        "logical_path": "spec/portable/portable-proof-inputs-v8.md"
+      },
+      "specification_id": "agentflow.portable.proof.inputs.semantics@8",
       "status": "frozen"
     },
     {

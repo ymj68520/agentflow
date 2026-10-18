@@ -1,0 +1,1568 @@
+[
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ScopeSubject"
+      },
+      "path": [
+        {
+          "case": "root_export"
+        },
+        {
+          "field": "compiler"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "Compiler"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ScopeSubject"
+      },
+      "path": [
+        {
+          "case": "root_export"
+        },
+        {
+          "field": "context"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "Context"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ScopeSubject"
+      },
+      "path": [
+        {
+          "case": "root_export"
+        },
+        {
+          "field": "resolver_associations"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "ResolverAssociations"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ScopeSubject"
+      },
+      "path": [
+        {
+          "case": "root_export"
+        },
+        {
+          "field": "root_provenance"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RootProvenance"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ScopeSubject"
+      },
+      "path": [
+        {
+          "case": "root_export"
+        },
+        {
+          "field": "assertion_inputs"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "AssertionGraph"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ScopeSubject"
+      },
+      "path": [
+        {
+          "case": "contract_validation"
+        },
+        {
+          "field": "compiler"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "Compiler"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ScopeSubject"
+      },
+      "path": [
+        {
+          "case": "contract_validation"
+        },
+        {
+          "field": "context"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "Context"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ScopeSubject"
+      },
+      "path": [
+        {
+          "case": "contract_validation"
+        },
+        {
+          "field": "candidate"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawCandidateContract"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ScopeSubject"
+      },
+      "path": [
+        {
+          "case": "contract_validation"
+        },
+        {
+          "field": "old_checked"
+        },
+        {
+          "some": null
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "CheckedContractContents"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ScopeSubject"
+      },
+      "path": [
+        {
+          "case": "computation"
+        },
+        {
+          "field": "compiler"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "Compiler"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ScopeSubject"
+      },
+      "path": [
+        {
+          "case": "computation"
+        },
+        {
+          "field": "context"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "Context"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ScopeSubject"
+      },
+      "path": [
+        {
+          "case": "computation"
+        },
+        {
+          "field": "resolver_associations"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "ResolverAssociations"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ScopeSubject"
+      },
+      "path": [
+        {
+          "case": "computation"
+        },
+        {
+          "field": "root_provenance"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RootProvenance"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ScopeSubject"
+      },
+      "path": [
+        {
+          "case": "raw_contract_validation"
+        },
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawValidationSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ResolverAssociations"
+      },
+      "path": [
+        {
+          "item": null
+        },
+        {
+          "field": "component_contract"
+        },
+        {
+          "some": null
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "CheckedContractContents"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ResolverAssociations"
+      },
+      "path": [
+        {
+          "item": null
+        },
+        {
+          "field": "target_ir"
+        },
+        {
+          "some": null
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "CheckedIrContents"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "RootProvenance"
+      },
+      "path": [
+        {
+          "field": "root_resolver_identity"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "ResolverAssociations"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "RootProvenance"
+      },
+      "path": [
+        {
+          "field": "root_context"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "Context"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "RootProvenance"
+      },
+      "path": [
+        {
+          "field": "root_k_context"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "Context"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "RootProvenance"
+      },
+      "path": [
+        {
+          "field": "source_ir_contents"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "CheckedIrContents"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "Source"
+      },
+      "path": [
+        {
+          "case": "native_guard_subject"
+        },
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "NativeRecoveryGuardSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "Source"
+      },
+      "path": [
+        {
+          "case": "native_guard_binding"
+        },
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "NativeRecoveryGuardSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "Source"
+      },
+      "path": [
+        {
+          "case": "raw_validation"
+        },
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawValidationSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "Target"
+      },
+      "path": [
+        {
+          "case": "native_guard_subject"
+        },
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "NativeRecoveryGuardSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "Target"
+      },
+      "path": [
+        {
+          "case": "native_guard_binding"
+        },
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "NativeRecoveryGuardSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "Target"
+      },
+      "path": [
+        {
+          "case": "raw_declaration_constraint"
+        },
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawValidationSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "Coordinate"
+      },
+      "path": [
+        {
+          "case": "native_guard"
+        },
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "NativeRecoveryGuardSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "NativeGuardBasis"
+      },
+      "path": [
+        {
+          "case": "canonical_source"
+        },
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "NativeRecoveryGuardSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "EvidenceRef"
+      },
+      "path": [
+        {
+          "case": "resolver_difference"
+        },
+        {
+          "field": "expected"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "ResolverAssociations"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "EvidenceRef"
+      },
+      "path": [
+        {
+          "case": "resolver_difference"
+        },
+        {
+          "field": "observed"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "ResolverAssociations"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "EvidenceRef"
+      },
+      "path": [
+        {
+          "case": "native_guard_member"
+        },
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "NativeRecoveryGuardSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "other_registered_profile"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "EvidenceRef"
+      },
+      "path": [
+        {
+          "case": "raw_validation_member"
+        },
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawValidationSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "RawInputOrigin"
+      },
+      "path": [
+        {
+          "field": "document_binding"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "DocumentOccurrenceBinding"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "RawInputOrigin"
+      },
+      "path": [
+        {
+          "field": "document_binding"
+        }
+      ]
+    },
+    "environment": "g_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "DocumentOccurrenceBinding"
+    },
+    "domain": "g_local",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "RawInputOrigin"
+      },
+      "path": [
+        {
+          "field": "document_binding"
+        }
+      ]
+    },
+    "environment": "w_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "DocumentOccurrenceBinding"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "RawPhysicalAssociation"
+      },
+      "path": [
+        {
+          "case": "supplied"
+        },
+        {
+          "field": "document_binding"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "DocumentOccurrenceBinding"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "RawPhysicalAssociation"
+      },
+      "path": [
+        {
+          "case": "supplied"
+        },
+        {
+          "field": "document_binding"
+        }
+      ]
+    },
+    "environment": "g_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "DocumentOccurrenceBinding"
+    },
+    "domain": "g_local",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "RawPhysicalAssociation"
+      },
+      "path": [
+        {
+          "case": "supplied"
+        },
+        {
+          "field": "document_binding"
+        }
+      ]
+    },
+    "environment": "w_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "DocumentOccurrenceBinding"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "RawPortCheckBasis"
+      },
+      "path": [
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawValidationSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "RawPortCheckBasis"
+      },
+      "path": [
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "w_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawValidationSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "RawPortRejectionWitness"
+      },
+      "path": [
+        {
+          "case": "zero"
+        },
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawValidationSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "RawPortRejectionWitness"
+      },
+      "path": [
+        {
+          "case": "zero"
+        },
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "w_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawValidationSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "RawPortRejectionWitness"
+      },
+      "path": [
+        {
+          "case": "duplicate"
+        },
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawValidationSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "RawPortRejectionWitness"
+      },
+      "path": [
+        {
+          "case": "duplicate"
+        },
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "w_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawValidationSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "DeclarationDocumentEntry"
+      },
+      "path": [
+        {
+          "field": "document"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawDocument"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "DeclarationDocumentEntry"
+      },
+      "path": [
+        {
+          "field": "document"
+        }
+      ]
+    },
+    "environment": "g_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawDocument"
+    },
+    "domain": "g_local",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "DeclarationDocumentEntry"
+      },
+      "path": [
+        {
+          "field": "document"
+        }
+      ]
+    },
+    "environment": "w_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawDocument"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ImportDocumentEntry"
+      },
+      "path": [
+        {
+          "field": "document"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawDocument"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ImportDocumentEntry"
+      },
+      "path": [
+        {
+          "field": "document"
+        }
+      ]
+    },
+    "environment": "g_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawDocument"
+    },
+    "domain": "g_local",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "ImportDocumentEntry"
+      },
+      "path": [
+        {
+          "field": "document"
+        }
+      ]
+    },
+    "environment": "w_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawDocument"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "WorkflowDocumentEntry"
+      },
+      "path": [
+        {
+          "field": "document"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawDocument"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "WorkflowDocumentEntry"
+      },
+      "path": [
+        {
+          "field": "document"
+        }
+      ]
+    },
+    "environment": "g_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawDocument"
+    },
+    "domain": "g_local",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "WorkflowDocumentEntry"
+      },
+      "path": [
+        {
+          "field": "document"
+        }
+      ]
+    },
+    "environment": "w_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawDocument"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "DocumentOccurrenceBinding"
+      },
+      "path": [
+        {
+          "field": "source_package"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "SourcePackage"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "DocumentOccurrenceBinding"
+      },
+      "path": [
+        {
+          "field": "source_package"
+        }
+      ]
+    },
+    "environment": "g_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "SourcePackage"
+    },
+    "domain": "g_local",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "DocumentOccurrenceBinding"
+      },
+      "path": [
+        {
+          "field": "source_package"
+        }
+      ]
+    },
+    "environment": "w_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "SourcePackage"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "DocumentOccurrenceBinding"
+      },
+      "path": [
+        {
+          "field": "actual_document"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawDocument"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "DocumentOccurrenceBinding"
+      },
+      "path": [
+        {
+          "field": "actual_document"
+        }
+      ]
+    },
+    "environment": "g_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawDocument"
+    },
+    "domain": "g_local",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "DocumentOccurrenceBinding"
+      },
+      "path": [
+        {
+          "field": "actual_document"
+        }
+      ]
+    },
+    "environment": "w_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawDocument"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "CurrentContextRelationSchemaValidation"
+      },
+      "path": [
+        {
+          "field": "source"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "NativeRelationSnapshotSource"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "CurrentContextRelationSchemaValidation"
+      },
+      "path": [
+        {
+          "field": "source"
+        }
+      ]
+    },
+    "environment": "w_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "NativeRelationSnapshotSource"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "CurrentContextRelationSchemaValidation"
+      },
+      "path": [
+        {
+          "field": "context"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "ContractProofContextContents"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "CurrentContextRelationSchemaValidation"
+      },
+      "path": [
+        {
+          "field": "context"
+        }
+      ]
+    },
+    "environment": "w_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "ContractProofContextContents"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "RelationSubjectAdmission"
+      },
+      "path": [
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawValidationSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "RelationSubjectAdmission"
+      },
+      "path": [
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "w_value",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawValidationSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  },
+  {
+    "key": {
+      "parent": {
+        "owner": "agentflow.computation.proof-report.model@7",
+        "name": "StructuralSubjectAdmission"
+      },
+      "path": [
+        {
+          "field": "subject"
+        }
+      ]
+    },
+    "environment": "output_record",
+    "target": {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawValidationSubject"
+    },
+    "domain": "g_external",
+    "profiles": [
+      "raw_contract_validation"
+    ]
+  }
+]

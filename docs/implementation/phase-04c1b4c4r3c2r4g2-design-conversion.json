@@ -1,0 +1,1638 @@
+{
+  "original_file_unchanged": true,
+  "original_vectors": 48,
+  "full_vectors_executed": 0,
+  "metadata_subsets_with_related_receipts": 0,
+  "vectors": [
+    {
+      "design_vector": "R4G1-anonymous-same-typed-value",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0303"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-equal-roots",
+        "g01-structural-binding-staging/dag-duplicate-equal"
+      ],
+      "independent_expected": [
+        {
+          "ok": true,
+          "value": null
+        },
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "invalid_interning",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-anonymous-different-nominal",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0303"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-same-shape-different-site",
+        "g01-structural-binding-staging/dag-wrong-nominal"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "invalid_child",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        },
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "input_output_backedge",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-anonymous-nested-record",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0302"
+      ],
+      "registered_case_ids": [],
+      "independent_expected": [],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "No exact applicable current-source case; full condition remains Not Executed rather than inventing a source/site.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-anonymous-inline-struct",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0302"
+      ],
+      "registered_case_ids": [],
+      "independent_expected": [],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "No exact applicable current-source case; full condition remains Not Executed rather than inventing a source/site.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-anonymous-tuple",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0302",
+        "AF-SEMANTIC-0311"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-record-order"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "UnsupportedModel",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "invalid_shape",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-anonymous-nested-option",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0302",
+        "AF-SEMANTIC-0311"
+      ],
+      "registered_case_ids": [],
+      "independent_expected": [],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "No exact applicable current-source case; full condition remains Not Executed rather than inventing a source/site.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-anonymous-sequence-order",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0302",
+        "AF-SEMANTIC-0311"
+      ],
+      "registered_case_ids": [],
+      "independent_expected": [],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "No exact applicable current-source case; full condition remains Not Executed rather than inventing a source/site.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-anonymous-closed-variant",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0302",
+        "AF-SEMANTIC-0311"
+      ],
+      "registered_case_ids": [],
+      "independent_expected": [],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "No exact applicable current-source case; full condition remains Not Executed rather than inventing a source/site.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-anonymous-unknown-variant",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0309"
+      ],
+      "registered_case_ids": [],
+      "independent_expected": [],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "No exact applicable current-source case; full condition remains Not Executed rather than inventing a source/site.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-anonymous-missing-record-field",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0309"
+      ],
+      "registered_case_ids": [],
+      "independent_expected": [],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "No exact applicable current-source case; full condition remains Not Executed rather than inventing a source/site.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-anonymous-same-site-alias",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0303"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/site-0000-valid"
+      ],
+      "independent_expected": [
+        {
+          "ok": true,
+          "value": null
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-anonymous-cross-site-shape",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0302"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-same-shape-different-site"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "invalid_child",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-map-set-insertion-order",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0304"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/module-native-source-full",
+        "g01-structural-binding-staging/module-native-insertion-order"
+      ],
+      "independent_expected": [
+        {
+          "ok": true,
+          "value": {
+            "assurance": "module_projection_only",
+            "entries": [
+              [
+                "binding.alpha@1",
+                {
+                  "specification_id": "binding.alpha@1",
+                  "types": [
+                    {
+                      "body": {
+                        "Record": {
+                          "0": [
+                            {
+                              "name": "value",
+                              "no": 1,
+                              "type_expr": {
+                                "Primitive": {
+                                  "0": "UInt64"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "name": "Item",
+                      "schema": "binding.alpha@1"
+                    }
+                  ]
+                }
+              ],
+              [
+                "binding.beta@1",
+                {
+                  "specification_id": "binding.beta@1",
+                  "types": [
+                    {
+                      "body": {
+                        "Record": {
+                          "0": [
+                            {
+                              "name": "name",
+                              "no": 1,
+                              "type_expr": {
+                                "Primitive": {
+                                  "0": "String"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "name": "Entry",
+                      "schema": "binding.beta@1"
+                    }
+                  ]
+                }
+              ]
+            ],
+            "entry_count": 2
+          }
+        },
+        {
+          "ok": true,
+          "value": {
+            "assurance": "module_projection_only",
+            "entries": [
+              [
+                "binding.alpha@1",
+                {
+                  "specification_id": "binding.alpha@1",
+                  "types": [
+                    {
+                      "body": {
+                        "Record": {
+                          "0": [
+                            {
+                              "name": "value",
+                              "no": 1,
+                              "type_expr": {
+                                "Primitive": {
+                                  "0": "UInt64"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "name": "Item",
+                      "schema": "binding.alpha@1"
+                    }
+                  ]
+                }
+              ],
+              [
+                "binding.beta@1",
+                {
+                  "specification_id": "binding.beta@1",
+                  "types": [
+                    {
+                      "body": {
+                        "Record": {
+                          "0": [
+                            {
+                              "name": "name",
+                              "no": 1,
+                              "type_expr": {
+                                "Primitive": {
+                                  "0": "String"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "name": "Entry",
+                      "schema": "binding.beta@1"
+                    }
+                  ]
+                }
+              ]
+            ],
+            "entry_count": 2
+          }
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-map-set-conflicting-key",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0304"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/module-duplicate-before-interning"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "duplicate_map_key",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-map-set-equal-duplicate-key",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0304"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-map-duplicate-key"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "duplicate_map_key",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-map-set-nominal-key",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0303"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-same-shape-different-key-type"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "invalid_child",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-map-set-nested-map",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0304"
+      ],
+      "registered_case_ids": [],
+      "independent_expected": [],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "No exact applicable current-source case; full condition remains Not Executed rather than inventing a source/site.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-map-set-optional-record-map",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0304"
+      ],
+      "registered_case_ids": [],
+      "independent_expected": [],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "No exact applicable current-source case; full condition remains Not Executed rather than inventing a source/site.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-map-set-duplicate-set-value",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0302"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-set-repeated-member"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "invalid_set_member",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-map-set-set-order",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0302"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-set-wrong-order"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "invalid_set_member",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-map-set-numeric-key-order",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0303",
+        "AF-SEMANTIC-0305"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-numeric-order"
+      ],
+      "independent_expected": [
+        {
+          "ok": true,
+          "value": null
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-map-set-nfc-key-collision",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0304"
+      ],
+      "registered_case_ids": [],
+      "independent_expected": [],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "No exact applicable current-source case; full condition remains Not Executed rather than inventing a source/site.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-map-set-raw-byte-key",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0303",
+        "AF-SEMANTIC-0305"
+      ],
+      "registered_case_ids": [],
+      "independent_expected": [],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "No exact applicable current-source case; full condition remains Not Executed rather than inventing a source/site.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-map-set-empty-map",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0304"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-empty-map-versus-set"
+      ],
+      "independent_expected": [
+        {
+          "ok": true,
+          "value": null
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-node-rank-shared-child",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0305"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-shared-child"
+      ],
+      "independent_expected": [
+        {
+          "ok": true,
+          "value": null
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-node-rank-missing-rank",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0309"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-missing-node"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "invalid_child",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-node-rank-wrong-rank",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0306",
+        "AF-SEMANTIC-0307",
+        "AF-SEMANTIC-0311"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-map-wrong-key-type"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "invalid_child",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-node-rank-dangling-reference",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0306",
+        "AF-SEMANTIC-0307",
+        "AF-SEMANTIC-0311"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-map-dangling-child"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "invalid_child",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-node-rank-unreachable-node",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0305"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-unreachable"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "invalid_interning",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-node-rank-duplicate-equal-node",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0305"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-duplicate-equal"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "invalid_interning",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-node-rank-alternate-numbering",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0305"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-alternate-numbering"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "rank_dependency",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-node-rank-rank-dependency",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0305"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-map-forward-child"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "rank_dependency",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-node-rank-root-order",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0305"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-root-order"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "invalid_child",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-node-rank-both-omit-node",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0312"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-missing-node",
+        "g01-structural-binding-staging/site_registry-both-omit"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "invalid_child",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        },
+        {
+          "failure": {
+            "domain": "IncompleteContent",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "missing_site",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-node-rank-ordinary-u64",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0306",
+        "AF-SEMANTIC-0307",
+        "AF-SEMANTIC-0311"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-numeric-order"
+      ],
+      "independent_expected": [
+        {
+          "ok": true,
+          "value": null
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-node-rank-output-backedge",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0308",
+        "AF-SEMANTIC-0310"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-g-output-backedge"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "input_output_backedge",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-stage-history-authority-document-occurrence",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0308"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-distinct-document-occurrences",
+        "g01-structural-binding-staging/dag-occurrence-collapse"
+      ],
+      "independent_expected": [
+        {
+          "ok": true,
+          "value": null
+        },
+        {
+          "failure": {
+            "domain": "InvalidFacts",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "invalid_child",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-stage-history-authority-same-occurrence",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0308"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-equal-roots"
+      ],
+      "independent_expected": [
+        {
+          "ok": true,
+          "value": null
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-stage-history-authority-a-versus-c",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0310"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/module-native-current-definition-change"
+      ],
+      "independent_expected": [
+        {
+          "ok": true,
+          "value": {
+            "assurance": "module_projection_only",
+            "entries": [
+              [
+                "binding.alpha@1",
+                {
+                  "specification_id": "binding.alpha@1",
+                  "types": [
+                    {
+                      "body": {
+                        "Record": {
+                          "0": [
+                            {
+                              "name": "value",
+                              "no": 1,
+                              "type_expr": {
+                                "Primitive": {
+                                  "0": "String"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "name": "Item",
+                      "schema": "binding.alpha@1"
+                    }
+                  ]
+                }
+              ],
+              [
+                "binding.beta@1",
+                {
+                  "specification_id": "binding.beta@1",
+                  "types": [
+                    {
+                      "body": {
+                        "Record": {
+                          "0": [
+                            {
+                              "name": "name",
+                              "no": 1,
+                              "type_expr": {
+                                "Primitive": {
+                                  "0": "String"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "name": "Entry",
+                      "schema": "binding.beta@1"
+                    }
+                  ]
+                }
+              ]
+            ],
+            "entry_count": 2
+          }
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-stage-history-authority-t3-without-binder",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0308",
+        "AF-SEMANTIC-0311"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/production-raw_contract_validation"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "NotImplemented",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "production_not_implemented",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-stage-history-authority-old-content-only",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0313"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/old-owner-ModelType"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "UnsupportedModel",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "unknown_nominal_type",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-stage-history-authority-cross-edition-ref",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0306",
+        "AF-SEMANTIC-0307",
+        "AF-SEMANTIC-0311"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-wrong-owner"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "UnsupportedModel",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "unknown_nominal_type",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-stage-history-authority-root-capability",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0314"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/production-raw_contract_validation"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "NotImplemented",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "production_not_implemented",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-stage-history-authority-c-missing",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0310"
+      ],
+      "registered_case_ids": [],
+      "independent_expected": [],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "No exact applicable current-source case; full condition remains Not Executed rather than inventing a source/site.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-stage-history-authority-split-context",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0308"
+      ],
+      "registered_case_ids": [],
+      "independent_expected": [],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "No exact applicable current-source case; full condition remains Not Executed rather than inventing a source/site.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-stage-history-authority-t4-rerank",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0308",
+        "AF-SEMANTIC-0311"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/stage-t4-cannot-own-binder"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "IncompleteContent",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "missing_site",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-stage-history-authority-bootstrap-cycle",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0308",
+        "AF-SEMANTIC-0310"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/stage-cycle-backedge"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "IncompleteContent",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "missing_site",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    },
+    {
+      "design_vector": "R4G1-stage-history-authority-resource-budget",
+      "original_status": "Not Executed",
+      "registered_rules": [
+        "AF-SEMANTIC-0309"
+      ],
+      "registered_case_ids": [
+        "g01-structural-binding-staging/dag-resource-bound"
+      ],
+      "independent_expected": [
+        {
+          "failure": {
+            "domain": "ResourceLimit",
+            "expected_type": {
+              "none": null
+            },
+            "first_input_path": [],
+            "observed_type": {
+              "none": null
+            },
+            "reason": "resource_bound",
+            "second_input_path": {
+              "none": null
+            },
+            "site": {
+              "none": null
+            },
+            "stage": "registration_admission"
+          },
+          "ok": false
+        }
+      ],
+      "actual_receipt": null,
+      "metadata_subset_executed": false,
+      "full_condition_status": "Not Executed",
+      "reason": "Registration/manual-subgraph subset only; no actual production Binder execution. Related subset is not full original condition.",
+      "production_capture_credit": 0
+    }
+  ]
+}

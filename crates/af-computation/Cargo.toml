@@ -52,8 +52,8 @@ path = "tests/scope_closure_conformance.rs"
 # The exact254 Analysis@6 registration cases execute in the frozen 2ad4359
 # source archive with its own Registry/Expected, never relabelled as @7.
 [[test]]
-name = "relation_schema_staging"
-path = "tests/relation_schema_staging.rs"
+name = "structural_binding_staging"
+path = "tests/structural_binding_staging.rs"
 [[test]]
 name = "native_capture_conformance"
 path = "tests/native_capture_conformance.rs"

@@ -1,0 +1,37 @@
+{
+  "checkpoint": "G2-G collision audit after G2-A..F review",
+  "start_head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+  "old_specifications": 66,
+  "old_rules": 509,
+  "candidate_sources": [
+    "agentflow.computation.structural-binding.semantics@1",
+    "agentflow.computation.proof-obligation.semantics@7",
+    "agentflow.computation.proof-report.model@7",
+    "agentflow.portable.proof.inputs.semantics@8"
+  ],
+  "candidate_rules": [
+    "AF-SEMANTIC-0302",
+    "AF-SEMANTIC-0303",
+    "AF-SEMANTIC-0304",
+    "AF-SEMANTIC-0305",
+    "AF-SEMANTIC-0306",
+    "AF-SEMANTIC-0307",
+    "AF-SEMANTIC-0308",
+    "AF-SEMANTIC-0309",
+    "AF-SEMANTIC-0310",
+    "AF-SEMANTIC-0311",
+    "AF-SEMANTIC-0312",
+    "AF-SEMANTIC-0313",
+    "AF-SEMANTIC-0314"
+  ],
+  "candidate_new_type_names": 357,
+  "prior_type_rank_max": 773,
+  "collisions": [],
+  "old_names_unchanged": true,
+  "new_value_dagranks_allocated": 0,
+  "reviewed_addition": "StructuralReferenceUse explicitly distinguishes G/W/plain-output reuse before Registry mutation",
+  "reviewed_additions": [
+    "StructuralReferenceUse carrier-use distinction",
+    "StructuralModuleMapAssurance/Inspection readonly typed native mapping"
+  ]
+}

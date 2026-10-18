@@ -175,7 +175,10 @@ def corpus(m):
  from portable_proof_python_oracle import canonical_bytes
  old=json.loads((R/'spec/conformance/g01-document-occurrence-staging/manifest.json').read_bytes())
  ids=sorted(old['selected_specifications']+[v[0] for v in SOURCES.values()]);rids=sorted(old['applied_rules']+[r['rule_id'] for r in RULES])
- sb=(R/'spec/registry/specifications.json').read_bytes();rb=(R/'spec/registry/rules.json').read_bytes()
+ # Frozen Analysis@7 conformance keeps its own exact Registry after the
+ # structural successor is registered. No old Expected is relabelled.
+ frozen=R/'spec/conformance/g01-structural-binding-staging'
+ sb=(frozen/'analysis7-specifications.json').read_bytes();rb=(frozen/'analysis7-rules.json').read_bytes()
  profile=dict(specification_bytes=sb,rule_bytes=rb,version=OWNER,spec_ids=ids,rule_ids=rids)
  portable=[]
  def pc(slug,p,stage,family):

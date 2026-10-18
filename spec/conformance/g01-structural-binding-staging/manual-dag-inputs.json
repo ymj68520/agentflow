@@ -1,0 +1,1157 @@
+{
+  "compiled-map": {
+    "g": {
+      "nodes": [
+        {
+          "body": {
+            "scalar": {
+              "string": "binding.alpha@1"
+            }
+          },
+          "type": {
+            "name": "SpecificationId",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "sequence": []
+          },
+          "type": {
+            "name": "StructuralValue0062",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "specification_id",
+                "value": 0
+              },
+              {
+                "field": "types",
+                "value": 1
+              }
+            ]
+          },
+          "type": {
+            "name": "CompiledModuleContents",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "map": [
+              {
+                "key": 0,
+                "value": 2
+              }
+            ]
+          },
+          "type": {
+            "name": "StructuralValue0012",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        }
+      ],
+      "roots": [
+        3
+      ]
+    }
+  },
+  "distinct-document-occurrences": {
+    "g": {
+      "nodes": [
+        {
+          "body": {
+            "scalar": {
+              "uint64": 0
+            }
+          },
+          "type": {
+            "name": "$U64",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "scalar": {
+              "uint64": 1
+            }
+          },
+          "type": {
+            "name": "$U64",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "scalar": {
+              "bytes": [
+                120
+              ]
+            }
+          },
+          "type": {
+            "name": "DocumentSourceKey",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "scalar": {
+              "bytes": [
+                121
+              ]
+            }
+          },
+          "type": {
+            "name": "DocumentSourceKey",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "sequence": []
+          },
+          "type": {
+            "name": "StructuralValue0187",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "namespace",
+                "value": 2
+              },
+              {
+                "field": "domain_key",
+                "value": 2
+              }
+            ]
+          },
+          "type": {
+            "name": "DocumentSourceDomain",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "entry_ordinal",
+                "value": 0
+              }
+            ]
+          },
+          "type": {
+            "name": "DocumentOccurrenceKey",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "entry_ordinal",
+                "value": 1
+              }
+            ]
+          },
+          "type": {
+            "name": "DocumentOccurrenceKey",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "declarations",
+                "value": 4
+              }
+            ]
+          },
+          "type": {
+            "name": "StructuralValue0186",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "variant": {
+              "case": "declared_native_document",
+              "payload": 8
+            }
+          },
+          "type": {
+            "name": "RawDocument",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "domain",
+                "value": 5
+              },
+              {
+                "field": "owner_key",
+                "value": 2
+              },
+              {
+                "field": "revision_key",
+                "value": 2
+              }
+            ]
+          },
+          "type": {
+            "name": "DocumentOwnerAnchor",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "declaration_name",
+                "value": 2
+              },
+              {
+                "field": "document",
+                "value": 9
+              }
+            ]
+          },
+          "type": {
+            "name": "DeclarationDocumentEntry",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "declaration_name",
+                "value": 3
+              },
+              {
+                "field": "document",
+                "value": 9
+              }
+            ]
+          },
+          "type": {
+            "name": "DeclarationDocumentEntry",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "sequence": [
+              11,
+              12
+            ]
+          },
+          "type": {
+            "name": "StructuralValue0209",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "bundle_name",
+                "value": 2
+              },
+              {
+                "field": "declarations",
+                "value": 13
+              }
+            ]
+          },
+          "type": {
+            "name": "StructuralValue0208",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "variant": {
+              "case": "declaration_bundle",
+              "payload": 14
+            }
+          },
+          "type": {
+            "name": "DocumentOwnerContainer",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "anchor",
+                "value": 10
+              },
+              {
+                "field": "container",
+                "value": 15
+              }
+            ]
+          },
+          "type": {
+            "name": "DocumentOwnerRecord",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "sequence": [
+              16
+            ]
+          },
+          "type": {
+            "name": "StructuralValue0214",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "domain",
+                "value": 5
+              },
+              {
+                "field": "owners",
+                "value": 17
+              }
+            ]
+          },
+          "type": {
+            "name": "SourcePackage",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "source_package",
+                "value": 18
+              },
+              {
+                "field": "source_owner",
+                "value": 10
+              },
+              {
+                "field": "occurrence_key",
+                "value": 6
+              },
+              {
+                "field": "actual_document",
+                "value": 9
+              }
+            ]
+          },
+          "type": {
+            "name": "DocumentOccurrenceBinding",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "source_package",
+                "value": 18
+              },
+              {
+                "field": "source_owner",
+                "value": 10
+              },
+              {
+                "field": "occurrence_key",
+                "value": 7
+              },
+              {
+                "field": "actual_document",
+                "value": 9
+              }
+            ]
+          },
+          "type": {
+            "name": "DocumentOccurrenceBinding",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        }
+      ],
+      "roots": [
+        19,
+        20
+      ]
+    }
+  },
+  "empty-map": {
+    "g": {
+      "nodes": [
+        {
+          "body": {
+            "map": []
+          },
+          "type": {
+            "name": "StructuralValue0012",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        }
+      ],
+      "roots": [
+        0
+      ]
+    }
+  },
+  "empty-map-versus-set": {
+    "g": {
+      "nodes": [
+        {
+          "body": {
+            "map": []
+          },
+          "type": {
+            "name": "StructuralValue0012",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "set": []
+          },
+          "type": {
+            "name": "StructuralValue0028",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        }
+      ],
+      "roots": [
+        0,
+        1
+      ]
+    }
+  },
+  "equal-roots": {
+    "g": {
+      "nodes": [
+        {
+          "body": {
+            "scalar": {
+              "uint64": 1
+            }
+          },
+          "type": {
+            "name": "$U64",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        }
+      ],
+      "roots": [
+        0,
+        0
+      ]
+    }
+  },
+  "exact-decimals": {
+    "g": {
+      "nodes": [
+        {
+          "body": {
+            "scalar": {
+              "decimal": "2"
+            }
+          },
+          "type": {
+            "name": "Raw(af-core::Decimal)",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "scalar": {
+              "decimal": "10"
+            }
+          },
+          "type": {
+            "name": "Raw(af-core::Decimal)",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        }
+      ],
+      "roots": [
+        0,
+        1
+      ]
+    }
+  },
+  "ineligible-float-zero": {
+    "g": {
+      "nodes": [
+        {
+          "body": {
+            "scalar": {
+              "float64": -0.0
+            }
+          },
+          "type": {
+            "name": "af-core::Float64",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        }
+      ],
+      "roots": [
+        0
+      ]
+    }
+  },
+  "ineligible-floats": {
+    "g": {
+      "nodes": [
+        {
+          "body": {
+            "scalar": {
+              "float64": -1.0
+            }
+          },
+          "type": {
+            "name": "af-core::Float64",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "scalar": {
+              "float64": 1.0
+            }
+          },
+          "type": {
+            "name": "af-core::Float64",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        }
+      ],
+      "roots": [
+        0,
+        1
+      ]
+    }
+  },
+  "numeric-order": {
+    "g": {
+      "nodes": [
+        {
+          "body": {
+            "scalar": {
+              "uint64": 2
+            }
+          },
+          "type": {
+            "name": "$U64",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "scalar": {
+              "uint64": 10
+            }
+          },
+          "type": {
+            "name": "$U64",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        }
+      ],
+      "roots": [
+        0,
+        1
+      ]
+    }
+  },
+  "set-full-members": {
+    "g": {
+      "nodes": [
+        {
+          "body": {
+            "scalar": {
+              "string": "a"
+            }
+          },
+          "type": {
+            "name": "$Text",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "scalar": {
+              "string": "b"
+            }
+          },
+          "type": {
+            "name": "$Text",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "scalar": {
+              "string": "c"
+            }
+          },
+          "type": {
+            "name": "$Text",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "catalog",
+                "value": 0
+              },
+              {
+                "field": "name",
+                "value": 1
+              }
+            ]
+          },
+          "type": {
+            "name": "StructuralValue0029",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "catalog",
+                "value": 0
+              },
+              {
+                "field": "name",
+                "value": 2
+              }
+            ]
+          },
+          "type": {
+            "name": "StructuralValue0029",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "set": [
+              3,
+              4
+            ]
+          },
+          "type": {
+            "name": "StructuralValue0028",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        }
+      ],
+      "roots": [
+        5
+      ]
+    }
+  },
+  "shared-child": {
+    "g": {
+      "nodes": [
+        {
+          "body": {
+            "scalar": {
+              "bytes": [
+                120
+              ]
+            }
+          },
+          "type": {
+            "name": "RawUtf8Bytes",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "name",
+                "value": 0
+              }
+            ]
+          },
+          "type": {
+            "name": "StructuralValue0188",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "variant": {
+              "case": "field",
+              "payload": 1
+            }
+          },
+          "type": {
+            "name": "RawDocumentMember",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "sequence": [
+              2
+            ]
+          },
+          "type": {
+            "name": "StructuralValue0190",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "sequence": [
+              2,
+              2
+            ]
+          },
+          "type": {
+            "name": "StructuralValue0190",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        }
+      ],
+      "roots": [
+        3,
+        4
+      ]
+    }
+  },
+  "uint64": {
+    "g": {
+      "nodes": [
+        {
+          "body": {
+            "scalar": {
+              "uint64": 1
+            }
+          },
+          "type": {
+            "name": "$U64",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        }
+      ],
+      "roots": [
+        0
+      ]
+    }
+  },
+  "w-input-reference": {
+    "g": {
+      "nodes": [
+        {
+          "body": {
+            "scalar": {
+              "uint64": 0
+            }
+          },
+          "type": {
+            "name": "$U64",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "scalar": {
+              "bytes": [
+                120
+              ]
+            }
+          },
+          "type": {
+            "name": "DocumentSourceKey",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "sequence": []
+          },
+          "type": {
+            "name": "StructuralValue0187",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "namespace",
+                "value": 1
+              },
+              {
+                "field": "domain_key",
+                "value": 1
+              }
+            ]
+          },
+          "type": {
+            "name": "DocumentSourceDomain",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "entry_ordinal",
+                "value": 0
+              }
+            ]
+          },
+          "type": {
+            "name": "DocumentOccurrenceKey",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "declarations",
+                "value": 2
+              }
+            ]
+          },
+          "type": {
+            "name": "StructuralValue0186",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "variant": {
+              "case": "declared_native_document",
+              "payload": 5
+            }
+          },
+          "type": {
+            "name": "RawDocument",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "domain",
+                "value": 3
+              },
+              {
+                "field": "owner_key",
+                "value": 1
+              },
+              {
+                "field": "revision_key",
+                "value": 1
+              }
+            ]
+          },
+          "type": {
+            "name": "DocumentOwnerAnchor",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "declaration_name",
+                "value": 1
+              },
+              {
+                "field": "document",
+                "value": 6
+              }
+            ]
+          },
+          "type": {
+            "name": "DeclarationDocumentEntry",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "sequence": [
+              8
+            ]
+          },
+          "type": {
+            "name": "StructuralValue0209",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "bundle_name",
+                "value": 1
+              },
+              {
+                "field": "declarations",
+                "value": 9
+              }
+            ]
+          },
+          "type": {
+            "name": "StructuralValue0208",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "variant": {
+              "case": "declaration_bundle",
+              "payload": 10
+            }
+          },
+          "type": {
+            "name": "DocumentOwnerContainer",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "anchor",
+                "value": 7
+              },
+              {
+                "field": "container",
+                "value": 11
+              }
+            ]
+          },
+          "type": {
+            "name": "DocumentOwnerRecord",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "sequence": [
+              12
+            ]
+          },
+          "type": {
+            "name": "StructuralValue0214",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "domain",
+                "value": 3
+              },
+              {
+                "field": "owners",
+                "value": 13
+              }
+            ]
+          },
+          "type": {
+            "name": "SourcePackage",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "source_package",
+                "value": 14
+              },
+              {
+                "field": "source_owner",
+                "value": 7
+              },
+              {
+                "field": "occurrence_key",
+                "value": 4
+              },
+              {
+                "field": "actual_document",
+                "value": 6
+              }
+            ]
+          },
+          "type": {
+            "name": "DocumentOccurrenceBinding",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        }
+      ],
+      "roots": [
+        15
+      ]
+    },
+    "w": {
+      "nodes": [
+        {
+          "body": {
+            "sequence": []
+          },
+          "type": {
+            "name": "StructuralValue0190",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "record": [
+              {
+                "field": "document_binding",
+                "value": {
+                  "input": 15
+                }
+              },
+              {
+                "field": "path",
+                "value": {
+                  "local": 0
+                }
+              }
+            ]
+          },
+          "type": {
+            "name": "RawInputOrigin",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        }
+      ],
+      "roots": [
+        1
+      ]
+    }
+  },
+  "w-option-none": {
+    "g": {
+      "nodes": [
+        {
+          "body": {
+            "scalar": {
+              "uint64": 1
+            }
+          },
+          "type": {
+            "name": "$U64",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        }
+      ],
+      "roots": [
+        0
+      ]
+    },
+    "w": {
+      "nodes": [
+        {
+          "body": {
+            "option_none": null
+          },
+          "type": {
+            "name": "StructuralValue0312",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        }
+      ],
+      "roots": [
+        0
+      ]
+    }
+  },
+  "w-option-some": {
+    "g": {
+      "nodes": [
+        {
+          "body": {
+            "scalar": {
+              "uint64": 1
+            }
+          },
+          "type": {
+            "name": "$U64",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        }
+      ],
+      "roots": [
+        0
+      ]
+    },
+    "w": {
+      "nodes": [
+        {
+          "body": {
+            "scalar": {
+              "unit": null
+            }
+          },
+          "type": {
+            "name": "StructuralValue0284",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "variant": {
+              "case": "non_finite_float",
+              "payload": {
+                "local": 0
+              }
+            }
+          },
+          "type": {
+            "name": "RelationCodecFailure",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        },
+        {
+          "body": {
+            "option_some": {
+              "local": 1
+            }
+          },
+          "type": {
+            "name": "StructuralValue0312",
+            "owner": "agentflow.computation.proof-report.model@7"
+          }
+        }
+      ],
+      "roots": [
+        2
+      ]
+    }
+  }
+}

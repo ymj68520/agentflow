@@ -1,0 +1,60 @@
+{
+  "previous": {
+    "analysis": "agentflow.root-export-checker@7",
+    "model": "agentflow.computation.proof-report.model@6",
+    "report": "agentflow.g01.report-shape@6",
+    "obligation": "agentflow.g01.obligation@6"
+  },
+  "successor": {
+    "analysis": "agentflow.root-export-checker@8",
+    "model": "agentflow.computation.proof-report.model@7",
+    "report": "agentflow.g01.report-shape@7",
+    "obligation": "agentflow.g01.obligation@7"
+  },
+  "counts": {
+    "descriptors": 1131,
+    "references": 2559,
+    "sites": 317,
+    "reference_policies": 66,
+    "source_rank_free": true,
+    "old_ranks_preserved": 774,
+    "old_imports_preserved": 97,
+    "required_field_variants": 1297,
+    "production_capture_case_ids": 0,
+    "analysis": "agentflow.root-export-checker@8",
+    "model": "agentflow.computation.proof-report.model@7",
+    "report": "agentflow.g01.report-shape@7",
+    "obligation": "agentflow.g01.obligation@7",
+    "specifications": 70,
+    "rules": 522,
+    "new_specifications": 4,
+    "new_rules": 13,
+    "new_descriptors": 357,
+    "reference_covered": 521,
+    "intentional_exception": 1,
+    "missing": 0,
+    "abi": 775,
+    "afidl": 17,
+    "hashv1_domains": 14,
+    "native_identity_bytes": 27182424,
+    "unchanged_native_identity_limit": 33554432,
+    "lossless_closed_source_composition": true
+  },
+  "source_composition": "closed_structural_delta_v1; full exact model@6 contents required",
+  "status": {
+    "registration": "Registered",
+    "production_binder": "NotImplemented",
+    "raw_full_capture": "NotImplemented",
+    "normalizer": "NotImplemented",
+    "scope": "NotImplemented",
+    "root_export": "NotAuthorized",
+    "publication": "NotAuthorized",
+    "runtime": "NotAuthorized"
+  },
+  "source_hashes": {
+    "spec/computation/structural-binding.md": "91af86908862fb40b151eea9998e44d41ff834e3685d3f608ac6906375f9fec3",
+    "spec/computation/proof-obligation-semantics-v7.md": "83ba554b44a4e2d8f2f8a8b2b8c3deb3563fd7f553d5b6affd814d040f64accf",
+    "spec/tables/proof-report-model-v7.md": "d0f2200097d4e4705e2d200125b1afd438d7d25916d75f9f07085e84b9802641",
+    "spec/portable/portable-proof-inputs-v8.md": "c0adb717794833f2e4fbe903acfc4214ea3cf9148cf8afee9854aa357da9303e"
+  }
+}

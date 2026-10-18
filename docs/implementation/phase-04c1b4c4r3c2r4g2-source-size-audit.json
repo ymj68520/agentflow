@@ -1,0 +1,12 @@
+{
+  "observed_development_duplicated_identity_bytes": 38836805,
+  "observed_development_duplicated_model_source_bytes": 12245011,
+  "unchanged_native_identity_limit": 33554432,
+  "current_identity_bytes": 27182424,
+  "current_model_source_bytes": 590630,
+  "full_effective_model_sha256": "e3325aa17a582baa01611a65154134921e187e8fe6617e56a61063df98bdcb0e",
+  "lossless_generator_and_independent_expansion_equal": true,
+  "base_full_source_required": true,
+  "source_count_reduced": false,
+  "limits_widened": false
+}

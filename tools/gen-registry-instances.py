@@ -13,6 +13,8 @@ script after editing any registered source file.
 import hashlib
 import importlib.util
 import json
+import os
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -82,7 +84,15 @@ def write_json(rel: str, payload: dict) -> None:
     if path.exists() and path.read_bytes() == text.encode("utf-8"):
         print(f"verified unchanged {rel} ({len(text.splitlines())} lines)")
         return
-    path.write_text(text, encoding="utf-8", newline="\n")
+    # Publish one complete canonical byte image atomically. Existing exact
+    # outputs still return above. No exception is swallowed and no alternate
+    # workspace is used; readers never see a partially truncated Registry.
+    descriptor, temporary = tempfile.mkstemp(prefix=path.name+".", suffix=".tmp", dir=path.parent)
+    temporary_path = Path(temporary)
+    assert temporary_path.resolve().parent == path.parent.resolve()
+    with os.fdopen(descriptor, "wb") as output:
+        output.write(text.encode("utf-8"))
+    os.replace(temporary_path, path)
     print(f"wrote {rel} ({len(text.splitlines())} lines)")
 
 
@@ -2610,6 +2620,12 @@ from relation_schema_registration_data import RULES as RS_RULES, SOURCES as RS_S
 for item in RS_RULES:
     RULES.append(rule(item["rule_id"], "SEMANTIC", RS_SOURCES[item["source"]][2],
         item["anchor"], item["statement"], [item["case_id"]]))
+from structural_binding_registration_data import RULES as SB_RULES, SOURCES as SB_SOURCES
+for item in SB_RULES:
+    RULES.append(rule(item["rule_id"], "SEMANTIC", SB_SOURCES[item["source"]][2],
+        item["anchor"], item["statement"], [item["case_id"]]))
+analysis7_rules = json.loads((ROOT/"spec/conformance/g01-structural-binding-staging/analysis7-rules.json").read_bytes())["rules"]
+assert all(next((r for r in RULES if r["rule_id"]==old["rule_id"]),None)==old for old in analysis7_rules), "old509 complete rule record changed"
 analysis6_rules = json.loads((ROOT/"spec/conformance/g01-relation-schema-staging/analysis6-rules.json").read_bytes())["rules"]
 assert all(next((r for r in RULES if r["rule_id"]==old["rule_id"]),None)==old for old in analysis6_rules), "old493 complete rule record changed"
 edition5_rules = json.loads((ROOT/"spec/conformance/g01-document-occurrence-staging/edition5-rules.json").read_bytes())["rules"]
@@ -2859,6 +2875,7 @@ SPECS.extend(NG_SOURCES.values())
 SPECS.extend(RAW_SOURCES.values())
 SPECS.extend(DO_SOURCES.values())
 SPECS.extend(RS_SOURCES.values())
+SPECS.extend(SB_SOURCES.values())
 spec_entries = [
     {
         "specification_id": spec_id,
@@ -2872,6 +2889,8 @@ spec_entries = [
 spec_entries.sort(key=lambda e: e["specification_id"])
 legacy_specs = json.loads((ROOT/"spec/conformance/g01-edition2-staging/legacy-specifications.json").read_bytes())["specifications"]
 new_spec_map = {item["specification_id"]:item for item in spec_entries}
+analysis7_specs = json.loads((ROOT/"spec/conformance/g01-structural-binding-staging/analysis7-specifications.json").read_bytes())["specifications"]
+assert all(new_spec_map.get(item["specification_id"])==item for item in analysis7_specs), "old66 complete specification record changed"
 analysis6_specs = json.loads((ROOT/"spec/conformance/g01-relation-schema-staging/analysis6-specifications.json").read_bytes())["specifications"]
 assert all(new_spec_map.get(item["specification_id"])==item for item in analysis6_specs), "old62 complete specification record changed"
 edition5_specs = json.loads((ROOT/"spec/conformance/g01-document-occurrence-staging/edition5-specifications.json").read_bytes())["specifications"]
@@ -4319,6 +4338,16 @@ SUITE_LIST.extend([
     },
 ])
 
+SUITE_LIST.append({
+    "suite_id": "SUITE-G01-STRUCTURAL-BINDING-REGISTERED-STAGING",
+    "description": "Closed source/site/body/rank/stage registration and bounded manual subgraphs; no production binder or positive capability.",
+    "targets": [
+        "spec/conformance/g01-structural-binding-staging/manifest.json",
+        "tools/oracle/structural_binding_registration.py",
+        "crates/af-computation/tests/structural_binding_staging.rs",
+        "crates/af-portable/tests/structural_binding_staging.rs",
+    ],
+})
 SUITE_LIST.sort(key=lambda suite: suite["suite_id"])
 write_json("spec/conformance/suites.json", {
     "kind": "agentflow.conformance.suites",

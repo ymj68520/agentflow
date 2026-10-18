@@ -431,6 +431,16 @@
       ]
     },
     {
+      "description": "Closed source/site/body/rank/stage registration and bounded manual subgraphs; no production binder or positive capability.",
+      "suite_id": "SUITE-G01-STRUCTURAL-BINDING-REGISTERED-STAGING",
+      "targets": [
+        "spec/conformance/g01-structural-binding-staging/manifest.json",
+        "tools/oracle/structural_binding_registration.py",
+        "crates/af-computation/tests/structural_binding_staging.rs",
+        "crates/af-portable/tests/structural_binding_staging.rs"
+      ]
+    },
+    {
       "description": "Provenance, trust, taint and information flow stay four distinct concepts: no trust score, no single trusted flag; confidentiality restrictions and taints are separate nominal types; unknown provenance is never trusted and unknown taint is never the empty set. Covers the static absence audit and the label/summary corpus cases.",
       "suite_id": "SUITE-INFOFLOW-CONCEPTS-DISTINCT",
       "targets": [

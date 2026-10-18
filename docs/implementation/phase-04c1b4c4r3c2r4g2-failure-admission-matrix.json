@@ -1,0 +1,148 @@
+{
+  "descriptor_owner": "agentflow.computation.proof-report.model@7",
+  "diagnostic_stage": "registration_admission",
+  "predicate_evaluated": false,
+  "port_fact_created": false,
+  "conditions": [
+    {
+      "reason": "missing_site",
+      "domains": [
+        "UnsupportedModel",
+        "IncompleteContent",
+        "InvalidFacts"
+      ],
+      "applicability": "unknown lookup / missing normative row / mismatched declared mapping",
+      "required_source": "complete preserved input and exact field/type/source paths; no reason-string recovery"
+    },
+    {
+      "reason": "unknown_nominal_type",
+      "domains": [
+        "UnsupportedModel"
+      ],
+      "applicability": "unknown exact owner/name; no same-shape cast",
+      "required_source": "complete preserved input and exact field/type/source paths; no reason-string recovery"
+    },
+    {
+      "reason": "invalid_shape",
+      "domains": [
+        "UnsupportedModel",
+        "IncompleteFacts",
+        "InvalidFacts"
+      ],
+      "applicability": "unknown/type mismatch / missing required field / invalid known domain",
+      "required_source": "complete preserved input and exact field/type/source paths; no reason-string recovery"
+    },
+    {
+      "reason": "missing_node",
+      "domains": [
+        "IncompleteFacts"
+      ],
+      "applicability": "known required source-derived node/root absent",
+      "required_source": "complete preserved input and exact field/type/source paths; no reason-string recovery"
+    },
+    {
+      "reason": "missing_rank_source",
+      "domains": [
+        "IncompleteFacts"
+      ],
+      "applicability": "required known source binding absent in a future implemented profile",
+      "required_source": "complete preserved input and exact field/type/source paths; no reason-string recovery"
+    },
+    {
+      "reason": "duplicate_map_key",
+      "domains": [
+        "InvalidFacts"
+      ],
+      "applicability": "duplicate complete canonical map key before any interning",
+      "required_source": "complete preserved input and exact field/type/source paths; no reason-string recovery"
+    },
+    {
+      "reason": "invalid_map_entry",
+      "domains": [
+        "InvalidFacts"
+      ],
+      "applicability": "invalid key/value/source pair or noncanonical map order",
+      "required_source": "complete preserved input and exact field/type/source paths; no reason-string recovery"
+    },
+    {
+      "reason": "invalid_set_member",
+      "domains": [
+        "InvalidFacts"
+      ],
+      "applicability": "duplicate complete typed membership or invalid registered member order",
+      "required_source": "complete preserved input and exact field/type/source paths; no reason-string recovery"
+    },
+    {
+      "reason": "invalid_child",
+      "domains": [
+        "InvalidFacts"
+      ],
+      "applicability": "dangling/wrong typed target or wrong reference arena",
+      "required_source": "complete preserved input and exact field/type/source paths; no reason-string recovery"
+    },
+    {
+      "reason": "rank_dependency",
+      "domains": [
+        "InvalidFacts"
+      ],
+      "applicability": "local forward dependency or alternative canonical numbering",
+      "required_source": "complete preserved input and exact field/type/source paths; no reason-string recovery"
+    },
+    {
+      "reason": "invalid_interning",
+      "domains": [
+        "InvalidFacts"
+      ],
+      "applicability": "duplicate equal typed value or unreachable supplied node",
+      "required_source": "complete preserved input and exact field/type/source paths; no reason-string recovery"
+    },
+    {
+      "reason": "input_output_backedge",
+      "domains": [
+        "InvalidFacts"
+      ],
+      "applicability": "output enters G or G edge uses an output arena",
+      "required_source": "complete preserved input and exact field/type/source paths; no reason-string recovery"
+    },
+    {
+      "reason": "resource_bound",
+      "domains": [
+        "ResourceLimit"
+      ],
+      "applicability": "intersected node/depth/work/value/source bound or overflow",
+      "required_source": "complete preserved input and exact field/type/source paths; no reason-string recovery"
+    },
+    {
+      "reason": "cross_edition",
+      "domains": [
+        "UnsupportedModel"
+      ],
+      "applicability": "current structural tuple mismatch; external Portable keeps its own InvalidIdentity/UnsupportedSemantics taxonomy",
+      "required_source": "complete preserved input and exact field/type/source paths; no reason-string recovery"
+    },
+    {
+      "reason": "source_association",
+      "domains": [
+        "InvalidFacts"
+      ],
+      "applicability": "readonly source-map claim differs from complete actual native values; future native source assurance is separate",
+      "required_source": "complete preserved input and exact field/type/source paths; no reason-string recovery"
+    },
+    {
+      "reason": "ineligible_value_type",
+      "domains": [
+        "UnsupportedModel"
+      ],
+      "applicability": "registered metadata/other-profile type is not an eligible value node",
+      "required_source": "complete preserved input and exact field/type/source paths; no reason-string recovery"
+    },
+    {
+      "reason": "production_not_implemented",
+      "domains": [
+        "NotImplemented"
+      ],
+      "applicability": "production entry is unimplemented regardless of caller flags or successful metadata",
+      "required_source": "complete preserved input and exact field/type/source paths; no reason-string recovery"
+    }
+  ]
+}

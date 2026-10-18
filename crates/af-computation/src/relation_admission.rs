@@ -37,9 +37,9 @@ pub fn relation_model_catalogue() -> Result<&'static Value, RegisteredModelFailu
 pub fn relation_descriptor_integrity() -> Result<(), RegisteredModelFailure> {
     let m = relation_model_catalogue()?;
     if m["model_id"] != RELATION_MODEL_ID
-        || m["analysis_owner"] != crate::ROOT_EXPORT_ANALYSIS_SEMANTICS_VERSION
-        || m["model_edition"] != crate::REPORT_SHAPE_EDITION
-        || m["obligation_edition"] != crate::OBLIGATION_IDENTITY_EDITION
+        || m["analysis_owner"] != "agentflow.root-export-checker@7"
+        || m["model_edition"] != "agentflow.g01.report-shape@6"
+        || m["obligation_edition"] != "agentflow.g01.obligation@6"
     {
         return Err(RegisteredModelFailure::UnsupportedModel);
     }
@@ -478,7 +478,10 @@ pub fn inspect_relation_metadata<'c, 'u>(
     let actual = native_source(slot, analysis);
     let same = std::ptr::eq(analysis, canonical_validation);
     let modules:Vec<_>=analysis.modules.modules().map(|m|json!({"specification_id":m.specification.canonical(),"types":m.types.iter().map(relation_schema_definition_metadata).collect::<Vec<_>>()})).collect();
-    let mut view = json!({"assurance":"relation_slot_only","algorithm":{"analysis":crate::ROOT_EXPORT_ANALYSIS_SEMANTICS_VERSION,"model":RELATION_MODEL_ID,"lookup_rule":"AF-SEMANTIC-0288","validation_rule":"AF-SEMANTIC-0292"},"target":slot.target(),"source":actual.as_ref().map_or_else(||json!({"none":null}),|s|json!({"some":s})),"context_roles":if same {json!([["analysis","canonical_validation"]])} else {json!([["analysis"],["canonical_validation"]])},"current_modules":modules,"lookup":{"not_reached":{"cause":"missing_source"}},"validation":{"not_reached":null},"admission":"incomplete"});
+    // This is the explicitly frozen relation-only metadata algorithm, not a
+    // current structural Subject/Fact carrier. Its native A/C operations and
+    // payload remain unchanged; current compiler admission remains separate.
+    let mut view = json!({"assurance":"relation_slot_only","algorithm":{"analysis":"agentflow.root-export-checker@7","model":RELATION_MODEL_ID,"lookup_rule":"AF-SEMANTIC-0288","validation_rule":"AF-SEMANTIC-0292"},"target":slot.target(),"source":actual.as_ref().map_or_else(||json!({"none":null}),|s|json!({"some":s})),"context_roles":if same {json!([["analysis","canonical_validation"]])} else {json!([["analysis"],["canonical_validation"]])},"current_modules":modules,"lookup":{"not_reached":{"cause":"missing_source"}},"validation":{"not_reached":null},"admission":"incomplete"});
     let cause = if crate::check_registered_compiler_identity(compiler).is_err() {
         Some("invalid_identity")
     } else if !same {

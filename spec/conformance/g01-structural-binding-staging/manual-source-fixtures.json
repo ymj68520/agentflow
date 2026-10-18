@@ -1,0 +1,608 @@
+{
+  "compiled-map": {
+    "g": [
+      {
+        "type": {
+          "name": "StructuralValue0012",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": [
+          [
+            "binding.alpha@1",
+            {
+              "specification_id": "binding.alpha@1",
+              "types": []
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  "distinct-document-occurrences": {
+    "g": [
+      {
+        "type": {
+          "name": "DocumentOccurrenceBinding",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": {
+          "actual_document": {
+            "declared_native_document": {
+              "declarations": []
+            }
+          },
+          "occurrence_key": {
+            "entry_ordinal": 0
+          },
+          "source_owner": {
+            "domain": {
+              "domain_key": [
+                120
+              ],
+              "namespace": [
+                120
+              ]
+            },
+            "owner_key": [
+              120
+            ],
+            "revision_key": [
+              120
+            ]
+          },
+          "source_package": {
+            "domain": {
+              "domain_key": [
+                120
+              ],
+              "namespace": [
+                120
+              ]
+            },
+            "owners": [
+              {
+                "anchor": {
+                  "domain": {
+                    "domain_key": [
+                      120
+                    ],
+                    "namespace": [
+                      120
+                    ]
+                  },
+                  "owner_key": [
+                    120
+                  ],
+                  "revision_key": [
+                    120
+                  ]
+                },
+                "container": {
+                  "declaration_bundle": {
+                    "bundle_name": [
+                      120
+                    ],
+                    "declarations": [
+                      {
+                        "declaration_name": [
+                          120
+                        ],
+                        "document": {
+                          "declared_native_document": {
+                            "declarations": []
+                          }
+                        }
+                      },
+                      {
+                        "declaration_name": [
+                          121
+                        ],
+                        "document": {
+                          "declared_native_document": {
+                            "declarations": []
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "type": {
+          "name": "DocumentOccurrenceBinding",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": {
+          "actual_document": {
+            "declared_native_document": {
+              "declarations": []
+            }
+          },
+          "occurrence_key": {
+            "entry_ordinal": 1
+          },
+          "source_owner": {
+            "domain": {
+              "domain_key": [
+                120
+              ],
+              "namespace": [
+                120
+              ]
+            },
+            "owner_key": [
+              120
+            ],
+            "revision_key": [
+              120
+            ]
+          },
+          "source_package": {
+            "domain": {
+              "domain_key": [
+                120
+              ],
+              "namespace": [
+                120
+              ]
+            },
+            "owners": [
+              {
+                "anchor": {
+                  "domain": {
+                    "domain_key": [
+                      120
+                    ],
+                    "namespace": [
+                      120
+                    ]
+                  },
+                  "owner_key": [
+                    120
+                  ],
+                  "revision_key": [
+                    120
+                  ]
+                },
+                "container": {
+                  "declaration_bundle": {
+                    "bundle_name": [
+                      120
+                    ],
+                    "declarations": [
+                      {
+                        "declaration_name": [
+                          120
+                        ],
+                        "document": {
+                          "declared_native_document": {
+                            "declarations": []
+                          }
+                        }
+                      },
+                      {
+                        "declaration_name": [
+                          121
+                        ],
+                        "document": {
+                          "declared_native_document": {
+                            "declarations": []
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "empty-map": {
+    "g": [
+      {
+        "type": {
+          "name": "StructuralValue0012",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": []
+      }
+    ]
+  },
+  "empty-map-versus-set": {
+    "g": [
+      {
+        "type": {
+          "name": "StructuralValue0012",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": []
+      },
+      {
+        "type": {
+          "name": "StructuralValue0028",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": []
+      }
+    ]
+  },
+  "equal-roots": {
+    "g": [
+      {
+        "type": {
+          "name": "$U64",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": 1
+      },
+      {
+        "type": {
+          "name": "$U64",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": 1
+      }
+    ]
+  },
+  "exact-decimals": {
+    "g": [
+      {
+        "type": {
+          "name": "Raw(af-core::Decimal)",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": "2.0"
+      },
+      {
+        "type": {
+          "name": "Raw(af-core::Decimal)",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": "10.000"
+      }
+    ]
+  },
+  "ineligible-float-zero": {
+    "g": [
+      {
+        "type": {
+          "name": "af-core::Float64",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": 0.0
+      }
+    ]
+  },
+  "ineligible-floats": {
+    "g": [
+      {
+        "type": {
+          "name": "af-core::Float64",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": -1.0
+      },
+      {
+        "type": {
+          "name": "af-core::Float64",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": 1.0
+      }
+    ]
+  },
+  "numeric-order": {
+    "g": [
+      {
+        "type": {
+          "name": "$U64",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": 2
+      },
+      {
+        "type": {
+          "name": "$U64",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": 10
+      }
+    ]
+  },
+  "set-full-members": {
+    "g": [
+      {
+        "type": {
+          "name": "StructuralValue0028",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": [
+          {
+            "catalog": "a",
+            "name": "b"
+          },
+          {
+            "catalog": "a",
+            "name": "c"
+          }
+        ]
+      }
+    ]
+  },
+  "shared-child": {
+    "g": [
+      {
+        "type": {
+          "name": "StructuralValue0190",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": [
+          {
+            "field": {
+              "name": [
+                120
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "type": {
+          "name": "StructuralValue0190",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": [
+          {
+            "field": {
+              "name": [
+                120
+              ]
+            }
+          },
+          {
+            "field": {
+              "name": [
+                120
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "uint64": {
+    "g": [
+      {
+        "type": {
+          "name": "$U64",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": 1
+      }
+    ]
+  },
+  "w-input-reference": {
+    "g": [
+      {
+        "type": {
+          "name": "DocumentOccurrenceBinding",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": {
+          "actual_document": {
+            "declared_native_document": {
+              "declarations": []
+            }
+          },
+          "occurrence_key": {
+            "entry_ordinal": 0
+          },
+          "source_owner": {
+            "domain": {
+              "domain_key": [
+                120
+              ],
+              "namespace": [
+                120
+              ]
+            },
+            "owner_key": [
+              120
+            ],
+            "revision_key": [
+              120
+            ]
+          },
+          "source_package": {
+            "domain": {
+              "domain_key": [
+                120
+              ],
+              "namespace": [
+                120
+              ]
+            },
+            "owners": [
+              {
+                "anchor": {
+                  "domain": {
+                    "domain_key": [
+                      120
+                    ],
+                    "namespace": [
+                      120
+                    ]
+                  },
+                  "owner_key": [
+                    120
+                  ],
+                  "revision_key": [
+                    120
+                  ]
+                },
+                "container": {
+                  "declaration_bundle": {
+                    "bundle_name": [
+                      120
+                    ],
+                    "declarations": [
+                      {
+                        "declaration_name": [
+                          120
+                        ],
+                        "document": {
+                          "declared_native_document": {
+                            "declarations": []
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "w": [
+      {
+        "type": {
+          "name": "RawInputOrigin",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": {
+          "document_binding": {
+            "actual_document": {
+              "declared_native_document": {
+                "declarations": []
+              }
+            },
+            "occurrence_key": {
+              "entry_ordinal": 0
+            },
+            "source_owner": {
+              "domain": {
+                "domain_key": [
+                  120
+                ],
+                "namespace": [
+                  120
+                ]
+              },
+              "owner_key": [
+                120
+              ],
+              "revision_key": [
+                120
+              ]
+            },
+            "source_package": {
+              "domain": {
+                "domain_key": [
+                  120
+                ],
+                "namespace": [
+                  120
+                ]
+              },
+              "owners": [
+                {
+                  "anchor": {
+                    "domain": {
+                      "domain_key": [
+                        120
+                      ],
+                      "namespace": [
+                        120
+                      ]
+                    },
+                    "owner_key": [
+                      120
+                    ],
+                    "revision_key": [
+                      120
+                    ]
+                  },
+                  "container": {
+                    "declaration_bundle": {
+                      "bundle_name": [
+                        120
+                      ],
+                      "declarations": [
+                        {
+                          "declaration_name": [
+                            120
+                          ],
+                          "document": {
+                            "declared_native_document": {
+                              "declarations": []
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "path": []
+        }
+      }
+    ]
+  },
+  "w-option-none": {
+    "g": [
+      {
+        "type": {
+          "name": "$U64",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": 1
+      }
+    ],
+    "w": [
+      {
+        "type": {
+          "name": "StructuralValue0312",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": {
+          "none": null
+        }
+      }
+    ]
+  },
+  "w-option-some": {
+    "g": [
+      {
+        "type": {
+          "name": "$U64",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": 1
+      }
+    ],
+    "w": [
+      {
+        "type": {
+          "name": "StructuralValue0312",
+          "owner": "agentflow.computation.proof-report.model@7"
+        },
+        "value": {
+          "some": {
+            "non_finite_float": null
+          }
+        }
+      }
+    ]
+  }
+}

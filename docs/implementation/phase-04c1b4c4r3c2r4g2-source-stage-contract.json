@@ -1,0 +1,69 @@
+{
+  "input_type": {
+    "owner": "agentflow.computation.proof-report.model@7",
+    "name": "StructuralDeclaredInputs"
+  },
+  "output_type": {
+    "owner": "agentflow.computation.proof-report.model@7",
+    "name": "StructuralBindingOutputClaim"
+  },
+  "source_stage": "source_admission",
+  "binding_stage": "pre_capture_binding",
+  "consumer_stage": "raw_fact_capture",
+  "dependencies": [
+    {
+      "source": "declared_input",
+      "target": "source_admission"
+    },
+    {
+      "source": "source_admission",
+      "target": "pre_capture_binding"
+    },
+    {
+      "source": "pre_capture_binding",
+      "target": "c_validation"
+    },
+    {
+      "source": "c_validation",
+      "target": "raw_fact_capture"
+    },
+    {
+      "source": "raw_fact_capture",
+      "target": "t4_normalization"
+    }
+  ],
+  "input_roots": [
+    {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawValidationSubject"
+    }
+  ],
+  "output_roots": [
+    {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawPortCheckBasis"
+    },
+    {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RawPortRejectionWitness"
+    },
+    {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "CurrentContextRelationSchemaValidation"
+    },
+    {
+      "owner": "agentflow.computation.proof-report.model@7",
+      "name": "RelationSubjectAdmission"
+    }
+  ],
+  "status": {
+    "registration": "Registered",
+    "production_binder": "NotImplemented",
+    "raw_full_capture": "NotImplemented",
+    "normalizer": "NotImplemented",
+    "scope": "NotImplemented",
+    "root_export": "NotAuthorized",
+    "publication": "NotAuthorized",
+    "runtime": "NotAuthorized"
+  }
+}

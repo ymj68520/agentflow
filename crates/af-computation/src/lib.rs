@@ -22,6 +22,8 @@ mod relation_admission;
 mod resolution;
 mod root_export;
 mod root_recovery;
+mod structural_graph_metadata;
+mod structural_staging;
 mod summary;
 
 pub use control::{
@@ -87,6 +89,11 @@ pub use root_recovery::{
     RecoveryActionSourceIdentity, RecoveryActionUpper, RootActionBound,
     RootGuardCoordinateEvidence, RootRecoveryAction, RootRecoveryOwner,
     RootRecoverySourceClosureReport, RootRecoverySummary,
+};
+pub use structural_staging::{
+    STRUCTURAL_MODEL_ID, StructuralMetadataFailure, inspect_structural_module_map,
+    inspect_structural_registration, structural_descriptor_integrity, structural_model_catalogue,
+    validate_structural_shape_metadata,
 };
 pub use summary::{
     AwaitAuthorityStatus, AwaitInteractionStatus, AwaitLeafSummary, AwaitProvenanceStatus,

@@ -1,0 +1,9652 @@
+[
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "Alias"
+      ]
+    ],
+    "type": "af-idl::CanonicalBody",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "Bool"
+      ]
+    ],
+    "type": "Raw(af-semantic::PrimitiveConstant)",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "Bytes"
+      ]
+    ],
+    "type": "Raw(af-semantic::PrimitiveConstant)",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "Closed"
+      ]
+    ],
+    "type": "Raw(af-effect::EffectRow)",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "Decimal"
+      ]
+    ],
+    "type": "Raw(af-semantic::PrimitiveConstant)",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "Duration"
+      ]
+    ],
+    "type": "Raw(af-semantic::PrimitiveConstant)",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "Enum"
+      ]
+    ],
+    "type": "af-idl::CanonicalBody",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "ExternalEffect"
+      ]
+    ],
+    "type": "Raw(af-flow::FlowSink)",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "Finite"
+      ]
+    ],
+    "type": "Raw(af-effect::OccurrenceCeiling)",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "Finite"
+      ]
+    ],
+    "type": "Raw(af-usage::UsageUpperBound)",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "Idempotency"
+      ]
+    ],
+    "type": "Raw(af-effect::EffectQualifier)",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "InputEquals"
+      ]
+    ],
+    "type": "Raw(af-effect::EffectGuard)",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "Int64"
+      ]
+    ],
+    "type": "Raw(af-semantic::PrimitiveConstant)",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "List"
+      ]
+    ],
+    "type": "af-idl::CanonicalTypeExpr",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "MapString"
+      ]
+    ],
+    "type": "af-idl::CanonicalTypeExpr",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "NamedRef"
+      ]
+    ],
+    "type": "af-idl::CanonicalTypeExpr",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "Open"
+      ]
+    ],
+    "type": "Raw(af-effect::EffectRow)",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "Option"
+      ]
+    ],
+    "type": "af-idl::CanonicalTypeExpr",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "Primitive"
+      ]
+    ],
+    "type": "af-idl::CanonicalTypeExpr",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "Record"
+      ]
+    ],
+    "type": "af-idl::CanonicalBody",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "Required"
+      ]
+    ],
+    "type": "Raw(af-recovery::CompensationRequirement)",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "ResourceRequirement"
+      ]
+    ],
+    "type": "Raw(af-flow::SourceCategory)",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "String"
+      ]
+    ],
+    "type": "Raw(af-semantic::PrimitiveConstant)",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "Timestamp"
+      ]
+    ],
+    "type": "Raw(af-semantic::PrimitiveConstant)",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "Variant"
+      ]
+    ],
+    "type": "af-idl::CanonicalBody",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "WorkflowInput"
+      ]
+    ],
+    "type": "Raw(af-flow::SourceCategory)",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [
+      [
+        "case",
+        "WorkflowOutput"
+      ]
+    ],
+    "type": "Raw(af-flow::FlowSink)",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0063",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0064",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0066",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0068",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0070",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0071",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0072",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0073",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0074",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0094",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0097",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0098",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0099",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0100",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0101",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0102",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0103",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0104",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0107",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0108",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0112",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0113",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0117",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0122",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0151",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0153",
+    "variant": null
+  },
+  {
+    "field": "0",
+    "path": [],
+    "type": "StructuralValue0182",
+    "variant": null
+  },
+  {
+    "field": "abi_numbers",
+    "path": [
+      [
+        "field",
+        "closed_tables"
+      ]
+    ],
+    "type": "FullSupportManifest",
+    "variant": null
+  },
+  {
+    "field": "abi_numbers",
+    "path": [],
+    "type": "StructuralValue0004",
+    "variant": null
+  },
+  {
+    "field": "action",
+    "path": [
+      [
+        "case",
+        "recovery"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "action",
+    "path": [],
+    "type": "Raw(af-contract::RecoveryUsageBinding)",
+    "variant": null
+  },
+  {
+    "field": "action",
+    "path": [],
+    "type": "RelationWire/agentflow.recovery.usage.coverage@1/RecoveryUsageCoverageRule",
+    "variant": null
+  },
+  {
+    "field": "action_binding_ordinal",
+    "path": [
+      [
+        "case",
+        "native_guard_binding"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "action_effect",
+    "path": [],
+    "type": "Raw(af-contract::RecoveryActionIdentity)",
+    "variant": null
+  },
+  {
+    "field": "action_effect",
+    "path": [],
+    "type": "RelationWire/agentflow.component.contract@1/RecoveryActionIdentity",
+    "variant": null
+  },
+  {
+    "field": "action_identity",
+    "path": [
+      [
+        "case",
+        "native_guard_binding"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "action_kind",
+    "path": [],
+    "type": "Raw(af-contract::RecoveryActionIdentity)",
+    "variant": null
+  },
+  {
+    "field": "action_kind",
+    "path": [],
+    "type": "RelationWire/agentflow.component.contract@1/RecoveryActionIdentity",
+    "variant": null
+  },
+  {
+    "field": "activations_per_forward",
+    "path": [],
+    "type": "Raw(af-contract::RecoveryUsageBinding)",
+    "variant": null
+  },
+  {
+    "field": "actual",
+    "path": [
+      [
+        "case",
+        "noncontainment"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "actual",
+    "path": [
+      [
+        "case",
+        "revision_mismatch"
+      ]
+    ],
+    "type": "RelationLookupResult",
+    "variant": null
+  },
+  {
+    "field": "actual",
+    "path": [
+      [
+        "case",
+        "type_mismatch"
+      ]
+    ],
+    "type": "RelationCodecFailure",
+    "variant": null
+  },
+  {
+    "field": "actual",
+    "path": [],
+    "type": "StructuralValue0294",
+    "variant": null
+  },
+  {
+    "field": "actual",
+    "path": [],
+    "type": "StructuralValue0309",
+    "variant": null
+  },
+  {
+    "field": "actual_document",
+    "path": [],
+    "type": "DocumentOccurrenceBinding",
+    "variant": null
+  },
+  {
+    "field": "afidl_primitives",
+    "path": [
+      [
+        "field",
+        "closed_tables"
+      ]
+    ],
+    "type": "FullSupportManifest",
+    "variant": null
+  },
+  {
+    "field": "afidl_primitives",
+    "path": [],
+    "type": "StructuralValue0004",
+    "variant": null
+  },
+  {
+    "field": "aggregation",
+    "path": [
+      [
+        "case",
+        "usage"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "aggregation",
+    "path": [
+      [
+        "field",
+        "usage_meters"
+      ],
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "aggregation",
+    "path": [
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "StructuralValue0023",
+    "variant": null
+  },
+  {
+    "field": "aggregation",
+    "path": [],
+    "type": "StructuralValue0024",
+    "variant": null
+  },
+  {
+    "field": "algorithm",
+    "path": [],
+    "type": "CurrentContextRelationSchemaValidation",
+    "variant": null
+  },
+  {
+    "field": "algorithm",
+    "path": [],
+    "type": "DigestRef",
+    "variant": null
+  },
+  {
+    "field": "algorithm",
+    "path": [],
+    "type": "Raw(af-semantic::DigestRefValue)",
+    "variant": null
+  },
+  {
+    "field": "algorithm",
+    "path": [],
+    "type": "RelationPlainChecksum",
+    "variant": null
+  },
+  {
+    "field": "algorithm",
+    "path": [],
+    "type": "RelationWire/agentflow.semantic.core@1/DigestRefValue",
+    "variant": null
+  },
+  {
+    "field": "algorithm",
+    "path": [],
+    "type": "af-semantic::DigestRefValue",
+    "variant": null
+  },
+  {
+    "field": "algorithm",
+    "path": [],
+    "type": "agentflow.semantic.core@1/DigestRefValue",
+    "variant": null
+  },
+  {
+    "field": "aliases",
+    "path": [
+      [
+        "case",
+        "resource"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "allowed_effects",
+    "path": [],
+    "type": "Raw(af-contract::EffectFlowPartition)",
+    "variant": null
+  },
+  {
+    "field": "allowed_qualifier_profiles",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.resource.compatibility@1/SupportedEffectResourcePair",
+    "variant": null
+  },
+  {
+    "field": "analysis",
+    "path": [],
+    "type": "RelationAlgorithmIdentity",
+    "variant": null
+  },
+  {
+    "field": "analysis",
+    "path": [],
+    "type": "StructuralEditionTuple",
+    "variant": null
+  },
+  {
+    "field": "analysis_semantics_version",
+    "path": [],
+    "type": "Compiler",
+    "variant": null
+  },
+  {
+    "field": "analysis_semantics_version",
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/SemanticRoleDefinition",
+    "variant": null
+  },
+  {
+    "field": "anchor",
+    "path": [],
+    "type": "DocumentOwnerRecord",
+    "variant": null
+  },
+  {
+    "field": "application",
+    "path": [
+      [
+        "case",
+        "application_declaration"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "application",
+    "path": [
+      [
+        "case",
+        "substitution"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "application",
+    "path": [
+      [
+        "case",
+        "substitution_application"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "applied_rules",
+    "path": [],
+    "type": "FullSupportManifest",
+    "variant": null
+  },
+  {
+    "field": "aspect",
+    "path": [
+      [
+        "case",
+        "execution"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "assertion_inputs",
+    "path": [
+      [
+        "case",
+        "root_export"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "assertion_path",
+    "path": [],
+    "type": "FactKey",
+    "variant": null
+  },
+  {
+    "field": "associations",
+    "path": [
+      [
+        "case",
+        "computation"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "associations",
+    "path": [
+      [
+        "case",
+        "contract_validation"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "associations",
+    "path": [
+      [
+        "case",
+        "root_export"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "assurance",
+    "path": [],
+    "type": "StructuralModuleMapInspection",
+    "variant": null
+  },
+  {
+    "field": "atom",
+    "path": [
+      [
+        "case",
+        "effect_atom"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "atom",
+    "path": [],
+    "type": "Raw(af-effect::EffectEntry)",
+    "variant": null
+  },
+  {
+    "field": "attempts_per_activation",
+    "path": [],
+    "type": "Raw(af-contract::RecoveryUsageBinding)",
+    "variant": null
+  },
+  {
+    "field": "attributes",
+    "path": [
+      [
+        "case",
+        "resource"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "attributes",
+    "path": [
+      [
+        "field",
+        "capabilities"
+      ],
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "ExecutionUniverseContents",
+    "variant": null
+  },
+  {
+    "field": "attributes",
+    "path": [
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "StructuralValue0034",
+    "variant": null
+  },
+  {
+    "field": "attributes",
+    "path": [],
+    "type": "StructuralValue0035",
+    "variant": null
+  },
+  {
+    "field": "attribution",
+    "path": [],
+    "type": "FullSupportManifest",
+    "variant": null
+  },
+  {
+    "field": "authority",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/AuthorityExecutionRule",
+    "variant": null
+  },
+  {
+    "field": "authority_rules",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/InformationFlowExecutionCatalog",
+    "variant": null
+  },
+  {
+    "field": "binding",
+    "path": [
+      [
+        "case",
+        "effect"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "binding",
+    "path": [
+      [
+        "case",
+        "flow"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "binding",
+    "path": [
+      [
+        "case",
+        "input"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "binding",
+    "path": [
+      [
+        "case",
+        "output"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "binding",
+    "path": [
+      [
+        "case",
+        "recovery"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "binding",
+    "path": [
+      [
+        "case",
+        "resource"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "binding_stage",
+    "path": [],
+    "type": "StructuralStageContract",
+    "variant": null
+  },
+  {
+    "field": "body",
+    "path": [],
+    "type": "StructuralWNode",
+    "variant": null
+  },
+  {
+    "field": "body",
+    "path": [],
+    "type": "af-idl::CanonicalTypeSchema",
+    "variant": null
+  },
+  {
+    "field": "bound_to_operation",
+    "path": [],
+    "type": "Raw(af-recovery::KeyStabilityRequirement)",
+    "variant": null
+  },
+  {
+    "field": "bounds",
+    "path": [
+      [
+        "case",
+        "effect"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "bounds",
+    "path": [
+      [
+        "case",
+        "guard_countermodel"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "bounds",
+    "path": [],
+    "type": "Raw(af-effect::EffectEntry)",
+    "variant": null
+  },
+  {
+    "field": "bounds",
+    "path": [],
+    "type": "Raw(af-effect::EffectResidual)",
+    "variant": null
+  },
+  {
+    "field": "bundle_name",
+    "path": [
+      [
+        "case",
+        "declaration_bundle"
+      ]
+    ],
+    "type": "DocumentOwnerContainer",
+    "variant": null
+  },
+  {
+    "field": "bundle_name",
+    "path": [],
+    "type": "StructuralValue0208",
+    "variant": null
+  },
+  {
+    "field": "bytes",
+    "path": [
+      [
+        "case",
+        "physical_json_utf8"
+      ]
+    ],
+    "type": "RawDocument",
+    "variant": null
+  },
+  {
+    "field": "bytes",
+    "path": [],
+    "type": "StructuralValue0185",
+    "variant": null
+  },
+  {
+    "field": "call_site",
+    "path": [
+      [
+        "case",
+        "dependency"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "call_site",
+    "path": [
+      [
+        "case",
+        "subflow"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "caller_ir",
+    "path": [
+      [
+        "case",
+        "component"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "caller_ir",
+    "path": [
+      [
+        "case",
+        "computation"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "caller_ir",
+    "path": [
+      [
+        "case",
+        "computation"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "caller_ir",
+    "path": [
+      [
+        "case",
+        "contract_ref"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "caller_ir",
+    "path": [
+      [
+        "case",
+        "control"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "caller_ir",
+    "path": [
+      [
+        "case",
+        "control_edge"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "caller_ir",
+    "path": [
+      [
+        "case",
+        "opcode"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "caller_ir",
+    "path": [
+      [
+        "case",
+        "root_export"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "caller_ir",
+    "path": [
+      [
+        "case",
+        "scope"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "caller_ir",
+    "path": [
+      [
+        "case",
+        "subflow"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "caller_ir",
+    "path": [
+      [
+        "case",
+        "unresolved_request"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "candidate",
+    "path": [
+      [
+        "case",
+        "contract_validation"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "candidate",
+    "path": [
+      [
+        "case",
+        "invalid_shape"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "candidate",
+    "path": [],
+    "type": "RawParsedInput",
+    "variant": null
+  },
+  {
+    "field": "candidate",
+    "path": [],
+    "type": "StructuralDeclaredInputs",
+    "variant": null
+  },
+  {
+    "field": "canonical_content",
+    "path": [
+      [
+        "case",
+        "valid"
+      ]
+    ],
+    "type": "RelationValidationResult",
+    "variant": null
+  },
+  {
+    "field": "canonical_content",
+    "path": [],
+    "type": "NativeRelationSnapshotSource",
+    "variant": null
+  },
+  {
+    "field": "canonical_content",
+    "path": [],
+    "type": "StructuralValue0315",
+    "variant": null
+  },
+  {
+    "field": "canonical_content_checksum",
+    "path": [],
+    "type": "NativeRelationFamilyPin",
+    "variant": null
+  },
+  {
+    "field": "capabilities",
+    "path": [],
+    "type": "ExecutionUniverseContents",
+    "variant": null
+  },
+  {
+    "field": "capabilities",
+    "path": [],
+    "type": "Raw(af-execution::ExecutionRequirements)",
+    "variant": null
+  },
+  {
+    "field": "capability",
+    "path": [
+      [
+        "field",
+        "capabilities"
+      ],
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "ExecutionUniverseContents",
+    "variant": null
+  },
+  {
+    "field": "capability",
+    "path": [
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "StructuralValue0034",
+    "variant": null
+  },
+  {
+    "field": "capability",
+    "path": [],
+    "type": "Raw(af-execution::CapabilityRequirement)",
+    "variant": null
+  },
+  {
+    "field": "capability",
+    "path": [],
+    "type": "StructuralValue0035",
+    "variant": null
+  },
+  {
+    "field": "case",
+    "path": [
+      [
+        "case",
+        "resolver_difference"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "case",
+    "path": [
+      [
+        "case",
+        "unknown_variant_case"
+      ]
+    ],
+    "type": "RelationCodecFailure",
+    "variant": null
+  },
+  {
+    "field": "case",
+    "path": [
+      [
+        "case",
+        "variant"
+      ]
+    ],
+    "type": "NodeBody",
+    "variant": null
+  },
+  {
+    "field": "case",
+    "path": [],
+    "type": "StructuralValue0292",
+    "variant": null
+  },
+  {
+    "field": "case",
+    "path": [],
+    "type": "StructuralWVariant",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [
+      [
+        "case",
+        "context_member"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [
+      [
+        "field",
+        "reconciliation_operations"
+      ],
+      [
+        "member",
+        null
+      ]
+    ],
+    "type": "StructuralValue0025",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [
+      [
+        "field",
+        "recovery_operations"
+      ],
+      [
+        "field",
+        "reconciliation_operations"
+      ],
+      [
+        "member",
+        null
+      ]
+    ],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [
+      [
+        "member",
+        null
+      ]
+    ],
+    "type": "StructuralValue0028",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "NativeRelationSnapshotSource",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "Raw(af-contract::ComponentIdentity)",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "Raw(af-effect::EffectOperationRef)",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "Raw(af-effect::EffectResidual)",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "Raw(af-execution::ExecutionCapabilityRef)",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "Raw(af-execution::RegionRef)",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "Raw(af-execution::RuntimeProfileRef)",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "Raw(af-execution::TrustDomainRef)",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "Raw(af-flow::ConfidentialityLabelRef)",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "Raw(af-flow::TaintRef)",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "Raw(af-usage::UsageMeterRef)",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.signature@1/EffectOperationRef",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "RelationWire/agentflow.execution.requirements@1/RegionRef",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "RelationWire/agentflow.execution.requirements@1/TrustDomainRef",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "RelationWire/agentflow.information.flow@1/ConfidentialityLabelRef",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "RelationWire/agentflow.information.flow@1/TaintRef",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "RelationWire/agentflow.usage.signature@1/UsageMeterRef",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "StructuralValue0029",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "af-effect::EffectOperationRef",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "af-execution::ExecutionCapabilityRef",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "af-execution::RegionRef",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "af-execution::RuntimeProfileRef",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "af-execution::TrustDomainRef",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "af-flow::ConfidentialityLabelRef",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "af-flow::TaintRef",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "af-usage::UsageMeterRef",
+    "variant": null
+  },
+  {
+    "field": "catalog",
+    "path": [],
+    "type": "af-usage::UsageUnitRef",
+    "variant": null
+  },
+  {
+    "field": "catalog_role",
+    "path": [
+      [
+        "case",
+        "context"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "category",
+    "path": [],
+    "type": "Raw(af-flow::FlowSourceRef)",
+    "variant": null
+  },
+  {
+    "field": "cause",
+    "path": [
+      [
+        "case",
+        "not_reached"
+      ]
+    ],
+    "type": "RelationLookupResult",
+    "variant": null
+  },
+  {
+    "field": "cause",
+    "path": [],
+    "type": "StructuralValue0304",
+    "variant": null
+  },
+  {
+    "field": "ceiling",
+    "path": [
+      [
+        "case",
+        "noncontainment"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "child",
+    "path": [
+      [
+        "case",
+        "control_edge"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "children",
+    "path": [],
+    "type": "StructuralSiteDefinition",
+    "variant": null
+  },
+  {
+    "field": "clause",
+    "path": [
+      [
+        "case",
+        "native_guard"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "clause",
+    "path": [
+      [
+        "case",
+        "substitution"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "closed_regions",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/InformationFlowExecutionCatalog",
+    "variant": null
+  },
+  {
+    "field": "closed_tables",
+    "path": [],
+    "type": "FullSupportManifest",
+    "variant": null
+  },
+  {
+    "field": "closed_trust_domains",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/InformationFlowExecutionCatalog",
+    "variant": null
+  },
+  {
+    "field": "codec_failure",
+    "path": [
+      [
+        "case",
+        "invalid"
+      ]
+    ],
+    "type": "RelationValidationResult",
+    "variant": null
+  },
+  {
+    "field": "codec_failure",
+    "path": [],
+    "type": "StructuralValue0311",
+    "variant": null
+  },
+  {
+    "field": "collection_name",
+    "path": [
+      [
+        "case",
+        "workflow_source_collection"
+      ]
+    ],
+    "type": "DocumentOwnerContainer",
+    "variant": null
+  },
+  {
+    "field": "collection_name",
+    "path": [],
+    "type": "StructuralValue0212",
+    "variant": null
+  },
+  {
+    "field": "comparison",
+    "path": [
+      [
+        "case",
+        "substitution"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "compensation",
+    "path": [],
+    "type": "Raw(af-recovery::EffectRecoveryClause)",
+    "variant": null
+  },
+  {
+    "field": "compiled_modules",
+    "path": [],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "compiler",
+    "path": [
+      [
+        "case",
+        "computation"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "compiler",
+    "path": [
+      [
+        "case",
+        "contract_validation"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "compiler",
+    "path": [
+      [
+        "case",
+        "root_export"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "compiler",
+    "path": [],
+    "type": "StructuralDeclaredInputs",
+    "variant": null
+  },
+  {
+    "field": "complete_meters",
+    "path": [],
+    "type": "RelationWire/agentflow.recovery.usage.coverage@1/RecoveryUsageCoverageRule",
+    "variant": null
+  },
+  {
+    "field": "complete_operations",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.resource.compatibility@1/EffectResourceCompatibilityCatalog",
+    "variant": null
+  },
+  {
+    "field": "completed_steps",
+    "path": [
+      [
+        "case",
+        "invalid"
+      ]
+    ],
+    "type": "RelationValidationResult",
+    "variant": null
+  },
+  {
+    "field": "completed_steps",
+    "path": [
+      [
+        "case",
+        "valid"
+      ]
+    ],
+    "type": "RelationValidationResult",
+    "variant": null
+  },
+  {
+    "field": "completed_steps",
+    "path": [],
+    "type": "StructuralValue0311",
+    "variant": null
+  },
+  {
+    "field": "completed_steps",
+    "path": [],
+    "type": "StructuralValue0315",
+    "variant": null
+  },
+  {
+    "field": "component_identity",
+    "path": [],
+    "type": "Raw(af-contract::ComponentContract)",
+    "variant": null
+  },
+  {
+    "field": "condition",
+    "path": [],
+    "type": "RawPortCheckBasis",
+    "variant": null
+  },
+  {
+    "field": "confidentiality",
+    "path": [
+      [
+        "field",
+        "flow_catalogs"
+      ]
+    ],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "confidentiality",
+    "path": [],
+    "type": "StructuralValue0019",
+    "variant": null
+  },
+  {
+    "field": "confidentiality_restrictions",
+    "path": [],
+    "type": "Raw(af-flow::InformationFlowContract)",
+    "variant": null
+  },
+  {
+    "field": "confidentiality_rules",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/InformationFlowExecutionCatalog",
+    "variant": null
+  },
+  {
+    "field": "constraint",
+    "path": [
+      [
+        "case",
+        "raw_declaration_constraint"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "consumer_stage",
+    "path": [],
+    "type": "StructuralStageContract",
+    "variant": null
+  },
+  {
+    "field": "container",
+    "path": [],
+    "type": "DocumentOwnerRecord",
+    "variant": null
+  },
+  {
+    "field": "content",
+    "path": [
+      [
+        "case",
+        "relation"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "content",
+    "path": [],
+    "type": "af-computation::SpecificationContentIdentity",
+    "variant": null
+  },
+  {
+    "field": "content_sha256",
+    "path": [],
+    "type": "af-computation::SpecificationContentIdentity",
+    "variant": null
+  },
+  {
+    "field": "contents",
+    "path": [],
+    "type": "RawContextBinding",
+    "variant": null
+  },
+  {
+    "field": "context",
+    "path": [
+      [
+        "case",
+        "computation"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "context",
+    "path": [
+      [
+        "case",
+        "contract_validation"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "context",
+    "path": [
+      [
+        "case",
+        "root_export"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "context",
+    "path": [],
+    "type": "CurrentContextRelationSchemaValidation",
+    "variant": null
+  },
+  {
+    "field": "context",
+    "path": [],
+    "type": "RawValidationSubject",
+    "variant": null
+  },
+  {
+    "field": "context",
+    "path": [],
+    "type": "StructuralDeclaredInputs",
+    "variant": null
+  },
+  {
+    "field": "contract",
+    "path": [
+      [
+        "case",
+        "component"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "contract",
+    "path": [
+      [
+        "case",
+        "execution"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "coordinate",
+    "path": [],
+    "type": "FactKey",
+    "variant": null
+  },
+  {
+    "field": "countermodel",
+    "path": [
+      [
+        "case",
+        "guard_countermodel"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "coverage_role",
+    "path": [
+      [
+        "case",
+        "usage"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "declaration",
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/SemanticRoleEntry",
+    "variant": null
+  },
+  {
+    "field": "declaration_name",
+    "path": [],
+    "type": "DeclarationDocumentEntry",
+    "variant": null
+  },
+  {
+    "field": "declarations",
+    "path": [
+      [
+        "case",
+        "declaration_bundle"
+      ]
+    ],
+    "type": "DocumentOwnerContainer",
+    "variant": null
+  },
+  {
+    "field": "declarations",
+    "path": [
+      [
+        "case",
+        "declared_native_document"
+      ]
+    ],
+    "type": "RawDocument",
+    "variant": null
+  },
+  {
+    "field": "declarations",
+    "path": [],
+    "type": "StructuralValue0186",
+    "variant": null
+  },
+  {
+    "field": "declarations",
+    "path": [],
+    "type": "StructuralValue0208",
+    "variant": null
+  },
+  {
+    "field": "declared_path",
+    "path": [],
+    "type": "Origin",
+    "variant": null
+  },
+  {
+    "field": "definition",
+    "path": [],
+    "type": "RelationFoundSchema",
+    "variant": null
+  },
+  {
+    "field": "definition_closure",
+    "path": [],
+    "type": "RelationFoundSchema",
+    "variant": null
+  },
+  {
+    "field": "definitions",
+    "path": [
+      [
+        "case",
+        "ambiguous"
+      ]
+    ],
+    "type": "RelationLookupResult",
+    "variant": null
+  },
+  {
+    "field": "definitions",
+    "path": [],
+    "type": "StructuralValue0306",
+    "variant": null
+  },
+  {
+    "field": "dependencies",
+    "path": [],
+    "type": "StructuralStageContract",
+    "variant": null
+  },
+  {
+    "field": "dependency_edges",
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/CompleteAttributionClaim",
+    "variant": null
+  },
+  {
+    "field": "dependent",
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/RuleDependencyEdge",
+    "variant": null
+  },
+  {
+    "field": "depends_on",
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/SemanticRoleDefinition",
+    "variant": null
+  },
+  {
+    "field": "descriptors",
+    "path": [
+      [
+        "field",
+        "resource_types"
+      ]
+    ],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "descriptors",
+    "path": [],
+    "type": "StructuralValue0016",
+    "variant": null
+  },
+  {
+    "field": "detail",
+    "path": [
+      [
+        "case",
+        "invalid_bytes_encoding"
+      ]
+    ],
+    "type": "RelationCodecFailure",
+    "variant": null
+  },
+  {
+    "field": "detail",
+    "path": [
+      [
+        "case",
+        "invalid_option_encoding"
+      ]
+    ],
+    "type": "RelationCodecFailure",
+    "variant": null
+  },
+  {
+    "field": "detail",
+    "path": [
+      [
+        "case",
+        "invalid_shape"
+      ]
+    ],
+    "type": "RelationCodecFailure",
+    "variant": null
+  },
+  {
+    "field": "detail",
+    "path": [
+      [
+        "case",
+        "invalid_unicode"
+      ]
+    ],
+    "type": "RelationCodecFailure",
+    "variant": null
+  },
+  {
+    "field": "detail",
+    "path": [
+      [
+        "case",
+        "non_canonical_encoding"
+      ]
+    ],
+    "type": "RelationCodecFailure",
+    "variant": null
+  },
+  {
+    "field": "detail",
+    "path": [],
+    "type": "StructuralValue0285",
+    "variant": null
+  },
+  {
+    "field": "detail",
+    "path": [],
+    "type": "StructuralValue0290",
+    "variant": null
+  },
+  {
+    "field": "detail",
+    "path": [],
+    "type": "StructuralValue0293",
+    "variant": null
+  },
+  {
+    "field": "detail",
+    "path": [],
+    "type": "StructuralValue0295",
+    "variant": null
+  },
+  {
+    "field": "detail",
+    "path": [],
+    "type": "StructuralValue0296",
+    "variant": null
+  },
+  {
+    "field": "digest",
+    "path": [
+      [
+        "case",
+        "component"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "digest",
+    "path": [
+      [
+        "case",
+        "export"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "dimension",
+    "path": [
+      [
+        "case",
+        "substitution"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "dimension",
+    "path": [],
+    "type": "FactKey",
+    "variant": null
+  },
+  {
+    "field": "direct_rules",
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/CompleteAttributionClaim",
+    "variant": null
+  },
+  {
+    "field": "direction",
+    "path": [
+      [
+        "case",
+        "port"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "direction",
+    "path": [
+      [
+        "case",
+        "raw_declaration_constraint"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "direction",
+    "path": [],
+    "type": "RawPortOccurrence",
+    "variant": null
+  },
+  {
+    "field": "direction",
+    "path": [],
+    "type": "RawValidationOrigin",
+    "variant": null
+  },
+  {
+    "field": "distinct_across_invocations",
+    "path": [],
+    "type": "Raw(af-recovery::KeyStabilityRequirement)",
+    "variant": null
+  },
+  {
+    "field": "document",
+    "path": [],
+    "type": "DeclarationDocumentEntry",
+    "variant": null
+  },
+  {
+    "field": "document",
+    "path": [],
+    "type": "ImportDocumentEntry",
+    "variant": null
+  },
+  {
+    "field": "document",
+    "path": [],
+    "type": "WorkflowDocumentEntry",
+    "variant": null
+  },
+  {
+    "field": "document_binding",
+    "path": [
+      [
+        "case",
+        "supplied"
+      ]
+    ],
+    "type": "RawPhysicalAssociation",
+    "variant": null
+  },
+  {
+    "field": "document_binding",
+    "path": [],
+    "type": "RawInputOrigin",
+    "variant": null
+  },
+  {
+    "field": "document_binding",
+    "path": [],
+    "type": "StructuralValue0192",
+    "variant": null
+  },
+  {
+    "field": "document_path",
+    "path": [],
+    "type": "StructuralDeclaredInputs",
+    "variant": null
+  },
+  {
+    "field": "domain",
+    "path": [],
+    "type": "DigestRef",
+    "variant": null
+  },
+  {
+    "field": "domain",
+    "path": [],
+    "type": "DocumentOwnerAnchor",
+    "variant": null
+  },
+  {
+    "field": "domain",
+    "path": [],
+    "type": "Raw(af-semantic::DigestRefValue)",
+    "variant": null
+  },
+  {
+    "field": "domain",
+    "path": [],
+    "type": "RelationWire/agentflow.semantic.core@1/DigestRefValue",
+    "variant": null
+  },
+  {
+    "field": "domain",
+    "path": [],
+    "type": "SourcePackage",
+    "variant": null
+  },
+  {
+    "field": "domain",
+    "path": [],
+    "type": "StructuralBindingFailure",
+    "variant": null
+  },
+  {
+    "field": "domain",
+    "path": [],
+    "type": "StructuralChildBinding",
+    "variant": null
+  },
+  {
+    "field": "domain",
+    "path": [],
+    "type": "StructuralReferencePolicy",
+    "variant": null
+  },
+  {
+    "field": "domain",
+    "path": [],
+    "type": "af-semantic::DigestRefValue",
+    "variant": null
+  },
+  {
+    "field": "domain",
+    "path": [],
+    "type": "agentflow.semantic.core@1/DigestRefValue",
+    "variant": null
+  },
+  {
+    "field": "domain_key",
+    "path": [],
+    "type": "DocumentSourceDomain",
+    "variant": null
+  },
+  {
+    "field": "edge_ordinal",
+    "path": [
+      [
+        "case",
+        "dependency"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "edge_path",
+    "path": [
+      [
+        "case",
+        "control"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "edition",
+    "path": [],
+    "type": "StructuralReferenceEnvironment",
+    "variant": null
+  },
+  {
+    "field": "effect",
+    "path": [],
+    "type": "Raw(af-recovery::EffectRecoveryClause)",
+    "variant": null
+  },
+  {
+    "field": "effect_catalogs",
+    "path": [],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "effect_flow_partitions",
+    "path": [],
+    "type": "Raw(af-contract::ComponentContract)",
+    "variant": null
+  },
+  {
+    "field": "effect_recovery_clauses",
+    "path": [],
+    "type": "Raw(af-recovery::RecoveryContract)",
+    "variant": null
+  },
+  {
+    "field": "effect_resource",
+    "path": [
+      [
+        "field",
+        "relation_snapshots"
+      ]
+    ],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "effect_resource",
+    "path": [],
+    "type": "StructuralValue0030",
+    "variant": null
+  },
+  {
+    "field": "effects",
+    "path": [
+      [
+        "field",
+        "recovery_operations"
+      ]
+    ],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "effects",
+    "path": [],
+    "type": "Raw(af-contract::ComponentContract)",
+    "variant": null
+  },
+  {
+    "field": "effects",
+    "path": [],
+    "type": "StructuralValue0025",
+    "variant": null
+  },
+  {
+    "field": "eligibility",
+    "path": [],
+    "type": "StructuralSiteDefinition",
+    "variant": null
+  },
+  {
+    "field": "entries",
+    "path": [],
+    "type": "StructuralModuleMapInspection",
+    "variant": null
+  },
+  {
+    "field": "entry_count",
+    "path": [],
+    "type": "StructuralModuleMapInspection",
+    "variant": null
+  },
+  {
+    "field": "entry_ordinal",
+    "path": [
+      [
+        "case",
+        "component"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "entry_ordinal",
+    "path": [],
+    "type": "DocumentOccurrenceKey",
+    "variant": null
+  },
+  {
+    "field": "environment",
+    "path": [],
+    "type": "StructuralBindingOutputClaim",
+    "variant": null
+  },
+  {
+    "field": "environment",
+    "path": [],
+    "type": "StructuralReferencePolicy",
+    "variant": null
+  },
+  {
+    "field": "exact_version",
+    "path": [
+      [
+        "field",
+        "capabilities"
+      ],
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "ExecutionUniverseContents",
+    "variant": null
+  },
+  {
+    "field": "exact_version",
+    "path": [
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "StructuralValue0034",
+    "variant": null
+  },
+  {
+    "field": "exact_version",
+    "path": [],
+    "type": "Raw(af-execution::CapabilityRequirement)",
+    "variant": null
+  },
+  {
+    "field": "exact_version",
+    "path": [],
+    "type": "StructuralValue0035",
+    "variant": null
+  },
+  {
+    "field": "execution",
+    "path": [],
+    "type": "Raw(af-contract::ComponentContract)",
+    "variant": null
+  },
+  {
+    "field": "execution_region",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/RegionPair",
+    "variant": null
+  },
+  {
+    "field": "execution_regions",
+    "path": [],
+    "type": "Raw(af-execution::RegionResidencyRequirement)",
+    "variant": null
+  },
+  {
+    "field": "execution_universes",
+    "path": [],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "expected",
+    "path": [
+      [
+        "case",
+        "invalid_mapping"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "expected",
+    "path": [
+      [
+        "case",
+        "pin"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "expected",
+    "path": [
+      [
+        "case",
+        "pin_mismatch"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "expected",
+    "path": [
+      [
+        "case",
+        "resolver_difference"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "expected",
+    "path": [
+      [
+        "case",
+        "revision_mismatch"
+      ]
+    ],
+    "type": "RelationLookupResult",
+    "variant": null
+  },
+  {
+    "field": "expected",
+    "path": [
+      [
+        "case",
+        "source_mismatch"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "expected",
+    "path": [
+      [
+        "case",
+        "type_mismatch"
+      ]
+    ],
+    "type": "RelationCodecFailure",
+    "variant": null
+  },
+  {
+    "field": "expected",
+    "path": [],
+    "type": "Raw(af-effect::EffectGuardInputEquals)",
+    "variant": null
+  },
+  {
+    "field": "expected",
+    "path": [],
+    "type": "StructuralValue0294",
+    "variant": null
+  },
+  {
+    "field": "expected",
+    "path": [],
+    "type": "StructuralValue0309",
+    "variant": null
+  },
+  {
+    "field": "expected_descriptor",
+    "path": [
+      [
+        "case",
+        "invalid_shape"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "expected_type",
+    "path": [],
+    "type": "StructuralBindingFailure",
+    "variant": null
+  },
+  {
+    "field": "export_atom",
+    "path": [
+      [
+        "case",
+        "effect"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "export_bound",
+    "path": [
+      [
+        "case",
+        "usage"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "export_guard",
+    "path": [
+      [
+        "case",
+        "effect"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "export_port",
+    "path": [
+      [
+        "case",
+        "input"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "export_port",
+    "path": [
+      [
+        "case",
+        "output"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "export_port",
+    "path": [
+      [
+        "case",
+        "resource"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "export_state",
+    "path": [
+      [
+        "case",
+        "subflow"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "export_state",
+    "path": [
+      [
+        "case",
+        "subflow"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "expression",
+    "path": [
+      [
+        "case",
+        "output"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "factors",
+    "path": [
+      [
+        "case",
+        "recovery"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "failures",
+    "path": [],
+    "type": "Raw(af-contract::ComponentContract)",
+    "variant": null
+  },
+  {
+    "field": "failures",
+    "path": [],
+    "type": "Raw(af-failure::FailureRow)",
+    "variant": null
+  },
+  {
+    "field": "family",
+    "path": [
+      [
+        "field",
+        "runtime_profiles"
+      ],
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "ExecutionUniverseContents",
+    "variant": null
+  },
+  {
+    "field": "family",
+    "path": [
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "StructuralValue0043",
+    "variant": null
+  },
+  {
+    "field": "family",
+    "path": [],
+    "type": "NativeRelationFamilyPin",
+    "variant": null
+  },
+  {
+    "field": "family",
+    "path": [],
+    "type": "Raw(af-execution::RuntimeProfileRequirement)",
+    "variant": null
+  },
+  {
+    "field": "family",
+    "path": [],
+    "type": "RelationLookupTarget",
+    "variant": null
+  },
+  {
+    "field": "family",
+    "path": [],
+    "type": "StructuralValue0044",
+    "variant": null
+  },
+  {
+    "field": "features",
+    "path": [
+      [
+        "field",
+        "runtime_profiles"
+      ],
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "ExecutionUniverseContents",
+    "variant": null
+  },
+  {
+    "field": "features",
+    "path": [
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "StructuralValue0043",
+    "variant": null
+  },
+  {
+    "field": "features",
+    "path": [],
+    "type": "StructuralValue0044",
+    "variant": null
+  },
+  {
+    "field": "field",
+    "path": [
+      [
+        "case",
+        "duplicate_field"
+      ]
+    ],
+    "type": "RelationCodecFailure",
+    "variant": null
+  },
+  {
+    "field": "field",
+    "path": [
+      [
+        "case",
+        "missing_field"
+      ]
+    ],
+    "type": "RelationCodecFailure",
+    "variant": null
+  },
+  {
+    "field": "field",
+    "path": [
+      [
+        "case",
+        "record"
+      ],
+      [
+        "item",
+        null
+      ]
+    ],
+    "type": "NodeBody",
+    "variant": null
+  },
+  {
+    "field": "field",
+    "path": [
+      [
+        "case",
+        "unknown_field"
+      ]
+    ],
+    "type": "RelationCodecFailure",
+    "variant": null
+  },
+  {
+    "field": "field",
+    "path": [],
+    "type": "StructuralValue0287",
+    "variant": null
+  },
+  {
+    "field": "field",
+    "path": [],
+    "type": "StructuralValue0288",
+    "variant": null
+  },
+  {
+    "field": "field",
+    "path": [],
+    "type": "StructuralValue0289",
+    "variant": null
+  },
+  {
+    "field": "field",
+    "path": [],
+    "type": "StructuralWField",
+    "variant": null
+  },
+  {
+    "field": "first_input_path",
+    "path": [],
+    "type": "StructuralBindingFailure",
+    "variant": null
+  },
+  {
+    "field": "flow_catalogs",
+    "path": [],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "flow_constraints",
+    "path": [],
+    "type": "Raw(af-flow::InformationFlowContract)",
+    "variant": null
+  },
+  {
+    "field": "flow_execution",
+    "path": [
+      [
+        "field",
+        "relation_snapshots"
+      ]
+    ],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "flow_execution",
+    "path": [],
+    "type": "StructuralValue0030",
+    "variant": null
+  },
+  {
+    "field": "forward_effect",
+    "path": [],
+    "type": "Raw(af-contract::RecoveryActionIdentity)",
+    "variant": null
+  },
+  {
+    "field": "forward_effect",
+    "path": [],
+    "type": "RelationWire/agentflow.component.contract@1/RecoveryActionIdentity",
+    "variant": null
+  },
+  {
+    "field": "found",
+    "path": [
+      [
+        "case",
+        "invalid"
+      ]
+    ],
+    "type": "RelationValidationResult",
+    "variant": null
+  },
+  {
+    "field": "found",
+    "path": [
+      [
+        "case",
+        "valid"
+      ]
+    ],
+    "type": "RelationValidationResult",
+    "variant": null
+  },
+  {
+    "field": "found",
+    "path": [],
+    "type": "StructuralValue0311",
+    "variant": null
+  },
+  {
+    "field": "found",
+    "path": [],
+    "type": "StructuralValue0315",
+    "variant": null
+  },
+  {
+    "field": "from",
+    "path": [
+      [
+        "field",
+        "region_compatibility"
+      ],
+      [
+        "member",
+        null
+      ]
+    ],
+    "type": "ExecutionUniverseContents",
+    "variant": null
+  },
+  {
+    "field": "from",
+    "path": [
+      [
+        "member",
+        null
+      ]
+    ],
+    "type": "StructuralValue0041",
+    "variant": null
+  },
+  {
+    "field": "from",
+    "path": [],
+    "type": "StructuralValue0042",
+    "variant": null
+  },
+  {
+    "field": "guard",
+    "path": [],
+    "type": "Raw(af-effect::EffectEntry)",
+    "variant": null
+  },
+  {
+    "field": "guard_role",
+    "path": [
+      [
+        "case",
+        "native_guard"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "hash_domains",
+    "path": [
+      [
+        "field",
+        "closed_tables"
+      ]
+    ],
+    "type": "FullSupportManifest",
+    "variant": null
+  },
+  {
+    "field": "hash_domains",
+    "path": [],
+    "type": "StructuralValue0004",
+    "variant": null
+  },
+  {
+    "field": "hex",
+    "path": [],
+    "type": "DigestRef",
+    "variant": null
+  },
+  {
+    "field": "hex",
+    "path": [],
+    "type": "Raw(af-semantic::DigestRefValue)",
+    "variant": null
+  },
+  {
+    "field": "hex",
+    "path": [],
+    "type": "RelationPlainChecksum",
+    "variant": null
+  },
+  {
+    "field": "hex",
+    "path": [],
+    "type": "RelationWire/agentflow.semantic.core@1/DigestRefValue",
+    "variant": null
+  },
+  {
+    "field": "hex",
+    "path": [],
+    "type": "af-semantic::DigestRefValue",
+    "variant": null
+  },
+  {
+    "field": "hex",
+    "path": [],
+    "type": "agentflow.semantic.core@1/DigestRefValue",
+    "variant": null
+  },
+  {
+    "field": "id",
+    "path": [
+      [
+        "case",
+        "contract_ref"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "idempotency",
+    "path": [],
+    "type": "Raw(af-recovery::EffectRecoveryClause)",
+    "variant": null
+  },
+  {
+    "field": "identity",
+    "path": [],
+    "type": "ExactRuleContentReference",
+    "variant": null
+  },
+  {
+    "field": "identity",
+    "path": [],
+    "type": "Raw(af-contract::RecoveryActionBinding)",
+    "variant": null
+  },
+  {
+    "field": "implementation_abis",
+    "path": [],
+    "type": "Raw(af-execution::ExecutionRequirements)",
+    "variant": null
+  },
+  {
+    "field": "import_name",
+    "path": [],
+    "type": "ImportDocumentEntry",
+    "variant": null
+  },
+  {
+    "field": "imports",
+    "path": [
+      [
+        "case",
+        "import_manifest"
+      ]
+    ],
+    "type": "DocumentOwnerContainer",
+    "variant": null
+  },
+  {
+    "field": "imports",
+    "path": [],
+    "type": "StructuralValue0210",
+    "variant": null
+  },
+  {
+    "field": "influence_unknown",
+    "path": [],
+    "type": "Raw(af-flow::StaticInformationSummary)",
+    "variant": null
+  },
+  {
+    "field": "information_flow",
+    "path": [],
+    "type": "Raw(af-contract::ComponentContract)",
+    "variant": null
+  },
+  {
+    "field": "input",
+    "path": [
+      [
+        "case",
+        "integer_out_of_range"
+      ]
+    ],
+    "type": "RelationCodecFailure",
+    "variant": null
+  },
+  {
+    "field": "input",
+    "path": [
+      [
+        "case",
+        "invalid_decimal"
+      ]
+    ],
+    "type": "RelationCodecFailure",
+    "variant": null
+  },
+  {
+    "field": "input",
+    "path": [
+      [
+        "case",
+        "invalid_integer"
+      ]
+    ],
+    "type": "RelationCodecFailure",
+    "variant": null
+  },
+  {
+    "field": "input",
+    "path": [
+      [
+        "case",
+        "invalid_mapping"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "input",
+    "path": [],
+    "type": "RawValidationSubject",
+    "variant": null
+  },
+  {
+    "field": "input",
+    "path": [],
+    "type": "StructuralValue0281",
+    "variant": null
+  },
+  {
+    "field": "input",
+    "path": [],
+    "type": "StructuralValue0282",
+    "variant": null
+  },
+  {
+    "field": "input",
+    "path": [],
+    "type": "StructuralValue0283",
+    "variant": null
+  },
+  {
+    "field": "input_graph",
+    "path": [],
+    "type": "StructuralReferenceEnvironment",
+    "variant": null
+  },
+  {
+    "field": "input_origin",
+    "path": [],
+    "type": "RawValidationOrigin",
+    "variant": null
+  },
+  {
+    "field": "input_roots",
+    "path": [],
+    "type": "StructuralStageContract",
+    "variant": null
+  },
+  {
+    "field": "input_sites",
+    "path": [
+      [
+        "case",
+        "invalid"
+      ]
+    ],
+    "type": "RelationValidationResult",
+    "variant": null
+  },
+  {
+    "field": "input_sites",
+    "path": [],
+    "type": "StructuralValue0311",
+    "variant": null
+  },
+  {
+    "field": "input_type",
+    "path": [],
+    "type": "StructuralStageContract",
+    "variant": null
+  },
+  {
+    "field": "inputs",
+    "path": [],
+    "type": "Raw(af-contract::ComponentContract)",
+    "variant": null
+  },
+  {
+    "field": "instruction_authority",
+    "path": [],
+    "type": "Raw(af-flow::StaticInformationSummary)",
+    "variant": null
+  },
+  {
+    "field": "ir",
+    "path": [
+      [
+        "case",
+        "root"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "ir",
+    "path": [
+      [
+        "case",
+        "subflow"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "key",
+    "path": [
+      [
+        "case",
+        "duplicate_normalized_key"
+      ]
+    ],
+    "type": "RelationCodecFailure",
+    "variant": null
+  },
+  {
+    "field": "key",
+    "path": [
+      [
+        "case",
+        "fact"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "key",
+    "path": [
+      [
+        "case",
+        "prerequisite_contradiction"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "key",
+    "path": [
+      [
+        "case",
+        "proof"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "key",
+    "path": [
+      [
+        "field",
+        "attributes"
+      ],
+      [
+        "member",
+        null
+      ]
+    ],
+    "type": "StructuralValue0035",
+    "variant": null
+  },
+  {
+    "field": "key",
+    "path": [
+      [
+        "field",
+        "capabilities"
+      ],
+      [
+        "value",
+        null
+      ],
+      [
+        "field",
+        "attributes"
+      ],
+      [
+        "member",
+        null
+      ]
+    ],
+    "type": "ExecutionUniverseContents",
+    "variant": null
+  },
+  {
+    "field": "key",
+    "path": [
+      [
+        "member",
+        null
+      ]
+    ],
+    "type": "StructuralValue0037",
+    "variant": null
+  },
+  {
+    "field": "key",
+    "path": [
+      [
+        "value",
+        null
+      ],
+      [
+        "field",
+        "attributes"
+      ],
+      [
+        "member",
+        null
+      ]
+    ],
+    "type": "StructuralValue0034",
+    "variant": null
+  },
+  {
+    "field": "key",
+    "path": [],
+    "type": "Raw(af-effect::ScopeBinding)",
+    "variant": null
+  },
+  {
+    "field": "key",
+    "path": [],
+    "type": "Raw(af-execution::CapabilityAttribute)",
+    "variant": null
+  },
+  {
+    "field": "key",
+    "path": [],
+    "type": "Raw(af-resource::ResourceAttributeConstraint)",
+    "variant": null
+  },
+  {
+    "field": "key",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.signature@1/ScopeBinding",
+    "variant": null
+  },
+  {
+    "field": "key",
+    "path": [],
+    "type": "StructuralMapEntry",
+    "variant": null
+  },
+  {
+    "field": "key",
+    "path": [],
+    "type": "StructuralReferencePolicy",
+    "variant": null
+  },
+  {
+    "field": "key",
+    "path": [],
+    "type": "StructuralSiteDefinition",
+    "variant": null
+  },
+  {
+    "field": "key",
+    "path": [],
+    "type": "StructuralValue0038",
+    "variant": null
+  },
+  {
+    "field": "key",
+    "path": [],
+    "type": "StructuralValue0286",
+    "variant": null
+  },
+  {
+    "field": "key",
+    "path": [],
+    "type": "StructuralWEntry",
+    "variant": null
+  },
+  {
+    "field": "key_requirement",
+    "path": [],
+    "type": "Raw(af-recovery::EffectRecoveryClause)",
+    "variant": null
+  },
+  {
+    "field": "kind",
+    "path": [
+      [
+        "case",
+        "flow"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "kind",
+    "path": [],
+    "type": "FactKey",
+    "variant": null
+  },
+  {
+    "field": "kind",
+    "path": [],
+    "type": "NativeRelationSnapshotSource",
+    "variant": null
+  },
+  {
+    "field": "kind",
+    "path": [],
+    "type": "Raw(af-contract::EffectFlowPartition)",
+    "variant": null
+  },
+  {
+    "field": "kind",
+    "path": [],
+    "type": "Raw(af-execution::ComputeQuantityRequirement)",
+    "variant": null
+  },
+  {
+    "field": "kind",
+    "path": [],
+    "type": "Raw(af-flow::FlowConstraint)",
+    "variant": null
+  },
+  {
+    "field": "kind",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/FlowExecutionRule",
+    "variant": null
+  },
+  {
+    "field": "kind",
+    "path": [],
+    "type": "StructuralSiteDefinition",
+    "variant": null
+  },
+  {
+    "field": "known",
+    "path": [],
+    "type": "Raw(af-effect::EffectOpenRow)",
+    "variant": null
+  },
+  {
+    "field": "label",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/ConfidentialityExecutionRule",
+    "variant": null
+  },
+  {
+    "field": "labels",
+    "path": [
+      [
+        "case",
+        "flow"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "limits",
+    "path": [],
+    "type": "Raw(af-usage::UsageSignature)",
+    "variant": null
+  },
+  {
+    "field": "listed_rules",
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/IncompleteAttribution",
+    "variant": null
+  },
+  {
+    "field": "logical_path",
+    "path": [],
+    "type": "af-computation::SpecificationContentIdentity",
+    "variant": null
+  },
+  {
+    "field": "lookup",
+    "path": [],
+    "type": "CurrentContextRelationSchemaValidation",
+    "variant": null
+  },
+  {
+    "field": "lookup_rule",
+    "path": [],
+    "type": "RelationAlgorithmIdentity",
+    "variant": null
+  },
+  {
+    "field": "lower",
+    "path": [],
+    "type": "Raw(af-effect::OccurrenceBounds)",
+    "variant": null
+  },
+  {
+    "field": "manifest_name",
+    "path": [
+      [
+        "case",
+        "import_manifest"
+      ]
+    ],
+    "type": "DocumentOwnerContainer",
+    "variant": null
+  },
+  {
+    "field": "manifest_name",
+    "path": [],
+    "type": "StructuralValue0210",
+    "variant": null
+  },
+  {
+    "field": "mapping_ordinal",
+    "path": [],
+    "type": "Origin",
+    "variant": null
+  },
+  {
+    "field": "member",
+    "path": [
+      [
+        "case",
+        "compiler"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "member",
+    "path": [
+      [
+        "case",
+        "context"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "member",
+    "path": [
+      [
+        "case",
+        "context_member"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "member",
+    "path": [
+      [
+        "case",
+        "native_guard"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "member",
+    "path": [
+      [
+        "case",
+        "native_guard_member"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "member",
+    "path": [
+      [
+        "case",
+        "raw_port"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "member_path",
+    "path": [
+      [
+        "case",
+        "contract_operand"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "meter",
+    "path": [
+      [
+        "case",
+        "usage"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "meter",
+    "path": [
+      [
+        "field",
+        "usage_meters"
+      ],
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "meter",
+    "path": [
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "StructuralValue0023",
+    "variant": null
+  },
+  {
+    "field": "meter",
+    "path": [],
+    "type": "Raw(af-usage::UsageLimit)",
+    "variant": null
+  },
+  {
+    "field": "meter",
+    "path": [],
+    "type": "StructuralValue0024",
+    "variant": null
+  },
+  {
+    "field": "minimum",
+    "path": [
+      [
+        "case",
+        "zero"
+      ]
+    ],
+    "type": "RawPortRejectionWitness",
+    "variant": null
+  },
+  {
+    "field": "minimum",
+    "path": [],
+    "type": "Raw(af-execution::ComputeQuantityRequirement)",
+    "variant": null
+  },
+  {
+    "field": "minimum",
+    "path": [],
+    "type": "Raw(af-execution::SandboxRequirement)",
+    "variant": null
+  },
+  {
+    "field": "minimum",
+    "path": [],
+    "type": "StructuralValue0206",
+    "variant": null
+  },
+  {
+    "field": "missing",
+    "path": [
+      [
+        "case",
+        "missing_members"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "missing_identity",
+    "path": [
+      [
+        "case",
+        "missing"
+      ]
+    ],
+    "type": "RelationLookupResult",
+    "variant": null
+  },
+  {
+    "field": "missing_identity",
+    "path": [],
+    "type": "StructuralValue0305",
+    "variant": null
+  },
+  {
+    "field": "model",
+    "path": [],
+    "type": "RelationAlgorithmIdentity",
+    "variant": null
+  },
+  {
+    "field": "model",
+    "path": [],
+    "type": "StructuralEditionTuple",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [
+      [
+        "case",
+        "field"
+      ]
+    ],
+    "type": "RawDocumentMember",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [
+      [
+        "case",
+        "output"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [
+      [
+        "field",
+        "reconciliation_operations"
+      ],
+      [
+        "member",
+        null
+      ]
+    ],
+    "type": "StructuralValue0025",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [
+      [
+        "field",
+        "recovery_operations"
+      ],
+      [
+        "field",
+        "reconciliation_operations"
+      ],
+      [
+        "member",
+        null
+      ]
+    ],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [
+      [
+        "member",
+        null
+      ]
+    ],
+    "type": "StructuralValue0028",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "Raw(af-contract::ComponentIdentity)",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "Raw(af-effect::EffectOperationRef)",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "Raw(af-execution::ExecutionCapabilityRef)",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "Raw(af-execution::RegionRef)",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "Raw(af-execution::RuntimeProfileRef)",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "Raw(af-execution::TrustDomainRef)",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "Raw(af-flow::ConfidentialityLabelRef)",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "Raw(af-flow::TaintRef)",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "Raw(af-usage::UsageMeterRef)",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.signature@1/EffectOperationRef",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "RelationWire/agentflow.execution.requirements@1/RegionRef",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "RelationWire/agentflow.execution.requirements@1/TrustDomainRef",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "RelationWire/agentflow.information.flow@1/ConfidentialityLabelRef",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "RelationWire/agentflow.information.flow@1/TaintRef",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "RelationWire/agentflow.usage.signature@1/UsageMeterRef",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "StructuralSourceType",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "StructuralValue0029",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "StructuralValue0188",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "af-effect::EffectOperationRef",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "af-execution::ExecutionCapabilityRef",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "af-execution::RegionRef",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "af-execution::RuntimeProfileRef",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "af-execution::TrustDomainRef",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "af-flow::ConfidentialityLabelRef",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "af-flow::TaintRef",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "af-idl::CanonicalCase",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "af-idl::CanonicalEnumValue",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "af-idl::CanonicalField",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "af-idl::CanonicalTypeSchema",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "af-usage::UsageMeterRef",
+    "variant": null
+  },
+  {
+    "field": "name",
+    "path": [],
+    "type": "af-usage::UsageUnitRef",
+    "variant": null
+  },
+  {
+    "field": "namespace",
+    "path": [],
+    "type": "DocumentSourceDomain",
+    "variant": null
+  },
+  {
+    "field": "no",
+    "path": [],
+    "type": "af-idl::CanonicalCase",
+    "variant": null
+  },
+  {
+    "field": "no",
+    "path": [],
+    "type": "af-idl::CanonicalEnumValue",
+    "variant": null
+  },
+  {
+    "field": "no",
+    "path": [],
+    "type": "af-idl::CanonicalField",
+    "variant": null
+  },
+  {
+    "field": "node",
+    "path": [
+      [
+        "case",
+        "component"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "node",
+    "path": [
+      [
+        "case",
+        "computation"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "node",
+    "path": [
+      [
+        "case",
+        "control"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "node",
+    "path": [
+      [
+        "case",
+        "control"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "node",
+    "path": [
+      [
+        "case",
+        "opcode"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "node",
+    "path": [
+      [
+        "case",
+        "scope"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "node",
+    "path": [
+      [
+        "case",
+        "unresolved_request"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "nodes",
+    "path": [],
+    "type": "StructuralWitnessDag",
+    "variant": null
+  },
+  {
+    "field": "normalizer",
+    "path": [],
+    "type": "StructuralStageStatus",
+    "variant": null
+  },
+  {
+    "field": "normative_source",
+    "path": [],
+    "type": "af-computation::RuleContentIdentity",
+    "variant": null
+  },
+  {
+    "field": "normative_source",
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/RuleContentIdentity",
+    "variant": null
+  },
+  {
+    "field": "normative_sources",
+    "path": [],
+    "type": "FullSupportManifest",
+    "variant": null
+  },
+  {
+    "field": "normative_specifications",
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/SemanticRoleDefinition",
+    "variant": null
+  },
+  {
+    "field": "number",
+    "path": [
+      [
+        "case",
+        "port"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "obligation",
+    "path": [],
+    "type": "StructuralEditionTuple",
+    "variant": null
+  },
+  {
+    "field": "obligation_edition",
+    "path": [],
+    "type": "FullSupportManifest",
+    "variant": null
+  },
+  {
+    "field": "observations",
+    "path": [],
+    "type": "RelationSubjectAdmission",
+    "variant": null
+  },
+  {
+    "field": "observations",
+    "path": [],
+    "type": "StructuralSubjectAdmission",
+    "variant": null
+  },
+  {
+    "field": "observed",
+    "path": [
+      [
+        "case",
+        "pin"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "observed",
+    "path": [
+      [
+        "case",
+        "pin_mismatch"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "observed",
+    "path": [
+      [
+        "case",
+        "resolver_difference"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "observed",
+    "path": [
+      [
+        "case",
+        "source_mismatch"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "observed_type",
+    "path": [],
+    "type": "StructuralBindingFailure",
+    "variant": null
+  },
+  {
+    "field": "occurrence",
+    "path": [
+      [
+        "case",
+        "duplicate"
+      ]
+    ],
+    "type": "RawPortRejectionWitness",
+    "variant": null
+  },
+  {
+    "field": "occurrence",
+    "path": [
+      [
+        "case",
+        "native_guard"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "occurrence",
+    "path": [
+      [
+        "case",
+        "native_guard_binding"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "occurrence",
+    "path": [
+      [
+        "case",
+        "raw_port"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "occurrence",
+    "path": [
+      [
+        "case",
+        "zero"
+      ]
+    ],
+    "type": "RawPortRejectionWitness",
+    "variant": null
+  },
+  {
+    "field": "occurrence",
+    "path": [],
+    "type": "RawPortCheckBasis",
+    "variant": null
+  },
+  {
+    "field": "occurrence",
+    "path": [],
+    "type": "StructuralDeclaredInputs",
+    "variant": null
+  },
+  {
+    "field": "occurrence",
+    "path": [],
+    "type": "StructuralValue0206",
+    "variant": null
+  },
+  {
+    "field": "occurrence",
+    "path": [],
+    "type": "StructuralValue0207",
+    "variant": null
+  },
+  {
+    "field": "occurrence_key",
+    "path": [],
+    "type": "DocumentOccurrenceBinding",
+    "variant": null
+  },
+  {
+    "field": "offending",
+    "path": [
+      [
+        "case",
+        "invalid_mapping"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "offending",
+    "path": [
+      [
+        "case",
+        "invalid_shape"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "old",
+    "path": [
+      [
+        "case",
+        "substitution_application"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "old",
+    "path": [
+      [
+        "case",
+        "substitution_pair"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "old_checked",
+    "path": [
+      [
+        "case",
+        "contract_validation"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "operation",
+    "path": [
+      [
+        "case",
+        "operation"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "operation",
+    "path": [],
+    "type": "Raw(af-contract::EffectFlowPartition)",
+    "variant": null
+  },
+  {
+    "field": "operation",
+    "path": [],
+    "type": "Raw(af-effect::EffectAtom)",
+    "variant": null
+  },
+  {
+    "field": "operation",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.resource.compatibility@1/SupportedEffectResourcePair",
+    "variant": null
+  },
+  {
+    "field": "operation",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.signature@1/EffectAtom",
+    "variant": null
+  },
+  {
+    "field": "operator",
+    "path": [
+      [
+        "case",
+        "control"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "operator",
+    "path": [
+      [
+        "case",
+        "opcode"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "ordinal",
+    "path": [
+      [
+        "case",
+        "entry"
+      ]
+    ],
+    "type": "RawDocumentMember",
+    "variant": null
+  },
+  {
+    "field": "ordinal",
+    "path": [
+      [
+        "case",
+        "flow"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "ordinal",
+    "path": [],
+    "type": "StructuralValue0189",
+    "variant": null
+  },
+  {
+    "field": "origin",
+    "path": [],
+    "type": "FactKey",
+    "variant": null
+  },
+  {
+    "field": "origin",
+    "path": [],
+    "type": "RawParsedInput",
+    "variant": null
+  },
+  {
+    "field": "original_ordinal",
+    "path": [
+      [
+        "case",
+        "some"
+      ]
+    ],
+    "type": "RawPortPredecessor",
+    "variant": null
+  },
+  {
+    "field": "original_ordinal",
+    "path": [],
+    "type": "RawPortOccurrence",
+    "variant": null
+  },
+  {
+    "field": "original_ordinal",
+    "path": [],
+    "type": "RawValidationOrigin",
+    "variant": null
+  },
+  {
+    "field": "original_ordinal",
+    "path": [],
+    "type": "StructuralValue0200",
+    "variant": null
+  },
+  {
+    "field": "output_roots",
+    "path": [],
+    "type": "StructuralStageContract",
+    "variant": null
+  },
+  {
+    "field": "output_type",
+    "path": [],
+    "type": "StructuralStageContract",
+    "variant": null
+  },
+  {
+    "field": "outputs",
+    "path": [],
+    "type": "Raw(af-contract::ComponentContract)",
+    "variant": null
+  },
+  {
+    "field": "owned_root",
+    "path": [
+      [
+        "case",
+        "computation"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "owner",
+    "path": [
+      [
+        "case",
+        "control_edge"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "owner",
+    "path": [
+      [
+        "case",
+        "port"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "owner",
+    "path": [],
+    "type": "StructuralDeclaredInputs",
+    "variant": null
+  },
+  {
+    "field": "owner",
+    "path": [],
+    "type": "StructuralSourceType",
+    "variant": null
+  },
+  {
+    "field": "owner_compiler",
+    "path": [],
+    "type": "RawValidationSubject",
+    "variant": null
+  },
+  {
+    "field": "owner_key",
+    "path": [],
+    "type": "DocumentOwnerAnchor",
+    "variant": null
+  },
+  {
+    "field": "owners",
+    "path": [],
+    "type": "SourcePackage",
+    "variant": null
+  },
+  {
+    "field": "package",
+    "path": [],
+    "type": "StructuralDeclaredInputs",
+    "variant": null
+  },
+  {
+    "field": "parent",
+    "path": [],
+    "type": "StructuralSiteKey",
+    "variant": null
+  },
+  {
+    "field": "parent_source",
+    "path": [],
+    "type": "StructuralSiteDefinition",
+    "variant": null
+  },
+  {
+    "field": "part",
+    "path": [
+      [
+        "case",
+        "missing"
+      ]
+    ],
+    "type": "RelationLookupResult",
+    "variant": null
+  },
+  {
+    "field": "part",
+    "path": [],
+    "type": "StructuralValue0305",
+    "variant": null
+  },
+  {
+    "field": "partition",
+    "path": [
+      [
+        "case",
+        "flow"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "path",
+    "path": [
+      [
+        "case",
+        "control_edge"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "path",
+    "path": [
+      [
+        "case",
+        "output"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "path",
+    "path": [
+      [
+        "case",
+        "recovery"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "path",
+    "path": [
+      [
+        "case",
+        "scope_member"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "path",
+    "path": [],
+    "type": "RawInputOrigin",
+    "variant": null
+  },
+  {
+    "field": "path",
+    "path": [],
+    "type": "StructuralSiteKey",
+    "variant": null
+  },
+  {
+    "field": "payload",
+    "path": [
+      [
+        "case",
+        "variant"
+      ]
+    ],
+    "type": "NodeBody",
+    "variant": null
+  },
+  {
+    "field": "payload",
+    "path": [],
+    "type": "StructuralWVariant",
+    "variant": null
+  },
+  {
+    "field": "payload_type",
+    "path": [],
+    "type": "Raw(af-failure::FailureTypeRef)",
+    "variant": null
+  },
+  {
+    "field": "per_attempt_usage",
+    "path": [],
+    "type": "Raw(af-contract::RecoveryUsageBinding)",
+    "variant": null
+  },
+  {
+    "field": "phase",
+    "path": [
+      [
+        "case",
+        "usage"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "phase",
+    "path": [],
+    "type": "Raw(af-usage::UsageLimit)",
+    "variant": null
+  },
+  {
+    "field": "physical",
+    "path": [],
+    "type": "RawParsedInput",
+    "variant": null
+  },
+  {
+    "field": "physical",
+    "path": [],
+    "type": "StructuralDeclaredInputs",
+    "variant": null
+  },
+  {
+    "field": "pin",
+    "path": [
+      [
+        "case",
+        "digest"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "pin",
+    "path": [
+      [
+        "case",
+        "schema"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "pin",
+    "path": [],
+    "type": "NativeRelationSnapshotSource",
+    "variant": null
+  },
+  {
+    "field": "port",
+    "path": [
+      [
+        "case",
+        "export"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "port_no",
+    "path": [
+      [
+        "case",
+        "some"
+      ]
+    ],
+    "type": "RawPortPredecessor",
+    "variant": null
+  },
+  {
+    "field": "port_no",
+    "path": [],
+    "type": "Raw(af-contract::ComponentInputPort)",
+    "variant": null
+  },
+  {
+    "field": "port_no",
+    "path": [],
+    "type": "Raw(af-contract::ComponentOutputPort)",
+    "variant": null
+  },
+  {
+    "field": "port_no",
+    "path": [],
+    "type": "Raw(af-effect::EffectGuardInputEquals)",
+    "variant": null
+  },
+  {
+    "field": "port_no",
+    "path": [],
+    "type": "Raw(af-resource::ResourceRequirement)",
+    "variant": null
+  },
+  {
+    "field": "port_no",
+    "path": [],
+    "type": "RawPortOccurrence",
+    "variant": null
+  },
+  {
+    "field": "port_no",
+    "path": [],
+    "type": "StructuralValue0200",
+    "variant": null
+  },
+  {
+    "field": "position",
+    "path": [],
+    "type": "StructuralChildBinding",
+    "variant": null
+  },
+  {
+    "field": "predecessor",
+    "path": [],
+    "type": "RawPortCheckBasis",
+    "variant": null
+  },
+  {
+    "field": "predicate",
+    "path": [
+      [
+        "case",
+        "control"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "predicate",
+    "path": [],
+    "type": "Origin",
+    "variant": null
+  },
+  {
+    "field": "prerequisite",
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/RuleDependencyEdge",
+    "variant": null
+  },
+  {
+    "field": "previous_original_ordinal",
+    "path": [
+      [
+        "case",
+        "duplicate"
+      ]
+    ],
+    "type": "RawPortRejectionWitness",
+    "variant": null
+  },
+  {
+    "field": "previous_original_ordinal",
+    "path": [],
+    "type": "StructuralValue0207",
+    "variant": null
+  },
+  {
+    "field": "previous_port_no",
+    "path": [
+      [
+        "case",
+        "duplicate"
+      ]
+    ],
+    "type": "RawPortRejectionWitness",
+    "variant": null
+  },
+  {
+    "field": "previous_port_no",
+    "path": [],
+    "type": "StructuralValue0207",
+    "variant": null
+  },
+  {
+    "field": "production_binder",
+    "path": [],
+    "type": "StructuralStageStatus",
+    "variant": null
+  },
+  {
+    "field": "profile",
+    "path": [
+      [
+        "case",
+        "recovery"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "profile",
+    "path": [
+      [
+        "field",
+        "runtime_profiles"
+      ],
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "ExecutionUniverseContents",
+    "variant": null
+  },
+  {
+    "field": "profile",
+    "path": [
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "StructuralValue0043",
+    "variant": null
+  },
+  {
+    "field": "profile",
+    "path": [],
+    "type": "Raw(af-execution::RuntimeProfileRequirement)",
+    "variant": null
+  },
+  {
+    "field": "profile",
+    "path": [],
+    "type": "StructuralReferenceEnvironment",
+    "variant": null
+  },
+  {
+    "field": "profile",
+    "path": [],
+    "type": "StructuralValue0044",
+    "variant": null
+  },
+  {
+    "field": "profiles",
+    "path": [],
+    "type": "StructuralReferencePolicy",
+    "variant": null
+  },
+  {
+    "field": "provider_honors",
+    "path": [],
+    "type": "Raw(af-recovery::KeyStabilityRequirement)",
+    "variant": null
+  },
+  {
+    "field": "publication",
+    "path": [],
+    "type": "StructuralStageStatus",
+    "variant": null
+  },
+  {
+    "field": "qualifiers",
+    "path": [],
+    "type": "Raw(af-effect::EffectAtom)",
+    "variant": null
+  },
+  {
+    "field": "qualifiers",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.resource.compatibility@1/EffectQualifierProfile",
+    "variant": null
+  },
+  {
+    "field": "qualifiers",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.signature@1/EffectAtom",
+    "variant": null
+  },
+  {
+    "field": "quantities",
+    "path": [],
+    "type": "Raw(af-execution::ExecutionRequirements)",
+    "variant": null
+  },
+  {
+    "field": "rank_dependency",
+    "path": [],
+    "type": "StructuralSiteDefinition",
+    "variant": null
+  },
+  {
+    "field": "raw_full_capture",
+    "path": [],
+    "type": "StructuralStageStatus",
+    "variant": null
+  },
+  {
+    "field": "raw_member_value",
+    "path": [
+      [
+        "case",
+        "zero"
+      ]
+    ],
+    "type": "RawPortRejectionWitness",
+    "variant": null
+  },
+  {
+    "field": "raw_member_value",
+    "path": [],
+    "type": "StructuralValue0206",
+    "variant": null
+  },
+  {
+    "field": "raw_validation_origin",
+    "path": [],
+    "type": "Origin",
+    "variant": null
+  },
+  {
+    "field": "reason",
+    "path": [],
+    "type": "StructuralBindingFailure",
+    "variant": null
+  },
+  {
+    "field": "recognized_attributes",
+    "path": [],
+    "type": "ResourceTypeDescriptor",
+    "variant": null
+  },
+  {
+    "field": "reconciliation",
+    "path": [],
+    "type": "Raw(af-recovery::EffectRecoveryClause)",
+    "variant": null
+  },
+  {
+    "field": "reconciliation_operations",
+    "path": [
+      [
+        "field",
+        "recovery_operations"
+      ]
+    ],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "reconciliation_operations",
+    "path": [],
+    "type": "StructuralValue0025",
+    "variant": null
+  },
+  {
+    "field": "recovery",
+    "path": [],
+    "type": "Raw(af-contract::ComponentContract)",
+    "variant": null
+  },
+  {
+    "field": "recovery_action_bindings",
+    "path": [],
+    "type": "Raw(af-contract::ComponentContract)",
+    "variant": null
+  },
+  {
+    "field": "recovery_operations",
+    "path": [],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "recovery_usage",
+    "path": [
+      [
+        "field",
+        "relation_snapshots"
+      ]
+    ],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "recovery_usage",
+    "path": [],
+    "type": "StructuralValue0030",
+    "variant": null
+  },
+  {
+    "field": "recovery_usage_bindings",
+    "path": [],
+    "type": "Raw(af-contract::ComponentContract)",
+    "variant": null
+  },
+  {
+    "field": "reference_policy",
+    "path": [],
+    "type": "StructuralSiteDefinition",
+    "variant": null
+  },
+  {
+    "field": "region_compatibility",
+    "path": [],
+    "type": "ExecutionUniverseContents",
+    "variant": null
+  },
+  {
+    "field": "region_pairs",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/ConfidentialityExecutionRule",
+    "variant": null
+  },
+  {
+    "field": "region_residency",
+    "path": [],
+    "type": "Raw(af-execution::ExecutionRequirements)",
+    "variant": null
+  },
+  {
+    "field": "regions",
+    "path": [],
+    "type": "ExecutionUniverseContents",
+    "variant": null
+  },
+  {
+    "field": "registration",
+    "path": [],
+    "type": "StructuralStageStatus",
+    "variant": null
+  },
+  {
+    "field": "registry_content",
+    "path": [],
+    "type": "Compiler",
+    "variant": null
+  },
+  {
+    "field": "relation",
+    "path": [
+      [
+        "case",
+        "noncontainment"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "relation_partition_complete",
+    "path": [],
+    "type": "RelationSubjectAdmission",
+    "variant": null
+  },
+  {
+    "field": "relation_partition_complete",
+    "path": [],
+    "type": "StructuralSubjectAdmission",
+    "variant": null
+  },
+  {
+    "field": "relation_snapshots",
+    "path": [],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "replacement",
+    "path": [
+      [
+        "case",
+        "substitution_application"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "replacement",
+    "path": [
+      [
+        "case",
+        "substitution_pair"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "replay_semantics",
+    "path": [],
+    "type": "Raw(af-recovery::RecoveryContract)",
+    "variant": null
+  },
+  {
+    "field": "report",
+    "path": [],
+    "type": "StructuralEditionTuple",
+    "variant": null
+  },
+  {
+    "field": "report_shape",
+    "path": [],
+    "type": "FullSupportManifest",
+    "variant": null
+  },
+  {
+    "field": "request",
+    "path": [
+      [
+        "case",
+        "unresolved_request"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "request",
+    "path": [
+      [
+        "case",
+        "unresolved_request"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "required",
+    "path": [
+      [
+        "case",
+        "missing_members"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "required",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.resource.compatibility@1/SelectorKeyRule",
+    "variant": null
+  },
+  {
+    "field": "required_attributes",
+    "path": [],
+    "type": "Raw(af-execution::CapabilityRequirement)",
+    "variant": null
+  },
+  {
+    "field": "required_attributes",
+    "path": [],
+    "type": "Raw(af-resource::ResourceRequirement)",
+    "variant": null
+  },
+  {
+    "field": "required_features",
+    "path": [],
+    "type": "Raw(af-execution::RuntimeProfileRequirement)",
+    "variant": null
+  },
+  {
+    "field": "required_schema_pins",
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/SemanticRoleDefinition",
+    "variant": null
+  },
+  {
+    "field": "requirement",
+    "path": [],
+    "type": "FactKey",
+    "variant": null
+  },
+  {
+    "field": "requirement_port_no",
+    "path": [],
+    "type": "Raw(af-effect::ResourceSelector)",
+    "variant": null
+  },
+  {
+    "field": "requirement_port_no",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.signature@1/ResourceSelector",
+    "variant": null
+  },
+  {
+    "field": "requirements",
+    "path": [
+      [
+        "case",
+        "execution"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "requirements",
+    "path": [],
+    "type": "Raw(af-resource::ResourceRequirementRow)",
+    "variant": null
+  },
+  {
+    "field": "residency_region",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/RegionPair",
+    "variant": null
+  },
+  {
+    "field": "residency_regions",
+    "path": [],
+    "type": "Raw(af-execution::RegionResidencyRequirement)",
+    "variant": null
+  },
+  {
+    "field": "residual",
+    "path": [],
+    "type": "Raw(af-effect::EffectOpenRow)",
+    "variant": null
+  },
+  {
+    "field": "resolved",
+    "path": [
+      [
+        "case",
+        "contract_ref"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "resolver_associations",
+    "path": [
+      [
+        "case",
+        "computation"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "resolver_associations",
+    "path": [
+      [
+        "case",
+        "root_export"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "resource_attribute_key",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.resource.compatibility@1/SelectorKeyRule",
+    "variant": null
+  },
+  {
+    "field": "resource_selector",
+    "path": [],
+    "type": "Raw(af-effect::EffectAtom)",
+    "variant": null
+  },
+  {
+    "field": "resource_selector",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.signature@1/EffectAtom",
+    "variant": null
+  },
+  {
+    "field": "resource_type",
+    "path": [],
+    "type": "Raw(af-resource::ResourceRequirement)",
+    "variant": null
+  },
+  {
+    "field": "resource_type",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.resource.compatibility@1/SupportedEffectResourcePair",
+    "variant": null
+  },
+  {
+    "field": "resource_types",
+    "path": [],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "resources",
+    "path": [],
+    "type": "Raw(af-contract::ComponentContract)",
+    "variant": null
+  },
+  {
+    "field": "revision",
+    "path": [
+      [
+        "case",
+        "relation"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "revision",
+    "path": [],
+    "type": "NativeRelationFamilyPin",
+    "variant": null
+  },
+  {
+    "field": "revision",
+    "path": [],
+    "type": "NativeRelationSnapshotSource",
+    "variant": null
+  },
+  {
+    "field": "revision_key",
+    "path": [],
+    "type": "DocumentOwnerAnchor",
+    "variant": null
+  },
+  {
+    "field": "role",
+    "path": [
+      [
+        "case",
+        "contract_operand"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "role",
+    "path": [
+      [
+        "case",
+        "contract_operand"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "role",
+    "path": [
+      [
+        "case",
+        "contract_operand"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "role",
+    "path": [
+      [
+        "case",
+        "digest"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "role",
+    "path": [
+      [
+        "case",
+        "pin"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "role",
+    "path": [
+      [
+        "case",
+        "pin_mismatch"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "role",
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/SemanticRoleEntry",
+    "variant": null
+  },
+  {
+    "field": "roles",
+    "path": [],
+    "type": "RawContextBinding",
+    "variant": null
+  },
+  {
+    "field": "root_export",
+    "path": [],
+    "type": "StructuralStageStatus",
+    "variant": null
+  },
+  {
+    "field": "root_node",
+    "path": [
+      [
+        "case",
+        "root"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "root_provenance",
+    "path": [
+      [
+        "case",
+        "computation"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "root_provenance",
+    "path": [
+      [
+        "case",
+        "root_export"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "root_type",
+    "path": [],
+    "type": "RelationLookupTarget",
+    "variant": null
+  },
+  {
+    "field": "root_types",
+    "path": [],
+    "type": "StructuralReferenceEnvironment",
+    "variant": null
+  },
+  {
+    "field": "roots",
+    "path": [],
+    "type": "StructuralWitnessDag",
+    "variant": null
+  },
+  {
+    "field": "row",
+    "path": [],
+    "type": "Raw(af-effect::EffectSignature)",
+    "variant": null
+  },
+  {
+    "field": "rule",
+    "path": [
+      [
+        "case",
+        "raw_declaration_constraint"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "rule",
+    "path": [],
+    "type": "FactKey",
+    "variant": null
+  },
+  {
+    "field": "rule",
+    "path": [],
+    "type": "RawPortCheckBasis",
+    "variant": null
+  },
+  {
+    "field": "rule_areas",
+    "path": [
+      [
+        "field",
+        "closed_tables"
+      ]
+    ],
+    "type": "FullSupportManifest",
+    "variant": null
+  },
+  {
+    "field": "rule_areas",
+    "path": [],
+    "type": "StructuralValue0004",
+    "variant": null
+  },
+  {
+    "field": "rule_id",
+    "path": [],
+    "type": "af-computation::RuleContentIdentity",
+    "variant": null
+  },
+  {
+    "field": "rule_id",
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/RuleContentIdentity",
+    "variant": null
+  },
+  {
+    "field": "rule_registry_content",
+    "path": [],
+    "type": "Compiler",
+    "variant": null
+  },
+  {
+    "field": "rules",
+    "path": [],
+    "type": "Compiler",
+    "variant": null
+  },
+  {
+    "field": "rules",
+    "path": [],
+    "type": "RelationWire/agentflow.recovery.usage.coverage@1/RecoveryUsageCoverageCatalog",
+    "variant": null
+  },
+  {
+    "field": "run_parameter",
+    "path": [
+      [
+        "case",
+        "input"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "runtime",
+    "path": [],
+    "type": "StructuralStageStatus",
+    "variant": null
+  },
+  {
+    "field": "runtime_profile",
+    "path": [],
+    "type": "Raw(af-execution::ExecutionRequirements)",
+    "variant": null
+  },
+  {
+    "field": "runtime_profiles",
+    "path": [],
+    "type": "ExecutionUniverseContents",
+    "variant": null
+  },
+  {
+    "field": "sandbox",
+    "path": [],
+    "type": "Raw(af-execution::ExecutionRequirements)",
+    "variant": null
+  },
+  {
+    "field": "sandbox",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/AuthorityExecutionRule",
+    "variant": null
+  },
+  {
+    "field": "sandbox",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/FlowExecutionRule",
+    "variant": null
+  },
+  {
+    "field": "sandbox",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/TaintExecutionRule",
+    "variant": null
+  },
+  {
+    "field": "schema",
+    "path": [
+      [
+        "case",
+        "raw_declaration_constraint"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "schema",
+    "path": [
+      [
+        "case",
+        "relation"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "schema",
+    "path": [],
+    "type": "Raw(af-execution::ImplementationAbiRequirement)",
+    "variant": null
+  },
+  {
+    "field": "schema",
+    "path": [],
+    "type": "Raw(af-resource::ResourceTypeRef)",
+    "variant": null
+  },
+  {
+    "field": "schema",
+    "path": [],
+    "type": "RelationFoundSchema",
+    "variant": null
+  },
+  {
+    "field": "schema",
+    "path": [],
+    "type": "RelationWire/agentflow.resource.requirement@1/ResourceTypeRef",
+    "variant": null
+  },
+  {
+    "field": "schema",
+    "path": [],
+    "type": "af-idl::CanonicalTypeSchema",
+    "variant": null
+  },
+  {
+    "field": "schema_digest",
+    "path": [],
+    "type": "LogicalTypeIdentity",
+    "variant": null
+  },
+  {
+    "field": "schema_digest",
+    "path": [],
+    "type": "Raw(af-semantic::TypeSchemaRef)",
+    "variant": null
+  },
+  {
+    "field": "schema_digest",
+    "path": [],
+    "type": "RelationWire/agentflow.semantic.core@1/TypeSchemaRef",
+    "variant": null
+  },
+  {
+    "field": "schema_digest",
+    "path": [],
+    "type": "af-semantic::TypeSchemaRef",
+    "variant": null
+  },
+  {
+    "field": "schema_digest",
+    "path": [],
+    "type": "agentflow.semantic.core@1/TypeSchemaRef",
+    "variant": null
+  },
+  {
+    "field": "schema_family",
+    "path": [],
+    "type": "NativeRelationSnapshotSource",
+    "variant": null
+  },
+  {
+    "field": "schema_hex",
+    "path": [],
+    "type": "ResourceTypeDescriptor",
+    "variant": null
+  },
+  {
+    "field": "schemas",
+    "path": [
+      [
+        "field",
+        "resource_types"
+      ]
+    ],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "schemas",
+    "path": [],
+    "type": "StructuralValue0016",
+    "variant": null
+  },
+  {
+    "field": "scope",
+    "path": [],
+    "type": "StructuralStageStatus",
+    "variant": null
+  },
+  {
+    "field": "scope_bindings",
+    "path": [],
+    "type": "Raw(af-effect::ResourceSelector)",
+    "variant": null
+  },
+  {
+    "field": "scope_bindings",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.signature@1/ResourceSelector",
+    "variant": null
+  },
+  {
+    "field": "second_input_path",
+    "path": [],
+    "type": "StructuralBindingFailure",
+    "variant": null
+  },
+  {
+    "field": "selected_error",
+    "path": [],
+    "type": "RawPortCheckBasis",
+    "variant": null
+  },
+  {
+    "field": "selected_specifications",
+    "path": [],
+    "type": "FullSupportManifest",
+    "variant": null
+  },
+  {
+    "field": "selector",
+    "path": [],
+    "type": "Raw(af-effect::EffectResidual)",
+    "variant": null
+  },
+  {
+    "field": "selector_key",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.resource.compatibility@1/SelectorKeyRule",
+    "variant": null
+  },
+  {
+    "field": "selector_keys",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.resource.compatibility@1/SupportedEffectResourcePair",
+    "variant": null
+  },
+  {
+    "field": "semantic_roles",
+    "path": [],
+    "type": "FullSupportManifest",
+    "variant": null
+  },
+  {
+    "field": "short_statement",
+    "path": [],
+    "type": "af-computation::RuleContentIdentity",
+    "variant": null
+  },
+  {
+    "field": "short_statement",
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/RuleContentIdentity",
+    "variant": null
+  },
+  {
+    "field": "sink",
+    "path": [
+      [
+        "case",
+        "flow"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "sink",
+    "path": [],
+    "type": "Raw(af-flow::FlowConstraint)",
+    "variant": null
+  },
+  {
+    "field": "sink",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/FlowExecutionRule",
+    "variant": null
+  },
+  {
+    "field": "sink_rules",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/InformationFlowExecutionCatalog",
+    "variant": null
+  },
+  {
+    "field": "sinks",
+    "path": [
+      [
+        "field",
+        "flow_catalogs"
+      ]
+    ],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "sinks",
+    "path": [],
+    "type": "StructuralValue0019",
+    "variant": null
+  },
+  {
+    "field": "site",
+    "path": [],
+    "type": "StructuralBindingFailure",
+    "variant": null
+  },
+  {
+    "field": "slot",
+    "path": [
+      [
+        "case",
+        "input"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "slot",
+    "path": [
+      [
+        "case",
+        "resource"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "slot",
+    "path": [],
+    "type": "RelationLookupTarget",
+    "variant": null
+  },
+  {
+    "field": "soft_preferences",
+    "path": [],
+    "type": "Raw(af-execution::ExecutionRequirements)",
+    "variant": null
+  },
+  {
+    "field": "sorted_ordinal",
+    "path": [],
+    "type": "RawPortOccurrence",
+    "variant": null
+  },
+  {
+    "field": "source",
+    "path": [
+      [
+        "case",
+        "effect"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "source",
+    "path": [
+      [
+        "case",
+        "effect_atom"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "source",
+    "path": [
+      [
+        "case",
+        "flow"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "source",
+    "path": [
+      [
+        "case",
+        "guard_countermodel"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "source",
+    "path": [
+      [
+        "case",
+        "recovery"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "source",
+    "path": [],
+    "type": "CurrentContextRelationSchemaValidation",
+    "variant": null
+  },
+  {
+    "field": "source",
+    "path": [],
+    "type": "FactKey",
+    "variant": null
+  },
+  {
+    "field": "source",
+    "path": [],
+    "type": "StructuralStageEdge",
+    "variant": null
+  },
+  {
+    "field": "source_anchor",
+    "path": [],
+    "type": "af-computation::RuleContentIdentity",
+    "variant": null
+  },
+  {
+    "field": "source_anchor",
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/RuleContentIdentity",
+    "variant": null
+  },
+  {
+    "field": "source_assurance",
+    "path": [],
+    "type": "StructuralBindingOutputClaim",
+    "variant": null
+  },
+  {
+    "field": "source_assurance",
+    "path": [],
+    "type": "StructuralSubjectAdmission",
+    "variant": null
+  },
+  {
+    "field": "source_bound",
+    "path": [
+      [
+        "case",
+        "usage"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "source_family",
+    "path": [
+      [
+        "case",
+        "family_mismatch"
+      ]
+    ],
+    "type": "RelationLookupResult",
+    "variant": null
+  },
+  {
+    "field": "source_family",
+    "path": [],
+    "type": "StructuralValue0308",
+    "variant": null
+  },
+  {
+    "field": "source_guard",
+    "path": [
+      [
+        "case",
+        "guard_countermodel"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "source_member_path",
+    "path": [
+      [
+        "case",
+        "raw_validation_member"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "source_model",
+    "path": [],
+    "type": "StructuralSiteDefinition",
+    "variant": null
+  },
+  {
+    "field": "source_name",
+    "path": [],
+    "type": "WorkflowDocumentEntry",
+    "variant": null
+  },
+  {
+    "field": "source_node",
+    "path": [
+      [
+        "case",
+        "execution"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "source_ordinal",
+    "path": [],
+    "type": "Origin",
+    "variant": null
+  },
+  {
+    "field": "source_owner",
+    "path": [],
+    "type": "DocumentOccurrenceBinding",
+    "variant": null
+  },
+  {
+    "field": "source_package",
+    "path": [],
+    "type": "DocumentOccurrenceBinding",
+    "variant": null
+  },
+  {
+    "field": "source_port",
+    "path": [
+      [
+        "case",
+        "resource"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "source_stage",
+    "path": [],
+    "type": "StructuralSiteDefinition",
+    "variant": null
+  },
+  {
+    "field": "source_stage",
+    "path": [],
+    "type": "StructuralStageContract",
+    "variant": null
+  },
+  {
+    "field": "sources",
+    "path": [
+      [
+        "case",
+        "workflow_source_collection"
+      ]
+    ],
+    "type": "DocumentOwnerContainer",
+    "variant": null
+  },
+  {
+    "field": "sources",
+    "path": [],
+    "type": "Raw(af-flow::StaticInformationSummary)",
+    "variant": null
+  },
+  {
+    "field": "sources",
+    "path": [],
+    "type": "StructuralValue0212",
+    "variant": null
+  },
+  {
+    "field": "specification_id",
+    "path": [],
+    "type": "CompiledModuleContents",
+    "variant": null
+  },
+  {
+    "field": "specification_id",
+    "path": [],
+    "type": "LogicalTypeIdentity",
+    "variant": null
+  },
+  {
+    "field": "specification_id",
+    "path": [],
+    "type": "Raw(af-semantic::TypeSchemaRef)",
+    "variant": null
+  },
+  {
+    "field": "specification_id",
+    "path": [],
+    "type": "RelationWire/agentflow.semantic.core@1/TypeSchemaRef",
+    "variant": null
+  },
+  {
+    "field": "specification_id",
+    "path": [],
+    "type": "ResourceTypeDescriptor",
+    "variant": null
+  },
+  {
+    "field": "specification_id",
+    "path": [],
+    "type": "af-computation::SpecificationContentIdentity",
+    "variant": null
+  },
+  {
+    "field": "specification_id",
+    "path": [],
+    "type": "af-semantic::TypeSchemaRef",
+    "variant": null
+  },
+  {
+    "field": "specification_id",
+    "path": [],
+    "type": "agentflow.semantic.core@1/TypeSchemaRef",
+    "variant": null
+  },
+  {
+    "field": "specifications",
+    "path": [],
+    "type": "Compiler",
+    "variant": null
+  },
+  {
+    "field": "stable_across_attempts",
+    "path": [],
+    "type": "Raw(af-recovery::KeyStabilityRequirement)",
+    "variant": null
+  },
+  {
+    "field": "stage",
+    "path": [],
+    "type": "FactKey",
+    "variant": null
+  },
+  {
+    "field": "stage",
+    "path": [],
+    "type": "StructuralBindingFailure",
+    "variant": null
+  },
+  {
+    "field": "status",
+    "path": [],
+    "type": "StructuralStageContract",
+    "variant": null
+  },
+  {
+    "field": "step",
+    "path": [
+      [
+        "case",
+        "invalid"
+      ]
+    ],
+    "type": "RelationValidationResult",
+    "variant": null
+  },
+  {
+    "field": "step",
+    "path": [],
+    "type": "StructuralValue0311",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [
+      [
+        "case",
+        "contract_operand"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [
+      [
+        "case",
+        "contract_operand"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [
+      [
+        "case",
+        "contract_operand"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [
+      [
+        "case",
+        "duplicate"
+      ]
+    ],
+    "type": "RawPortRejectionWitness",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [
+      [
+        "case",
+        "native_guard"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [
+      [
+        "case",
+        "native_guard_binding"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [
+      [
+        "case",
+        "native_guard_binding"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [
+      [
+        "case",
+        "native_guard_member"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [
+      [
+        "case",
+        "native_guard_subject"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [
+      [
+        "case",
+        "native_guard_subject"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [
+      [
+        "case",
+        "raw_contract_validation"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [
+      [
+        "case",
+        "raw_declaration_constraint"
+      ]
+    ],
+    "type": "Target",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [
+      [
+        "case",
+        "raw_validation"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [
+      [
+        "case",
+        "raw_validation_member"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [
+      [
+        "case",
+        "zero"
+      ]
+    ],
+    "type": "RawPortRejectionWitness",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [],
+    "type": "RawPortCheckBasis",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [],
+    "type": "RelationSubjectAdmission",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [],
+    "type": "StructuralSubjectAdmission",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [],
+    "type": "StructuralValue0206",
+    "variant": null
+  },
+  {
+    "field": "subject",
+    "path": [],
+    "type": "StructuralValue0207",
+    "variant": null
+  },
+  {
+    "field": "summary",
+    "path": [],
+    "type": "Raw(af-flow::InformationFlowContract)",
+    "variant": null
+  },
+  {
+    "field": "support_manifest",
+    "path": [],
+    "type": "Compiler",
+    "variant": null
+  },
+  {
+    "field": "supported_pairs",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.resource.compatibility@1/EffectResourceCompatibilityCatalog",
+    "variant": null
+  },
+  {
+    "field": "supported_versions",
+    "path": [
+      [
+        "field",
+        "capabilities"
+      ],
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "ExecutionUniverseContents",
+    "variant": null
+  },
+  {
+    "field": "supported_versions",
+    "path": [
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "StructuralValue0034",
+    "variant": null
+  },
+  {
+    "field": "supported_versions",
+    "path": [],
+    "type": "StructuralValue0035",
+    "variant": null
+  },
+  {
+    "field": "taint",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/TaintExecutionRule",
+    "variant": null
+  },
+  {
+    "field": "taint_rules",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/InformationFlowExecutionCatalog",
+    "variant": null
+  },
+  {
+    "field": "taints",
+    "path": [
+      [
+        "case",
+        "flow"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "taints",
+    "path": [
+      [
+        "field",
+        "flow_catalogs"
+      ]
+    ],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "taints",
+    "path": [],
+    "type": "Raw(af-flow::StaticInformationSummary)",
+    "variant": null
+  },
+  {
+    "field": "taints",
+    "path": [],
+    "type": "StructuralValue0019",
+    "variant": null
+  },
+  {
+    "field": "target",
+    "path": [
+      [
+        "case",
+        "ambiguous"
+      ]
+    ],
+    "type": "RelationLookupResult",
+    "variant": null
+  },
+  {
+    "field": "target",
+    "path": [
+      [
+        "case",
+        "dependency"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "target",
+    "path": [
+      [
+        "case",
+        "family_mismatch"
+      ]
+    ],
+    "type": "RelationLookupResult",
+    "variant": null
+  },
+  {
+    "field": "target",
+    "path": [
+      [
+        "case",
+        "missing"
+      ]
+    ],
+    "type": "RelationLookupResult",
+    "variant": null
+  },
+  {
+    "field": "target",
+    "path": [
+      [
+        "case",
+        "resolver_difference"
+      ]
+    ],
+    "type": "EvidenceRef",
+    "variant": null
+  },
+  {
+    "field": "target",
+    "path": [],
+    "type": "CurrentContextRelationSchemaValidation",
+    "variant": null
+  },
+  {
+    "field": "target",
+    "path": [],
+    "type": "FactKey",
+    "variant": null
+  },
+  {
+    "field": "target",
+    "path": [],
+    "type": "RelationFoundSchema",
+    "variant": null
+  },
+  {
+    "field": "target",
+    "path": [],
+    "type": "StructuralReferencePolicy",
+    "variant": null
+  },
+  {
+    "field": "target",
+    "path": [],
+    "type": "StructuralStageEdge",
+    "variant": null
+  },
+  {
+    "field": "target",
+    "path": [],
+    "type": "StructuralValue0305",
+    "variant": null
+  },
+  {
+    "field": "target",
+    "path": [],
+    "type": "StructuralValue0306",
+    "variant": null
+  },
+  {
+    "field": "target",
+    "path": [],
+    "type": "StructuralValue0308",
+    "variant": null
+  },
+  {
+    "field": "target_guard",
+    "path": [
+      [
+        "case",
+        "guard_countermodel"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "target_ir",
+    "path": [
+      [
+        "case",
+        "subflow"
+      ]
+    ],
+    "type": "Source",
+    "variant": null
+  },
+  {
+    "field": "to",
+    "path": [
+      [
+        "field",
+        "region_compatibility"
+      ],
+      [
+        "member",
+        null
+      ]
+    ],
+    "type": "ExecutionUniverseContents",
+    "variant": null
+  },
+  {
+    "field": "to",
+    "path": [
+      [
+        "member",
+        null
+      ]
+    ],
+    "type": "StructuralValue0041",
+    "variant": null
+  },
+  {
+    "field": "to",
+    "path": [],
+    "type": "StructuralValue0042",
+    "variant": null
+  },
+  {
+    "field": "top_export",
+    "path": [
+      [
+        "case",
+        "root_export"
+      ]
+    ],
+    "type": "ScopeSubject",
+    "variant": null
+  },
+  {
+    "field": "transitive_rules",
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/CompleteAttributionClaim",
+    "variant": null
+  },
+  {
+    "field": "trust_domain",
+    "path": [],
+    "type": "Raw(af-execution::ExecutionRequirements)",
+    "variant": null
+  },
+  {
+    "field": "trust_domains",
+    "path": [],
+    "type": "ExecutionUniverseContents",
+    "variant": null
+  },
+  {
+    "field": "trust_domains",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/AuthorityExecutionRule",
+    "variant": null
+  },
+  {
+    "field": "trust_domains",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/FlowExecutionRule",
+    "variant": null
+  },
+  {
+    "field": "trust_domains",
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/TaintExecutionRule",
+    "variant": null
+  },
+  {
+    "field": "type",
+    "path": [
+      [
+        "case",
+        "resource"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "type",
+    "path": [],
+    "type": "StructuralWNode",
+    "variant": null
+  },
+  {
+    "field": "type_expr",
+    "path": [],
+    "type": "af-idl::CanonicalCase",
+    "variant": null
+  },
+  {
+    "field": "type_expr",
+    "path": [],
+    "type": "af-idl::CanonicalField",
+    "variant": null
+  },
+  {
+    "field": "type_name",
+    "path": [
+      [
+        "case",
+        "integer_out_of_range"
+      ]
+    ],
+    "type": "RelationCodecFailure",
+    "variant": null
+  },
+  {
+    "field": "type_name",
+    "path": [],
+    "type": "LogicalTypeIdentity",
+    "variant": null
+  },
+  {
+    "field": "type_name",
+    "path": [],
+    "type": "Raw(af-semantic::TypeSchemaRef)",
+    "variant": null
+  },
+  {
+    "field": "type_name",
+    "path": [],
+    "type": "RelationWire/agentflow.semantic.core@1/TypeSchemaRef",
+    "variant": null
+  },
+  {
+    "field": "type_name",
+    "path": [],
+    "type": "ResourceTypeDescriptor",
+    "variant": null
+  },
+  {
+    "field": "type_name",
+    "path": [],
+    "type": "StructuralValue0282",
+    "variant": null
+  },
+  {
+    "field": "type_name",
+    "path": [],
+    "type": "af-semantic::TypeSchemaRef",
+    "variant": null
+  },
+  {
+    "field": "type_name",
+    "path": [],
+    "type": "agentflow.semantic.core@1/TypeSchemaRef",
+    "variant": null
+  },
+  {
+    "field": "type_ref",
+    "path": [],
+    "type": "Raw(af-contract::ComponentInputPort)",
+    "variant": null
+  },
+  {
+    "field": "type_ref",
+    "path": [],
+    "type": "Raw(af-contract::ComponentOutputPort)",
+    "variant": null
+  },
+  {
+    "field": "type_schemas",
+    "path": [],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "types",
+    "path": [],
+    "type": "CompiledModuleContents",
+    "variant": null
+  },
+  {
+    "field": "unit",
+    "path": [
+      [
+        "case",
+        "usage"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "unit",
+    "path": [
+      [
+        "field",
+        "usage_meters"
+      ],
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "unit",
+    "path": [
+      [
+        "value",
+        null
+      ]
+    ],
+    "type": "StructuralValue0023",
+    "variant": null
+  },
+  {
+    "field": "unit",
+    "path": [],
+    "type": "StructuralValue0024",
+    "variant": null
+  },
+  {
+    "field": "universe",
+    "path": [
+      [
+        "case",
+        "missing_members"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "unknown_effect_handling",
+    "path": [],
+    "type": "Raw(af-recovery::EffectRecoveryClause)",
+    "variant": null
+  },
+  {
+    "field": "upper",
+    "path": [],
+    "type": "Raw(af-effect::OccurrenceBounds)",
+    "variant": null
+  },
+  {
+    "field": "upper",
+    "path": [],
+    "type": "Raw(af-usage::UsageLimit)",
+    "variant": null
+  },
+  {
+    "field": "usage",
+    "path": [],
+    "type": "Raw(af-contract::ComponentContract)",
+    "variant": null
+  },
+  {
+    "field": "usage_meters",
+    "path": [],
+    "type": "ContractProofContextContents",
+    "variant": null
+  },
+  {
+    "field": "use_site",
+    "path": [
+      [
+        "case",
+        "input"
+      ]
+    ],
+    "type": "Coordinate",
+    "variant": null
+  },
+  {
+    "field": "validated_catalog",
+    "path": [
+      [
+        "case",
+        "valid"
+      ]
+    ],
+    "type": "RelationValidationResult",
+    "variant": null
+  },
+  {
+    "field": "validated_catalog",
+    "path": [],
+    "type": "StructuralValue0315",
+    "variant": null
+  },
+  {
+    "field": "validation",
+    "path": [],
+    "type": "CurrentContextRelationSchemaValidation",
+    "variant": null
+  },
+  {
+    "field": "validation_rule",
+    "path": [],
+    "type": "RelationAlgorithmIdentity",
+    "variant": null
+  },
+  {
+    "field": "value",
+    "path": [
+      [
+        "case",
+        "record"
+      ],
+      [
+        "item",
+        null
+      ]
+    ],
+    "type": "NodeBody",
+    "variant": null
+  },
+  {
+    "field": "value",
+    "path": [
+      [
+        "case",
+        "unknown_enum_value"
+      ]
+    ],
+    "type": "RelationCodecFailure",
+    "variant": null
+  },
+  {
+    "field": "value",
+    "path": [
+      [
+        "field",
+        "attributes"
+      ],
+      [
+        "member",
+        null
+      ]
+    ],
+    "type": "StructuralValue0035",
+    "variant": null
+  },
+  {
+    "field": "value",
+    "path": [
+      [
+        "field",
+        "capabilities"
+      ],
+      [
+        "value",
+        null
+      ],
+      [
+        "field",
+        "attributes"
+      ],
+      [
+        "member",
+        null
+      ]
+    ],
+    "type": "ExecutionUniverseContents",
+    "variant": null
+  },
+  {
+    "field": "value",
+    "path": [
+      [
+        "member",
+        null
+      ]
+    ],
+    "type": "StructuralValue0037",
+    "variant": null
+  },
+  {
+    "field": "value",
+    "path": [
+      [
+        "value",
+        null
+      ],
+      [
+        "field",
+        "attributes"
+      ],
+      [
+        "member",
+        null
+      ]
+    ],
+    "type": "StructuralValue0034",
+    "variant": null
+  },
+  {
+    "field": "value",
+    "path": [],
+    "type": "Raw(af-effect::ScopeBinding)",
+    "variant": null
+  },
+  {
+    "field": "value",
+    "path": [],
+    "type": "Raw(af-execution::CapabilityAttribute)",
+    "variant": null
+  },
+  {
+    "field": "value",
+    "path": [],
+    "type": "Raw(af-resource::ResourceAttributeConstraint)",
+    "variant": null
+  },
+  {
+    "field": "value",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.signature@1/ScopeBinding",
+    "variant": null
+  },
+  {
+    "field": "value",
+    "path": [],
+    "type": "StructuralMapEntry",
+    "variant": null
+  },
+  {
+    "field": "value",
+    "path": [],
+    "type": "StructuralValue0038",
+    "variant": null
+  },
+  {
+    "field": "value",
+    "path": [],
+    "type": "StructuralValue0291",
+    "variant": null
+  },
+  {
+    "field": "value",
+    "path": [],
+    "type": "StructuralWEntry",
+    "variant": null
+  },
+  {
+    "field": "value",
+    "path": [],
+    "type": "StructuralWField",
+    "variant": null
+  },
+  {
+    "field": "value_path",
+    "path": [
+      [
+        "case",
+        "supplied"
+      ]
+    ],
+    "type": "RawPhysicalAssociation",
+    "variant": null
+  },
+  {
+    "field": "value_path",
+    "path": [
+      [
+        "case",
+        "supplied"
+      ]
+    ],
+    "type": "StructuralPhysicalSource",
+    "variant": null
+  },
+  {
+    "field": "value_path",
+    "path": [],
+    "type": "StructuralValue0192",
+    "variant": null
+  },
+  {
+    "field": "value_type",
+    "path": [],
+    "type": "StructuralChildBinding",
+    "variant": null
+  },
+  {
+    "field": "value_type",
+    "path": [],
+    "type": "StructuralSiteDefinition",
+    "variant": null
+  },
+  {
+    "field": "values",
+    "path": [],
+    "type": "RelationWire/agentflow.effect.resource.compatibility@1/SelectorKeyRule",
+    "variant": null
+  },
+  {
+    "field": "witness",
+    "path": [
+      [
+        "case",
+        "native_guard"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "witness",
+    "path": [
+      [
+        "case",
+        "noncontainment"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "witness",
+    "path": [
+      [
+        "case",
+        "prerequisite_contradiction"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "witness",
+    "path": [
+      [
+        "case",
+        "raw_validation"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "witness",
+    "path": [
+      [
+        "case",
+        "substitution"
+      ]
+    ],
+    "type": "TypedContradiction",
+    "variant": null
+  },
+  {
+    "field": "witness_graph",
+    "path": [],
+    "type": "StructuralReferenceEnvironment",
+    "variant": null
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Coordinate",
+    "variant": "context_member"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Coordinate",
+    "variant": "control"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Coordinate",
+    "variant": "dependency"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Coordinate",
+    "variant": "effect"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Coordinate",
+    "variant": "execution"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Coordinate",
+    "variant": "flow"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Coordinate",
+    "variant": "input"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Coordinate",
+    "variant": "native_guard"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Coordinate",
+    "variant": "output"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Coordinate",
+    "variant": "pin"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Coordinate",
+    "variant": "raw_port"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Coordinate",
+    "variant": "recovery"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Coordinate",
+    "variant": "resource"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Coordinate",
+    "variant": "substitution"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Coordinate",
+    "variant": "usage"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Coordinate",
+    "variant": "whole"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "DocumentOwnerContainer",
+    "variant": "declaration_bundle"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "DocumentOwnerContainer",
+    "variant": "import_manifest"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "DocumentOwnerContainer",
+    "variant": "workflow_source_collection"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "EvidenceRef",
+    "variant": "application_declaration"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "EvidenceRef",
+    "variant": "computation"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "EvidenceRef",
+    "variant": "contract_operand"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "EvidenceRef",
+    "variant": "contract_ref"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "EvidenceRef",
+    "variant": "control_edge"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "EvidenceRef",
+    "variant": "digest"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "EvidenceRef",
+    "variant": "effect_atom"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "EvidenceRef",
+    "variant": "fact"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "EvidenceRef",
+    "variant": "native_guard_member"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "EvidenceRef",
+    "variant": "opcode"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "EvidenceRef",
+    "variant": "operation"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "EvidenceRef",
+    "variant": "port"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "EvidenceRef",
+    "variant": "raw_validation_member"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "EvidenceRef",
+    "variant": "resolver_difference"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "EvidenceRef",
+    "variant": "schema"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "EvidenceRef",
+    "variant": "scope_member"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "EvidenceRef",
+    "variant": "unresolved_request"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "NativeRelationCatalog",
+    "variant": "effect_resource"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "NativeRelationCatalog",
+    "variant": "flow_execution"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "NativeRelationCatalog",
+    "variant": "recovery_usage"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "NodeBody",
+    "variant": "map"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "NodeBody",
+    "variant": "option_none"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "NodeBody",
+    "variant": "option_some"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "NodeBody",
+    "variant": "record"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "NodeBody",
+    "variant": "scalar"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "NodeBody",
+    "variant": "sequence"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "NodeBody",
+    "variant": "set"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "NodeBody",
+    "variant": "variant"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-contract::RecoveryActionKind)",
+    "variant": "Compensation"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-contract::RecoveryActionKind)",
+    "variant": "Reconciliation"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-effect::EffectGuard)",
+    "variant": "InputEquals"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-effect::EffectGuard)",
+    "variant": "Unconditional"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-effect::EffectIdempotencyQualifier)",
+    "variant": "Natural"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-effect::EffectIdempotencyQualifier)",
+    "variant": "None"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-effect::EffectQualifier)",
+    "variant": "Idempotency"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-effect::EffectRow)",
+    "variant": "Closed"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-effect::EffectRow)",
+    "variant": "Open"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-effect::EffectRow)",
+    "variant": "Unknown"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-effect::OccurrenceCeiling)",
+    "variant": "Finite"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-effect::OccurrenceCeiling)",
+    "variant": "Unbounded"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-execution::ComputeQuantityKind)",
+    "variant": "CpuMillicores"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-execution::ComputeQuantityKind)",
+    "variant": "GpuCount"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-execution::ComputeQuantityKind)",
+    "variant": "MemoryBytes"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-execution::PlacementPreference)",
+    "variant": "ArtifactLocality"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-execution::PlacementPreference)",
+    "variant": "LowerCost"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-execution::PlacementPreference)",
+    "variant": "LowerLoad"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-execution::PlacementPreference)",
+    "variant": "WarmModelCache"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-execution::SandboxLevel)",
+    "variant": "Basic"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-execution::SandboxLevel)",
+    "variant": "Strong"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-flow::FlowKind)",
+    "variant": "DataEgress"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-flow::FlowKind)",
+    "variant": "DecisionInfluence"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-flow::FlowSink)",
+    "variant": "ExternalEffect"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-flow::FlowSink)",
+    "variant": "WorkflowOutput"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-flow::InstructionAuthority)",
+    "variant": "DelegatedAgent"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-flow::InstructionAuthority)",
+    "variant": "ExternalData"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-flow::InstructionAuthority)",
+    "variant": "None"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-flow::InstructionAuthority)",
+    "variant": "Platform"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-flow::InstructionAuthority)",
+    "variant": "User"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-flow::InstructionAuthority)",
+    "variant": "Workflow"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-flow::SourceCategory)",
+    "variant": "ResourceRequirement"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-flow::SourceCategory)",
+    "variant": "UnknownExternal"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-flow::SourceCategory)",
+    "variant": "WorkflowInput"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-recovery::CompensationRequirement)",
+    "variant": "None"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-recovery::CompensationRequirement)",
+    "variant": "Required"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-recovery::IdempotencySemantics)",
+    "variant": "Keyed"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-recovery::IdempotencySemantics)",
+    "variant": "Natural"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-recovery::IdempotencySemantics)",
+    "variant": "None"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-recovery::IdempotencySemantics)",
+    "variant": "Reconciled"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-recovery::ReconciliationRequirement)",
+    "variant": "None"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-recovery::ReconciliationRequirement)",
+    "variant": "Required"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-recovery::ReplaySemantics)",
+    "variant": "Forbidden"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-recovery::ReplaySemantics)",
+    "variant": "Recompute"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-recovery::ReplaySemantics)",
+    "variant": "Reconcile"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-recovery::ReplaySemantics)",
+    "variant": "Recorded"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-recovery::UnknownEffectHandling)",
+    "variant": "Block"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-recovery::UnknownEffectHandling)",
+    "variant": "ReconciliationRequired"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-semantic::PrimitiveConstant)",
+    "variant": "Bool"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-semantic::PrimitiveConstant)",
+    "variant": "Bytes"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-semantic::PrimitiveConstant)",
+    "variant": "Decimal"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-semantic::PrimitiveConstant)",
+    "variant": "Duration"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-semantic::PrimitiveConstant)",
+    "variant": "Int64"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-semantic::PrimitiveConstant)",
+    "variant": "Null"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-semantic::PrimitiveConstant)",
+    "variant": "String"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-semantic::PrimitiveConstant)",
+    "variant": "Timestamp"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-semantic::PrimitiveConstant)",
+    "variant": "Unit"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-usage::UsagePhase)",
+    "variant": "Forward"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-usage::UsagePhase)",
+    "variant": "Recovery"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-usage::UsageUpperBound)",
+    "variant": "Finite"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Raw(af-usage::UsageUpperBound)",
+    "variant": "Unbounded"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RawContextRole",
+    "variant": "analysis"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RawContextRole",
+    "variant": "canonical_validation"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RawDocument",
+    "variant": "declared_native_document"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RawDocument",
+    "variant": "physical_json_utf8"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RawDocumentMember",
+    "variant": "entry"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RawDocumentMember",
+    "variant": "field"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RawPhysicalAssociation",
+    "variant": "not_supplied"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RawPhysicalAssociation",
+    "variant": "supplied"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RawPortCondition",
+    "variant": "duplicate"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RawPortCondition",
+    "variant": "positive_fresh"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RawPortCondition",
+    "variant": "zero"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RawPortDirection",
+    "variant": "input"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RawPortDirection",
+    "variant": "output"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RawPortPredecessor",
+    "variant": "none"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RawPortPredecessor",
+    "variant": "some"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RawPortRejectionWitness",
+    "variant": "duplicate"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RawPortRejectionWitness",
+    "variant": "zero"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RawPortSelectedError",
+    "variant": "invalid_or_duplicate_port"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationCodecFailure",
+    "variant": "duplicate_field"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationCodecFailure",
+    "variant": "duplicate_normalized_key"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationCodecFailure",
+    "variant": "integer_out_of_range"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationCodecFailure",
+    "variant": "invalid_bytes_encoding"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationCodecFailure",
+    "variant": "invalid_decimal"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationCodecFailure",
+    "variant": "invalid_integer"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationCodecFailure",
+    "variant": "invalid_option_encoding"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationCodecFailure",
+    "variant": "invalid_shape"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationCodecFailure",
+    "variant": "invalid_unicode"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationCodecFailure",
+    "variant": "missing_field"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationCodecFailure",
+    "variant": "non_canonical_encoding"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationCodecFailure",
+    "variant": "non_finite_float"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationCodecFailure",
+    "variant": "type_mismatch"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationCodecFailure",
+    "variant": "unknown_enum_value"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationCodecFailure",
+    "variant": "unknown_field"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationCodecFailure",
+    "variant": "unknown_variant_case"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationInvalidInputSite",
+    "variant": "canonical_content"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationInvalidInputSite",
+    "variant": "current_schema"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationInvalidInputSite",
+    "variant": "source_catalog"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationLookupResult",
+    "variant": "ambiguous"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationLookupResult",
+    "variant": "family_mismatch"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationLookupResult",
+    "variant": "found"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationLookupResult",
+    "variant": "missing"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationLookupResult",
+    "variant": "not_reached"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationLookupResult",
+    "variant": "revision_mismatch"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationMissingPart",
+    "variant": "definition"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationMissingPart",
+    "variant": "module"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationMissingPart",
+    "variant": "root"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationPriorFailure",
+    "variant": "invalid_context"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationPriorFailure",
+    "variant": "invalid_identity"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationPriorFailure",
+    "variant": "invalid_source"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationPriorFailure",
+    "variant": "missing_source"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationPriorFailure",
+    "variant": "source_association"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationPriorFailure",
+    "variant": "unsupported_model"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationSlot",
+    "variant": "effect_resource"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationSlot",
+    "variant": "flow_execution"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationSlot",
+    "variant": "recovery_usage"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationValidationResult",
+    "variant": "invalid"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationValidationResult",
+    "variant": "not_reached"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationValidationResult",
+    "variant": "valid"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationValidationStep",
+    "variant": "byte_roundtrip"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationValidationStep",
+    "variant": "catalog_canonicalization"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationValidationStep",
+    "variant": "catalog_equality"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationValidationStep",
+    "variant": "current_decode"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationValidationStep",
+    "variant": "current_encode"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationValidationStep",
+    "variant": "native_decode"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.component.contract@1/RecoveryActionKind",
+    "variant": "compensation"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.component.contract@1/RecoveryActionKind",
+    "variant": "reconciliation"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.effect.resource.compatibility@1/ScopeValueRule",
+    "variant": "finite_exact_values"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.effect.resource.compatibility@1/ScopeValueRule",
+    "variant": "opaque_nfc_exact_string"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.effect.signature@1/EffectIdempotencyQualifier",
+    "variant": "natural"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.effect.signature@1/EffectIdempotencyQualifier",
+    "variant": "none"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.effect.signature@1/EffectQualifier",
+    "variant": "idempotency"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.execution.requirements@1/SandboxLevel",
+    "variant": "basic"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.execution.requirements@1/SandboxLevel",
+    "variant": "strong"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/FlowExecutionSink",
+    "variant": "exact_effect"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/FlowExecutionSink",
+    "variant": "workflow_output"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/RegionPairPolicy",
+    "variant": "all_pairs_in_closed_region_snapshot"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/RegionPairPolicy",
+    "variant": "finite_exact_pairs"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/SandboxFloor",
+    "variant": "minimum"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/SandboxFloor",
+    "variant": "no_additional_minimum"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/TrustDomainPolicy",
+    "variant": "all_domains_in_closed_trust_snapshot"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/TrustDomainPolicy",
+    "variant": "exact_allowlist"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.flow.execution.relation@1/TrustDomainPolicy",
+    "variant": "no_additional_trust_requirement"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.information.flow@1/FlowKind",
+    "variant": "data_egress"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.information.flow@1/FlowKind",
+    "variant": "decision_influence"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.information.flow@1/InstructionAuthority",
+    "variant": "delegated_agent"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.information.flow@1/InstructionAuthority",
+    "variant": "external_data"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.information.flow@1/InstructionAuthority",
+    "variant": "none"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.information.flow@1/InstructionAuthority",
+    "variant": "platform"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.information.flow@1/InstructionAuthority",
+    "variant": "user"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "RelationWire/agentflow.information.flow@1/InstructionAuthority",
+    "variant": "workflow"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "ScopeSubject",
+    "variant": "computation"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "ScopeSubject",
+    "variant": "contract_validation"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "ScopeSubject",
+    "variant": "native_recovery_guard"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "ScopeSubject",
+    "variant": "raw_contract_validation"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "ScopeSubject",
+    "variant": "root_export"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "ScopeSubject",
+    "variant": "standalone_substitution"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Source",
+    "variant": "compiler"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Source",
+    "variant": "component"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Source",
+    "variant": "context"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Source",
+    "variant": "contract_operand"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Source",
+    "variant": "control"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Source",
+    "variant": "native_guard_binding"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Source",
+    "variant": "native_guard_subject"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Source",
+    "variant": "raw_validation"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Source",
+    "variant": "root"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Source",
+    "variant": "scope"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Source",
+    "variant": "subflow"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Source",
+    "variant": "substitution_application"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralAvailability",
+    "variant": "NotImplemented"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralBodyKind",
+    "variant": "map"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralBodyKind",
+    "variant": "option"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralBodyKind",
+    "variant": "record"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralBodyKind",
+    "variant": "scalar"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralBodyKind",
+    "variant": "sequence"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralBodyKind",
+    "variant": "set"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralBodyKind",
+    "variant": "variant"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralCapability",
+    "variant": "NotAuthorized"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureDomain",
+    "variant": "IncompleteContent"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureDomain",
+    "variant": "IncompleteFacts"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureDomain",
+    "variant": "InvalidFacts"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureDomain",
+    "variant": "NotImplemented"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureDomain",
+    "variant": "ResourceLimit"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureDomain",
+    "variant": "UnsupportedModel"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureReason",
+    "variant": "cross_edition"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureReason",
+    "variant": "duplicate_map_key"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureReason",
+    "variant": "ineligible_value_type"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureReason",
+    "variant": "input_output_backedge"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureReason",
+    "variant": "invalid_child"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureReason",
+    "variant": "invalid_interning"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureReason",
+    "variant": "invalid_map_entry"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureReason",
+    "variant": "invalid_set_member"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureReason",
+    "variant": "invalid_shape"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureReason",
+    "variant": "missing_node"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureReason",
+    "variant": "missing_rank_source"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureReason",
+    "variant": "missing_site"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureReason",
+    "variant": "production_not_implemented"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureReason",
+    "variant": "rank_dependency"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureReason",
+    "variant": "resource_bound"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureReason",
+    "variant": "source_association"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralFailureReason",
+    "variant": "unknown_nominal_type"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralInputStep",
+    "variant": "case"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralInputStep",
+    "variant": "field"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralInputStep",
+    "variant": "index"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralModuleMapAssurance",
+    "variant": "module_projection_only"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralPhysicalSource",
+    "variant": "not_supplied"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralPhysicalSource",
+    "variant": "supplied"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralProfile",
+    "variant": "other_registered_profile"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralProfile",
+    "variant": "raw_contract_validation"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralProfile",
+    "variant": "registration_subgraph"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralRankDependency",
+    "variant": "external_g_not_w_child"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralRankDependency",
+    "variant": "local_child_before_parent"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralReferenceDomain",
+    "variant": "g_external"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralReferenceDomain",
+    "variant": "g_local"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralReferenceDomain",
+    "variant": "w_local"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralReferenceUse",
+    "variant": "g_value"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralReferenceUse",
+    "variant": "output_record"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralReferenceUse",
+    "variant": "w_value"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralRegistration",
+    "variant": "Registered"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralRegistration",
+    "variant": "Unregistered"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralSelector",
+    "variant": "case"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralSelector",
+    "variant": "field"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralSelector",
+    "variant": "item"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralSelector",
+    "variant": "key"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralSelector",
+    "variant": "member"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralSelector",
+    "variant": "some"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralSelector",
+    "variant": "value"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralSourceAssurance",
+    "variant": "declared_only"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralSourceAssurance",
+    "variant": "native_associated"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralStage",
+    "variant": "c_validation"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralStage",
+    "variant": "declared_input"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralStage",
+    "variant": "g02_scope"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralStage",
+    "variant": "pre_capture_binding"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralStage",
+    "variant": "raw_fact_capture"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralStage",
+    "variant": "registration_admission"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralStage",
+    "variant": "source_admission"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralStage",
+    "variant": "t4_normalization"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralValueEligibility",
+    "variant": "g_input"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralValueEligibility",
+    "variant": "w_output"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralWBody",
+    "variant": "map"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralWBody",
+    "variant": "option_none"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralWBody",
+    "variant": "option_some"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralWBody",
+    "variant": "record"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralWBody",
+    "variant": "scalar"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralWBody",
+    "variant": "sequence"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralWBody",
+    "variant": "set"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralWBody",
+    "variant": "variant"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralWEdge",
+    "variant": "input"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "StructuralWEdge",
+    "variant": "local"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Target",
+    "variant": "analysis_boundary"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Target",
+    "variant": "component"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Target",
+    "variant": "contract_operand"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Target",
+    "variant": "export"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Target",
+    "variant": "native_guard_binding"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Target",
+    "variant": "native_guard_subject"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Target",
+    "variant": "proof"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Target",
+    "variant": "raw_declaration_constraint"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Target",
+    "variant": "relation"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Target",
+    "variant": "subflow"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Target",
+    "variant": "substitution_pair"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "Target",
+    "variant": "unresolved_request"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "TypedContradiction",
+    "variant": "guard_countermodel"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "TypedContradiction",
+    "variant": "invalid_mapping"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "TypedContradiction",
+    "variant": "invalid_shape"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "TypedContradiction",
+    "variant": "missing_members"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "TypedContradiction",
+    "variant": "native_guard"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "TypedContradiction",
+    "variant": "noncontainment"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "TypedContradiction",
+    "variant": "pin_mismatch"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "TypedContradiction",
+    "variant": "prerequisite_contradiction"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "TypedContradiction",
+    "variant": "raw_validation"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "TypedContradiction",
+    "variant": "source_mismatch"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "TypedContradiction",
+    "variant": "substitution"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::CanonicalBody",
+    "variant": "Alias"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::CanonicalBody",
+    "variant": "Enum"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::CanonicalBody",
+    "variant": "Record"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::CanonicalBody",
+    "variant": "Variant"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::CanonicalTypeExpr",
+    "variant": "List"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::CanonicalTypeExpr",
+    "variant": "MapString"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::CanonicalTypeExpr",
+    "variant": "NamedRef"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::CanonicalTypeExpr",
+    "variant": "Option"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::CanonicalTypeExpr",
+    "variant": "Primitive"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::Primitive",
+    "variant": "Bool"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::Primitive",
+    "variant": "Bytes"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::Primitive",
+    "variant": "Decimal"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::Primitive",
+    "variant": "Duration"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::Primitive",
+    "variant": "Float64"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::Primitive",
+    "variant": "Int32"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::Primitive",
+    "variant": "Int64"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::Primitive",
+    "variant": "Null"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::Primitive",
+    "variant": "String"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::Primitive",
+    "variant": "Timestamp"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::Primitive",
+    "variant": "UInt32"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::Primitive",
+    "variant": "UInt64"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-idl::Primitive",
+    "variant": "Unit"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-usage::UsageAggregation",
+    "variant": "Additive"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "af-usage::UsageAggregation",
+    "variant": "Unsupported"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/AttributionProfile",
+    "variant": "full_content_revalidation"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/AttributionProfile",
+    "variant": "portable_certificate"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/AttributionProfile",
+    "variant": "rule_complete_attribution"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/ModelMissingReason",
+    "variant": "future_dependency"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/ModelMissingReason",
+    "variant": "not_formalized"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/RoleDeclaration",
+    "variant": "defined"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/RoleDeclaration",
+    "variant": "model_missing"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/SemanticRole",
+    "variant": "contract_validation"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/SemanticRole",
+    "variant": "control_algebra"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/SemanticRole",
+    "variant": "dataflow"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/SemanticRole",
+    "variant": "leaf_resolution"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/SemanticRole",
+    "variant": "plan_lowering"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/SemanticRole",
+    "variant": "root_export"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/SemanticRole",
+    "variant": "root_recovery"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/SemanticRole",
+    "variant": "runtime_semantics_profile"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/SemanticRole",
+    "variant": "semantic_ir_validation"
+  },
+  {
+    "field": null,
+    "path": [],
+    "type": "agentflow.portable.proof.inputs@1/SemanticRole",
+    "variant": "static_analysis"
+  }
+]
