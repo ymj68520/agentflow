@@ -1,0 +1,40 @@
+{
+  "freeze": {
+    "start_head": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+    "start_files": 2290,
+    "changed_old_files": [
+      "crates/af-computation/Cargo.toml",
+      "crates/af-computation/src/lib.rs"
+    ],
+    "all_other_old_raw_bytes_equal": true,
+    "registration": {
+      "descriptors": 1131,
+      "references": 2559,
+      "sites": 317,
+      "reference_policies": 66,
+      "source_rank_free": true,
+      "old_ranks_preserved": 774,
+      "old_imports_preserved": 97,
+      "required_field_variants": 1297,
+      "production_capture_case_ids": 0
+    },
+    "specifications": 70,
+    "rules": 522,
+    "reference_covered": 521,
+    "intentional_exception": 1,
+    "missing": 0,
+    "abi": 775,
+    "afidl": 17,
+    "hashv1_domains": 14,
+    "ace1": "v1"
+  },
+  "required_types": 455,
+  "required_field_variants": 538,
+  "sites": {
+    "required_g_input": 253,
+    "fixed_compiler_source_inactive": 4,
+    "w_output_not_authorized": 60
+  },
+  "registration_cases": 3662,
+  "production_cases": 154
+}

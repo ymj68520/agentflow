@@ -1,0 +1,296 @@
+{
+  "original_vector_count": 48,
+  "converted_executed": 0,
+  "not_executed": 48,
+  "production_credit": 0,
+  "vectors": [
+    {
+      "vector_id": "R4G1-anonymous-same-typed-value",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-anonymous-different-nominal",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-anonymous-nested-record",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-anonymous-inline-struct",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-anonymous-tuple",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-anonymous-nested-option",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-anonymous-sequence-order",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-anonymous-closed-variant",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-anonymous-unknown-variant",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-anonymous-missing-record-field",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-anonymous-same-site-alias",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-anonymous-cross-site-shape",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-map-set-insertion-order",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-map-set-conflicting-key",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-map-set-equal-duplicate-key",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-map-set-nominal-key",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-map-set-nested-map",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-map-set-optional-record-map",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-map-set-duplicate-set-value",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-map-set-set-order",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-map-set-numeric-key-order",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-map-set-nfc-key-collision",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-map-set-raw-byte-key",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-map-set-empty-map",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-node-rank-shared-child",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-node-rank-missing-rank",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-node-rank-wrong-rank",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-node-rank-dangling-reference",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-node-rank-unreachable-node",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-node-rank-duplicate-equal-node",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-node-rank-alternate-numbering",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-node-rank-rank-dependency",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-node-rank-root-order",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-node-rank-both-omit-node",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-node-rank-ordinary-u64",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-node-rank-output-backedge",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-stage-history-authority-document-occurrence",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-stage-history-authority-same-occurrence",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-stage-history-authority-a-versus-c",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-stage-history-authority-t3-without-binder",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-stage-history-authority-old-content-only",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-stage-history-authority-cross-edition-ref",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-stage-history-authority-root-capability",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-stage-history-authority-c-missing",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-stage-history-authority-split-context",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-stage-history-authority-t4-rerank",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-stage-history-authority-bootstrap-cycle",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    },
+    {
+      "vector_id": "R4G1-stage-history-authority-resource-budget",
+      "status": "Not Executed",
+      "credit": 0,
+      "basis": "Exact original vector execution contract not separately run; related production inputs and comparator attacks do not automatically convert it"
+    }
+  ]
+}
