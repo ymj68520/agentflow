@@ -1,0 +1,124 @@
+[
+  {
+    "head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+    "required_case_ids": 512,
+    "manifest_matches": [
+      {
+        "aggregation": "82 native root/soundness +229 control/recovery/scope +201 portable primary CaseIds; leaf/sidecar cases also run but not in this denominator",
+        "parts": [
+          {
+            "suite": "computation-control",
+            "case_ids": 58
+          },
+          {
+            "suite": "computation-advanced-control",
+            "case_ids": 72
+          },
+          {
+            "suite": "computation-scope-closure",
+            "case_ids": 55
+          },
+          {
+            "suite": "computation-root-recovery",
+            "case_ids": 44
+          },
+          {
+            "suite": "computation-root-export",
+            "case_ids": 35
+          },
+          {
+            "suite": "computation-root-export-soundness",
+            "case_ids": 47
+          },
+          {
+            "suite": "portable-proof-codec",
+            "case_ids": 60
+          },
+          {
+            "suite": "portable-static-reconstruction",
+            "case_ids": 63
+          },
+          {
+            "suite": "portable-root-export-revalidation",
+            "case_ids": 78
+          }
+        ],
+        "case_ids": 512,
+        "unique": 512,
+        "ids_sha256": "39cfbae619814c0adaa49b80f460fc34e3a429e679537e6beefdb215d692b583"
+      }
+    ]
+  },
+  {
+    "head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+    "required_case_ids": 51,
+    "manifest_matches": [
+      {
+        "aggregation": "9 portable +10 native admission +32 registration CaseIds",
+        "case_ids": 51,
+        "unique": 51,
+        "ids_sha256": "705500b474e64d276252666b07f821ee5b5d5a4dfc6ecfa8c2af81608c111d35"
+      }
+    ]
+  },
+  {
+    "head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+    "required_case_ids": 173,
+    "manifest_matches": [
+      {
+        "path": "target/phase-04c1b4c4r3g2-edition3/source/spec/conformance/g01-successor-staging/manifest.json",
+        "case_ids": 173,
+        "unique": 173,
+        "ids_sha256": "40ff845d95574207d492ab8c8d41cd966c777ebd0bd6753c11501f7391942a9a"
+      }
+    ]
+  },
+  {
+    "head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+    "required_case_ids": 889,
+    "manifest_matches": [
+      {
+        "path": "target/phase-04c1b4c4r3c1g2-edition4/source/spec/conformance/g01-native-guard-staging/manifest.json",
+        "case_ids": 889,
+        "unique": 889,
+        "ids_sha256": "caa660ef3afbc53e185d7e5bcc099241741a3413f412e7f6b23e1aaeb831aa60"
+      }
+    ]
+  },
+  {
+    "head": "e623aab705c5f8269807201e112a32e67e6869bf",
+    "required_case_ids": 262,
+    "manifest_matches": [
+      {
+        "path": "target/phase-04c1b4c4r3c2g2-analysis5/source/spec/conformance/g01-raw-validation-staging/manifest.json",
+        "case_ids": 262,
+        "unique": 262,
+        "ids_sha256": "fe6e3f3dc13fa79794ce8302372bb39b2b7cc57e1b0e92bb58206f23b22dd2e6"
+      }
+    ]
+  },
+  {
+    "head": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+    "required_case_ids": 254,
+    "manifest_matches": [
+      {
+        "path": "target/phase-04c1b4c4r3c2r3g2-analysis6/source/spec/conformance/g01-document-occurrence-staging/manifest.json",
+        "case_ids": 254,
+        "unique": 254,
+        "ids_sha256": "0693800289df7589627c9529789293bcb8c845aa91de97eb946d1409050e7f2f"
+      }
+    ]
+  },
+  {
+    "head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+    "required_case_ids": 534,
+    "manifest_matches": [
+      {
+        "path": "target/phase-04c1b4c4r3c2r4g2-analysis7/source/spec/conformance/g01-relation-schema-staging/manifest.json",
+        "case_ids": 534,
+        "unique": 534,
+        "ids_sha256": "338bb93cd645f1936a3bebfb187d25a17ed6e7a41fa8ca483082c3e709b55f30"
+      }
+    ]
+  }
+]

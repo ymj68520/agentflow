@@ -21,6 +21,15 @@ receipt executes in that island. Cached compilation is not reused test results.
 Exact commands/exits, source maps, pass records and auditor logs are retained in
 the phase's history-N files and historical-regressions/runtime JSON.
 
+The512 primary Edition1 IDs are82 native RootExport/soundness +229 control/
+advanced-control/scope/root-recovery +201 portable codec/reconstruction/revalidation.
+Leaf and nested sidecar cases additionally execute in the unfiltered build but
+are not added to that historical primary denominator. Edition2's51 IDs are9
+Portable +10 native admission +32 registration. The other five exact manifests
+directly enumerate173/889/262/254/534 unique IDs. A separate source census verifies
+these aggregations and complete ID hashes; no single nonexistent512-ID manifest
+is claimed. All manifests belong to their respective frozen source island.
+
 Old CaseIds are never counted as new Binder captures. Previous tests sensitive
 to global current identity remain in their exact islands. The current build
 keeps IR/control/native regressions and its own structural/Portable staging tests.

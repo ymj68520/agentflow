@@ -63,3 +63,25 @@ records remain development evidence, never successful final-round credit.
 The final receipt records full starting/code/final HEADs, source equivalence
 between code and final docs-only HEAD, actual engineering counts, all history and
 independent exits, final generator maps, clean worktree and Push=false.
+
+## Sealed code execution and independent receipts
+
+The complete code-gate HEAD is
+`bfeaa6f31709aaa40f0845b620eb16834ae63038`. All four commands above freshly
+exited0. The unfiltered Cargo run contains434 passing test records across76
+result groups, with0 failed/ignored/filtered-out tests. These test-function
+counts are distinct from the3,662 registered CaseIds executed inside them.
+
+The final independent registration audit records3,579 metadata results,
+13 Portable results and70 native denial observations, totaling3,662 unique
+CaseIds. Metadata mismatches0; issued capabilities0; actual production ranks0.
+The Native/F1/original51 comparisons passed separately. Strict Raw Total exits2
+and remains a failure-closed incomplete producer diagnostic, never a green Raw
+completion gate. Seven exact-source historical jobs and their independent
+CaseId censuses passed, including previous Analysis@7's534 registrations.
+
+Machine receipts and complete command logs are retained in the ignored local
+`target/phase-04c1b4c4r3c2r4g2-*` evidence family. The final receipt is
+[final-runtime-results](../../target/phase-04c1b4c4r3c2r4g2-final-runtime-results.json).
+It is written only after the two original-directory generator rounds and final
+clean-tree/raw-map checks succeed; this document alone does not assert them.

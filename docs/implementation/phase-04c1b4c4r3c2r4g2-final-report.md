@@ -8,6 +8,9 @@ final runtime receipt after all gates. Production Binder remains NotImplemented.
 [Oracle](phase-04c1b4c4r3c2r4g2-oracle-and-coverage.md),
 [history](phase-04c1b4c4r3c2r4g2-historical-isolation.md),
 [gates](phase-04c1b4c4r3c2r4g2-gate-report.md).
+The sealed local [runtime receipt](../../target/phase-04c1b4c4r3c2r4g2-final-runtime-results.json)
+contains full final HEAD, command exits, historical isolation and both generator
+rounds. It is emitted only after all final assertions succeed.
 
 1. Start HEAD `8dc4f508c2f97b431053528ab14d2bd9263b3737`; complete code-gate
    and final full HEADs are in the final runtime receipt, avoiding self-reference.
@@ -55,8 +58,10 @@ final runtime receipt after all gates. Production Binder remains NotImplemented.
     reference delta. Lossless closed source composition retains full exact base.
 23. Old66/509 Registry records and old sources/Expected/Oracles/G1 artifacts stay
     exact; only11 explicit current routing/registration/build files may change.
-24. New stable registration CaseIds and per-category counts are in manifest/audit,
-    with explicit separate production Binder Capture CaseIds0.
+24. New stable CaseIds total3,662: Shape2,532; Rule13; Structural Site814;
+    DAG Subgraph48; Admission Negative161; Edition/Portable13; Capability Denial74;
+    Native Module Source7. Metadata accounts for3,579; Native70 and Portable13
+    supply the remaining83 receipts. Production Binder Capture CaseIds remain0.
 25. Required1,297 field/variant sites plus all317 structure sites/66 policies are
     case-linked; independent missing/extra roster checks prevent denominator loss.
 26. External Python Expected derives registered/frozen source and manual logical
@@ -76,7 +81,9 @@ final runtime receipt after all gates. Production Binder remains NotImplemented.
 33. Native53/53, F1 62 inputs/40 mutations and original51 unchanged Actual rows get
     new independent current execution receipts. Lowering fix remains verified.
 34. Fresh fmt/Clippy/unfiltered Cargo/spec-check commands and exact exits/counts
-    are sealed in runtime evidence under the complete code HEAD.
+    are sealed in runtime evidence under code HEAD
+    `bfeaa6f31709aaa40f0845b620eb16834ae63038`: all exits0;
+    Cargo434 passing records across76 groups,0 failed/ignored/filtered out.
 35. All actual38 generators run in E:/Projects/agent twice consecutively; require
     all76 exits0 and Baseline=Round1=Round2=Final raw maps, all deltas0.
 36. Default D0, bounded D4, current-only identity, caller flags, Native analyzer,

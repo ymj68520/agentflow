@@ -92,5 +92,39 @@
       }
     },
     "old_expected_oracles_and_normative_sources_unchanged": true
+  },
+  "fresh_execution_receipts": {
+    "independent_metadata": {
+      "outcome": "REGISTRATION_METADATA_ONLY_MATCH",
+      "matched": 3579,
+      "unexpected_mismatch": 0,
+      "registration": {
+        "descriptors": 1131,
+        "references": 2559,
+        "sites": 317,
+        "reference_policies": 66,
+        "source_rank_free": true,
+        "old_ranks_preserved": 774,
+        "old_imports_preserved": 97,
+        "required_field_variants": 1297,
+        "production_capture_case_ids": 0
+      },
+      "production_binder": "NotImplemented",
+      "production_capture_case_ids": 0,
+      "actual_production_dagranks_generated": 0,
+      "raw_verified": false,
+      "t4": "NOT ELIGIBLE",
+      "positive_root_export": "NotAuthorized"
+    },
+    "executed_case_ids": 3662,
+    "metadata": 3579,
+    "portable": 13,
+    "native_boundary": 70,
+    "component_early_rejections": 2,
+    "analyzer_direct_private_gate_refusals": 68,
+    "capabilities_issued": 0,
+    "production_binder_capture_case_ids": 0,
+    "actual_production_dagranks_generated": 0,
+    "raw_full_field_oracle": false
   }
 }
