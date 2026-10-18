@@ -1,0 +1,24 @@
+afidl 1;
+schema binder.fixture @1;
+record Data { 1 text: string; 2 value: int64; }
+record Handle { 1 label: string; }
+record AllPrimitives {
+  1 empty: unit;
+  2 absent: null;
+  3 flag: bool;
+  4 signed32: int32;
+  5 unsigned32: uint32;
+  6 signed64: int64;
+  7 unsigned64: uint64;
+  8 exact: decimal;
+  9 binary: float64;
+  10 text: string;
+  11 octets: bytes;
+  12 instant: timestamp;
+  13 interval: duration;
+}
+enum Choice { 1 alpha; 2 beta; }
+variant Pick { 1 nothing: unit; 2 data: Data; 3 number: uint64; }
+alias MaybeData = option<Data>;
+alias SequenceData = list<Data>;
+alias MappingData = map<string, Data>;

@@ -1,0 +1,450 @@
+{
+  "effect_resource": {
+    "complete_operations": [
+      {
+        "catalog": "agentflow.effects@1",
+        "name": "read"
+      },
+      {
+        "catalog": "agentflow.effects@1",
+        "name": "write"
+      }
+    ],
+    "supported_pairs": [
+      {
+        "allowed_qualifier_profiles": [
+          {
+            "qualifiers": [
+              {
+                "idempotency": "none"
+              }
+            ]
+          }
+        ],
+        "operation": {
+          "catalog": "agentflow.effects@1",
+          "name": "read"
+        },
+        "resource_type": {
+          "schema": {
+            "schema_digest": {
+              "algorithm": "sha256",
+              "domain": "type-schema",
+              "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+            },
+            "specification_id": "agentflow.semantic.core@1",
+            "type_name": "TypeSchemaRef"
+          }
+        },
+        "selector_keys": [
+          {
+            "required": true,
+            "resource_attribute_key": "tenant",
+            "selector_key": "tenant",
+            "values": {
+              "opaque_nfc_exact_string": null
+            }
+          },
+          {
+            "required": false,
+            "resource_attribute_key": "region",
+            "selector_key": "zone",
+            "values": {
+              "finite_exact_values": [
+                "sg",
+                "us"
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "flow_execution": {
+    "authority_rules": [
+      {
+        "authority": "none",
+        "sandbox": {
+          "no_additional_minimum": null
+        },
+        "trust_domains": {
+          "exact_allowlist": [
+            {
+              "catalog": "agentflow.trust@1",
+              "name": "worker-a"
+            },
+            {
+              "catalog": "agentflow.trust@1",
+              "name": "worker-b"
+            }
+          ]
+        }
+      },
+      {
+        "authority": "external_data",
+        "sandbox": {
+          "minimum": "basic"
+        },
+        "trust_domains": {
+          "all_domains_in_closed_trust_snapshot": null
+        }
+      },
+      {
+        "authority": "delegated_agent",
+        "sandbox": {
+          "minimum": "strong"
+        },
+        "trust_domains": {
+          "no_additional_trust_requirement": null
+        }
+      },
+      {
+        "authority": "user",
+        "sandbox": {
+          "no_additional_minimum": null
+        },
+        "trust_domains": {
+          "exact_allowlist": [
+            {
+              "catalog": "agentflow.trust@1",
+              "name": "worker-a"
+            },
+            {
+              "catalog": "agentflow.trust@1",
+              "name": "worker-b"
+            }
+          ]
+        }
+      },
+      {
+        "authority": "workflow",
+        "sandbox": {
+          "minimum": "basic"
+        },
+        "trust_domains": {
+          "all_domains_in_closed_trust_snapshot": null
+        }
+      },
+      {
+        "authority": "platform",
+        "sandbox": {
+          "minimum": "strong"
+        },
+        "trust_domains": {
+          "no_additional_trust_requirement": null
+        }
+      }
+    ],
+    "closed_regions": [
+      {
+        "catalog": "agentflow.regions@1",
+        "name": "sg"
+      },
+      {
+        "catalog": "agentflow.regions@1",
+        "name": "us"
+      }
+    ],
+    "closed_trust_domains": [
+      {
+        "catalog": "agentflow.trust@1",
+        "name": "worker-a"
+      },
+      {
+        "catalog": "agentflow.trust@1",
+        "name": "worker-b"
+      }
+    ],
+    "confidentiality_rules": [
+      {
+        "label": {
+          "catalog": "agentflow.labels@1",
+          "name": "pii"
+        },
+        "region_pairs": {
+          "finite_exact_pairs": [
+            {
+              "execution_region": {
+                "catalog": "agentflow.regions@1",
+                "name": "sg"
+              },
+              "residency_region": {
+                "catalog": "agentflow.regions@1",
+                "name": "us"
+              }
+            },
+            {
+              "execution_region": {
+                "catalog": "agentflow.regions@1",
+                "name": "us"
+              },
+              "residency_region": {
+                "catalog": "agentflow.regions@1",
+                "name": "sg"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "catalog": "agentflow.labels@1",
+          "name": "public"
+        },
+        "region_pairs": {
+          "all_pairs_in_closed_region_snapshot": null
+        }
+      }
+    ],
+    "sink_rules": [
+      {
+        "kind": "data_egress",
+        "sandbox": {
+          "no_additional_minimum": null
+        },
+        "sink": {
+          "workflow_output": 1
+        },
+        "trust_domains": {
+          "exact_allowlist": [
+            {
+              "catalog": "agentflow.trust@1",
+              "name": "worker-a"
+            },
+            {
+              "catalog": "agentflow.trust@1",
+              "name": "worker-b"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "data_egress",
+        "sandbox": {
+          "minimum": "basic"
+        },
+        "sink": {
+          "exact_effect": {
+            "operation": {
+              "catalog": "agentflow.effects@1",
+              "name": "charge"
+            },
+            "qualifiers": [
+              {
+                "idempotency": "natural"
+              }
+            ],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": [
+                {
+                  "key": "tenant",
+                  "value": "acme"
+                }
+              ]
+            }
+          }
+        },
+        "trust_domains": {
+          "all_domains_in_closed_trust_snapshot": null
+        }
+      },
+      {
+        "kind": "decision_influence",
+        "sandbox": {
+          "minimum": "strong"
+        },
+        "sink": {
+          "workflow_output": 1
+        },
+        "trust_domains": {
+          "no_additional_trust_requirement": null
+        }
+      },
+      {
+        "kind": "decision_influence",
+        "sandbox": {
+          "no_additional_minimum": null
+        },
+        "sink": {
+          "exact_effect": {
+            "operation": {
+              "catalog": "agentflow.effects@1",
+              "name": "charge"
+            },
+            "qualifiers": [
+              {
+                "idempotency": "natural"
+              }
+            ],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": [
+                {
+                  "key": "tenant",
+                  "value": "acme"
+                }
+              ]
+            }
+          }
+        },
+        "trust_domains": {
+          "exact_allowlist": [
+            {
+              "catalog": "agentflow.trust@1",
+              "name": "worker-a"
+            },
+            {
+              "catalog": "agentflow.trust@1",
+              "name": "worker-b"
+            }
+          ]
+        }
+      }
+    ],
+    "taint_rules": [
+      {
+        "sandbox": {
+          "no_additional_minimum": null
+        },
+        "taint": {
+          "catalog": "agentflow.taints@1",
+          "name": "tag-0"
+        },
+        "trust_domains": {
+          "exact_allowlist": [
+            {
+              "catalog": "agentflow.trust@1",
+              "name": "worker-a"
+            },
+            {
+              "catalog": "agentflow.trust@1",
+              "name": "worker-b"
+            }
+          ]
+        }
+      },
+      {
+        "sandbox": {
+          "minimum": "basic"
+        },
+        "taint": {
+          "catalog": "agentflow.taints@1",
+          "name": "tag-1"
+        },
+        "trust_domains": {
+          "all_domains_in_closed_trust_snapshot": null
+        }
+      },
+      {
+        "sandbox": {
+          "minimum": "strong"
+        },
+        "taint": {
+          "catalog": "agentflow.taints@1",
+          "name": "tag-2"
+        },
+        "trust_domains": {
+          "no_additional_trust_requirement": null
+        }
+      }
+    ]
+  },
+  "recovery_usage": {
+    "rules": [
+      {
+        "action": {
+          "action_effect": {
+            "operation": {
+              "catalog": "agentflow.effects@1",
+              "name": "reverse"
+            },
+            "qualifiers": [],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": [
+                {
+                  "key": "tenant",
+                  "value": "acme"
+                }
+              ]
+            }
+          },
+          "action_kind": "reconciliation",
+          "forward_effect": {
+            "operation": {
+              "catalog": "agentflow.effects@1",
+              "name": "charge"
+            },
+            "qualifiers": [
+              {
+                "idempotency": "natural"
+              }
+            ],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": [
+                {
+                  "key": "tenant",
+                  "value": "acme"
+                }
+              ]
+            }
+          }
+        },
+        "complete_meters": []
+      },
+      {
+        "action": {
+          "action_effect": {
+            "operation": {
+              "catalog": "agentflow.effects@1",
+              "name": "reverse"
+            },
+            "qualifiers": [],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": [
+                {
+                  "key": "tenant",
+                  "value": "acme"
+                }
+              ]
+            }
+          },
+          "action_kind": "compensation",
+          "forward_effect": {
+            "operation": {
+              "catalog": "agentflow.effects@1",
+              "name": "charge"
+            },
+            "qualifiers": [
+              {
+                "idempotency": "natural"
+              }
+            ],
+            "resource_selector": {
+              "requirement_port_no": 1,
+              "scope_bindings": [
+                {
+                  "key": "tenant",
+                  "value": "acme"
+                }
+              ]
+            }
+          }
+        },
+        "complete_meters": [
+          {
+            "catalog": "agentflow.meters@1",
+            "name": "a_calls"
+          },
+          {
+            "catalog": "agentflow.meters@1",
+            "name": "z_calls"
+          }
+        ]
+      }
+    ]
+  }
+}

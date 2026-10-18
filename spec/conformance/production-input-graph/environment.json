@@ -1,0 +1,121 @@
+{
+  "attributes": [
+    {
+      "key": "arch",
+      "value": "x64"
+    },
+    {
+      "key": "os",
+      "value": "windows"
+    }
+  ],
+  "capability": {
+    "catalog": "binder.capabilities@1",
+    "name": "compute"
+  },
+  "confidentiality": [
+    {
+      "catalog": "binder.labels@1",
+      "name": "pii"
+    },
+    {
+      "catalog": "binder.labels@1",
+      "name": "public"
+    }
+  ],
+  "effect_catalogs": [
+    {
+      "catalog": "binder.effects@1",
+      "operations": [
+        "act",
+        "read"
+      ]
+    },
+    {
+      "catalog": "binder.empty@1",
+      "operations": []
+    }
+  ],
+  "family": "static",
+  "features": [
+    "alpha",
+    "beta"
+  ],
+  "meter_catalog": "binder.meters@1",
+  "meters": [
+    {
+      "aggregation": "Additive",
+      "name": "calls"
+    },
+    {
+      "aggregation": "Unsupported",
+      "name": "special"
+    }
+  ],
+  "module": "spec/conformance/production-input-graph/environment.afidl",
+  "profile": {
+    "catalog": "binder.runtime@1",
+    "name": "worker"
+  },
+  "reconciliation": [
+    {
+      "catalog": "binder.reconcile@1",
+      "name": "settle"
+    }
+  ],
+  "regions": [
+    {
+      "catalog": "binder.regions@1",
+      "name": "sg"
+    },
+    {
+      "catalog": "binder.regions@1",
+      "name": "us"
+    }
+  ],
+  "resource_attributes": [
+    "region",
+    "tenant"
+  ],
+  "resource_schema": "binder.fixture@1/Handle",
+  "sinks": [
+    {
+      "catalog": "binder.effects@1",
+      "decision": true,
+      "name": "act"
+    },
+    {
+      "catalog": "binder.effects@1",
+      "decision": false,
+      "name": "read"
+    }
+  ],
+  "taints": [
+    {
+      "catalog": "binder.taints@1",
+      "name": "tag-a"
+    }
+  ],
+  "trust_domains": [
+    {
+      "catalog": "binder.trust@1",
+      "name": "worker-a"
+    },
+    {
+      "catalog": "binder.trust@1",
+      "name": "worker-b"
+    }
+  ],
+  "type_schemas": [
+    "binder.fixture@1/Data",
+    "binder.fixture@1/Handle"
+  ],
+  "unit": {
+    "catalog": "binder.units@1",
+    "name": "count"
+  },
+  "versions": [
+    "1",
+    "2"
+  ]
+}

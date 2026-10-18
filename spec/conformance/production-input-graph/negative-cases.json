@@ -1,0 +1,163 @@
+[
+  {
+    "case_id": "production-input-g/source-missing-package",
+    "domain": "IncompleteFacts",
+    "operation": "missing-package",
+    "reason": "missing_node",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-missing-owner",
+    "domain": "IncompleteFacts",
+    "operation": "missing-owner",
+    "reason": "missing_node",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-missing-slot",
+    "domain": "IncompleteFacts",
+    "operation": "missing-slot",
+    "reason": "missing_node",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-wrong-owner",
+    "domain": "InvalidFacts",
+    "operation": "wrong-owner",
+    "reason": "source_association",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-wrong-revision",
+    "domain": "InvalidFacts",
+    "operation": "wrong-revision",
+    "reason": "source_association",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-clone-document",
+    "domain": "InvalidFacts",
+    "operation": "clone-document",
+    "reason": "source_association",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-wrong-candidate",
+    "domain": "InvalidFacts",
+    "operation": "wrong-candidate",
+    "reason": "source_association",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-wrong-entry",
+    "domain": "InvalidFacts",
+    "operation": "wrong-entry",
+    "reason": "source_association",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-split-context",
+    "domain": "InvalidFacts",
+    "operation": "split-context",
+    "reason": "source_association",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-native-supplied",
+    "domain": "UnsupportedModel",
+    "operation": "native-supplied",
+    "reason": "invalid_shape",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-physical-not-supplied",
+    "domain": "UnsupportedModel",
+    "operation": "physical-not-supplied",
+    "reason": "invalid_shape",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-physical-wrong-path",
+    "domain": "InvalidFacts",
+    "operation": "physical-wrong-path",
+    "reason": "source_association",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-physical-duplicate-json",
+    "domain": "InvalidFacts",
+    "operation": "physical-duplicate-json",
+    "reason": "source_association",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-physical-invalid-utf8",
+    "domain": "InvalidFacts",
+    "operation": "physical-invalid-utf8",
+    "reason": "source_association",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-old-compiler",
+    "domain": "UnsupportedModel",
+    "operation": "old-compiler",
+    "reason": "cross_edition",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-wrong-compiler-content",
+    "domain": "InvalidFacts",
+    "operation": "wrong-compiler-content",
+    "reason": "source_association",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-missing-compiler-source",
+    "domain": "InvalidFacts",
+    "operation": "missing-compiler-source",
+    "reason": "source_association",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-duplicate-owner",
+    "domain": "InvalidFacts",
+    "operation": "duplicate-owner",
+    "reason": "source_association",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-foreign-domain",
+    "domain": "InvalidFacts",
+    "operation": "foreign-domain",
+    "reason": "source_association",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-unknown-container",
+    "domain": "UnsupportedModel",
+    "operation": "unknown-container",
+    "reason": "invalid_shape",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-extra-package-field",
+    "domain": "UnsupportedModel",
+    "operation": "extra-package-field",
+    "reason": "invalid_shape",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-invalid-key-utf8",
+    "domain": "UnsupportedModel",
+    "operation": "invalid-key-utf8",
+    "reason": "invalid_shape",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/source-key-bound",
+    "domain": "ResourceLimit",
+    "operation": "key-bound",
+    "reason": "resource_bound",
+    "stage": "source_admission"
+  }
+]

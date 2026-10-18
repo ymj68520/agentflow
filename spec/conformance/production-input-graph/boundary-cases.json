@@ -1,0 +1,23 @@
+[
+  {
+    "case_id": "production-input-g/boundary-deep-native-schema",
+    "domain": "ResourceLimit",
+    "operation": "deep-native-schema",
+    "reason": "resource_bound",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/boundary-nfd-native-context",
+    "domain": "UnsupportedModel",
+    "operation": "nfd-native-context",
+    "reason": "invalid_shape",
+    "stage": "source_admission"
+  },
+  {
+    "case_id": "production-input-g/boundary-work-exhaustion",
+    "domain": "ResourceLimit",
+    "operation": "work-exhaustion",
+    "reason": "resource_bound",
+    "stage": "pre_capture_binding"
+  }
+]
