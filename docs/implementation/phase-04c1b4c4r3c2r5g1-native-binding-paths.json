@@ -1,0 +1,128 @@
+{
+  "scope": "FOCUSED SOURCE-PATH SUPPLEMENT; declaration fields and all incoming refs are in existing-binding-census.json",
+  "model_owner": "agentflow.computation.proof-report.model@7",
+  "rules": ["AF-SEMANTIC-0214", "AF-SEMANTIC-0217", "AF-SEMANTIC-0286", "AF-SEMANTIC-0296", "AF-SEMANTIC-0297", "AF-SEMANTIC-0302", "AF-SEMANTIC-0303", "AF-SEMANTIC-0306", "AF-SEMANTIC-0308", "AF-SEMANTIC-0310", "AF-SEMANTIC-0311"],
+  "null_in_general_census": "No single native struct is asserted for composite/carrier/derived types. It does NOT mean their composite source inputs are unavailable. Exact paths are below.",
+  "bindings": [
+    {
+      "type": "NativeRelationSnapshotSource",
+      "required_input": ["actual named slot", "snapshot.schema()", "snapshot.revision()", "snapshot.pin()", "snapshot.canonical_bytes()", "snapshot.catalog().to_value()"],
+      "actual_native_source": "StaticContractProofContext.relations.{effect_resource,recovery_usage,flow_execution}: Option<RelationCatalogSnapshot<T>>",
+      "projection": "crates/af-computation/src/input_source.rs::native_relation",
+      "available_stage": "source_admission / before pre_capture_binding and before C",
+      "current_g_binding": "Unavailable as this nominal type: only Alias key is emitted",
+      "missing_binding": "Three current Some child declarations target RelationSnapshotContent, not NativeRelationSnapshotSource"
+    },
+    {
+      "type": "RelationSnapshotContent",
+      "required_input": "Same six native A fields, delegated body only",
+      "actual_native_source": "Same actual Context named Snapshot borrow as NativeRelationSnapshotSource",
+      "projection": "input_source.rs::native_relation -> input_graph.rs::Engine::build using original key RelationSnapshotContent",
+      "available_stage": "pre_capture_binding",
+      "current_g_binding": "RawValidationSubject.context.contents.relation_snapshots.<slot>.some",
+      "missing_binding": "No alias cast to NativeRelationSnapshotSource"
+    },
+    {
+      "type": "RawValidationSubject",
+      "required_input": ["implementation-owned full Compiler", "actual supplied Raw candidate and package/Owner/Occurrence/member/physical association", "same actual nine-member native Context"],
+      "actual_native_source": "Composite, not a single native struct: DocumentOccurrenceMetadataRequest plus actual StaticContractProofContext and registered Compiler sources",
+      "projection": "input_binder.rs::bind_raw_input_graph constructs owner_compiler/input/context; input_source::{compiler,from_metadata,context}",
+      "available_stage": "pre_capture_binding after genuine source admission, before C",
+      "current_g_binding": "Sole registered G root, obtained only through private RawSubjectInputNode issuer",
+      "missing_binding": "None for candidate data. Complete admitted Subject remains separate and unavailable at the C.source boundary"
+    },
+    {
+      "type": "ContractProofContextContents",
+      "required_input": ["compiled_modules", "type_schemas", "effect_catalogs", "resource_types", "flow_catalogs", "usage_meters", "recovery_operations", "execution_universes", "relation_snapshots"],
+      "actual_native_source": "The nine real components borrowed from StaticContractProofContext; analysis/canonical_validation must alias the same actual Context",
+      "projection": "input_source.rs::context; modules are actual compiled entries/full definitions, not schema hashes",
+      "available_stage": "source_admission and pre_capture_binding; no C result required",
+      "current_g_binding": "RawValidationSubject.context.contents",
+      "missing_binding": "Context data exists, but its three Some children emit the wrong nominal target for C.source"
+    },
+    {
+      "requested_spelling": "RawValidationSource",
+      "actual_registered_type": "Source (raw_validation branch); no standalone RawValidationSource descriptor",
+      "required_input": "Exact prior Subject, genuine originating Raw source/Occurrence and C admission for every Some",
+      "actual_native_source": "Actual Raw port/source execution under the same DocumentOccurrenceMetadataRequest and Context; not a fabricated Source record",
+      "projection": "raw_capture.rs::capture_raw_ports retains actual port observations but does not implement a complete Model@7 Source/Fact producer",
+      "available_stage": "after G and genuine C for complete Fact use",
+      "current_g_binding": "Consumer references prior exact Subject, not a new G Source root",
+      "missing_binding": "Complete Raw producer INCOMPLETE; C.source source-node prerequisite unresolved in current Model"
+    },
+    {
+      "requested_spelling": "C Validation Record / C.source",
+      "actual_registered_type": "CurrentContextRelationSchemaValidation",
+      "required_input": ["prior exact Native Source node", "prior actual Context contents node", "actual current Context modules", "Compiler/algorithm", "slot/family/root target"],
+      "actual_native_source": "relation_admission.rs::inspect_relation_context_metadata and inspect_relation_metadata borrow the actual same Context and run source/current validation; their legacy metadata is not a current typed Subject capability",
+      "available_stage": "c_validation, strictly after immutable G",
+      "current_g_binding": "C.source output_record and w_value require g_external Node<NativeRelationSnapshotSource>; neither produces G",
+      "missing_binding": "Required exact prior G Source reference absent; existing Native C metadata cannot backfill G"
+    },
+    {
+      "requested_spelling": "VerifiedInputGraph",
+      "registered": false,
+      "actual_native_source": "Private Rust issuer in input_binder.rs: owned verified graph/canonical bytes plus borrowed actual source request and Context",
+      "required_input": "Successful genuine source admission and full pre-capture canonical construction/verification",
+      "available_stage": "end of pre_capture_binding",
+      "current_g_binding": "Owns the fixed carrier; no public constructor/Deserialize and no RootExport capability",
+      "missing_binding": "Not a registered ModelType and cannot be forged by a shape/boolean claim"
+    },
+    {
+      "requested_spelling": "RawSubjectInputNode",
+      "registered": false,
+      "actual_native_source": "Private issuer's exact Graph root and exact owning VerifiedInputGraph borrow",
+      "required_input": "Real completed canonical G, not a caller U64 or borrowed Raw value",
+      "projection": "input_binder.rs::VerifiedInputGraph::subject_node; dag_rank()/carrier()",
+      "available_stage": "after pre_capture_binding",
+      "current_g_binding": "Actual Node<RawValidationSubject> wrapper only",
+      "missing_binding": "Does not implicitly provide Node<NativeRelationSnapshotSource>"
+    },
+    {
+      "type": "CanonicalValueDag",
+      "actual_native_source": "Derived canonical carrier, not one native source struct; all data derives from the admitted source tree",
+      "required_input": "All complete typed source values and exact sole root roster",
+      "projection": "input_graph.rs::Engine::{preflight,build,finish} and independent graph verification",
+      "available_stage": "pre_capture_binding",
+      "current_g_binding": "nodes and roots; all reachable, minimal, typed and canonically ranked",
+      "missing_binding": "An extra Source node/root is not allowed in the current Raw profile"
+    },
+    {
+      "type": "DagNode",
+      "actual_native_source": "Exact nominal ModelType plus complete typed source body and canonical child references",
+      "required_input": "Registered descriptor/site/eligibility and actual source subtree",
+      "projection": "input_graph.rs::Engine::build and finish",
+      "available_stage": "pre_capture_binding",
+      "current_g_binding": "Record fields type/body; original nominal key survives body delegation",
+      "missing_binding": "Body equality cannot supply a differently named/owned node"
+    },
+    {
+      "type": "NodeBody",
+      "actual_native_source": "Descriptor-directed canonical projection of actual source values; not Rust layout or Debug",
+      "required_input": "Registered scalar/record/variant/sequence/set/option_none/option_some/map body and all exact children",
+      "projection": "input_graph.rs::Engine::build and finish",
+      "available_stage": "pre_capture_binding",
+      "current_g_binding": "All eight frozen variants inventoried in existing-binding-census.json",
+      "missing_binding": "No new body case is needed or authorized"
+    },
+    {
+      "type": "ModelType",
+      "actual_native_source": "Implementation-owned frozen registered Catalogue; not caller-invented strings",
+      "required_input": "Exact owner/name and active declared type-order integration",
+      "projection": "structural_model_catalogue / structural_binding registration nominal mapping",
+      "available_stage": "registration selection before pre_capture_binding",
+      "current_g_binding": "Source rank754 and Content rank107 are different registered nominal types",
+      "missing_binding": "ModelType rank is not DagRank; Source type availability is not G node reachability"
+    },
+    {
+      "requested_spelling": "DagRank",
+      "registered": false,
+      "actual_native_source": "Position assigned by full canonical G bottom-up construction, never a native/source ordinal",
+      "required_input": "Complete minimal typed graph, all earlier children, exact type/body order",
+      "projection": "input_graph.rs::Engine::finish; independent verified fixed-carrier resolution",
+      "available_stage": "end of pre_capture_binding, before C",
+      "current_g_binding": "U64 resolves Node<T> to exact T in exact G; no standalone named DagRank descriptor",
+      "missing_binding": "No Source DagRank exists in current G; future symbolic dependency is not an assigned production rank"
+    }
+  ]
+}

@@ -1,9 +1,30 @@
 # R5G1 门禁证据的读取方式
 
-本文件只固定门禁合同，不预填未来成功。实际退出码、HEAD、开始时间、日志 SHA、
+本文件固定门禁合同并记录已实际结束的结果，不预填未来成功。实际退出码、HEAD、开始时间、日志 SHA、
 资源 readback、计数与最终 Outcome 由本轮运行结束后生成的回执提供：
 `target/phase-04c1b4c4r3c2r5g1-final-runtime-results.json`。
 缺失/未完成/非零失败回执不可解释为通过；历史成功不替代本轮执行。
+
+## 已实际结束的本轮门禁
+
+Rust quality起始HEAD为`5f3a6540f783f22ec32c5a2cdb88862844d9a14c`；完整新设计工具的
+材料化/严格回读共同成功HEAD为`866f04dccf4ce831d05269e5c6c510b871f380bd`。
+独立重跑起始HEAD另为`13d21e28df4856c709a449b92d4239507ddc1640`；各命令实际HEAD
+及时间保存在target下本阶段逐项回执，原Rust/spec/旧Oracle字节期间未改。
+
+| 实际门禁 | 本轮结果 |
+| --- | --- |
+| fmt / Clippy / cargo test / spec-check | 四条均exit0 |
+| 完整Rust测试 | 446 passed，78结果组，0failed，0ignored |
+| Current registration/auditor | 3662 CaseIds通过 |
+| Native / F1 | 53；26 lowering+36 native=62 inputs、40mutations通过 |
+| G3 independent / negative receipts / mutations | 154 / 26 / 59通过 |
+| R5真实边界 / comparator mutations | 7 / 46通过，原冻结Actual逐字段一致 |
+| G1 source census / design recipe / omissions | 1131 descriptors、317sites、66policies；49 / 38通过 |
+| G1未来注册 / 生产 /完整Raw信用 | 0；Not Executed / 未实施 |
+| Old / new Strict Raw Total | 均exit2，失败关闭保持 |
+
+原目录生成器和最终树封存的实际结果只在它们结束后写入最终动态回执；上表不将其预填为通过。
 
 完整串行命令入口：
 

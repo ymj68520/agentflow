@@ -6,7 +6,9 @@
 只有该回执完整有效且全部门禁结束，才成立 Outcome A；否则按实际缺口交付 B/C/D。
 
 1. 起始 HEAD `774ff6046ec9f3fbd6a2b84101b6e72faf4bbe2f`，干净工作树。代码门禁
-   HEAD 与最终 HEAD 在最终动态回执记录，不把未来哈希预填为已发生。
+   HEAD为`866f04dccf4ce831d05269e5c6c510b871f380bd`；Rust门禁起始HEAD另为
+   `5f3a6540f783f22ec32c5a2cdb88862844d9a14c`，期间Rust/规范源未改。最终HEAD只在
+   最终动态回执记录，不把未来哈希预填为已发生。
 2. 当前正式身份 Analysis `agentflow.root-export-checker@8`、Model
    `agentflow.computation.proof-report.model@7`、Report@7、Obligation@7，全部冻结。
 3. 第一不可绑定字段为 `StructuralSubjectAdmission.observations[].source`，其值类型
@@ -55,16 +57,17 @@
 30. 独立Oracle从规范和原始输入造required/Expected，RustActual只作对照；完整两侧遗漏
     拒绝测试从源独立枚举，不以Expected/Actual共同缺失缩减分母。
 31. 49设计向量为12/12/13/12，初始Not Executed；保留未来registration/production皆
-    Not Executed。symbolic recipe comparison和38 omission checks另列，不偷换生产信用。
+    Not Executed。本轮49个symbolic recipe comparison和38 omission checks已通过，
+    严格落盘回读通过；不偷换生产信用，前次失败日志仍保留。
 32. 保留184required events、7boundary、180otherwise applicable、2520required roots、
     0complete roots，Nested/Relation/Observation/SourceAssociation分母UNKNOWN/null。
     原177/176/2464账本仍另存。新增complete Raw cases/fullfield mutations仍0。
-33. 本轮G3/Native/F1/current3662/R5边界的新鲜回归，必须在动态回执检查具体开始时间、
-    Actual新鲜性、全字段比较和退出码，不引用旧成功填本轮通过。
+33. 本轮新鲜G3 154/26/59、Native53、F1 62/40、current3662、R5边界7/46均通过；
+    具体开始时间、Actual新鲜性、全字段比较和退出码在动态回执，不引用旧成功冒充。
 34. 八组历史构建本轮状态固定为Not Rerun — Referenced R5 Frozen Evidence；原源全字节
     不变才适用。冻结旧回执SHA，不把它写成当前执行。
-35. fmt/Clippy/Cargo/spec-check四条命令、测试passed/failed/ignored和各日志，由实际运行
-    结束后的quality与final-runtime-results提供；任何未完成项不得计为PASS。
+35. fmt/Clippy/Cargo/spec-check四条均已exit0，完整测试446passed/78组、0failed/0ignored。
+    实际运行日志与资源回执由quality与final-runtime-results提供；未完成项不计PASS。
 36. 主机CPU5%、process768MiB、job1536MiB、test1、CargoBuildJobsEnv1、topjob1，限额不放宽。
     原摘要编码器指数深层风险仍未修复；不跑危险fixture，结束确认后台任务none。
 37. 原目录重新枚举全部gen脚本，两轮完整连续、每脚本exit0与Baseline/R1/R2/Final原始

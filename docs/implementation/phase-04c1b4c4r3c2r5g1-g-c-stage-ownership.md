@@ -34,3 +34,20 @@ Actual seven-case test binds G, then invokes actual C, then actual port hook; G 
 before/after. Missing current module preserves A/G/Port Zero Violation and produces no full Fact.
 Valid does not solve current Model@7 nominal binding; None is not blocked by this gap but also
 does not complete the missing Raw producer. Honest new runtime receipts must come after execution.
+
+本轮新鲜诊断已完整复核原七例，逐字段与原冻结Actual一致；casewise原因如下：
+
+| 原Boundary CaseId后缀（前缀r5/nominal-boundary/） | 实际C关系分区 | 完整Raw Fact状态 |
+| --- | --- | --- |
+| effect_resource/valid | 该Some真实Valid，其余None/absent | 目标名义G引用缺失；完整producer未实现 |
+| effect_resource/missing | 该Some真实Missing，其余None/absent | C禁止完整Fact；同时保留G名义边界与真实Port |
+| recovery_usage/valid | 该Some真实Valid，其余None/absent | 目标名义G引用缺失；完整producer未实现 |
+| recovery_usage/missing | 该Some真实Missing，其余None/absent | C禁止完整Fact；同时保留G名义边界与真实Port |
+| flow_execution/valid | 该Some真实Valid，其余None/absent | 目标名义G引用缺失；完整producer未实现 |
+| flow_execution/missing | 该Some真实Missing，其余None/absent | C禁止完整Fact；同时保留G名义边界与真实Port |
+| none/valid | 三者均absent，不执行Snapshot验证 | 不受本名义缺口阻断；完整producer仍未实现 |
+
+所有七例均保留真实input/ordinal0/port0/Zero/Violation/AF-CONTRACT-0004；没有把C或
+Source stage failure变成Port Violation。none/valid中的valid只是测试模式名，不能读成
+某个不存在的Snapshot具有C Valid。普通诊断汇总中的“C failure and/or nominal boundary”
+须按上表及first_missing_g_reference实际适用性解释，不能套用到全None。

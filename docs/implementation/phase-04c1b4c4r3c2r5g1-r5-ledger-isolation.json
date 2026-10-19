@@ -1,0 +1,51 @@
+{
+  "kind": "PRESERVED R5 LEDGER; NOT A NEW RAW FULL-FIELD MEASUREMENT",
+  "frozen_source": "docs/implementation/phase-04c1b4c4r3c2r5-raw-model7-full-coverage-ledger.json",
+  "historical_checkpoint": {
+    "events": 177,
+    "otherwise_applicable_facts": 176,
+    "required_root_instances": 2464,
+    "complete_root_instances_compared": 0
+  },
+  "r5_checkpoint": {
+    "required_events": 184,
+    "boundary_events_compared": 7,
+    "otherwise_applicable_facts": 180,
+    "required_fact_roots": 2520,
+    "complete_fact_roots_compared": 0,
+    "nested_runtime_denominator": null,
+    "relation_runtime_denominator": null,
+    "observation_runtime_denominator": null,
+    "source_association_runtime_denominator": null,
+    "unknown_denominator_meaning": "UNKNOWN, not zero",
+    "boundary_mutations": 46,
+    "new_complete_raw_capture_case_ids": 0,
+    "new_raw_full_field_mutations": 0
+  },
+  "g1_credit": {
+    "design_vectors": 49,
+    "production_successor_case_ids_executed": 0,
+    "formal_successor_registration_case_ids_executed": 0,
+    "new_raw_full_field_case_ids": 0,
+    "new_raw_full_field_mutations": 0,
+    "current_boundary_diagnostics": "separate fresh G1 runtime receipt; never added to the frozen denominator as new full Facts"
+  },
+  "preserved_authority": {
+    "C1-GAP-01": "FORMAL BINDING REGISTERED",
+    "C2-GAP-01": "FORMAL BINDING REGISTERED",
+    "R3-CTX-REL-01": "FORMAL SOURCE/MEANING BINDING REGISTERED",
+    "R4-DAG-STRUCT-01": "PRODUCTION BINDER VERIFIED FOR AUTHORIZED INPUT DOMAIN",
+    "R5-C-REL-NOMINAL-01": "G1 design adjudication result in final runtime receipt; FORMAL REGISTRATION PENDING",
+    "production_successor_implementation": "NOT AUTHORIZED",
+    "raw_full_field_producer": "INCOMPLETE",
+    "native_full_seed": "INCOMPLETE",
+    "standalone": "INCOMPLETE",
+    "other_t3_producers": "INCOMPLETE",
+    "total_t3": "INCOMPLETE",
+    "t4": "NOT ELIGIBLE",
+    "positive_root_export": "NotAuthorized",
+    "G02": "OPEN",
+    "G03": "OPEN",
+    "F01_F02_F03_F04_B01_through_B07": "Existing dispositions preserved; no silent closure"
+  }
+}

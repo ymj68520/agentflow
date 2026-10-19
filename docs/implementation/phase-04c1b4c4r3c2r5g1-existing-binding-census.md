@@ -3,6 +3,8 @@
 机器入口：`tools/oracle/native_relation_source_design.py`，`census()`。
 两份同内容清单 existing-binding-census.json 和 r5g1-native-relation-source-binding-census.json
 保留用户指定名称与统一阶段前缀。不是只搜索两个相似类型名。
+native-binding-paths.json 逐项补充用户要求的关键类型/Rust issuer 的实际输入来源、
+源码投影函数与阶段；复合类型没有单一Native struct，不应将一般清单中的null读成无来源。
 
 先按冻结 v7 closed delta + 精确 SHA 固定的 v6 base 合成全部1131个 Descriptor；
 遍历全部字段、Variant、引用、Alias、317个结构站点、66个 carrier-use 策略。
@@ -39,7 +41,7 @@ child 被纳入，因为每个可达节点的所有 child 都已由封闭 Descri
 `CanonicalValueDag`、`DagNode`、`NodeBody`、`ModelType` 的确切字段见清单。
 
 源码证据：input_graph.rs 的 descriptor() 保留 key、child_key() 返回确切 ref 目标，
-build() 按原 key 实习完整 typed interning；finish() 独立校验可达和规范 ranks。
+build() 按原 key 实行完整 typed interning；finish() 独立校验可达和规范 ranks。
 input_binder.rs 的私有图/根 wrapper、实际 source/context 借用不提供额外构造入口。
 Python 独立 decoder 同样检验每条 child 的确切名义 key，不接受同 shape 转换。
 结论：现有合法绑定穷举不存在；不是单纯“没有搜索到”，也不指控现有 Binder 违约。
