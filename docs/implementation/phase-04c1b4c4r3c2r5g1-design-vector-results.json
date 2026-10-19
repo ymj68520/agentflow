@@ -1,0 +1,721 @@
+{
+  "initial_status": "Not Executed",
+  "results": [
+    {
+      "case_id": "r5g1/design/1/same-body-different-nominal",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/1/repeated-same-source",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/1/different-owner",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/1/different-slot",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/1/missing-source",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/1/wrong-association",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/1/content-as-source",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/1/same-shape-different-type-rank",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/1/incomplete-source",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/1/illegal-alias",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/1/cross-edition-source",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/1/complete-native-source",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/2/reachable-source",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/2/unreachable-source",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/2/wrong-child-edge",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/2/wrong-parent",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/2/arbitrary-rank",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/2/duplicate-equal-node",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/2/incorrect-interning",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/2/wrong-root",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/2/extra-root",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/2/source-produced-after-G",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/2/G-C-G-backedge",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/2/acyclic-canonical-input",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/3/effect_resource-valid",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/3/effect_resource-missing",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/3/recovery_usage-valid",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/3/recovery_usage-missing",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/3/flow_execution-valid",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/3/flow_execution-missing",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/3/all-none",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/3/same-A-different-C",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/3/A-fields-unchanged",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/3/C-cannot-fill-history",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/3/wrong-cross-slot",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/3/existing-G-source-reference",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/3/C-missing-no-full-fact",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/4/old-graph-preserved",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/4/new-owner-identity-required",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/4/old-data-no-source",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/4/unregistered-alias",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/4/cross-edition-reference",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/4/W-local-substitute",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/4/both-omit-source",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/4/forged-verified-graph",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/4/forged-raw-fact",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/4/forged-root-export",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/4/resource-bounds",
+      "status": "Not Executed",
+      "design_recipe_comparison": "REJECT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    },
+    {
+      "case_id": "r5g1/design/4/lawful-future-design",
+      "status": "Not Executed",
+      "design_recipe_comparison": "ACCEPT",
+      "executed_scope": "symbolic recipe comparison ONLY; no graph construction or native execution",
+      "production_scope": "Not Executed",
+      "future_registration_scope": "Not Executed"
+    }
+  ],
+  "comparator_checks": [
+    {
+      "path": [
+        "source"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "nominal"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "nominal"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source_association"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source_association"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "reachability"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "reachability"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "root_types"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "root_types"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "child_target"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "child_target"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source_stage"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source_stage"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "dag_rank"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "dag_rank"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "rank_dependencies"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "rank_dependencies"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "c_source_domain"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "c_source_domain"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "c_source_target"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "c_source_target"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source",
+        "kind"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source",
+        "kind"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source",
+        "schema_family"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source",
+        "schema_family"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source",
+        "revision"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source",
+        "revision"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source",
+        "pin"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source",
+        "pin"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source",
+        "canonical_content"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source",
+        "canonical_content"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source",
+        "catalog"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source",
+        "catalog"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source_association",
+        "owner"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source_association",
+        "owner"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source_association",
+        "slot"
+      ],
+      "both_sides": false,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    },
+    {
+      "path": [
+        "source_association",
+        "slot"
+      ],
+      "both_sides": true,
+      "rejected": true,
+      "credit": "DESIGN COMPARATOR ONLY"
+    }
+  ],
+  "production_design_case_ids_executed": 0,
+  "note": "Symbolic recipe evaluation is not production/registration execution."
+}
