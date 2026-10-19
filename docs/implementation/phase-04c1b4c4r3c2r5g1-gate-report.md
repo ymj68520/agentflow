@@ -30,6 +30,12 @@ Rust quality 起始 HEAD 与完整 Python/独立对照代码门禁 HEAD 分开�
 日志保留，不计通过。修订只让源枚举器直接产生注册selector格式的JSON数组，不放松
 exact comparator，不从Actual修补Expected，不改任何旧Oracle/规范/生产。重跑使用
 AF_R5G1_GATE_ATTEMPT独立日志后缀，避免覆盖失败和前轮成功回执。
+静态审查另将不同Owner正例明确选为冻结语料中的合法namespace声明案例，避免按“第一个
+不同anchor”误选故意错误的foreign-domain负例。其package/owner domain一致，完整OwnerAnchor
+确实不同，原始声明内容相同。本轮仍不将声明namespace解释为认证权限。
+完整代码门禁点取新设计materialize与严格回读两项共同成功的实际HEAD；独立回归起始HEAD、
+Rust起始HEAD和每项实际运行HEAD分别保留。期间所有旧Rust/spec/Oracle原字节冻结，不冒充
+较早运行发生于较晚HEAD；新工具修订后的行为须由其后新鲜执行证明。
 
 independent 必须使用 quality 开始后新鲜产生的 Rust Actual：current registration3662、
 Native53、F1 lowering26+native36=62及40mutations、G3 154正/26负/59mutations、

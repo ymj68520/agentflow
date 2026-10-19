@@ -193,7 +193,11 @@ def finalize():
     assert len(quality_rows) == 4 and all(r['exit'] == 0 for r in quality_rows)
     rust_quality_head = read('target/' + P + 'code-head.json')['head']
     independent_rows = read('target/' + P + 'independent.json')
-    code = independent_rows['code_gate_head']
+    independent_start_head = independent_rows['code_gate_head']
+    design_heads = {r['head'] for r in independent_rows['runs']
+                    if r['name'].startswith(('r5g1-design-materialize', 'r5g1-design-check'))}
+    assert len(design_heads) == 1
+    code = design_heads.pop()
     assert not git('diff', '--name-only', rust_quality_head, 'HEAD', '--', 'crates', 'spec')
     assert not git('diff', '--name-only', code, 'HEAD', '--', 'crates', 'tools', 'spec')
     matches = re.findall(r'test result: ok\. (\d+) passed; (\d+) failed; (\d+) ignored',
@@ -208,6 +212,8 @@ def finalize():
     assert [int(n) for n in re.findall(r'^(\d+)\. ', report, re.M)] == list(range(1, 43))
     receipt = dict(outcome='A — FORMAL AMENDMENT DESIGN ACCEPTED', start_head=BASE,
                    code_gate_head=code, rust_quality_start_head=rust_quality_head,
+                   independent_start_head=independent_start_head,
+                   complete_code_gate_basis='latest successful materialize/readback HEAD; all original Rust/spec/old Oracles raw bytes frozen; earlier run HEADs retained per receipt',
                    rust_and_normative_sources_exactly_unchanged_since_quality_start=True,
                    final_head=head(), quality=quality_rows,
                    cargo_pass_records=sum(int(m[0]) for m in matches), cargo_result_groups=len(matches),

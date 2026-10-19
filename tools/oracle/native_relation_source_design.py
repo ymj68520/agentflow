@@ -230,8 +230,13 @@ def vectors():
     owner = original['package']['owners'][original['owner']]['anchor']
     association = dict(source_package=original['package'], owner=owner, entry_ordinal=original['slot'],
                        member_path=[['entry', original['path_entry']]])
+    # Select an explicitly positive source input, not the first different
+    # anchor (which can be the intentionally invalid foreign-domain case).
     other = next(r for r in B.G.RAW.vectors()
-                 if r['package']['owners'][r['owner']]['anchor'] != owner)
+                 if r['case_id'] == 'c2r1/declared-namespace-is-not-an-authentication-whitelist')
+    assert other['operation'] == 'capture'
+    assert other['package']['owners'][other['owner']]['anchor']['domain'] == other['package']['domain']
+    assert other['package']['owners'][other['owner']]['anchor'] != owner
     result = []
     positives = {'repeated-same-source', 'different-owner', 'different-slot', 'complete-native-source',
                  'reachable-source', 'acyclic-canonical-input', 'all-none', 'same-A-different-C',
