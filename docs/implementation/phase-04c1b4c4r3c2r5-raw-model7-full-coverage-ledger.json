@@ -1,0 +1,57 @@
+{
+  "outcome": "C — NEW FORMAL BINDING / STAGE GAP",
+  "checkpoint": "R5-C",
+  "baseline": {
+    "real_events": 177,
+    "otherwise_applicable_facts": 176,
+    "root_instances": 2464,
+    "full_field_compared": 0
+  },
+  "events": {
+    "required": 184,
+    "boundary_compared": 7,
+    "legacy_not_reaccepted": 177,
+    "old_main_case_ids": 59,
+    "old_main_events": 125,
+    "unexpected_boundary": 0
+  },
+  "roots": {
+    "required": 2520,
+    "compared": 0,
+    "missing_or_partial": 2520,
+    "otherwise_applicable_events": 180
+  },
+  "nested": {
+    "required": null,
+    "compared": 0,
+    "missing": null,
+    "status": "UNKNOWN; stopped at R5-C, not zero"
+  },
+  "relations": {
+    "required": null,
+    "compared_raw_fact_instances": 0,
+    "missing": null,
+    "status": "UNKNOWN Raw Fact denominator; boundary C comparisons separately recorded"
+  },
+  "observations": {
+    "required": null,
+    "compared_raw_fact_instances": 0,
+    "missing": null,
+    "status": "UNKNOWN; no complete Fact issued"
+  },
+  "source_associations": {
+    "required_raw_fact_instances": null,
+    "compared_raw_fact_instances": 0,
+    "boundary_same_source_context_carrier_checks": 7,
+    "status": "BOUNDARY ONLY"
+  },
+  "new_complete_capture_case_ids": 0,
+  "new_full_field_mutations": 0,
+  "unexpected_raw_semantic_mismatches": null,
+  "raw_mismatch_status": "NOT COMPARED",
+  "strict_total_exit": 2,
+  "raw_producer": "INCOMPLETE",
+  "total_t3": "INCOMPLETE",
+  "t4": "NOT ELIGIBLE",
+  "positive_root_export": "NotAuthorized"
+}

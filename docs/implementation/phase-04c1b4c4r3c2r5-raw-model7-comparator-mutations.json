@@ -1,0 +1,236 @@
+{
+  "boundary_mutations": [
+    {
+      "case_id": "r5/boundary-comparator/case_id/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/case_id/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/subject_rank/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/subject_rank/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/context_rank/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/context_rank/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/actual_source/rank/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/actual_source/rank/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/actual_source/type/owner/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/actual_source/type/owner/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/actual_source/type/name/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/actual_source/type/name/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/required_c_source_type/name/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/required_c_source_type/name/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/matching_target_ranks/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/matching_target_ranks/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/c_metadata/effect_resource/source/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/c_metadata/effect_resource/source/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/c_metadata/effect_resource/lookup/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/c_metadata/effect_resource/lookup/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/c_metadata/effect_resource/validation/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/c_metadata/effect_resource/validation/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/c_metadata/effect_resource/current_modules/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/c_metadata/effect_resource/current_modules/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/same_source_object/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/same_source_object/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/same_context_object/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/same_context_object/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/same_subject_carrier/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/same_subject_carrier/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/g_unchanged_after_c_and_port/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/g_unchanged_after_c_and_port/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/port_event/original_ordinal/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/port_event/original_ordinal/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/port_event/port_no/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/port_event/port_no/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/port_event/condition/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/port_event/condition/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/port_event/status/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/port_event/status/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/complete_raw_fact_produced/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/complete_raw_fact_produced/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/positive_root_export/actual",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/positive_root_export/both",
+      "rejected": true,
+      "both_sides": true
+    },
+    {
+      "case_id": "r5/boundary-comparator/forged-complete_raw_fact_produced",
+      "rejected": true,
+      "both_sides": false
+    },
+    {
+      "case_id": "r5/boundary-comparator/forged-positive_root_export",
+      "rejected": true,
+      "both_sides": false
+    }
+  ],
+  "raw_full_field_mutations": [],
+  "full_field_credit": 0
+}

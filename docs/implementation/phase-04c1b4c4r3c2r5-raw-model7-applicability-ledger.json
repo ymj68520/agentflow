@@ -1,0 +1,2299 @@
+{
+  "legacy": [
+    {
+      "case_id": "c2r1/declaration_bundle/input-zero",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/output-zero",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/output-zero",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/input-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/input-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/input-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 3
+      },
+      "condition": "duplicate",
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 3
+      }
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/output-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/output-duplicate",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/output-duplicate",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 1,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "condition": "duplicate",
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 2
+      }
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/namespaces",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/namespaces",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/numeric",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/numeric",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 2,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/numeric",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 2,
+        "port_no": 10
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 2
+      }
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/numeric",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 2,
+        "sorted_ordinal": 0,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/numeric",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 1,
+        "sorted_ordinal": 1,
+        "port_no": 10
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 2,
+        "port_no": 2
+      }
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/numeric",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 2,
+        "port_no": 4294967295
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 10
+      }
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/stable",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 3
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/stable",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 7
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 3
+      }
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/stable",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 7
+      },
+      "condition": "duplicate",
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 7
+      }
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/sentinel",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/sentinel",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/output-only",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/output-only",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/input-only",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/input-only",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/zero-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/reversed-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 4
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/reversed-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 1,
+        "port_no": 4
+      },
+      "condition": "duplicate",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 4
+      }
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/max",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 4294967295
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/all-positive",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/all-positive",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 2
+      }
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/all-positive",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 2,
+        "port_no": 4
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 2,
+        "port_no": 3
+      }
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/all-positive",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/all-positive",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/declaration_bundle/output-sentinel",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 4294967295
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/input-zero",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/output-zero",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/output-zero",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/input-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/input-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/import_manifest/input-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 3
+      },
+      "condition": "duplicate",
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 3
+      }
+    },
+    {
+      "case_id": "c2r1/import_manifest/output-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/output-duplicate",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/output-duplicate",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 1,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "condition": "duplicate",
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 2
+      }
+    },
+    {
+      "case_id": "c2r1/import_manifest/namespaces",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/namespaces",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/numeric",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/numeric",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 2,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/import_manifest/numeric",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 2,
+        "port_no": 10
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 2
+      }
+    },
+    {
+      "case_id": "c2r1/import_manifest/numeric",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 2,
+        "sorted_ordinal": 0,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/numeric",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 1,
+        "sorted_ordinal": 1,
+        "port_no": 10
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 2,
+        "port_no": 2
+      }
+    },
+    {
+      "case_id": "c2r1/import_manifest/numeric",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 2,
+        "port_no": 4294967295
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 10
+      }
+    },
+    {
+      "case_id": "c2r1/import_manifest/stable",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 3
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/stable",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 7
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 3
+      }
+    },
+    {
+      "case_id": "c2r1/import_manifest/stable",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 7
+      },
+      "condition": "duplicate",
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 7
+      }
+    },
+    {
+      "case_id": "c2r1/import_manifest/sentinel",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/sentinel",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/import_manifest/output-only",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/output-only",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/import_manifest/input-only",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/input-only",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/import_manifest/zero-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/reversed-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 4
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/reversed-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 1,
+        "port_no": 4
+      },
+      "condition": "duplicate",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 4
+      }
+    },
+    {
+      "case_id": "c2r1/import_manifest/max",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 4294967295
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/all-positive",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/all-positive",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 2
+      }
+    },
+    {
+      "case_id": "c2r1/import_manifest/all-positive",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 2,
+        "port_no": 4
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 2,
+        "port_no": 3
+      }
+    },
+    {
+      "case_id": "c2r1/import_manifest/all-positive",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/import_manifest/all-positive",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/import_manifest/output-sentinel",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 4294967295
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/input-zero",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/output-zero",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/output-zero",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/input-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/input-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/input-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 3
+      },
+      "condition": "duplicate",
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 3
+      }
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/output-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/output-duplicate",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/output-duplicate",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 1,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "condition": "duplicate",
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 2
+      }
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/namespaces",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/namespaces",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/numeric",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/numeric",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 2,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/numeric",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 2,
+        "port_no": 10
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 2
+      }
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/numeric",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 2,
+        "sorted_ordinal": 0,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/numeric",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 1,
+        "sorted_ordinal": 1,
+        "port_no": 10
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 2,
+        "port_no": 2
+      }
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/numeric",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 2,
+        "port_no": 4294967295
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 10
+      }
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/stable",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 3
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/stable",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 7
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 3
+      }
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/stable",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 7
+      },
+      "condition": "duplicate",
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 7
+      }
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/sentinel",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/sentinel",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/output-only",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/output-only",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/input-only",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/input-only",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/zero-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/reversed-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 4
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/reversed-duplicate",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 1,
+        "port_no": 4
+      },
+      "condition": "duplicate",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 4
+      }
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/max",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 4294967295
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/all-positive",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/all-positive",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 2
+      }
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/all-positive",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 2,
+        "port_no": 4
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 2,
+        "port_no": 3
+      }
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/all-positive",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/all-positive",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/workflow_source_collection/output-sentinel",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 4294967295
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/schema-stop",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/reuse/distinct-owner",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/reuse/distinct-owner",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/reuse/distinct-slot",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/reuse/distinct-slot",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/reuse/same-occurrence",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/reuse/same-occurrence",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "condition": "positive_fresh",
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 1
+      }
+    },
+    {
+      "case_id": "c2r1/complete-thirteen-fields/unit",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/complete-thirteen-fields/null",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/complete-thirteen-fields/bool",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/complete-thirteen-fields/int64",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/complete-thirteen-fields/decimal",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/complete-thirteen-fields/string",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/complete-thirteen-fields/bytes",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/complete-thirteen-fields/timestamp",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/complete-thirteen-fields/duration",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r1/declared-namespace-is-not-an-authentication-whitelist",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "condition": "zero",
+      "predecessor": null
+    },
+    {
+      "case_id": "c2r2-input/baseline",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "predecessor": null,
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/baseline",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      },
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/baseline",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 3
+      },
+      "condition": "duplicate"
+    },
+    {
+      "case_id": "c2r2-input/namespace",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "predecessor": null,
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/namespace",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      },
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/namespace",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 3
+      },
+      "condition": "duplicate"
+    },
+    {
+      "case_id": "c2r2-input/domain_key",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "predecessor": null,
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/domain_key",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      },
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/domain_key",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 3
+      },
+      "condition": "duplicate"
+    },
+    {
+      "case_id": "c2r2-input/owner_key",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "predecessor": null,
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/owner_key",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      },
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/owner_key",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 3
+      },
+      "condition": "duplicate"
+    },
+    {
+      "case_id": "c2r2-input/revision_key",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "predecessor": null,
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/revision_key",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      },
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/revision_key",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 3
+      },
+      "condition": "duplicate"
+    },
+    {
+      "case_id": "c2r2-input/document-slot",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "predecessor": null,
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/document-slot",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      },
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/document-slot",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 3
+      },
+      "condition": "duplicate"
+    },
+    {
+      "case_id": "c2r2-input/internal-declaration-entry",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "predecessor": null,
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/internal-declaration-entry",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      },
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/internal-declaration-entry",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 3
+      },
+      "condition": "duplicate"
+    },
+    {
+      "case_id": "c2r2-input/direction",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 4
+      },
+      "predecessor": null,
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/direction",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "predecessor": null,
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/direction",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      },
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/direction",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 3
+      },
+      "condition": "duplicate"
+    },
+    {
+      "case_id": "c2r2-input/original-ordinal",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "predecessor": null,
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/original-ordinal",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 1
+      },
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/original-ordinal",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 3
+      },
+      "condition": "duplicate"
+    },
+    {
+      "case_id": "c2r2-input/sorted-ordinal",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "predecessor": null,
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/sorted-ordinal",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "predecessor": {
+        "original_ordinal": 2,
+        "port_no": 1
+      },
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/sorted-ordinal",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 2,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 2
+      },
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/sorted-ordinal",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 3,
+        "sorted_ordinal": 3,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 3
+      },
+      "condition": "duplicate"
+    },
+    {
+      "case_id": "c2r2-input/port-number",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "predecessor": null,
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/port-number",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 2
+      },
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      },
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/port-number",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 2
+      },
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/port-number",
+      "occurrence": {
+        "direction": "output",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 4
+      },
+      "predecessor": null,
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/predecessor",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "predecessor": null,
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/predecessor",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 2,
+        "port_no": 1
+      },
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/predecessor",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 3,
+        "sorted_ordinal": 2,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 3
+      },
+      "condition": "duplicate"
+    },
+    {
+      "case_id": "c2r2-input/typed-declaration",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "predecessor": null,
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/typed-declaration",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      },
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/typed-declaration",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 3
+      },
+      "condition": "duplicate"
+    },
+    {
+      "case_id": "c2r2-input/physical-base",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "predecessor": null,
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/physical-base",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      },
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/physical-base",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 3
+      },
+      "condition": "duplicate"
+    },
+    {
+      "case_id": "c2r2-input/physical-bytes-whitespace",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 1,
+        "sorted_ordinal": 0,
+        "port_no": 1
+      },
+      "predecessor": null,
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/physical-bytes-whitespace",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 1,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 1,
+        "port_no": 1
+      },
+      "condition": "positive_fresh"
+    },
+    {
+      "case_id": "c2r2-input/physical-bytes-whitespace",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 2,
+        "sorted_ordinal": 2,
+        "port_no": 3
+      },
+      "predecessor": {
+        "original_ordinal": 0,
+        "port_no": 3
+      },
+      "condition": "duplicate"
+    },
+    {
+      "case_id": "c2r3/relation-snapshot-schema-pin/left-A",
+      "condition": "zero",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "coordinate_status": "SOURCE-DERIVED REQUIRED; old Actual preserved verdict only"
+    },
+    {
+      "case_id": "c2r3/relation-snapshot-schema-pin/right-A",
+      "condition": "zero",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "coordinate_status": "SOURCE-DERIVED REQUIRED; old Actual preserved verdict only"
+    },
+    {
+      "case_id": "c2r3/relation-snapshot-schema-pin/missing",
+      "condition": "zero",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      },
+      "coordinate_status": "SOURCE-DERIVED REQUIRED; old Actual preserved verdict only"
+    },
+    {
+      "case_id": "c2r4/model6-structural-node-binding",
+      "condition": "zero",
+      "occurrence": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0
+      }
+    }
+  ],
+  "new_boundary_cases": [
+    {
+      "case_id": "r5/nominal-boundary/effect_resource/valid",
+      "event": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0,
+        "condition": "zero",
+        "status": "Violation",
+        "rule": "AF-CONTRACT-0004"
+      },
+      "fact_applicability": "OTHERWISE_APPLICABLE",
+      "full_field_compared": false
+    },
+    {
+      "case_id": "r5/nominal-boundary/effect_resource/missing",
+      "event": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0,
+        "condition": "zero",
+        "status": "Violation",
+        "rule": "AF-CONTRACT-0004"
+      },
+      "fact_applicability": "C_FORBIDS_FACT",
+      "full_field_compared": false
+    },
+    {
+      "case_id": "r5/nominal-boundary/recovery_usage/valid",
+      "event": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0,
+        "condition": "zero",
+        "status": "Violation",
+        "rule": "AF-CONTRACT-0004"
+      },
+      "fact_applicability": "OTHERWISE_APPLICABLE",
+      "full_field_compared": false
+    },
+    {
+      "case_id": "r5/nominal-boundary/recovery_usage/missing",
+      "event": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0,
+        "condition": "zero",
+        "status": "Violation",
+        "rule": "AF-CONTRACT-0004"
+      },
+      "fact_applicability": "C_FORBIDS_FACT",
+      "full_field_compared": false
+    },
+    {
+      "case_id": "r5/nominal-boundary/flow_execution/valid",
+      "event": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0,
+        "condition": "zero",
+        "status": "Violation",
+        "rule": "AF-CONTRACT-0004"
+      },
+      "fact_applicability": "OTHERWISE_APPLICABLE",
+      "full_field_compared": false
+    },
+    {
+      "case_id": "r5/nominal-boundary/flow_execution/missing",
+      "event": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0,
+        "condition": "zero",
+        "status": "Violation",
+        "rule": "AF-CONTRACT-0004"
+      },
+      "fact_applicability": "C_FORBIDS_FACT",
+      "full_field_compared": false
+    },
+    {
+      "case_id": "r5/nominal-boundary/none/valid",
+      "event": {
+        "direction": "input",
+        "original_ordinal": 0,
+        "sorted_ordinal": 0,
+        "port_no": 0,
+        "condition": "zero",
+        "status": "Violation",
+        "rule": "AF-CONTRACT-0004"
+      },
+      "fact_applicability": "OTHERWISE_APPLICABLE",
+      "full_field_compared": false
+    }
+  ],
+  "no_event_deleted": true,
+  "c_missing_legacy_event": "retained; full Fact forbidden",
+  "otherwise_applicable_facts": 180
+}
