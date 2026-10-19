@@ -199,6 +199,31 @@ GROUPS = [
 ]
 
 
+def native_source(slot):
+    """A projection from declared native input ONLY; never calls C/expected()."""
+    value = B.G.REL.catalog(B.G.REL.case_base(slot))
+    B.G.REL.validate_native_catalog(slot, value)
+    family = B.G.REL.info(slot)[1]
+    data = B.G.REL.CAT.ace1(value).encode('utf8')
+    pin = dict(family=family, revision='g2-fixture',
+               canonical_content_checksum=dict(algorithm='sha256', hex=hashlib.sha256(data).hexdigest()))
+    return dict(kind=slot, schema_family=family, revision='g2-fixture', pin=pin,
+                canonical_content=list(data), catalog={slot: value})
+
+
+def declared_context(slot, mode, present=True):
+    """Full actual input definitions, not the result of validating them."""
+    modules, _ = B.G.REL.compiled(slot, 'missing_module' if mode == 'Missing' else 'A')
+    result = copy.deepcopy(B.G.empty_context_with_actual_modules())
+    result['contents']['compiled_modules'] = [
+        [name, dict(specification_id=name, types=[B.G.REL.definition(t) for t in modules[name]])]
+        for name in sorted(modules)]
+    result['contents']['relation_snapshots'] = {s: {'none': None} for s in SLOTS}
+    if present:
+        result['contents']['relation_snapshots'][slot] = {'some': native_source(slot)}
+    return result
+
+
 def vectors():
     # Original declaration and independent native/AFIDL input, never Rust Actual.
     original = next(v for v in B.G.RAW.vectors() if v['case_id'] == 'c2r1/declaration_bundle/input-zero')
@@ -216,7 +241,7 @@ def vectors():
         for name in names:
             slot = next((s for s in SLOTS if name.startswith(s)), SLOTS[0])
             mode = 'Missing' if name.endswith('-missing') or name == 'C-missing-no-full-fact' else 'Valid'
-            native = B.G.REL.expected(B.G.REL.case_base(slot))['computed']['source']['some']
+            native = native_source(slot)
             recipe = future_recipe(native, association, slot, mode)
             admit = name in positives or name.endswith('-valid') or name.endswith('-missing')
             if name == 'all-none':
@@ -269,7 +294,7 @@ def vectors():
                 recipe = pair['second']
                 candidate = copy.deepcopy(recipe)
             elif name == 'different-slot':
-                pair = {s: future_recipe(B.G.REL.expected(B.G.REL.case_base(s))['computed']['source']['some'],
+                pair = {s: future_recipe(native_source(s),
                                         association, s) for s in SLOTS}
             elif name in ['same-A-different-C', 'A-fields-unchanged']:
                 pair = dict(valid=future_recipe(native, association, slot, 'Valid'),
@@ -279,9 +304,14 @@ def vectors():
                 pair = dict(first=recipe, second=copy.deepcopy(recipe))
             result.append(dict(case_id=f'r5g1/design/{group}/{name}', group=group, scenario=name,
                                status='Not Executed',
-                               actual_existing_input=dict(original_declaration=original, native_source=native,
+                               actual_existing_input=dict(original_declaration=other if name == 'different-owner' else original,
+                                                          paired_original_declaration=original if name == 'different-owner' else None,
+                                                          native_source=None if name == 'all-none' else native,
                                                           actual_source_association=comparison_owner, slot=slot,
-                                                          current_context_mode=mode),
+                                                          actual_current_context=declared_context(slot, mode, name != 'all-none'),
+                                                          paired_current_contexts={m: declared_context(slot, m) for m in ['Valid', 'Missing']}
+                                                          if name in ['same-A-different-C', 'A-fields-unchanged'] else None,
+                                                          current_context_mode='absent' if name == 'all-none' else mode),
                                registered_expected=dict(source_node_count=0, some_nominal=CONTENT,
                                                         c_source_binding='UNAVAILABLE' if name != 'all-none' else 'not_applicable',
                                                         complete_raw_fact=False, positive_root_export=False),

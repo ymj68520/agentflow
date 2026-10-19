@@ -5,6 +5,10 @@
 site/policy denominator 从完整注册模型重建；原始 Raw 声明来自独立旧输入；Native A 与
 current lookup/validation Expected 来自冻结 AFIDL/Native 输入的独立 Python 算法。
 Rust Actual 只用于七例真实边界的对照，不决定 required roster 或设计推荐。
+设计A投影在独立 native_source() 中仅读取声明的Native catalog、family/revision/pin/bytes，
+不调用C或C Expected；declared_context()另保留完整当前模块定义和九分区输入。
+All-None向量的真实声明上下文中三个Slot都为None、native_source为null，不把Some输入
+冒充None。不同Owner配对各保留其真实原始声明；同A/不同C保留两份完整当前Context。
 
 三层输出严格分开：
 
