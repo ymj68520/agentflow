@@ -2,8 +2,10 @@
   {
     "case_id": "production-input-g/boundary-deep-native-schema",
     "domain": "ResourceLimit",
+    "native_type_expr_depth": 100,
     "operation": "deep-native-schema",
     "reason": "resource_bound",
+    "source_constructor": "compile_module_set_without_digest",
     "stage": "source_admission"
   },
   {
@@ -15,7 +17,9 @@
   },
   {
     "case_id": "production-input-g/boundary-work-exhaustion",
+    "common_prefix_bytes": 2048,
     "domain": "ResourceLimit",
+    "native_label_count": 12000,
     "operation": "work-exhaustion",
     "reason": "resource_bound",
     "stage": "pre_capture_binding"

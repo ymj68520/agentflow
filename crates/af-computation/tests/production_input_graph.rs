@@ -563,18 +563,20 @@ fn production_resource_and_nominal_boundaries() {
         let op = boundary["operation"].as_str().unwrap();
         match op {
             "deep-native-schema" => {
-                let mut expr = af_idl::CanonicalTypeExpr::Primitive(af_idl::Primitive::Bool);
-                for _ in 0..100 {
-                    expr = af_idl::CanonicalTypeExpr::List(Box::new(expr));
-                }
-                inputs
-                    .schemas
-                    .insert_type(&af_idl::CanonicalTypeSchema {
-                        schema: "binder.deep@1".into(),
-                        name: "Deep".into(),
-                        body: af_idl::CanonicalBody::Alias(expr),
-                    })
-                    .unwrap();
+                // insert_type computes the old schema-of-schemas digest first;
+                // its three-way finite shape expansion is exponential in depth.
+                // Compile a genuine native module WITHOUT requesting that hash,
+                // so the production binder's iterative admission guard is tested.
+                let depth =
+                    usize::try_from(boundary["native_type_expr_depth"].as_u64().unwrap()).unwrap();
+                let source = format!(
+                    "afidl 1; schema binder.deep @1; alias Deep = {}bool{};",
+                    "list<".repeat(depth),
+                    ">".repeat(depth)
+                );
+                inputs.modules =
+                    af_idl::compile_module_set(&[("actual-deep-input.afidl".into(), source)])
+                        .unwrap();
             }
             "nfd-native-context" => {
                 inputs
@@ -582,11 +584,21 @@ fn production_resource_and_nominal_boundaries() {
                     .sinks
                     .recognize_operation("binder.effects@1", "e\u{301}", false);
             }
-            "work-exhaustion" => inputs.flow.sinks.recognize_operation(
-                "binder.effects@1",
-                &"x".repeat(70 * 1024 * 1024),
-                false,
-            ),
+            "work-exhaustion" => {
+                // A long common prefix forces genuine typed-order comparison
+                // work without a single giant scalar's projection/clone peak.
+                // Cardinality, node/edge count and view size stay far below
+                // their independent bounds; the unchanged work budget closes.
+                let prefix = "x".repeat(
+                    usize::try_from(boundary["common_prefix_bytes"].as_u64().unwrap()).unwrap(),
+                );
+                for index in 0..boundary["native_label_count"].as_u64().unwrap() {
+                    inputs.flow.labels.recognize_confidentiality(
+                        "binder.labels@1",
+                        &format!("{prefix}{index:05}"),
+                    );
+                }
+            }
             _ => panic!("unknown declared boundary"),
         }
         let context = inputs.borrow();

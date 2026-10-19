@@ -128,6 +128,10 @@ def main():
     write('negative-cases.json',[dict(case_id=PREFIX+'source-'+name,operation=name,domain=domain,reason=reason,stage='source_admission') for name,domain,reason in negatives])
     write('boundary-cases.json',[dict(case_id=PREFIX+'boundary-'+name,operation=name,domain=domain,reason=reason,stage=stage) for name,domain,reason,stage in [
         ('deep-native-schema','ResourceLimit','resource_bound','source_admission'),('nfd-native-context','UnsupportedModel','invalid_shape','source_admission'),('work-exhaustion','ResourceLimit','resource_bound','pre_capture_binding')]])
+    boundary=json.loads((D/'boundary-cases.json').read_bytes())
+    boundary[0].update(native_type_expr_depth=100,source_constructor='compile_module_set_without_digest')
+    boundary[-1].update(native_label_count=12000,common_prefix_bytes=2048)
+    write('boundary-cases.json',boundary)
     write('environment.json',dict(module='spec/conformance/production-input-graph/environment.afidl',
         type_schemas=['binder.fixture@1/Data','binder.fixture@1/Handle'],
         resource_schema='binder.fixture@1/Handle',resource_attributes=['region','tenant'],
