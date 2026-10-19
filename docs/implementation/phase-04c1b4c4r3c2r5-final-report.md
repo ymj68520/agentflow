@@ -48,7 +48,9 @@ formal-binding-gap.json；UNKNOWN 保留为 null，非零 Strict Total 不隐藏
     包含其它 Profile 的条件分支；不是 Raw Nested 运行时分母。
 34. Boundary C 元数据完整比较与 Raw Fact Relation/Observation 分母明确区分。
 35. 新 Python Oracle 独立编译 AFIDL、重建完整 G 与 C Expected，再比较 Actual。
-    新 Strict Total 即使边界比较通过仍 Exit 2。
+    新 Strict Total 即使边界比较通过仍 Exit 2。六种 --gate 请求在本停止点统一
+    失败关闭，只是未闭合/不可用拒绝，不是六种已实现的 Raw 全字段验证器；
+    Boundary Oracle 的 Exit 0 不是 Raw Full-field Oracle 闭合。
 36. 新 Complete Raw Capture CaseIds = 0；7 个新真实边界 CaseIds 单独计数。
 37. 新 Full-field Comparator Mutations = 0；46 个 Boundary Comparator Mutations
     单独计数，不借用 G3/F1/旧 Raw 的反例数量。
@@ -57,6 +59,8 @@ formal-binding-gap.json；UNKNOWN 保留为 null，非零 Strict Total 不隐藏
     的新鲜回归执行状态、退出码、日志哈希由最终回执封存。
 40. 八组精确历史源码/Registry/Compiler/Expected 回归及运行前后 Git Blob/原始
     字节检查由最终回执封存；G2 Staging 与 G3 起始树不混用。
+    原 CRLF 工作目录账本与 Git LF 快照的逐路径对应另见 history-baseline-eol.md；
+    原账本保留，历史源码/Expected 不改动，额外旧审计失败记录不计通过。
 41. Native 53、F1 62 Inputs / 40 Mutations、原始 Native 51 的新鲜结果单列。
 42. fmt/Clippy/Cargo/spec-check、硬资源限额及所有实际生成器原目录连续双轮
     必须记录实际执行结果；被中断或失败的开发命令不计通过。
