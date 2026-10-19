@@ -36,9 +36,9 @@ def save(name, value):
 
 def refs(descriptor, path=()):
     if 'ref' in descriptor:
-        yield dict(path=list(path), target=descriptor['ref'], kind='named_body_ref')
+        yield dict(path=[list(step) for step in path], target=descriptor['ref'], kind='named_body_ref')
     elif descriptor.get('kind') == 'dag_ref':
-        yield dict(path=list(path), target=descriptor['target']['ref'], kind='dag_ref')
+        yield dict(path=[list(step) for step in path], target=descriptor['target']['ref'], kind='dag_ref')
     else:
         for part, child in children(descriptor):
             yield from refs(child, path + tuple(tuple(p) for p in part))

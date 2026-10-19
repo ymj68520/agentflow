@@ -20,6 +20,8 @@ G3 = 'phase-04c1b4c4r3c2r4g3-'
 G2 = 'phase-04c1b4c4r3c2r4g2-'
 OLD = 'phase-04c1b4c4r3c2r5-'
 BASE = '774ff6046ec9f3fbd6a2b84101b6e72faf4bbe2f'
+ATTEMPT = os.environ.get('AF_R5G1_GATE_ATTEMPT', '')
+assert not ATTEMPT or re.fullmatch(r'[a-zA-Z0-9_-]+', ATTEMPT)
 os.environ.update(PYTHONUTF8='1', RUST_TEST_THREADS='1', CARGO_BUILD_JOBS='1')
 
 
@@ -54,7 +56,7 @@ def head():
 
 
 def run(name, args, expected=0):
-    name = 'r5g1-' + name
+    name = 'r5g1-' + name + ('-' + ATTEMPT if ATTEMPT else '')
     start = time.time()
     wrapper = R / 'target' / (P + name + '-wrapper.log')
     with wrapper.open('wb') as f:
@@ -220,6 +222,11 @@ def finalize():
                    clean_worktree=True, push=False, pending_background_jobs='none after this final bounded seal exits',
                    commits=git('log', '--reverse', '--format=%H %s', BASE + '..HEAD').decode().splitlines(),
                    safety_runner_sha256=digest(R / 'tools/run-production-input-graph-safe.py'))
+    failed = read('target/' + G3 + 'safe-r5g1-design-check.json')
+    assert failed['exit'] == 1 and failed['cancelled'] is None
+    receipt['failed_design_readback_preserved'] = dict(
+        reason='new census in-memory selector tuples versus persisted JSON arrays; strict comparator rejected; no formal/production change',
+        safety=failed, log_sha256=digest(Path(failed['log'])), counted_as_pass=False)
     save('final-runtime-results', receipt)
     print(json.dumps({k: receipt[k] for k in ['outcome', 'code_gate_head', 'final_head', 'cargo_pass_records', 'clean_worktree', 'push']}))
 

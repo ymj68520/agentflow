@@ -26,6 +26,10 @@ Rust quality 起始 HEAD 与完整 Python/独立对照代码门禁 HEAD 分开�
 冻结 boundary Oracle 把七行进度写入stderr，安全日志合并后不能按裸JSON解析；仅修正
 新 scheduler 的日志读取，不修改冻结 Oracle。完整 Python 代码在其后独立门禁执行。
 实际 Rust/规范源在两 HEAD 之间及最终 HEAD 均必须零差异，不重标早先运行的 HEAD。
+新设计Oracle第一次严格落盘回读因内存selector为tuple、JSON为list而退出1；该失败与
+日志保留，不计通过。修订只让源枚举器直接产生注册selector格式的JSON数组，不放松
+exact comparator，不从Actual修补Expected，不改任何旧Oracle/规范/生产。重跑使用
+AF_R5G1_GATE_ATTEMPT独立日志后缀，避免覆盖失败和前轮成功回执。
 
 independent 必须使用 quality 开始后新鲜产生的 Rust Actual：current registration3662、
 Native53、F1 lowering26+native36=62及40mutations、G3 154正/26负/59mutations、
