@@ -1,7 +1,10 @@
 use std::{env, fmt::Write as _, fs, path::PathBuf};
 fn main() {
     let workspace = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").unwrap()).join("../..");
-    let registry = workspace.join("spec/registry/specifications.json");
+    // This compatibility implementation is the exact Analysis8 producer, not
+    // the explicit successor registration entry.
+    let registry =
+        workspace.join("spec/conformance/g01-native-source-staging/analysis8-specifications.json");
     println!("cargo:rerun-if-changed={}", registry.display());
     let json: serde_json::Value = serde_json::from_slice(&fs::read(registry).unwrap()).unwrap();
     let mut out = String::from("const REGISTERED_SOURCE_CONTENTS: &[(&str,&str,&[u8])] = &[\n");

@@ -230,7 +230,7 @@ def materialize(m):
     from portable_proof_python_oracle import canonical_bytes
     prior=json.loads((ROOT/'spec/conformance/g01-relation-schema-staging/manifest.json').read_bytes())
     spec_ids=sorted(prior['selected_specifications']+[v[0] for v in SOURCES.values()]);rule_ids=sorted(prior['applied_rules']+[r['rule_id'] for r in RULES])
-    sb=(ROOT/'spec/registry/specifications.json').read_bytes();rb=(ROOT/'spec/registry/rules.json').read_bytes()
+    sb=(ROOT/'spec/conformance/g01-native-source-staging/analysis8-specifications.json').read_bytes();rb=(ROOT/'spec/conformance/g01-native-source-staging/analysis8-rules.json').read_bytes()
     profile=dict(specification_bytes=sb,rule_bytes=rb,version=OWNER,spec_ids=spec_ids,rule_ids=rule_ids)
     portable=[]
     def pc(slug,p,stage,family,policy='bounded_32m_scalar'):

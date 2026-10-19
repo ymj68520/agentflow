@@ -78,3 +78,7 @@ workspace = true
 [[test]]
 name = "raw_model7_capture_boundary"
 path = "tests/raw_model7_capture_boundary.rs"
+
+[[test]]
+name = "native_source_registration"
+path = "tests/native_source_registration.rs"

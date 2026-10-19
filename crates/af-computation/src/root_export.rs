@@ -49,7 +49,8 @@ const RULE_RECOVERY: &str = "AF-SEMANTIC-0169";
 const RULE_EXECUTION: &str = "AF-SEMANTIC-0170";
 const RULE_SUBFLOW: &str = "AF-SEMANTIC-0171";
 
-/// Compiler-side semantics version. Any semantic checker change must bump it.
+/// Frozen Analysis8 compatibility checker. Successor registration has a
+/// separate explicit entry and never upgrades this production input domain.
 pub const ROOT_EXPORT_ANALYSIS_SEMANTICS_VERSION: &str = "agentflow.root-export-checker@8";
 
 pub const REPORT_SHAPE_EDITION: &str = "agentflow.g01.report-shape@7";
@@ -1045,8 +1046,13 @@ fn rule_content_identities(registry_content: &[u8]) -> Vec<RuleContentIdentity> 
 /// Current exact compiler semantics pin for this implementation build.
 #[must_use]
 pub fn current_compiler_semantics_identity() -> CompilerSemanticsIdentity {
-    let registry_content = include_bytes!("../../../spec/registry/specifications.json").to_vec();
-    let rule_registry_content = include_bytes!("../../../spec/registry/rules.json").to_vec();
+    let registry_content = include_bytes!(
+        "../../../spec/conformance/g01-native-source-staging/analysis8-specifications.json"
+    )
+    .to_vec();
+    let rule_registry_content =
+        include_bytes!("../../../spec/conformance/g01-native-source-staging/analysis8-rules.json")
+            .to_vec();
     let mut specifications = APPLICABLE_SPECS
         .iter()
         .map(

@@ -38,7 +38,8 @@ struct SetRule {
 fn main() {
     let manifest = PathBuf::from(env::var_os("CARGO_MANIFEST_DIR").expect("manifest dir"));
     let workspace = manifest.join("../..");
-    let registry_path = workspace.join("spec/registry/specifications.json");
+    let registry_path =
+        workspace.join("spec/conformance/g01-native-source-staging/analysis8-specifications.json");
     println!("cargo:rerun-if-changed={}", registry_path.display());
     let registry_bytes = fs::read(&registry_path).expect("read specification registry");
     let registry: SpecificationsFile =
@@ -47,8 +48,8 @@ fn main() {
     entries.sort_by(|left, right| left.specification_id.cmp(&right.specification_id));
 
     let mut output = String::new();
-    output.push_str("pub const SPECIFICATION_REGISTRY_BYTES: &[u8] = include_bytes!(concat!(env!(\"CARGO_MANIFEST_DIR\"), \"/../../spec/registry/specifications.json\"));\n");
-    output.push_str("pub const RULE_REGISTRY_BYTES: &[u8] = include_bytes!(concat!(env!(\"CARGO_MANIFEST_DIR\"), \"/../../spec/registry/rules.json\"));\n");
+    output.push_str("pub const SPECIFICATION_REGISTRY_BYTES: &[u8] = include_bytes!(concat!(env!(\"CARGO_MANIFEST_DIR\"), \"/../../spec/conformance/g01-native-source-staging/analysis8-specifications.json\"));\n");
+    output.push_str("pub const RULE_REGISTRY_BYTES: &[u8] = include_bytes!(concat!(env!(\"CARGO_MANIFEST_DIR\"), \"/../../spec/conformance/g01-native-source-staging/analysis8-rules.json\"));\n");
     output.push_str("pub const HASH_DOMAIN_TABLE_BYTES: &[u8] = include_bytes!(concat!(env!(\"CARGO_MANIFEST_DIR\"), \"/../../spec/tables/hash-domains.json\"));\n");
     output.push_str("pub const ABI_TABLE_BYTES: &[u8] = include_bytes!(concat!(env!(\"CARGO_MANIFEST_DIR\"), \"/../../spec/registry/abi-numbers.json\"));\n");
     output.push_str("pub const RULE_AREA_TABLE_BYTES: &[u8] = include_bytes!(concat!(env!(\"CARGO_MANIFEST_DIR\"), \"/../../spec/tables/rule-areas.json\"));\n");

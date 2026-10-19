@@ -65,7 +65,8 @@ def compiler_source():
     # values below derive from actual normative source bytes/Registry records,
     # never from a production graph or its source receipt.
     profile=read('spec/conformance/g01-structural-binding-staging/compiler-current.json')
-    specs_bytes=(R/'spec/registry/specifications.json').read_bytes();rules_bytes=(R/'spec/registry/rules.json').read_bytes()
+    # Explicit frozen Analysis8 compatibility source. No successor auto-upgrade.
+    specs_bytes=(R/'spec/conformance/g01-native-source-staging/analysis8-specifications.json').read_bytes();rules_bytes=(R/'spec/conformance/g01-native-source-staging/analysis8-rules.json').read_bytes()
     assert bytes.fromhex(profile['registry_hex'])==specs_bytes and bytes.fromhex(profile['rule_registry_hex'])==rules_bytes
     registry=json.loads(specs_bytes);rules=json.loads(rules_bytes)['rules'];sources=[]
     for row in registry['specifications']:

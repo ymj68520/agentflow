@@ -640,8 +640,10 @@ pub fn inspect_structural_registration(input: &Value) -> MetaResult<Value> {
         "rule" => {
             static RULES: OnceLock<Value> = OnceLock::new();
             let rules = RULES.get_or_init(|| {
-                serde_json::from_str(include_str!("../../../spec/registry/rules.json"))
-                    .unwrap_or(Value::Null)
+                serde_json::from_str(include_str!(
+                    "../../../spec/conformance/g01-native-source-staging/analysis8-rules.json"
+                ))
+                .unwrap_or(Value::Null)
             });
             let row = rules["rules"]
                 .as_array()
