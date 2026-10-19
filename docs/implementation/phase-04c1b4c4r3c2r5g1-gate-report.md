@@ -22,6 +22,10 @@ CARGO_BUILD_JOBS=1；显式 cargo `-j2` 保留用户要求，OS限额不放宽�
 
 quality 保留四条原命令：fmt check、clippy -j2 all-targets/all-features -Dwarnings、
 cargo test --all -j2、spec-check check。当前源未改，仍需真实重跑，不引用旧446测试代替。
+Rust quality 起始 HEAD 与完整 Python/独立对照代码门禁 HEAD 分开保留。静态审查发现
+冻结 boundary Oracle 把七行进度写入stderr，安全日志合并后不能按裸JSON解析；仅修正
+新 scheduler 的日志读取，不修改冻结 Oracle。完整 Python 代码在其后独立门禁执行。
+实际 Rust/规范源在两 HEAD 之间及最终 HEAD 均必须零差异，不重标早先运行的 HEAD。
 
 independent 必须使用 quality 开始后新鲜产生的 Rust Actual：current registration3662、
 Native53、F1 lowering26+native36=62及40mutations、G3 154正/26负/59mutations、

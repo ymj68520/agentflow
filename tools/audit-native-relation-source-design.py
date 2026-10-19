@@ -111,6 +111,11 @@ def independent():
     quality_rows = read('target/' + P + 'quality.json')
     assert len(quality_rows) == 4 and all(r['exit'] == 0 for r in quality_rows)
     epoch = read('target/' + P + 'code-head.json')['started_unix']
+    complete_code_head = head()
+    # Python-only diagnostic fixes may follow the Rust gate start. Preserve
+    # both real HEADs; never relabel the earlier execution as a later HEAD.
+    assert not git('diff', '--name-only', read('target/' + P + 'code-head.json')['head'],
+                   complete_code_head, '--', 'crates', 'spec')
     rows = []
 
     def payload(name, script, actual):
@@ -137,13 +142,19 @@ def independent():
     rows.append(py('g3-audit', 'tools/audit-production-input-graph.py', '--receipts'))
     assert (R / 'target' / (OLD + 'boundary-actual.json')).stat().st_mtime >= epoch
     rows.append(py('boundary', 'tools/oracle/raw_model7_full_field.py', '--boundary'))
-    b = json.loads(Path(rows[-1]['log']).read_bytes())
+    boundary_log = Path(rows[-1]['log']).read_text(encoding='utf8')
+    # The frozen Oracle deliberately writes seven comparison progress lines to
+    # stderr. The safety runner merges stderr/stdout, so this is not bare JSON.
+    prefix, opening, body = boundary_log.partition('\n{')
+    assert opening and len(prefix.splitlines()) == 7
+    assert all(s.startswith('Comparing complete boundary G: ') for s in prefix.splitlines())
+    b = json.loads('{' + body)
     assert (b['boundary_cases'], b['boundary_mutations_rejected']) == (7, 46)
     rows.append(py('design-materialize', 'tools/oracle/native_relation_source_design.py', '--materialize', '--diagnostics'))
     rows.append(py('design-check', 'tools/oracle/native_relation_source_design.py', '--diagnostics'))
     rows.append(py('old-total', 'tools/oracle/raw_model6_binding.py', '--gate', 'total', expected=2))
     rows.append(py('new-total', 'tools/oracle/raw_model7_full_field.py', '--gate', 'total', expected=2))
-    save('independent', dict(runs=rows, registration_case_ids=3662, native=native, f1=f1,
+    save('independent', dict(code_gate_head=complete_code_head, runs=rows, registration_case_ids=3662, native=native, f1=f1,
                             g3_positive=154, g3_negative=26, g3_mutations=59,
                             boundary_cases=7, boundary_mutations=46, design_vectors=49,
                             complete_raw_case_ids=0, full_field_mutations=0,
@@ -178,12 +189,14 @@ def finalize():
     freeze()
     quality_rows = read('target/' + P + 'quality.json')
     assert len(quality_rows) == 4 and all(r['exit'] == 0 for r in quality_rows)
-    code = read('target/' + P + 'code-head.json')['head']
+    rust_quality_head = read('target/' + P + 'code-head.json')['head']
+    independent_rows = read('target/' + P + 'independent.json')
+    code = independent_rows['code_gate_head']
+    assert not git('diff', '--name-only', rust_quality_head, 'HEAD', '--', 'crates', 'spec')
     assert not git('diff', '--name-only', code, 'HEAD', '--', 'crates', 'tools', 'spec')
     matches = re.findall(r'test result: ok\. (\d+) passed; (\d+) failed; (\d+) ignored',
                          Path(quality_rows[2]['log']).read_text(encoding='utf8'))
     assert matches and all(m[1:] == ('0', '0') for m in matches)
-    independent_rows = read('target/' + P + 'independent.json')
     rounds = read('target/' + P + 'generators.json')
     assert len(rounds) == 2 and all(not any(r['delta'].values()) and all(x['exit'] == 0 for x in r['runs']) for r in rounds)
     final = rawmap()
@@ -192,7 +205,9 @@ def finalize():
     report = (R / 'docs/implementation' / (P + 'final-report.md')).read_text(encoding='utf8')
     assert [int(n) for n in re.findall(r'^(\d+)\. ', report, re.M)] == list(range(1, 43))
     receipt = dict(outcome='A — FORMAL AMENDMENT DESIGN ACCEPTED', start_head=BASE,
-                   code_gate_head=code, final_head=head(), quality=quality_rows,
+                   code_gate_head=code, rust_quality_start_head=rust_quality_head,
+                   rust_and_normative_sources_exactly_unchanged_since_quality_start=True,
+                   final_head=head(), quality=quality_rows,
                    cargo_pass_records=sum(int(m[0]) for m in matches), cargo_result_groups=len(matches),
                    independent=independent_rows, generators=dict(scripts=rounds[0]['scripts'], rounds=rounds,
                        raw_files=len(final), baseline_round1_round2_final_equal=True, added=0, removed=0, changed=0),
