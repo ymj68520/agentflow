@@ -74,3 +74,7 @@ path = "tests/raw_model6_binding_boundary.rs"
 
 [lints]
 workspace = true
+
+[[test]]
+name = "raw_model7_capture_boundary"
+path = "tests/raw_model7_capture_boundary.rs"
