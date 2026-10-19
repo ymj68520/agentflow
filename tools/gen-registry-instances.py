@@ -2624,6 +2624,11 @@ from structural_binding_registration_data import RULES as SB_RULES, SOURCES as S
 for item in SB_RULES:
     RULES.append(rule(item["rule_id"], "SEMANTIC", SB_SOURCES[item["source"]][2],
         item["anchor"], item["statement"], [item["case_id"]]))
+from native_relation_source_registration import RULES as NB_RULES, SOURCES as NB_SOURCES
+for item in NB_RULES:
+    RULES.append(rule(item["rule_id"], "SEMANTIC", NB_SOURCES[item["source"]][2], item["anchor"], item["statement"], [item["case_id"]]))
+analysis8_rules = json.loads((ROOT/"spec/conformance/g01-native-source-staging/analysis8-rules.json").read_bytes())["rules"]
+assert all(next((r for r in RULES if r['rule_id']==old['rule_id']),None)==old for old in analysis8_rules), 'old522 rule object changed'
 analysis7_rules = json.loads((ROOT/"spec/conformance/g01-structural-binding-staging/analysis7-rules.json").read_bytes())["rules"]
 assert all(next((r for r in RULES if r["rule_id"]==old["rule_id"]),None)==old for old in analysis7_rules), "old509 complete rule record changed"
 analysis6_rules = json.loads((ROOT/"spec/conformance/g01-relation-schema-staging/analysis6-rules.json").read_bytes())["rules"]
@@ -2876,6 +2881,7 @@ SPECS.extend(RAW_SOURCES.values())
 SPECS.extend(DO_SOURCES.values())
 SPECS.extend(RS_SOURCES.values())
 SPECS.extend(SB_SOURCES.values())
+SPECS.extend(NB_SOURCES.values())
 spec_entries = [
     {
         "specification_id": spec_id,
@@ -2889,6 +2895,8 @@ spec_entries = [
 spec_entries.sort(key=lambda e: e["specification_id"])
 legacy_specs = json.loads((ROOT/"spec/conformance/g01-edition2-staging/legacy-specifications.json").read_bytes())["specifications"]
 new_spec_map = {item["specification_id"]:item for item in spec_entries}
+analysis8_specs = json.loads((ROOT/"spec/conformance/g01-native-source-staging/analysis8-specifications.json").read_bytes())["specifications"]
+assert all(new_spec_map.get(old['specification_id'])==old for old in analysis8_specs), 'old70 specification object changed'
 analysis7_specs = json.loads((ROOT/"spec/conformance/g01-structural-binding-staging/analysis7-specifications.json").read_bytes())["specifications"]
 assert all(new_spec_map.get(item["specification_id"])==item for item in analysis7_specs), "old66 complete specification record changed"
 analysis6_specs = json.loads((ROOT/"spec/conformance/g01-relation-schema-staging/analysis6-specifications.json").read_bytes())["specifications"]
@@ -4348,6 +4356,8 @@ SUITE_LIST.append({
         "crates/af-portable/tests/structural_binding_staging.rs",
     ],
 })
+SUITE_LIST.sort(key=lambda suite: suite["suite_id"])
+SUITE_LIST.append({"suite_id":"SUITE-G01-NATIVE-SOURCE-NOMINAL-STAGING","description":"Exact successor nominal source registration only; no production capture or capability.","targets":["spec/conformance/g01-native-source-staging/manifest.json","tools/oracle/native_source_registration.py","crates/af-computation/tests/native_source_registration.rs"]})
 SUITE_LIST.sort(key=lambda suite: suite["suite_id"])
 write_json("spec/conformance/suites.json", {
     "kind": "agentflow.conformance.suites",

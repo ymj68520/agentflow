@@ -431,6 +431,15 @@
       ]
     },
     {
+      "description": "Exact successor nominal source registration only; no production capture or capability.",
+      "suite_id": "SUITE-G01-NATIVE-SOURCE-NOMINAL-STAGING",
+      "targets": [
+        "spec/conformance/g01-native-source-staging/manifest.json",
+        "tools/oracle/native_source_registration.py",
+        "crates/af-computation/tests/native_source_registration.rs"
+      ]
+    },
+    {
       "description": "Closed source/site/body/rank/stage registration and bounded manual subgraphs; no production binder or positive capability.",
       "suite_id": "SUITE-G01-STRUCTURAL-BINDING-REGISTERED-STAGING",
       "targets": [

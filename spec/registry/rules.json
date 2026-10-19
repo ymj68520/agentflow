@@ -6119,6 +6119,105 @@
       "source_anchor": "non-activation"
     },
     {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-source-staging/rule-0315"
+      ],
+      "normative_source": "spec/computation/native-relation-source-binding.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0315",
+      "short_statement": "Actual native kind, family, revision, complete pin, original bytes and full catalog are supplied before G from the same actual Context slot, never reconstructed from C or history.",
+      "source_anchor": "native-input"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-source-staging/rule-0316"
+      ],
+      "normative_source": "spec/computation/native-relation-source-binding.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0316",
+      "short_statement": "All three successor Context Some child declarations target exact NativeRelationSnapshotSource; None emits no Source and alias body equality never permits a nominal cast.",
+      "source_anchor": "nominal-edges"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-source-staging/rule-0317"
+      ],
+      "normative_source": "spec/computation/native-relation-source-binding.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0317",
+      "short_statement": "Immutable G precedes actual C; C.source in output_record and w_value resolves the same Subject slot Source in prior G as exact g_external and never writes G.",
+      "source_anchor": "stage-reference"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-source-staging/rule-0318"
+      ],
+      "normative_source": "spec/computation/native-relation-source-binding.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0318",
+      "short_statement": "Native A equality, typed content sharing, originating Owner/Occurrence association and C observation remain distinct; shared equal values never delete real parent or Origin edges.",
+      "source_anchor": "association"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-source-staging/rule-0319"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics-v8.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0319",
+      "short_statement": "The sole RawValidationSubject input root reaches Source through actual Context slot Some, with unchanged exact Subject propagation, minimal typed interning and canonical bottom-up ranks.",
+      "source_anchor": "subject-closure"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-source-staging/rule-0320"
+      ],
+      "normative_source": "spec/computation/proof-obligation-semantics-v8.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0320",
+      "short_statement": "Source or stage failures use applicable existing closed domains and paths, never port verdicts; every Some without actual C Valid forbids complete Fact while retaining actual A and port observations.",
+      "source_anchor": "fail-closed"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-source-staging/rule-0321"
+      ],
+      "normative_source": "spec/tables/proof-report-model-v8.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0321",
+      "short_statement": "Exact complete base contents, five type replacements, four site replacements and full rebased nominal/reference/field coverage define the closed successor; unknown or two-sided omitted required content rejects.",
+      "source_anchor": "closed-delta"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-source-staging/rule-0322"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs-v9.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0322",
+      "short_statement": "Analysis9 registration uses exact Model8 Report8 Obligation8 and complete registry/source identity; legacy8 compatibility retains its exact snapshot and cannot masquerade as successor current.",
+      "source_anchor": "edition-isolation"
+    },
+    {
+      "area": "SEMANTIC",
+      "conformance_refs": [
+        "g01-native-source-staging/rule-0323"
+      ],
+      "normative_source": "spec/portable/portable-proof-inputs-v9.md",
+      "requirement_level": "must",
+      "rule_id": "AF-SEMANTIC-0323",
+      "short_statement": "Registration and bounded handwritten metadata never implement successor G, produce native receipts or production ranks, admit full Raw facts, activate support, issue CompleteView or authorize positive proof.",
+      "source_anchor": "non-activation"
+    },
+    {
       "area": "SPEC",
       "conformance_refs": [
         "spec-registry/duplicate-specification-id"

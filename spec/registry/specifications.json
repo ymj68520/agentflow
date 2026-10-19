@@ -106,6 +106,19 @@
       "status": "frozen"
     },
     {
+      "description": "Exact pre-C native Source nominal child binding; registration only.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "538b239831fdd2e341ae027c18acbe75cb093bbda4bb5660048e2b46bf80e655"
+        },
+        "logical_path": "spec/computation/native-relation-source-binding.md"
+      },
+      "specification_id": "agentflow.computation.native-relation-source-binding.semantics@1",
+      "status": "frozen"
+    },
+    {
       "description": "Complete typed obligation identity, derivation, provenance, evidence boundaries and capability consistency.",
       "kind": "schema_language",
       "normative_source": {
@@ -197,6 +210,19 @@
       "status": "frozen"
     },
     {
+      "description": "Successor Source/Subject consumer and failure contract; no producer.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "d3fa800e68f9896074232e311c20b27ad1fdefa2b35e0b71d661348454489ca0"
+        },
+        "logical_path": "spec/computation/proof-obligation-semantics-v8.md"
+      },
+      "specification_id": "agentflow.computation.proof-obligation.semantics@8",
+      "status": "frozen"
+    },
+    {
       "description": "Closed non-wire G01 semantic type model, typed order, finite value DAG and ACE1 canonical identity relation.",
       "kind": "closed_table",
       "normative_source": {
@@ -285,6 +311,19 @@
         "logical_path": "spec/tables/proof-report-model-v7.md"
       },
       "specification_id": "agentflow.computation.proof-report.model@7",
+      "status": "frozen"
+    },
+    {
+      "description": "Closed Source binding delta over exact complete Model7; no actual ranks.",
+      "kind": "closed_table",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "a2b43ebbc3aba9dcb7751c1c8605f049cdacbf2cb200069c27b1e13c9988f0ca"
+        },
+        "logical_path": "spec/tables/proof-report-model-v8.md"
+      },
+      "specification_id": "agentflow.computation.proof-report.model@8",
       "status": "frozen"
     },
     {
@@ -636,6 +675,19 @@
         "logical_path": "spec/portable/portable-proof-inputs-v8.md"
       },
       "specification_id": "agentflow.portable.proof.inputs.semantics@8",
+      "status": "frozen"
+    },
+    {
+      "description": "Explicit Analysis9 current-only non-authoritative registration entry and isolated legacy8 compatibility.",
+      "kind": "schema_language",
+      "normative_source": {
+        "content_digest": {
+          "algorithm": "sha256",
+          "hex": "6ec9798b9bb77ecb4dc0126ae15720d87c6175b2ef5a4fb99cf433a8af63b55d"
+        },
+        "logical_path": "spec/portable/portable-proof-inputs-v9.md"
+      },
+      "specification_id": "agentflow.portable.proof.inputs.semantics@9",
       "status": "frozen"
     },
     {
