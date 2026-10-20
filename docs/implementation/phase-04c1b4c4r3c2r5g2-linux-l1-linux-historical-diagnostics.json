@@ -1,0 +1,277 @@
+{
+  "groups": [
+    {
+      "id": "history-1",
+      "head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+      "debug": 2,
+      "required_case_ids": 512,
+      "linux_native_diagnostic": "Pending — Not Executed",
+      "original_windows_gate": "Not Executed",
+      "original_commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition1\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c3-legacy-abc91d5\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition1\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      }
+    },
+    {
+      "id": "history-2",
+      "head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+      "debug": 2,
+      "required_case_ids": 51,
+      "linux_native_diagnostic": "Pending — Not Executed",
+      "original_windows_gate": "Not Executed",
+      "original_commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition2\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r2-edition2\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition2\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      }
+    },
+    {
+      "id": "history-3",
+      "head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+      "debug": 2,
+      "required_case_ids": 173,
+      "linux_native_diagnostic": "Pending — Not Executed",
+      "original_windows_gate": "Not Executed",
+      "original_commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition3\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition3\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition3\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [
+          [
+            "<qualified-python>",
+            "-X",
+            "utf8",
+            "tools/audit-substitution-staging.py"
+          ]
+        ],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      }
+    },
+    {
+      "id": "history-4",
+      "head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+      "debug": 2,
+      "required_case_ids": 889,
+      "linux_native_diagnostic": "Pending — Not Executed",
+      "original_windows_gate": "Not Executed",
+      "original_commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c1g2-edition4\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c1g2-edition4\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c1g2-edition4\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      }
+    },
+    {
+      "id": "history-5",
+      "head": "e623aab705c5f8269807201e112a32e67e6869bf",
+      "debug": 2,
+      "required_case_ids": 262,
+      "linux_native_diagnostic": "Pending — Not Executed",
+      "original_windows_gate": "Not Executed",
+      "original_commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2g2-analysis5\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2g2-analysis5\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2g2-analysis5\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      }
+    },
+    {
+      "id": "history-6",
+      "head": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+      "debug": 2,
+      "required_case_ids": 254,
+      "linux_native_diagnostic": "Pending — Not Executed",
+      "original_windows_gate": "Not Executed",
+      "original_commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r3g2-analysis6\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r3g2-analysis6\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r3g2-analysis6\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      }
+    },
+    {
+      "id": "history-7",
+      "head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+      "debug": 2,
+      "required_case_ids": 534,
+      "linux_native_diagnostic": "Pending — Not Executed",
+      "original_windows_gate": "Not Executed",
+      "original_commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g2-analysis7\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g2-analysis7\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g2-analysis7\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [
+          [
+            "<qualified-python>",
+            "-X",
+            "utf8",
+            "tools/audit-relation-schema-staging.py",
+            "--receipts"
+          ]
+        ],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      }
+    },
+    {
+      "id": "history-8",
+      "head": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+      "debug": 0,
+      "required_case_ids": 3662,
+      "linux_native_diagnostic": "Pending — Not Executed",
+      "original_windows_gate": "Not Executed",
+      "original_commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5-analysis8-g2\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5-analysis8-g2\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5-analysis8-g2\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "0",
+          "CARGO_PROFILE_TEST_DEBUG": "0",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [
+          [
+            "<qualified-python>",
+            "-X",
+            "utf8",
+            "tools/audit-structural-binding-staging.py",
+            "--receipts"
+          ]
+        ],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      }
+    }
+  ],
+  "linux_completed": 0,
+  "original_windows_historical_gates": "0/8"
+}

@@ -1,0 +1,12 @@
+{
+  "head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+  "debug": 2,
+  "required_cases": {
+    "positive": 154,
+    "negative_and_resource_nominal_boundaries": 26,
+    "comparator_mutations": 59
+  },
+  "linux_native_diagnostic": "Pending — Not Executed",
+  "original_windows_g3": "Not Executed",
+  "analysis9_compatibility_not_substituted": true
+}

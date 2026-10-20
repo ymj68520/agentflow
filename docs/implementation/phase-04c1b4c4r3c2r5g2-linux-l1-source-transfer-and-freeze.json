@@ -1,0 +1,1671 @@
+{
+  "status": "PASS — GIT OBJECT AND LINUX CHECKOUT IDENTITY",
+  "head": "dc1d71f30b3a7f06065f4000712e6512f288db16",
+  "bundle_sha256": "20dfe2f3137a021668c11b3e06aded7d2e3d0e4b421d3e54bf56439f6f2fb446",
+  "bundle_bytes": 211474584,
+  "screening": {
+    "reachable_objects": 5419,
+    "scanned_blobs": 3255,
+    "credential_paths_found": 0,
+    "recognized_private_patterns_found": 0,
+    "untracked_files_included": false,
+    "private_git_configuration_or_ssh_keys_included": false,
+    "limitation": "Conservative filename and recognized credential pattern screening, not a proof of absence of every possible secret"
+  },
+  "snapshots": {
+    "current": {
+      "head": "dc1d71f30b3a7f06065f4000712e6512f288db16",
+      "paths": 2469,
+      "manifest_sha256": "12001cdcf551b5650f6b89998f929117bffb0f891b6e2e19433e1c6fd50fce2e",
+      "source_map_sha256": "56edbef03f5b77621e3e955ca4da2f44b65f0d666859deafa76853e89b3ad30f",
+      "source_map": "source-map-current.json",
+      "git_blob_and_checkout_raw_exact": true
+    },
+    "history-1": {
+      "head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+      "paths": 1732,
+      "manifest_sha256": "4faf6ee22cdfef9b2af0039ce41e4e58b5bd500d1c67010041462c2517c279c7",
+      "source_map_sha256": "e671a827ab9c557d6cac7fc8c9b0cd5dac7c3f3263182c479015449578705595",
+      "source_map": "source-map-history-1.json",
+      "git_blob_and_checkout_raw_exact": true
+    },
+    "history-2": {
+      "head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+      "paths": 1811,
+      "manifest_sha256": "f5f03ded6e6d20746f3e4df2a9fb7d1c6b9641c701f6c53c0b505ba68643c7ec",
+      "source_map_sha256": "118281828ac589cc86dbff65bd0bd3e5e4376eb746dccf4dadd904902f395449",
+      "source_map": "source-map-history-2.json",
+      "git_blob_and_checkout_raw_exact": true
+    },
+    "history-3": {
+      "head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+      "paths": 1902,
+      "manifest_sha256": "56704a30918a73638c0aec60d00cf0fe727069e175ae80a76dfee82f8156d3e4",
+      "source_map_sha256": "63ff3bb1644434ccd8c4ec83d342442d282891c7bc8938ec11a58082522dcee7",
+      "source_map": "source-map-history-3.json",
+      "git_blob_and_checkout_raw_exact": true
+    },
+    "history-4": {
+      "head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+      "paths": 2021,
+      "manifest_sha256": "c574882bb907c96336363d921142676acaa0881367c611283d6fae0d385f1f56",
+      "source_map_sha256": "847e8de203e3b04bb9211b0eeef2cc2fe06db79962fc4767262b24139a65aacc",
+      "source_map": "source-map-history-4.json",
+      "git_blob_and_checkout_raw_exact": true
+    },
+    "history-5": {
+      "head": "e623aab705c5f8269807201e112a32e67e6869bf",
+      "paths": 2076,
+      "manifest_sha256": "3f5e8ee0b10d3b9566d27afb537578c71759c40847322c1d4b209aeeead52874",
+      "source_map_sha256": "f20bdbf74318be85c662839057dbce9a72ac78aa62aaef6ea5c6f357aaf07664",
+      "source_map": "source-map-history-5.json",
+      "git_blob_and_checkout_raw_exact": true
+    },
+    "history-6": {
+      "head": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+      "paths": 2170,
+      "manifest_sha256": "68cde1e0591baec0ee2c2ed1ee882a68bef538a12fc71208bccd3c3b7a75a23f",
+      "source_map_sha256": "31c1a684df2d5af1d14de3b0a6638eaa1f8ea1acb6e4a95049401183e3728959",
+      "source_map": "source-map-history-6.json",
+      "git_blob_and_checkout_raw_exact": true
+    },
+    "history-7": {
+      "head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+      "paths": 2235,
+      "manifest_sha256": "d7ac4a466321139bd6dc0037f6203246b2d75c203cdb8560e1626e3339f78ab8",
+      "source_map_sha256": "184b68fa131ea99e74207b284cbecfc07d0496d40dfa8bb0848e68bd1002985a",
+      "source_map": "source-map-history-7.json",
+      "git_blob_and_checkout_raw_exact": true
+    },
+    "history-8": {
+      "head": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+      "paths": 2290,
+      "manifest_sha256": "7ce8cad95bf876fb1f4b151c7754a7831850936e77432f5535ac0033192253ad",
+      "source_map_sha256": "3f16b968a503bb8f3f51f7e34775f8c4e277536235b11316026aba0e197b5357",
+      "source_map": "source-map-history-8.json",
+      "git_blob_and_checkout_raw_exact": true
+    },
+    "frozen-g3": {
+      "head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+      "paths": 2326,
+      "manifest_sha256": "e650c1b7cf7239be21accca1c8a6f9a434ff301544019dc272ffb848323f84da",
+      "source_map_sha256": "6e925b09a25879354e9c55b1f6f17a2099a17a180e813c0d0c3006ce4e86ab15",
+      "source_map": "source-map-frozen-g3.json",
+      "git_blob_and_checkout_raw_exact": true
+    }
+  },
+  "local_git_and_linux_current_manifests_equal": true,
+  "windows_worktree_and_git_raw_differences": {
+    "differences": [
+      {
+        "path": "docs/implementation/phase-04c1b4a-comparator-mutations.md",
+        "windows_raw_sha256": "75992a966594737b6626ae23a141a918c9689013a51d969002f7e908a1c72a86",
+        "git_blob_raw_sha256": "5b6cf5187eb09dcb1e252e54c73d9ef497363938cd16c24f336e02ba527bdc9d",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4a-d9-control-oracle.md",
+        "windows_raw_sha256": "2edf8300ef1d64bbdf5ffe252ea166cdfafb5d286603c21d07c077df99c655bc",
+        "git_blob_raw_sha256": "c34fa50a42d275198f8b310afe2923235cf04ddc740b8f040740cb7a118e39e2",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4a-d9-effect-failure-usage.md",
+        "windows_raw_sha256": "367ea7d076b51aa77c3d707b4dad2cd21b1dc07fdea93035df2b69a74dfddecc",
+        "git_blob_raw_sha256": "49065cc6c06cbd567726c021982a3b7bb2add8db402b472ec62cbd3782fcffc8",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4a-d9-resource-flow-execution.md",
+        "windows_raw_sha256": "0a781d8f3ae990cfde0f0fdea3ed98336dcec6603263758d668b6b9ea3920fcf",
+        "git_blob_raw_sha256": "d8987e6b3f810c7412e0b5ed9c841eba7ee4ae6cd7c3556a7cb6cda9f1b60ef6",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4a-d9-source-closure.md",
+        "windows_raw_sha256": "04c903fc7c1fc5fb07bec1b96c8c92e672558612e3eeef9494ef7f36686864b0",
+        "git_blob_raw_sha256": "e65997814161f01c40bbe0f3accf49bf0383d5b460dd86238939a59077c3474d",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4a-executable-coverage-contract.md",
+        "windows_raw_sha256": "e9a3cefc57ee21a90948fadd97cf3b74bda4a7246d17d6b230e09789d46fa84b",
+        "git_blob_raw_sha256": "0522ff0ea319be5b141158727f269aead2dd80ba9a17341b408d3c72958999e2",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4a-full-field-differential.md",
+        "windows_raw_sha256": "e30386b30abe04df440faf4cdaa76ae60765c2f5510f401811b0d31814a76301",
+        "git_blob_raw_sha256": "929afe1f2406012ddfd8a829932cf82a60a743c18cb51bad733542160200c3c1",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4a-gate-report.md",
+        "windows_raw_sha256": "3659aa68d157b5f822574489eb4e7ec5f64e20c031d62f558678fe2b199b9097",
+        "git_blob_raw_sha256": "377f0a3f9db57dcfea57bc9cda0da6935d51621cddfb7f5c20f1ba27088b59ee",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4a-hand-calculation.md",
+        "windows_raw_sha256": "7a278ffb4657d573374334197e7cfe0358ffbd3c956ba5eaf9cb7ce98802c10e",
+        "git_blob_raw_sha256": "99d4d103149b6abf85fc9ac05ffda6b68134bf1af868cbc9b42a7f389b4dcf03",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4a-overview.md",
+        "windows_raw_sha256": "c65e4286087915c79e1865164dccdb7188a19638cf536cdbcd48919f7f41dfff",
+        "git_blob_raw_sha256": "8ee4f2fc744995ad59c0d99a8f94f1e9fae9b39fdb025810932be7e142138d6b",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4a-readiness.md",
+        "windows_raw_sha256": "70eb83da4bd538f08485e2cf179ef6d40fd26a3d8575793ec834016ed835bebd",
+        "git_blob_raw_sha256": "e106f04fe29049bff33e3ce2d27f196ed4c059878a516e67175ff2d100775349",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4a-remaining-coverage.md",
+        "windows_raw_sha256": "d7101eb1a14b6f812deceef0d9a259cd214f7433d5ba43bec1472504ac561245",
+        "git_blob_raw_sha256": "485e4c8225a5716a041378a2c8fc305ba8627a4649346ac78d827656e40b2a0b",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4a-type-field-inventory.md",
+        "windows_raw_sha256": "d91561c7fb5ea9f135fbd56df8e0c14985ed8f2059e41fecca988f918dc6cb93",
+        "git_blob_raw_sha256": "4fbb711cdd84638d20ca1094466d378a9c177a09a2ffae31009e15f0dac26e3f",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4b-comparator-mutations.md",
+        "windows_raw_sha256": "30650b6ae2a8b73017d03fa85b5dde5cc45b71b93f33323ffdb061eb80f13e20",
+        "git_blob_raw_sha256": "2009e2f6a9dab67936d51b01eb59d3d8b80b59baca307b5bc81a383c04f657c4",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4b-compensation-ownership.md",
+        "windows_raw_sha256": "ffcbc21dc320cc3edbd8db34df948ec0963cf17259c9ae22b45b06b466602827",
+        "git_blob_raw_sha256": "b93c3b4b10c156cba9683baa67464aae7da77f9e1938af3b11509f2106246635",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4b-coverage-delta.md",
+        "windows_raw_sha256": "c4b6cf1619d791ef7486f234687d3017ddb52dada457dcd5abd339501e7d8e89",
+        "git_blob_raw_sha256": "c0c1fb061206cbfbb4b4b5e5bff0f93d4f857ddc059a6c42eb25390d02e7cbd4",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4b-full-field-differential.md",
+        "windows_raw_sha256": "a0ae2f74be2dbd3186a76a7f9d7f36363ea1ae5f7e8d0872d1721b565e1a0d93",
+        "git_blob_raw_sha256": "c0390ca589398b4c54607f353ce0c56cec7e71e6698f522c1d4492ba8024a986",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4b-gate-report.md",
+        "windows_raw_sha256": "88c399982457773e9de02f2ed437859bcd83be65057bf0e6f0e934392e123c1d",
+        "git_blob_raw_sha256": "46ed7de6cbfb70178bcc1f6bd8818bda2d177f7b88b432dfebc181f2230d0e32",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4b-guard-evidence.md",
+        "windows_raw_sha256": "1d85ac65b9e6335e91ff6f6fdf2cfc4d0ce1b47826c48e46f1b33ade1405b2cb",
+        "git_blob_raw_sha256": "edaf7fbc2018481ec9b24a78502b05fdcbc22c1375a09d70e65bbc552a957bfd",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4b-hand-calculation.md",
+        "windows_raw_sha256": "95ca201c854e6c868fff525d21d2a50fc413ced37921ff7cc4726216792c511a",
+        "git_blob_raw_sha256": "b202a5f7c3a5ab17fdc6a94fd3cb989231abdf90b6271a261c97efa9b61c6c62",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4b-k-epsilon-oracle.md",
+        "windows_raw_sha256": "ba39978f26dcbd6a60b05752594f5385b8776e90447909cf67928bf791ddbfdb",
+        "git_blob_raw_sha256": "2f35332608592035af1c4d0636836c32488097f2e4cdc17517e18432d6f4afd5",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4b-local-root-bounds.md",
+        "windows_raw_sha256": "adc26328db2351d567f30a9ebe260837edf810d96198211b4f1acda4922efbb5",
+        "git_blob_raw_sha256": "956f4665dcf425e771496e417efbd8fc411b801f0db96a7c3c05b6ebad8ef426",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4b-multiplicity-algebra.md",
+        "windows_raw_sha256": "60405d6217059ca7e58866e120bf8d7c4a7d46580774c4a9d938a567ffcb2985",
+        "git_blob_raw_sha256": "80d19519d0d95f5092fe4b41354c1fd8dca3116af9d69203e9435edd6e996a39",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4b-overview.md",
+        "windows_raw_sha256": "3b729491ed39d9a111321620cc3a510ef8794226f42fddf06b13862844305faf",
+        "git_blob_raw_sha256": "3f348d1f0541ed54b38f50f75ba941fcfe9d19bdd5c867d8c3da38d857ee1455",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4b-proof-boundaries.md",
+        "windows_raw_sha256": "c9a901f50b3045d713eb6012ddd17f325316afd48d7a0b472ead6ec6cb4ed0e5",
+        "git_blob_raw_sha256": "c2a5c8381a7c06c6ca2ff2f5aa88958eb61e38781c07d82b6b5269a948f5d979",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4b-readiness.md",
+        "windows_raw_sha256": "bb30045f805ec29bcae27e8af0cfe445bdd225caf2cc0ec6d06f043a91a6744c",
+        "git_blob_raw_sha256": "dbea688c86d5184a4b79731dbce0d1d5653ff1128c5364f370c312aaacf1e65e",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4b-recovery-source-identity.md",
+        "windows_raw_sha256": "952abc6d1ec9124f75f8aa33c32961d588f2623056b509856abe30b1a44832d7",
+        "git_blob_raw_sha256": "0e18119dc63fbbef3436d55c11d89dfb235fde251cd09900198341ffa5696fe2",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4b-recovery-usage-oracle.md",
+        "windows_raw_sha256": "476fbb7b57e84d2f1ebd594725f26b2b3a668b88b3491fc04b26b85129bfa160",
+        "git_blob_raw_sha256": "04f1291c4815b3852aafc89bd125dec9a1ac387a984b5dd58dcfd610739631ff",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4b-source-closure.md",
+        "windows_raw_sha256": "163da5224d4ef5b959cc143f267238b00f4081bed311e3773d10e79a5cf44834",
+        "git_blob_raw_sha256": "4a24cbeb98ff79eb437c3555ba348673b05a75c5989b37a412b443570cf451bc",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4-admission-audit.json",
+        "windows_raw_sha256": "98b1bd63c0b007d7053959a319ad1f9dd9554b2d46e585c637c291970a1832aa",
+        "git_blob_raw_sha256": "c33b1f9b0b73c97d24c366e1f5c1d309d31765930bedea16a43de758ed77e97a",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r1-actual-comparison-manifest.json",
+        "windows_raw_sha256": "f5d273824088b42e725af733939f9137f8eb44d6349de979a933c598135d197b",
+        "git_blob_raw_sha256": "c93e6f9dbb2df33f8b590f0dce4ed77f1d3c16f1ee45aada3250d4b321c16054",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r1-design-vector-status.json",
+        "windows_raw_sha256": "3d7512da5368cc69c094fc717fa8d42169f3d9e04653309473eb521839ff20d8",
+        "git_blob_raw_sha256": "9a63ef0a88d50b159b362c08c837f0dc48c0b69edfa9f6e47d965a7b37b3003e",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r1-expected-event-manifest.json",
+        "windows_raw_sha256": "c70d0d71b43cfa2c8588106a3e69b2d71569c093e1ac48aa35948ce329d4413d",
+        "git_blob_raw_sha256": "1bcccfe0b3192b8ec16bda3d1d626c544c41d73ac714d791551f03835b9039cd",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r1-expected-field-manifest.json",
+        "windows_raw_sha256": "f3d00a43373ce1c74561b6e88f4ea57421fb78f35b3dce4c9c25adc85f89a484",
+        "git_blob_raw_sha256": "d77940212510bb6a2abb84485f114898d0f77aeef1be21dc7052d5a816f62be5",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r1-frozen-inputs.json",
+        "windows_raw_sha256": "bec1a7b3ba3c3e79513a94b4ae6605571d655a02e72081a35db954262115ce30",
+        "git_blob_raw_sha256": "4631fba0712b5d3fb1a218cc94720f035024f92dcf587efcab51d07893f5777b",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r1-gate-index.json",
+        "windows_raw_sha256": "732ff0e27d15e71a811d2cca726ee6eb45fe4e2821584901a7a1b6217774ece4",
+        "git_blob_raw_sha256": "b59dd977ca48492b97c1587d75b7fbfa6ba581c244022f8ea16746f82439f6fb",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r1-historical-isolation.json",
+        "windows_raw_sha256": "70b7181e8e8c78739ca320ce944e430912b4915959060ee27ed78911a8d42bf0",
+        "git_blob_raw_sha256": "534039fe504281b8f07db2ba159e3b52eca7c13c64826653db73ce05ddd096f3",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r1-mutation-manifest.json",
+        "windows_raw_sha256": "a0bd916bcaa2da542b27666fd93b5ef24b597e897c909ef9ce2727300a6e8763",
+        "git_blob_raw_sha256": "91e10cc88169b7f0455bc8123409192bc31d002c7931a4551d5f2698d675f04b",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r1-occurrence-binding-manifest.json",
+        "windows_raw_sha256": "d252e3252d891f2ed8f89633e7627c389cb516d18ea1370589531b53338a79bf",
+        "git_blob_raw_sha256": "59ac4334084d2645ea8654faf63e84ed7d07591c89b7c4b0d4bc9bdc05f793fe",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r1-producer-site-manifest.json",
+        "windows_raw_sha256": "b1d5419133c72752b4bd7af67d67cb074ed1e8a957a1a67e4c8a6d6e53cd295c",
+        "git_blob_raw_sha256": "a2f94b83fad51290f128a535ad097dce30ff5379316e05681517d6c80f8d26eb",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r1-raw-input-corpus.json",
+        "windows_raw_sha256": "d5ed2490e09a832af58de5644e4c3b9122e573f8f6acb096fa84301b7249012e",
+        "git_blob_raw_sha256": "21ce65ad45bfa99a995f4c4259fa8a3dd9c00ab4e0cfad5a4d06e324c273d185",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r2-field-and-stage-audit.json",
+        "windows_raw_sha256": "58395e9e4d2d2a970e2514e12023b4a934476ad20268fde4904b3185868bba6e",
+        "git_blob_raw_sha256": "3f0963bca374bb136ce3d5a38f242b6eb03fb53ef824a83cb8a16d96f0339795",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r3-closure-and-binding-audit.json",
+        "windows_raw_sha256": "274bea634f559f2373515221b2ae9500e7ce6af831fd3002e2e36d2be08fcbc6",
+        "git_blob_raw_sha256": "fc0ee715e0582aac9ca4db0a4735dc7bb6b6f28ca51cd984a326e567d262f318",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r3-incremental-instance-ledger.json",
+        "windows_raw_sha256": "2424e50ebc2f84f1a06326b135620902bf28e3668af0b8da6497625fa8f26435",
+        "git_blob_raw_sha256": "6afde9e503e6a9a026b471291f0090e76d9380cfb89a9b6ceb930ee373cb18e6",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r3g1-candidate-matrix.json",
+        "windows_raw_sha256": "851e036030d55504bea15ca58b6977d07572c732d00841ff4e062afac9d2e2ee",
+        "git_blob_raw_sha256": "b830e47ad700ed707e9e80c35e5d67a5a99fad71841eff8f6f9fa2c983679117",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r3g1-descriptor-census.json",
+        "windows_raw_sha256": "936e3026050a91ffd839552fac1c1fc36e719d0e29e82097c41f1eaaf0057ac2",
+        "git_blob_raw_sha256": "c2a1dadaec24409ad9d647961c630973814c88f633bb29d0f354d8171f8f8e77",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r3g1-design-vectors.json",
+        "windows_raw_sha256": "5ba5f18137602f1fa008173e6ab89e58d4fdbefcd24e659cc2df3da5e593dba2",
+        "git_blob_raw_sha256": "0da788604ebf5b4896e588fc783b91d0279195147d4bec6b1e2af37cb038568c",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r3g1-field-source-matrix.json",
+        "windows_raw_sha256": "5444aee97cb351bccca111e5a78d1c072df328ef0dceaa572670d1e1cf95fbe2",
+        "git_blob_raw_sha256": "ab409a0571bb55ca41dd7ac7a4f8feaf3226d1df825e49dddfbf767c91d7ce76",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r3g1-minimal-expected.json",
+        "windows_raw_sha256": "ce11d282d0c66ac2a122b0bbad9e5443f463fe7b1a183acb84a8eb4493f025ef",
+        "git_blob_raw_sha256": "b3a3eca20795d233eea7c014d4c857cbdbc29ab05d8ba54a720d25787e795fdd",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r3g1-native-and-rule-inventory.json",
+        "windows_raw_sha256": "83a273bd283d8f8b644f157926ac7b7849af054629c62bbfb2166940aa0ceb79",
+        "git_blob_raw_sha256": "8b881d938f0b6f6fa49a86f484740b3453b307ada632e5983acf096e537571c5",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r3g1-source-inventory.json",
+        "windows_raw_sha256": "bf6ab309774204e6f3f1a7a6c9ec1024c0f3190ee26faf2b29b492827616d40a",
+        "git_blob_raw_sha256": "7dea9eed91ededa73ec699cc377fb7388260912ae81fe6d22a032028431fd749",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r3g1-three-slot-matrix.json",
+        "windows_raw_sha256": "bba4d5d1db6f946e81b1b58add89a9ca0e782f5d32bce75b0ff3ae91f7b2ad9a",
+        "git_blob_raw_sha256": "17d0e85cfff66def0cb793f2a8087b67417db0f5a3c12a7717f27fe61e031b13",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r3g2-design-conversion-receipt.json",
+        "windows_raw_sha256": "063d076d2399f3a898c337c54e2cf2b8a51b0e33da1e6bf70c6acc3ccf6e664f",
+        "git_blob_raw_sha256": "038b2a805536cbd2179af0e8174a8a8248079f8e68e0e8a9b109aaa0f85ff677",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r3g2-design-rule-descriptor-map.json",
+        "windows_raw_sha256": "2cf16435cb73e263f4b3b40ed84db0bcb87237505e3bc967425a73691f97a746",
+        "git_blob_raw_sha256": "0118653b06fe830ba87d3fb7fa7b99c0a0f0937a7a406b9cc3dc7c51233f1105",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r3g2-registration-audit.json",
+        "windows_raw_sha256": "4be06b132951b26ccdbb44f7222f16d93ab26a90b16d9b8eb76a8f04df5adc61",
+        "git_blob_raw_sha256": "fb8a02680588253371ddae8a653ca4c2d91d4426f98d6934a0167fc8075d6f94",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r4-binding-expected.json",
+        "windows_raw_sha256": "f4090735234dc8e2d363b74506f00e61a449eb996b0c0ac8deef509e630d02f5",
+        "git_blob_raw_sha256": "cca44e0559e7df56118c4d139c3ec6a6da57891a8504f6aa2215eaf42341894d",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r4-coverage-receipt.json",
+        "windows_raw_sha256": "855948ec7e21fbcb561967f88cbf606c2c4d011eed374ded28629b21127215ea",
+        "git_blob_raw_sha256": "fcf0607c610eb284c667c4a1d84ff041154e377992f3ae33b5adedb20704808c",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r4-model-diff.json",
+        "windows_raw_sha256": "986701bfe296a12f9c42e7d955b869f8286f7d931415e644434a77fb20db7311",
+        "git_blob_raw_sha256": "44710832ae2f7ec7497eacbc60485fdf46760a76f2325d16164d30c92718d02f",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r4g1-authority-and-field-audit.json",
+        "windows_raw_sha256": "ac6f916aa9e127e0434dbd138ccc99ab47be6fd92ffe7bb90294d89b15a27cba",
+        "git_blob_raw_sha256": "abce6d94ad02ec66166bb8356306cca88f75717de5931823a6ed391e76252ffc",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r4g1-design-vectors.json",
+        "windows_raw_sha256": "2c27c2d8ca1cc4daf6708d2e7e340e988fd52f6d8948419c2a7190889f59633d",
+        "git_blob_raw_sha256": "6998aa343763e56506fd26aaec6acdd4ba586fa6ce31f7c216e6f53ad7eb54f3",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r4g1-first-unbound-field.json",
+        "windows_raw_sha256": "f142284ab3673c0cd5ff9d13fedd5ba6ac4ea091ab2d4221aebf015a496383c9",
+        "git_blob_raw_sha256": "82fa61edb84c4796a24c483e72b81c30ca335ea340425c3c115042a698e417d1",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "docs/implementation/phase-04c1b4c4r3c2r4g2-historical-caseid-census.json",
+        "windows_raw_sha256": "0966fc101a281fbc7803785c8f40ff287b10c44eef53a72e5def014a04e52a8f",
+        "git_blob_raw_sha256": "1e0d0724c051eb96589d61d6b5dcfde50e089fe8e04382f7d3eb18554f9025a6",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-export-soundness/cases.json",
+        "windows_raw_sha256": "a59caeb1737845336595f3d7f14d37fc91aa1d867710cd14bfae54dcffbac115",
+        "git_blob_raw_sha256": "4c5454168a4418bb955d8c0bd7dae3b2768d262f9fa1009b7e774e37dd22b472",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-export-soundness/manifest.json",
+        "windows_raw_sha256": "d77fe010820b257c45ef3d7bac5b6a00fafe3678f8f248d3c029d58def43a166",
+        "git_blob_raw_sha256": "b6454a6126405471cda6eff063c821449878db6c46588642816ab81f57bc7606",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/audit/AUDIT-10.json",
+        "windows_raw_sha256": "ee02ae02e181e985ea8377fc37a3d1cb25241c977d1cb193ca7c480bb6002e50",
+        "git_blob_raw_sha256": "3d7ea269ececbfb39cd8bcf0baff3e8b90e89ead89d0efbd79209df305096774",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/guard/G01.json",
+        "windows_raw_sha256": "342d2d95b23fb0bcd2c803f7b16967bb6a100acecf68fdf755d08184e8c9203b",
+        "git_blob_raw_sha256": "fa783e3626085a17091098b62f31a86454285687681e33f80a6ee3d44ad5c0ad",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/guard/G02.json",
+        "windows_raw_sha256": "369aba9ec1e9821601edd2b83a8c397ad481095c6ee858afa3fafd059e37741e",
+        "git_blob_raw_sha256": "881ddb91a8b2bc84a981426b713903b59bacac8eff8899c72639561c4206eaa0",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/guard/G03.json",
+        "windows_raw_sha256": "f617dfd9449375cf1e954f3a1145d32130c66fe1e2c0af4bd2cf30f4bc3bb445",
+        "git_blob_raw_sha256": "a47fd3beb7317eeaf6bb84c5888938c0043fa69eceb32393a5d729556bbcab65",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/guard/G04.json",
+        "windows_raw_sha256": "0e05569202ab5a5c72af7869a513668886dbaa1d36332a1b2aa1910dfd8557a1",
+        "git_blob_raw_sha256": "81b29ba55ce3c077807c53ee4d572493d74bf9aaef58fe1d41d78ee3ed282594",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/guard/G05.json",
+        "windows_raw_sha256": "072a695370be72cbaad27a56e9811e99303d95c63c0d98d04b54593350852b43",
+        "git_blob_raw_sha256": "7ccd9cc5a5aca4a9cad33702a4a0c081fce72eb40ec2fcc8568c9153915d1ecd",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/guard/G06.json",
+        "windows_raw_sha256": "dde556ae428146c073424521daf108aa769054c505e1fde0d3248d1ff4288eaa",
+        "git_blob_raw_sha256": "eedb4b1be9b1336abaaaa6252ac289bdac4a9c22e29655b39640dd2a56b9d42d",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/guard/G07.json",
+        "windows_raw_sha256": "6ab199c77cda654a6b75118cf81c4a42f9cdfa70d169a441cf0437fec3553090",
+        "git_blob_raw_sha256": "e46c206221d4f1087d408bb51adf510e4bc271e2911d84d6e30df5dca277eb50",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/guard/G08.json",
+        "windows_raw_sha256": "03624573cda8de1cec7c095c86294b37d705cab0a801b8075f2f75754fc720fd",
+        "git_blob_raw_sha256": "19bee506cc1c8ed2ab44a5de9b635c1843abc99392430c1e543aa7130f15d33f",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/guard/G09.json",
+        "windows_raw_sha256": "000af02b10d3868f9e4b0032464e5da2ceff2a00370f3d164342986f9c76ba5c",
+        "git_blob_raw_sha256": "ddaa6d363617d74f33624465c71dd92e8e7d513ef56f0fcd625e1add68721027",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/guard/G10.json",
+        "windows_raw_sha256": "bc1a6e247b941aac424e8040832937799156fcea6f95d1becb838f57da6b8e04",
+        "git_blob_raw_sha256": "aec0823b483ee238ccd7baadcd40bf90a8eafa32df5073bd444ad57b74facdd0",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/guard/G11.json",
+        "windows_raw_sha256": "8b1c979c43355a305e0eb8eb5e0eb40040b67ec9636e6f87c217acad99827969",
+        "git_blob_raw_sha256": "7c07c0a9916b9ef7f260409277944470551f28554ac4d81e220b18177dd5fbf9",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/guard/G12.json",
+        "windows_raw_sha256": "e2a5684ac7d5108746d6e10902595a3af2a7e60e8828bfe13ae64062566a6fe8",
+        "git_blob_raw_sha256": "f6e86963c1924b28d9c8fa51b298f920770ce3aedcb1116dfa4de7aa6719594f",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/guard/G13.json",
+        "windows_raw_sha256": "734d0fcadebe80a20508b40e3d491520d33e12bbfed5f7a4432266ba9ce20917",
+        "git_blob_raw_sha256": "666bea7763e3ac121789a0c875bb9e53d3b084b7f2f7415849f73df8e0145bf7",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/guard/G14-root-path.json",
+        "windows_raw_sha256": "b72ca58a71e70c469c63703a17babe854ec56ca3c15a2506bb5c7a4bfee470ab",
+        "git_blob_raw_sha256": "05ac7520ca2a60d743ab47729255335bf928c4e31a3115c6a081f3f0fed288aa",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/guard/G14.json",
+        "windows_raw_sha256": "e360791efd0353396a8466e26efab3d05a0c551d937f9383ed16aee86c5efd51",
+        "git_blob_raw_sha256": "fc2a364fc55b6a3842a964b0c49af7d8af0f7d37c9a9760ce9a7dbeb8cf96639",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/guard/G15.json",
+        "windows_raw_sha256": "d5746b39a69ca678443a04a20b76bff7a34f283d72c0e8f3c4223ba309dff38a",
+        "git_blob_raw_sha256": "ba1b196054dff2d95b86e4eb82eecce47c94f8a4629bccef38f1fe7f5ddda305",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/guard/G16.json",
+        "windows_raw_sha256": "9a48291a6c4188a4a033134b1d5966d857e9c2e6bc2bbbf32947cd2c2c403d00",
+        "git_blob_raw_sha256": "286071ce4f5f5905e703a8fd302f7f3c5ff0de6297b48e8a488f8e6a4bf20435",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/manifest.json",
+        "windows_raw_sha256": "8db5942d016982f6b4cc6db8b599f77ec26d5bb6d599d10cadfb79614c45d93f",
+        "git_blob_raw_sha256": "766e688b25163a67f347293e012c523d5fc8425d0410c18d7f69f4ab4092f29b",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K01.json",
+        "windows_raw_sha256": "fcbb88b1362d0c6cc13e607763e276720143a6128cdf43657f0aa406f1f9a1c6",
+        "git_blob_raw_sha256": "5c2331fbb87f0eb455ef1888b704c642c5cce5bfbfa73d7f3a111602be15eafe",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K02.json",
+        "windows_raw_sha256": "fa3071c498053892eb07cf5ed67f6c3d4d80850d284bfc55ef19514ddce0d8b2",
+        "git_blob_raw_sha256": "d1271a5b9deb5c16eef16cd96e1ffb885e3ad6bf4fa16b33975058c306e8cd4a",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K03.json",
+        "windows_raw_sha256": "1042171fc150a3eba6e8074ef0895b993b44578a994c3784f48f539b0919a6e0",
+        "git_blob_raw_sha256": "c92988883d7d067c26aa72dcb035099a1f9a64255f7bd878aa8b072e6c603ddb",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K04.json",
+        "windows_raw_sha256": "d4267336fb5ea57616cc3fd0d955d3f9299653e066f19dda6384cc682d50f846",
+        "git_blob_raw_sha256": "d338be316d62a15556a9f39e6dd31e4a6542c0ef1679ab43e5786402c570f7b9",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K05.json",
+        "windows_raw_sha256": "2f5503a1adfcea2125f1b25e4e98134b596495e27588b08c14c0153c8932a560",
+        "git_blob_raw_sha256": "324cc09f90366c408bb0a4064e22829a8622957e4c58ad0c862d1ff0b87db3a0",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K06-underdeclared.json",
+        "windows_raw_sha256": "fad58e93c00234176316a0ea517c5da21ba54887b76db2b9b699459773a472bd",
+        "git_blob_raw_sha256": "27b0f866193a202da08a48e40a1b027d9de45453283d4ed08e28a4b54832c6b9",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K06.json",
+        "windows_raw_sha256": "1ef03d677869292a3aa6f3442848a9f234ab2a9830106b79fd1e3e6f31753d53",
+        "git_blob_raw_sha256": "2fe2e033f2fa2707cf06d4105025f7e3c5eb7359dd10426e06c988a84979fc8e",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K07.json",
+        "windows_raw_sha256": "77e33a52e27707a4d18da50d6989fc9c854056af210460ef902106fe7abefa14",
+        "git_blob_raw_sha256": "703167efe96a0d402228af2b36db9c78b0fe920618e88b39e2de8b2f3e5b9190",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K08.json",
+        "windows_raw_sha256": "ec64602c1ab45120250d9224eae9e338f2d7f6aa067995021db84582618851a5",
+        "git_blob_raw_sha256": "51db407227665507f2e6499b88450806d7813d0fcc6aeab0c125202c7a184b04",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K09.json",
+        "windows_raw_sha256": "0642c1d6a6f0181a4ef20de58b6620f2c29231ef9c5beee0d72231c97336ff7d",
+        "git_blob_raw_sha256": "025653d98983397ac3424786592582616d2a5a75ed35b24661b559b04a8abc1a",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K10.json",
+        "windows_raw_sha256": "14172347eb12bcb434208c2bf8dc9482577117486f8b657e24af4ac9d66eaff5",
+        "git_blob_raw_sha256": "f4d95361d0d0d2e99ffd667c666cdfd0d108a4f3b087da8f6665a854cf054aeb",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K11.json",
+        "windows_raw_sha256": "33c55b64391db6854dd94d869018bbeb172e9ceb22dff7704613c8865eaaa9a9",
+        "git_blob_raw_sha256": "06e453134395c0e20377230ddf728a27c76d22c27a37443a5d5b288efa72c498",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K12.json",
+        "windows_raw_sha256": "2e42bf865fcbf7668478900b1cc48d4b4fb9d825373dba11f3b2b6d5a6c712e4",
+        "git_blob_raw_sha256": "a7c0d4d71c2198f99d44d92deaef3e332caec34e78b84cc17ca9a753568f53f3",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K13.json",
+        "windows_raw_sha256": "aacb1b07c76704779575c0d60e8b493c3580678efea857a170630c3652db1cf9",
+        "git_blob_raw_sha256": "ed1b655b1596d9cb62bc748413772fb4bea89ce2981636c69579e73e4a6129e4",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K14.json",
+        "windows_raw_sha256": "9b653d65907fe46a6d0b3bbb29cea0089e4f8f58a66db95fc440df4d9b32ead0",
+        "git_blob_raw_sha256": "264f408cf861726a76e983e5e8607a77e23b37df72c6d16224519880442046a5",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K15.json",
+        "windows_raw_sha256": "415d304dada2635befe544a7f510c60ba5337225b301ac8952edb9c6f907c828",
+        "git_blob_raw_sha256": "aa2c6a2d7367f1526d3aaf225d332744c6f3a8cf4fabc428831f94893ffdde45",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K16.json",
+        "windows_raw_sha256": "20afdd879f16ba2865e24c9da53dfd8cbdac7883c56cf457094d090c79ba3b9a",
+        "git_blob_raw_sha256": "e98bfe59181c339830f1f5032ca1efbb8e48f9e08980c033faeaa652d7c46f43",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K17.json",
+        "windows_raw_sha256": "750f3cb6fef080a16e46f8beccbe22dc7f666310a727849b26122bde072ce192",
+        "git_blob_raw_sha256": "374fc69ae38f39197a1a9fbb308be69114c903af1472720345d6f06885be49f8",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K18.json",
+        "windows_raw_sha256": "7138b9dac8d877f46ec4a77202186a74bb3145d11b9e87f560d5eda264b52812",
+        "git_blob_raw_sha256": "fd29f2f2c20af73b2e38cf210da56b25f0dfe9434afd877f5a2db6210226950c",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K19.json",
+        "windows_raw_sha256": "5aae049cb76070db0d33ddcd122a541610ad128a8cc28ca3f7411c31b9550e8f",
+        "git_blob_raw_sha256": "dabfea4afe2c0606e1609d9d5ea71322228228c083ecb0d77d7c0af2308e7d59",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K20.json",
+        "windows_raw_sha256": "e3dfddb7d517693c9f186a5561d4a880cfb0e6b7468a3bd0bd6c8fa927834de3",
+        "git_blob_raw_sha256": "251694192778b68069157ebd68b5717c32d569b287052aa10e92733be099f19f",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K21.json",
+        "windows_raw_sha256": "48a7fd224219141c8dcf11ac66e268643f70df32480a226f8788cb9c148d7559",
+        "git_blob_raw_sha256": "0846f42d7680a120f6be477eb3b852f1208878b5761c892586928b48e40e983b",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K22.json",
+        "windows_raw_sha256": "362afc843d1330eba67a5599a616315f8034bab10222b8e2bd00916c7a812716",
+        "git_blob_raw_sha256": "d9d45079623a937892ffbddf032e064d0c531b2017773ead9186c5731d366525",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K23.json",
+        "windows_raw_sha256": "678a37e753e5876bdaa6d6fbf9890bd55f12027032f5db305d07af62f6e1ce93",
+        "git_blob_raw_sha256": "2983cf30cd0c01366325f0453b48c991608e88543a39243d805963f124c4fa91",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K24.json",
+        "windows_raw_sha256": "cdd53e34ef9219a0fc2d93c48a1f4b47ad2528599545256e34a2dac2d8f0cee4",
+        "git_blob_raw_sha256": "9909a60cae38a9616914da29571b736082a725f8301e10df0f411a92f474fc9c",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/computation-root-recovery/root/K25-overflow.json",
+        "windows_raw_sha256": "1cad7f3c5b0cd9d52fe885e5acdb8b15c352e33c162270596577793c74377693",
+        "git_blob_raw_sha256": "b51e3a4dae82186cd7015dfaf37e5dea2c21a25033af8178dde3538a9aa78ea3",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/coverage/comparator-mutations.json",
+        "windows_raw_sha256": "d725cd7131252e694b55358a6c85391a445346cf89f96c1d538311f72f2ea4bc",
+        "git_blob_raw_sha256": "63716bee3b09a21e2c64bb91d6b45fc8fa8d90d38bcb0924988e222461d737ea",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/coverage/d10-gap-ledger.json",
+        "windows_raw_sha256": "4730397c70fb1cf727da4010db9f3b13981a1ccc4e41350b1b2a4f0348ce58c3",
+        "git_blob_raw_sha256": "735326ae409d528324b4f358238baaf6b925617e1b6d0e023f9c200b10b0cc97",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/coverage/d9-control-field-coverage.json",
+        "windows_raw_sha256": "f22fdcadd8cc169f6bd449e4651e220b79ccff15ed56b6f92e377627129f6bb2",
+        "git_blob_raw_sha256": "9408b4d4304ff63d0428ca52a24e37ef68030bdf6188216df1ca1ff04b4c3a9a",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/coverage/d9-control-pending-fields.json",
+        "windows_raw_sha256": "c49bae402b25b043fa4f8a9f9204d7e3b2866e7983f5419501cb814fc049e78a",
+        "git_blob_raw_sha256": "09c03c7a6a2feb2720184b60f7aeb243182dcb92d09fcf7f45659669982957b9",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/coverage/field-coverage.json",
+        "windows_raw_sha256": "4e5cf22a7dd602bfdcd668f2d2199726d0ac43cc82abc3310b5f586dcb2a05c5",
+        "git_blob_raw_sha256": "02210a5bd016071fc145520969188e9ed40f580cc521b3b2960cf988609cccab",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/coverage/hand-calculations.json",
+        "windows_raw_sha256": "58a2e6fef23d26454e94248fcdbedd21a2bf3dcd8f2ce09446a4e4d0f1cf078c",
+        "git_blob_raw_sha256": "7be33fb449c701f3a317308986de4da1cfbbd1e5cbdfc616de22174c8f1bdd32",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/coverage/inventory-review.json",
+        "windows_raw_sha256": "17540ed9b13522656a63974d6654fb699a9406f8f053be3b0a627b21bf2521de",
+        "git_blob_raw_sha256": "5442bc8f801983bc2491c6b096c0bef5d0a234ac89080c0d5f8b17319584adf3",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/coverage/pending-fields.json",
+        "windows_raw_sha256": "2871ecbf84cfe3b36245185e526bcbb3a56ca6439a63a3fe97d3f40b82661ff1",
+        "git_blob_raw_sha256": "0883cf45651817ef3a49514b3f2bf370eb1aa054dbd0866978e7d85d9454bc23",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/coverage/recovery-comparator-mutations.json",
+        "windows_raw_sha256": "b5f074c4b5a5fc53288432d62d91885cbc86fdbe370e6dab9c52df43bafe8464",
+        "git_blob_raw_sha256": "60608e726349336b1dafc1aa95e85244324c7725a13072012fb80283474b3598",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/coverage/recovery-hand-calculations.json",
+        "windows_raw_sha256": "b2c5190671497b1e4800d4f1b969b44f3bef5e8484ecd847674efe90c1430834",
+        "git_blob_raw_sha256": "626934167f881d020ebe3d9cf3f4fddbcfa2ba550b29291c22c1a39c311b4073",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/coverage/rust-type-inventory.json",
+        "windows_raw_sha256": "b66b62554a09de8805dfd1c5f17d9df926b45210dc09629153851ce277011138",
+        "git_blob_raw_sha256": "98327cf42dae185755467b00274f9f1daaacddeab692815b2b5b79c415f0c13b",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-10-not-root.json",
+        "windows_raw_sha256": "ba731318d427f16f81418946c0bf735b36cea9ff6f37a6277f7bfab53b477757",
+        "git_blob_raw_sha256": "3126aabc0ab76406447c191d9c727b66090ccb35eec1a46f06d06cf3986e103f",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-11-not-root.json",
+        "windows_raw_sha256": "1e23935205b18517e4327a2520cf53cff3055de6ec4df2ae44610ac1e2120293",
+        "git_blob_raw_sha256": "654cb7c0f3148dcf22ce53ee75458dffe1c2c1049e7c5cc30e94da9cc2f86722",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-12-not-root.json",
+        "windows_raw_sha256": "0b493a74db2caee01d7f54e00a1845f31de4723701db3d94058b26e9140e86d0",
+        "git_blob_raw_sha256": "d6d29ca592679386df4d8edfda2c1a10381e32e916e31474aeef6cc1b9a24503",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-13-not-root.json",
+        "windows_raw_sha256": "d0453f7cafe1cf3aecb5bc6030be7018eb3476739cd084e58b5676fcf8741fbb",
+        "git_blob_raw_sha256": "4b9fbf84318868a97a3f67c131246fd626d2a279c2846a95127ceb3243a09c38",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-14-not-root.json",
+        "windows_raw_sha256": "ca7cd8a3ad81b1f2d91f2579a3d279e89a0403a7999c12530315d8231617fc0a",
+        "git_blob_raw_sha256": "c8f422cd6b2a27bd20762d1a92dcb4103fbbfa788dfc9871b5045a7fc0e79553",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-15-not-root.json",
+        "windows_raw_sha256": "88c6ea969b8e5668fbfde62809665cc46ba8bf4a8971d55e25911107a9fae1dc",
+        "git_blob_raw_sha256": "f1c9e599a7045a1c1591362868c7bbf905c2605189134f55e855a2d656674eb6",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-16-not-root.json",
+        "windows_raw_sha256": "f911164f94ff53980660e6fa6f9aa9cdcba780cb94ae415663eb13e5cf5e44ff",
+        "git_blob_raw_sha256": "5c851c6013b1e4e0224efc9a81e61e02989e1f39ac9b3ec94edc8b108364dbb2",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-17-not-root.json",
+        "windows_raw_sha256": "52a976aa99e0cde81809ea3cfcc6c36ca446c7fb26829ec1a5ede0283aafa038",
+        "git_blob_raw_sha256": "c2d0e2de0248c6f3af2bdc6ac39c6754b916b6b50abc0ad56f55b516c0039741",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-18-not-root.json",
+        "windows_raw_sha256": "7f5c526da9454da67e23f9576cd851b4824b44813483d52cd0ab75f9a2ed7504",
+        "git_blob_raw_sha256": "a974227819da59b35750e27c337a41f0d9c93c6f22a9a660091b91b991522070",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-19-not-root.json",
+        "windows_raw_sha256": "04998040efb989e936fc799a366928cde195825ee671a81dbeb896b395ba0160",
+        "git_blob_raw_sha256": "8b40a7c5807ecf7ead33004bff7d058f57ce02779f90e0fae8e074acf5904202",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-2-not-root.json",
+        "windows_raw_sha256": "3c51372e33a046ad0235b6b71e70dec7c156f1a08ae2ba2b870ad5d916d49c11",
+        "git_blob_raw_sha256": "ae9f46f06ee15d4b1fa087bf950188fbe3d39f36f04c8b314d4923941b60878f",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-20-not-root.json",
+        "windows_raw_sha256": "62a917b66a21df49932307f6e0ef143b87c9e61832c0abbdc7685318cc19068d",
+        "git_blob_raw_sha256": "f5327fc5f6e1e33cdee4c136e8515445ab5c21d21bc8067272143031beb7f166",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-21-not-root.json",
+        "windows_raw_sha256": "d07ebdd62d58410c1aea8ae0da67828d445e9aaea2aaf4b011dd0e4815792eb0",
+        "git_blob_raw_sha256": "ec4c08ccf6ce01683c46996b4616eb4270f9e0b44e2e82aa049e20611c961752",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-3-not-root.json",
+        "windows_raw_sha256": "c4b389bf003ca00305eaeb11ac4cb823365f14a3d3f4c3e5ab816ad6035943e0",
+        "git_blob_raw_sha256": "36445783a5567702ce382d1fc150008656f75acd6ee3d64392502961cf147425",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-4-not-root.json",
+        "windows_raw_sha256": "95e2befff8e7940d4feb2ccf35602c23e5a929f0f2ab0728ae47ed1d35625aa4",
+        "git_blob_raw_sha256": "b50f24c9925cab2c079c512aabf5e397f4a1f8e411487a04d3b4274f0967c9c3",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-5-not-root.json",
+        "windows_raw_sha256": "b2157c5f419e2003d7d920aec1410aa2dad00e9d33320eaccdf98429f3200b87",
+        "git_blob_raw_sha256": "836aa53f37f8ae2ebdf0b8cc269a450de302716b7e5df2ea058157eaa5c627d1",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-6-not-root.json",
+        "windows_raw_sha256": "7ecce24d5a6feaa6c6abc74b1a46f41fe0ae80e10ae14b346980a36c46838a8b",
+        "git_blob_raw_sha256": "385c4371b20e2cb8ffcf11aac672d1d71edd06869229e59f9e8680c4de7dcead",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-7-not-root.json",
+        "windows_raw_sha256": "c6e514ac4a90a9d32647c095081f3748201c49b787c29a8b238b7ccc1216459e",
+        "git_blob_raw_sha256": "934f493ea91842b5bf2e9a7837fbfc3094494ab27ff0428d7b9fabc6c6aead11",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-8-not-root.json",
+        "windows_raw_sha256": "aca819c296798081c25294d87722f9e760fa83933cc7b3c563b88f166503a7c3",
+        "git_blob_raw_sha256": "5ebb41db39b98d53d5c608334691613b1bac712e4c3585bc4e7935de711463b3",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-node-9-not-root.json",
+        "windows_raw_sha256": "995fa392143a0de4b8141b25fd323ca3ccdf558f2a8ed86e5faa38fb005e28f2",
+        "git_blob_raw_sha256": "8f6c284f777be6fb8cbc5432e7b87841ba5f4300bab08ec07f46ff3fd927878c",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-execution-source-unmapped.json",
+        "windows_raw_sha256": "a2aab68d4cbf59524b21c9885ff66042e745f9347a1fe9f45778fed5514ff7ed",
+        "git_blob_raw_sha256": "d0aee84187371360a6a2033acf32bbe02b75eabbb80450011927f0c93c90e369",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/d10-full-static-positive.json",
+        "windows_raw_sha256": "12d095a3cc2f623e5dc8556caff19ee3419739d6df0d3e40e134f0b5f7842201",
+        "git_blob_raw_sha256": "b08de09f77675c112b0e998aec69a1e3fee5c8826dc895632df6942e286dc56a",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/manifest.json",
+        "windows_raw_sha256": "e8f6a4a83331a35f7d18b11016abd1e3eff429b9d418e3a024e00b485fc3c3bd",
+        "git_blob_raw_sha256": "0d3f8886ecdd401e97ff1d2c6a3e41179c5dcc2ea651ba3805b4872b6d759f97",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/p30-same-row-positive.json",
+        "windows_raw_sha256": "de135ec3f82f6a44628837cc1fb1eb1dfdda1b94e02115857c8844866e8da499",
+        "git_blob_raw_sha256": "0f99a43add646acca5577238993235a7547f4a195efb22319ddb3336c9e6249c",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d10-preconditions/p30-split-row-negative.json",
+        "windows_raw_sha256": "55fac58221a1715cf9fdeb70a02c0cc2c96dc8eccefdda409eda7063803570e3",
+        "git_blob_raw_sha256": "15d7f9a1b43f35b4b96ee9a24e48c67efe94dfe79e7bfe766c879a3ff5790bbf",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-await.json",
+        "windows_raw_sha256": "dad5fa56fdad2490a0a3d17e768b08d54a451b397de460ee1912fd798fcb166e",
+        "git_blob_raw_sha256": "cb738b0353852decf8ee367dda868a2f91316c2e8fc5b9957472f7f784d261b7",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-call_subflow.json",
+        "windows_raw_sha256": "7c4706dcf580fe06413e559ae08a2d20a4d1fe02c6820f459ad9780a4716f9d7",
+        "git_blob_raw_sha256": "e10a86e0f15c3c9f8ec712e9182a873d6a5025bfccb7c0e11614427e3007dc0d",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-compensation-sequence.json",
+        "windows_raw_sha256": "6ac5bd7496ca5d4a5a055d4203a8b4c135e1cdb2457b8c1981e0e427d710d28f",
+        "git_blob_raw_sha256": "1f8ceb74f06cf18fc3daec6cc85321a99e00d21e2e52a50deda8c20519b4fbc2",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-compensation_scope.json",
+        "windows_raw_sha256": "4cfc44d5e33d705027e144c3b90889f7f087a1bdf0430d5eaa849eb2aa9ead3d",
+        "git_blob_raw_sha256": "a91ca5d8f8cfbe6862c131ae83b90bffbf3d0ece383af45c54106588c7103c6b",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-handle.json",
+        "windows_raw_sha256": "be2786f719143c9e20fa1ab380df4a448427849496e107f154348a45f56d9410",
+        "git_blob_raw_sha256": "6c82369bc2fb2eef0bd253bc5c9bd6726275108d199c5c932ed4caa0622068b8",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-invoke.json",
+        "windows_raw_sha256": "f37ab681f246a5743add53bbab62dca00b0a8bacded9033184453eb9d492c32a",
+        "git_blob_raw_sha256": "c78d8b99e679bc5bec12e42d08b9de254e85af29520b20c75efe38e37487fe6b",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-iterate-while-eight.json",
+        "windows_raw_sha256": "27157016759721a78cc134d928a524d558fbdff457eb2e1d7ad076e0a32a9064",
+        "git_blob_raw_sha256": "a6c938f3fd2d15a65608d0c21e2faf064e6496b64311040d0de766bdac005b86",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-iterate.json",
+        "windows_raw_sha256": "26208040fca7bc10fee5bc9cf294de0af241b8c7099274f5ce092b42f4d189c4",
+        "git_blob_raw_sha256": "b314ba86e82595620338827b5e905fef10ce46798a1953fa885ba37647ec426f",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-parallel-fail-fast.json",
+        "windows_raw_sha256": "67a802dc6bc253fa872e24fde86b0582364dd37b1dc96cba71390885e5604ce5",
+        "git_blob_raw_sha256": "fce3794ee1d2e263fec1485c0977d93a08e99403c4610cb6eee36d6124926b3b",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-parallel.json",
+        "windows_raw_sha256": "82e5b5e7c3e11dd270fb54f084661ba0b5ddf05871117e85ee0228e7eaa0e1b3",
+        "git_blob_raw_sha256": "7104f53404ce97900f01e48a4141ab09d3da4f1a70b10bc8f5591e53d79a9422",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-race-three-contestants.json",
+        "windows_raw_sha256": "0b908c053543b26b1f2f2bf17c253db2f635a35830516be24512f5991ba1244e",
+        "git_blob_raw_sha256": "f4d46112ddffb05727cebfed02dbfd7780ea217051bc5fabf05773748c3dd928",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-race.json",
+        "windows_raw_sha256": "4a13ea76d340209b055e093eeac84c5253b2572e20cd4fa3e5e6d90a2c517d6f",
+        "git_blob_raw_sha256": "a4bfb98797d40d23a6606992f0519c219ef704c1da225185229e68f008e7ba29",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-retry-four-attempts.json",
+        "windows_raw_sha256": "e81dabdbea118f7a787e20212b46940d5e3e57e3d2c5acd4df0cef3bdc2f6bce",
+        "git_blob_raw_sha256": "1021e8685847b6b859aefecbd76aca479391e89700b065249bd81d03e26b0971",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-retry.json",
+        "windows_raw_sha256": "89b703ae3bce1fc75afff44b6e5b872cb29229c278679cbd32cc0279f82f388e",
+        "git_blob_raw_sha256": "6df505e3b7bb5982eeb0985018c94a75ab1f590e25309acefeea147431aa5303",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-scope-compensation-nested.json",
+        "windows_raw_sha256": "9370a465607c27456bf920748a30e695af5e0c983b0cd12d0ff91a71b8eea40b",
+        "git_blob_raw_sha256": "4b652c90233c477393e46c3e4f5785fa5bd2db9e1aa321888dadfbac84081dff",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-scope.json",
+        "windows_raw_sha256": "3b13767db76c5e0fe7a110bfc3174f2e25a9a67d72549a0b0a033ca5c03f96e1",
+        "git_blob_raw_sha256": "ad300d8ab2303ab4af55916c71765788ea941838913a36b5375d5c3b01d26c38",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-select-two-exclusive-branches.json",
+        "windows_raw_sha256": "ab3cd1b0b75e85d5b3e2c5685e263bc663e12da1b7fd4446da7d350794573397",
+        "git_blob_raw_sha256": "f9b0e1471b0c0a6fa79f5497e169a6042c1783b22807a0c3135ed3e7aa1f2b70",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-select.json",
+        "windows_raw_sha256": "5d63788667f9eeef97489ec8a8f96bca1aacc88b6a8296753a7e3a975eef33cd",
+        "git_blob_raw_sha256": "df0fbc399c68723933a8f7ac60cbd5127ea2ba71ce630a560ccad742ea04c346",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-sequence-reversed.json",
+        "windows_raw_sha256": "769d96207d55720da0302d3465e5395708a34615859c52a0c1fe1a3a5d52692b",
+        "git_blob_raw_sha256": "0d88e363aea3e2ce734b61e6806bdc93d361f44d2bfa34bf714494f8a45a7357",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-sequence.json",
+        "windows_raw_sha256": "502846818ba031e4941dd4140895cf5770f3bf94cd239793935b1b4fd10f2d6c",
+        "git_blob_raw_sha256": "c255e53429b8cf642a53da251af406826457eda95cfa3ae79d4996c015e84c73",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-timeout-retry-nested.json",
+        "windows_raw_sha256": "c90c57f503701ca816499c55e99384b40e710e5c0030bc4074ee790dfe48b29e",
+        "git_blob_raw_sha256": "c3c8d240a0a61fc0ea94221ceaf556ec615873a50702023fcf7b517330fd61af",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/d9-opcode-timeout.json",
+        "windows_raw_sha256": "82c8f9b29c4301f476132b461d38daf908324d007448a67eab604655ef1255ba",
+        "git_blob_raw_sha256": "f49f6bfbaa624d7eb8347fccf5e56682de317e4c50bad1c64ce1c7830ccc38ff",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-control/manifest.json",
+        "windows_raw_sha256": "154ec8699aebb337210fdab5df8c76b19fb5676a0f5ea9de90989dfdc504e58a",
+        "git_blob_raw_sha256": "0a52313678802e02616077738696e56f0f112969987e2849e69cecc99407439d",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-local-retry-inside-compensation-scope.json",
+        "windows_raw_sha256": "698a4f413252842be712b2f5cc3da42577c0f681a59040438d4a537f270d2be9",
+        "git_blob_raw_sha256": "7930bcad5c1907ca7a85e450255a96e7a7a0639bae66c9a1f96d34a5c34cd5d4",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-outer-iterate-1.json",
+        "windows_raw_sha256": "4c5cd39a4278a1895e22eebf99778fb97b19c55bb9b0685a490e9e830367532f",
+        "git_blob_raw_sha256": "7b0afb1e6e13f327e3827fd19e6617218d6496ad198097409ff093ea8cc3f40a",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-outer-iterate-2.json",
+        "windows_raw_sha256": "32431a95c31b6960c63edef6848ff5b3c9c5068d86571fb56e6e365e4b063102",
+        "git_blob_raw_sha256": "f502909b444d124d5c69e5110f9a2c6f9b7b80573593e9fcaf18f7c95d7dfb6c",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-outer-iterate-3.json",
+        "windows_raw_sha256": "bd1cfa60fb0eaf751bf16b774f0e7e5bd72ee8938922fcdfc9566dea944f71d8",
+        "git_blob_raw_sha256": "9c53d9c4bac7187d4095b34bf9493f2524926ab20ae3cb64e0d716e23eeb2386",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-outer-iterate-4.json",
+        "windows_raw_sha256": "f52eb7acc7b2c94a24b8b72e72167127a058e373ae750c233f0c54b9c6ff0976",
+        "git_blob_raw_sha256": "8f385b0d66c31094f0f8008100e03f18893ce1b499d0a90495efd5baf5467104",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-outer-retry-1.json",
+        "windows_raw_sha256": "8151cc5df50e5a78aa93365a8716390e093f2687b7fcbaa86905ec731faad449",
+        "git_blob_raw_sha256": "9f869a94a58cb30b259e6dba4e9cffd20a7f52c2b497fe2e7a780aaacefe0f6c",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-outer-retry-2.json",
+        "windows_raw_sha256": "d5af246edfe8b9f824068b263e3b239eb1b94b2c6436b4ebd07a7adaf3175b2d",
+        "git_blob_raw_sha256": "e3a1fc680ea85b12f7e16dae24fe0b4b54a387f3263251999ce47a692059b11c",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-outer-retry-3.json",
+        "windows_raw_sha256": "e177806bf76e37e05bde11bad9ffd5c601d51de23821a5a70faf6ac2e08e6fb5",
+        "git_blob_raw_sha256": "9d22f711dfe710da1cf9ffd7ca17dc9f4ab38a286692115951b05bfc626dff86",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-outer-retry-4.json",
+        "windows_raw_sha256": "77f6f40385943c6f1f8676f606e760d971b216021f130dbfa67beb2c7dd05052",
+        "git_blob_raw_sha256": "e4e79ca660276baebcbf30e8a214230da57bd1e516577899df6ad64d9faa60ce",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-parallel-keeps-both-actions.json",
+        "windows_raw_sha256": "488954dc312bdd70f6a919c8222ab377c120ce6554a035e353cb4c319c1ce154",
+        "git_blob_raw_sha256": "f80423d85025b7c0f3d60fa4fc7c54c47ac61e135711858c7293a9d620d5343c",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-race-retains-loser-action.json",
+        "windows_raw_sha256": "c9e8206a899135dbc04a3e24410450b5702ecd1fafccec1bd66c274c1207fc1a",
+        "git_blob_raw_sha256": "b87808d9c1e3f427619e0aec2a9f74d67b507a4c041b11fa10b69bf9132f3a6a",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-retry-2-times-iterate-2.json",
+        "windows_raw_sha256": "d1f0407c858ed169f1314efc431d292e36fd41df0a60a76ae6a70fd26020999b",
+        "git_blob_raw_sha256": "04a6c0488682f7eaeb81d2b965577a38672d222c379fd365e0e837009ddec7e7",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-retry-2-times-iterate-4.json",
+        "windows_raw_sha256": "a9eabe6756aa4e3c1cc1a931dc9380d3da02478cb12575f3ec4927e55aa28059",
+        "git_blob_raw_sha256": "b52edf091f524ee972395ebfb8b22ae500d97ae3b406bbd85f6e3c27cebc52d6",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-retry-3-times-iterate-2.json",
+        "windows_raw_sha256": "f1fb8f7316746f4841e1b68b889eed70a805b05539132a07f1cf6d9391553705",
+        "git_blob_raw_sha256": "b847102ed3bf8e3a5d4211bf645132f24d2701bff2e58602140c0074387cc84e",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-retry-3-times-iterate-4.json",
+        "windows_raw_sha256": "12daa1e09b6b240c4051f427239e39a8713cf0c9e9e85f32edb76f91617ce1b1",
+        "git_blob_raw_sha256": "689a87b040e70b95b232004def668afefc2715c4426d40bf7ca20e94bfa52cb0",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/d9-recovery-two-sequence-actions.json",
+        "windows_raw_sha256": "b5309c92a4afebba5e4bb4c9db573358370ab398978d4aa76cae8748e0dee5ec",
+        "git_blob_raw_sha256": "7832f9f642d9b25bc547753e5b0ab243886187f05bd254c5dc49ed0f838d600f",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/expected-full/d9-recovery/manifest.json",
+        "windows_raw_sha256": "b7adf6a47772cf034c49f14c90dac5c9564466d888a5ec8eb13e2bcaf1e3c519",
+        "git_blob_raw_sha256": "484070254364d06dd74376a8232a099b9aa2382e55a94dc9fe8046a91b53b598",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/computation-node-changed.expected.json",
+        "windows_raw_sha256": "5c0a9c3548928e72000561325b450a605a5d556890561601c9faea7fd4835fde",
+        "git_blob_raw_sha256": "de1a94a3571e1f74934506fcba530ffb0259874fce778527742f5b4c668d5894",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/control-child-reordered.expected.json",
+        "windows_raw_sha256": "8453e247a7a5ec8c63bb0ec88fac8d042f1a966b09b9d3d0b590f84fae35c03f",
+        "git_blob_raw_sha256": "3ef998e8020d3952a6685f8ce1b7ea9acb986992b66a6bd25df7ebfb25576e9c",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/effect-guard-changed.expected.json",
+        "windows_raw_sha256": "fe8b970865f2f23b54395241e128304a17e1c5f65ca7ffee5e478a3a828f8b98",
+        "git_blob_raw_sha256": "781fb579c0a5eb56f668b3adb987680f37eb02d429c58f0a69827ec08890281c",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/effect-operation-changed.expected.json",
+        "windows_raw_sha256": "ad07583331b8332af7bba4ae434b9909e5463715119b918bb2ebc20071020050",
+        "git_blob_raw_sha256": "cc92a86d0efd3ffd9740ce6dc25500faea8179d019d07c6fa73ee31ebf566ae6",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/execution-capability-changed.expected.json",
+        "windows_raw_sha256": "b0405a068606dd2ab946e86a04df87ea3c828029c676d994bc3470e5e25ca470",
+        "git_blob_raw_sha256": "24a0163d5d120533975210d9afb7536277d416e9d3244dbb7d35671f27ba911a",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/failure-member-changed.expected.json",
+        "windows_raw_sha256": "650d507f737e31b2425a65bd9551ae2296c5ac3d0e9002553517d352c602f048",
+        "git_blob_raw_sha256": "3c46853d582568d93e17c6fbf447e5b1c7fcd76f66e51ba938dea5a167b29213",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/flow-influence-changed.expected.json",
+        "windows_raw_sha256": "90541096b99ec7da8ceaa186872b90f2e462e940b47f3a91802e55443b1b7580",
+        "git_blob_raw_sha256": "9439ba5ee2dda88cac6f0da9908cf6fcf94fc017c22c9ea4ffe9bcee2fa00d75",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/manifest.json",
+        "windows_raw_sha256": "f5e6a81a2bf28b322ef356095cf9215627f8ff9f901514fad8f13839e47bc3db",
+        "git_blob_raw_sha256": "4d15dedad179563fe6c6c6d6b4976793553d76f7f1c1419b102c83f4b0054a4b",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/action-atom-changed.expected.json",
+        "windows_raw_sha256": "a5aa2f9a8b86c0567b883c0950eaa10bd73b8b5ca002ff45a1940e8588a457c7",
+        "git_blob_raw_sha256": "88df3ee950079ec8adff474c166c099970102ace814a4414b3d98a27584b50e6",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/action-guard-changed.expected.json",
+        "windows_raw_sha256": "910de99b604e81b6b8d1d08fcb7d522e045113a7116101df622010ad88dcf6a5",
+        "git_blob_raw_sha256": "5fc8a5fe1a4d21c1312a9cd203969541b9916dfedf85f4651c385e1956fc2240",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/action-kind-changed.expected.json",
+        "windows_raw_sha256": "df658beeb92b5a21c987182336637e52fa30708ee126658e657621412366d46a",
+        "git_blob_raw_sha256": "4f3d5cc6b0d784242945db609de8be7503cc8da8ba7bb15017a7eab214944833",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/activation-changed.expected.json",
+        "windows_raw_sha256": "10acafc985cba7909ddcec6bb1792c5c128078717c6ec78d7d9afe88b40863e4",
+        "git_blob_raw_sha256": "9dcaa376cb92d9809e392996ecb92afa287267d095f070e65b2869b5f6fe48b8",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/activation-overflow.expected.json",
+        "windows_raw_sha256": "83acfa92a8c38ecb7cb4f230659246d79aa9b8799db9626cd51fc1b7b72939f3",
+        "git_blob_raw_sha256": "add24be6e9023b02df0866ffcca5632066f09079f268aa4c419b9fb9c73dfe42",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/attempts-changed.expected.json",
+        "windows_raw_sha256": "c20548e4d9aa9db4e455a7ba340030877b5b4526c78fa11024822a5cd1bbe996",
+        "git_blob_raw_sha256": "551ac4d2824951950e0e8e9baf0bce1e57fa11ea8abaf14f4fd1e8f8e02fbb12",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/compensation-nesting-changed.expected.json",
+        "windows_raw_sha256": "10b4787c15d2065e2b38de7ef54c2d6cb59e4f5eb22cd15a1753bbee91c06e04",
+        "git_blob_raw_sha256": "b9abda67605ab5ae88f97cc10658f233be4483292d64703a5a185f36e12bc849",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/explicit-zero-profile.expected.json",
+        "windows_raw_sha256": "4a459fc3a13e1415ef52b5d519393e75f384946cd2bd86a5349d60ac859ab470",
+        "git_blob_raw_sha256": "d7db690a5649776e18503a824de32146953600eef358d70ce621cfbba8199dab",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/forward-upper-changed.expected.json",
+        "windows_raw_sha256": "f75a968b5f56f982217f9ce3f3e2241371366e85dd91b7024e3e0e650628bc64",
+        "git_blob_raw_sha256": "f2ec9ad09f5199f4f1fbb45e7eff9f911bc7de37fcea14c13aac63b4ba47d400",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/iterate-factor-changed.expected.json",
+        "windows_raw_sha256": "e20a680f3f7cc9a9eca4a4b84e4f924d85e5e008406bc89d9782d90c1522e23b",
+        "git_blob_raw_sha256": "fc86c6906100c79088627786333f0c00f91f1dd5fcaee02fdbd328124cace06f",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/manifest.json",
+        "windows_raw_sha256": "c7637896048f7ef780c70d67d074f357416f34b3b00e51b4cd26d5fbeeba0905",
+        "git_blob_raw_sha256": "fcc745e1171ce7c51912618865731fce97a24a7af49546e5e5ad2359864477fa",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/missing-action-binding.expected.json",
+        "windows_raw_sha256": "0b944e5c4d4bd22bb1269ca540c5d678311776a5464bea8b88bb2654a727e91f",
+        "git_blob_raw_sha256": "04a166e33f97fd4624a39a5d362c3b443afdb30f5edb4b9e5ae174227ffa419d",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/missing-required-meter.expected.json",
+        "windows_raw_sha256": "875466081e48f4e31c1d727952b289570dfa377694a67831d07410e583e0f743",
+        "git_blob_raw_sha256": "03f6218117b86cd8b432cd454636d3c23a8697a89c29a7a08430e07eaec902c1",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/missing-usage-binding.expected.json",
+        "windows_raw_sha256": "4b8ab9c32cf23255f2858d877ab6e6e3d75ed6cd5780c6d7c80ce525e47891bb",
+        "git_blob_raw_sha256": "d34554ca3ad33a37b318ce819771c8eae110b2ab87ae1464abe070d0811dc7f9",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/recovery-meter-changed.expected.json",
+        "windows_raw_sha256": "4f1cadb8b08ba7ea0390814af95e4adfa30dc581b7543fc4304d03f430f22bd8",
+        "git_blob_raw_sha256": "7c9ec2e8fe70c7ee14da11e9bb59a47fcb4cd831c13c13072d9a2fe6b8afa10c",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/recovery-profile-changed.expected.json",
+        "windows_raw_sha256": "41fe3ece03e5f384400a74f9f0d81f014482a1210354c1f8c60994aae1f0e413",
+        "git_blob_raw_sha256": "8eaa197250648becd4950a4e6f35f3bf5a2b6c1903e193d8905b528873c90a09",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/retry-factor-changed.expected.json",
+        "windows_raw_sha256": "90558b674c2cd03c1bb84c52833031df88ca3fb7f0685d9bb6466f7fd9fadc60",
+        "git_blob_raw_sha256": "f0307a3809d17c10492db4d60aa1c16870cbfe7c7f103b8d8c0bb4d68b248b62",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/source-association-changed.expected.json",
+        "windows_raw_sha256": "3ed10ca8d4b7eb25107a038c35c21ca06d805bf6422598ecf9baaab879358347",
+        "git_blob_raw_sha256": "27c6e46181c3e64e7c6a72ecf7cc0028a99e620b687cdb4b708f885099f5d0a5",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/unbounded-action-requirement.expected.json",
+        "windows_raw_sha256": "da844f9f697d034b9d474b26169ee8e9f1921aa576907e7931370ba19dafb888",
+        "git_blob_raw_sha256": "186acb705fe985c3cb9893821632d2147dbdf9ba82749fcb30383a0f66b7d36c",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/unsupported-aggregation.expected.json",
+        "windows_raw_sha256": "0c6be7a97a8a439c00b3d19e1d32d9a101c05383dadaea42fa40f244fb6ed8f9",
+        "git_blob_raw_sha256": "686fe4791df787ab20175834b0ce21e978a40c380a88f2c22c9bf9cc0f8e56d8",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/wrong-forward-identity.expected.json",
+        "windows_raw_sha256": "5bdd3a9cd5f2c650da0dd0a6752d260d292f86ba366e04e156706a3a944b62c8",
+        "git_blob_raw_sha256": "6c8c01bf9201035f7648dd73e837b0b27392fd4f72de526a2b75cb798edb6fbf",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/recovery/wrong-profile-identity.expected.json",
+        "windows_raw_sha256": "7622a9ef3606300e5b4c1aa68664499427f7b4948bc437efa4ebea785fc58060",
+        "git_blob_raw_sha256": "7574ee3623a8f5392bca69366375b980fa480bba80e9a2057404842d9eff17e4",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/resource-slot-changed.expected.json",
+        "windows_raw_sha256": "bc9f80fb6f649b6bc84dbf32954b67b31a0e749c4b88d1cccadffab860a512c9",
+        "git_blob_raw_sha256": "cba56408af7ced5d694723754b598d7ca2c35d148a85ee38bc8c2e288dfa79bb",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/retry-bound-changed.expected.json",
+        "windows_raw_sha256": "c5f2c07f2f2bc073a0c77ddd026fe8a97d67c7fb8f13cffe2a95717f988a02c1",
+        "git_blob_raw_sha256": "10920f1f454593c61f12861f23850a190bbe159f509ae3cd8c1d9967eb9076bb",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/source-contract-changed.expected.json",
+        "windows_raw_sha256": "b738a3b0cbb88ede92d8813cd17ca2e57d8111a292896fe640ae4c3161b2fbd6",
+        "git_blob_raw_sha256": "d7f38a51d4af40327acbc5bd3e60e236c94594de703fd97d3e92418fad5c2e8f",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/subflow-target-export-changed.expected.json",
+        "windows_raw_sha256": "aca6abdb68063df48f63104c3b580367d0fe57c63aeb2ac149a44361d40e9a80",
+        "git_blob_raw_sha256": "ab63036a491ecb1430ba5391b8fb19431dee96397360b1baa19f750efee1c5b3",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/input-mutations/usage-meter-changed.expected.json",
+        "windows_raw_sha256": "ef2049c32909964371d920c46e9fc8c0120c596b6a12dad6f6d5412045c23318",
+        "git_blob_raw_sha256": "dc56b32babb69dd3cee249c9a3289ce527a0531046251ddc6d0e7b788b502215",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-root-export-revalidation/manifest.json",
+        "windows_raw_sha256": "1e42d9d96562c4013faae6690552b71537c670e8cca983a074394e5f29320d50",
+        "git_blob_raw_sha256": "608574dcfa675335d4bba58a8309920d5188544f7e5404cb9f368f7c90f8efb5",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      },
+      {
+        "path": "spec/conformance/portable-static-reconstruction/manifest.json",
+        "windows_raw_sha256": "bfae65d035b77fa02bbb468f1f257f0df5ee7ee737c95d7204749bf5d5296a9c",
+        "git_blob_raw_sha256": "79865baeecc560b2c9b1d7a29d1829652d9f341e7c1915b6e81141e16074840b",
+        "crlf_to_lf_only_observed": true,
+        "formal_equivalence_granted": false
+      }
+    ],
+    "source_modified": false,
+    "general_normalization_rule_created": false,
+    "prior_observation_sha256": "2330fe562f74718047d34baadc2e764eae4e0a07b559c7a431a92b315c0ea3b4",
+    "method": "Streaming comparison only; zero file bytes rewritten; no semantic or formal byte-equivalence grant"
+  },
+  "raw_windows_tree_equal_to_linux_tree": false,
+  "source_or_expected_normalized_or_modified": false,
+  "other_projects_modified": false,
+  "local_history_modified": false,
+  "git_service_pushes": 0,
+  "raw_difference_counts": {
+    "total": 222,
+    "json": 193,
+    "expected_json": 33,
+    "all_crlf_to_lf_observed": true
+  }
+}

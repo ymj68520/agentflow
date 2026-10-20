@@ -1,0 +1,32 @@
+{
+  "kernel": "Linux 7.0.0-31-generic x86_64",
+  "distribution": "Ubuntu 24.04.4 LTS",
+  "architecture": "x86_64",
+  "logical_cpus": 32,
+  "physical_cores": 16,
+  "sockets": 2,
+  "memory": {
+    "MemTotal": 33590087680,
+    "MemAvailable": 19778265088,
+    "SwapTotal": 8589930496,
+    "SwapFree": 3480293376,
+    "CommitLimit": 25384972288,
+    "Committed_AS": 91406528512
+  },
+  "disk": {
+    "total": 1005867986944,
+    "used": 862046322688,
+    "free": 92650893312
+  },
+  "source": "Actual read-only SSH inventory; availability is a sample, not sustained headroom qualification",
+  "cgroup_v2_present": true,
+  "session_cgroup_writable": false,
+  "user_service_delegated_subtree_writable_observed": true,
+  "controllers": [
+    "cpu",
+    "memory",
+    "pids"
+  ],
+  "inherited_observed_cpu_memory_caps": "max in audited ancestors; not newly granted unlimited execution",
+  "resource_enforcement_qualification": "Not Executed; no controller files changed"
+}

@@ -1,0 +1,42 @@
+{
+  "status": "PENDING USER APPROVAL — NO HEAVY CARGO ADMISSION",
+  "approved_linux_compilation_policy": null,
+  "approved_linux_test_policy": null,
+  "build_protector_installed": false,
+  "actual_light_audit_guard": {
+    "address_space_bytes": 536870912,
+    "cpu_time_seconds": 60,
+    "nice": 19,
+    "serial": true,
+    "note": "Per-process light audit/Git transport guard, not Windows Job equivalent or compiler admission"
+  },
+  "original_windows_limits": {
+    "cpu_percent": 5,
+    "process_bytes": 805306368,
+    "job_bytes": 1610612736,
+    "reserve_bytes": 8589934592
+  },
+  "proposal_not_applied": {
+    "P_build_bytes": 2147483648,
+    "P_build_metric": "Dedicated per-process leaf cgroup memory.max; fork containment and delegation require qualification",
+    "J_build_bytes": 3221225472,
+    "J_build_metric": "Dedicated parent cgroup memory.max, not Windows commit accounting",
+    "P_test_bytes": 805306368,
+    "J_test_bytes": 1610612736,
+    "system_reserve_bytes": 8589934592,
+    "cpu_percent_of_online_host": 5,
+    "observed_online_cpus": 32,
+    "example_cpu_max": "160000 100000",
+    "build_jobs": 1,
+    "test_threads": 1,
+    "top_level_jobs": 1,
+    "swap_max": 0,
+    "admission": "Fresh sustained MemAvailable >= reserve + proposed J_build + independently approved margin; not inherited old14GiB threshold",
+    "disk": "Approve per-gate/output/time caps and min free disk separately; current filesystem91% occupied",
+    "wall_time_limit": null,
+    "disk_output_limit": null
+  },
+  "feasibility": "Proposed ceilings only; actual compiler peak and policy feasibility unproved; no retry or temporary elevation",
+  "next_authorization": "Explicit values/metrics/time/disk/swap and own delegated-cgroup control, plus fail-closed protector qualification; never cap shared user service or kill unrelated processes",
+  "runtime_D0_D4_or_root_authority_changed": false
+}

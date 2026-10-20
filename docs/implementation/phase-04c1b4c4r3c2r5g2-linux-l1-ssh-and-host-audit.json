@@ -1,0 +1,23 @@
+{
+  "ssh_alias": "fwq",
+  "host_key_policy": "StrictHostKeyChecking=yes",
+  "batch_mode": true,
+  "authenticated_connections_succeeded": true,
+  "initial_uname": "Linux 7.0.0-31-generic x86_64",
+  "new_root": "~/projects/agent-r5g2-linux-validation",
+  "created_new": true,
+  "mode": "0700",
+  "owner_matches_login": true,
+  "projects_symlink_rejected": true,
+  "no_preexisting_target_overwritten": true,
+  "physical_server_user_declared": true,
+  "corroboration": [
+    "systemd-detect-virt: none",
+    "DMI vendor Suma, product W40P",
+    "32 logical CPUs /16 cores /2 sockets"
+  ],
+  "hardware_identity_independently_attested": false,
+  "private_ssh_keys_read": false,
+  "remote_pushes": 0,
+  "private_raw_evidence": "Dedicated remote evidence directory and ignored local artifacts; no hostname/IP/login/serial recorded in committed summary"
+}

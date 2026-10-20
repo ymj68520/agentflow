@@ -1,0 +1,14 @@
+{
+  "status": "Inherited Windows original-scope credit only",
+  "generators": 41,
+  "actual_original_runs": 82,
+  "original_paths": 2403,
+  "byte_drift": 0,
+  "windows_to_linux_generator_credit": false,
+  "linux_generator_runs": 0,
+  "current_windows_source_paths": 2469,
+  "existing_sources_unchanged": true,
+  "new_phase_materials": "Only new L1 audit scripts/reports; not an expanded generator denominator",
+  "linux_root": "~/projects/agent-r5g2-linux-validation",
+  "future": "Linux generator suitability/raw output maps need separate approval and receipts; no automatic double-round claim"
+}
