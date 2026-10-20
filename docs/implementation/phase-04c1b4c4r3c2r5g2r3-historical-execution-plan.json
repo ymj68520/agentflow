@@ -1,0 +1,390 @@
+{
+  "status": "Not Executed",
+  "historical_builds": "0/8",
+  "recommended_option": "B",
+  "groups": [
+    {
+      "gate": "history-1",
+      "frozen_head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+      "source_identity": {
+        "frozen_head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+        "git_tree": "42b548ec66a22813f07b77abb5385707d43256cc",
+        "paths": 1732,
+        "complete_raw_manifest_sha256": "4faf6ee22cdfef9b2af0039ce41e4e58b5bd500d1c67010041462c2517c279c7",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-1.json",
+        "full_map_file_sha256": "1f2963b89e45d8ea87c8bac3b495675dddb7fb4e145b53050680e4b30ec3cae8",
+        "git_blob_and_raw_verified": true
+      },
+      "debug": 2,
+      "required_case_ids": 512,
+      "commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition1\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c3-legacy-abc91d5\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition1\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "target_environment": "Not selected / Not Executed",
+      "minimum_trust_conditions": "OS/ABI/toolchain/Python/fixtures compatible; authenticated executor; system AND compile-process budgets separately approved and measured",
+      "risk": "System reserve instability independent of process commit cap; no measured full compile peak",
+      "split_legality": "NOT APPROVED: original full Cargo gate remains mandatory",
+      "missing_evidence_state": "NOT ADMITTED / Not Executed; partial logs never PASS",
+      "old_evidence": "Preserve all old pass/failure/interruption logs and approved per-path correspondence; no new credit",
+      "rerun": "Full frozen Cargo targets and required independent Oracle, identity, denial, resource and final receipt gates"
+    },
+    {
+      "gate": "history-2",
+      "frozen_head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+      "source_identity": {
+        "frozen_head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+        "git_tree": "7468f57b5c3acefe2dc941957fb34aadb3e000f9",
+        "paths": 1811,
+        "complete_raw_manifest_sha256": "f5f03ded6e6d20746f3e4df2a9fb7d1c6b9641c701f6c53c0b505ba68643c7ec",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-2.json",
+        "full_map_file_sha256": "42ed5ba8f25d088df480a7c517de51d08768fb32e036820f091afeb0fcb10d6e",
+        "git_blob_and_raw_verified": true
+      },
+      "debug": 2,
+      "required_case_ids": 51,
+      "commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition2\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r2-edition2\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition2\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "target_environment": "Not selected / Not Executed",
+      "minimum_trust_conditions": "OS/ABI/toolchain/Python/fixtures compatible; authenticated executor; system AND compile-process budgets separately approved and measured",
+      "risk": "System reserve instability independent of process commit cap; no measured full compile peak",
+      "split_legality": "NOT APPROVED: original full Cargo gate remains mandatory",
+      "missing_evidence_state": "NOT ADMITTED / Not Executed; partial logs never PASS",
+      "old_evidence": "Preserve all old pass/failure/interruption logs and approved per-path correspondence; no new credit",
+      "rerun": "Full frozen Cargo targets and required independent Oracle, identity, denial, resource and final receipt gates"
+    },
+    {
+      "gate": "history-3",
+      "frozen_head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+      "source_identity": {
+        "frozen_head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+        "git_tree": "fe891215ee80f1468fba3d26a168a80e92ca1e03",
+        "paths": 1902,
+        "complete_raw_manifest_sha256": "56704a30918a73638c0aec60d00cf0fe727069e175ae80a76dfee82f8156d3e4",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-3.json",
+        "full_map_file_sha256": "66c1d3a638f65d268ddb2f490685e903aa84e496d0d4035d577b77b64bc61b3d",
+        "git_blob_and_raw_verified": true
+      },
+      "debug": 2,
+      "required_case_ids": 173,
+      "commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition3\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition3\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition3\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [
+          [
+            "<qualified-python>",
+            "-X",
+            "utf8",
+            "tools/audit-substitution-staging.py"
+          ]
+        ],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "target_environment": "Not selected / Not Executed",
+      "minimum_trust_conditions": "OS/ABI/toolchain/Python/fixtures compatible; authenticated executor; system AND compile-process budgets separately approved and measured",
+      "risk": "System reserve instability independent of process commit cap; no measured full compile peak",
+      "split_legality": "NOT APPROVED: original full Cargo gate remains mandatory",
+      "missing_evidence_state": "NOT ADMITTED / Not Executed; partial logs never PASS",
+      "old_evidence": "Preserve all old pass/failure/interruption logs and approved per-path correspondence; no new credit",
+      "rerun": "Full frozen Cargo targets and required independent Oracle, identity, denial, resource and final receipt gates"
+    },
+    {
+      "gate": "history-4",
+      "frozen_head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+      "source_identity": {
+        "frozen_head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+        "git_tree": "54a6da0f0facad045bc166710ff9932310fce928",
+        "paths": 2021,
+        "complete_raw_manifest_sha256": "c574882bb907c96336363d921142676acaa0881367c611283d6fae0d385f1f56",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-4.json",
+        "full_map_file_sha256": "9dbebc98798df81f641461e3068f5e9482d8cf7dd0226dd99ee4888fd972a876",
+        "git_blob_and_raw_verified": true
+      },
+      "debug": 2,
+      "required_case_ids": 889,
+      "commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c1g2-edition4\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c1g2-edition4\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c1g2-edition4\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "target_environment": "Not selected / Not Executed",
+      "minimum_trust_conditions": "OS/ABI/toolchain/Python/fixtures compatible; authenticated executor; system AND compile-process budgets separately approved and measured",
+      "risk": "System reserve instability independent of process commit cap; no measured full compile peak",
+      "split_legality": "NOT APPROVED: original full Cargo gate remains mandatory",
+      "missing_evidence_state": "NOT ADMITTED / Not Executed; partial logs never PASS",
+      "old_evidence": "Preserve all old pass/failure/interruption logs and approved per-path correspondence; no new credit",
+      "rerun": "Full frozen Cargo targets and required independent Oracle, identity, denial, resource and final receipt gates"
+    },
+    {
+      "gate": "history-5",
+      "frozen_head": "e623aab705c5f8269807201e112a32e67e6869bf",
+      "source_identity": {
+        "frozen_head": "e623aab705c5f8269807201e112a32e67e6869bf",
+        "git_tree": "178c2d8bf4a19f6474ba22abf40aed9348cb9c10",
+        "paths": 2076,
+        "complete_raw_manifest_sha256": "3f5e8ee0b10d3b9566d27afb537578c71759c40847322c1d4b209aeeead52874",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-5.json",
+        "full_map_file_sha256": "a54b862663c2bddf10765cb40c8be3ba1cf90c66f58bd107ea844919de1bd48f",
+        "git_blob_and_raw_verified": true
+      },
+      "debug": 2,
+      "required_case_ids": 262,
+      "commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2g2-analysis5\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2g2-analysis5\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2g2-analysis5\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "target_environment": "Not selected / Not Executed",
+      "minimum_trust_conditions": "OS/ABI/toolchain/Python/fixtures compatible; authenticated executor; system AND compile-process budgets separately approved and measured",
+      "risk": "System reserve instability independent of process commit cap; no measured full compile peak",
+      "split_legality": "NOT APPROVED: original full Cargo gate remains mandatory",
+      "missing_evidence_state": "NOT ADMITTED / Not Executed; partial logs never PASS",
+      "old_evidence": "Preserve all old pass/failure/interruption logs and approved per-path correspondence; no new credit",
+      "rerun": "Full frozen Cargo targets and required independent Oracle, identity, denial, resource and final receipt gates"
+    },
+    {
+      "gate": "history-6",
+      "frozen_head": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+      "source_identity": {
+        "frozen_head": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+        "git_tree": "eb58150a323efc299bea3201f2f9c0f102bb701a",
+        "paths": 2170,
+        "complete_raw_manifest_sha256": "68cde1e0591baec0ee2c2ed1ee882a68bef538a12fc71208bccd3c3b7a75a23f",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-6.json",
+        "full_map_file_sha256": "41c195239c163bb2b5e3e76120a6c3ef06aeb59ad29e9f9f1d5cbea2c4c0fe29",
+        "git_blob_and_raw_verified": true
+      },
+      "debug": 2,
+      "required_case_ids": 254,
+      "commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r3g2-analysis6\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r3g2-analysis6\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r3g2-analysis6\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "target_environment": "Not selected / Not Executed",
+      "minimum_trust_conditions": "OS/ABI/toolchain/Python/fixtures compatible; authenticated executor; system AND compile-process budgets separately approved and measured",
+      "risk": "System reserve instability independent of process commit cap; no measured full compile peak",
+      "split_legality": "NOT APPROVED: original full Cargo gate remains mandatory",
+      "missing_evidence_state": "NOT ADMITTED / Not Executed; partial logs never PASS",
+      "old_evidence": "Preserve all old pass/failure/interruption logs and approved per-path correspondence; no new credit",
+      "rerun": "Full frozen Cargo targets and required independent Oracle, identity, denial, resource and final receipt gates"
+    },
+    {
+      "gate": "history-7",
+      "frozen_head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+      "source_identity": {
+        "frozen_head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+        "git_tree": "88544c0d0e3015a4e361e1c9b371ba8c1e06302c",
+        "paths": 2235,
+        "complete_raw_manifest_sha256": "d7ac4a466321139bd6dc0037f6203246b2d75c203cdb8560e1626e3339f78ab8",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-7.json",
+        "full_map_file_sha256": "a738e7d32912e7ba22f9063924f17496efd81f7edd5c51098f0a211934e59c8e",
+        "git_blob_and_raw_verified": true
+      },
+      "debug": 2,
+      "required_case_ids": 534,
+      "commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g2-analysis7\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g2-analysis7\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g2-analysis7\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [
+          [
+            "<qualified-python>",
+            "-X",
+            "utf8",
+            "tools/audit-relation-schema-staging.py",
+            "--receipts"
+          ]
+        ],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "target_environment": "Not selected / Not Executed",
+      "minimum_trust_conditions": "OS/ABI/toolchain/Python/fixtures compatible; authenticated executor; system AND compile-process budgets separately approved and measured",
+      "risk": "System reserve instability independent of process commit cap; no measured full compile peak",
+      "split_legality": "NOT APPROVED: original full Cargo gate remains mandatory",
+      "missing_evidence_state": "NOT ADMITTED / Not Executed; partial logs never PASS",
+      "old_evidence": "Preserve all old pass/failure/interruption logs and approved per-path correspondence; no new credit",
+      "rerun": "Full frozen Cargo targets and required independent Oracle, identity, denial, resource and final receipt gates"
+    },
+    {
+      "gate": "history-8",
+      "frozen_head": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+      "source_identity": {
+        "frozen_head": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+        "git_tree": "30bad51b2e62141200c22867c75f2debd8989a52",
+        "paths": 2290,
+        "complete_raw_manifest_sha256": "7ce8cad95bf876fb1f4b151c7754a7831850936e77432f5535ac0033192253ad",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-8.json",
+        "full_map_file_sha256": "04aa5731719a9d49e2098e0042edb0373d4562c8bdac78c0fe4b73c94801c9c4",
+        "git_blob_and_raw_verified": true
+      },
+      "debug": 0,
+      "required_case_ids": 3662,
+      "commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5-analysis8-g2\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5-analysis8-g2\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5-analysis8-g2\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "0",
+          "CARGO_PROFILE_TEST_DEBUG": "0",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [
+          [
+            "<qualified-python>",
+            "-X",
+            "utf8",
+            "tools/audit-structural-binding-staging.py",
+            "--receipts"
+          ]
+        ],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "target_environment": "Not selected / Not Executed",
+      "minimum_trust_conditions": "OS/ABI/toolchain/Python/fixtures compatible; authenticated executor; system AND compile-process budgets separately approved and measured",
+      "risk": "System reserve instability independent of process commit cap; no measured full compile peak",
+      "split_legality": "NOT APPROVED: original full Cargo gate remains mandatory",
+      "missing_evidence_state": "NOT ADMITTED / Not Executed; partial logs never PASS",
+      "old_evidence": "Preserve all old pass/failure/interruption logs and approved per-path correspondence; no new credit",
+      "rerun": "Full frozen Cargo targets and required independent Oracle, identity, denial, resource and final receipt gates"
+    }
+  ]
+}

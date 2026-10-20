@@ -1,0 +1,3738 @@
+{
+  "status": "STATIC CONTRACT INVENTORY",
+  "gates": [
+    {
+      "GateId": "history-1",
+      "FrozenSourceHEAD": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+      "SourceIdentity": {
+        "frozen_head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+        "git_tree": "42b548ec66a22813f07b77abb5385707d43256cc",
+        "paths": 1732,
+        "complete_raw_manifest_sha256": "4faf6ee22cdfef9b2af0039ce41e4e58b5bd500d1c67010041462c2517c279c7",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-1.json",
+        "full_map_file_sha256": "1f2963b89e45d8ea87c8bac3b495675dddb7fb4e145b53050680e4b30ec3cae8",
+        "git_blob_and_raw_verified": true
+      },
+      "RegistryIdentity": {
+        "paths": 5,
+        "manifest_sha256": "1af4822baac27158b232448137411a1663ab443f26a76f5cdaca9d2218377304",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-1.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "CompilerIdentity": {
+        "paths": 211,
+        "manifest_sha256": "7d56460fda1bc099b5e0878a90dbbd858217b62e04b3654904b71a091040b968",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-1.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ExpectedIdentity": {
+        "paths": 1144,
+        "manifest_sha256": "67c59c03577a527b74f8e905e28e70706017a3b2dcbb543fd0fa53b9ac2edd31",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-1.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "OracleIdentity": {
+        "paths": 48,
+        "manifest_sha256": "658861b42d5dbe777965eb1fc47f46ceeafa15d2c0015c9e9f8665809bc5d265",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-1.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ToolchainIdentity": {
+        "status": "NOT QUALIFIED — CACHED METADATA ONLY",
+        "audited_metadata": [
+          {
+            "path": "E:\\Projects\\agent\\target\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "5a107b8eee9845bdb61d591b418fe47ea0e8c9ca43a96f909023089f863bcea6"
+          },
+          {
+            "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\build\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "ce0bcc1ac69d7e059d98e61886bcb1f7b1d53c59714096fa67c0d8dec37ccd85"
+          }
+        ],
+        "cached_rustc": "1.92.0 (ded5c06cf 2025-12-08)",
+        "cached_llvm": "21.1.3",
+        "host": "x86_64-pc-windows-msvc",
+        "executed_version_queries": 0,
+        "needed": "Exact rustc, cargo, rustdoc, LLVM/linker, MSVC/SDK, Python and dependency bytes plus effective config/environment and authenticated executor",
+        "reusable_artifact": "No fully authenticated Source+Toolchain+Profile+binary chain found in the audited receipts/cache metadata; not an exhaustive disk search"
+      },
+      "BuildProfile": {
+        "dev_debug": 2,
+        "test_debug": 2,
+        "features": "Frozen defaults and manifest-selected targets; no narrowing",
+        "config_precedence": "Snapshot root profiles, Cargo config, environment, rustflags and build scripts; no hidden override"
+      },
+      "CommandAndFlags": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition1\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c3-legacy-abc91d5\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition1\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "RequiredCases": {
+        "declared_case_ids": 512,
+        "exact_roster_status": "Not Executed — enumerate/certify from frozen inputs before execution admission",
+        "source_of_requirement": "R1 frozen historical configuration and original frozen manifests/oracles; G3 complete --all/--mutations and original A-evidence requirements",
+        "rust_test_count": "Distinct from declared CaseIds; complete frozen Cargo target/test/doc-test roster required",
+        "denominator": "Independently approved complete roster; never infer from submitted actual/expected intersections",
+        "frozen_g3_classes": null
+      },
+      "RequiredArtifacts": [
+        "Full source raw and GitBlob manifest before/after",
+        "Per-gate Registry/Compiler/Expected/Oracle manifest",
+        "Effective toolchain/config/env/dependency/feature/target identities",
+        "Build graph/target roster including build scripts/proc macros/doc-tests",
+        "All executables, PDBs, dynamic deps, build outputs and required runtime fixtures with hashes",
+        "Exact argv/cwd/env, authentic start/end, exit, stdout/stderr and resource/cancellation series",
+        "Trusted required CaseId roster and every actual output, without duplicates/omissions",
+        "Independent frozen Oracle receipts and capability-denial receipt",
+        "Approved policy, environment/executor qualification and integrity-sealed evidence package"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "recommended": "Option B isolated Windows x64 MSVC-compatible environment",
+        "environment_id": null,
+        "qualification": "Not Executed",
+        "admission": "NOT ADMITTED",
+        "conditions": "OS/ABI/toolchain/Python/fixtures compatible; authenticated executor; system AND compile-process budgets separately approved and measured"
+      },
+      "PermittedEquivalence": {
+        "already_allowed": "Exact frozen byte identity and previously approved per-path historical correspondence only",
+        "proposed": "Host/path mapping, authenticated evidence transport, split build/execute, any changed compile protection budget require separate explicit approval",
+        "currently_granted": false
+      },
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "new_execution": "Not Executed",
+        "fresh_pass": false,
+        "prior_receipt": "Frozen R5 old pass retained as provenance only",
+        "historical_completed": 0
+      }
+    },
+    {
+      "GateId": "history-2",
+      "FrozenSourceHEAD": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+      "SourceIdentity": {
+        "frozen_head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+        "git_tree": "7468f57b5c3acefe2dc941957fb34aadb3e000f9",
+        "paths": 1811,
+        "complete_raw_manifest_sha256": "f5f03ded6e6d20746f3e4df2a9fb7d1c6b9641c701f6c53c0b505ba68643c7ec",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-2.json",
+        "full_map_file_sha256": "42ed5ba8f25d088df480a7c517de51d08768fb32e036820f091afeb0fcb10d6e",
+        "git_blob_and_raw_verified": true
+      },
+      "RegistryIdentity": {
+        "paths": 5,
+        "manifest_sha256": "80e2de25f1df230e80f3a9649dddbdf46cbc51a496e8c295fad3295c2f66b77c",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-2.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "CompilerIdentity": {
+        "paths": 214,
+        "manifest_sha256": "e3430b689aec7b95787115a4222e5f7096a317891d693f1101315a094ebae418",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-2.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ExpectedIdentity": {
+        "paths": 1160,
+        "manifest_sha256": "ba5fcf1652df3e06f447142ddd57835357df1ce34b0ccbe2fad578cca0fefdbc",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-2.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "OracleIdentity": {
+        "paths": 54,
+        "manifest_sha256": "209eb8d3d18f4f98eb66865de30a499943c2b23110cc7aba1ca36216b134d4d7",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-2.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ToolchainIdentity": {
+        "status": "NOT QUALIFIED — CACHED METADATA ONLY",
+        "audited_metadata": [
+          {
+            "path": "E:\\Projects\\agent\\target\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "5a107b8eee9845bdb61d591b418fe47ea0e8c9ca43a96f909023089f863bcea6"
+          },
+          {
+            "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\build\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "ce0bcc1ac69d7e059d98e61886bcb1f7b1d53c59714096fa67c0d8dec37ccd85"
+          }
+        ],
+        "cached_rustc": "1.92.0 (ded5c06cf 2025-12-08)",
+        "cached_llvm": "21.1.3",
+        "host": "x86_64-pc-windows-msvc",
+        "executed_version_queries": 0,
+        "needed": "Exact rustc, cargo, rustdoc, LLVM/linker, MSVC/SDK, Python and dependency bytes plus effective config/environment and authenticated executor",
+        "reusable_artifact": "No fully authenticated Source+Toolchain+Profile+binary chain found in the audited receipts/cache metadata; not an exhaustive disk search"
+      },
+      "BuildProfile": {
+        "dev_debug": 2,
+        "test_debug": 2,
+        "features": "Frozen defaults and manifest-selected targets; no narrowing",
+        "config_precedence": "Snapshot root profiles, Cargo config, environment, rustflags and build scripts; no hidden override"
+      },
+      "CommandAndFlags": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition2\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r2-edition2\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition2\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "RequiredCases": {
+        "declared_case_ids": 51,
+        "exact_roster_status": "Not Executed — enumerate/certify from frozen inputs before execution admission",
+        "source_of_requirement": "R1 frozen historical configuration and original frozen manifests/oracles; G3 complete --all/--mutations and original A-evidence requirements",
+        "rust_test_count": "Distinct from declared CaseIds; complete frozen Cargo target/test/doc-test roster required",
+        "denominator": "Independently approved complete roster; never infer from submitted actual/expected intersections",
+        "frozen_g3_classes": null
+      },
+      "RequiredArtifacts": [
+        "Full source raw and GitBlob manifest before/after",
+        "Per-gate Registry/Compiler/Expected/Oracle manifest",
+        "Effective toolchain/config/env/dependency/feature/target identities",
+        "Build graph/target roster including build scripts/proc macros/doc-tests",
+        "All executables, PDBs, dynamic deps, build outputs and required runtime fixtures with hashes",
+        "Exact argv/cwd/env, authentic start/end, exit, stdout/stderr and resource/cancellation series",
+        "Trusted required CaseId roster and every actual output, without duplicates/omissions",
+        "Independent frozen Oracle receipts and capability-denial receipt",
+        "Approved policy, environment/executor qualification and integrity-sealed evidence package"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "recommended": "Option B isolated Windows x64 MSVC-compatible environment",
+        "environment_id": null,
+        "qualification": "Not Executed",
+        "admission": "NOT ADMITTED",
+        "conditions": "OS/ABI/toolchain/Python/fixtures compatible; authenticated executor; system AND compile-process budgets separately approved and measured"
+      },
+      "PermittedEquivalence": {
+        "already_allowed": "Exact frozen byte identity and previously approved per-path historical correspondence only",
+        "proposed": "Host/path mapping, authenticated evidence transport, split build/execute, any changed compile protection budget require separate explicit approval",
+        "currently_granted": false
+      },
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "new_execution": "Not Executed",
+        "fresh_pass": false,
+        "prior_receipt": "Frozen R5 old pass retained as provenance only",
+        "historical_completed": 0
+      }
+    },
+    {
+      "GateId": "history-3",
+      "FrozenSourceHEAD": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+      "SourceIdentity": {
+        "frozen_head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+        "git_tree": "fe891215ee80f1468fba3d26a168a80e92ca1e03",
+        "paths": 1902,
+        "complete_raw_manifest_sha256": "56704a30918a73638c0aec60d00cf0fe727069e175ae80a76dfee82f8156d3e4",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-3.json",
+        "full_map_file_sha256": "66c1d3a638f65d268ddb2f490685e903aa84e496d0d4035d577b77b64bc61b3d",
+        "git_blob_and_raw_verified": true
+      },
+      "RegistryIdentity": {
+        "paths": 5,
+        "manifest_sha256": "40518f7472c4e55587e21aa65e3cd3cf626600620df95a0adb6e7c1fce9b43c4",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-3.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "CompilerIdentity": {
+        "paths": 217,
+        "manifest_sha256": "03935745d0a0f04fb205687d890ca4f791f0f33b02344ab2beafb0ee3f1aa6ac",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-3.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ExpectedIdentity": {
+        "paths": 1181,
+        "manifest_sha256": "946a74b67e2d3fae87e88d40aa40050cfd332d32994e17adc0f575ff0c1cefeb",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-3.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "OracleIdentity": {
+        "paths": 63,
+        "manifest_sha256": "6a58b44b51cf2f845a18516eaaf7af171d60a7de7c6ac481bef339def05186a9",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-3.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ToolchainIdentity": {
+        "status": "NOT QUALIFIED — CACHED METADATA ONLY",
+        "audited_metadata": [
+          {
+            "path": "E:\\Projects\\agent\\target\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "5a107b8eee9845bdb61d591b418fe47ea0e8c9ca43a96f909023089f863bcea6"
+          },
+          {
+            "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\build\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "ce0bcc1ac69d7e059d98e61886bcb1f7b1d53c59714096fa67c0d8dec37ccd85"
+          }
+        ],
+        "cached_rustc": "1.92.0 (ded5c06cf 2025-12-08)",
+        "cached_llvm": "21.1.3",
+        "host": "x86_64-pc-windows-msvc",
+        "executed_version_queries": 0,
+        "needed": "Exact rustc, cargo, rustdoc, LLVM/linker, MSVC/SDK, Python and dependency bytes plus effective config/environment and authenticated executor",
+        "reusable_artifact": "No fully authenticated Source+Toolchain+Profile+binary chain found in the audited receipts/cache metadata; not an exhaustive disk search"
+      },
+      "BuildProfile": {
+        "dev_debug": 2,
+        "test_debug": 2,
+        "features": "Frozen defaults and manifest-selected targets; no narrowing",
+        "config_precedence": "Snapshot root profiles, Cargo config, environment, rustflags and build scripts; no hidden override"
+      },
+      "CommandAndFlags": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition3\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition3\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition3\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [
+          [
+            "<qualified-python>",
+            "-X",
+            "utf8",
+            "tools/audit-substitution-staging.py"
+          ]
+        ],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "RequiredCases": {
+        "declared_case_ids": 173,
+        "exact_roster_status": "Not Executed — enumerate/certify from frozen inputs before execution admission",
+        "source_of_requirement": "R1 frozen historical configuration and original frozen manifests/oracles; G3 complete --all/--mutations and original A-evidence requirements",
+        "rust_test_count": "Distinct from declared CaseIds; complete frozen Cargo target/test/doc-test roster required",
+        "denominator": "Independently approved complete roster; never infer from submitted actual/expected intersections",
+        "frozen_g3_classes": null
+      },
+      "RequiredArtifacts": [
+        "Full source raw and GitBlob manifest before/after",
+        "Per-gate Registry/Compiler/Expected/Oracle manifest",
+        "Effective toolchain/config/env/dependency/feature/target identities",
+        "Build graph/target roster including build scripts/proc macros/doc-tests",
+        "All executables, PDBs, dynamic deps, build outputs and required runtime fixtures with hashes",
+        "Exact argv/cwd/env, authentic start/end, exit, stdout/stderr and resource/cancellation series",
+        "Trusted required CaseId roster and every actual output, without duplicates/omissions",
+        "Independent frozen Oracle receipts and capability-denial receipt",
+        "Approved policy, environment/executor qualification and integrity-sealed evidence package"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "recommended": "Option B isolated Windows x64 MSVC-compatible environment",
+        "environment_id": null,
+        "qualification": "Not Executed",
+        "admission": "NOT ADMITTED",
+        "conditions": "OS/ABI/toolchain/Python/fixtures compatible; authenticated executor; system AND compile-process budgets separately approved and measured"
+      },
+      "PermittedEquivalence": {
+        "already_allowed": "Exact frozen byte identity and previously approved per-path historical correspondence only",
+        "proposed": "Host/path mapping, authenticated evidence transport, split build/execute, any changed compile protection budget require separate explicit approval",
+        "currently_granted": false
+      },
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "new_execution": "Not Executed",
+        "fresh_pass": false,
+        "prior_receipt": "Frozen R5 old pass retained as provenance only",
+        "historical_completed": 0
+      }
+    },
+    {
+      "GateId": "history-4",
+      "FrozenSourceHEAD": "875e6e41f16845c78d4f6d31573826c547d48c07",
+      "SourceIdentity": {
+        "frozen_head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+        "git_tree": "54a6da0f0facad045bc166710ff9932310fce928",
+        "paths": 2021,
+        "complete_raw_manifest_sha256": "c574882bb907c96336363d921142676acaa0881367c611283d6fae0d385f1f56",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-4.json",
+        "full_map_file_sha256": "9dbebc98798df81f641461e3068f5e9482d8cf7dd0226dd99ee4888fd972a876",
+        "git_blob_and_raw_verified": true
+      },
+      "RegistryIdentity": {
+        "paths": 5,
+        "manifest_sha256": "bb60398b29dc40630a68a306aafcafa3654906a21be0313353b6834c1c39c9d0",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-4.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "CompilerIdentity": {
+        "paths": 226,
+        "manifest_sha256": "927b364e236cd91bde9ef6d31bcd5c5bedd095ca2f47227045e32d91d3f831f4",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-4.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ExpectedIdentity": {
+        "paths": 1199,
+        "manifest_sha256": "a5c050b6e067e882a293dcbadf481f91a70ff6ceacf9178518ff6b8f98e55f5e",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-4.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "OracleIdentity": {
+        "paths": 82,
+        "manifest_sha256": "7385b9c4fcc452a116a78360dd2d85b8d0664ced533638f7bdb756a6dd2d844a",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-4.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ToolchainIdentity": {
+        "status": "NOT QUALIFIED — CACHED METADATA ONLY",
+        "audited_metadata": [
+          {
+            "path": "E:\\Projects\\agent\\target\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "5a107b8eee9845bdb61d591b418fe47ea0e8c9ca43a96f909023089f863bcea6"
+          },
+          {
+            "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\build\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "ce0bcc1ac69d7e059d98e61886bcb1f7b1d53c59714096fa67c0d8dec37ccd85"
+          }
+        ],
+        "cached_rustc": "1.92.0 (ded5c06cf 2025-12-08)",
+        "cached_llvm": "21.1.3",
+        "host": "x86_64-pc-windows-msvc",
+        "executed_version_queries": 0,
+        "needed": "Exact rustc, cargo, rustdoc, LLVM/linker, MSVC/SDK, Python and dependency bytes plus effective config/environment and authenticated executor",
+        "reusable_artifact": "No fully authenticated Source+Toolchain+Profile+binary chain found in the audited receipts/cache metadata; not an exhaustive disk search"
+      },
+      "BuildProfile": {
+        "dev_debug": 2,
+        "test_debug": 2,
+        "features": "Frozen defaults and manifest-selected targets; no narrowing",
+        "config_precedence": "Snapshot root profiles, Cargo config, environment, rustflags and build scripts; no hidden override"
+      },
+      "CommandAndFlags": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c1g2-edition4\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c1g2-edition4\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c1g2-edition4\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "RequiredCases": {
+        "declared_case_ids": 889,
+        "exact_roster_status": "Not Executed — enumerate/certify from frozen inputs before execution admission",
+        "source_of_requirement": "R1 frozen historical configuration and original frozen manifests/oracles; G3 complete --all/--mutations and original A-evidence requirements",
+        "rust_test_count": "Distinct from declared CaseIds; complete frozen Cargo target/test/doc-test roster required",
+        "denominator": "Independently approved complete roster; never infer from submitted actual/expected intersections",
+        "frozen_g3_classes": null
+      },
+      "RequiredArtifacts": [
+        "Full source raw and GitBlob manifest before/after",
+        "Per-gate Registry/Compiler/Expected/Oracle manifest",
+        "Effective toolchain/config/env/dependency/feature/target identities",
+        "Build graph/target roster including build scripts/proc macros/doc-tests",
+        "All executables, PDBs, dynamic deps, build outputs and required runtime fixtures with hashes",
+        "Exact argv/cwd/env, authentic start/end, exit, stdout/stderr and resource/cancellation series",
+        "Trusted required CaseId roster and every actual output, without duplicates/omissions",
+        "Independent frozen Oracle receipts and capability-denial receipt",
+        "Approved policy, environment/executor qualification and integrity-sealed evidence package"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "recommended": "Option B isolated Windows x64 MSVC-compatible environment",
+        "environment_id": null,
+        "qualification": "Not Executed",
+        "admission": "NOT ADMITTED",
+        "conditions": "OS/ABI/toolchain/Python/fixtures compatible; authenticated executor; system AND compile-process budgets separately approved and measured"
+      },
+      "PermittedEquivalence": {
+        "already_allowed": "Exact frozen byte identity and previously approved per-path historical correspondence only",
+        "proposed": "Host/path mapping, authenticated evidence transport, split build/execute, any changed compile protection budget require separate explicit approval",
+        "currently_granted": false
+      },
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "new_execution": "Not Executed",
+        "fresh_pass": false,
+        "prior_receipt": "Frozen R5 old pass retained as provenance only",
+        "historical_completed": 0
+      }
+    },
+    {
+      "GateId": "history-5",
+      "FrozenSourceHEAD": "e623aab705c5f8269807201e112a32e67e6869bf",
+      "SourceIdentity": {
+        "frozen_head": "e623aab705c5f8269807201e112a32e67e6869bf",
+        "git_tree": "178c2d8bf4a19f6474ba22abf40aed9348cb9c10",
+        "paths": 2076,
+        "complete_raw_manifest_sha256": "3f5e8ee0b10d3b9566d27afb537578c71759c40847322c1d4b209aeeead52874",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-5.json",
+        "full_map_file_sha256": "a54b862663c2bddf10765cb40c8be3ba1cf90c66f58bd107ea844919de1bd48f",
+        "git_blob_and_raw_verified": true
+      },
+      "RegistryIdentity": {
+        "paths": 5,
+        "manifest_sha256": "c034dc23d0df0c89caa613609ba632a23eba757e3a3e536143db14e2f451b45a",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-5.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "CompilerIdentity": {
+        "paths": 230,
+        "manifest_sha256": "91a9c02d82cebe3f8f27c3668519d198ac042974a79ac90b519266841cff9728",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-5.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ExpectedIdentity": {
+        "paths": 1212,
+        "manifest_sha256": "b03315e98f6f66f0a8e5f949173b596538d1c9ccea5174a0ea95921cf9f81304",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-5.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "OracleIdentity": {
+        "paths": 87,
+        "manifest_sha256": "c8ae34ef73b6ad3f93173e0fd30c6680dffdc9726a91676f1d157419f51894a6",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-5.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ToolchainIdentity": {
+        "status": "NOT QUALIFIED — CACHED METADATA ONLY",
+        "audited_metadata": [
+          {
+            "path": "E:\\Projects\\agent\\target\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "5a107b8eee9845bdb61d591b418fe47ea0e8c9ca43a96f909023089f863bcea6"
+          },
+          {
+            "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\build\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "ce0bcc1ac69d7e059d98e61886bcb1f7b1d53c59714096fa67c0d8dec37ccd85"
+          }
+        ],
+        "cached_rustc": "1.92.0 (ded5c06cf 2025-12-08)",
+        "cached_llvm": "21.1.3",
+        "host": "x86_64-pc-windows-msvc",
+        "executed_version_queries": 0,
+        "needed": "Exact rustc, cargo, rustdoc, LLVM/linker, MSVC/SDK, Python and dependency bytes plus effective config/environment and authenticated executor",
+        "reusable_artifact": "No fully authenticated Source+Toolchain+Profile+binary chain found in the audited receipts/cache metadata; not an exhaustive disk search"
+      },
+      "BuildProfile": {
+        "dev_debug": 2,
+        "test_debug": 2,
+        "features": "Frozen defaults and manifest-selected targets; no narrowing",
+        "config_precedence": "Snapshot root profiles, Cargo config, environment, rustflags and build scripts; no hidden override"
+      },
+      "CommandAndFlags": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2g2-analysis5\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2g2-analysis5\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2g2-analysis5\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "RequiredCases": {
+        "declared_case_ids": 262,
+        "exact_roster_status": "Not Executed — enumerate/certify from frozen inputs before execution admission",
+        "source_of_requirement": "R1 frozen historical configuration and original frozen manifests/oracles; G3 complete --all/--mutations and original A-evidence requirements",
+        "rust_test_count": "Distinct from declared CaseIds; complete frozen Cargo target/test/doc-test roster required",
+        "denominator": "Independently approved complete roster; never infer from submitted actual/expected intersections",
+        "frozen_g3_classes": null
+      },
+      "RequiredArtifacts": [
+        "Full source raw and GitBlob manifest before/after",
+        "Per-gate Registry/Compiler/Expected/Oracle manifest",
+        "Effective toolchain/config/env/dependency/feature/target identities",
+        "Build graph/target roster including build scripts/proc macros/doc-tests",
+        "All executables, PDBs, dynamic deps, build outputs and required runtime fixtures with hashes",
+        "Exact argv/cwd/env, authentic start/end, exit, stdout/stderr and resource/cancellation series",
+        "Trusted required CaseId roster and every actual output, without duplicates/omissions",
+        "Independent frozen Oracle receipts and capability-denial receipt",
+        "Approved policy, environment/executor qualification and integrity-sealed evidence package"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "recommended": "Option B isolated Windows x64 MSVC-compatible environment",
+        "environment_id": null,
+        "qualification": "Not Executed",
+        "admission": "NOT ADMITTED",
+        "conditions": "OS/ABI/toolchain/Python/fixtures compatible; authenticated executor; system AND compile-process budgets separately approved and measured"
+      },
+      "PermittedEquivalence": {
+        "already_allowed": "Exact frozen byte identity and previously approved per-path historical correspondence only",
+        "proposed": "Host/path mapping, authenticated evidence transport, split build/execute, any changed compile protection budget require separate explicit approval",
+        "currently_granted": false
+      },
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "new_execution": "Not Executed",
+        "fresh_pass": false,
+        "prior_receipt": "Frozen R5 old pass retained as provenance only",
+        "historical_completed": 0
+      }
+    },
+    {
+      "GateId": "history-6",
+      "FrozenSourceHEAD": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+      "SourceIdentity": {
+        "frozen_head": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+        "git_tree": "eb58150a323efc299bea3201f2f9c0f102bb701a",
+        "paths": 2170,
+        "complete_raw_manifest_sha256": "68cde1e0591baec0ee2c2ed1ee882a68bef538a12fc71208bccd3c3b7a75a23f",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-6.json",
+        "full_map_file_sha256": "41c195239c163bb2b5e3e76120a6c3ef06aeb59ad29e9f9f1d5cbea2c4c0fe29",
+        "git_blob_and_raw_verified": true
+      },
+      "RegistryIdentity": {
+        "paths": 5,
+        "manifest_sha256": "b1eb4ddc80d1c2b08bf6958747d6a7ba2718c76f326adba0ed083cc15bb80cf9",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-6.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "CompilerIdentity": {
+        "paths": 236,
+        "manifest_sha256": "16874b4ee1fe7ad94b5b0886d0da7bb562869eea2622b0bf2de5a172fe647f70",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-6.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ExpectedIdentity": {
+        "paths": 1230,
+        "manifest_sha256": "b8359552844d52ffc053cbb34ce0f474d83f0619f6ae18eaa1222f4bc21af48c",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-6.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "OracleIdentity": {
+        "paths": 98,
+        "manifest_sha256": "6b8b21a9be695895ea5eae725250493c2741f3de04f24ad62a96383883aa248e",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-6.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ToolchainIdentity": {
+        "status": "NOT QUALIFIED — CACHED METADATA ONLY",
+        "audited_metadata": [
+          {
+            "path": "E:\\Projects\\agent\\target\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "5a107b8eee9845bdb61d591b418fe47ea0e8c9ca43a96f909023089f863bcea6"
+          },
+          {
+            "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\build\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "ce0bcc1ac69d7e059d98e61886bcb1f7b1d53c59714096fa67c0d8dec37ccd85"
+          }
+        ],
+        "cached_rustc": "1.92.0 (ded5c06cf 2025-12-08)",
+        "cached_llvm": "21.1.3",
+        "host": "x86_64-pc-windows-msvc",
+        "executed_version_queries": 0,
+        "needed": "Exact rustc, cargo, rustdoc, LLVM/linker, MSVC/SDK, Python and dependency bytes plus effective config/environment and authenticated executor",
+        "reusable_artifact": "No fully authenticated Source+Toolchain+Profile+binary chain found in the audited receipts/cache metadata; not an exhaustive disk search"
+      },
+      "BuildProfile": {
+        "dev_debug": 2,
+        "test_debug": 2,
+        "features": "Frozen defaults and manifest-selected targets; no narrowing",
+        "config_precedence": "Snapshot root profiles, Cargo config, environment, rustflags and build scripts; no hidden override"
+      },
+      "CommandAndFlags": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r3g2-analysis6\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r3g2-analysis6\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r3g2-analysis6\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "RequiredCases": {
+        "declared_case_ids": 254,
+        "exact_roster_status": "Not Executed — enumerate/certify from frozen inputs before execution admission",
+        "source_of_requirement": "R1 frozen historical configuration and original frozen manifests/oracles; G3 complete --all/--mutations and original A-evidence requirements",
+        "rust_test_count": "Distinct from declared CaseIds; complete frozen Cargo target/test/doc-test roster required",
+        "denominator": "Independently approved complete roster; never infer from submitted actual/expected intersections",
+        "frozen_g3_classes": null
+      },
+      "RequiredArtifacts": [
+        "Full source raw and GitBlob manifest before/after",
+        "Per-gate Registry/Compiler/Expected/Oracle manifest",
+        "Effective toolchain/config/env/dependency/feature/target identities",
+        "Build graph/target roster including build scripts/proc macros/doc-tests",
+        "All executables, PDBs, dynamic deps, build outputs and required runtime fixtures with hashes",
+        "Exact argv/cwd/env, authentic start/end, exit, stdout/stderr and resource/cancellation series",
+        "Trusted required CaseId roster and every actual output, without duplicates/omissions",
+        "Independent frozen Oracle receipts and capability-denial receipt",
+        "Approved policy, environment/executor qualification and integrity-sealed evidence package"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "recommended": "Option B isolated Windows x64 MSVC-compatible environment",
+        "environment_id": null,
+        "qualification": "Not Executed",
+        "admission": "NOT ADMITTED",
+        "conditions": "OS/ABI/toolchain/Python/fixtures compatible; authenticated executor; system AND compile-process budgets separately approved and measured"
+      },
+      "PermittedEquivalence": {
+        "already_allowed": "Exact frozen byte identity and previously approved per-path historical correspondence only",
+        "proposed": "Host/path mapping, authenticated evidence transport, split build/execute, any changed compile protection budget require separate explicit approval",
+        "currently_granted": false
+      },
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "new_execution": "Not Executed",
+        "fresh_pass": false,
+        "prior_receipt": "Frozen R5 old pass retained as provenance only",
+        "historical_completed": 0
+      }
+    },
+    {
+      "GateId": "history-7",
+      "FrozenSourceHEAD": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+      "SourceIdentity": {
+        "frozen_head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+        "git_tree": "88544c0d0e3015a4e361e1c9b371ba8c1e06302c",
+        "paths": 2235,
+        "complete_raw_manifest_sha256": "d7ac4a466321139bd6dc0037f6203246b2d75c203cdb8560e1626e3339f78ab8",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-7.json",
+        "full_map_file_sha256": "a738e7d32912e7ba22f9063924f17496efd81f7edd5c51098f0a211934e59c8e",
+        "git_blob_and_raw_verified": true
+      },
+      "RegistryIdentity": {
+        "paths": 5,
+        "manifest_sha256": "6d55091314457a86e9fd2c8513e56d8159afba741a35e812754107d0531a939b",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-7.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "CompilerIdentity": {
+        "paths": 240,
+        "manifest_sha256": "5e7430fc439145398221f2355f24f6bcfec5665226aaae6eb1927dd41bfa4377",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-7.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ExpectedIdentity": {
+        "paths": 1250,
+        "manifest_sha256": "e0d42fb84b319e9a5c768dfb4cc90709d552fa1140a2b19a312a476de20dd8d8",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-7.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "OracleIdentity": {
+        "paths": 105,
+        "manifest_sha256": "f5343c3c160313058b77f41bd799d83d72e749352f7afbccc48248d185ea085d",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-7.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ToolchainIdentity": {
+        "status": "NOT QUALIFIED — CACHED METADATA ONLY",
+        "audited_metadata": [
+          {
+            "path": "E:\\Projects\\agent\\target\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "5a107b8eee9845bdb61d591b418fe47ea0e8c9ca43a96f909023089f863bcea6"
+          },
+          {
+            "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\build\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "ce0bcc1ac69d7e059d98e61886bcb1f7b1d53c59714096fa67c0d8dec37ccd85"
+          }
+        ],
+        "cached_rustc": "1.92.0 (ded5c06cf 2025-12-08)",
+        "cached_llvm": "21.1.3",
+        "host": "x86_64-pc-windows-msvc",
+        "executed_version_queries": 0,
+        "needed": "Exact rustc, cargo, rustdoc, LLVM/linker, MSVC/SDK, Python and dependency bytes plus effective config/environment and authenticated executor",
+        "reusable_artifact": "No fully authenticated Source+Toolchain+Profile+binary chain found in the audited receipts/cache metadata; not an exhaustive disk search"
+      },
+      "BuildProfile": {
+        "dev_debug": 2,
+        "test_debug": 2,
+        "features": "Frozen defaults and manifest-selected targets; no narrowing",
+        "config_precedence": "Snapshot root profiles, Cargo config, environment, rustflags and build scripts; no hidden override"
+      },
+      "CommandAndFlags": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g2-analysis7\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g2-analysis7\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g2-analysis7\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [
+          [
+            "<qualified-python>",
+            "-X",
+            "utf8",
+            "tools/audit-relation-schema-staging.py",
+            "--receipts"
+          ]
+        ],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "RequiredCases": {
+        "declared_case_ids": 534,
+        "exact_roster_status": "Not Executed — enumerate/certify from frozen inputs before execution admission",
+        "source_of_requirement": "R1 frozen historical configuration and original frozen manifests/oracles; G3 complete --all/--mutations and original A-evidence requirements",
+        "rust_test_count": "Distinct from declared CaseIds; complete frozen Cargo target/test/doc-test roster required",
+        "denominator": "Independently approved complete roster; never infer from submitted actual/expected intersections",
+        "frozen_g3_classes": null
+      },
+      "RequiredArtifacts": [
+        "Full source raw and GitBlob manifest before/after",
+        "Per-gate Registry/Compiler/Expected/Oracle manifest",
+        "Effective toolchain/config/env/dependency/feature/target identities",
+        "Build graph/target roster including build scripts/proc macros/doc-tests",
+        "All executables, PDBs, dynamic deps, build outputs and required runtime fixtures with hashes",
+        "Exact argv/cwd/env, authentic start/end, exit, stdout/stderr and resource/cancellation series",
+        "Trusted required CaseId roster and every actual output, without duplicates/omissions",
+        "Independent frozen Oracle receipts and capability-denial receipt",
+        "Approved policy, environment/executor qualification and integrity-sealed evidence package"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "recommended": "Option B isolated Windows x64 MSVC-compatible environment",
+        "environment_id": null,
+        "qualification": "Not Executed",
+        "admission": "NOT ADMITTED",
+        "conditions": "OS/ABI/toolchain/Python/fixtures compatible; authenticated executor; system AND compile-process budgets separately approved and measured"
+      },
+      "PermittedEquivalence": {
+        "already_allowed": "Exact frozen byte identity and previously approved per-path historical correspondence only",
+        "proposed": "Host/path mapping, authenticated evidence transport, split build/execute, any changed compile protection budget require separate explicit approval",
+        "currently_granted": false
+      },
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "new_execution": "Not Executed",
+        "fresh_pass": false,
+        "prior_receipt": "Frozen R5 old pass retained as provenance only",
+        "historical_completed": 0
+      }
+    },
+    {
+      "GateId": "history-8",
+      "FrozenSourceHEAD": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+      "SourceIdentity": {
+        "frozen_head": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+        "git_tree": "30bad51b2e62141200c22867c75f2debd8989a52",
+        "paths": 2290,
+        "complete_raw_manifest_sha256": "7ce8cad95bf876fb1f4b151c7754a7831850936e77432f5535ac0033192253ad",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-8.json",
+        "full_map_file_sha256": "04aa5731719a9d49e2098e0042edb0373d4562c8bdac78c0fe4b73c94801c9c4",
+        "git_blob_and_raw_verified": true
+      },
+      "RegistryIdentity": {
+        "paths": 5,
+        "manifest_sha256": "d96c3e9c4c297947dc61f58b46aa4ebc4bfa78026f64fd677f75d10d77169f80",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-8.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "CompilerIdentity": {
+        "paths": 244,
+        "manifest_sha256": "9ed43602c2db778011923bfb82a14a2c6c9151fbc7cf8b05b600d7d5afe3d855",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-8.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ExpectedIdentity": {
+        "paths": 1268,
+        "manifest_sha256": "f6029db9784d2eebe5bf387094e9d1b29e9832de5d3af8f82816128455e3b504",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-8.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "OracleIdentity": {
+        "paths": 111,
+        "manifest_sha256": "dbd919cb9c504bb876c4f59b99d684dccb871a7d3ea055dbd7e736795fb5f89a",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-history-8.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ToolchainIdentity": {
+        "status": "NOT QUALIFIED — CACHED METADATA ONLY",
+        "audited_metadata": [
+          {
+            "path": "E:\\Projects\\agent\\target\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "5a107b8eee9845bdb61d591b418fe47ea0e8c9ca43a96f909023089f863bcea6"
+          },
+          {
+            "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\build\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "ce0bcc1ac69d7e059d98e61886bcb1f7b1d53c59714096fa67c0d8dec37ccd85"
+          }
+        ],
+        "cached_rustc": "1.92.0 (ded5c06cf 2025-12-08)",
+        "cached_llvm": "21.1.3",
+        "host": "x86_64-pc-windows-msvc",
+        "executed_version_queries": 0,
+        "needed": "Exact rustc, cargo, rustdoc, LLVM/linker, MSVC/SDK, Python and dependency bytes plus effective config/environment and authenticated executor",
+        "reusable_artifact": "No fully authenticated Source+Toolchain+Profile+binary chain found in the audited receipts/cache metadata; not an exhaustive disk search"
+      },
+      "BuildProfile": {
+        "dev_debug": 0,
+        "test_debug": 0,
+        "features": "Frozen defaults and manifest-selected targets; no narrowing",
+        "config_precedence": "Snapshot root profiles, Cargo config, environment, rustflags and build scripts; no hidden override"
+      },
+      "CommandAndFlags": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5-analysis8-g2\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5-analysis8-g2\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5-analysis8-g2\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "0",
+          "CARGO_PROFILE_TEST_DEBUG": "0",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [
+          [
+            "<qualified-python>",
+            "-X",
+            "utf8",
+            "tools/audit-structural-binding-staging.py",
+            "--receipts"
+          ]
+        ],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "RequiredCases": {
+        "declared_case_ids": 3662,
+        "exact_roster_status": "Not Executed — enumerate/certify from frozen inputs before execution admission",
+        "source_of_requirement": "R1 frozen historical configuration and original frozen manifests/oracles; G3 complete --all/--mutations and original A-evidence requirements",
+        "rust_test_count": "Distinct from declared CaseIds; complete frozen Cargo target/test/doc-test roster required",
+        "denominator": "Independently approved complete roster; never infer from submitted actual/expected intersections",
+        "frozen_g3_classes": null
+      },
+      "RequiredArtifacts": [
+        "Full source raw and GitBlob manifest before/after",
+        "Per-gate Registry/Compiler/Expected/Oracle manifest",
+        "Effective toolchain/config/env/dependency/feature/target identities",
+        "Build graph/target roster including build scripts/proc macros/doc-tests",
+        "All executables, PDBs, dynamic deps, build outputs and required runtime fixtures with hashes",
+        "Exact argv/cwd/env, authentic start/end, exit, stdout/stderr and resource/cancellation series",
+        "Trusted required CaseId roster and every actual output, without duplicates/omissions",
+        "Independent frozen Oracle receipts and capability-denial receipt",
+        "Approved policy, environment/executor qualification and integrity-sealed evidence package"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "recommended": "Option B isolated Windows x64 MSVC-compatible environment",
+        "environment_id": null,
+        "qualification": "Not Executed",
+        "admission": "NOT ADMITTED",
+        "conditions": "OS/ABI/toolchain/Python/fixtures compatible; authenticated executor; system AND compile-process budgets separately approved and measured"
+      },
+      "PermittedEquivalence": {
+        "already_allowed": "Exact frozen byte identity and previously approved per-path historical correspondence only",
+        "proposed": "Host/path mapping, authenticated evidence transport, split build/execute, any changed compile protection budget require separate explicit approval",
+        "currently_granted": false
+      },
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "new_execution": "Not Executed",
+        "fresh_pass": false,
+        "prior_receipt": "Frozen R5 old pass retained as provenance only",
+        "historical_completed": 0
+      }
+    },
+    {
+      "GateId": "frozen-g3",
+      "FrozenSourceHEAD": "a9e296407c682a69f596be84ac8974eb870ebc18",
+      "SourceIdentity": {
+        "frozen_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+        "git_tree": "0de6dd39efe8e27527370559301bf07fbc603e52",
+        "paths": 2326,
+        "complete_raw_manifest_sha256": "e650c1b7cf7239be21accca1c8a6f9a434ff301544019dc272ffb848323f84da",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-frozen-g3.json",
+        "full_map_file_sha256": "dad18f49c47ef9da7114b162727e8f02d1c3335860c4063c3838921e69ad6e63",
+        "git_blob_and_raw_verified": true
+      },
+      "RegistryIdentity": {
+        "paths": 5,
+        "manifest_sha256": "d96c3e9c4c297947dc61f58b46aa4ebc4bfa78026f64fd677f75d10d77169f80",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-frozen-g3.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "CompilerIdentity": {
+        "paths": 248,
+        "manifest_sha256": "8c840ea97c6846b2be8bcdba26d2e04b3489b8085a3ef49dfec6111f8a2e0fb5",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-frozen-g3.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ExpectedIdentity": {
+        "paths": 1288,
+        "manifest_sha256": "60bdddde2282c0ddf1d669b8ac0e29a9d1a406a3154cb320711a62c31062a6f1",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-frozen-g3.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "OracleIdentity": {
+        "paths": 115,
+        "manifest_sha256": "0d709c9f015b571a2ce927de5165429673a7863b8bcf7cd13e247c87dcae8434",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-frozen-g3.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ToolchainIdentity": {
+        "status": "NOT QUALIFIED — CACHED METADATA ONLY",
+        "audited_metadata": [
+          {
+            "path": "E:\\Projects\\agent\\target\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "5a107b8eee9845bdb61d591b418fe47ea0e8c9ca43a96f909023089f863bcea6"
+          },
+          {
+            "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\build\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "ce0bcc1ac69d7e059d98e61886bcb1f7b1d53c59714096fa67c0d8dec37ccd85"
+          }
+        ],
+        "cached_rustc": "1.92.0 (ded5c06cf 2025-12-08)",
+        "cached_llvm": "21.1.3",
+        "host": "x86_64-pc-windows-msvc",
+        "executed_version_queries": 0,
+        "needed": "Exact rustc, cargo, rustdoc, LLVM/linker, MSVC/SDK, Python and dependency bytes plus effective config/environment and authenticated executor",
+        "reusable_artifact": "No fully authenticated Source+Toolchain+Profile+binary chain found in the audited receipts/cache metadata; not an exhaustive disk search"
+      },
+      "BuildProfile": {
+        "dev_debug": 2,
+        "test_debug": 2,
+        "features": "Frozen defaults and manifest-selected targets; no narrowing",
+        "config_precedence": "Snapshot root profiles, Cargo config, environment, rustflags and build scripts; no hidden override"
+      },
+      "CommandAndFlags": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [
+          [
+            "<qualified-python>",
+            "-X",
+            "utf8",
+            "tools/oracle/production_input_graph.py",
+            "--all"
+          ],
+          [
+            "<qualified-python>",
+            "-X",
+            "utf8",
+            "tools/oracle/production_input_graph.py",
+            "--mutations"
+          ],
+          [
+            "<approved-frozen-evidence-checker>",
+            "A-evidence"
+          ]
+        ],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "RequiredCases": {
+        "declared_case_ids": null,
+        "exact_roster_status": "Not Executed — enumerate/certify from frozen inputs before execution admission",
+        "source_of_requirement": "R1 frozen historical configuration and original frozen manifests/oracles; G3 complete --all/--mutations and original A-evidence requirements",
+        "rust_test_count": "Distinct from declared CaseIds; complete frozen Cargo target/test/doc-test roster required",
+        "denominator": "Independently approved complete roster; never infer from submitted actual/expected intersections",
+        "frozen_g3_classes": {
+          "positive": 154,
+          "negative_and_resource_nominal_boundaries": 26,
+          "comparator_mutations": 59
+        }
+      },
+      "RequiredArtifacts": [
+        "Full source raw and GitBlob manifest before/after",
+        "Per-gate Registry/Compiler/Expected/Oracle manifest",
+        "Effective toolchain/config/env/dependency/feature/target identities",
+        "Build graph/target roster including build scripts/proc macros/doc-tests",
+        "All executables, PDBs, dynamic deps, build outputs and required runtime fixtures with hashes",
+        "Exact argv/cwd/env, authentic start/end, exit, stdout/stderr and resource/cancellation series",
+        "Trusted required CaseId roster and every actual output, without duplicates/omissions",
+        "Independent frozen Oracle receipts and capability-denial receipt",
+        "Approved policy, environment/executor qualification and integrity-sealed evidence package"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "recommended": "Option B isolated Windows x64 MSVC-compatible environment",
+        "environment_id": null,
+        "qualification": "Not Executed",
+        "admission": "NOT ADMITTED",
+        "conditions": "OS/ABI/toolchain/Python/fixtures compatible; authenticated executor; system AND compile-process budgets separately approved and measured"
+      },
+      "PermittedEquivalence": {
+        "already_allowed": "Exact frozen byte identity and previously approved per-path historical correspondence only",
+        "proposed": "Host/path mapping, authenticated evidence transport, split build/execute, any changed compile protection budget require separate explicit approval",
+        "currently_granted": false
+      },
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "new_execution": "Not Executed",
+        "fresh_pass": false,
+        "prior_receipt": "R2 FAILED 101 / LLVM OOM retained",
+        "historical_completed": 0
+      }
+    },
+    {
+      "GateId": "inherited-1",
+      "FrozenSourceHEAD": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+      "SourceIdentity": {
+        "raw_map": "target/phase-04c1b4c4r3c2r5g2r2-B-final.json",
+        "scope_paths": 2403,
+        "manifest_sha256": "bded08f06547ba23e9acba6693b090cd37e1302fd107dfc488c11f6b52f1101a"
+      },
+      "RegistryIdentity": {
+        "scope": "spec/registry and exact nominal tuple 9/8/8/8"
+      },
+      "CompilerIdentity": {
+        "scope": "All old production Rust/config unchanged"
+      },
+      "ExpectedIdentity": {
+        "scope": "All old conformance Expected unchanged"
+      },
+      "OracleIdentity": {
+        "scope": "All old tools/Oracle unchanged"
+      },
+      "ToolchainIdentity": {
+        "status": "Historical receipt only; not a new qualified environment"
+      },
+      "BuildProfile": {
+        "status": "Original receipt frozen; no new invocation",
+        "receipt": {
+          "name": "r5g2-quality-fmt",
+          "command": [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          "head": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+          "started_unix": 1792419870.0712266,
+          "exit": 0,
+          "expected_exit": 0,
+          "safety": {
+            "name": "r5g2-quality-fmt",
+            "command": [
+              "cargo",
+              "fmt",
+              "--all",
+              "--",
+              "--check"
+            ],
+            "started_unix": 1792419870.105473,
+            "seconds": 2.0,
+            "exit": 0,
+            "cancelled": null,
+            "limits_verified": true,
+            "cpu_hard_cap_percent": 5,
+            "process_memory_mib": 768,
+            "whole_job_memory_mib": 1536,
+            "peak_process_bytes": 27631616,
+            "peak_job_bytes": 57192448,
+            "minimum_system_available_bytes": 16040042496,
+            "test_threads": 1,
+            "active_top_level_jobs": 1,
+            "cargo_build_jobs_env": 1,
+            "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-quality-fmt.log"
+          },
+          "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-quality-fmt.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "CommandAndFlags": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "RequiredCases": {
+        "status": "Exact original command/case/field/denial scope",
+        "totals_not_additive": "2880 registration cases, 1297 field/variant checks, 448 Cargo records across original receipts; no overlapping sum"
+      },
+      "RequiredArtifacts": [
+        "Original log, receipt and unchanged original source input map"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "status": "Original historical local execution only"
+      },
+      "PermittedEquivalence": "Same-source inherited credit only; new docs not a rerun",
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "status": "INHERITED SAME-SOURCE PASS",
+        "new_execution": "Not Executed",
+        "original_log_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "new_credit": 0
+      }
+    },
+    {
+      "GateId": "inherited-2",
+      "FrozenSourceHEAD": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+      "SourceIdentity": {
+        "raw_map": "target/phase-04c1b4c4r3c2r5g2r2-B-final.json",
+        "scope_paths": 2403,
+        "manifest_sha256": "bded08f06547ba23e9acba6693b090cd37e1302fd107dfc488c11f6b52f1101a"
+      },
+      "RegistryIdentity": {
+        "scope": "spec/registry and exact nominal tuple 9/8/8/8"
+      },
+      "CompilerIdentity": {
+        "scope": "All old production Rust/config unchanged"
+      },
+      "ExpectedIdentity": {
+        "scope": "All old conformance Expected unchanged"
+      },
+      "OracleIdentity": {
+        "scope": "All old tools/Oracle unchanged"
+      },
+      "ToolchainIdentity": {
+        "status": "Historical receipt only; not a new qualified environment"
+      },
+      "BuildProfile": {
+        "status": "Original receipt frozen; no new invocation",
+        "receipt": {
+          "name": "r5g2-quality-clippy",
+          "command": [
+            "cargo",
+            "clippy",
+            "-j",
+            "2",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          "head": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+          "started_unix": 1792419872.1343532,
+          "exit": 0,
+          "expected_exit": 0,
+          "safety": {
+            "name": "r5g2-quality-clippy",
+            "command": [
+              "cargo",
+              "clippy",
+              "-j",
+              "2",
+              "--all-targets",
+              "--all-features",
+              "--",
+              "-D",
+              "warnings"
+            ],
+            "started_unix": 1792419872.1743739,
+            "seconds": 9.01,
+            "exit": 0,
+            "cancelled": null,
+            "limits_verified": true,
+            "cpu_hard_cap_percent": 5,
+            "process_memory_mib": 768,
+            "whole_job_memory_mib": 1536,
+            "peak_process_bytes": 489590784,
+            "peak_job_bytes": 939139072,
+            "minimum_system_available_bytes": 15423893504,
+            "test_threads": 1,
+            "active_top_level_jobs": 1,
+            "cargo_build_jobs_env": 1,
+            "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-quality-clippy.log"
+          },
+          "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-quality-clippy.log",
+          "log_sha256": "ad64ee038dd453a7616a0268f1a65ac286a1d790674f0714b5460f04b6a7d448"
+        }
+      },
+      "CommandAndFlags": [
+        "cargo",
+        "clippy",
+        "-j",
+        "2",
+        "--all-targets",
+        "--all-features",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "RequiredCases": {
+        "status": "Exact original command/case/field/denial scope",
+        "totals_not_additive": "2880 registration cases, 1297 field/variant checks, 448 Cargo records across original receipts; no overlapping sum"
+      },
+      "RequiredArtifacts": [
+        "Original log, receipt and unchanged original source input map"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "status": "Original historical local execution only"
+      },
+      "PermittedEquivalence": "Same-source inherited credit only; new docs not a rerun",
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "status": "INHERITED SAME-SOURCE PASS",
+        "new_execution": "Not Executed",
+        "original_log_hash": "ad64ee038dd453a7616a0268f1a65ac286a1d790674f0714b5460f04b6a7d448",
+        "new_credit": 0
+      }
+    },
+    {
+      "GateId": "inherited-3",
+      "FrozenSourceHEAD": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+      "SourceIdentity": {
+        "raw_map": "target/phase-04c1b4c4r3c2r5g2r2-B-final.json",
+        "scope_paths": 2403,
+        "manifest_sha256": "bded08f06547ba23e9acba6693b090cd37e1302fd107dfc488c11f6b52f1101a"
+      },
+      "RegistryIdentity": {
+        "scope": "spec/registry and exact nominal tuple 9/8/8/8"
+      },
+      "CompilerIdentity": {
+        "scope": "All old production Rust/config unchanged"
+      },
+      "ExpectedIdentity": {
+        "scope": "All old conformance Expected unchanged"
+      },
+      "OracleIdentity": {
+        "scope": "All old tools/Oracle unchanged"
+      },
+      "ToolchainIdentity": {
+        "status": "Historical receipt only; not a new qualified environment"
+      },
+      "BuildProfile": {
+        "status": "Original receipt frozen; no new invocation",
+        "receipt": {
+          "name": "r5g2-quality-tests",
+          "command": [
+            "cargo",
+            "test",
+            "--all",
+            "-j",
+            "2"
+          ],
+          "head": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+          "started_unix": 1792419881.2120624,
+          "exit": 0,
+          "expected_exit": 0,
+          "safety": {
+            "name": "r5g2-quality-tests",
+            "command": [
+              "cargo",
+              "test",
+              "--all",
+              "-j",
+              "2"
+            ],
+            "started_unix": 1792419881.2511163,
+            "seconds": 3201.21,
+            "exit": 0,
+            "cancelled": null,
+            "limits_verified": true,
+            "cpu_hard_cap_percent": 5,
+            "process_memory_mib": 768,
+            "whole_job_memory_mib": 1536,
+            "peak_process_bytes": 773570560,
+            "peak_job_bytes": 1447018496,
+            "minimum_system_available_bytes": 14267596800,
+            "test_threads": 1,
+            "active_top_level_jobs": 1,
+            "cargo_build_jobs_env": 1,
+            "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-quality-tests.log"
+          },
+          "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-quality-tests.log",
+          "log_sha256": "b9b9b1237b2b84ddfbc5915bdc0b720232ccb8787cbd667e0fcf01546286db5f"
+        }
+      },
+      "CommandAndFlags": [
+        "cargo",
+        "test",
+        "--all",
+        "-j",
+        "2"
+      ],
+      "RequiredCases": {
+        "status": "Exact original command/case/field/denial scope",
+        "totals_not_additive": "2880 registration cases, 1297 field/variant checks, 448 Cargo records across original receipts; no overlapping sum"
+      },
+      "RequiredArtifacts": [
+        "Original log, receipt and unchanged original source input map"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "status": "Original historical local execution only"
+      },
+      "PermittedEquivalence": "Same-source inherited credit only; new docs not a rerun",
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "status": "INHERITED SAME-SOURCE PASS",
+        "new_execution": "Not Executed",
+        "original_log_hash": "b9b9b1237b2b84ddfbc5915bdc0b720232ccb8787cbd667e0fcf01546286db5f",
+        "new_credit": 0
+      }
+    },
+    {
+      "GateId": "inherited-4",
+      "FrozenSourceHEAD": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+      "SourceIdentity": {
+        "raw_map": "target/phase-04c1b4c4r3c2r5g2r2-B-final.json",
+        "scope_paths": 2403,
+        "manifest_sha256": "bded08f06547ba23e9acba6693b090cd37e1302fd107dfc488c11f6b52f1101a"
+      },
+      "RegistryIdentity": {
+        "scope": "spec/registry and exact nominal tuple 9/8/8/8"
+      },
+      "CompilerIdentity": {
+        "scope": "All old production Rust/config unchanged"
+      },
+      "ExpectedIdentity": {
+        "scope": "All old conformance Expected unchanged"
+      },
+      "OracleIdentity": {
+        "scope": "All old tools/Oracle unchanged"
+      },
+      "ToolchainIdentity": {
+        "status": "Historical receipt only; not a new qualified environment"
+      },
+      "BuildProfile": {
+        "status": "Original receipt frozen; no new invocation",
+        "receipt": {
+          "name": "r5g2-quality-spec",
+          "command": [
+            "cargo",
+            "run",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ],
+          "head": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+          "started_unix": 1792423082.5003688,
+          "exit": 0,
+          "expected_exit": 0,
+          "safety": {
+            "name": "r5g2-quality-spec",
+            "command": [
+              "cargo",
+              "run",
+              "-p",
+              "af-spec",
+              "--bin",
+              "spec-check",
+              "--",
+              "check"
+            ],
+            "started_unix": 1792423082.5414505,
+            "seconds": 4.0,
+            "exit": 0,
+            "cancelled": null,
+            "limits_verified": true,
+            "cpu_hard_cap_percent": 5,
+            "process_memory_mib": 768,
+            "whole_job_memory_mib": 1536,
+            "peak_process_bytes": 301510656,
+            "peak_job_bytes": 325685248,
+            "minimum_system_available_bytes": 15070945280,
+            "test_threads": 1,
+            "active_top_level_jobs": 1,
+            "cargo_build_jobs_env": 1,
+            "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-quality-spec.log"
+          },
+          "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-quality-spec.log",
+          "log_sha256": "5d07dd2d1187e7f33800b6c28e4cdcf2766de90586ae9c7abad4bd44052cef49"
+        }
+      },
+      "CommandAndFlags": [
+        "cargo",
+        "run",
+        "-p",
+        "af-spec",
+        "--bin",
+        "spec-check",
+        "--",
+        "check"
+      ],
+      "RequiredCases": {
+        "status": "Exact original command/case/field/denial scope",
+        "totals_not_additive": "2880 registration cases, 1297 field/variant checks, 448 Cargo records across original receipts; no overlapping sum"
+      },
+      "RequiredArtifacts": [
+        "Original log, receipt and unchanged original source input map"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "status": "Original historical local execution only"
+      },
+      "PermittedEquivalence": "Same-source inherited credit only; new docs not a rerun",
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "status": "INHERITED SAME-SOURCE PASS",
+        "new_execution": "Not Executed",
+        "original_log_hash": "5d07dd2d1187e7f33800b6c28e4cdcf2766de90586ae9c7abad4bd44052cef49",
+        "new_credit": 0
+      }
+    },
+    {
+      "GateId": "inherited-5",
+      "FrozenSourceHEAD": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+      "SourceIdentity": {
+        "raw_map": "target/phase-04c1b4c4r3c2r5g2r2-B-final.json",
+        "scope_paths": 2403,
+        "manifest_sha256": "bded08f06547ba23e9acba6693b090cd37e1302fd107dfc488c11f6b52f1101a"
+      },
+      "RegistryIdentity": {
+        "scope": "spec/registry and exact nominal tuple 9/8/8/8"
+      },
+      "CompilerIdentity": {
+        "scope": "All old production Rust/config unchanged"
+      },
+      "ExpectedIdentity": {
+        "scope": "All old conformance Expected unchanged"
+      },
+      "OracleIdentity": {
+        "scope": "All old tools/Oracle unchanged"
+      },
+      "ToolchainIdentity": {
+        "status": "Historical receipt only; not a new qualified environment"
+      },
+      "BuildProfile": {
+        "status": "Original receipt frozen; no new invocation",
+        "receipt": {
+          "name": "r5g2-native-oracle",
+          "command": [
+            "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+            "-X",
+            "utf8",
+            "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2-run.py",
+            "payload",
+            "tools/oracle/native_guard_capture.py",
+            "target/phase-04c1b4c4r3f1-native-actual.json"
+          ],
+          "head": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+          "started_unix": 1792460979.4591646,
+          "exit": 0,
+          "expected_exit": 0,
+          "safety": {
+            "name": "r5g2-native-oracle",
+            "command": [
+              "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+              "-X",
+              "utf8",
+              "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2-run.py",
+              "payload",
+              "tools/oracle/native_guard_capture.py",
+              "target/phase-04c1b4c4r3f1-native-actual.json"
+            ],
+            "started_unix": 1792460979.507779,
+            "seconds": 1.0,
+            "exit": 0,
+            "cancelled": null,
+            "limits_verified": true,
+            "cpu_hard_cap_percent": 5,
+            "process_memory_mib": 768,
+            "whole_job_memory_mib": 1536,
+            "peak_process_bytes": 17715200,
+            "peak_job_bytes": 43855872,
+            "minimum_system_available_bytes": 12802064384,
+            "test_threads": 1,
+            "active_top_level_jobs": 1,
+            "cargo_build_jobs_env": 1,
+            "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-native-oracle.log"
+          },
+          "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-native-oracle.log",
+          "log_sha256": "11278446b32500e5cf010c6fcfaded0ae219d342535f3071641c31c4af1147a1"
+        }
+      },
+      "CommandAndFlags": [
+        "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+        "-X",
+        "utf8",
+        "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2-run.py",
+        "payload",
+        "tools/oracle/native_guard_capture.py",
+        "target/phase-04c1b4c4r3f1-native-actual.json"
+      ],
+      "RequiredCases": {
+        "status": "Exact original command/case/field/denial scope",
+        "totals_not_additive": "2880 registration cases, 1297 field/variant checks, 448 Cargo records across original receipts; no overlapping sum"
+      },
+      "RequiredArtifacts": [
+        "Original log, receipt and unchanged original source input map"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "status": "Original historical local execution only"
+      },
+      "PermittedEquivalence": "Same-source inherited credit only; new docs not a rerun",
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "status": "INHERITED SAME-SOURCE PASS",
+        "new_execution": "Not Executed",
+        "original_log_hash": "11278446b32500e5cf010c6fcfaded0ae219d342535f3071641c31c4af1147a1",
+        "new_credit": 0
+      }
+    },
+    {
+      "GateId": "inherited-6",
+      "FrozenSourceHEAD": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+      "SourceIdentity": {
+        "raw_map": "target/phase-04c1b4c4r3c2r5g2r2-B-final.json",
+        "scope_paths": 2403,
+        "manifest_sha256": "bded08f06547ba23e9acba6693b090cd37e1302fd107dfc488c11f6b52f1101a"
+      },
+      "RegistryIdentity": {
+        "scope": "spec/registry and exact nominal tuple 9/8/8/8"
+      },
+      "CompilerIdentity": {
+        "scope": "All old production Rust/config unchanged"
+      },
+      "ExpectedIdentity": {
+        "scope": "All old conformance Expected unchanged"
+      },
+      "OracleIdentity": {
+        "scope": "All old tools/Oracle unchanged"
+      },
+      "ToolchainIdentity": {
+        "status": "Historical receipt only; not a new qualified environment"
+      },
+      "BuildProfile": {
+        "status": "Original receipt frozen; no new invocation",
+        "receipt": {
+          "name": "r5g2-f1-oracle",
+          "command": [
+            "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+            "-X",
+            "utf8",
+            "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2-run.py",
+            "payload",
+            "tools/oracle/bytes_guard_repair.py",
+            "target/phase-04c1b4c4r3f1-supplement-actual.json"
+          ],
+          "head": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+          "started_unix": 1792460980.5349557,
+          "exit": 0,
+          "expected_exit": 0,
+          "safety": {
+            "name": "r5g2-f1-oracle",
+            "command": [
+              "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+              "-X",
+              "utf8",
+              "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2-run.py",
+              "payload",
+              "tools/oracle/bytes_guard_repair.py",
+              "target/phase-04c1b4c4r3f1-supplement-actual.json"
+            ],
+            "started_unix": 1792460980.5676484,
+            "seconds": 1.0,
+            "exit": 0,
+            "cancelled": null,
+            "limits_verified": true,
+            "cpu_hard_cap_percent": 5,
+            "process_memory_mib": 768,
+            "whole_job_memory_mib": 1536,
+            "peak_process_bytes": 27705344,
+            "peak_job_bytes": 52895744,
+            "minimum_system_available_bytes": 12979875840,
+            "test_threads": 1,
+            "active_top_level_jobs": 1,
+            "cargo_build_jobs_env": 1,
+            "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-f1-oracle.log"
+          },
+          "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-f1-oracle.log",
+          "log_sha256": "d39bde6e8c90987698919a18e6f9090195a7a57a5f25f34ae0ec04b4d432804b"
+        }
+      },
+      "CommandAndFlags": [
+        "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+        "-X",
+        "utf8",
+        "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2-run.py",
+        "payload",
+        "tools/oracle/bytes_guard_repair.py",
+        "target/phase-04c1b4c4r3f1-supplement-actual.json"
+      ],
+      "RequiredCases": {
+        "status": "Exact original command/case/field/denial scope",
+        "totals_not_additive": "2880 registration cases, 1297 field/variant checks, 448 Cargo records across original receipts; no overlapping sum"
+      },
+      "RequiredArtifacts": [
+        "Original log, receipt and unchanged original source input map"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "status": "Original historical local execution only"
+      },
+      "PermittedEquivalence": "Same-source inherited credit only; new docs not a rerun",
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "status": "INHERITED SAME-SOURCE PASS",
+        "new_execution": "Not Executed",
+        "original_log_hash": "d39bde6e8c90987698919a18e6f9090195a7a57a5f25f34ae0ec04b4d432804b",
+        "new_credit": 0
+      }
+    },
+    {
+      "GateId": "inherited-7",
+      "FrozenSourceHEAD": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+      "SourceIdentity": {
+        "raw_map": "target/phase-04c1b4c4r3c2r5g2r2-B-final.json",
+        "scope_paths": 2403,
+        "manifest_sha256": "bded08f06547ba23e9acba6693b090cd37e1302fd107dfc488c11f6b52f1101a"
+      },
+      "RegistryIdentity": {
+        "scope": "spec/registry and exact nominal tuple 9/8/8/8"
+      },
+      "CompilerIdentity": {
+        "scope": "All old production Rust/config unchanged"
+      },
+      "ExpectedIdentity": {
+        "scope": "All old conformance Expected unchanged"
+      },
+      "OracleIdentity": {
+        "scope": "All old tools/Oracle unchanged"
+      },
+      "ToolchainIdentity": {
+        "status": "Historical receipt only; not a new qualified environment"
+      },
+      "BuildProfile": {
+        "status": "Original receipt frozen; no new invocation",
+        "receipt": {
+          "name": "r5g2-original-native51",
+          "command": [
+            "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+            "-X",
+            "utf8",
+            "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2-run.py",
+            "original51"
+          ],
+          "head": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+          "started_unix": 1792460981.614395,
+          "exit": 0,
+          "expected_exit": 0,
+          "safety": {
+            "name": "r5g2-original-native51",
+            "command": [
+              "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+              "-X",
+              "utf8",
+              "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2-run.py",
+              "original51"
+            ],
+            "started_unix": 1792460981.661167,
+            "seconds": 1.0,
+            "exit": 0,
+            "cancelled": null,
+            "limits_verified": true,
+            "cpu_hard_cap_percent": 5,
+            "process_memory_mib": 768,
+            "whole_job_memory_mib": 1536,
+            "peak_process_bytes": 25636864,
+            "peak_job_bytes": 37765120,
+            "minimum_system_available_bytes": 12806942720,
+            "test_threads": 1,
+            "active_top_level_jobs": 1,
+            "cargo_build_jobs_env": 1,
+            "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-original-native51.log"
+          },
+          "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-original-native51.log",
+          "log_sha256": "48d26b4b28ff8a4795569fb5647ede53c87bac904e0017867ff4d85d42115a5d"
+        }
+      },
+      "CommandAndFlags": [
+        "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+        "-X",
+        "utf8",
+        "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2-run.py",
+        "original51"
+      ],
+      "RequiredCases": {
+        "status": "Exact original command/case/field/denial scope",
+        "totals_not_additive": "2880 registration cases, 1297 field/variant checks, 448 Cargo records across original receipts; no overlapping sum"
+      },
+      "RequiredArtifacts": [
+        "Original log, receipt and unchanged original source input map"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "status": "Original historical local execution only"
+      },
+      "PermittedEquivalence": "Same-source inherited credit only; new docs not a rerun",
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "status": "INHERITED SAME-SOURCE PASS",
+        "new_execution": "Not Executed",
+        "original_log_hash": "48d26b4b28ff8a4795569fb5647ede53c87bac904e0017867ff4d85d42115a5d",
+        "new_credit": 0
+      }
+    },
+    {
+      "GateId": "inherited-8",
+      "FrozenSourceHEAD": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+      "SourceIdentity": {
+        "raw_map": "target/phase-04c1b4c4r3c2r5g2r2-B-final.json",
+        "scope_paths": 2403,
+        "manifest_sha256": "bded08f06547ba23e9acba6693b090cd37e1302fd107dfc488c11f6b52f1101a"
+      },
+      "RegistryIdentity": {
+        "scope": "spec/registry and exact nominal tuple 9/8/8/8"
+      },
+      "CompilerIdentity": {
+        "scope": "All old production Rust/config unchanged"
+      },
+      "ExpectedIdentity": {
+        "scope": "All old conformance Expected unchanged"
+      },
+      "OracleIdentity": {
+        "scope": "All old tools/Oracle unchanged"
+      },
+      "ToolchainIdentity": {
+        "status": "Historical receipt only; not a new qualified environment"
+      },
+      "BuildProfile": {
+        "status": "Original receipt frozen; no new invocation",
+        "receipt": {
+          "name": "r5g2-current-g3-oracle",
+          "command": [
+            "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+            "-X",
+            "utf8",
+            "tools/oracle/production_input_graph.py",
+            "--all"
+          ],
+          "head": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+          "started_unix": 1792460982.7317212,
+          "exit": 0,
+          "expected_exit": 0,
+          "safety": {
+            "name": "r5g2-current-g3-oracle",
+            "command": [
+              "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+              "-X",
+              "utf8",
+              "tools/oracle/production_input_graph.py",
+              "--all"
+            ],
+            "started_unix": 1792460982.8044026,
+            "seconds": 948.39,
+            "exit": 0,
+            "cancelled": null,
+            "limits_verified": true,
+            "cpu_hard_cap_percent": 5,
+            "process_memory_mib": 768,
+            "whole_job_memory_mib": 1536,
+            "peak_process_bytes": 557244416,
+            "peak_job_bytes": 569298944,
+            "minimum_system_available_bytes": 10382061568,
+            "test_threads": 1,
+            "active_top_level_jobs": 1,
+            "cargo_build_jobs_env": 1,
+            "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-current-g3-oracle.log"
+          },
+          "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-current-g3-oracle.log",
+          "log_sha256": "72bf8cdea3116c781a2ac3ac3980726453491f0241e7af3ccd7eae91c76fb146"
+        }
+      },
+      "CommandAndFlags": [
+        "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+        "-X",
+        "utf8",
+        "tools/oracle/production_input_graph.py",
+        "--all"
+      ],
+      "RequiredCases": {
+        "status": "Exact original command/case/field/denial scope",
+        "totals_not_additive": "2880 registration cases, 1297 field/variant checks, 448 Cargo records across original receipts; no overlapping sum"
+      },
+      "RequiredArtifacts": [
+        "Original log, receipt and unchanged original source input map"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "status": "Original historical local execution only"
+      },
+      "PermittedEquivalence": "Same-source inherited credit only; new docs not a rerun",
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "status": "INHERITED SAME-SOURCE PASS",
+        "new_execution": "Not Executed",
+        "original_log_hash": "72bf8cdea3116c781a2ac3ac3980726453491f0241e7af3ccd7eae91c76fb146",
+        "new_credit": 0
+      }
+    },
+    {
+      "GateId": "inherited-9",
+      "FrozenSourceHEAD": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+      "SourceIdentity": {
+        "raw_map": "target/phase-04c1b4c4r3c2r5g2r2-B-final.json",
+        "scope_paths": 2403,
+        "manifest_sha256": "bded08f06547ba23e9acba6693b090cd37e1302fd107dfc488c11f6b52f1101a"
+      },
+      "RegistryIdentity": {
+        "scope": "spec/registry and exact nominal tuple 9/8/8/8"
+      },
+      "CompilerIdentity": {
+        "scope": "All old production Rust/config unchanged"
+      },
+      "ExpectedIdentity": {
+        "scope": "All old conformance Expected unchanged"
+      },
+      "OracleIdentity": {
+        "scope": "All old tools/Oracle unchanged"
+      },
+      "ToolchainIdentity": {
+        "status": "Historical receipt only; not a new qualified environment"
+      },
+      "BuildProfile": {
+        "status": "Original receipt frozen; no new invocation",
+        "receipt": {
+          "name": "r5g2-current-g3-mutations",
+          "command": [
+            "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+            "-X",
+            "utf8",
+            "tools/oracle/production_input_graph.py",
+            "--mutations"
+          ],
+          "head": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+          "started_unix": 1792461931.2397587,
+          "exit": 0,
+          "expected_exit": 0,
+          "safety": {
+            "name": "r5g2-current-g3-mutations",
+            "command": [
+              "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+              "-X",
+              "utf8",
+              "tools/oracle/production_input_graph.py",
+              "--mutations"
+            ],
+            "started_unix": 1792461931.2848537,
+            "seconds": 43.02,
+            "exit": 0,
+            "cancelled": null,
+            "limits_verified": true,
+            "cpu_hard_cap_percent": 5,
+            "process_memory_mib": 768,
+            "whole_job_memory_mib": 1536,
+            "peak_process_bytes": 407113728,
+            "peak_job_bytes": 419311616,
+            "minimum_system_available_bytes": 11173187584,
+            "test_threads": 1,
+            "active_top_level_jobs": 1,
+            "cargo_build_jobs_env": 1,
+            "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-current-g3-mutations.log"
+          },
+          "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-current-g3-mutations.log",
+          "log_sha256": "3b5a9695b22aa8cc41f81be79ab05a76b5a5f860c0c07c66991f15392b84fe1c"
+        }
+      },
+      "CommandAndFlags": [
+        "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+        "-X",
+        "utf8",
+        "tools/oracle/production_input_graph.py",
+        "--mutations"
+      ],
+      "RequiredCases": {
+        "status": "Exact original command/case/field/denial scope",
+        "totals_not_additive": "2880 registration cases, 1297 field/variant checks, 448 Cargo records across original receipts; no overlapping sum"
+      },
+      "RequiredArtifacts": [
+        "Original log, receipt and unchanged original source input map"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "status": "Original historical local execution only"
+      },
+      "PermittedEquivalence": "Same-source inherited credit only; new docs not a rerun",
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "status": "INHERITED SAME-SOURCE PASS",
+        "new_execution": "Not Executed",
+        "original_log_hash": "3b5a9695b22aa8cc41f81be79ab05a76b5a5f860c0c07c66991f15392b84fe1c",
+        "new_credit": 0
+      }
+    },
+    {
+      "GateId": "inherited-10",
+      "FrozenSourceHEAD": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+      "SourceIdentity": {
+        "raw_map": "target/phase-04c1b4c4r3c2r5g2r2-B-final.json",
+        "scope_paths": 2403,
+        "manifest_sha256": "bded08f06547ba23e9acba6693b090cd37e1302fd107dfc488c11f6b52f1101a"
+      },
+      "RegistryIdentity": {
+        "scope": "spec/registry and exact nominal tuple 9/8/8/8"
+      },
+      "CompilerIdentity": {
+        "scope": "All old production Rust/config unchanged"
+      },
+      "ExpectedIdentity": {
+        "scope": "All old conformance Expected unchanged"
+      },
+      "OracleIdentity": {
+        "scope": "All old tools/Oracle unchanged"
+      },
+      "ToolchainIdentity": {
+        "status": "Historical receipt only; not a new qualified environment"
+      },
+      "BuildProfile": {
+        "status": "Original receipt frozen; no new invocation",
+        "receipt": {
+          "name": "r5g2-boundary-oracle",
+          "command": [
+            "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+            "-X",
+            "utf8",
+            "tools/oracle/raw_model7_full_field.py",
+            "--boundary"
+          ],
+          "head": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+          "started_unix": 1792461974.3358066,
+          "exit": 0,
+          "expected_exit": 0,
+          "safety": {
+            "name": "r5g2-boundary-oracle",
+            "command": [
+              "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+              "-X",
+              "utf8",
+              "tools/oracle/raw_model7_full_field.py",
+              "--boundary"
+            ],
+            "started_unix": 1792461974.3845723,
+            "seconds": 49.02,
+            "exit": 0,
+            "cancelled": null,
+            "limits_verified": true,
+            "cpu_hard_cap_percent": 5,
+            "process_memory_mib": 768,
+            "whole_job_memory_mib": 1536,
+            "peak_process_bytes": 538628096,
+            "peak_job_bytes": 550731776,
+            "minimum_system_available_bytes": 11419353088,
+            "test_threads": 1,
+            "active_top_level_jobs": 1,
+            "cargo_build_jobs_env": 1,
+            "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-boundary-oracle.log"
+          },
+          "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-boundary-oracle.log",
+          "log_sha256": "2f87d5f0070f94da54a82da75be7a49d09c1899ba778f411ba2493a5bbc85c97"
+        }
+      },
+      "CommandAndFlags": [
+        "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+        "-X",
+        "utf8",
+        "tools/oracle/raw_model7_full_field.py",
+        "--boundary"
+      ],
+      "RequiredCases": {
+        "status": "Exact original command/case/field/denial scope",
+        "totals_not_additive": "2880 registration cases, 1297 field/variant checks, 448 Cargo records across original receipts; no overlapping sum"
+      },
+      "RequiredArtifacts": [
+        "Original log, receipt and unchanged original source input map"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "status": "Original historical local execution only"
+      },
+      "PermittedEquivalence": "Same-source inherited credit only; new docs not a rerun",
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "status": "INHERITED SAME-SOURCE PASS",
+        "new_execution": "Not Executed",
+        "original_log_hash": "2f87d5f0070f94da54a82da75be7a49d09c1899ba778f411ba2493a5bbc85c97",
+        "new_credit": 0
+      }
+    },
+    {
+      "GateId": "inherited-11",
+      "FrozenSourceHEAD": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+      "SourceIdentity": {
+        "raw_map": "target/phase-04c1b4c4r3c2r5g2r2-B-final.json",
+        "scope_paths": 2403,
+        "manifest_sha256": "bded08f06547ba23e9acba6693b090cd37e1302fd107dfc488c11f6b52f1101a"
+      },
+      "RegistryIdentity": {
+        "scope": "spec/registry and exact nominal tuple 9/8/8/8"
+      },
+      "CompilerIdentity": {
+        "scope": "All old production Rust/config unchanged"
+      },
+      "ExpectedIdentity": {
+        "scope": "All old conformance Expected unchanged"
+      },
+      "OracleIdentity": {
+        "scope": "All old tools/Oracle unchanged"
+      },
+      "ToolchainIdentity": {
+        "status": "Historical receipt only; not a new qualified environment"
+      },
+      "BuildProfile": {
+        "status": "Original receipt frozen; no new invocation",
+        "receipt": {
+          "name": "r5g2-model6-total",
+          "command": [
+            "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+            "-X",
+            "utf8",
+            "tools/oracle/raw_model6_binding.py",
+            "--gate",
+            "total"
+          ],
+          "head": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+          "started_unix": 1792462023.4355044,
+          "exit": 2,
+          "expected_exit": 2,
+          "safety": {
+            "name": "r5g2-model6-total",
+            "command": [
+              "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+              "-X",
+              "utf8",
+              "tools/oracle/raw_model6_binding.py",
+              "--gate",
+              "total"
+            ],
+            "started_unix": 1792462023.476026,
+            "seconds": 3.0,
+            "exit": 2,
+            "cancelled": null,
+            "limits_verified": true,
+            "cpu_hard_cap_percent": 5,
+            "process_memory_mib": 768,
+            "whole_job_memory_mib": 1536,
+            "peak_process_bytes": 118521856,
+            "peak_job_bytes": 130428928,
+            "minimum_system_available_bytes": 11694333952,
+            "test_threads": 1,
+            "active_top_level_jobs": 1,
+            "cargo_build_jobs_env": 1,
+            "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-model6-total.log"
+          },
+          "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-model6-total.log",
+          "log_sha256": "e448484b3d1297e22bccae266b5884edd169d8d179629aec34ff33ef510e8afe"
+        }
+      },
+      "CommandAndFlags": [
+        "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+        "-X",
+        "utf8",
+        "tools/oracle/raw_model6_binding.py",
+        "--gate",
+        "total"
+      ],
+      "RequiredCases": {
+        "status": "Exact original command/case/field/denial scope",
+        "totals_not_additive": "2880 registration cases, 1297 field/variant checks, 448 Cargo records across original receipts; no overlapping sum"
+      },
+      "RequiredArtifacts": [
+        "Original log, receipt and unchanged original source input map"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "status": "Original historical local execution only"
+      },
+      "PermittedEquivalence": "Same-source inherited credit only; new docs not a rerun",
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "status": "INHERITED SAME-SOURCE PASS",
+        "new_execution": "Not Executed",
+        "original_log_hash": "e448484b3d1297e22bccae266b5884edd169d8d179629aec34ff33ef510e8afe",
+        "new_credit": 0
+      }
+    },
+    {
+      "GateId": "inherited-12",
+      "FrozenSourceHEAD": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+      "SourceIdentity": {
+        "raw_map": "target/phase-04c1b4c4r3c2r5g2r2-B-final.json",
+        "scope_paths": 2403,
+        "manifest_sha256": "bded08f06547ba23e9acba6693b090cd37e1302fd107dfc488c11f6b52f1101a"
+      },
+      "RegistryIdentity": {
+        "scope": "spec/registry and exact nominal tuple 9/8/8/8"
+      },
+      "CompilerIdentity": {
+        "scope": "All old production Rust/config unchanged"
+      },
+      "ExpectedIdentity": {
+        "scope": "All old conformance Expected unchanged"
+      },
+      "OracleIdentity": {
+        "scope": "All old tools/Oracle unchanged"
+      },
+      "ToolchainIdentity": {
+        "status": "Historical receipt only; not a new qualified environment"
+      },
+      "BuildProfile": {
+        "status": "Original receipt frozen; no new invocation",
+        "receipt": {
+          "name": "r5g2-model7-total",
+          "command": [
+            "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+            "-X",
+            "utf8",
+            "tools/oracle/raw_model7_full_field.py",
+            "--gate",
+            "total"
+          ],
+          "head": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+          "started_unix": 1792462026.5199575,
+          "exit": 2,
+          "expected_exit": 2,
+          "safety": {
+            "name": "r5g2-model7-total",
+            "command": [
+              "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+              "-X",
+              "utf8",
+              "tools/oracle/raw_model7_full_field.py",
+              "--gate",
+              "total"
+            ],
+            "started_unix": 1792462026.5607736,
+            "seconds": 50.02,
+            "exit": 2,
+            "cancelled": null,
+            "limits_verified": true,
+            "cpu_hard_cap_percent": 5,
+            "process_memory_mib": 768,
+            "whole_job_memory_mib": 1536,
+            "peak_process_bytes": 539971584,
+            "peak_job_bytes": 552083456,
+            "minimum_system_available_bytes": 10964836352,
+            "test_threads": 1,
+            "active_top_level_jobs": 1,
+            "cargo_build_jobs_env": 1,
+            "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-model7-total.log"
+          },
+          "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-model7-total.log",
+          "log_sha256": "2f87d5f0070f94da54a82da75be7a49d09c1899ba778f411ba2493a5bbc85c97"
+        }
+      },
+      "CommandAndFlags": [
+        "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+        "-X",
+        "utf8",
+        "tools/oracle/raw_model7_full_field.py",
+        "--gate",
+        "total"
+      ],
+      "RequiredCases": {
+        "status": "Exact original command/case/field/denial scope",
+        "totals_not_additive": "2880 registration cases, 1297 field/variant checks, 448 Cargo records across original receipts; no overlapping sum"
+      },
+      "RequiredArtifacts": [
+        "Original log, receipt and unchanged original source input map"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "status": "Original historical local execution only"
+      },
+      "PermittedEquivalence": "Same-source inherited credit only; new docs not a rerun",
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "status": "INHERITED SAME-SOURCE PASS",
+        "new_execution": "Not Executed",
+        "original_log_hash": "2f87d5f0070f94da54a82da75be7a49d09c1899ba778f411ba2493a5bbc85c97",
+        "new_credit": 0
+      }
+    },
+    {
+      "GateId": "inherited-13",
+      "FrozenSourceHEAD": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+      "SourceIdentity": {
+        "raw_map": "target/phase-04c1b4c4r3c2r5g2r2-B-final.json",
+        "scope_paths": 2403,
+        "manifest_sha256": "bded08f06547ba23e9acba6693b090cd37e1302fd107dfc488c11f6b52f1101a"
+      },
+      "RegistryIdentity": {
+        "scope": "spec/registry and exact nominal tuple 9/8/8/8"
+      },
+      "CompilerIdentity": {
+        "scope": "All old production Rust/config unchanged"
+      },
+      "ExpectedIdentity": {
+        "scope": "All old conformance Expected unchanged"
+      },
+      "OracleIdentity": {
+        "scope": "All old tools/Oracle unchanged"
+      },
+      "ToolchainIdentity": {
+        "status": "Historical receipt only; not a new qualified environment"
+      },
+      "BuildProfile": {
+        "status": "Original receipt frozen; no new invocation",
+        "receipt": {
+          "name": "r5g2-registration-oracle-final",
+          "command": [
+            "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+            "-X",
+            "utf8",
+            "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2-run.py",
+            "payload",
+            "tools/oracle/native_source_registration.py",
+            "target/phase-04c1b4c4r3c2r5g2-registration-actual.json"
+          ],
+          "head": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+          "started_unix": 1792460945.1227257,
+          "exit": 0,
+          "expected_exit": 0,
+          "safety": {
+            "name": "r5g2-registration-oracle-final",
+            "command": [
+              "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+              "-X",
+              "utf8",
+              "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2-run.py",
+              "payload",
+              "tools/oracle/native_source_registration.py",
+              "target/phase-04c1b4c4r3c2r5g2-registration-actual.json"
+            ],
+            "started_unix": 1792460945.1607373,
+            "seconds": 6.01,
+            "exit": 0,
+            "cancelled": null,
+            "limits_verified": true,
+            "cpu_hard_cap_percent": 5,
+            "process_memory_mib": 768,
+            "whole_job_memory_mib": 1536,
+            "peak_process_bytes": 143540224,
+            "peak_job_bytes": 170676224,
+            "minimum_system_available_bytes": 12808966144,
+            "test_threads": 1,
+            "active_top_level_jobs": 1,
+            "cargo_build_jobs_env": 1,
+            "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-registration-oracle-final.log"
+          },
+          "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-registration-oracle-final.log",
+          "log_sha256": "e3eed4aa34b004e7b424d0280fe8eafebfd385d2f757b4e067239a43ad631282"
+        }
+      },
+      "CommandAndFlags": [
+        "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+        "-X",
+        "utf8",
+        "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2-run.py",
+        "payload",
+        "tools/oracle/native_source_registration.py",
+        "target/phase-04c1b4c4r3c2r5g2-registration-actual.json"
+      ],
+      "RequiredCases": {
+        "status": "Exact original command/case/field/denial scope",
+        "totals_not_additive": "2880 registration cases, 1297 field/variant checks, 448 Cargo records across original receipts; no overlapping sum"
+      },
+      "RequiredArtifacts": [
+        "Original log, receipt and unchanged original source input map"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "status": "Original historical local execution only"
+      },
+      "PermittedEquivalence": "Same-source inherited credit only; new docs not a rerun",
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "status": "INHERITED SAME-SOURCE PASS",
+        "new_execution": "Not Executed",
+        "original_log_hash": "e3eed4aa34b004e7b424d0280fe8eafebfd385d2f757b4e067239a43ad631282",
+        "new_credit": 0
+      }
+    },
+    {
+      "GateId": "inherited-14",
+      "FrozenSourceHEAD": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+      "SourceIdentity": {
+        "raw_map": "target/phase-04c1b4c4r3c2r5g2r2-B-final.json",
+        "scope_paths": 2403,
+        "manifest_sha256": "bded08f06547ba23e9acba6693b090cd37e1302fd107dfc488c11f6b52f1101a"
+      },
+      "RegistryIdentity": {
+        "scope": "spec/registry and exact nominal tuple 9/8/8/8"
+      },
+      "CompilerIdentity": {
+        "scope": "All old production Rust/config unchanged"
+      },
+      "ExpectedIdentity": {
+        "scope": "All old conformance Expected unchanged"
+      },
+      "OracleIdentity": {
+        "scope": "All old tools/Oracle unchanged"
+      },
+      "ToolchainIdentity": {
+        "status": "Historical receipt only; not a new qualified environment"
+      },
+      "BuildProfile": {
+        "status": "Original receipt frozen; no new invocation",
+        "receipt": {
+          "name": "r5g2-registration-audit-final",
+          "command": [
+            "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+            "-X",
+            "utf8",
+            "tools/audit-native-source-staging.py",
+            "--write",
+            "--actual",
+            "target/phase-04c1b4c4r3c2r5g2-registration-actual.json"
+          ],
+          "head": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+          "started_unix": 1792460952.298664,
+          "exit": 0,
+          "expected_exit": 0,
+          "safety": {
+            "name": "r5g2-registration-audit-final",
+            "command": [
+              "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+              "-X",
+              "utf8",
+              "tools/audit-native-source-staging.py",
+              "--write",
+              "--actual",
+              "target/phase-04c1b4c4r3c2r5g2-registration-actual.json"
+            ],
+            "started_unix": 1792460952.3404007,
+            "seconds": 21.02,
+            "exit": 0,
+            "cancelled": null,
+            "limits_verified": true,
+            "cpu_hard_cap_percent": 5,
+            "process_memory_mib": 768,
+            "whole_job_memory_mib": 1536,
+            "peak_process_bytes": 167878656,
+            "peak_job_bytes": 180051968,
+            "minimum_system_available_bytes": 12689022976,
+            "test_threads": 1,
+            "active_top_level_jobs": 1,
+            "cargo_build_jobs_env": 1,
+            "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-registration-audit-final.log"
+          },
+          "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-registration-audit-final.log",
+          "log_sha256": "9bffa2760478fba1b6da8b3e1ce7c6bfeca7308130e5249f9d8896e002ad0270"
+        }
+      },
+      "CommandAndFlags": [
+        "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+        "-X",
+        "utf8",
+        "tools/audit-native-source-staging.py",
+        "--write",
+        "--actual",
+        "target/phase-04c1b4c4r3c2r5g2-registration-actual.json"
+      ],
+      "RequiredCases": {
+        "status": "Exact original command/case/field/denial scope",
+        "totals_not_additive": "2880 registration cases, 1297 field/variant checks, 448 Cargo records across original receipts; no overlapping sum"
+      },
+      "RequiredArtifacts": [
+        "Original log, receipt and unchanged original source input map"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "status": "Original historical local execution only"
+      },
+      "PermittedEquivalence": "Same-source inherited credit only; new docs not a rerun",
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "status": "INHERITED SAME-SOURCE PASS",
+        "new_execution": "Not Executed",
+        "original_log_hash": "9bffa2760478fba1b6da8b3e1ce7c6bfeca7308130e5249f9d8896e002ad0270",
+        "new_credit": 0
+      }
+    },
+    {
+      "GateId": "inherited-15",
+      "FrozenSourceHEAD": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+      "SourceIdentity": {
+        "raw_map": "target/phase-04c1b4c4r3c2r5g2r2-B-final.json",
+        "scope_paths": 2403,
+        "manifest_sha256": "bded08f06547ba23e9acba6693b090cd37e1302fd107dfc488c11f6b52f1101a"
+      },
+      "RegistryIdentity": {
+        "scope": "spec/registry and exact nominal tuple 9/8/8/8"
+      },
+      "CompilerIdentity": {
+        "scope": "All old production Rust/config unchanged"
+      },
+      "ExpectedIdentity": {
+        "scope": "All old conformance Expected unchanged"
+      },
+      "OracleIdentity": {
+        "scope": "All old tools/Oracle unchanged"
+      },
+      "ToolchainIdentity": {
+        "status": "Historical receipt only; not a new qualified environment"
+      },
+      "BuildProfile": {
+        "status": "Original receipt frozen; no new invocation",
+        "receipt": {
+          "name": "r5g2-portable-successor-denial",
+          "command": [
+            "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+            "-X",
+            "utf8",
+            "target/phase-04c1b4c4r3c2r5g2-portable-denial.py"
+          ],
+          "head": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+          "ended_head": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+          "started_unix": 1792462091.9938838,
+          "exit": 0,
+          "expected_exit": 0,
+          "safety": {
+            "name": "r5g2-portable-successor-denial",
+            "command": [
+              "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+              "-X",
+              "utf8",
+              "target/phase-04c1b4c4r3c2r5g2-portable-denial.py"
+            ],
+            "started_unix": 1792462092.0576694,
+            "seconds": 95.04,
+            "exit": 0,
+            "cancelled": null,
+            "limits_verified": true,
+            "cpu_hard_cap_percent": 5,
+            "process_memory_mib": 768,
+            "whole_job_memory_mib": 1536,
+            "peak_process_bytes": 411201536,
+            "peak_job_bytes": 489836544,
+            "minimum_system_available_bytes": 10471452672,
+            "test_threads": 1,
+            "active_top_level_jobs": 1,
+            "cargo_build_jobs_env": 1,
+            "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-portable-successor-denial.log"
+          },
+          "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-portable-successor-denial.log",
+          "log_sha256": "11f6de8f01126eceee2d1f56af48a923fe8375aad3a0fa9f602ae1046338befe"
+        }
+      },
+      "CommandAndFlags": [
+        "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+        "-X",
+        "utf8",
+        "target/phase-04c1b4c4r3c2r5g2-portable-denial.py"
+      ],
+      "RequiredCases": {
+        "status": "Exact original command/case/field/denial scope",
+        "totals_not_additive": "2880 registration cases, 1297 field/variant checks, 448 Cargo records across original receipts; no overlapping sum"
+      },
+      "RequiredArtifacts": [
+        "Original log, receipt and unchanged original source input map"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "status": "Original historical local execution only"
+      },
+      "PermittedEquivalence": "Same-source inherited credit only; new docs not a rerun",
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "status": "INHERITED SAME-SOURCE PASS",
+        "new_execution": "Not Executed",
+        "original_log_hash": "11f6de8f01126eceee2d1f56af48a923fe8375aad3a0fa9f602ae1046338befe",
+        "new_credit": 0
+      }
+    },
+    {
+      "GateId": "lane-B",
+      "FrozenSourceHEAD": "633615cc07f9510452c193f81d5bbc2fc96f677b",
+      "SourceIdentity": {
+        "raw_map": "target/phase-04c1b4c4r3c2r5g2r2-B-final.json",
+        "scope_paths": 2403,
+        "manifest_sha256": "bded08f06547ba23e9acba6693b090cd37e1302fd107dfc488c11f6b52f1101a"
+      },
+      "RegistryIdentity": {
+        "scope": "spec/registry and exact nominal tuple 9/8/8/8"
+      },
+      "CompilerIdentity": {
+        "scope": "All old production Rust/config unchanged"
+      },
+      "ExpectedIdentity": {
+        "scope": "All old conformance Expected unchanged"
+      },
+      "OracleIdentity": {
+        "scope": "All old tools/Oracle unchanged"
+      },
+      "ToolchainIdentity": {
+        "status": "Historical receipt only; not a new qualified environment"
+      },
+      "BuildProfile": {
+        "status": "Original receipt frozen; no new invocation",
+        "receipt": {
+          "name": "r5g2-portable-successor-denial",
+          "command": [
+            "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+            "-X",
+            "utf8",
+            "target/phase-04c1b4c4r3c2r5g2-portable-denial.py"
+          ],
+          "head": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+          "ended_head": "7a79a5f903172294cfb38296fb7360b8d8c0660c",
+          "started_unix": 1792462091.9938838,
+          "exit": 0,
+          "expected_exit": 0,
+          "safety": {
+            "name": "r5g2-portable-successor-denial",
+            "command": [
+              "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+              "-X",
+              "utf8",
+              "target/phase-04c1b4c4r3c2r5g2-portable-denial.py"
+            ],
+            "started_unix": 1792462092.0576694,
+            "seconds": 95.04,
+            "exit": 0,
+            "cancelled": null,
+            "limits_verified": true,
+            "cpu_hard_cap_percent": 5,
+            "process_memory_mib": 768,
+            "whole_job_memory_mib": 1536,
+            "peak_process_bytes": 411201536,
+            "peak_job_bytes": 489836544,
+            "minimum_system_available_bytes": 10471452672,
+            "test_threads": 1,
+            "active_top_level_jobs": 1,
+            "cargo_build_jobs_env": 1,
+            "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-portable-successor-denial.log"
+          },
+          "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-portable-successor-denial.log",
+          "log_sha256": "11f6de8f01126eceee2d1f56af48a923fe8375aad3a0fa9f602ae1046338befe"
+        }
+      },
+      "CommandAndFlags": {
+        "source": "target/phase-04c1b4c4r3c2r5g2r2-B-complete.json",
+        "commands": 82
+      },
+      "RequiredCases": {
+        "generators": 41,
+        "rounds": 2,
+        "runs": 82,
+        "input_paths": 2403
+      },
+      "RequiredArtifacts": [
+        "Original log, receipt and unchanged original source input map"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "status": "Original historical local execution only"
+      },
+      "PermittedEquivalence": "Same-source inherited credit only; new docs not a rerun",
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "status": "PRESERVED ORIGINAL-SCOPE PASS",
+        "new_execution": "Not Executed",
+        "new_credit": 0
+      }
+    }
+  ],
+  "contract_dimensions": [
+    "Source/spec identity",
+    "Build configuration",
+    "Execution environment",
+    "Resource protection policy"
+  ],
+  "historical_builds": "0/8",
+  "original_gate_not_replaced": true,
+  "case_roster_qualification_is_mandatory_before_future_admission": true,
+  "no_currently_qualified_reusable_artifact": "No fully authenticated Source+Toolchain+Profile+binary chain found in the audited receipts/cache metadata; not an exhaustive disk search"
+}

@@ -1,0 +1,890 @@
+{
+  "scope": "Design-only algorithm vectors; no real environment, build, test, or gate executed",
+  "operational_execution_status": "Not Executed",
+  "static_check_executed": true,
+  "total": 110,
+  "passed": 110,
+  "execution_credit": 0,
+  "authority": false,
+  "vectors": [
+    {
+      "id": "toy-complete",
+      "static_check": "PASS",
+      "expected_acceptance": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/SchemaVersion",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/SchemaVersion",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/SyntheticScope",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/SyntheticScope",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/ManifestStatus",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/ManifestStatus",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/GateId",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/GateId",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/EnvironmentId",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/EnvironmentId",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/OSAndArchitecture",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/OSAndArchitecture",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/RustCargoLLVMVersions",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/RustCargoLLVMVersions",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/PythonVersion",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/PythonVersion",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/FrozenSourceHEAD",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/FrozenSourceHEAD",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/CompleteSourceRawHash",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/CompleteSourceRawHash",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/RegistryHash",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/RegistryHash",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/CompilerHash",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/CompilerHash",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/ExpectedHash",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/ExpectedHash",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/OracleHash",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/OracleHash",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/ToolchainIdentityHash",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/ToolchainIdentityHash",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/BuildProfile",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/BuildProfile",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/BuildCommand",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/BuildCommand",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/TestCommand",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/TestCommand",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/BuildArtifactHashes",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/BuildArtifactHashes",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/ExecutionStartAndEnd",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/ExecutionStartAndEnd",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/ActualExitCode",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/ActualExitCode",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/ResourcePolicy",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/ResourcePolicy",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/ResourceSafetyStatus",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/ResourceSafetyStatus",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/RequiredAndCompletedCaseIds",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/RequiredAndCompletedCaseIds",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/ActualOutputHashes",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/ActualOutputHashes",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/IndependentOracleReceipt",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/IndependentOracleReceipt",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/PreAndPostSourceIntegrity",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/PreAndPostSourceIntegrity",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/CapabilityDenialReceipt",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/CapabilityDenialReceipt",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/EnvironmentQualificationReceipt",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/EnvironmentQualificationReceipt",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/ExecutorReceipt",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/ExecutorReceipt",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit/PermittedEquivalenceApproval",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit/PermittedEquivalenceApproval",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/OSAndArchitecture/os",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/OSAndArchitecture/architecture",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/RustCargoLLVMVersions/rustc",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/RustCargoLLVMVersions/cargo",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/RustCargoLLVMVersions/llvm",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/BuildProfile/dev_debug",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/BuildProfile/test_debug",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/BuildProfile/features",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/ResourcePolicy/cpu_percent",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/ResourcePolicy/process_mib",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/ResourcePolicy/job_mib",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/ResourcePolicy/reserve_bytes",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/ResourcePolicy/test_scheduler_threads",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/ResourcePolicy/cargo_jobs",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/ResourcePolicy/priority",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/ResourceSafetyStatus/status",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/ResourceSafetyStatus/cancelled",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/ResourceSafetyStatus/limits_verified",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/RequiredAndCompletedCaseIds/required",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/RequiredAndCompletedCaseIds/completed",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/IndependentOracleReceipt/status",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/IndependentOracleReceipt/case_ids",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/IndependentOracleReceipt/outputs_hash",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/PreAndPostSourceIntegrity/before",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/PreAndPostSourceIntegrity/after",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/CapabilityDenialReceipt/root_export",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/CapabilityDenialReceipt/portable",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/CapabilityDenialReceipt/complete_view",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-nested-omit/CapabilityDenialReceipt/obligation_identity",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "cannot-promote/FAILED",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "cannot-promote/NOT EXECUTED",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "cannot-promote/INTERRUPTED BY RESOURCE SAFETY",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-shrink-case-roster",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-delete-output",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-delete-artifact",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": true,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "cross-environment-swap",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "wrong-profile",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "nonzero-exit",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "bool-is-not-integer",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "float-is-not-integer",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "cancelled-not-pass",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "changed-source",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "forged-root-authority",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "caller-trust-flag",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "reject-real-gate",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "missing-qualification",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "unapproved-split",
+      "static_check": "PASS",
+      "expected_acceptance": false,
+      "both_sides": false,
+      "operational_execution_status": "Not Executed",
+      "authority": false
+    }
+  ]
+}

@@ -1,0 +1,202 @@
+{
+  "status": "STATIC CLASSIFICATION COMPLETE",
+  "historical_builds": "0/8",
+  "reserve_interruptions": [
+    {
+      "run": "R5G2",
+      "frozen_head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+      "start_available_memory": null,
+      "start_available_note": "Not captured by unchanged executor; not inferred from last preflight",
+      "preflight_samples": null,
+      "preflight_minimum": null,
+      "last_preflight_available": null,
+      "runtime_minimum_available": 8580960256,
+      "process_peak_committed": 129671168,
+      "whole_job_peak_committed": 168259584,
+      "reserve_bytes": 8589934592,
+      "interruption_point": "Historical Portable tests; full history incomplete",
+      "cancellation": "foreground_memory_reserve",
+      "exit": 79,
+      "duration_seconds": 513.22,
+      "actual_original_receipt": {
+        "name": "r5g2-history-1",
+        "command": [
+          "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+          "-X",
+          "utf8",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2-run.py",
+          "history-cargo",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition1\\source",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c3-legacy-abc91d5\\build"
+        ],
+        "started_unix": 1792462236.021952,
+        "seconds": 513.22,
+        "exit": 79,
+        "cancelled": "foreground_memory_reserve",
+        "limits_verified": true,
+        "cpu_hard_cap_percent": 5,
+        "process_memory_mib": 768,
+        "whole_job_memory_mib": 1536,
+        "peak_process_bytes": 129671168,
+        "peak_job_bytes": 168259584,
+        "minimum_system_available_bytes": 8580960256,
+        "test_threads": 1,
+        "active_top_level_jobs": 1,
+        "cargo_build_jobs_env": 1,
+        "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2-history-1.log"
+      },
+      "external_causal_attribution": "UNKNOWN; no independent contemporaneous series identifies a responsible process"
+    },
+    {
+      "run": "R5G2R1",
+      "frozen_head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+      "start_available_memory": null,
+      "start_available_note": "Not captured by unchanged executor; not inferred from last preflight",
+      "preflight_samples": [
+        {
+          "time_unix": 1792465287.7238398,
+          "available_bytes": 11535630336,
+          "load_percent": 66,
+          "total_bytes": 34124972032
+        },
+        {
+          "time_unix": 1792465289.724554,
+          "available_bytes": 11237453824,
+          "load_percent": 67,
+          "total_bytes": 34124972032
+        },
+        {
+          "time_unix": 1792465291.7249548,
+          "available_bytes": 11096514560,
+          "load_percent": 67,
+          "total_bytes": 34124972032
+        }
+      ],
+      "preflight_minimum": 11096514560,
+      "last_preflight_available": 11096514560,
+      "runtime_minimum_available": 8133066752,
+      "process_peak_committed": 157642752,
+      "whole_job_peak_committed": 269271040,
+      "reserve_bytes": 8589934592,
+      "interruption_point": "Historical Portable tests; full history incomplete",
+      "cancellation": "foreground_memory_reserve",
+      "exit": 79,
+      "duration_seconds": 1533.62,
+      "actual_original_receipt": {
+        "name": "r5g2r1-history-1",
+        "command": [
+          "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+          "-X",
+          "utf8",
+          "E:\\Projects\\agent\\tools\\verify-r5g2r1.py",
+          "history-worker",
+          "1"
+        ],
+        "started_unix": 1792465291.7881339,
+        "seconds": 1533.62,
+        "exit": 79,
+        "cancelled": "foreground_memory_reserve",
+        "limits_verified": true,
+        "cpu_hard_cap_percent": 5,
+        "process_memory_mib": 768,
+        "whole_job_memory_mib": 1536,
+        "peak_process_bytes": 157642752,
+        "peak_job_bytes": 269271040,
+        "minimum_system_available_bytes": 8133066752,
+        "test_threads": 1,
+        "active_top_level_jobs": 1,
+        "cargo_build_jobs_env": 1,
+        "log": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g3-safe-r5g2r1-history-1.log"
+      },
+      "external_causal_attribution": "UNKNOWN; no independent contemporaneous series identifies a responsible process"
+    }
+  ],
+  "frozen_g3": {
+    "raw_status": "FAILED",
+    "raw_exit": 101,
+    "supervisor_cancelled": null,
+    "original_derived_adjudication": {
+      "status": "INTERRUPTED BY RESOURCE SAFETY",
+      "raw_execution_status": "FAILED",
+      "raw_exit": 101,
+      "raw_receipt": "target/phase-04c1b4c4r3c2r5g2r2-lane-A.json",
+      "observed": "LLVM allocation failure during af-computation compilation; no tests executed",
+      "diagnosis": "Strongly consistent with unchanged per-process hard memory limit; not a semantic assertion failure",
+      "supervisor_foreground_cancellation": null,
+      "process_limit_bytes": 805306368,
+      "process_peak_bytes": 805244928,
+      "distance_to_cap": 61440,
+      "source_git_blob_and_raw_unchanged": true,
+      "debug_profile": 2,
+      "profile_changed": false,
+      "positive_credit": 0,
+      "negative_credit": 0,
+      "comparator_credit": 0,
+      "automatic_retry": false
+    },
+    "observed": "LLVM allocation failure; Cargo 101; no tests completed",
+    "debug": 2,
+    "peak_process_committed": 805244928,
+    "process_cap": 805306368,
+    "distance_to_cap": 61440,
+    "peak_job_committed": 896180224,
+    "minimum_system_available": 9395097600,
+    "source_cargo_receipt": {
+      "path": "target/phase-04c1b4c4r3c2r5g2r2-A-cargo-command.json",
+      "present": true,
+      "byte_length": 745,
+      "raw_sha256": "ce1b48ec2baf644b6935eea4dea4f38b73e3444df98cefde03ef5ee5daa64ef5"
+    },
+    "raw_envelope_receipt": {
+      "path": "target/phase-04c1b4c4r3c2r5g2r2-lane-A.json",
+      "present": true,
+      "byte_length": 1546,
+      "raw_sha256": "1b9590eee84db237346de6ca11f09252a02df06f2c3e13dc7aedb186da58348f"
+    },
+    "cargo_log": {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-A-cargo.log",
+      "present": true,
+      "byte_length": 5687,
+      "raw_sha256": "a20aec6b19ddccce56aead4756c4b6883cd0cb08f95f7c7e92f90f9249b144c3"
+    },
+    "causal_status": "STRONGLY CONSISTENT WITH QUOTA; NOT FULLY PROVEN",
+    "missing": [
+      "Exact failed allocation request and allocator detail",
+      "OS allocation error / NTSTATUS at allocation",
+      "Job memory-limit completion-port notification",
+      "Commit and address-space fragmentation at failure"
+    ]
+  },
+  "lane_c": {
+    "status": "NOT ADMITTED",
+    "conclusion": "HISTORY LAUNCH NOT ADMITTED — INSUFFICIENT STABLE HEADROOM",
+    "admitted": false,
+    "samples": 121,
+    "duration_seconds": 600.0005617999996,
+    "minimum_available": 10234888192,
+    "maximum_sample_drop": 708202496,
+    "launch_threshold": 15032385536,
+    "hard_reserve": 8589934592,
+    "raw_series": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-memory-observations.jsonl",
+    "raw_sha256": "61b21740283a8d648b18527bf5ce2f9cda079b4384ec9788c290989c812b6f28",
+    "original_protection_unchanged": true,
+    "automatic_retry": false
+  },
+  "distinctions": {
+    "physical": "GlobalMemoryStatusEx available physical memory",
+    "committed": "Job/Process committed virtual memory limits and peak commit; not working set",
+    "llvm": "Allocation failure is observed; exact Windows denial cause unproved",
+    "profile": "Debug2 actual rustc argv is frozen; no causal comparison with Debug0 performed",
+    "cache": "Incomplete cold compilation is not a complete reusable artifact provenance chain",
+    "external_load": "No contemporaneous independent PID series establishes causal blame",
+    "audit_overhead": "Protected supervisor/worker are included in job peak. No reliable decomposition into compiler versus audit/external overhead.",
+    "arithmetic": "Never infer external consumption by subtracting job commit from system physical availability"
+  },
+  "raw_failure_never_rewritten": true,
+  "new_heavy_executions": 0,
+  "no_stable_14gib_execution_window_demonstrated": true,
+  "references": [
+    "https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-jobobject_extended_limit_information",
+    "https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/ns-sysinfoapi-memorystatusex"
+  ]
+}

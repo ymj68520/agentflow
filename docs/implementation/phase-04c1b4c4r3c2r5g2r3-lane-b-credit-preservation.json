@@ -1,0 +1,794 @@
+{
+  "status": "PASS — PRESERVED ORIGINAL INPUT SCOPE",
+  "generators": 41,
+  "rounds": 2,
+  "script_runs": 82,
+  "protected_paths": 2403,
+  "byte_drift": 0,
+  "original_maps": [
+    {
+      "path": "target/phase-04c1b4c4r3c2r5g2r2-B-baseline.json",
+      "present": true,
+      "byte_length": 503138,
+      "raw_sha256": "761e59246a5a9c6e49c6790a4eb397f2da6ff9ac01b961c38543a08e6ea8b77e"
+    },
+    {
+      "path": "target/phase-04c1b4c4r3c2r5g2r2-B-round1.json",
+      "present": true,
+      "byte_length": 503138,
+      "raw_sha256": "761e59246a5a9c6e49c6790a4eb397f2da6ff9ac01b961c38543a08e6ea8b77e"
+    },
+    {
+      "path": "target/phase-04c1b4c4r3c2r5g2r2-B-round2.json",
+      "present": true,
+      "byte_length": 503138,
+      "raw_sha256": "761e59246a5a9c6e49c6790a4eb397f2da6ff9ac01b961c38543a08e6ea8b77e"
+    },
+    {
+      "path": "target/phase-04c1b4c4r3c2r5g2r2-B-final.json",
+      "present": true,
+      "byte_length": 503138,
+      "raw_sha256": "761e59246a5a9c6e49c6790a4eb397f2da6ff9ac01b961c38543a08e6ea8b77e"
+    }
+  ],
+  "original_maps_equal": true,
+  "generator_roster": [
+    {
+      "path": "tools/gen-advanced-control-corpus.py",
+      "present": true,
+      "byte_length": 29937,
+      "raw_sha256": "df2e0461f155242dba29bdfa9d3b31466a773f7c4a3215b342951194686dc462"
+    },
+    {
+      "path": "tools/gen-afidl-corpus.py",
+      "present": true,
+      "byte_length": 45123,
+      "raw_sha256": "c0231838168e05702ca4d0b51bccbe03865f31eb65598bce4be9c3f13838ca00"
+    },
+    {
+      "path": "tools/gen-component-contract-corpus.py",
+      "present": true,
+      "byte_length": 33519,
+      "raw_sha256": "3b81c65c7521d2f7537d87e0c2e8397fedf95d86d48599f561b89504117ee608"
+    },
+    {
+      "path": "tools/gen-computation-control-corpus.py",
+      "present": true,
+      "byte_length": 42458,
+      "raw_sha256": "46d5dcbcbd2d2a38635b6cfa59b95e0a8f4b83d997e6614603160356862ca025"
+    },
+    {
+      "path": "tools/gen-computation-leaf-corpus.py",
+      "present": true,
+      "byte_length": 21338,
+      "raw_sha256": "453f77544b95f2038a512646b6109113285bdbf9c69114040c80a710d9a0ef9a"
+    },
+    {
+      "path": "tools/gen-computation-root-export-corpus.py",
+      "present": true,
+      "byte_length": 35749,
+      "raw_sha256": "cc1ed8339535040c7b667080208b19d402ee83ec51c6f3f48b9798dd1626c01e"
+    },
+    {
+      "path": "tools/gen-computation-root-recovery-corpus.py",
+      "present": true,
+      "byte_length": 52451,
+      "raw_sha256": "779623de0c172f6c52033aa4942a9fc93b42223a144ba3ed2a496a5bc8d94876"
+    },
+    {
+      "path": "tools/gen-computation-scope-closure-corpus.py",
+      "present": true,
+      "byte_length": 28266,
+      "raw_sha256": "5353d3d82142a5265c4b0a05ed33e77456f8569a8389b0b42569c72985c37856"
+    },
+    {
+      "path": "tools/gen-conformance.py",
+      "present": true,
+      "byte_length": 45410,
+      "raw_sha256": "89d7dcc4aeeb00df8e4b6a26b117e4141806bb7325b08bc067c972fff9d7c6e3"
+    },
+    {
+      "path": "tools/gen-cost-projection-corpus.py",
+      "present": true,
+      "byte_length": 28281,
+      "raw_sha256": "f5603e6521e49a7e7467b8ee1cfaa0c12b847e685d87ca58eed2202c6f24fab2"
+    },
+    {
+      "path": "tools/gen-document-occurrence-staging.py",
+      "present": true,
+      "byte_length": 19209,
+      "raw_sha256": "9fcb742a42c0ea9d338b300ce6b0380c236034909fa1bd2426f40eaebbf70781"
+    },
+    {
+      "path": "tools/gen-effect-signature-corpus.py",
+      "present": true,
+      "byte_length": 77254,
+      "raw_sha256": "016ed172dbf4943d966c58624056491a6c1dd27c84b496f5915c551b9aefcf6b"
+    },
+    {
+      "path": "tools/gen-execution-requirements-corpus.py",
+      "present": true,
+      "byte_length": 33021,
+      "raw_sha256": "a4b12e7436500a84043d6bb999ccf94b484f354366efb8e5176002d5f24879cb"
+    },
+    {
+      "path": "tools/gen-failure-row-corpus.py",
+      "present": true,
+      "byte_length": 32691,
+      "raw_sha256": "9c733e7c3ac9fb11780438a1aaa617395d5dfd2c48e6786ef44721c148bae851"
+    },
+    {
+      "path": "tools/gen-g01-edition2-staging-corpus.py",
+      "present": true,
+      "byte_length": 6957,
+      "raw_sha256": "805e2e9462a525f819079710bae2f3d2ce8c3de57c69585a1bd6c307a6dad27e"
+    },
+    {
+      "path": "tools/gen-g01-t3-native-capture.py",
+      "present": true,
+      "byte_length": 1944,
+      "raw_sha256": "85c2f7c29d2f2a10cf0c9a7d0d5a97f9855aa1479a5c87532cbb3fc6582c7b85"
+    },
+    {
+      "path": "tools/gen-information-flow-corpus.py",
+      "present": true,
+      "byte_length": 71463,
+      "raw_sha256": "e7854ccd6bf93f3ace363a228a64b89eb97f83539f1aefc4e828c1ae882d79af"
+    },
+    {
+      "path": "tools/gen-native-guard-staging.py",
+      "present": true,
+      "byte_length": 13951,
+      "raw_sha256": "8db420f9d2a3d39aada87d9bd4a17c7e6ae3bf2f0b9a8e99fb3f4f1c8223851c"
+    },
+    {
+      "path": "tools/gen-native-relation-source-staging.py",
+      "present": true,
+      "byte_length": 2199,
+      "raw_sha256": "3623f7d43dfc6d6e079a080c052b04bef1eef5b678409cef3ff09ad7a2fc736f"
+    },
+    {
+      "path": "tools/gen-portable-d10-gap-audit.py",
+      "present": true,
+      "byte_length": 1065,
+      "raw_sha256": "746acc64043e01050c22fb27f0e8dc4d1188480fca180f008706cb84e7aa3705"
+    },
+    {
+      "path": "tools/gen-portable-d9-control-full-oracle.py",
+      "present": true,
+      "byte_length": 18420,
+      "raw_sha256": "cdbbc6f1c3b73f1ba2a7123f579774c11ac6c26e8a0fedf8050661403b62f996"
+    },
+    {
+      "path": "tools/gen-portable-d9-recovery-full-oracle.py",
+      "present": true,
+      "byte_length": 8744,
+      "raw_sha256": "329e848eb8fe1a6a1a7e40c761b5b831bd7bc28630365036b8a8226c2b4c8e85"
+    },
+    {
+      "path": "tools/gen-portable-proof-codec-corpus.py",
+      "present": true,
+      "byte_length": 46790,
+      "raw_sha256": "ff1eb2074a9f39f822b5bbbd0d5357735ea5a09ae5ffea20199ced3d37ad3866"
+    },
+    {
+      "path": "tools/gen-portable-root-export-revalidation-corpus.py",
+      "present": true,
+      "byte_length": 50130,
+      "raw_sha256": "2e5120f40769054bbb0b005391f60c2eac45ed76d91de012f97e07f1bc57a3cd"
+    },
+    {
+      "path": "tools/gen-portable-static-reconstruction-corpus.py",
+      "present": true,
+      "byte_length": 71211,
+      "raw_sha256": "b68e16bfc2d8d4fa0490ad7c37f28c28576caca1480ee2a508a440f4bfe99378"
+    },
+    {
+      "path": "tools/gen-production-input-graph-corpus.py",
+      "present": true,
+      "byte_length": 13414,
+      "raw_sha256": "368565524a9605d364c26ffcc6a8796c44e617b17a880a529c34d697ca9beae0"
+    },
+    {
+      "path": "tools/gen-raw-model7-required-fields.py",
+      "present": true,
+      "byte_length": 4961,
+      "raw_sha256": "8051d8519ca6d65f14762b8a42bba38112ee743b22784e0cd24747f1ec034201"
+    },
+    {
+      "path": "tools/gen-raw-validation-staging.py",
+      "present": true,
+      "byte_length": 18715,
+      "raw_sha256": "3c9f29e41e8758ca735c4dc6a6ef873b06b96d9f443f13f90994fd886d3ceb9c"
+    },
+    {
+      "path": "tools/gen-recovery-contract-corpus.py",
+      "present": true,
+      "byte_length": 28303,
+      "raw_sha256": "ed4e7db3fd11f3f04184854a39567144f31cc0dc8b34ee139c77a51653e87a6d"
+    },
+    {
+      "path": "tools/gen-registry-instances.py",
+      "present": true,
+      "byte_length": 260505,
+      "raw_sha256": "e3771bbb096886c9a2551006ce127b939006d28e43b3f941e564b16638fe473e"
+    },
+    {
+      "path": "tools/gen-relation-schema-staging.py",
+      "present": true,
+      "byte_length": 18297,
+      "raw_sha256": "2234d4fd645275a180fec7f6d3b25a6f42e4ac624ecd685b1c26511d1d0b2122"
+    },
+    {
+      "path": "tools/gen-resource-requirement-corpus.py",
+      "present": true,
+      "byte_length": 43228,
+      "raw_sha256": "f730711bf415ca6581c858daf2f125c3128d2f9819471ea9d955c8faa61a9de7"
+    },
+    {
+      "path": "tools/gen-root-export-soundness-corpus.py",
+      "present": true,
+      "byte_length": 14384,
+      "raw_sha256": "686f10502f7a0ec0d197916904edcddf0db37fbc5e8c39d89456f6cad16ad3eb"
+    },
+    {
+      "path": "tools/gen-semantic-core-corpus.py",
+      "present": true,
+      "byte_length": 62392,
+      "raw_sha256": "e0f5268560fba960e8f172ca4cf66564b752322d7d203282196df964aaaae0c4"
+    },
+    {
+      "path": "tools/gen-semantic-dataflow-corpus.py",
+      "present": true,
+      "byte_length": 55375,
+      "raw_sha256": "4139511d94957d4f6d91da5d6728760cb50adc4ed635ba5ccde17e2c0086a6d7"
+    },
+    {
+      "path": "tools/gen-semantic-ir-corpus.py",
+      "present": true,
+      "byte_length": 82448,
+      "raw_sha256": "d63245440737a66359abfc05970eea657b3f55291b48b0bf852f4d06d1dc83a2"
+    },
+    {
+      "path": "tools/gen-spec-registry-corpus.py",
+      "present": true,
+      "byte_length": 15062,
+      "raw_sha256": "3dcae3ed904d6882dc2a346cac1e72c8aa034098beb995a0647366620d685578"
+    },
+    {
+      "path": "tools/gen-structural-binding-staging.py",
+      "present": true,
+      "byte_length": 14614,
+      "raw_sha256": "e157d052ddf32ab2ff2a9bb806e0bad9e220deb516a921b57fac1629bf9a07d6"
+    },
+    {
+      "path": "tools/gen-subflow-interface-corpus.py",
+      "present": true,
+      "byte_length": 42484,
+      "raw_sha256": "e9baec395b0c27df729ff39ec4dc8a0659bce14c87f906adb1a9cf190d0073b3"
+    },
+    {
+      "path": "tools/gen-substitution-successor-staging.py",
+      "present": true,
+      "byte_length": 15352,
+      "raw_sha256": "5f17bcde60160bb8955c7b62db8ced1b422cde9e56ce75c4c95f406266c680be"
+    },
+    {
+      "path": "tools/gen-usage-signature-corpus.py",
+      "present": true,
+      "byte_length": 28675,
+      "raw_sha256": "2e4b16976f399be1cbd9d52c51924ab11162758e0d749adcedb801ae8d554224"
+    }
+  ],
+  "original_log_hashes": [
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-01.log",
+      "present": true,
+      "byte_length": 47,
+      "raw_sha256": "1eb2908eb763a57fb76623cd55c6af7f99e46fb36e241d771abe5ab94d761cb3"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-02.log",
+      "present": true,
+      "byte_length": 1194,
+      "raw_sha256": "545b1ca96c2058b34bc59451122c668bd23dd781a2bdec8704fd086b6b8a97e4"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-03.log",
+      "present": true,
+      "byte_length": 1614,
+      "raw_sha256": "3112f7fb2134dd247214faccb5740867da79af4c7c630473336b2035efb26ace"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-04.log",
+      "present": true,
+      "byte_length": 42,
+      "raw_sha256": "076d6cddfbe01427bf6f55757948545285b362fa45c36e39467fcffdc75ca919"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-05.log",
+      "present": true,
+      "byte_length": 39,
+      "raw_sha256": "7ec2330e824168375630ceb834d0455586e09204018cf83c16f7829c00566702"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-06.log",
+      "present": true,
+      "byte_length": 32,
+      "raw_sha256": "30951a4c76825b5bf0b7f91e8e38de34284178a8a4b6978c93678241b8511750"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-07.log",
+      "present": true,
+      "byte_length": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-08.log",
+      "present": true,
+      "byte_length": 54,
+      "raw_sha256": "a7e83c54c63d1d54906fbda5f8dbd4e6c46862975a7c269b8c4caf81db884763"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-09.log",
+      "present": true,
+      "byte_length": 478,
+      "raw_sha256": "2f1d03cca8903ab30f97852f7d4bb695d0b71f9ea433e1f67951b43f6d721222"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-10.log",
+      "present": true,
+      "byte_length": 17,
+      "raw_sha256": "73dc2da7d63c34ad4e3bb510bc608cef3d554d3e352063e162ac126d2b22c7e1"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-11.log",
+      "present": true,
+      "byte_length": 74,
+      "raw_sha256": "ac4a8fe284d8668baba767009ce902ba7c361e9b368d204646e14a532fe190c1"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-12.log",
+      "present": true,
+      "byte_length": 6216,
+      "raw_sha256": "c60204eefd5c34b0540c43723e8772cf727051e5e6b121a33231da88e0843ebf"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-13.log",
+      "present": true,
+      "byte_length": 17,
+      "raw_sha256": "978426aace21e48669ae718f83961315f56128e45ef16e4df07fd84a43487e78"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-14.log",
+      "present": true,
+      "byte_length": 3395,
+      "raw_sha256": "6ae03fb44b217c98bae259b3d9c0edbe156a23fc2669e86e8f4da6149dfc294b"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-15.log",
+      "present": true,
+      "byte_length": 97,
+      "raw_sha256": "bcae5eab7b1823390379f3538c8ad0e08fb184ba75a52339fb35447e60830446"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-16.log",
+      "present": true,
+      "byte_length": 127,
+      "raw_sha256": "b23e8576c7ef3132126c2f5567672d03572a0d98decf6ce9d01f7ee16368d049"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-17.log",
+      "present": true,
+      "byte_length": 6052,
+      "raw_sha256": "ffa70ed1e54d24352697cc0a7532a54597cfddb883f258b2d228c7201243d956"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-18.log",
+      "present": true,
+      "byte_length": 70,
+      "raw_sha256": "a581b9bf96e2496aa6e8494529422f84f4471b52238bacdc5a911fe014c7114a"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-19.log",
+      "present": true,
+      "byte_length": 70,
+      "raw_sha256": "3f1e7f22e2fab3a211b7f08ebc153b9b5f8dc381dfe571359fdb6421f7f91a8e"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-20.log",
+      "present": true,
+      "byte_length": 98,
+      "raw_sha256": "26b57e46c4840f1d7bd80a6d4020b56c1b4af6e4d4a7f6cf9fee6bf4740a89de"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-21.log",
+      "present": true,
+      "byte_length": 83,
+      "raw_sha256": "2dc9d07db6bbe3386318871d9d7328e683bf4346e6d59a23645339367e0b9220"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-22.log",
+      "present": true,
+      "byte_length": 62,
+      "raw_sha256": "c6850852690f9c958951e5fb19bcf5b1e4accf5fa407e7bc0f153ed45e1b43c8"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-23.log",
+      "present": true,
+      "byte_length": 46,
+      "raw_sha256": "d56e25b760821dc6d6739e070f8b17b888c56c9bca44b117b98d4c51a05ae5b8"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-24.log",
+      "present": true,
+      "byte_length": 67,
+      "raw_sha256": "9e19542727d29af9b4d51c3fe5030352fbb56f8d63df537cb515203c4f27a09f"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-25.log",
+      "present": true,
+      "byte_length": 89,
+      "raw_sha256": "bdc7d0c7f776a76c02daf4aecd41d39a9dfffd6e26f90519bb3938e43b44e37b"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-26.log",
+      "present": true,
+      "byte_length": 50,
+      "raw_sha256": "0371a3295eda2fd6bfe5314779e5da2d6802561be910d4e215e815a4e5c0a817"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-27.log",
+      "present": true,
+      "byte_length": 76,
+      "raw_sha256": "f087190d8d032563634ad090e861017895514eb2905b3d19d0ff885eb62c6061"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-28.log",
+      "present": true,
+      "byte_length": 57,
+      "raw_sha256": "2fcd574012788c4b2db65d24ebdee938b6945bf548aea9ec8af8209acfa3eebe"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-29.log",
+      "present": true,
+      "byte_length": 17,
+      "raw_sha256": "023a28b0161b6aaa03e8835e439fb7edc75dfab2992ee48417a2fcf93a218f86"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-30.log",
+      "present": true,
+      "byte_length": 1910,
+      "raw_sha256": "3430a307ac4483d3f07dd629aea1d2f83f475648d41243527f6a5fbbc018a9b8"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-31.log",
+      "present": true,
+      "byte_length": 62,
+      "raw_sha256": "41e87a87bc17c4d7e3230c16da8edc708e6c6305af9f945f88cbdf5d7e0eb4db"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-32.log",
+      "present": true,
+      "byte_length": 3649,
+      "raw_sha256": "47b45b30a44b86dd2cd917eeb158f8a5c793d313c11b57447bb06df38f5067c4"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-33.log",
+      "present": true,
+      "byte_length": 56,
+      "raw_sha256": "b7802cdcd40114caddb14e93501920f50fa1bc3aa0ff9a6be536762e1450fe03"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-34.log",
+      "present": true,
+      "byte_length": 125,
+      "raw_sha256": "9fa20fb805b3e79bd1d4414f35bc0997c71ab6eb98132e8ebbfbd9fa4a9ab87e"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-35.log",
+      "present": true,
+      "byte_length": 299,
+      "raw_sha256": "39e0426ce3ae2725890effd23e12649499a48491b0fbb237459c3a2e52b90f6d"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-36.log",
+      "present": true,
+      "byte_length": 375,
+      "raw_sha256": "40695fb04cec9e7a8ef9332e5990e02ea7f2e5856ae460bbe9f1437c4334c8c4"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-37.log",
+      "present": true,
+      "byte_length": 1006,
+      "raw_sha256": "4250209d8eb6b2a1b101409d364e81486af8a2cab8c0a062e7da4729b8f56d31"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-38.log",
+      "present": true,
+      "byte_length": 202,
+      "raw_sha256": "9908212a0d54180e0b8cb2f59fe626d6a94e998e57f78de20844623932b59619"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-39.log",
+      "present": true,
+      "byte_length": 337,
+      "raw_sha256": "0071ee2ea7d1b2b2e7d2d9ab28b043b101a71546eb18947b7a54b5b3df208caa"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-40.log",
+      "present": true,
+      "byte_length": 74,
+      "raw_sha256": "1372fb90c8f9697baad9d9ab742b0fb575382e37e4fcd34aa54deb056acf5aa9"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round1-41.log",
+      "present": true,
+      "byte_length": 100,
+      "raw_sha256": "e674793c3e39a9a41c45940461567cdce23ae003709dacbadd77d731c8e19c12"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-01.log",
+      "present": true,
+      "byte_length": 47,
+      "raw_sha256": "1eb2908eb763a57fb76623cd55c6af7f99e46fb36e241d771abe5ab94d761cb3"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-02.log",
+      "present": true,
+      "byte_length": 1194,
+      "raw_sha256": "545b1ca96c2058b34bc59451122c668bd23dd781a2bdec8704fd086b6b8a97e4"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-03.log",
+      "present": true,
+      "byte_length": 1614,
+      "raw_sha256": "3112f7fb2134dd247214faccb5740867da79af4c7c630473336b2035efb26ace"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-04.log",
+      "present": true,
+      "byte_length": 42,
+      "raw_sha256": "076d6cddfbe01427bf6f55757948545285b362fa45c36e39467fcffdc75ca919"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-05.log",
+      "present": true,
+      "byte_length": 39,
+      "raw_sha256": "7ec2330e824168375630ceb834d0455586e09204018cf83c16f7829c00566702"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-06.log",
+      "present": true,
+      "byte_length": 32,
+      "raw_sha256": "30951a4c76825b5bf0b7f91e8e38de34284178a8a4b6978c93678241b8511750"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-07.log",
+      "present": true,
+      "byte_length": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-08.log",
+      "present": true,
+      "byte_length": 54,
+      "raw_sha256": "a7e83c54c63d1d54906fbda5f8dbd4e6c46862975a7c269b8c4caf81db884763"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-09.log",
+      "present": true,
+      "byte_length": 478,
+      "raw_sha256": "2f1d03cca8903ab30f97852f7d4bb695d0b71f9ea433e1f67951b43f6d721222"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-10.log",
+      "present": true,
+      "byte_length": 17,
+      "raw_sha256": "73dc2da7d63c34ad4e3bb510bc608cef3d554d3e352063e162ac126d2b22c7e1"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-11.log",
+      "present": true,
+      "byte_length": 74,
+      "raw_sha256": "ac4a8fe284d8668baba767009ce902ba7c361e9b368d204646e14a532fe190c1"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-12.log",
+      "present": true,
+      "byte_length": 6216,
+      "raw_sha256": "c60204eefd5c34b0540c43723e8772cf727051e5e6b121a33231da88e0843ebf"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-13.log",
+      "present": true,
+      "byte_length": 17,
+      "raw_sha256": "978426aace21e48669ae718f83961315f56128e45ef16e4df07fd84a43487e78"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-14.log",
+      "present": true,
+      "byte_length": 3395,
+      "raw_sha256": "6ae03fb44b217c98bae259b3d9c0edbe156a23fc2669e86e8f4da6149dfc294b"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-15.log",
+      "present": true,
+      "byte_length": 97,
+      "raw_sha256": "bcae5eab7b1823390379f3538c8ad0e08fb184ba75a52339fb35447e60830446"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-16.log",
+      "present": true,
+      "byte_length": 127,
+      "raw_sha256": "b23e8576c7ef3132126c2f5567672d03572a0d98decf6ce9d01f7ee16368d049"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-17.log",
+      "present": true,
+      "byte_length": 6052,
+      "raw_sha256": "ffa70ed1e54d24352697cc0a7532a54597cfddb883f258b2d228c7201243d956"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-18.log",
+      "present": true,
+      "byte_length": 70,
+      "raw_sha256": "a581b9bf96e2496aa6e8494529422f84f4471b52238bacdc5a911fe014c7114a"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-19.log",
+      "present": true,
+      "byte_length": 70,
+      "raw_sha256": "3f1e7f22e2fab3a211b7f08ebc153b9b5f8dc381dfe571359fdb6421f7f91a8e"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-20.log",
+      "present": true,
+      "byte_length": 98,
+      "raw_sha256": "26b57e46c4840f1d7bd80a6d4020b56c1b4af6e4d4a7f6cf9fee6bf4740a89de"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-21.log",
+      "present": true,
+      "byte_length": 83,
+      "raw_sha256": "2dc9d07db6bbe3386318871d9d7328e683bf4346e6d59a23645339367e0b9220"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-22.log",
+      "present": true,
+      "byte_length": 62,
+      "raw_sha256": "c6850852690f9c958951e5fb19bcf5b1e4accf5fa407e7bc0f153ed45e1b43c8"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-23.log",
+      "present": true,
+      "byte_length": 46,
+      "raw_sha256": "d56e25b760821dc6d6739e070f8b17b888c56c9bca44b117b98d4c51a05ae5b8"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-24.log",
+      "present": true,
+      "byte_length": 67,
+      "raw_sha256": "9e19542727d29af9b4d51c3fe5030352fbb56f8d63df537cb515203c4f27a09f"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-25.log",
+      "present": true,
+      "byte_length": 89,
+      "raw_sha256": "bdc7d0c7f776a76c02daf4aecd41d39a9dfffd6e26f90519bb3938e43b44e37b"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-26.log",
+      "present": true,
+      "byte_length": 50,
+      "raw_sha256": "0371a3295eda2fd6bfe5314779e5da2d6802561be910d4e215e815a4e5c0a817"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-27.log",
+      "present": true,
+      "byte_length": 76,
+      "raw_sha256": "f087190d8d032563634ad090e861017895514eb2905b3d19d0ff885eb62c6061"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-28.log",
+      "present": true,
+      "byte_length": 57,
+      "raw_sha256": "2fcd574012788c4b2db65d24ebdee938b6945bf548aea9ec8af8209acfa3eebe"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-29.log",
+      "present": true,
+      "byte_length": 17,
+      "raw_sha256": "023a28b0161b6aaa03e8835e439fb7edc75dfab2992ee48417a2fcf93a218f86"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-30.log",
+      "present": true,
+      "byte_length": 1910,
+      "raw_sha256": "3430a307ac4483d3f07dd629aea1d2f83f475648d41243527f6a5fbbc018a9b8"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-31.log",
+      "present": true,
+      "byte_length": 62,
+      "raw_sha256": "41e87a87bc17c4d7e3230c16da8edc708e6c6305af9f945f88cbdf5d7e0eb4db"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-32.log",
+      "present": true,
+      "byte_length": 3649,
+      "raw_sha256": "47b45b30a44b86dd2cd917eeb158f8a5c793d313c11b57447bb06df38f5067c4"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-33.log",
+      "present": true,
+      "byte_length": 56,
+      "raw_sha256": "b7802cdcd40114caddb14e93501920f50fa1bc3aa0ff9a6be536762e1450fe03"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-34.log",
+      "present": true,
+      "byte_length": 125,
+      "raw_sha256": "9fa20fb805b3e79bd1d4414f35bc0997c71ab6eb98132e8ebbfbd9fa4a9ab87e"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-35.log",
+      "present": true,
+      "byte_length": 299,
+      "raw_sha256": "39e0426ce3ae2725890effd23e12649499a48491b0fbb237459c3a2e52b90f6d"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-36.log",
+      "present": true,
+      "byte_length": 375,
+      "raw_sha256": "40695fb04cec9e7a8ef9332e5990e02ea7f2e5856ae460bbe9f1437c4334c8c4"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-37.log",
+      "present": true,
+      "byte_length": 1006,
+      "raw_sha256": "4250209d8eb6b2a1b101409d364e81486af8a2cab8c0a062e7da4729b8f56d31"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-38.log",
+      "present": true,
+      "byte_length": 202,
+      "raw_sha256": "9908212a0d54180e0b8cb2f59fe626d6a94e998e57f78de20844623932b59619"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-39.log",
+      "present": true,
+      "byte_length": 337,
+      "raw_sha256": "0071ee2ea7d1b2b2e7d2d9ab28b043b101a71546eb18947b7a54b5b3df208caa"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-40.log",
+      "present": true,
+      "byte_length": 74,
+      "raw_sha256": "1372fb90c8f9697baad9d9ab742b0fb575382e37e4fcd34aa54deb056acf5aa9"
+    },
+    {
+      "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-B-round2-41.log",
+      "present": true,
+      "byte_length": 100,
+      "raw_sha256": "e674793c3e39a9a41c45940461567cdce23ae003709dacbadd77d731c8e19c12"
+    }
+  ],
+  "outer_receipt": {
+    "path": "target/phase-04c1b4c4r3c2r5g2r2-lane-B.json",
+    "present": true,
+    "byte_length": 1541,
+    "raw_sha256": "ad6e215c79e62ccaa89c115af0ef460f4fba1c4a30b9dd5ea84bb0b2f3e16c25"
+  },
+  "read_only_recheck": true,
+  "generators_executed_in_R3": 0,
+  "inherited_receipts_verified": 15,
+  "inherited_cargo_test_records": 448,
+  "registration_cases": 2880,
+  "field_variant_checks": 1297,
+  "credit_scope": "Exactly the original 2403-path input universe; not generator execution over the expanded R3 tree",
+  "additive_policy": "New phase documents and non-generator audit scripts do not automatically revoke old evidence. Expanded-tree acceptance requires extension/non-interference adjudication.",
+  "invalidation": "Any old input/script/Registry/Expected/config byte change or unproved continuity prevents future inherited credit",
+  "discovery_audit": "Direct generator glob sites select spec/idl, conformance JSON or pinned oracle output directories, not new R3 docs/audit scripts. No claim of new-tree runtime equality or exhaustive dynamic discovery proof.",
+  "inherited_execution_credit_is_not_new_execution": true
+}

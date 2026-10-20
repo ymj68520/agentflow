@@ -1,0 +1,214 @@
+{
+  "design_status": "DRAFT — NOT A REGISTERED SPECIFICATION",
+  "operational_execution_status": "Not Executed",
+  "required_fields": [
+    "SchemaVersion",
+    "SyntheticScope",
+    "ManifestStatus",
+    "GateId",
+    "EnvironmentId",
+    "OSAndArchitecture",
+    "RustCargoLLVMVersions",
+    "PythonVersion",
+    "FrozenSourceHEAD",
+    "CompleteSourceRawHash",
+    "RegistryHash",
+    "CompilerHash",
+    "ExpectedHash",
+    "OracleHash",
+    "ToolchainIdentityHash",
+    "BuildProfile",
+    "BuildCommand",
+    "TestCommand",
+    "BuildArtifactHashes",
+    "ExecutionStartAndEnd",
+    "ActualExitCode",
+    "ResourcePolicy",
+    "ResourceSafetyStatus",
+    "RequiredAndCompletedCaseIds",
+    "ActualOutputHashes",
+    "IndependentOracleReceipt",
+    "PreAndPostSourceIntegrity",
+    "CapabilityDenialReceipt",
+    "EnvironmentQualificationReceipt",
+    "ExecutorReceipt",
+    "PermittedEquivalenceApproval"
+  ],
+  "additional_fields_allowed": false,
+  "fixture_only_example": {
+    "SchemaVersion": "R3-design-fixture-v1",
+    "SyntheticScope": "DESIGN_VECTOR_ONLY",
+    "ManifestStatus": "PASS",
+    "GateId": "R3/toy",
+    "EnvironmentId": "toy-qualified-env",
+    "OSAndArchitecture": {
+      "os": "toy-windows",
+      "architecture": "x86_64-pc-windows-msvc"
+    },
+    "RustCargoLLVMVersions": {
+      "rustc": "toy-rustc",
+      "cargo": "toy-cargo",
+      "llvm": "toy-llvm"
+    },
+    "PythonVersion": "toy-python",
+    "FrozenSourceHEAD": "1111111111111111111111111111111111111111",
+    "CompleteSourceRawHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "RegistryHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "CompilerHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "ExpectedHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "OracleHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "ToolchainIdentityHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "BuildProfile": {
+      "dev_debug": 2,
+      "test_debug": 2,
+      "features": "frozen-default"
+    },
+    "BuildCommand": [
+      "cargo",
+      "test",
+      "--all",
+      "-j",
+      "1",
+      "--no-run"
+    ],
+    "TestCommand": [
+      "cargo",
+      "test",
+      "--all",
+      "-j",
+      "1"
+    ],
+    "BuildArtifactHashes": {
+      "bin/toy.exe": "6666666666666666666666666666666666666666666666666666666666666666",
+      "symbols/toy.pdb": "7777777777777777777777777777777777777777777777777777777777777777"
+    },
+    "ExecutionStartAndEnd": {
+      "start": 10,
+      "end": 20
+    },
+    "ActualExitCode": 0,
+    "ResourcePolicy": {
+      "cpu_percent": 5,
+      "process_mib": 768,
+      "job_mib": 1536,
+      "reserve_bytes": 8589934592,
+      "test_scheduler_threads": 1,
+      "cargo_jobs": 1,
+      "priority": "BelowNormal"
+    },
+    "ResourceSafetyStatus": {
+      "status": "PASS",
+      "cancelled": null,
+      "limits_verified": true
+    },
+    "RequiredAndCompletedCaseIds": {
+      "required": [
+        "toy/a",
+        "toy/b"
+      ],
+      "completed": [
+        "toy/a",
+        "toy/b"
+      ]
+    },
+    "ActualOutputHashes": {
+      "toy/a": "4444444444444444444444444444444444444444444444444444444444444444",
+      "toy/b": "5555555555555555555555555555555555555555555555555555555555555555"
+    },
+    "IndependentOracleReceipt": {
+      "status": "PASS",
+      "case_ids": [
+        "toy/a",
+        "toy/b"
+      ],
+      "outputs_hash": "52b482081780b944233d79c28f977e56a3de115e029a28ad7ed59acf40ff5435"
+    },
+    "PreAndPostSourceIntegrity": {
+      "before": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "after": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "CapabilityDenialReceipt": {
+      "root_export": "NotAuthorized",
+      "portable": "NotAuthorized",
+      "complete_view": "NotIssued",
+      "obligation_identity": "NotIssued"
+    },
+    "EnvironmentQualificationReceipt": "SYNTHETIC_PINNED_QUALIFICATION",
+    "ExecutorReceipt": "SYNTHETIC_OUT_OF_BAND_RECEIPT",
+    "PermittedEquivalenceApproval": "SYNTHETIC_SPLIT_APPROVAL"
+  },
+  "real_execution_template": {
+    "SchemaVersion": null,
+    "SyntheticScope": null,
+    "ManifestStatus": "Not Executed",
+    "GateId": null,
+    "EnvironmentId": null,
+    "OSAndArchitecture": null,
+    "RustCargoLLVMVersions": null,
+    "PythonVersion": null,
+    "FrozenSourceHEAD": null,
+    "CompleteSourceRawHash": null,
+    "RegistryHash": null,
+    "CompilerHash": null,
+    "ExpectedHash": null,
+    "OracleHash": null,
+    "ToolchainIdentityHash": null,
+    "BuildProfile": null,
+    "BuildCommand": null,
+    "TestCommand": null,
+    "BuildArtifactHashes": null,
+    "ExecutionStartAndEnd": null,
+    "ActualExitCode": null,
+    "ResourcePolicy": null,
+    "ResourceSafetyStatus": null,
+    "RequiredAndCompletedCaseIds": null,
+    "ActualOutputHashes": null,
+    "IndependentOracleReceipt": null,
+    "PreAndPostSourceIntegrity": null,
+    "CapabilityDenialReceipt": null,
+    "EnvironmentQualificationReceipt": null,
+    "ExecutorReceipt": null,
+    "PermittedEquivalenceApproval": null
+  },
+  "real_template_qualifies_for_pass": false,
+  "field_constraints": {
+    "SchemaVersion": "Exact independently approved schema identity; draft not valid for real PASS",
+    "SyntheticScope": "Real execution must never use DESIGN_VECTOR_ONLY; toy validator refuses real scope",
+    "ManifestStatus": "Real PASS only after all independent validation obligations; Not Executed never PASS",
+    "GateId": "Exact approved gate identity and execution nonce/sequence in signed executor receipt",
+    "EnvironmentId": "Out-of-band qualified executor/environment identity, not self-assertion",
+    "OSAndArchitecture": "Closed approved OS/version/build/architecture/ABI record",
+    "RustCargoLLVMVersions": "Exact versions plus toolchain binary/SDK/linker hashes in ToolchainIdentityHash",
+    "PythonVersion": "Exact interpreter/dependency identity, not version string alone",
+    "FrozenSourceHEAD": "40 lowercase hexadecimal characters; independently frozen expected HEAD",
+    "hash_fields": "CompleteSourceRawHash/RegistryHash/CompilerHash/ExpectedHash/OracleHash/ToolchainIdentityHash: 64 lowercase hex, bind independently complete path/length/hash maps",
+    "BuildProfile": "Exact dev/test debug, opt-level, features, target, rustflags and effective configuration closure",
+    "commands": "BuildCommand/TestCommand: exact argv arrays plus signed cwd and environment in ExecutorReceipt; no shell interpolation",
+    "BuildArtifactHashes": "Complete independently required logical path to raw length/hash map, including symbols/dependencies/build outputs/fixtures",
+    "ExecutionStartAndEnd": "Exact UTC integer nanoseconds and monotonic sequence, ordered and executor-authenticated; toy values are synthetic",
+    "ActualExitCode": "Integer, never bool/float; zero only for positive PASS gates; frozen expected negative exits require separate explicitly typed denial receipt",
+    "ResourcePolicy": "Exact approved policy identifier plus hard budgets and per-step class; no caller-defined P_build/J_build",
+    "ResourceSafetyStatus": "Exact authenticated limits, peaks, samples, cancellations and observation coverage; no cancellation or unknown safety for PASS",
+    "RequiredAndCompletedCaseIds": "Two complete duplicate-free namespaced lists matching independent approved roster; both-side agreement alone insufficient",
+    "ActualOutputHashes": "Every required CaseId/output logical path plus raw hash/length and full structured value package for field comparison",
+    "IndependentOracleReceipt": "Independent frozen Oracle identity, exact case/field roster and compared/missing/unexpected/uncompared counts, original actual/expected/diffs",
+    "PreAndPostSourceIntegrity": "Both complete raw/GitBlob maps match independent frozen input; no general EOL normalization",
+    "CapabilityDenialReceipt": "Exact required negative boundaries; no RootExport/Portable positive, CompleteView or ObligationIdentity issued",
+    "EnvironmentQualificationReceipt": "Authenticated independently approved qualification/policy/OS/ABI/toolchain/package receipt",
+    "ExecutorReceipt": "Detached signature binds all fields, package hash, requirements hash, key identity, nonce, sequence and effective cwd/env; trusted key out of band",
+    "PermittedEquivalenceApproval": "Out-of-band exact applicable approvals; no implicit host/path/split/profile/resource substitution"
+  },
+  "validation_protocol": [
+    "Bound bytes/path count/depth and reject duplicate keys, unknown keys, invalid UTF-8, links/traversal, nonfinite/float numeric values",
+    "Verify independent schema/requirements/complete rosters and authenticated qualification/executor/approval trust roots",
+    "Check every side independently for exact types/fields/CaseIds/artifacts/outputs and denied capabilities",
+    "Verify canonical signed payload, nonce/replay rules and transport package hashes",
+    "Validate exact frozen inputs/toolchain/effective profile/commands/environment/resource/time/exit/oracle closure",
+    "Compare complete structured outputs field-by-field; preserve raw hashes and precise differences",
+    "Only approved real validator can issue scoped execution evidence; transport never grants production authority"
+  ],
+  "trust_roots": "Approved requirements roster and environment/executor keys must be supplied out of band; never trusted from the manifest itself",
+  "signature_design": "Detached versioned canonical payload signature binds schema, gate requirements, source, toolchain, policy, environment qualification, artifacts and outputs. Actual cryptographic verifier is not implemented or qualified here.",
+  "both_sided_omission_rule": "Validate each side against fixed approved schema and complete trusted case/artifact rosters before equality comparison",
+  "implementation_boundaries": "No actual signature, environment qualification, Native receipt, RootExport, Portable capability or PASS certificate is issued"
+}
