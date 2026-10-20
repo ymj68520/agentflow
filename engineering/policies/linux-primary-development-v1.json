@@ -1,0 +1,72 @@
+{
+  "policy_id": "agentflow.engineering.linux-primary-development@1",
+  "title": "Linux Primary Development Policy v1",
+  "version": 1,
+  "status": "Active",
+  "authority": {
+    "type": "Explicit human engineering decision",
+    "phase": "L2-PIVOT-01",
+    "directive_sha256": "6ac84865e18b0566ca5af51d592391fce507e14db7e86cf6985e37440743977d"
+  },
+  "scope": "Engineering platform and acceptance routing only; not a product normative specification",
+  "primary": {
+    "host": "fwq",
+    "workspace": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace",
+    "platform": "Linux Native",
+    "branch": "codex/linux-primary-migration",
+    "cargo_home": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1",
+    "python": "/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin/python",
+    "target_dir": "/home/ymj68520/projects/agent-r5g2-linux-validation/build/linux-primary-v1"
+  },
+  "acceptance": {
+    "development": [
+      "fmt",
+      "clippy",
+      "unit and integration tests",
+      "spec-check",
+      "independent oracles",
+      "negative cases"
+    ],
+    "cross_target": [
+      "Windows x64 dependency/API audit",
+      "actual target check/build"
+    ],
+    "windows_release": [
+      "real Windows x64 executable launch",
+      "core workflows",
+      "filesystem Unicode newlines temp paths",
+      "persistent/canonical bytes",
+      "process permissions",
+      "runtime packaging",
+      "no unauthorized RootExport"
+    ]
+  },
+  "legacy": {
+    "windows_historical_ledger": "Archived original 0/8",
+    "required_for_new_linux_development": false,
+    "old_contract_pass": false,
+    "formal_superseded": false,
+    "old_r5g2_registration_complete": false
+  },
+  "resource_authority": "Separate numeric approval plus qualified dedicated cgroup executor; dependency approval is insufficient",
+  "product_barriers": {
+    "root_export": "Not Authorized",
+    "raw_full_field": "Incomplete",
+    "total_t3": "Incomplete",
+    "t4": "Not Eligible"
+  },
+  "prohibited": [
+    "Windows daily build loop",
+    "VM",
+    "Wine",
+    "sudo",
+    "global installs",
+    "automatic toolchain upgrades",
+    "frozen Expected changes",
+    "automatic Push"
+  ],
+  "promotion_rules": {
+    "development_implies_windows_release": false,
+    "cross_build_implies_windows_verified": false
+  }
+}

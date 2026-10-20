@@ -1,0 +1,6 @@
+{
+  "registry_kind": "Engineering policy index; separate from spec/registry",
+  "revision": 1,
+  "current_development_policy": "agentflow.engineering.linux-primary-development@1",
+  "policy_path": "engineering/policies/linux-primary-development-v1.json"
+}
