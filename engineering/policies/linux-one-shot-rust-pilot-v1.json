@@ -1,0 +1,40 @@
+{
+  "policy_id": "agentflow.engineering.one-shot-rust-pilot@1",
+  "phase": "L2-PIVOT-04",
+  "scope": "Exactly one af-core cargo check; not full Linux acceptance",
+  "limits": {
+    "cpu_percent_of_online_host": 5,
+    "process_address_space_bytes": 2147483648,
+    "task_memory_bytes": 3221225472,
+    "swap_bytes": 0,
+    "pids": 128,
+    "host_reserve_bytes": 8589934592,
+    "wall_seconds": 900,
+    "disk_growth_bytes": 12884901888,
+    "disk_free_reserve_bytes": 21474836480,
+    "cargo_jobs": 1,
+    "rust_test_threads": 1,
+    "concurrent_tasks": 1,
+    "monitor_period_seconds": 0.1
+  },
+  "command": [
+    "cargo",
+    "check",
+    "--locked",
+    "--offline",
+    "-j",
+    "1",
+    "-p",
+    "af-core"
+  ],
+  "automatic_retries": 0,
+  "disk_mode": "B2 for this Pilot only; no hard aggregate quota",
+  "disk_risks": [
+    "Sampling is not a hard disk quota",
+    "Instant writes may cross before the next sample",
+    "No strictly bounded maximum overshoot bytes follows from sampling alone",
+    "No isolation guarantee for arbitrary non-project writes",
+    "Acceptance does not apply to full tests or untrusted code"
+  ],
+  "full_gates_authorized": false
+}
