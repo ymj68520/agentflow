@@ -1,0 +1,14 @@
+{
+  "executing_head": "90756b046a03432f6415148fcc9116a274e84830",
+  "overlay_file_sha256": {
+    "engineering/policies/linux-resource-policy-v1.json": "f53be68f5911866d0ccd870f5d6b5a02457d2ee7684e0b90b52a68aada39e0c9",
+    "tools/linux-controlled-runner.py": "48d3683e61723ec1311154125b5d92d12fa603e77bc952b3c9adae09a7418d8d",
+    "tools/linux-runner-fixtures.py": "7833f0505403ae738721fe03c35e4a83fd3f5b7d656865fa28acc2d7839b07b2",
+    "tools/test-linux-controlled-runner.py": "967cc7b48235184d28ce9affce685b2b409f82a2851199b427884a1e6bd670b2",
+    "tools/qualify-linux-controlled-runner.py": "3a4536c4aa58744823f61fb3dc07005244e8f3a1758cf02411cea5faa4b1dbab",
+    "tools/verify-linux-resource-receipts.py": "6356cc1069538f41ac502cce336606f7e7bc93e1e80cfede2e9af24ce083ba31"
+  },
+  "live_suite": "qualification-results-v2.json",
+  "final_commit_binding": "Post-commit ledger must verify identical executed runner/fixture/policy bytes; no claim of live re-execution at the final commit",
+  "control_plane_metric_note": "Ownership metadata describes monitoring steady state: guardian hard128MiB, controller drops to hard128MiB after systemd-run returns. Startup in the actual qualification harness is inherited hard256MiB, not 128MiB. Both are outside the 96MiB workload tree."
+}

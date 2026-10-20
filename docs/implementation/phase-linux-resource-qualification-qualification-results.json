@@ -1,0 +1,456 @@
+{
+  "status": "Partial / D \u2014 production infrastructure not closed",
+  "current_small_fixture_suite": {
+    "status": "Passed",
+    "scope": "Small <=96MiB fixtures only; not heavy Rust executor acceptance",
+    "Required": 11,
+    "Executed": 11,
+    "Passed": 11,
+    "Failed": 0,
+    "NotExecuted": 0,
+    "cases": [
+      {
+        "id": "5291d3e5-5909-4f43-94f2-f4caaaf2ccce",
+        "mode": "normal",
+        "argv": [
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin/python",
+          "-B",
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-controlled-runner.py",
+          "normal",
+          "--id",
+          "5291d3e5-5909-4f43-94f2-f4caaaf2ccce"
+        ],
+        "controller_exit_code": 0,
+        "expected_reason": "Completed",
+        "actual_reason": "Completed",
+        "checks": {
+          "controller_exit": true,
+          "reason": true,
+          "empty_and_removed": true,
+          "unrelated_sentinel_unaffected": true,
+          "limits_readback": true,
+          "live_limits_stable": true,
+          "swap_zero": true,
+          "pid_membership_and_process_limits": true,
+          "service_oom_group": true,
+          "workload_exit_code": true,
+          "lock_released": true
+        },
+        "passed": true,
+        "ownership_sha256": "7f4847681b907b97e0a1bce6a35c58f0885e3d8790eb38172e0ca1324c02dfbf",
+        "guardian_receipt_sha256": "bce2ea088c2d60b571989fee9ab82244c353c2835bb58c3b0e5e9b6e7eba47f4"
+      },
+      {
+        "id": "c6b9a00d-02f2-4526-90b6-21639de7c158",
+        "mode": "nonzero",
+        "argv": [
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin/python",
+          "-B",
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-controlled-runner.py",
+          "nonzero",
+          "--id",
+          "c6b9a00d-02f2-4526-90b6-21639de7c158"
+        ],
+        "controller_exit_code": 0,
+        "expected_reason": "Completed",
+        "actual_reason": "Completed",
+        "checks": {
+          "controller_exit": true,
+          "reason": true,
+          "empty_and_removed": true,
+          "unrelated_sentinel_unaffected": true,
+          "limits_readback": true,
+          "live_limits_stable": true,
+          "swap_zero": true,
+          "pid_membership_and_process_limits": true,
+          "service_oom_group": true,
+          "workload_exit_code": true,
+          "lock_released": true
+        },
+        "passed": true,
+        "ownership_sha256": "c0de6361550565877ef0942924a7b870f468ea9baf7889a0567504c8f0683b65",
+        "guardian_receipt_sha256": "b20cf779611e8ba7dc6705c229c6a495655b6fbb04b07b120b60fe58b3cad320"
+      },
+      {
+        "id": "fb0f724d-c99a-4fad-9125-dea499e8cb68",
+        "mode": "membership",
+        "argv": [
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin/python",
+          "-B",
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-controlled-runner.py",
+          "membership",
+          "--id",
+          "fb0f724d-c99a-4fad-9125-dea499e8cb68"
+        ],
+        "controller_exit_code": 0,
+        "expected_reason": "Completed",
+        "actual_reason": "Completed",
+        "checks": {
+          "controller_exit": true,
+          "reason": true,
+          "empty_and_removed": true,
+          "unrelated_sentinel_unaffected": true,
+          "limits_readback": true,
+          "live_limits_stable": true,
+          "swap_zero": true,
+          "pid_membership_and_process_limits": true,
+          "service_oom_group": true,
+          "workload_exit_code": true,
+          "lock_released": true
+        },
+        "passed": true,
+        "ownership_sha256": "2d72e06bc400a1b5c29df83d4952bacaf801d0698de1e9907dbfc32d39192bc8",
+        "guardian_receipt_sha256": "91365dd4d47450d97c4963c915ce6d70a3131c61df77862ff38855cd981e8226"
+      },
+      {
+        "id": "dcb90dd3-1a50-481b-8801-92696e8f48c8",
+        "mode": "cpu",
+        "argv": [
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin/python",
+          "-B",
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-controlled-runner.py",
+          "cpu",
+          "--id",
+          "dcb90dd3-1a50-481b-8801-92696e8f48c8"
+        ],
+        "controller_exit_code": 0,
+        "expected_reason": "Completed",
+        "actual_reason": "Completed",
+        "checks": {
+          "controller_exit": true,
+          "reason": true,
+          "empty_and_removed": true,
+          "unrelated_sentinel_unaffected": true,
+          "limits_readback": true,
+          "live_limits_stable": true,
+          "swap_zero": true,
+          "pid_membership_and_process_limits": true,
+          "service_oom_group": true,
+          "workload_exit_code": true,
+          "actual_cpu_throttled": true,
+          "aggregate_cpu_ceiling": true,
+          "lock_released": true
+        },
+        "passed": true,
+        "ownership_sha256": "a7a0567c13bccb68b71df87d4c5ad90ba9dcc2b34fe9d7d15d6f3ce17e76b6c3",
+        "guardian_receipt_sha256": "09d237123661725b3940ff27bce8fb6e87493e0c8f126ebbd0c9daeb1dff04c5"
+      },
+      {
+        "id": "102b2f1d-59a4-4e79-a81b-0e60d2564668",
+        "mode": "process-limit",
+        "argv": [
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin/python",
+          "-B",
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-controlled-runner.py",
+          "process-limit",
+          "--id",
+          "102b2f1d-59a4-4e79-a81b-0e60d2564668"
+        ],
+        "controller_exit_code": 0,
+        "expected_reason": "Completed",
+        "actual_reason": "Completed",
+        "checks": {
+          "controller_exit": true,
+          "reason": true,
+          "empty_and_removed": true,
+          "unrelated_sentinel_unaffected": true,
+          "limits_readback": true,
+          "live_limits_stable": true,
+          "swap_zero": true,
+          "pid_membership_and_process_limits": true,
+          "service_oom_group": true,
+          "workload_exit_code": true,
+          "actual_process_as_refusal": true,
+          "lock_released": true
+        },
+        "passed": true,
+        "ownership_sha256": "097d36d40655ade54d48a377bc6dd2464c3faeffda6d42e069f2d29d14e7309a",
+        "guardian_receipt_sha256": "ed896cd87eb321fa2b0894ed8b8ad541412a2a8348f0bc6f2250b9de34b5f9a5"
+      },
+      {
+        "id": "b6e05d00-99a7-4d82-a9ba-298b415d0de0",
+        "mode": "oom",
+        "argv": [
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin/python",
+          "-B",
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-controlled-runner.py",
+          "oom",
+          "--id",
+          "b6e05d00-99a7-4d82-a9ba-298b415d0de0"
+        ],
+        "controller_exit_code": 0,
+        "expected_reason": "OOM",
+        "actual_reason": "OOM",
+        "checks": {
+          "controller_exit": true,
+          "reason": true,
+          "empty_and_removed": true,
+          "unrelated_sentinel_unaffected": true,
+          "limits_readback": true,
+          "live_limits_stable": true,
+          "swap_zero": true,
+          "pid_membership_and_process_limits": true,
+          "service_oom_group": true,
+          "actual_oom_events": true,
+          "lock_released": true
+        },
+        "passed": true,
+        "ownership_sha256": "eab03794737d6b31900b8386636ccf6b580297151572506cb0ce5f4a895cd4aa",
+        "guardian_receipt_sha256": "02185c664839ae43fb8671e420b6720576ca1c17c35421324ac8c00ab7fd47d0"
+      },
+      {
+        "id": "ab7073f7-479d-46ef-9979-690481501a7a",
+        "mode": "timeout",
+        "argv": [
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin/python",
+          "-B",
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-controlled-runner.py",
+          "timeout",
+          "--id",
+          "ab7073f7-479d-46ef-9979-690481501a7a"
+        ],
+        "controller_exit_code": 0,
+        "expected_reason": "Timeout",
+        "actual_reason": "Timeout",
+        "checks": {
+          "controller_exit": true,
+          "reason": true,
+          "empty_and_removed": true,
+          "unrelated_sentinel_unaffected": true,
+          "limits_readback": true,
+          "live_limits_stable": true,
+          "swap_zero": true,
+          "pid_membership_and_process_limits": true,
+          "service_oom_group": true,
+          "lock_released": true
+        },
+        "passed": true,
+        "ownership_sha256": "cd685e84433851500061178d750778e9ec6e4602839f52d4daac574c55fdaf73",
+        "guardian_receipt_sha256": "97d75e3d259d542eaafbebd979a405865e782fedb872b111dbd9356ff17f34eb"
+      },
+      {
+        "id": "1e059530-58d7-4cda-82cb-64808862e795",
+        "mode": "cancel",
+        "argv": [
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin/python",
+          "-B",
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-controlled-runner.py",
+          "cancel",
+          "--id",
+          "1e059530-58d7-4cda-82cb-64808862e795"
+        ],
+        "controller_exit_code": 0,
+        "expected_reason": "UserCancelled",
+        "actual_reason": "UserCancelled",
+        "checks": {
+          "controller_exit": true,
+          "reason": true,
+          "empty_and_removed": true,
+          "unrelated_sentinel_unaffected": true,
+          "limits_readback": true,
+          "live_limits_stable": true,
+          "swap_zero": true,
+          "pid_membership_and_process_limits": true,
+          "service_oom_group": true,
+          "lock_released": true
+        },
+        "passed": true,
+        "ownership_sha256": "df01d8a0408ec72e21411c575cc9ff2712e914dd25b920455692a4be42731865",
+        "guardian_receipt_sha256": "174a4ad7d72c13d3c80ddcbd6f06ff5cae69d653153029db7d6ed7b94db78777"
+      },
+      {
+        "id": "0bd07e8e-03ae-4ee7-9870-3f0805cb7064",
+        "mode": "orphan",
+        "argv": [
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin/python",
+          "-B",
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-controlled-runner.py",
+          "orphan",
+          "--id",
+          "0bd07e8e-03ae-4ee7-9870-3f0805cb7064"
+        ],
+        "controller_exit_code": 0,
+        "expected_reason": "Completed",
+        "actual_reason": "Completed",
+        "checks": {
+          "controller_exit": true,
+          "reason": true,
+          "empty_and_removed": true,
+          "unrelated_sentinel_unaffected": true,
+          "limits_readback": true,
+          "live_limits_stable": true,
+          "swap_zero": true,
+          "pid_membership_and_process_limits": true,
+          "service_oom_group": true,
+          "workload_exit_code": true,
+          "orphan_was_created": true,
+          "lock_released": true
+        },
+        "passed": true,
+        "ownership_sha256": "07eef87c9c56bc88b28ea27ee938b5ec068e420a4d450569afe45dded912eefe",
+        "guardian_receipt_sha256": "fc85dc6f9f87b63dac4c544d234db6e17078ea0799b6bec34ad15094a5cf693e"
+      },
+      {
+        "id": "d7f67371-4534-484b-98ef-16cc5fe30161",
+        "mode": "repeat",
+        "argv": [
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin/python",
+          "-B",
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-controlled-runner.py",
+          "repeat",
+          "--id",
+          "d7f67371-4534-484b-98ef-16cc5fe30161"
+        ],
+        "controller_exit_code": 0,
+        "expected_reason": "Completed",
+        "actual_reason": "Completed",
+        "checks": {
+          "controller_exit": true,
+          "reason": true,
+          "empty_and_removed": true,
+          "unrelated_sentinel_unaffected": true,
+          "limits_readback": true,
+          "live_limits_stable": true,
+          "swap_zero": true,
+          "pid_membership_and_process_limits": true,
+          "service_oom_group": true,
+          "workload_exit_code": true,
+          "lock_released": true
+        },
+        "passed": true,
+        "ownership_sha256": "13906f0d9e245c0f3346122ac047f2f30c0adff541e303ea2e2a0c8f28d765b8",
+        "guardian_receipt_sha256": "2ab38a7f47c8866914d94ae9ffa9d0f8ffa7b4809b3d9d02d95129191a37c1c1"
+      },
+      {
+        "id": "fc5516e8-ee8d-4738-8d25-931bd1d2a8d2",
+        "mode": "controller-crash",
+        "argv": [
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin/python",
+          "-B",
+          "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-controlled-runner.py",
+          "controller-crash",
+          "--id",
+          "fc5516e8-ee8d-4738-8d25-931bd1d2a8d2"
+        ],
+        "controller_exit_code": -9,
+        "expected_reason": "ControllerLost",
+        "actual_reason": "ControllerLost",
+        "checks": {
+          "controller_exit": true,
+          "reason": true,
+          "empty_and_removed": true,
+          "unrelated_sentinel_unaffected": true,
+          "limits_readback": true,
+          "live_limits_stable": true,
+          "swap_zero": true,
+          "pid_membership_and_process_limits": true,
+          "service_oom_group": true,
+          "lock_released": true
+        },
+        "passed": true,
+        "ownership_sha256": "a559b47711a623d6184ad29b23c31bd17fc42e64c37b7aa6272ca2877ac1aa88",
+        "guardian_receipt_sha256": "a904ff4ed119beb96ef8e4ec7b921bab623dde35783f577d698963db8d59c5fa"
+      }
+    ],
+    "runner_sha256": "48d3683e61723ec1311154125b5d92d12fa603e77bc952b3c9adae09a7418d8d",
+    "fixture_sha256": "7833f0505403ae738721fe03c35e4a83fd3f5b7d656865fa28acc2d7839b07b2",
+    "policy_sha256": "f53be68f5911866d0ccd870f5d6b5a02457d2ee7684e0b90b52a68aada39e0c9",
+    "earlier_attempts": [
+      "first-live-normal.json: setup rejected unsupported MemoryOOMGroup; payload not started",
+      "normal-after-systemd-adaptation.json: LimitDrift detected; own group killed and removed",
+      "qualification-results.json: 1 failed normal fixture due to missing optional leaf cpu.max; 10 not executed"
+    ],
+    "earlier_failures_not_overwritten": true,
+    "qualification_is_not_pilot_or_gate_authorization": true,
+    "untested": [
+      "PIDs exhaustion (readback and membership only)",
+      "actual host memory reserve crossing",
+      "actual disk-growth/reserve crossing",
+      "guardian itself killed",
+      "production-size build/test limits"
+    ],
+    "disk_enforcement": "Sampled watchdog + RLIMIT_FSIZE, not kernel aggregate disk quota"
+  },
+  "preliminary_failed_attempts": [
+    {
+      "id": "cbdd1079-8d2e-4c7f-bd4a-56ba1ceb24d8",
+      "mode": "normal",
+      "controller_exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-controlled-runner.py\", line 345, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-controlled-runner.py\", line 341, in main\n    return run(args.mode,args.id)\n           ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-controlled-runner.py\", line 258, in run\n    commands.append(ctl(['set-property','--runtime',slice_name,\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-controlled-runner.py\", line 93, in ctl\n    raise RuntimeError(row)\nRuntimeError: {'argv': ['systemctl', '--user', 'set-property', '--runtime', 'afl2p02cbdd10798d2e4c7fbd4a56ba1ceb24d8.slice', 'CPUQuota=160%', 'CPUQuotaPeriodSec=100ms', 'MemoryMax=100663296', 'MemorySwapMax=0', 'MemoryOOMGroup=yes', 'TasksMax=32'], 'exit_code': 1, 'stdout': '', 'stderr': 'Unknown assignment: MemoryOOMGroup=yes\\n'}\n"
+    },
+    {
+      "id": "088241cb-f2f3-4a8f-9ad4-44ee294d1970",
+      "mode": "normal",
+      "controller_exit": 0,
+      "stdout": "{\"id\": \"088241cb-f2f3-4a8f-9ad4-44ee294d1970\", \"reason\": \"LimitDrift\", \"job\": \"/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-resource-qualification/runs/088241cb-f2f3-4a8f-9ad4-44ee294d1970\"}\n",
+      "stderr": ""
+    },
+    {
+      "status": "Failed",
+      "scope": "Small <=96MiB fixtures only; not heavy Rust executor acceptance",
+      "Required": 11,
+      "Executed": 1,
+      "Passed": 0,
+      "Failed": 1,
+      "NotExecuted": 10,
+      "cases": [
+        {
+          "id": "9b9e1ad6-0352-40c8-a032-c4f7d58444eb",
+          "mode": "normal",
+          "argv": [
+            "/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin/python",
+            "-B",
+            "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-controlled-runner.py",
+            "normal",
+            "--id",
+            "9b9e1ad6-0352-40c8-a032-c4f7d58444eb"
+          ],
+          "controller_exit_code": 0,
+          "expected_reason": "Completed",
+          "actual_reason": "Timeout",
+          "checks": {
+            "controller_exit": true,
+            "reason": false,
+            "empty_and_removed": true,
+            "unrelated_sentinel_unaffected": true,
+            "limits_readback": true,
+            "live_limits_stable": true,
+            "swap_zero": true,
+            "pid_membership_and_process_limits": false,
+            "service_oom_group": false,
+            "workload_exit_code": false,
+            "lock_released": true
+          },
+          "passed": false,
+          "ownership_sha256": "e1787e0d0ec70ebc2c0ba635fb422674bbd36ee075a943d18f8f446584df6d9e",
+          "guardian_receipt_sha256": "d2bf12960d9b68ac8f1dd4a16fe51efaf3530564297ecdcd2f11a55c7fe82ead"
+        }
+      ],
+      "runner_sha256": "b91009caf6f21fa16a7559d7186ea6ae0ec508c3556d5c4c46a1965ebc5c7920",
+      "fixture_sha256": "77b5d99cee4a71ad8645496563ef22e1e42c60fa7d190c6ab6ceefffc872a98c",
+      "policy_sha256": "f53be68f5911866d0ccd870f5d6b5a02457d2ee7684e0b90b52a68aada39e0c9",
+      "earlier_attempts": [
+        "first-live-normal.json: setup rejected unsupported MemoryOOMGroup; payload not started",
+        "normal-after-systemd-adaptation.json: LimitDrift detected; own group killed and removed"
+      ],
+      "earlier_failures_not_overwritten": true,
+      "qualification_is_not_pilot_or_gate_authorization": true,
+      "untested": [
+        "PIDs exhaustion (readback and membership only)",
+        "actual host memory reserve crossing",
+        "actual disk-growth/reserve crossing",
+        "guardian itself killed",
+        "production-size build/test limits"
+      ],
+      "disk_enforcement": "Sampled watchdog + RLIMIT_FSIZE, not kernel aggregate disk quota"
+    }
+  ],
+  "actual_run_attempts": 14,
+  "current_version_passed": 11,
+  "prior_failed_attempts": 3,
+  "prior_suite_not_executed": 10,
+  "historical_failure_credit": "Preserved as failures at their original source versions, never promoted or erased",
+  "production_executor_qualified": false,
+  "heavy_compilation_authorized": false
+}

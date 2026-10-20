@@ -1,0 +1,137 @@
+{
+  "status": "Read-only preflight; not qualified",
+  "uid": 1001,
+  "mountinfo": [
+    "37 28 0:31 / /sys/fs/cgroup rw,nosuid,nodev,noexec,relatime shared:9 - cgroup2 cgroup2 rw,nsdelegate,memory_recursiveprot"
+  ],
+  "current_cgroup": "0::/user.slice/user-1001.slice/session-7352.scope\n",
+  "ancestors": [
+    {
+      "path": "/sys/fs/cgroup/user.slice/user-1001.slice/session-7352.scope",
+      "uid": 0,
+      "writable": false,
+      "fields": {
+        "cgroup.type": "domain",
+        "cgroup.controllers": "cpu memory pids",
+        "cgroup.subtree_control": "",
+        "cpu.max": "max 100000",
+        "cpu.stat": "usage_usec 107266\nuser_usec 43107\nsystem_usec 64159\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "max",
+        "memory.current": "10244096",
+        "memory.swap.current": "0",
+        "memory.swap.max": "max",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "max",
+        "pids.current": "3"
+      }
+    },
+    {
+      "path": "/sys/fs/cgroup/user.slice/user-1001.slice",
+      "uid": 0,
+      "writable": false,
+      "fields": {
+        "cgroup.type": "domain",
+        "cgroup.controllers": "cpu memory pids",
+        "cgroup.subtree_control": "cpu memory pids",
+        "cpu.max": "max 100000",
+        "cpu.stat": "usage_usec 803307029476\nuser_usec 620599763043\nsystem_usec 182707266433\nnice_usec 429686000\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "max",
+        "memory.current": "15687122944",
+        "memory.swap.current": "1166573568",
+        "memory.swap.max": "max",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 2771",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=182278620\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=173869138",
+        "pids.max": "76995",
+        "pids.current": "1613"
+      }
+    },
+    {
+      "path": "/sys/fs/cgroup/user.slice",
+      "uid": 0,
+      "writable": false,
+      "fields": {
+        "cgroup.type": "domain",
+        "cgroup.controllers": "cpuset cpu io memory hugetlb pids rdma misc dmem",
+        "cgroup.subtree_control": "cpu memory pids",
+        "cpu.max": "max 100000",
+        "cpu.stat": "usage_usec 808414455411\nuser_usec 625068793065\nsystem_usec 183345662345\nnice_usec 429686000\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "max",
+        "memory.current": "15829168128",
+        "memory.swap.current": "1392066560",
+        "memory.swap.max": "max",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 2771",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=181768520\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=173194305",
+        "pids.max": "max",
+        "pids.current": "1815"
+      }
+    },
+    {
+      "path": "/sys/fs/cgroup",
+      "uid": 0,
+      "writable": false,
+      "fields": {
+        "cgroup.controllers": "cpuset cpu io memory hugetlb pids rdma misc dmem",
+        "cgroup.subtree_control": "cpuset cpu io memory hugetlb pids rdma misc dmem",
+        "cpu.stat": "usage_usec 4045882882000\nuser_usec 3687623051000\nsystem_usec 358259831000\nnice_usec 1547546000\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=237964671\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=223055720"
+      }
+    }
+  ],
+  "delegated_candidate": {
+    "path": "/sys/fs/cgroup/user.slice/user-1001.slice/user@1001.service",
+    "exists": true,
+    "uid": 1001,
+    "writable": true,
+    "controllers": "cpu memory pids\n",
+    "subtree_control": "cpu memory pids\n"
+  },
+  "systemd_queries": [
+    {
+      "argv": [
+        "systemctl",
+        "--user",
+        "show",
+        "--property=ControlGroup",
+        "--property=Delegate",
+        "--property=MainPID"
+      ],
+      "exit_code": 0,
+      "stdout": "ControlGroup=/user.slice/user-1001.slice/user@1001.service\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "systemctl",
+        "show",
+        "user@1001.service",
+        "--property=ControlGroup",
+        "--property=Delegate"
+      ],
+      "exit_code": 0,
+      "stdout": "ControlGroup=/user.slice/user-1001.slice/user@1001.service\nDelegate=yes\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "systemd-run",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "systemd 255 (255.4-1ubuntu8.18)\n+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT -GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY +P11KIT +QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -BPF_FRAMEWORK -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified\n",
+      "stderr": ""
+    }
+  ],
+  "online_cpu_list": "0-31",
+  "online_cpu_count": 32,
+  "affinity_count": 32,
+  "proc_meminfo": "MemTotal:       32802820 kB\nMemFree:         2099820 kB\nMemAvailable:   19652140 kB\nBuffers:         2097552 kB\nCached:         13876448 kB\nSwapCached:        43652 kB\nActive:          7280592 kB\nInactive:       17901844 kB\nActive(anon):    5789880 kB\nInactive(anon):  3461576 kB\nActive(file):    1490712 kB\nInactive(file): 14440268 kB\nUnevictable:          64 kB\nMlocked:              64 kB\nSwapTotal:       8388604 kB\nSwapFree:        3398544 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:              3724 kB\nWriteback:             0 kB\nAnonPages:       9166588 kB\nMapped:           889940 kB\nShmem:             43104 kB\nKReclaimable:    2083124 kB\nSlab:            3642424 kB\nSReclaimable:    2082716 kB\nSUnreclaim:      1559708 kB\nKernelStack:       53904 kB\nPageTables:       145040 kB\nSecPageTables:      7092 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:    24790012 kB\nCommitted_AS:   89291992 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:      541808 kB\nVmallocChunk:          0 kB\nPercpu:           859264 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:    839680 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:    460800 kB\nFilePmdMapped:      2048 kB\nCmaTotal:              0 kB\nCmaFree:           24488 kB\nUnaccepted:            0 kB\nBalloon:               0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:     3977688 kB\nDirectMap2M:    23187456 kB\nDirectMap1G:     6291456 kB\n",
+  "disk_vfs": {
+    "block_size": 4096,
+    "fragment_size": 4096,
+    "blocks": 245573239,
+    "blocks_free": 32471597,
+    "blocks_available": 19978733
+  },
+  "writes_to_cgroup": 0
+}

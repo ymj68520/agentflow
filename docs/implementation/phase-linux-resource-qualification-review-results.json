@@ -1,0 +1,401 @@
+{
+  "status": "Passed",
+  "checks": [
+    {
+      "section": "Quality & Evidence",
+      "id": "fixed-complete-small-roster",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "source-version-binding",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "normal/raw-receipt-hash",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "normal/actual-classification",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "normal/cleanup",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "normal/readbacks",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "normal/all-recorded-descendant-memberships",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "normal/host-reserves-observed",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "nonzero/raw-receipt-hash",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "nonzero/actual-classification",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "nonzero/cleanup",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "nonzero/readbacks",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "nonzero/all-recorded-descendant-memberships",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "nonzero/host-reserves-observed",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "real-negative-exit",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "membership/raw-receipt-hash",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "membership/actual-classification",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "membership/cleanup",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "membership/readbacks",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "membership/all-recorded-descendant-memberships",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "membership/host-reserves-observed",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "cpu/raw-receipt-hash",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "cpu/actual-classification",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "cpu/cleanup",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "cpu/readbacks",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "cpu/all-recorded-descendant-memberships",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "cpu/host-reserves-observed",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "cpu-real-throttle",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "process-limit/raw-receipt-hash",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "process-limit/actual-classification",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "process-limit/cleanup",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "process-limit/readbacks",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "process-limit/all-recorded-descendant-memberships",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "process-limit/host-reserves-observed",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "hard-AS-refusal-and-no-raise",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "oom/raw-receipt-hash",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "oom/actual-classification",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "oom/cleanup",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "oom/readbacks",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "oom/all-recorded-descendant-memberships",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "oom/host-reserves-observed",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "oom-machine-events",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "timeout/raw-receipt-hash",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "timeout/actual-classification",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "timeout/cleanup",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "timeout/readbacks",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "timeout/all-recorded-descendant-memberships",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "timeout/host-reserves-observed",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "cancel/raw-receipt-hash",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "cancel/actual-classification",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "cancel/cleanup",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "cancel/readbacks",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "cancel/all-recorded-descendant-memberships",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "cancel/host-reserves-observed",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "orphan/raw-receipt-hash",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "orphan/actual-classification",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "orphan/cleanup",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "orphan/readbacks",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "orphan/all-recorded-descendant-memberships",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "orphan/host-reserves-observed",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "repeat/raw-receipt-hash",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "repeat/actual-classification",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "repeat/cleanup",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "repeat/readbacks",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "repeat/all-recorded-descendant-memberships",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "repeat/host-reserves-observed",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "controller-crash/raw-receipt-hash",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "controller-crash/actual-classification",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "controller-crash/cleanup",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "controller-crash/readbacks",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "controller-crash/all-recorded-descendant-memberships",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "controller-crash/host-reserves-observed",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "actual-controller-sigkill",
+      "passed": true
+    },
+    {
+      "section": "Specification",
+      "id": "registered-source-pins-unchanged",
+      "passed": true
+    },
+    {
+      "section": "Specification",
+      "id": "no-existing-product-semantic-change",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "approval-scope-binding",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "prior-failed-runs-retained",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "missing-production-proof-disclosed",
+      "passed": true
+    }
+  ],
+  "review_identity": "Same coding agent, separate read-only process; not third-party certification",
+  "SpecificationReview": "Passed within unchanged-source scope",
+  "ExecutionSafetyReview": "Partial: 11 small cases verified, production-size and untested controls NOT qualified",
+  "QualityEvidenceReview": "Passed within recorded small-fixture scope",
+  "production_executor_qualified": false,
+  "compile_authorized": false
+}

@@ -1,0 +1,11 @@
+{
+  "policy_id": "agentflow.engineering.linux-resources@1",
+  "policy_sha256": "f53be68f5911866d0ccd870f5d6b5a02457d2ee7684e0b90b52a68aada39e0c9",
+  "approved_scope": "qualification",
+  "authorizer": "Direct human reply in this chat",
+  "reply": "仅批准上述小型资格测试",
+  "binding_reply": "接受此明确度量，编译仍另行审批",
+  "delegate": "Dedicated project cgroups only below user@1001.service",
+  "pilot_approved": false,
+  "gates_approved": false
+}

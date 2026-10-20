@@ -1,0 +1,46 @@
+{
+  "status": "Not Authorized",
+  "execution_status": "Not Executed",
+  "source_head": null,
+  "command": [
+    "cargo",
+    "check",
+    "--locked",
+    "--offline",
+    "-j",
+    "1",
+    "-p",
+    "af-core"
+  ],
+  "cwd": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace",
+  "effective_environment": null,
+  "proposed_environment": {
+    "CARGO_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1",
+    "CARGO_TARGET_DIR": "/home/ymj68520/projects/agent-r5g2-linux-validation/build/linux-primary-v1",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_NET_OFFLINE": "true",
+    "PATH_prefix": [
+      "/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin",
+      "/home/ymj68520/.cargo/bin"
+    ]
+  },
+  "rust_cargo_versions": {
+    "rustc": "1.91.1 existing installation, not invoked for compilation",
+    "cargo": "1.91.1 existing installation"
+  },
+  "dependency_lock_sha256": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede",
+  "actual_exit_code": null,
+  "Passed": null,
+  "Failed": null,
+  "Ignored": null,
+  "Filtered": null,
+  "executed_tests": 0,
+  "resource_peaks": null,
+  "OOM": null,
+  "Cancel": null,
+  "Timeout": null,
+  "log_path": null,
+  "log_sha256": null,
+  "reason": "Only small qualification fixtures approved; pilot/full gate authorization absent and production executor review Partial"
+}

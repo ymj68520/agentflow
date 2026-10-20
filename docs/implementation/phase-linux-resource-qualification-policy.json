@@ -1,0 +1,450 @@
+{
+  "policy_id": "agentflow.engineering.linux-resources@1",
+  "policy_sha256": "f53be68f5911866d0ccd870f5d6b5a02457d2ee7684e0b90b52a68aada39e0c9",
+  "candidate": {
+    "policy_id": "agentflow.engineering.linux-resources@1",
+    "version": 1,
+    "status": "Proposed; qualification-only scope Approved",
+    "host": "fwq",
+    "uid": 1001,
+    "workspace": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace",
+    "source_start": "90756b046a03432f6415148fcc9116a274e84830",
+    "scopes": {
+      "qualification": {
+        "Proposed": {
+          "cpu_percent_of_online_host": 5,
+          "process_address_space_bytes": 268435456,
+          "task_memory_bytes": 100663296,
+          "swap_bytes": 0,
+          "pids": 32,
+          "host_reserve_bytes": 8589934592,
+          "disk_growth_bytes": 67108864,
+          "disk_free_reserve_bytes": 21474836480,
+          "wall_seconds": 30,
+          "suite_wall_seconds": 900,
+          "concurrent_tasks": 1,
+          "monitor_period_seconds": 0.1
+        },
+        "Approved": true,
+        "Enforced": null,
+        "Observed": null
+      },
+      "pilot": {
+        "Proposed": {
+          "cpu_percent_of_online_host": 5,
+          "process_address_space_bytes": 2147483648,
+          "task_memory_bytes": 3221225472,
+          "swap_bytes": 0,
+          "pids": 128,
+          "host_reserve_bytes": 8589934592,
+          "disk_growth_bytes": 12884901888,
+          "disk_free_reserve_bytes": 21474836480,
+          "wall_seconds": 900,
+          "concurrent_tasks": 1,
+          "cargo_jobs": 1,
+          "rust_test_threads": 1,
+          "monitor_period_seconds": 0.1
+        },
+        "Approved": false,
+        "Enforced": null,
+        "Observed": null
+      },
+      "gates": {
+        "Proposed": {
+          "build_process_address_space_bytes": 2147483648,
+          "build_task_memory_bytes": 3221225472,
+          "test_process_address_space_bytes": 805306368,
+          "test_task_memory_bytes": 1610612736,
+          "cpu_percent_of_online_host": 5,
+          "swap_bytes": 0,
+          "pids": 128,
+          "host_reserve_bytes": 8589934592,
+          "disk_growth_bytes": 12884901888,
+          "disk_free_reserve_bytes": 21474836480,
+          "wall_seconds_per_gate": 5400,
+          "concurrent_tasks": 1,
+          "cargo_jobs": 1,
+          "rust_test_threads": 1,
+          "monitor_period_seconds": 0.1
+        },
+        "Approved": false,
+        "Enforced": null,
+        "Observed": null
+      }
+    },
+    "process_metric": {
+      "name": "Hard inherited RLIMIT_AS",
+      "unit": "virtual address space bytes; NOT RSS or per-process cgroup accounting",
+      "human_binding_accepted": true,
+      "compile_authorized": false
+    },
+    "backend": "systemd user transient service within a uniquely owned project slice; direct SSH-to-delegation PID migration is not assumed",
+    "guards": {
+      "disk": "Sampled aggregate allocated-byte and host-free-space watchdog plus per-file RLIMIT_FSIZE; not a kernel filesystem quota. Overshoot must be reported, never silently credited.",
+      "host_memory": "Admission MemAvailable >= reserve+task_memory; runtime abort below reserve",
+      "controller_loss": "Independent guardian with inherited lock plus systemd unit RuntimeMaxSec and KillMode=control-group",
+      "trust": "Fixed trusted engineering commands only; not a hostile same-UID sandbox"
+    }
+  },
+  "approval": {
+    "policy_id": "agentflow.engineering.linux-resources@1",
+    "policy_sha256": "f53be68f5911866d0ccd870f5d6b5a02457d2ee7684e0b90b52a68aada39e0c9",
+    "approved_scope": "qualification",
+    "authorizer": "Direct human reply in this chat",
+    "reply": "\u4ec5\u6279\u51c6\u4e0a\u8ff0\u5c0f\u578b\u8d44\u683c\u6d4b\u8bd5",
+    "binding_reply": "\u63a5\u53d7\u6b64\u660e\u786e\u5ea6\u91cf\uff0c\u7f16\u8bd1\u4ecd\u53e6\u884c\u5ba1\u6279",
+    "delegate": "Dedicated project cgroups only below user@1001.service",
+    "pilot_approved": false,
+    "gates_approved": false
+  },
+  "qualification_Enforced_Observed": [
+    {
+      "case": "normal",
+      "id": "5291d3e5-5909-4f43-94f2-f4caaaf2ccce",
+      "Enforced": {
+        "cpu.max": "160000 100000",
+        "memory.max": "100663296",
+        "memory.swap.max": "0",
+        "pids.max": "32",
+        "memory.oom.group": "0"
+      },
+      "process_hard_address_space_bytes": 268435456,
+      "Observed": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 76439\nuser_usec 53967\nsystem_usec 22472\nnice_usec 55000\ncore_sched.force_idle_usec 0\nnr_periods 2\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "6045696",
+        "memory.peak": "11358208",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "32",
+        "pids.current": "1",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 1\nfrozen 0"
+      },
+      "elapsed_seconds": 0.10575720202177763,
+      "max_sampled_disk_growth_bytes": 20480,
+      "owned_cgroup_removed": true
+    },
+    {
+      "case": "nonzero",
+      "id": "c6b9a00d-02f2-4526-90b6-21639de7c158",
+      "Enforced": {
+        "cpu.max": "160000 100000",
+        "memory.max": "100663296",
+        "memory.swap.max": "0",
+        "pids.max": "32",
+        "memory.oom.group": "0"
+      },
+      "process_hard_address_space_bytes": 268435456,
+      "Observed": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 77753\nuser_usec 51835\nsystem_usec 25917\nnice_usec 52000\ncore_sched.force_idle_usec 0\nnr_periods 2\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "6053888",
+        "memory.peak": "11378688",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "32",
+        "pids.current": "1",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 1\nfrozen 0"
+      },
+      "elapsed_seconds": 0.20757448812946677,
+      "max_sampled_disk_growth_bytes": 20480,
+      "owned_cgroup_removed": true
+    },
+    {
+      "case": "membership",
+      "id": "fb0f724d-c99a-4fad-9125-dea499e8cb68",
+      "Enforced": {
+        "cpu.max": "160000 100000",
+        "memory.max": "100663296",
+        "memory.swap.max": "0",
+        "pids.max": "32",
+        "memory.oom.group": "0"
+      },
+      "process_hard_address_space_bytes": 268435456,
+      "Observed": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 433465\nuser_usec 405305\nsystem_usec 28160\nnice_usec 403000\ncore_sched.force_idle_usec 0\nnr_periods 4\nnr_throttled 2\nthrottled_usec 52489\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "6283264",
+        "memory.peak": "13467648",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "32",
+        "pids.current": "1",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 1\nfrozen 0"
+      },
+      "elapsed_seconds": 0.4116623690351844,
+      "max_sampled_disk_growth_bytes": 28672,
+      "owned_cgroup_removed": true
+    },
+    {
+      "case": "cpu",
+      "id": "dcb90dd3-1a50-481b-8801-92696e8f48c8",
+      "Enforced": {
+        "cpu.max": "160000 100000",
+        "memory.max": "100663296",
+        "memory.swap.max": "0",
+        "pids.max": "32",
+        "memory.oom.group": "0"
+      },
+      "process_hard_address_space_bytes": 268435456,
+      "Observed": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 6603943\nuser_usec 6568412\nsystem_usec 35531\nnice_usec 6655000\ncore_sched.force_idle_usec 0\nnr_periods 42\nnr_throttled 41\nthrottled_usec 9545031\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "6524928",
+        "memory.peak": "15556608",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "32",
+        "pids.current": "1",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 1\nfrozen 0"
+      },
+      "elapsed_seconds": 4.188472891226411,
+      "max_sampled_disk_growth_bytes": 36864,
+      "owned_cgroup_removed": true
+    },
+    {
+      "case": "process-limit",
+      "id": "102b2f1d-59a4-4e79-a81b-0e60d2564668",
+      "Enforced": {
+        "cpu.max": "160000 100000",
+        "memory.max": "100663296",
+        "memory.swap.max": "0",
+        "pids.max": "32",
+        "memory.oom.group": "0"
+      },
+      "process_hard_address_space_bytes": 268435456,
+      "Observed": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 77690\nuser_usec 50089\nsystem_usec 27600\nnice_usec 49000\ncore_sched.force_idle_usec 0\nnr_periods 2\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "5881856",
+        "memory.peak": "11374592",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "32",
+        "pids.current": "1",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 1\nfrozen 0"
+      },
+      "elapsed_seconds": 0.2084380779415369,
+      "max_sampled_disk_growth_bytes": 24576,
+      "owned_cgroup_removed": true
+    },
+    {
+      "case": "oom",
+      "id": "b6e05d00-99a7-4d82-a9ba-298b415d0de0",
+      "Enforced": {
+        "cpu.max": "160000 100000",
+        "memory.max": "100663296",
+        "memory.swap.max": "0",
+        "pids.max": "32",
+        "memory.oom.group": "0"
+      },
+      "process_hard_address_space_bytes": 268435456,
+      "Observed": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 153417\nuser_usec 56152\nsystem_usec 97264\nnice_usec 56000\ncore_sched.force_idle_usec 0\nnr_periods 2\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "212992",
+        "memory.peak": "100663296",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 34\noom 1\noom_kill 3\noom_group_kill 1\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=4813\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=4813",
+        "pids.max": "32",
+        "pids.current": "0",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 0\nfrozen 0"
+      },
+      "elapsed_seconds": 0.2079152180813253,
+      "max_sampled_disk_growth_bytes": 16384,
+      "owned_cgroup_removed": true
+    },
+    {
+      "case": "timeout",
+      "id": "ab7073f7-479d-46ef-9979-690481501a7a",
+      "Enforced": {
+        "cpu.max": "160000 100000",
+        "memory.max": "100663296",
+        "memory.swap.max": "0",
+        "pids.max": "32",
+        "memory.oom.group": "0"
+      },
+      "process_hard_address_space_bytes": 268435456,
+      "Observed": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 70662\nuser_usec 42397\nsystem_usec 28265\nnice_usec 42000\ncore_sched.force_idle_usec 0\nnr_periods 3\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "11280384",
+        "memory.peak": "11628544",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "32",
+        "pids.current": "2",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 1\nfrozen 0"
+      },
+      "elapsed_seconds": 1.0406830781139433,
+      "max_sampled_disk_growth_bytes": 16384,
+      "owned_cgroup_removed": true
+    },
+    {
+      "case": "cancel",
+      "id": "1e059530-58d7-4cda-82cb-64808862e795",
+      "Enforced": {
+        "cpu.max": "160000 100000",
+        "memory.max": "100663296",
+        "memory.swap.max": "0",
+        "pids.max": "32",
+        "memory.oom.group": "0"
+      },
+      "process_hard_address_space_bytes": 268435456,
+      "Observed": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 70379\nuser_usec 49265\nsystem_usec 21113\nnice_usec 49000\ncore_sched.force_idle_usec 0\nnr_periods 2\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "11362304",
+        "memory.peak": "11362304",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "32",
+        "pids.current": "2",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 1\nfrozen 0"
+      },
+      "elapsed_seconds": 0.1057283328846097,
+      "max_sampled_disk_growth_bytes": 20480,
+      "owned_cgroup_removed": true
+    },
+    {
+      "case": "orphan",
+      "id": "0bd07e8e-03ae-4ee7-9870-3f0805cb7064",
+      "Enforced": {
+        "cpu.max": "160000 100000",
+        "memory.max": "100663296",
+        "memory.swap.max": "0",
+        "pids.max": "32",
+        "memory.oom.group": "0"
+      },
+      "process_hard_address_space_bytes": 268435456,
+      "Observed": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 82677\nuser_usec 54446\nsystem_usec 28231\nnice_usec 54000\ncore_sched.force_idle_usec 0\nnr_periods 2\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "11739136",
+        "memory.peak": "16334848",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "32",
+        "pids.current": "2",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 1\nfrozen 0"
+      },
+      "elapsed_seconds": 0.20855930726975203,
+      "max_sampled_disk_growth_bytes": 24576,
+      "owned_cgroup_removed": true
+    },
+    {
+      "case": "repeat",
+      "id": "d7f67371-4534-484b-98ef-16cc5fe30161",
+      "Enforced": {
+        "cpu.max": "160000 100000",
+        "memory.max": "100663296",
+        "memory.swap.max": "0",
+        "pids.max": "32",
+        "memory.oom.group": "0"
+      },
+      "process_hard_address_space_bytes": 268435456,
+      "Observed": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 77142\nuser_usec 56841\nsystem_usec 20300\nnice_usec 56000\ncore_sched.force_idle_usec 0\nnr_periods 2\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "6049792",
+        "memory.peak": "11362304",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "32",
+        "pids.current": "1",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 1\nfrozen 0"
+      },
+      "elapsed_seconds": 0.20738602802157402,
+      "max_sampled_disk_growth_bytes": 20480,
+      "owned_cgroup_removed": true
+    },
+    {
+      "case": "controller-crash",
+      "id": "fc5516e8-ee8d-4738-8d25-931bd1d2a8d2",
+      "Enforced": {
+        "cpu.max": "160000 100000",
+        "memory.max": "100663296",
+        "memory.swap.max": "0",
+        "pids.max": "32",
+        "memory.oom.group": "0"
+      },
+      "process_hard_address_space_bytes": 268435456,
+      "Observed": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 67489\nuser_usec 46333\nsystem_usec 21155\nnice_usec 46000\ncore_sched.force_idle_usec 0\nnr_periods 1\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "11366400",
+        "memory.peak": "11366400",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "32",
+        "pids.current": "2",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 1\nfrozen 0"
+      },
+      "elapsed_seconds": 0.10522676259279251,
+      "max_sampled_disk_growth_bytes": 12288,
+      "owned_cgroup_removed": true
+    }
+  ],
+  "pilot_Approved": false,
+  "pilot_Enforced": null,
+  "pilot_Observed": null,
+  "gates_Approved": false,
+  "gates_Enforced": null,
+  "gates_Observed": null,
+  "scope_warning": "The human accepted the RLIMIT_AS metric, NOT Rust execution. Proposed budgets are not approvals."
+}
