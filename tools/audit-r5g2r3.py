@@ -31,7 +31,7 @@ def write(name, value, document=False):
     path = (D if document else R / 'target') / (P + name + '.json')
     # Derived R3 files may be refreshed during development; never old inputs.
     assert path.name.startswith(P) and path.parent in (D, R / 'target')
-    path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf8')
+    path.write_bytes((json.dumps(value, ensure_ascii=False, indent=2) + '\n').encode('utf8'))
     return str(path.relative_to(R)).replace('\\', '/')
 
 
@@ -340,6 +340,10 @@ def refresh_design():
             if gate['GateId'] == 'frozen-g3' else None)
     write('verification-contract-inventory', inv, True)
     resources()
+    # The repository requires LF bytes on Windows too. Normalize only these
+    # newly derived R3 JSON documents, never old evidence or source assets.
+    for derived in D.glob(P + '*.json'):
+        write(derived.name[len(P):-5], json.loads(derived.read_bytes()), True)
     print(json.dumps(dict(design_vectors=v['total'], actual_gate_execution='Not Executed')), flush=True)
 
 
