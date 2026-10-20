@@ -1,0 +1,60 @@
+{
+  "policy_id": "agentflow.engineering.production-protector@1",
+  "source_start": "ad44baa4e462bb7a25b2eb34ffcaf32876727e7a",
+  "scope": "Checkpoint A only; no Cargo launch backend admitted",
+  "qualification": {
+    "Proposed": {
+      "cpu_percent_of_online_host": 5,
+      "process_address_space_bytes": 268435456,
+      "task_memory_bytes": 100663296,
+      "swap_bytes": 0,
+      "pids": 8,
+      "host_reserve_bytes": 8589934592,
+      "disk_growth_bytes": 33554432,
+      "disk_free_reserve_bytes": 21474836480,
+      "wall_seconds": 30,
+      "suite_wall_seconds": 900,
+      "concurrent_tasks": 1,
+      "monitor_period_seconds": 0.1
+    },
+    "Approved": true,
+    "Effective": null,
+    "Observed": null
+  },
+  "pilot": {
+    "Proposed": {
+      "cpu_percent_of_online_host": 5,
+      "process_address_space_bytes": 2147483648,
+      "task_memory_bytes": 3221225472,
+      "test_process_address_space_bytes": 805306368,
+      "test_task_memory_bytes": 1610612736,
+      "swap_bytes": 0,
+      "pids": 128,
+      "host_reserve_bytes": 8589934592,
+      "disk_growth_bytes": 12884901888,
+      "disk_free_reserve_bytes": 21474836480,
+      "wall_seconds": 900,
+      "cargo_jobs": 1,
+      "rust_test_threads": 1,
+      "concurrent_tasks": 1
+    },
+    "Approved": false,
+    "Effective": null,
+    "Observed": null
+  },
+  "disk_monitor_risk": {
+    "Approved": false,
+    "hard_quota_qualified": false,
+    "semantics": "100ms sampled allocated-block growth and real statvfs free bytes, not a hard aggregate quota. Qualification simulations use <=8MiB test output; 2MiB growth /4MiB virtual free thresholds are stricter TEST ONLY.",
+    "managed_roots": [
+      "workspace excluding .git",
+      "cache/cargo-linux-primary-v1",
+      "build/linux-primary-v1",
+      "tmp/production-protector",
+      "per-job evidence/output"
+    ]
+  },
+  "guardian_death_prerequisite": "Exact same-implementation normal handoff proof with complete owned-tree cleanup must pass before pidfd SIGKILL injection",
+  "metric": "RLIMIT_AS is virtual address space, not RSS; cgroup memory.max is aggregate tree accounting",
+  "full_gates_authorized": false
+}
