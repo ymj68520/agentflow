@@ -1,0 +1,12 @@
+{
+  "status": "NOT QUALIFIED FOR PILOT",
+  "CheckpointA": "New small gaps tested and reviewed; residual production disk risk unaccepted",
+  "pids_small": "Passed 2/2",
+  "disk_monitor_small": "Passed 3/3; simulation not hard quota",
+  "guardian_takeover_small": "Passed 2/2",
+  "hard_quota": "Not Qualified",
+  "residual_disk_monitor_risk": "Not Approved",
+  "production_resource_profile": "Not Executed",
+  "CheckpointB": "NOT ADMITTED",
+  "CheckpointC": "Not Executed"
+}

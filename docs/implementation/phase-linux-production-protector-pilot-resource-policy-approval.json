@@ -1,0 +1,339 @@
+{
+  "policy": {
+    "policy_id": "agentflow.engineering.production-protector@1",
+    "source_start": "ad44baa4e462bb7a25b2eb34ffcaf32876727e7a",
+    "scope": "Checkpoint A only; no Cargo launch backend admitted",
+    "qualification": {
+      "Proposed": {
+        "cpu_percent_of_online_host": 5,
+        "process_address_space_bytes": 268435456,
+        "task_memory_bytes": 100663296,
+        "swap_bytes": 0,
+        "pids": 8,
+        "host_reserve_bytes": 8589934592,
+        "disk_growth_bytes": 33554432,
+        "disk_free_reserve_bytes": 21474836480,
+        "wall_seconds": 30,
+        "suite_wall_seconds": 900,
+        "concurrent_tasks": 1,
+        "monitor_period_seconds": 0.1
+      },
+      "Approved": true,
+      "Effective": null,
+      "Observed": null
+    },
+    "pilot": {
+      "Proposed": {
+        "cpu_percent_of_online_host": 5,
+        "process_address_space_bytes": 2147483648,
+        "task_memory_bytes": 3221225472,
+        "test_process_address_space_bytes": 805306368,
+        "test_task_memory_bytes": 1610612736,
+        "swap_bytes": 0,
+        "pids": 128,
+        "host_reserve_bytes": 8589934592,
+        "disk_growth_bytes": 12884901888,
+        "disk_free_reserve_bytes": 21474836480,
+        "wall_seconds": 900,
+        "cargo_jobs": 1,
+        "rust_test_threads": 1,
+        "concurrent_tasks": 1
+      },
+      "Approved": false,
+      "Effective": null,
+      "Observed": null
+    },
+    "disk_monitor_risk": {
+      "Approved": false,
+      "hard_quota_qualified": false,
+      "semantics": "100ms sampled allocated-block growth and real statvfs free bytes, not a hard aggregate quota. Qualification simulations use <=8MiB test output; 2MiB growth /4MiB virtual free thresholds are stricter TEST ONLY.",
+      "managed_roots": [
+        "workspace excluding .git",
+        "cache/cargo-linux-primary-v1",
+        "build/linux-primary-v1",
+        "tmp/production-protector",
+        "per-job evidence/output"
+      ]
+    },
+    "guardian_death_prerequisite": "Exact same-implementation normal handoff proof with complete owned-tree cleanup must pass before pidfd SIGKILL injection",
+    "metric": "RLIMIT_AS is virtual address space, not RSS; cgroup memory.max is aggregate tree accounting",
+    "full_gates_authorized": false
+  },
+  "approval": {
+    "policy_sha256": "4c2c111772550d64560be9ea53e2ef3feabc1646013b38634cbbe653e3a57480",
+    "scope": "Checkpoint A new small fault tests only",
+    "authorizer": "Direct human reply in this chat",
+    "reply": "\u4ec5\u6279\u51c6\u4e0a\u8ff0\u65b0\u589e\u5c0f\u578b\u6d4b\u8bd5",
+    "pilot_approved": false,
+    "full_gates_approved": false,
+    "disk_risk_accepted": false
+  },
+  "Effective": [
+    {
+      "mode": "disk-preflight",
+      "settings": null,
+      "rlimit_as": null
+    },
+    {
+      "mode": "pids",
+      "settings": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 0\nuser_usec 0\nsystem_usec 0\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "0",
+        "memory.peak": "0",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "8",
+        "pids.current": "0",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 0\nfrozen 0"
+      },
+      "rlimit_as": [
+        268435456,
+        268435456
+      ]
+    },
+    {
+      "mode": "threads",
+      "settings": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 0\nuser_usec 0\nsystem_usec 0\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "0",
+        "memory.peak": "0",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "8",
+        "pids.current": "0",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 0\nfrozen 0"
+      },
+      "rlimit_as": [
+        268435456,
+        268435456
+      ]
+    },
+    {
+      "mode": "disk-growth",
+      "settings": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 0\nuser_usec 0\nsystem_usec 0\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "0",
+        "memory.peak": "0",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "8",
+        "pids.current": "0",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 0\nfrozen 0"
+      },
+      "rlimit_as": [
+        268435456,
+        268435456
+      ]
+    },
+    {
+      "mode": "disk-free",
+      "settings": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 0\nuser_usec 0\nsystem_usec 0\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "0",
+        "memory.peak": "0",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "8",
+        "pids.current": "0",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 0\nfrozen 0"
+      },
+      "rlimit_as": [
+        268435456,
+        268435456
+      ]
+    },
+    {
+      "mode": "guardian-handoff",
+      "settings": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 0\nuser_usec 0\nsystem_usec 0\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "0",
+        "memory.peak": "0",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "8",
+        "pids.current": "0",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 0\nfrozen 0"
+      },
+      "rlimit_as": [
+        268435456,
+        268435456
+      ]
+    },
+    {
+      "mode": "guardian-kill",
+      "settings": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 0\nuser_usec 0\nsystem_usec 0\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "0",
+        "memory.peak": "0",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "8",
+        "pids.current": "0",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 0\nfrozen 0"
+      },
+      "rlimit_as": [
+        268435456,
+        268435456
+      ]
+    }
+  ],
+  "Observed": [
+    {
+      "mode": "disk-preflight",
+      "settings": null
+    },
+    {
+      "mode": "pids",
+      "settings": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 108960\nuser_usec 59344\nsystem_usec 49615\nnice_usec 61000\ncore_sched.force_idle_usec 0\nnr_periods 3\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "7786496",
+        "memory.peak": "19976192",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "8",
+        "pids.current": "1",
+        "pids.events": "max 1",
+        "cgroup.events": "populated 1\nfrozen 0"
+      }
+    },
+    {
+      "mode": "threads",
+      "settings": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 81416\nuser_usec 60308\nsystem_usec 21107\nnice_usec 60000\ncore_sched.force_idle_usec 0\nnr_periods 4\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "5976064",
+        "memory.peak": "13500416",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "8",
+        "pids.current": "1",
+        "pids.events": "max 1",
+        "cgroup.events": "populated 1\nfrozen 0"
+      }
+    },
+    {
+      "mode": "disk-growth",
+      "settings": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 84927\nuser_usec 59192\nsystem_usec 25735\nnice_usec 58000\ncore_sched.force_idle_usec 0\nnr_periods 8\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "15372288",
+        "memory.peak": "15372288",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "8",
+        "pids.current": "2",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 1\nfrozen 0"
+      }
+    },
+    {
+      "mode": "disk-free",
+      "settings": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 77712\nuser_usec 51808\nsystem_usec 25904\nnice_usec 50000\ncore_sched.force_idle_usec 0\nnr_periods 9\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "15503360",
+        "memory.peak": "15503360",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "8",
+        "pids.current": "2",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 1\nfrozen 0"
+      }
+    },
+    {
+      "mode": "guardian-handoff",
+      "settings": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 78715\nuser_usec 51113\nsystem_usec 27601\nnice_usec 50000\ncore_sched.force_idle_usec 0\nnr_periods 4\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "13488128",
+        "memory.peak": "13488128",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "8",
+        "pids.current": "3",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 1\nfrozen 0"
+      }
+    },
+    {
+      "mode": "guardian-kill",
+      "settings": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 77375\nuser_usec 56543\nsystem_usec 20831\nnice_usec 57000\ncore_sched.force_idle_usec 0\nnr_periods 2\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "100663296",
+        "memory.current": "13221888",
+        "memory.peak": "13221888",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "8",
+        "pids.current": "3",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 1\nfrozen 0"
+      }
+    }
+  ],
+  "pilot_approved": false,
+  "full_gates_approved": false,
+  "disk_risk_accepted": false
+}

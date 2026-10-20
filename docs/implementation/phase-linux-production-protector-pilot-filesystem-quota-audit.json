@@ -1,0 +1,32 @@
+{
+  "readonly_queries": [
+    {
+      "argv": [
+        "findmnt",
+        "-J",
+        "-T",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace",
+        "-o",
+        "SOURCE,FSTYPE,TARGET,OPTIONS"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "stat",
+        "-f",
+        "-c",
+        "%T %s %a",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace"
+      ],
+      "exit_code": 0,
+      "stdout": "ext2/ext3 4096 19966664\n",
+      "stderr": ""
+    }
+  ],
+  "quota_binary": null,
+  "hard_quota_qualified": false,
+  "quota_configuration_changed": false
+}

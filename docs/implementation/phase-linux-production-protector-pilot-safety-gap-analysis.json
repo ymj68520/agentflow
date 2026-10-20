@@ -1,0 +1,21 @@
+{
+  "source_start": "ad44baa4e462bb7a25b2eb34ffcaf32876727e7a",
+  "gaps": {
+    "pids": "Small actual PID and thread exhaustion Verified at pids.max8; production128 profile not run",
+    "disk": "Growth/free predicates + live bounded simulated thresholds + recovery Verified; hard quota NOT QUALIFIED and residual risk NOT APPROVED",
+    "guardian": "Orderly controller takeover proof validated before own guardian pidfd SIGKILL; both trees reclaimed"
+  },
+  "repairs": [
+    "Separate version leaves all legacy executable/oracle/receipt bytes intact",
+    "Handle already-reaped guardian child; bounded wait with owned pidfd termination; then owned cgroup fallback cleanup",
+    "Shared exclusive rendezvous lock across old/new runners",
+    "Expand sampled accounting to workspace excluding .git + Cargo cache + target + project tmp + own job; deduplicate hard links and reject symlinks"
+  ],
+  "residual": [
+    "100ms target sampling can overshoot; not kernel aggregate quota",
+    "Non-listed/hostile same-UID writes not a sandbox guarantee",
+    "Production-sized2GiB/3GiB and128 PID budgets not yet exercised",
+    "No resource budget or explicit Pilot execution approval"
+  ],
+  "product_changes": false
+}

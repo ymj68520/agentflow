@@ -1,0 +1,235 @@
+{
+  "status": "Passed",
+  "checks": [
+    {
+      "section": "Quality & Evidence",
+      "id": "fixed-roster",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "executed-source-bytes",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "disk-preflight/real-controller-exit",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "preflight-no-task",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "pids/real-controller-exit",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "pids/kernel-readback",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "pids/reclaimed-owned-group",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "pids/AS-readback",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "pids/actual-refusal",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "pids/not-memory-failure",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "threads/real-controller-exit",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "threads/kernel-readback",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "threads/reclaimed-owned-group",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "threads/AS-readback",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "threads/actual-refusal",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "threads/not-memory-failure",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "disk-growth/real-controller-exit",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "disk-growth/kernel-readback",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "disk-growth/reclaimed-owned-group",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "disk-growth/AS-readback",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "disk-growth/owned-file-recovery",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "disk-growth/real-reserve-preserved",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "disk-growth/crossing-terminated",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "disk-free/real-controller-exit",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "disk-free/kernel-readback",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "disk-free/reclaimed-owned-group",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "disk-free/AS-readback",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "disk-free/owned-file-recovery",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "disk-free/real-reserve-preserved",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "disk-free/crossing-terminated",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "guardian-handoff/real-controller-exit",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "guardian-handoff/kernel-readback",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "guardian-handoff/reclaimed-owned-group",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "guardian-handoff/AS-readback",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "orderly-takeover-proof",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "guardian-kill/real-controller-exit",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "guardian-kill/kernel-readback",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "guardian-kill/reclaimed-owned-group",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "guardian-kill/AS-readback",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "own-pidfd-SIGKILL",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "rehearsal-precedes-death",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "no-Pilot-risk-gate-approval",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "hard-quota-not-claimed",
+      "passed": true
+    },
+    {
+      "section": "Specification",
+      "id": "registered-pins-exact",
+      "passed": true
+    },
+    {
+      "section": "Specification",
+      "id": "no-prior-product-or-oracle-edits",
+      "passed": true
+    }
+  ],
+  "reviewer": "Same coding agent, separate readback process; not third-party certification",
+  "specification": "Passed within unchanged-source scope",
+  "execution_safety": "Small new gaps tested; production admission NOT QUALIFIED pending disk risk and budget",
+  "quality_evidence": "Passed within seven-case small-test scope",
+  "pilot_admitted": false
+}

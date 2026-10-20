@@ -1,0 +1,15 @@
+{
+  "live_executing_head": "ad44baa4e462bb7a25b2eb34ffcaf32876727e7a",
+  "executor_sha256": "28b3ffbf05a1815f80ada6c8ffe98cee621fb7805b84ad24deefbfca2e393349",
+  "fixture_sha256": "33292a84438538b493aa522fa04629c9163e5ecc269f9aa0876d78472b802f4c",
+  "policy_sha256": "4c2c111772550d64560be9ea53e2ef3feabc1646013b38634cbbe653e3a57480",
+  "overlay_sha256": {
+    "engineering/policies/linux-production-protector-v1.json": "4c2c111772550d64560be9ea53e2ef3feabc1646013b38634cbbe653e3a57480",
+    "tools/linux-production-protector.py": "28b3ffbf05a1815f80ada6c8ffe98cee621fb7805b84ad24deefbfca2e393349",
+    "tools/linux-production-fixtures.py": "33292a84438538b493aa522fa04629c9163e5ecc269f9aa0876d78472b802f4c",
+    "tools/test-linux-production-protector.py": "b9b3a4596ecbefe6360ab0fed4770f2084d79a8d0d1b626a4f97fbddcbe2c8af",
+    "tools/qualify-linux-production-protector.py": "a701964222ea0741fb3477f9afcd76714fcf50cf28493a5e4561f263aa6e1f13",
+    "tools/review-linux-production-protector.py": "dc9f5a4d5c59bcd3257b1caf1c6593ef82836b16b915335b1419fbe0d56676f9"
+  },
+  "explanation": "Live tests executed at starting HEAD with this uncommitted engineering overlay. Post-commit ledger binds identical bytes; no claim of live replay at final HEAD."
+}

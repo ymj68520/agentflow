@@ -1,0 +1,18 @@
+{
+  "status": "NOT ADMITTED",
+  "criteria": {
+    "safety_gap_or_residual_disk_risk_approval": false,
+    "compilation_numeric_budget_approved": false,
+    "production_protection_effective_readbacks": false,
+    "host_admission": "Not evaluated for execution; read-only capacity snapshots are not admission",
+    "source_lock_dependency_identity_frozen": true,
+    "explicit_this_pilot_approval": false
+  },
+  "reason": [
+    "Only new Checkpoint A small fault tests approved",
+    "Sampled disk residual risk independently unapproved; no qualified hard quota",
+    "Pilot numeric budget and explicit one-shot launch approval absent",
+    "No production policy readbacks may be substituted with small96MiB/PIDs8 results"
+  ],
+  "allowed_attempts_if_later_admitted": 1
+}

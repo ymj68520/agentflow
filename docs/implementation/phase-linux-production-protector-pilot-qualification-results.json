@@ -1,0 +1,164 @@
+{
+  "status": "Passed",
+  "Required": 7,
+  "Executed": 7,
+  "Passed": 7,
+  "Failed": 0,
+  "NotExecuted": 0,
+  "cases": [
+    {
+      "mode": "disk-preflight",
+      "id": "62c12c62-c854-45c9-bdd1-51d5773e14bf",
+      "source_head": "ad44baa4e462bb7a25b2eb34ffcaf32876727e7a",
+      "executor_sha256": "28b3ffbf05a1815f80ada6c8ffe98cee621fb7805b84ad24deefbfca2e393349",
+      "resource_policy_sha256": "4c2c111772550d64560be9ea53e2ef3feabc1646013b38634cbbe653e3a57480",
+      "actual_controller_exit": 0,
+      "checks": {
+        "controller_exit": true,
+        "unrelated_sentinel_alive": true,
+        "receipt": true,
+        "denied_without_launch": true,
+        "no_active_lock": true
+      },
+      "passed": true
+    },
+    {
+      "mode": "pids",
+      "id": "54207eb9-c348-4424-8e3e-37a6bb606954",
+      "source_head": "ad44baa4e462bb7a25b2eb34ffcaf32876727e7a",
+      "executor_sha256": "28b3ffbf05a1815f80ada6c8ffe98cee621fb7805b84ad24deefbfca2e393349",
+      "resource_policy_sha256": "4c2c111772550d64560be9ea53e2ef3feabc1646013b38634cbbe653e3a57480",
+      "actual_controller_exit": 0,
+      "checks": {
+        "controller_exit": true,
+        "unrelated_sentinel_alive": true,
+        "reason": true,
+        "owned_tree_removed": true,
+        "raw_limits": true,
+        "no_new_swap": true,
+        "all_fixture_pid_ownership": true,
+        "actual_creation_failure": true,
+        "kernel_pids_event": true,
+        "no_oom_substitution": true,
+        "actual_workload_exit": true,
+        "no_active_lock": true
+      },
+      "passed": true
+    },
+    {
+      "mode": "threads",
+      "id": "e992b4aa-97b1-4a1b-982c-cac6bbf03577",
+      "source_head": "ad44baa4e462bb7a25b2eb34ffcaf32876727e7a",
+      "executor_sha256": "28b3ffbf05a1815f80ada6c8ffe98cee621fb7805b84ad24deefbfca2e393349",
+      "resource_policy_sha256": "4c2c111772550d64560be9ea53e2ef3feabc1646013b38634cbbe653e3a57480",
+      "actual_controller_exit": 0,
+      "checks": {
+        "controller_exit": true,
+        "unrelated_sentinel_alive": true,
+        "reason": true,
+        "owned_tree_removed": true,
+        "raw_limits": true,
+        "no_new_swap": true,
+        "all_fixture_pid_ownership": true,
+        "actual_creation_failure": true,
+        "kernel_pids_event": true,
+        "no_oom_substitution": true,
+        "actual_workload_exit": true,
+        "no_active_lock": true
+      },
+      "passed": true
+    },
+    {
+      "mode": "disk-growth",
+      "id": "667e74f2-c741-4628-b204-7466bdcdb450",
+      "source_head": "ad44baa4e462bb7a25b2eb34ffcaf32876727e7a",
+      "executor_sha256": "28b3ffbf05a1815f80ada6c8ffe98cee621fb7805b84ad24deefbfca2e393349",
+      "resource_policy_sha256": "4c2c111772550d64560be9ea53e2ef3feabc1646013b38634cbbe653e3a57480",
+      "actual_controller_exit": 0,
+      "checks": {
+        "controller_exit": true,
+        "unrelated_sentinel_alive": true,
+        "reason": true,
+        "owned_tree_removed": true,
+        "raw_limits": true,
+        "no_new_swap": true,
+        "all_fixture_pid_ownership": true,
+        "file_growth_and_recovery": true,
+        "threshold_crossed": true,
+        "real_host_reserve_safe": true,
+        "no_active_lock": true
+      },
+      "passed": true
+    },
+    {
+      "mode": "disk-free",
+      "id": "e6ebacad-aa1e-410f-b8b3-964e33b8fcf7",
+      "source_head": "ad44baa4e462bb7a25b2eb34ffcaf32876727e7a",
+      "executor_sha256": "28b3ffbf05a1815f80ada6c8ffe98cee621fb7805b84ad24deefbfca2e393349",
+      "resource_policy_sha256": "4c2c111772550d64560be9ea53e2ef3feabc1646013b38634cbbe653e3a57480",
+      "actual_controller_exit": 0,
+      "checks": {
+        "controller_exit": true,
+        "unrelated_sentinel_alive": true,
+        "reason": true,
+        "owned_tree_removed": true,
+        "raw_limits": true,
+        "no_new_swap": true,
+        "all_fixture_pid_ownership": true,
+        "file_growth_and_recovery": true,
+        "threshold_crossed": true,
+        "real_host_reserve_safe": true,
+        "simulated_free_crossed": true,
+        "no_active_lock": true
+      },
+      "passed": true
+    },
+    {
+      "mode": "guardian-handoff",
+      "id": "20c1bb8a-71d1-42dc-ab2f-64c1edf73838",
+      "source_head": "ad44baa4e462bb7a25b2eb34ffcaf32876727e7a",
+      "executor_sha256": "28b3ffbf05a1815f80ada6c8ffe98cee621fb7805b84ad24deefbfca2e393349",
+      "resource_policy_sha256": "4c2c111772550d64560be9ea53e2ef3feabc1646013b38634cbbe653e3a57480",
+      "actual_controller_exit": 0,
+      "checks": {
+        "controller_exit": true,
+        "unrelated_sentinel_alive": true,
+        "reason": true,
+        "owned_tree_removed": true,
+        "raw_limits": true,
+        "no_new_swap": true,
+        "all_fixture_pid_ownership": true,
+        "normal_handoff_before_death": true,
+        "no_active_lock": true
+      },
+      "passed": true
+    },
+    {
+      "mode": "guardian-kill",
+      "id": "d6e1318f-dc1a-472e-a0b0-2b37c3bfecea",
+      "source_head": "ad44baa4e462bb7a25b2eb34ffcaf32876727e7a",
+      "executor_sha256": "28b3ffbf05a1815f80ada6c8ffe98cee621fb7805b84ad24deefbfca2e393349",
+      "resource_policy_sha256": "4c2c111772550d64560be9ea53e2ef3feabc1646013b38634cbbe653e3a57480",
+      "actual_controller_exit": 0,
+      "checks": {
+        "controller_exit": true,
+        "unrelated_sentinel_alive": true,
+        "reason": true,
+        "owned_tree_removed": true,
+        "raw_limits": true,
+        "no_new_swap": true,
+        "all_fixture_pid_ownership": true,
+        "actual_guardian_sigkill": true,
+        "prior_verified_takeover": true,
+        "no_active_lock": true
+      },
+      "passed": true
+    }
+  ],
+  "source_head": "ad44baa4e462bb7a25b2eb34ffcaf32876727e7a",
+  "executor_sha256": "28b3ffbf05a1815f80ada6c8ffe98cee621fb7805b84ad24deefbfca2e393349",
+  "fixture_sha256": "33292a84438538b493aa522fa04629c9163e5ecc269f9aa0876d78472b802f4c",
+  "policy_sha256": "4c2c111772550d64560be9ea53e2ef3feabc1646013b38634cbbe653e3a57480",
+  "scope": "New authorized small fault tests ONLY; no kernel hard-disk quota or Pilot approval",
+  "rust_commands_launched": 0
+}
