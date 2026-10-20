@@ -1,0 +1,42 @@
+{
+  "network_boundary": {
+    "claimed_value": null,
+    "supplied_by": null,
+    "evidence_reference": null,
+    "verified_status": "Unknown",
+    "approval_status": "Not Provided"
+  },
+  "source_transfer": {
+    "granted": null,
+    "authorizer": null,
+    "environment_id": null,
+    "purpose": null,
+    "phase": null,
+    "evidence_reference": null
+  },
+  "artifact_transfer": {
+    "granted": null,
+    "authorizer": null,
+    "environment_id": null,
+    "purpose": null,
+    "phase": null,
+    "evidence_reference": null
+  },
+  "evidence_return": {
+    "granted": null,
+    "authorizer": null,
+    "environment_id": null,
+    "purpose": null,
+    "phase": null,
+    "evidence_reference": null
+  },
+  "evidence_storage": {
+    "claimed_value": null,
+    "supplied_by": null,
+    "evidence_reference": null,
+    "verified_status": "Unknown",
+    "approval_status": "Not Provided"
+  },
+  "effective_permission": "DENIED",
+  "transports": 0
+}

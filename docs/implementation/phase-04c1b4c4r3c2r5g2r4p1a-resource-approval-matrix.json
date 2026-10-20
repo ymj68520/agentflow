@@ -1,0 +1,324 @@
+{
+  "resources": {
+    "P_build": {
+      "prior_baseline": null,
+      "requested": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "owner_capacity": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "approved": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "measured_peak": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "scope": null,
+      "environment_id": null,
+      "purpose": null,
+      "approval_reference": null
+    },
+    "J_build": {
+      "prior_baseline": null,
+      "requested": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "owner_capacity": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "approved": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "measured_peak": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "scope": null,
+      "environment_id": null,
+      "purpose": null,
+      "approval_reference": null
+    },
+    "P_test": {
+      "prior_baseline": 805306368,
+      "requested": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "owner_capacity": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "approved": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "measured_peak": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "scope": null,
+      "environment_id": null,
+      "purpose": null,
+      "approval_reference": null
+    },
+    "J_test": {
+      "prior_baseline": 1610612736,
+      "requested": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "owner_capacity": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "approved": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "measured_peak": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "scope": null,
+      "environment_id": null,
+      "purpose": null,
+      "approval_reference": null
+    },
+    "SystemReserve": {
+      "prior_baseline": 8589934592,
+      "requested": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "owner_capacity": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "approved": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "measured_peak": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "scope": null,
+      "environment_id": null,
+      "purpose": null,
+      "approval_reference": null
+    },
+    "CPU Policy": {
+      "prior_baseline": 5,
+      "requested": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "owner_capacity": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "approved": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "measured_peak": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "scope": null,
+      "environment_id": null,
+      "purpose": null,
+      "approval_reference": null
+    },
+    "Build Jobs": {
+      "prior_baseline": 1,
+      "requested": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "owner_capacity": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "approved": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "measured_peak": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "scope": null,
+      "environment_id": null,
+      "purpose": null,
+      "approval_reference": null
+    },
+    "Test Threads": {
+      "prior_baseline": 1,
+      "requested": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "owner_capacity": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "approved": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "measured_peak": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "scope": null,
+      "environment_id": null,
+      "purpose": null,
+      "approval_reference": null
+    },
+    "Top-level Job Count": {
+      "prior_baseline": 1,
+      "requested": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "owner_capacity": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "approved": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "measured_peak": {
+        "claimed_value": null,
+        "supplied_by": null,
+        "evidence_reference": null,
+        "verified_status": "Unknown",
+        "approval_status": "Not Provided"
+      },
+      "scope": null,
+      "environment_id": null,
+      "purpose": null,
+      "approval_reference": null
+    }
+  },
+  "baseline_is_not_target_approval": true,
+  "P_build": null,
+  "J_build": null,
+  "old_14GiB_threshold_applies_to_new_environment": false,
+  "four_columns": "User requested; owner-declared capacity; formally approved; future measured peak — all independent, currently null"
+}

@@ -1,0 +1,67 @@
+{
+  "status": "Static PASS",
+  "source_head": "d2e734ef3cb8a59f05487baa928f85bda4779e5a",
+  "tracked_paths": 2448,
+  "p0_files": {
+    "environment-approval-request.json": {
+      "present": true,
+      "byte_length": 1435,
+      "raw_sha256": "6a5647a2495c1254f3d28f33d4134b501cd7a1e3dce99a615c830b6e2d352347"
+    },
+    "environment-candidate.json": {
+      "present": true,
+      "byte_length": 1025,
+      "raw_sha256": "601febe3a10dd4b157c6b8100e3b507908dce0a3edb09565d7d43b61cecdffa3"
+    },
+    "environment-candidate-schema.json": {
+      "present": true,
+      "byte_length": 16167,
+      "raw_sha256": "fd907c7c7d83364ac94fe7e24b316d44cf52adda87655bcf55423e3891a3b1dc"
+    },
+    "environment-equivalence-audit.json": {
+      "present": true,
+      "byte_length": 5846,
+      "raw_sha256": "25ccd315666befcc4374eb8539c1e326368c05e2918d1ef83a7729f0a1bc3600"
+    },
+    "resource-policy-analysis.json": {
+      "present": true,
+      "byte_length": 1517,
+      "raw_sha256": "8983a471edf8f66a8914f9af59c7d8c8a972a937272e64cd32b3da9d570669eb"
+    },
+    "evidence-manifest-schema.json": {
+      "present": true,
+      "byte_length": 36707,
+      "raw_sha256": "cb301414ecf63f814a404ff08ae54953771a385a8d6d75f3d7aa88d6fbb2603a"
+    },
+    "historical-gate-contracts.json": {
+      "present": true,
+      "byte_length": 368338,
+      "raw_sha256": "6a1e01666fff538be337b4cdeed1da08f9914f2fc12c270be179867f03e99ca0"
+    },
+    "frozen-g3-gate-contract.json": {
+      "present": true,
+      "byte_length": 46126,
+      "raw_sha256": "7bc2e2b8d1b15bf6fc0d0b74e25317ae1e90b20ebacf35b94ee76ad2fd7c9f04"
+    },
+    "p1-qualification-runbook.md": {
+      "present": true,
+      "byte_length": 2581,
+      "raw_sha256": "919748273083ac8df1375604a26dfd610f22cd0f1060ace3667a99e4b69305cd"
+    },
+    "p2-mandatory-execution-runbook.md": {
+      "present": true,
+      "byte_length": 2521,
+      "raw_sha256": "1633734ca284ba67b240140609ad4520dea12357b4579ee88ee39ca6b08657d8"
+    }
+  },
+  "preserved_p0_105_and_r3_110": true,
+  "frozen_prior_evidence_files": 267,
+  "worktree_raw_baseline": "Full2448 path union of original Lane B and R3/P0 added-file maps; zero drift; not a fresh general EOL mapping",
+  "git_tree_reference": "e9c819fe1eab289362b480f2e56c32fa3f1720c5",
+  "attachment": {
+    "path": "C:\\Users\\Administrator\\.codex\\attachments\\754748d3-efb7-4022-849c-02067c51e365\\已粘贴的文本.txt",
+    "raw_sha256": "d4c047adff7d5b8d4c616a42f7d6e63689264eace25a66fc106d11371d7037fc",
+    "role": "Local approval-review instructions only; no concrete nomination/approval supplied"
+  },
+  "historical_archive_file_rehash": "Not Executed in P1A; pinned P0 raw maps/contract hashes retained, not claimed as new archive execution"
+}

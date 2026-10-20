@@ -1,0 +1,267 @@
+{
+  "record_type": "EnvironmentNominationRecord",
+  "fields": {
+    "candidate_id": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "environment_owner": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "approval_reference": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "execution_location": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "execution_authority": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "host_or_vm_identity": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "operating_system": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "os_build": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "architecture": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "target_abi": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "rust_toolchain": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "cargo_version": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "rustc_version": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "llvm_version": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "msvc_toolset": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "windows_sdk": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "python_runtime": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "dependency_sources": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "dependency_lockfiles": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "offline_cache_identity": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "cpu_topology": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "physical_memory": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "available_memory": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "commit_limit": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "filesystem_capacity": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "build_resource_policy": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "test_resource_policy": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "foreground_reserve_policy": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "network_access_policy": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "data_transfer_policy": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "evidence_storage_policy": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "trusted_executor_identity": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "trusted_manifest_verifier": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "approved_trust_roots": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "qualification_status": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "source_transfer_permission": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "evidence_return_permission": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    }
+  },
+  "source_policy": "Only explicit user-supplied candidate facts; no inference from host/network/config/history",
+  "candidate_nominated": false,
+  "status": "P1 AUTHORIZATION INCOMPLETE"
+}

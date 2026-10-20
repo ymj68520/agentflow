@@ -1,0 +1,97 @@
+{
+  "scope": "LOCAL APPROVAL REVIEW ONLY",
+  "permissions": {
+    "Environment Connection": {
+      "granted": null,
+      "authorizer": null,
+      "environment_id": null,
+      "purpose": null,
+      "phase": null,
+      "evidence_reference": null,
+      "effective_permission": "DENIED",
+      "intended_domain": "P1"
+    },
+    "Source Transfer": {
+      "granted": null,
+      "authorizer": null,
+      "environment_id": null,
+      "purpose": null,
+      "phase": null,
+      "evidence_reference": null,
+      "effective_permission": "DENIED",
+      "intended_domain": "P1"
+    },
+    "Artifact Transfer": {
+      "granted": null,
+      "authorizer": null,
+      "environment_id": null,
+      "purpose": null,
+      "phase": null,
+      "evidence_reference": null,
+      "effective_permission": "DENIED",
+      "intended_domain": "P1"
+    },
+    "Evidence Return": {
+      "granted": null,
+      "authorizer": null,
+      "environment_id": null,
+      "purpose": null,
+      "phase": null,
+      "evidence_reference": null,
+      "effective_permission": "DENIED",
+      "intended_domain": "P1"
+    },
+    "Remote Command Execution": {
+      "granted": null,
+      "authorizer": null,
+      "environment_id": null,
+      "purpose": null,
+      "phase": null,
+      "evidence_reference": null,
+      "effective_permission": "DENIED",
+      "intended_domain": "P1"
+    },
+    "Environment Inspection": {
+      "granted": null,
+      "authorizer": null,
+      "environment_id": null,
+      "purpose": null,
+      "phase": null,
+      "evidence_reference": null,
+      "effective_permission": "DENIED",
+      "intended_domain": "P1"
+    },
+    "Build Resource Policy Amendment": {
+      "granted": null,
+      "authorizer": null,
+      "environment_id": null,
+      "purpose": null,
+      "phase": null,
+      "evidence_reference": null,
+      "effective_permission": "DENIED",
+      "intended_domain": "P1"
+    },
+    "Historical Build Launch": {
+      "granted": null,
+      "authorizer": null,
+      "environment_id": null,
+      "purpose": null,
+      "phase": null,
+      "evidence_reference": null,
+      "effective_permission": "DENIED",
+      "intended_domain": "P2"
+    },
+    "Frozen G3 Build Launch": {
+      "granted": null,
+      "authorizer": null,
+      "environment_id": null,
+      "purpose": null,
+      "phase": null,
+      "evidence_reference": null,
+      "effective_permission": "DENIED",
+      "intended_domain": "P2"
+    }
+  },
+  "P1": "Not Authorized",
+  "P2": "Not Authorized"
+}

@@ -1,0 +1,450 @@
+{
+  "status": "Static PASS",
+  "independent_static_oracle": "Static PASS",
+  "tests": 37,
+  "passed": 37,
+  "rows": [
+    {
+      "id": "synthetic-documentation-complete-only",
+      "expected_complete": true,
+      "actual_complete": true,
+      "independent_complete": true,
+      "errors": [],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "actual-no-candidate",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "APPROVER_NOT_APPROVED",
+        "ENVIRONMENT_ID_MISSING",
+        "EXECUTOR_NOT_IDENTIFIED",
+        "FROZEN_GATE_CONTRACT",
+        "NOMINATION_INCOMPLETE",
+        "OWNER_MISSING",
+        "P1_IS_NOT_P2",
+        "PERMISSION_MISSING",
+        "RESOURCE_APPROVAL_INCOMPLETE",
+        "TOOLCHAIN_EVIDENCE_INCOMPLETE",
+        "TRUST_BINDING_INCOMPLETE",
+        "TRUST_ROOT_NOT_APPROVED"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "environment-id-absent",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "ENVIRONMENT_ID_MISSING",
+        "NOMINATION_INCOMPLETE",
+        "PERMISSION_MISSING",
+        "RESOURCE_APPROVER_BINDING"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "owner-absent",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "NOMINATION_INCOMPLETE",
+        "OWNER_MISSING",
+        "RESOURCE_APPROVER_BINDING"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "windows-incompatible",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "P0_COMPATIBILITY"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "abi-incompatible",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "P0_COMPATIBILITY"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "unapproved-toolchain-change",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "UNAPPROVED_TOOLCHAIN_CHANGE"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "toolchain-evidence-absent",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "TOOLCHAIN_EVIDENCE_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "pbuild-undetermined",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "RESOURCE_APPROVAL_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "jbuild-undetermined",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "RESOURCE_APPROVAL_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "build-test-scope-mix",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "BUILD_TEST_BUDGET_MIX"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "request-not-approval",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "RESOURCE_APPROVER_BINDING"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "capacity-not-measured-peak",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "DECLARATION_IS_NOT_MEASUREMENT"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "budget-target-mismatch",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "RESOURCE_APPROVER_BINDING"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "p1-request-not-p2",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "P1_IS_NOT_P2"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "history-launch-not-implied",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "P1_IS_NOT_P2"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "g3-launch-not-implied",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "P1_IS_NOT_P2"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "source-transfer-not-granted",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "PERMISSION_MISSING"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "connection-grant-no-object",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "PERMISSION_MISSING"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "connection-grant-no-purpose",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "PERMISSION_MISSING"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "approval-ref-self-asserted",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "PERMISSION_MISSING"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "public-test-root-not-trusted",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "TRUST_BINDING_INCOMPLETE",
+        "TRUST_ROOT_NOT_APPROVED"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "executor-self-approves",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "APPROVER_NOT_APPROVED",
+        "EXECUTOR_SELF_APPROVAL"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "declaration-forged-as-host-measurement",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "DECLARATION_IS_NOT_MEASUREMENT",
+        "NOMINATION_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "historical-debug-changed",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "FROZEN_GATE_CONTRACT"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "original-debug0-bool-alias",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "FROZEN_GATE_CONTRACT"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "source-hash-mismatch",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "FROZEN_GATE_CONTRACT"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "historical-case-denominator-reduced",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "FROZEN_GATE_CONTRACT"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "frozen-g3-omitted",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "FROZEN_GATE_CONTRACT"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "lane-b-credit-expanded",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "LANE_B_SCOPE"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "unexecuted-gate-pass",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "UNEXECUTED_GATE_PASS"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "execution-id-replay",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "REPLAY"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "old-signature-replay",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "REPLAY"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "qualification-not-root-capability",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "QUALIFICATION_IS_NOT_CAPABILITY"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "static-review-not-real-qualification",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "QUALIFICATION_IS_NOT_CAPABILITY"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "signing-policy-absent",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "TRUST_BINDING_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    },
+    {
+      "id": "resource-bool-not-number",
+      "expected_complete": false,
+      "actual_complete": false,
+      "independent_complete": false,
+      "errors": [
+        "RESOURCE_VALUE_BINDING"
+      ],
+      "static_result": "Static PASS",
+      "actual_execution_credit": 0
+    }
+  ],
+  "expected_source": "Separately authored authorization-static-vectors; frozen P0 schemas/contracts, never reviewer Actual",
+  "inherited_expected": {
+    "p0_105": {
+      "path": "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-static-test-results.json",
+      "present": true,
+      "byte_length": 71559,
+      "raw_sha256": "377acbd7e5c1fe82b52649003d351ccf47eb9e49120651f95eb721bcb81ad322"
+    },
+    "r3_110": {
+      "path": "docs/implementation/phase-04c1b4c4r3c2r5g2r3-design-vector-results.json",
+      "present": true,
+      "byte_length": 25549,
+      "raw_sha256": "6cfb48437a85cb4268c7d78f0a6f055d8de4bbb0fc559bb5918ae069b3ba9bc9"
+    }
+  },
+  "inherited_vectors_rerun": false,
+  "new_real_environment": false,
+  "real_authority_issued": false
+}

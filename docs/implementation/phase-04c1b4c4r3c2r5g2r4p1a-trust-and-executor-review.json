@@ -1,0 +1,67 @@
+{
+  "fields": {
+    "executor_id": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "root_id": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "root_approver": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "approval_identity": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "signing_policy": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "verification_policy": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "freshness_policy": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    },
+    "replay_policy": {
+      "claimed_value": null,
+      "supplied_by": null,
+      "evidence_reference": null,
+      "verified_status": "Unknown",
+      "approval_status": "Not Provided"
+    }
+  },
+  "cryptographic_trust": "Not Established",
+  "executor_authority": "Not Established",
+  "environment": "NOT QUALIFIED",
+  "independent_approved_roots": [],
+  "actual_signature_verification": "Not Executed",
+  "private_keys_or_credentials_written": false,
+  "public_rfc_test_key_is_not_production_root": true
+}

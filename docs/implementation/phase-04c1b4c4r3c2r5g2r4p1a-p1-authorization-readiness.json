@@ -1,0 +1,109 @@
+{
+  "title": "CONCRETE ENVIRONMENT AUTHORIZATION REVIEW",
+  "outcome": "D — Candidate/Approval Incomplete",
+  "status": "P1 AUTHORIZATION INCOMPLETE",
+  "P0": "ACCEPTED — NOT REVOKED",
+  "matrix": {
+    "Candidate Nominated": {
+      "value": false,
+      "reason": "No explicit user candidate/approval/evidence"
+    },
+    "Environment Owner Identified": {
+      "value": false,
+      "reason": "No explicit user candidate/approval/evidence"
+    },
+    "Execution Authority Documented": {
+      "value": false,
+      "reason": "No explicit user candidate/approval/evidence"
+    },
+    "Environment Identity Complete": {
+      "value": false,
+      "reason": "No explicit user candidate/approval/evidence"
+    },
+    "Toolchain Evidence Complete": {
+      "value": false,
+      "reason": "No explicit user candidate/approval/evidence"
+    },
+    "Resource Policy Approved": {
+      "value": false,
+      "reason": "No explicit user candidate/approval/evidence"
+    },
+    "Transfer Scope Approved": {
+      "value": false,
+      "reason": "No explicit user candidate/approval/evidence"
+    },
+    "Trust Roots Approved": {
+      "value": false,
+      "reason": "No explicit user candidate/approval/evidence"
+    },
+    "Executor Identified": {
+      "value": false,
+      "reason": "No explicit user candidate/approval/evidence"
+    },
+    "Environment Equivalence Reviewed": {
+      "value": false,
+      "reason": "No explicit user candidate/approval/evidence"
+    },
+    "Real Environment Connected": {
+      "value": false,
+      "reason": "Not Authorized / Not Executed in this local review"
+    },
+    "Real Environment Qualified": {
+      "value": false,
+      "reason": "Not Authorized / Not Executed in this local review"
+    },
+    "Real Executor Attested": {
+      "value": false,
+      "reason": "Not Authorized / Not Executed in this local review"
+    },
+    "Historical Builds Executed": {
+      "value": false,
+      "reason": "Not Authorized / Not Executed in this local review"
+    },
+    "Frozen G3 Executed": {
+      "value": false,
+      "reason": "Not Authorized / Not Executed in this local review"
+    },
+    "P2 Authorized": {
+      "value": false,
+      "reason": "Not Authorized / Not Executed in this local review"
+    }
+  },
+  "static_requirements_reviewed": true,
+  "candidate_comparison_complete": false,
+  "actual_review": {
+    "package_complete": false,
+    "errors": [
+      "APPROVER_NOT_APPROVED",
+      "ENVIRONMENT_ID_MISSING",
+      "EXECUTOR_NOT_IDENTIFIED",
+      "FROZEN_GATE_CONTRACT",
+      "NOMINATION_INCOMPLETE",
+      "OWNER_MISSING",
+      "P1_IS_NOT_P2",
+      "PERMISSION_MISSING",
+      "RESOURCE_APPROVAL_INCOMPLETE",
+      "TOOLCHAIN_EVIDENCE_INCOMPLETE",
+      "TRUST_BINDING_INCOMPLETE",
+      "TRUST_ROOT_NOT_APPROVED"
+    ],
+    "actual_environment_connected": false,
+    "actual_environment_qualified": false,
+    "actual_executor_attested": false,
+    "historical_builds_executed": "0/8",
+    "frozen_g3_executed": false,
+    "P1_authorized": false,
+    "P2_authorized": false,
+    "positive_root_export": false,
+    "cryptographic_trust": "Not Established",
+    "executor_authority": "Not Established"
+  },
+  "real_P1": "Not Authorized",
+  "P2": "Not Authorized",
+  "historical_builds": "0/8",
+  "frozen_g3": "Not Executed",
+  "r5g2_registration": "INCOMPLETE",
+  "next_input_required": "Explicit nomination + owner/authority/provenance + separately scoped resource/transport/trust approvals",
+  "no_formal_binding_gap": true,
+  "no_actual_contract_contradiction_claimed": true
+}
