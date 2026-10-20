@@ -1,0 +1,167 @@
+{
+  "policy_sha256": "9978a34c425370660756e2d561a9f2dfac5cde3de04eafddddf114b97a64949c",
+  "authorizer": "Direct human replies in this chat",
+  "approval_question_id": "call_067c72d15bd2446f850c44031e84c66b",
+  "execution_references": [
+    "批准 Round 1 的 fmt + Clippy",
+    "授权L2-PIVOT-05"
+  ],
+  "round2_approved": false,
+  "gates": {
+    "fmt": {
+      "gate": "fmt",
+      "policy_sha256": "9978a34c425370660756e2d561a9f2dfac5cde3de04eafddddf114b97a64949c",
+      "A": {
+        "Approved": true,
+        "scope": "Per-item 5400s exact resource policy; each independently approved"
+      },
+      "B": {
+        "Approved": true,
+        "choice": "B2",
+        "scope": "This specific command only",
+        "risks": [
+          "Sampling is not a hard quota",
+          "No strict maximum overshoot bytes guarantee",
+          "Ordinary file growth omits directory/filesystem metadata",
+          "No demonstrated isolation of non-project writes",
+          "Pilot peaks are NOT full-workspace capacity upper bounds"
+        ]
+      },
+      "C": {
+        "Approved": true,
+        "argv": [
+          "cargo",
+          "fmt",
+          "--all",
+          "--",
+          "--check"
+        ],
+        "maximum_launches": 1,
+        "retries": 0
+      },
+      "uniform_build_runtime_approved": false,
+      "coverage_contract_approved": false,
+      "human_reply": "接受 fmt 专属 B2 风险；分别批准 fmt、Clippy 的上述资源政策"
+    },
+    "clippy": {
+      "gate": "clippy",
+      "policy_sha256": "9978a34c425370660756e2d561a9f2dfac5cde3de04eafddddf114b97a64949c",
+      "A": {
+        "Approved": true,
+        "scope": "Per-item 5400s exact resource policy; each independently approved"
+      },
+      "B": {
+        "Approved": true,
+        "choice": "B2",
+        "scope": "This specific command only",
+        "risks": [
+          "Sampling is not a hard quota",
+          "No strict maximum overshoot bytes guarantee",
+          "Ordinary file growth omits directory/filesystem metadata",
+          "No demonstrated isolation of non-project writes",
+          "Pilot peaks are NOT full-workspace capacity upper bounds"
+        ]
+      },
+      "C": {
+        "Approved": true,
+        "argv": [
+          "cargo",
+          "clippy",
+          "--locked",
+          "--offline",
+          "-j",
+          "1",
+          "--all-targets",
+          "--all-features",
+          "--",
+          "-D",
+          "warnings"
+        ],
+        "maximum_launches": 1,
+        "retries": 0
+      },
+      "uniform_build_runtime_approved": false,
+      "coverage_contract_approved": false,
+      "human_reply": "接受 Clippy 专属 B2 风险；分别批准 fmt、Clippy 的上述资源政策"
+    },
+    "test": {
+      "gate": "test",
+      "policy_sha256": "9978a34c425370660756e2d561a9f2dfac5cde3de04eafddddf114b97a64949c",
+      "A": {
+        "Approved": false,
+        "scope": "Per-item 5400s exact resource policy; each independently approved"
+      },
+      "B": {
+        "Approved": false,
+        "choice": null,
+        "scope": "This specific command only",
+        "risks": [
+          "Sampling is not a hard quota",
+          "No strict maximum overshoot bytes guarantee",
+          "Ordinary file growth omits directory/filesystem metadata",
+          "No demonstrated isolation of non-project writes",
+          "Pilot peaks are NOT full-workspace capacity upper bounds"
+        ]
+      },
+      "C": {
+        "Approved": false,
+        "argv": [
+          "cargo",
+          "test",
+          "--locked",
+          "--offline",
+          "--all",
+          "-j",
+          "1"
+        ],
+        "maximum_launches": 1,
+        "retries": 0
+      },
+      "uniform_build_runtime_approved": false,
+      "coverage_contract_approved": false,
+      "human_reply": null
+    },
+    "spec-check": {
+      "gate": "spec-check",
+      "policy_sha256": "9978a34c425370660756e2d561a9f2dfac5cde3de04eafddddf114b97a64949c",
+      "A": {
+        "Approved": false,
+        "scope": "Per-item 5400s exact resource policy; each independently approved"
+      },
+      "B": {
+        "Approved": false,
+        "choice": null,
+        "scope": "This specific command only",
+        "risks": [
+          "Sampling is not a hard quota",
+          "No strict maximum overshoot bytes guarantee",
+          "Ordinary file growth omits directory/filesystem metadata",
+          "No demonstrated isolation of non-project writes",
+          "Pilot peaks are NOT full-workspace capacity upper bounds"
+        ]
+      },
+      "C": {
+        "Approved": false,
+        "argv": [
+          "cargo",
+          "run",
+          "--locked",
+          "--offline",
+          "-j",
+          "1",
+          "-p",
+          "af-spec",
+          "--bin",
+          "spec-check",
+          "--",
+          "check"
+        ],
+        "maximum_launches": 1,
+        "retries": 0
+      },
+      "uniform_build_runtime_approved": false,
+      "coverage_contract_approved": false,
+      "human_reply": null
+    }
+  }
+}

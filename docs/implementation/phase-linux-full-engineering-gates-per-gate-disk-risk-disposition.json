@@ -1,0 +1,53 @@
+{
+  "fmt": {
+    "Approved": true,
+    "choice": "B2",
+    "scope": "This specific command only",
+    "risks": [
+      "Sampling is not a hard quota",
+      "No strict maximum overshoot bytes guarantee",
+      "Ordinary file growth omits directory/filesystem metadata",
+      "No demonstrated isolation of non-project writes",
+      "Pilot peaks are NOT full-workspace capacity upper bounds"
+    ]
+  },
+  "clippy": {
+    "Approved": true,
+    "choice": "B2",
+    "scope": "This specific command only",
+    "risks": [
+      "Sampling is not a hard quota",
+      "No strict maximum overshoot bytes guarantee",
+      "Ordinary file growth omits directory/filesystem metadata",
+      "No demonstrated isolation of non-project writes",
+      "Pilot peaks are NOT full-workspace capacity upper bounds"
+    ]
+  },
+  "test": {
+    "Approved": false,
+    "choice": null,
+    "scope": "This specific command only",
+    "risks": [
+      "Sampling is not a hard quota",
+      "No strict maximum overshoot bytes guarantee",
+      "Ordinary file growth omits directory/filesystem metadata",
+      "No demonstrated isolation of non-project writes",
+      "Pilot peaks are NOT full-workspace capacity upper bounds"
+    ]
+  },
+  "spec_check": {
+    "Approved": false,
+    "choice": null,
+    "scope": "This specific command only",
+    "risks": [
+      "Sampling is not a hard quota",
+      "No strict maximum overshoot bytes guarantee",
+      "Ordinary file growth omits directory/filesystem metadata",
+      "No demonstrated isolation of non-project writes",
+      "Pilot peaks are NOT full-workspace capacity upper bounds"
+    ]
+  },
+  "counter": "Sampled regular-file st_blocks, inode-deduplicated; directory/FS metadata not included, overall filesystem free bytes/inodes also monitored",
+  "hard_quota": false,
+  "not_transferable_to_round2": true
+}

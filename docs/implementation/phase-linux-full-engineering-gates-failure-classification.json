@@ -1,0 +1,26 @@
+{
+  "status": "Observed compile/link allocation failure, not a proven product semantic contradiction",
+  "gate": "clippy",
+  "original_cargo_exit": 101,
+  "first_observed_failure": "serde_derive proc-macro shared-library link through cc/rust-lld",
+  "original_error": "failed to open libserde_derive-a778cd334826612d.so: Cannot allocate memory",
+  "artifact_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/build/linux-primary-v1/debug/deps/libserde_derive-a778cd334826612d.so",
+  "stderr_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-full-engineering-gates/clippy/runs/31ac2c3f-7b8e-4e75-99db-e40997a7ebb6/cargo.stderr.log",
+  "stderr_sha256": "4b35fcc7d3f5dcfdb74e35df1fd28e9eed46660645725deeb099c2ad4b422cdf",
+  "cgroup_oom_kill": 0,
+  "swap_current": 0,
+  "kernel_group_peak_bytes": 298536960,
+  "group_memory_limit_bytes": 3221225472,
+  "process_address_space_limit_bytes": 2147483648,
+  "inference": "Process virtual-address-space pressure under RLIMIT_AS is plausible, NOT proven by the available trace. No syscall trace or failing linker VmPeak was captured. Group peak RSS/accounting cannot establish the process virtual high-water mark.",
+  "not_claimed": [
+    "No demonstrated cgroup OOM",
+    "No Clippy lint finding caused this failure",
+    "No formal RuleId/Expected/Actual contradiction proved",
+    "No evidence establishing a required new numeric limit"
+  ],
+  "reference": "https://man7.org/linux/man-pages/man2/getrlimit.2.html",
+  "retries": 0,
+  "code_or_expected_changed": false,
+  "resource_increase": false
+}

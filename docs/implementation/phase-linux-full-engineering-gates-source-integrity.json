@@ -1,0 +1,62 @@
+{
+  "status": "Passed",
+  "protected_input_files": 1677,
+  "frozen_snapshots": [
+    {
+      "snapshot": "frozen-g3",
+      "head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+      "paths": 2326
+    },
+    {
+      "snapshot": "history-1",
+      "head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+      "paths": 1732
+    },
+    {
+      "snapshot": "history-2",
+      "head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+      "paths": 1811
+    },
+    {
+      "snapshot": "history-3",
+      "head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+      "paths": 1902
+    },
+    {
+      "snapshot": "history-4",
+      "head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+      "paths": 2021
+    },
+    {
+      "snapshot": "history-5",
+      "head": "e623aab705c5f8269807201e112a32e67e6869bf",
+      "paths": 2076
+    },
+    {
+      "snapshot": "history-6",
+      "head": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+      "paths": 2170
+    },
+    {
+      "snapshot": "history-7",
+      "head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+      "paths": 2235
+    },
+    {
+      "snapshot": "history-8",
+      "head": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+      "paths": 2290
+    },
+    {
+      "snapshot": "legacy-current-dc1d-l2pivot01",
+      "head": "dc1d71f30b3a7f06065f4000712e6512f288db16",
+      "paths": 2469
+    }
+  ],
+  "frozen_paths": 21032,
+  "locked_packages": 25,
+  "before_sha256": "baf775bc1d9f0cf874f1ec305ef69947ba885b762270a99834717730b780de7a",
+  "after_sha256": "bf3b2ab0d55d6ced0c71880ecf57842ed179af55377f412c1eb325082312aa13",
+  "prior_pilot_receipts_verified": 65,
+  "all_original_protected_bytes_unchanged": true
+}

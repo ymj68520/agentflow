@@ -1,0 +1,141 @@
+{
+  "status": "Passed",
+  "checks": [
+    {
+      "section": "Quality & Evidence",
+      "id": "fmt/per-gate-approvals",
+      "passed": true
+    },
+    {
+      "section": "Specification",
+      "id": "fmt/same-shared-head",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "fmt/one-consumed-launch",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "fmt/exact-argv",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "fmt/effective-limits",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "fmt/guardian-receipt",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "fmt/cleaned",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "fmt/stream-hashes",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "fmt/stream-count",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "fmt/cargo-log-hashes",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "clippy/per-gate-approvals",
+      "passed": true
+    },
+    {
+      "section": "Specification",
+      "id": "clippy/same-shared-head",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "clippy/one-consumed-launch",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "clippy/exact-argv",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "clippy/effective-limits",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "clippy/guardian-receipt",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "clippy/cleaned",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "clippy/stream-hashes",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "clippy/stream-count",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "clippy/cargo-log-hashes",
+      "passed": true
+    },
+    {
+      "section": "Specification",
+      "id": "protected-inputs-unchanged",
+      "passed": true
+    },
+    {
+      "section": "Specification",
+      "id": "locked-inputs-unchanged",
+      "passed": true
+    },
+    {
+      "section": "Specification",
+      "id": "frozen-snapshots-unchanged",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "Round2-unapproved",
+      "passed": true
+    }
+  ],
+  "round1": {
+    "fmt": {
+      "reason": "Completed",
+      "actual_exit_code": 0,
+      "executed_source_head": "cb9679ea9c4056301d594c5680094765efda2fb3"
+    },
+    "clippy": {
+      "reason": "Completed",
+      "actual_exit_code": 101,
+      "executed_source_head": "cb9679ea9c4056301d594c5680094765efda2fb3"
+    }
+  },
+  "round1_passed": false,
+  "round1_credit": "ROUND1_FAILED",
+  "round2_authorized": false,
+  "reviewer": "Same coding agent, separate readback process, not third-party certification"
+}

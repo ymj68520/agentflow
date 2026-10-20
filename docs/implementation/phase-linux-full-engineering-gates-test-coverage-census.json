@@ -1,0 +1,1051 @@
+{
+  "status": "Declared inventory only; no test execution credit",
+  "declared_workspace_packages": 15,
+  "declared_targets": [
+    {
+      "package": "af-computation",
+      "name": "af_computation",
+      "kind": [
+        "lib"
+      ],
+      "crate_types": [
+        "lib"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/src/lib.rs",
+      "test": true,
+      "doctest": true,
+      "required_features": []
+    },
+    {
+      "package": "af-computation",
+      "name": "advanced_control_conformance",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/tests/advanced_control_conformance.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-computation",
+      "name": "control_conformance",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/tests/control_conformance.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-computation",
+      "name": "leaf_resolution",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/tests/leaf_resolution.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-computation",
+      "name": "root_recovery_conformance",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/tests/root_recovery_conformance.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-computation",
+      "name": "scope_closure_conformance",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/tests/scope_closure_conformance.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-computation",
+      "name": "structural_binding_staging",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/tests/structural_binding_staging.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-computation",
+      "name": "production_input_graph",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/tests/production_input_graph.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-computation",
+      "name": "native_capture_conformance",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/tests/native_capture_conformance.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-computation",
+      "name": "native_seed_source_conformance",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/tests/native_seed_source_conformance.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-computation",
+      "name": "raw_port_capture_conformance",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/tests/raw_port_capture_conformance.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-computation",
+      "name": "raw_model6_binding_boundary",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/tests/raw_model6_binding_boundary.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-computation",
+      "name": "raw_model7_capture_boundary",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/tests/raw_model7_capture_boundary.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-computation",
+      "name": "native_source_registration",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/tests/native_source_registration.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-computation",
+      "name": "build-script-build",
+      "kind": [
+        "custom-build"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/build.rs",
+      "test": false,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-contract",
+      "name": "af_contract",
+      "kind": [
+        "lib"
+      ],
+      "crate_types": [
+        "lib"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-contract/src/lib.rs",
+      "test": true,
+      "doctest": true,
+      "required_features": []
+    },
+    {
+      "package": "af-contract",
+      "name": "component_contract_conformance",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-contract/tests/component_contract_conformance.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-contract",
+      "name": "static_surface",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-contract/tests/static_surface.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-core",
+      "name": "af_core",
+      "kind": [
+        "lib"
+      ],
+      "crate_types": [
+        "lib"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-core/src/lib.rs",
+      "test": true,
+      "doctest": true,
+      "required_features": []
+    },
+    {
+      "package": "af-core",
+      "name": "conformance_digest",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-core/tests/conformance_digest.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-core",
+      "name": "conformance_encoding",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-core/tests/conformance_encoding.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-core",
+      "name": "distinctions",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-core/tests/distinctions.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-effect",
+      "name": "af_effect",
+      "kind": [
+        "lib"
+      ],
+      "crate_types": [
+        "lib"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-effect/src/lib.rs",
+      "test": true,
+      "doctest": true,
+      "required_features": []
+    },
+    {
+      "package": "af-effect",
+      "name": "bytes_guard_lowering",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-effect/tests/bytes_guard_lowering.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-effect",
+      "name": "conformance_effect_signature",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-effect/tests/conformance_effect_signature.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-effect",
+      "name": "static_surface",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-effect/tests/static_surface.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-execution",
+      "name": "af_execution",
+      "kind": [
+        "lib"
+      ],
+      "crate_types": [
+        "lib"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-execution/src/lib.rs",
+      "test": true,
+      "doctest": true,
+      "required_features": []
+    },
+    {
+      "package": "af-execution",
+      "name": "conformance_execution_requirements",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-execution/tests/conformance_execution_requirements.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-execution",
+      "name": "static_surface",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-execution/tests/static_surface.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-failure",
+      "name": "af_failure",
+      "kind": [
+        "lib"
+      ],
+      "crate_types": [
+        "lib"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-failure/src/lib.rs",
+      "test": true,
+      "doctest": true,
+      "required_features": []
+    },
+    {
+      "package": "af-failure",
+      "name": "conformance_failure_row",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-failure/tests/conformance_failure_row.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-failure",
+      "name": "static_surface",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-failure/tests/static_surface.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-flow",
+      "name": "af_flow",
+      "kind": [
+        "lib"
+      ],
+      "crate_types": [
+        "lib"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-flow/src/lib.rs",
+      "test": true,
+      "doctest": true,
+      "required_features": []
+    },
+    {
+      "package": "af-flow",
+      "name": "conformance_information_flow",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-flow/tests/conformance_information_flow.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-flow",
+      "name": "static_surface",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-flow/tests/static_surface.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-idl",
+      "name": "af_idl",
+      "kind": [
+        "lib"
+      ],
+      "crate_types": [
+        "lib"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-idl/src/lib.rs",
+      "test": true,
+      "doctest": true,
+      "required_features": []
+    },
+    {
+      "package": "af-idl",
+      "name": "conformance_afidl",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-idl/tests/conformance_afidl.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-idl",
+      "name": "import_surface",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-idl/tests/import_surface.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-ir",
+      "name": "af_ir",
+      "kind": [
+        "lib"
+      ],
+      "crate_types": [
+        "lib"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-ir/src/lib.rs",
+      "test": true,
+      "doctest": true,
+      "required_features": []
+    },
+    {
+      "package": "af-ir",
+      "name": "conformance_semantic_dataflow",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-ir/tests/conformance_semantic_dataflow.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-ir",
+      "name": "conformance_semantic_ir",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-ir/tests/conformance_semantic_ir.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-ir",
+      "name": "conformance_subflow_interface",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-ir/tests/conformance_subflow_interface.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-ir",
+      "name": "static_surface",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-ir/tests/static_surface.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-portable",
+      "name": "af_portable",
+      "kind": [
+        "lib"
+      ],
+      "crate_types": [
+        "lib"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-portable/src/lib.rs",
+      "test": true,
+      "doctest": true,
+      "required_features": []
+    },
+    {
+      "package": "af-portable",
+      "name": "static_surface",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-portable/tests/static_surface.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-portable",
+      "name": "structural_binding_staging",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-portable/tests/structural_binding_staging.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-portable",
+      "name": "build-script-build",
+      "kind": [
+        "custom-build"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-portable/build.rs",
+      "test": false,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-recovery",
+      "name": "af_recovery",
+      "kind": [
+        "lib"
+      ],
+      "crate_types": [
+        "lib"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-recovery/src/lib.rs",
+      "test": true,
+      "doctest": true,
+      "required_features": []
+    },
+    {
+      "package": "af-recovery",
+      "name": "conformance_recovery_contract",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-recovery/tests/conformance_recovery_contract.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-recovery",
+      "name": "static_surface",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-recovery/tests/static_surface.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-resource",
+      "name": "af_resource",
+      "kind": [
+        "lib"
+      ],
+      "crate_types": [
+        "lib"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-resource/src/lib.rs",
+      "test": true,
+      "doctest": true,
+      "required_features": []
+    },
+    {
+      "package": "af-resource",
+      "name": "conformance_resource_requirement",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-resource/tests/conformance_resource_requirement.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-resource",
+      "name": "static_surface",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-resource/tests/static_surface.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-semantic",
+      "name": "af_semantic",
+      "kind": [
+        "lib"
+      ],
+      "crate_types": [
+        "lib"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-semantic/src/lib.rs",
+      "test": true,
+      "doctest": true,
+      "required_features": []
+    },
+    {
+      "package": "af-semantic",
+      "name": "conformance_semantic_core",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-semantic/tests/conformance_semantic_core.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-semantic",
+      "name": "semantic_core",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-semantic/tests/semantic_core.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-semantic",
+      "name": "static_surface",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-semantic/tests/static_surface.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-spec",
+      "name": "af_spec",
+      "kind": [
+        "lib"
+      ],
+      "crate_types": [
+        "lib"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-spec/src/lib.rs",
+      "test": true,
+      "doctest": true,
+      "required_features": []
+    },
+    {
+      "package": "af-spec",
+      "name": "spec-check",
+      "kind": [
+        "bin"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-spec/src/bin/spec-check.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-spec",
+      "name": "abi_check",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-spec/tests/abi_check.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-spec",
+      "name": "conformance_spec_registry",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-spec/tests/conformance_spec_registry.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-spec",
+      "name": "repo_check",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-spec/tests/repo_check.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-usage",
+      "name": "af_usage",
+      "kind": [
+        "lib"
+      ],
+      "crate_types": [
+        "lib"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-usage/src/lib.rs",
+      "test": true,
+      "doctest": true,
+      "required_features": []
+    },
+    {
+      "package": "af-usage",
+      "name": "conformance_cost_projection",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-usage/tests/conformance_cost_projection.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-usage",
+      "name": "conformance_usage_signature",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-usage/tests/conformance_usage_signature.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    },
+    {
+      "package": "af-usage",
+      "name": "static_surface",
+      "kind": [
+        "test"
+      ],
+      "crate_types": [
+        "bin"
+      ],
+      "src_path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-usage/tests/static_surface.rs",
+      "test": true,
+      "doctest": false,
+      "required_features": []
+    }
+  ],
+  "lexical_ignore_attributes": [],
+  "lexical_doc_directives": [
+    {
+      "path": "crates/af-computation/src/input_binder.rs",
+      "line": 48,
+      "text": "/// ```compile_fail"
+    },
+    {
+      "path": "crates/af-computation/src/input_binder.rs",
+      "line": 51,
+      "text": "/// ```compile_fail"
+    }
+  ],
+  "actual_Passed": null,
+  "actual_Failed": null,
+  "actual_Ignored": null,
+  "actual_Filtered": null,
+  "actual_doctests": null,
+  "round2_authorized": false,
+  "coverage_contract_approved": false,
+  "note": "Clippy all-targets compiles/checks relevant targets, not an execution denominator or doctest run. Lexical inventory is not a formal case roster.",
+  "round1": {
+    "fmt": "Formatting check passed",
+    "clippy": "Failed in serde_derive dependency link; complete declared workspace lint coverage NOT established"
+  },
+  "observed_dependency_diagnostics": [
+    [
+      "serde_core",
+      "1.0.229"
+    ],
+    [
+      "proc-macro2",
+      "1.0.107"
+    ],
+    [
+      "quote",
+      "1.0.47"
+    ],
+    [
+      "unicode-ident",
+      "1.0.26"
+    ],
+    [
+      "syn",
+      "3.0.6"
+    ],
+    [
+      "serde",
+      "1.0.229"
+    ],
+    [
+      "serde_derive",
+      "1.0.229"
+    ]
+  ],
+  "workspace_default_members": [
+    "path+file:///home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-core#0.1.0",
+    "path+file:///home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-idl#0.1.0",
+    "path+file:///home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-spec#0.1.0",
+    "path+file:///home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-semantic#0.1.0",
+    "path+file:///home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-ir#0.1.0",
+    "path+file:///home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-effect#0.1.0",
+    "path+file:///home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-failure#0.1.0",
+    "path+file:///home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-resource#0.1.0",
+    "path+file:///home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-flow#0.1.0",
+    "path+file:///home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-usage#0.1.0",
+    "path+file:///home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-recovery#0.1.0",
+    "path+file:///home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-execution#0.1.0",
+    "path+file:///home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-contract#0.1.0",
+    "path+file:///home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation#0.1.0",
+    "path+file:///home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-portable#0.1.0"
+  ],
+  "workspace_manifest": {
+    "resolver": "3",
+    "members": [
+      "crates/af-core",
+      "crates/af-idl",
+      "crates/af-spec",
+      "crates/af-semantic",
+      "crates/af-ir",
+      "crates/af-effect",
+      "crates/af-failure",
+      "crates/af-resource",
+      "crates/af-flow",
+      "crates/af-usage",
+      "crates/af-recovery",
+      "crates/af-execution",
+      "crates/af-contract",
+      "crates/af-computation",
+      "crates/af-portable"
+    ],
+    "package": {
+      "version": "0.1.0",
+      "edition": "2024",
+      "license": "Apache-2.0",
+      "repository": "https://example.invalid/agentflow/agentflow",
+      "rust-version": "1.85"
+    },
+    "lints": {
+      "rust": {
+        "unsafe_code": "forbid"
+      },
+      "clippy": {
+        "all": {
+          "level": "warn",
+          "priority": -1
+        },
+        "pedantic": {
+          "level": "warn",
+          "priority": -1
+        },
+        "must_use_candidate": "allow",
+        "missing_errors_doc": "allow",
+        "missing_panics_doc": "allow",
+        "module_name_repetitions": "allow",
+        "doc_markdown": "allow",
+        "too_many_lines": "allow"
+      }
+    }
+  },
+  "round2_blocked_by_round1": true
+}

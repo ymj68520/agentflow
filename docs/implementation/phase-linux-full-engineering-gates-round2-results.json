@@ -1,0 +1,15 @@
+{
+  "status": "Not Authorized / Not Executed",
+  "blocked_by": "Round1 Clippy failure; independent Round2 approvals absent",
+  "test": {
+    "launches": 0,
+    "exit_code": null,
+    "counts": null
+  },
+  "spec_check": {
+    "launches": 0,
+    "exit_code": null
+  },
+  "mixed_build_test_memory_contract": "Proposed unifiedAS2GiB/tree3GiB remains unapproved, not active; no768MiB cap was applied to rustc",
+  "coverage_contract_approved": false
+}

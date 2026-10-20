@@ -1,0 +1,9 @@
+{
+  "command": "cargo-fmt --version (installed binary; metadata only)",
+  "actual_exit_code": 1,
+  "stderr_prefix": "Could not run rustfmt, please make sure it is in your PATH.",
+  "cause": "Existing toolchain bin not on original SSH PATH",
+  "evidence": "Original complete stderr preserved in this chat tool transcript",
+  "gate_launches": 0,
+  "global_path_changed": false
+}
