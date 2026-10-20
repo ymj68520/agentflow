@@ -1,4 +1,4 @@
-"""Per-gate single-use Linux quality adapter. Round2 requires fresh post-Round1 approval.
+"""Single-use 8GiB Clippy recovery adapter. No Round2 dispatch exists here.
 
 Reuses the immutable PIVOT-03 qualified ownership/cleanup/measurement core. Cargo
 is gated behind actual service + guardian readbacks and a permanent O_EXCL claim.
@@ -50,7 +50,9 @@ def approvals(matrix,policy):
     if type(matrix) is not dict or type(policy) is not dict or GATE not in COMMANDS:return False
     limits=policy.get('per_gate_limits',{}).get(GATE)
     return (type(limits) is dict and set(limits)==set(LIMITS) and all(type(limits[k]) is type(v) and limits[k]==v for k,v in LIMITS.items()) and
+            matrix.get('phase')=='L2-PIVOT-06' and matrix.get('approval_question_id')=='call_756396936da54fa79fb004dc085306a8' and matrix.get('prior_grants_reused') is False and matrix.get('round2_approved') is False and
             matrix.get('policy_sha256')==sha(POLICY) and matrix.get('gate')==GATE and all(type(matrix.get(k)) is dict and matrix[k].get('Approved') is True for k in ['A','B','C']) and
+            matrix['A'].get('limits')==limits and matrix['B'].get('risks')==policy.get('disk_risks') and matrix['B'].get('scope')=='This one Clippy only; no Round2, future commands or untrusted execution' and
             matrix['B'].get('choice')=='B2' and matrix['C'].get('argv')==['cargo',*COMMAND] and type(matrix['C'].get('maximum_launches')) is int and matrix['C']['maximum_launches']==1 and type(matrix['C'].get('retries')) is int and matrix['C']['retries']==0 and
             policy.get('commands',{}).get(GATE)==COMMAND and type(policy.get('automatic_retries')) is int and policy['automatic_retries']==0)
 
@@ -72,6 +74,15 @@ def disk_sample(roots,baseline):
     return dict(monotonic=time.monotonic(),scan_seconds=time.monotonic()-scan,allocated_bytes=usage,growth_bytes=max(0,usage-baseline),free_bytes=fs.f_bavail*fs.f_frsize,free_inodes=fs.f_favail)
 
 def roots_for(job,freeze):return [Path(p) for p in freeze['write_roots']]+[job]
+
+def guardian_release_check(pidfd, identity, ready, freeze):
+    if select.select([pidfd],[],[],0)[0]:raise RuntimeError('GUARDIAN_DEAD_AT_RELEASE')
+    if ready['pid']!=identity['pid'] or ready['executor_sha256']!=sha(__file__) or ready['source_head']!=freeze['source_head']:
+        raise RuntimeError('GUARDIAN_RELEASE_IDENTITY')
+    return dict(pid=ready['pid'],pidfd_alive=True,checked_monotonic=time.monotonic(),executor_sha256=ready['executor_sha256'])
+
+def cleanup_succeeded(receipt):
+    return receipt.get('empty') is True and receipt.get('cgroup_removed') is True
 
 def guardian(meta,job,pipe,lockfd,freeze):
     resource.setrlimit(resource.RLIMIT_AS,(128*1024**2,)*2)
@@ -140,6 +151,7 @@ def service(runid):
     save(E/'gate-launch-consumed.json',dict(gate=GATE,id=runid,utc=now(),argv=argv,source_head=freeze['source_head'],policy_sha256=sha(POLICY),executor_sha256=sha(__file__)))
     start=now();begin=time.monotonic()
     save(job/'cargo-started.json',dict(start_utc=start,argv=argv,cwd=str(W),environment=env,rlimit_as=limit,pid=os.getpid()))
+    observer=None;actual=None;observer_error=None
     try:
         with (job/'cargo.stdout.log').open('xb') as out,(job/'cargo.stderr.log').open('xb') as err:
             observer=Observer(job,leaf,group);observer.start()
@@ -148,9 +160,15 @@ def service(runid):
             except (FileNotFoundError,ProcessLookupError):member='Exited before identity snapshot; wait result retained'
             save(job/'cargo-pid.json',dict(pid=p.pid,cgroup=member))
             actual=p.wait()
-            observer.finish()
-        result=dict(actual_exit_code=actual,start_utc=start,end_utc=now(),seconds=time.monotonic()-begin,argv=argv,cwd=str(W),stdout_sha256=sha(job/'cargo.stdout.log'),stderr_sha256=sha(job/'cargo.stderr.log'))
-    except BaseException as exc:result=dict(actual_exit_code=None,start_utc=start,end_utc=now(),startup_error=repr(exc),automatic_retry=False)
+            try:observer.finish()
+            except BaseException as exc:observer_error=repr(exc)
+        result=dict(actual_exit_code=actual,start_utc=start,end_utc=now(),seconds=time.monotonic()-begin,argv=argv,cwd=str(W),stdout_sha256=sha(job/'cargo.stdout.log'),stderr_sha256=sha(job/'cargo.stderr.log'),observer_finish_error=observer_error,
+                    observer_receipt=read(job/'linker-observer-receipt.json') if (job/'linker-observer-receipt.json').exists() else {'status':'Not Observed'})
+    except BaseException as exc:
+        if observer is not None:
+            try:observer.finish()
+            except BaseException as stop_error:observer_error=repr(stop_error)
+        result=dict(actual_exit_code=actual,start_utc=start,end_utc=now(),startup_error=repr(exc),observer_finish_error=observer_error,automatic_retry=False)
     save(job/'workload-exit.json',result)
     while True:time.sleep(1)
 
@@ -212,6 +230,9 @@ def run(runid):
         save(E/'gate-launch-reserved.json',dict(gate=GATE,id=runid,utc=now(),scope='One release only; never retry after a consumed startup'))
         save(job/'resource-policy-readbacks.json',dict(root=core.snapshot(group),service=service_ready,guardian=guard_ready,ancestors=live_ancestors,kernel_service_limits=kernel_limits,controller_rlimit_as=list(resource.getrlimit(resource.RLIMIT_AS))))
         save(job/'host-admission.json',dict(status='ADMITTED',source_head=freeze['source_head'],git_tree=freeze['git_tree'],host_mem_available=host,free_bytes=fs.f_bavail*fs.f_frsize,free_inodes=fs.f_favail,approval_matrix_sha256=sha(E/'approval-matrix.json'),freeze_sha256=sha(E/'execution-freeze.json'),resource_readback_sha256=sha(job/'resource-policy-readbacks.json')))
+        release_check=guardian_release_check(guardfd,read(job/'guardian-identity.json'),read(job/'guardian-ready.json'),freeze)
+        save(job/'guardian-release-readback.json',release_check)
+        guardian_release_check(guardfd,read(job/'guardian-identity.json'),read(job/'guardian-ready.json'),freeze)
         save(job/'release.json',dict(token=meta['token'],freeze_sha256=sha(E/'execution-freeze.json'),utc=now()))
         print(json.dumps(dict(status='ADMITTED',gate=GATE,id=runid,source_head=freeze['source_head'],command=['cargo',*COMMAND])),flush=True)
         started=time.monotonic();last=started
@@ -220,6 +241,7 @@ def run(runid):
             if pid:
                 if status!=0 or not (job/'guardian-receipt.json').exists():raise RuntimeError('GUARDIAN_FAILED_CONTROLLER_TAKEOVER')
                 receipt=read(job/'guardian-receipt.json');actual=read(job/'workload-exit.json') if (job/'workload-exit.json').exists() else None
+                if not cleanup_succeeded(receipt['cleanup']):raise RuntimeError('GUARDIAN_CLEANUP_INCOMPLETE_CONTROLLER_TAKEOVER')
                 save(job/'controller-receipt.json',dict(reason=receipt['reason'],guardian_exit=0,workload=actual,cleanup=receipt['cleanup'],end_utc=now()))
                 print(json.dumps(dict(reason=receipt['reason'],workload=actual,job=str(job))),flush=True)
                 return 0 if receipt['reason']=='Completed' and actual and actual.get('actual_exit_code')==0 else 1

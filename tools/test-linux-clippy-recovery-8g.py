@@ -49,5 +49,29 @@ check('3GiB-tree-unchanged',m.LIMITS['task_memory_bytes']==3221225472)
 check('no-old-2GiB-in-runner',not any(isinstance(n,ast.Constant) and n.value==2147483648 for n in ast.walk(tree)))
 check('observer-in-service','observer=Observer(job,leaf,group);observer.start()' in source and 'observer.finish()' in source)
 check('observer-thread-no-child-spawn','subprocess' not in (W/'tools/linker_memory_observer.py').read_text())
+for field,value in [('approval_question_id','old-call'),('phase','L2-PIVOT-05'),('prior_grants_reused',True),('round2_approved',True)]:
+ b=copy.deepcopy(a);b[field]=value;check('fresh-approval/'+field,not m.approvals(b,policy))
+for label in ['A-limits','B-risks','B-scope']:
+ b=copy.deepcopy(a)
+ if label=='A-limits':b['A']['limits']['process_address_space_bytes']=2147483648
+ elif label=='B-risks':b['B']['risks']=[]
+ else:b['B']['scope']='Any future job'
+ check('fresh-approval/'+label,not m.approvals(b,policy))
+for empty,removed in [(True,True),(False,True),(True,False),(False,False),(1,True),(True,1),(None,True)]:
+ check('cleanup/'+repr((empty,removed)),m.cleanup_succeeded(dict(empty=empty,cgroup_removed=removed)) is (empty is True and removed is True))
+saved_select=m.select.select
+try:
+ ready=dict(pid=123,executor_sha256=m.sha(m.__file__),source_head='frozen-head')
+ m.select.select=lambda *args:([99],[],[])
+ try:m.guardian_release_check(99,dict(pid=123),ready,dict(source_head='frozen-head'));denied=False
+ except RuntimeError:denied=True
+ check('dead-guardian-denied-before-release',denied)
+ m.select.select=lambda *args:([],[],[])
+ check('live-guardian-bound',m.guardian_release_check(99,dict(pid=123),ready,dict(source_head='frozen-head'))['pidfd_alive'])
+ try:m.guardian_release_check(99,dict(pid=456),ready,dict(source_head='frozen-head'));denied=False
+ except RuntimeError:denied=True
+ check('wrong-guardian-denied-before-release',denied)
+finally:m.select.select=saved_select
+check('cleanup-failure-enters-controller-takeover',"if not cleanup_succeeded(receipt['cleanup']):raise RuntimeError('GUARDIAN_CLEANUP_INCOMPLETE_CONTROLLER_TAKEOVER')" in source)
 print(json.dumps(dict(Required=len(rows),Executed=len(rows),Passed=sum(x['passed'] for x in rows),Failed=sum(not x['passed'] for x in rows),cases=rows,scope='Static admission/streaming only'),indent=2))
 assert all(x['passed'] for x in rows)
