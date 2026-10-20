@@ -1,4 +1,4 @@
-# R5G2 — Native Source nominal registration staging
+# R5G2 — Native Source nominal registration staging (Outcome D)
 
 起始HEAD `0e94c9f6a2084aad996ffc410d180abbf4be1d38`，起始2368个非忽略文件的
 原始SHA256在target同阶段start-raw-map.json，开始时工作树干净。
@@ -25,6 +25,11 @@ Source六字段与Native Eq/pin/bytes/revision/catalog、真实C与port语义不
 当前源审计、声明读取、Source完整性、1297字段/Variant样例、Source子树正反例及
 独立Expected/Actual已验证。完整工程、全部精确历史和原目录生成器门禁另行封存，
 没有完成回执前不得宣布COMPLETE — REGISTERED STAGING。
+
+本轮最终为Outcome D / Registration Incomplete：当前四项工程门禁448项通过，
+注册Oracle2880项通过，但首组历史构建遭8GiB前台内存保留线保护终止（退出79），
+历史构建完成0/8；独立冻结G3与最终原目录生成器双轮未执行。不提高限额、不自动
+重启重型门禁，保留全部失败/中断证据，登记资产不代表已完成验收。
 
 原G1 49向量保持原文件和Not Executed状态，本轮没有逐项转换记账；新的注册CaseIds
 与生产capture credit严格分开。新版本生产Binder NotImplemented，生产DagRanks0，

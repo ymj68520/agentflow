@@ -1,9 +1,11 @@
-# R5G2 — Registered staging verification ledger
+# R5G2 — Outcome D: Registration Incomplete
 
 This report records implementation and the required verification boundary.
 It does NOT prefill pending engineering/history/generator results as passes.
-Final status must be sealed in target/phase-04c1b4c4r3c2r5g2-final-runtime-results.json
-after all required work and the final commit. Until then: REGISTRATION ACCEPTANCE PENDING.
+Final evidence is sealed after the final commit in
+target/phase-04c1b4c4r3c2r5g2-final-runtime-results.json.
+Registration is NOT ACCEPTED. The historical-build gate was stopped by the
+unchanged foreground-memory reserve, not a semantic contradiction.
 
 1. Start HEAD `0e94c9f6a2084aad996ffc410d180abbf4be1d38`, clean; code gate and final HEAD must come from actual receipts.
 2. Old identities remain exact Analysis8/Model7/Report7/Obligation7; their source semantics and objects are not overwritten.
@@ -30,21 +32,21 @@ after all required work and the final commit. Until then: REGISTRATION ACCEPTANC
 23. Applicable1297 metadata field/Variant shape-value paths are independently enumerated, required denominator unchanged.
 24. Source/failure/metadata distinctions and closed-domain reuse are in source-failure-matrix.md; no source failure is rewritten as a port predicate.
 25. Original49 G1 vectors remain original Not Executed records; no blanket conversion or production credit is allocated.
-26. Independent Python Expected comes from exact old/new normative source, not Rust Actual; current per-case execution is stored separately.
-27. Registration comparator rejects single-sided and both-sided Source-field omissions and forged capability/rank claims; credit is metadata only.
-28. CompleteView/ObligationIdentity not issued; native/direct/private/alternate/default-D0/bounded-D4/Current-only refusals remain separate mandatory checks.
-29. Original G3 exact source a9e296407c682a69f596be84ac8974eb870ebc18 requires independent154/26/59 regression; no successor producer is implemented.
-30. R5 seven boundary CaseIds and46 comparator mutations remain a separate unchanged-input regression, not new full Raw Facts.
-31. Native53 and original51 exact Actual outputs require fresh independent comparison; no old pass is substituted.
-32. F1 requires62 inputs/40 mutations, unchanged lowering and old native semantics.
-33. Eight exact frozen source histories require their own full fresh tests and before/after Git Blob/raw-byte validation. Prior R5 receipts are configuration references, not pass credit.
-34. Full fmt/Clippy/cargo test/spec-check and each independent Oracle require actual exits, logs, SHA256 and complete HEAD receipts.
-35. CPU5%, process768MiB/job1536MiB, BelowNormal, test1/envBuildJobs1/topjob1 are unchanged. Default debug2 LLVM OOM and other failed/interrupted development logs are preserved, not counted. Low-debug build differences are explicit.
-36. Final actual tools/gen-*.py roster must run continuously twice in original E:/Projects/agent with every exit0; no alternate-directory substitute.
-37. Baseline/R1/R2/Final compare every nonignored path/raw SHA256. Original2368 start paths are not silently redefined; permitted changes and exact protected-byte map must be listed.
-38. C1/C2/CTX registered and old R4 authorized-domain verification remain; new R5 registration acceptance is pending all gates. G02/G03 and other prior findings are not closed.
-39. Outcome A is permitted only after every required gate succeeds. Contradiction/new binding gap/incomplete registration must instead remain B/C/D with exact evidence. Writing registry records alone is not COMPLETE — REGISTERED STAGING.
-40. Final runtime receipt must include final HEAD/clean worktree/local classified commits/Push=false/no background jobs. Stop without successor Binder, Raw, T3/T4–T8, G02/G03, D10, Portable integration or publication/runtime work.
+26. Independent Python Expected comes from exact old/new normative source, not Rust Actual; all2880 current registration CaseIds freshly compare exactly. Receipt: target/phase-04c1b4c4r3c2r5g2-registration-oracle-final.json.
+27. All16 registration comparator mutations reject single-sided and both-sided Source-field omissions and forged capability/rank claims; credit is metadata only.
+28. CompleteView/ObligationIdentity not issued. Current full Cargo reruns old native/direct/private/alternate refusals. A separate negative-only Analysis9 Portable API probe freshly rejects at default D0/ResourceLimit and bounded D4/UnsupportedSemantics, using complete74-source Registry contents; no successor Portable support is implemented. Driver, fixture and linked-library SHA256 survive in its capped log.
+29. Current legacy8 G3 independently compares154 positive cases and rejects59 comparator mutations. The separate exact a9e296407c682a69f596be84ac8974eb870ebc18 source regression is NOT EXECUTED after the resource-safety stop; no successor producer is implemented. Current-code results do not replace that frozen-source gate.
+30. R5 seven boundary CaseIds and46 comparator mutations freshly pass a separate unchanged-input regression, not new full Raw Facts.
+31. Native53 and original51 exact Actual outputs freshly pass independent comparison; no old pass is substituted.
+32. F1 freshly passes26 lowering plus36 native pipeline inputs and40 mutations, with unchanged lowering and old native semantics.
+33. Historical builds completed0/8. Edition1 abc91d533b4d62e91226722e1d1fcaa30bd00883 was actually launched with its own source/Registry/Expected but was terminated after513.22s, exit79/cancelled=foreground_memory_reserve, during its historical Portable unit tests. No success credit is allocated. Groups2..8 are NOT EXECUTED. Prior R5 receipts remain configuration references only; fresh Git-BASE/EOL-only correspondence checks for the historical audit inputs pass separately, never as build credit.
+34. Full fmt/Clippy/cargo test/spec-check all exit0 at code HEAD7a79a5f903172294cfb38296fb7360b8d8c0660c. Cargo records448 passed/79 result groups/0 failed/0 ignored. The exact command flags are unchanged; the host-only dev/test debug-symbol environment is0 as separately disclosed. Both old Model6/Model7 strict totals freshly exit2 as required, not an engineering pass or full Raw closure. Every required command has separate actual exit/log SHA256/complete HEAD receipts.
+35. CPU5%, process768MiB/job1536MiB, BelowNormal, test1/envBuildJobs1/topjob1 are unchanged. Historical1 minimum system availability was8580960256 bytes, below the8589934592-byte reserve; its own peak process129671168 bytes/whole-job168259584 bytes were far below their caps. The guard killed the task and its descendants. No unrelated process is attributed or terminated. Default debug2 LLVM OOM and other failed/interrupted development logs remain preserved, not counted. Low-debug current build differences are explicit; historical1 reused its original debug2 configuration.
+36. Final actual tools/gen-*.py roster is41. Required consecutive original-directory full rounds completed0/2; NOT EXECUTED after the resource-safety stop. No substitute directory or stitched partial proof is used.
+37. Original2368 start paths remain the original baseline. source-freeze.json lists the12 expressly permitted existing-file changes and2356 byte-exact protected paths. A separate lightweight capped closeout audit checks preservation after interruption. The final raw map is retained, but no Baseline=R1=R2=Final generator-equivalence claim is made without the two rounds.
+38. C1/C2/CTX registered and old R4 authorized-domain verification remain; new R5 registration acceptance is NOT COMPLETE. G02/G03 and other prior findings are not closed. Successor runtime denominators remain UNKNOWN/null; no old2520 denominator is reused as measured successor coverage.
+39. Outcome D — Registration Incomplete. Mandatory history, independent exact-frozen G3 and generator gates are not closed. Formal records and2880 metadata comparisons do not imply COMPLETE — REGISTERED STAGING. No actual production contradiction or new formal binding gap is established by a foreground-memory cancellation.
+40. Final runtime receipt records final HEAD/clean worktree/local classified commits/Push=false/no background jobs after the safety stop and closeout. No heavy gate is automatically retried and no limit is raised. Stop without successor Binder, Raw, T3/T4–T8, G02/G03, D10, Portable integration or publication/runtime work.
 
 Preserved old Raw ledger:177 historical events/176 applicable/2464 roots and the distinct
 R5 checkpoint184 events/180 otherwise applicable/2520 required roots/0 complete comparisons.
