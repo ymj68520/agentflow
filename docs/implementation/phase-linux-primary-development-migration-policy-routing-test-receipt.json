@@ -1,0 +1,14 @@
+[
+  {
+    "script": "test-linux-primary-policy.py",
+    "exit_code": 0,
+    "stdout_sha256": "7b6ae72655c2739eb8fb9c1777db5ce0e885bf766e5c2658888d0f26b90b618c",
+    "stderr": ""
+  },
+  {
+    "script": "linux-primary-plan.py",
+    "exit_code": 0,
+    "stdout_sha256": "5bc72f11efd8b54578f03ed17e805569cf461a4703ba309fe31cde5b8dbfe191",
+    "stderr": ""
+  }
+]

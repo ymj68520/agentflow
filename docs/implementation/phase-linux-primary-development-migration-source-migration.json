@@ -1,0 +1,55 @@
+{
+  "old_workspace_head": "dc1d71f30b3a7f06065f4000712e6512f288db16",
+  "linux_baseline_head": "bf5926a25f5fc1a78fe35a0a775b712a62d27ca9",
+  "increment_bundle_sha256": "60aa52d53128b4cdc4466081a0476ca114388ec1153256e4d80f9e3f6cb63b9f",
+  "branch": "codex/linux-primary-migration",
+  "ten_frozen_snapshots_preserved": true,
+  "snapshots": {
+    "workspace": {
+      "head": "bf5926a25f5fc1a78fe35a0a775b712a62d27ca9",
+      "lock_sha256": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede"
+    },
+    "frozen-g3": {
+      "head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+      "lock_sha256": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede"
+    },
+    "history-1": {
+      "head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+      "lock_sha256": "6787a801d5f5ea096103f894fe3661ce7a8d05a382672d03514cf290f9118cf5"
+    },
+    "history-2": {
+      "head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+      "lock_sha256": "6787a801d5f5ea096103f894fe3661ce7a8d05a382672d03514cf290f9118cf5"
+    },
+    "history-3": {
+      "head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+      "lock_sha256": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede"
+    },
+    "history-4": {
+      "head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+      "lock_sha256": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede"
+    },
+    "history-5": {
+      "head": "e623aab705c5f8269807201e112a32e67e6869bf",
+      "lock_sha256": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede"
+    },
+    "history-6": {
+      "head": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+      "lock_sha256": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede"
+    },
+    "history-7": {
+      "head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+      "lock_sha256": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede"
+    },
+    "history-8": {
+      "head": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+      "lock_sha256": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede"
+    },
+    "legacy-current-dc1d-l2pivot01": {
+      "head": "dc1d71f30b3a7f06065f4000712e6512f288db16",
+      "lock_sha256": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede"
+    }
+  },
+  "source_operations": "Linux workspace only; original current preserved as locked independent checkout",
+  "local_windows_source_unchanged": true
+}

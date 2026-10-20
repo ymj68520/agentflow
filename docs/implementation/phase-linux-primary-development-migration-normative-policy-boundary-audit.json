@@ -1,0 +1,301 @@
+{
+  "registry_sha256": "5da052253f248c9b4bed5531b41e23d5c7422f60717ef7db109b51b710edb0d4",
+  "registered_specifications": 74,
+  "unique_normative_sources": 73,
+  "sources": [
+    {
+      "path": "spec/component/component-contract.md",
+      "sha256": "7f847a770dd0d92c289a06a6133e55bd239e5247d7eea63e1c9bc98bcf231f22"
+    },
+    {
+      "path": "spec/component/document-occurrence.md",
+      "sha256": "a41eb465d0f504bedae4e95db1a15891d7e0a578032ae3aa8d10a4f0dec1ffa7"
+    },
+    {
+      "path": "spec/component/native-recovery-guard.md",
+      "sha256": "a78b148a57babd488c7ab27348461a8f934e2a8ee87818cfe8d93b448f7da38f"
+    },
+    {
+      "path": "spec/component/raw-contract-validation.md",
+      "sha256": "2d4ff247ccd4c7a2aaf9d9da4e25e2e22426f74f2034faca98138a07ec02bb19"
+    },
+    {
+      "path": "spec/component/relation-catalogs.md",
+      "sha256": "742027e8b8c60312a7a6b0a4a39d3469be22cba71b02b5d92e726e4814c0a7db"
+    },
+    {
+      "path": "spec/component/relation-snapshot-validation.md",
+      "sha256": "44a3945f6492edbea713746a454c86069bc7a70119ce54cbeaae4f25f010f316"
+    },
+    {
+      "path": "spec/component/standalone-substitution-proof.md",
+      "sha256": "b7231217d2dd40b6756f7372018092336938036d929429ae44e982fd5e404d88"
+    },
+    {
+      "path": "spec/computation/advanced-control-contract-algebra.md",
+      "sha256": "615eeae850e47cf01f72791eaeba570ac075c65a8abae8439d3130bde5ce7b3b"
+    },
+    {
+      "path": "spec/computation/control-contract-algebra.md",
+      "sha256": "14c4cb7b8e6311e91fe63fcf091fb496e41681bb64d28c7fbbef0a47a2601bc9"
+    },
+    {
+      "path": "spec/computation/leaf-contract-resolution.md",
+      "sha256": "36c0ba9434cedc68669e1cbd3300c8f6073aa1cf701aa94c8ba974232af5cfa7"
+    },
+    {
+      "path": "spec/computation/native-relation-source-binding.md",
+      "sha256": "538b239831fdd2e341ae027c18acbe75cb093bbda4bb5660048e2b46bf80e655"
+    },
+    {
+      "path": "spec/computation/proof-obligation-semantics-v2.md",
+      "sha256": "a614692e839403fbd8a55c5642236083435870fe2e9fe0d2aae05b7125ff7b91"
+    },
+    {
+      "path": "spec/computation/proof-obligation-semantics-v3.md",
+      "sha256": "bf7b908c5442259aacdc15f0693eaa1620e9e35f478f772ca96562dc93210b32"
+    },
+    {
+      "path": "spec/computation/proof-obligation-semantics-v4.md",
+      "sha256": "6e9b5464e2fa6743899df5535a1ea67c31978a19293be455dcbe0fde84c6107c"
+    },
+    {
+      "path": "spec/computation/proof-obligation-semantics-v5.md",
+      "sha256": "e04f487a5d68edcd1ed76df0a96b5165e40bfabe6df708fb1800ec2921049bf8"
+    },
+    {
+      "path": "spec/computation/proof-obligation-semantics-v6.md",
+      "sha256": "406fd2c745f534a79f7cb57ed73585f7abe9e50d888142e65f9abc1b3f470396"
+    },
+    {
+      "path": "spec/computation/proof-obligation-semantics-v7.md",
+      "sha256": "83ba554b44a4e2d8f2f8a8b2b8c3deb3563fd7f553d5b6affd814d040f64accf"
+    },
+    {
+      "path": "spec/computation/proof-obligation-semantics-v8.md",
+      "sha256": "d3fa800e68f9896074232e311c20b27ad1fdefa2b35e0b71d661348454489ca0"
+    },
+    {
+      "path": "spec/computation/proof-obligation-semantics.md",
+      "sha256": "c8d4cf135c28db286b0a598c3fb69814dece936fcf888ce3e46296a336186f5c"
+    },
+    {
+      "path": "spec/computation/root-export-contract-proof.md",
+      "sha256": "b264b384c37f61055ddbaee70d38ed2d66c8dc2ac81d25fd52d0a3271b2294b5"
+    },
+    {
+      "path": "spec/computation/scope-compensation-contract-algebra.md",
+      "sha256": "1b4d631fe24cd9ea0c3462dcb875f5d0d2f13f2b4d99ab9135347d58a9a61537"
+    },
+    {
+      "path": "spec/computation/structural-binding.md",
+      "sha256": "91af86908862fb40b151eea9998e44d41ff834e3685d3f608ac6906375f9fec3"
+    },
+    {
+      "path": "spec/digest/hash-v1.md",
+      "sha256": "2b61a9351d2ee7bb0c7b39de29c5fa6035237e00ace109f741507f996f98d755"
+    },
+    {
+      "path": "spec/effect/effect-signature.md",
+      "sha256": "667baa267e7f4d310f41bf7e10d5267b488a5d343e8e6f8d957c329adcf19c00"
+    },
+    {
+      "path": "spec/encoding/ace1-grammar.md",
+      "sha256": "994fed624985e28b166e6038a714e43702c571aa77e29e8c25aa89aab829072e"
+    },
+    {
+      "path": "spec/execution/execution-requirements.md",
+      "sha256": "44717f9e878564e2a7aba4eaef878e65d51db14d8834654285a9bc688d95c911"
+    },
+    {
+      "path": "spec/failure/failure-row.md",
+      "sha256": "37b6af04d221c82dba07136b95e98f91375adea35b1267d729b0efd699c30d84"
+    },
+    {
+      "path": "spec/idl/afidl1-grammar.md",
+      "sha256": "074fb124d4d5ae90df64ffa23205eb30bfe81c10a3c8db6784adcd81b26a81a8"
+    },
+    {
+      "path": "spec/idl/component-contract.afidl",
+      "sha256": "421a6e6357d76864208099053a027e837b73bb8e0075612a374d0ea8f5e0f3c5"
+    },
+    {
+      "path": "spec/idl/core/machine-primitives.afidl",
+      "sha256": "a9cf9903bf1ad64f66a349dc60775eae3938a92b4f6bd8e65ee63f89d9f68c95"
+    },
+    {
+      "path": "spec/idl/cost-projection.afidl",
+      "sha256": "b6f32783b87ca08b7f861fad697770e7e751e1cb73217a6ba4f92343348bf76a"
+    },
+    {
+      "path": "spec/idl/effect-resource-compatibility.afidl",
+      "sha256": "a0e480086b68549c8c1831b086acb270d51c1225a30f785f65ce642e164b6364"
+    },
+    {
+      "path": "spec/idl/effect-signature.afidl",
+      "sha256": "c488c3b9ff53ea709ea7eee6d80f1e001125b0153bccb4c0808f966ef614d8ab"
+    },
+    {
+      "path": "spec/idl/execution-requirements.afidl",
+      "sha256": "6914020b3e9b0d900274fc5d75daac9f27e3b02bb889920c676278b84fff0576"
+    },
+    {
+      "path": "spec/idl/failure-row.afidl",
+      "sha256": "2269b03fa0e19152bd7b769773fc9ffc5c4bb894fec9e657acd269c8d20e60b9"
+    },
+    {
+      "path": "spec/idl/flow-execution-relation.afidl",
+      "sha256": "c8601246b7864b45a333dd63161941a66508f0a2fe103b08ce5bb9d0181e3217"
+    },
+    {
+      "path": "spec/idl/information-flow.afidl",
+      "sha256": "a0dfccd988d0499c728da4fbc2772dd93069405aac468408747dc32152a5ece3"
+    },
+    {
+      "path": "spec/idl/portable-proof-inputs.afidl",
+      "sha256": "3e1244fd88cf5bdb1d8c0e4dea44b999df8ccb99acf7c97fabb89e2cbb7efcf5"
+    },
+    {
+      "path": "spec/idl/recovery-contract.afidl",
+      "sha256": "c38aa9e1a5452cb7724b02d08a22d79e2a6762680b4f6c390454519f682724a9"
+    },
+    {
+      "path": "spec/idl/recovery-usage-coverage.afidl",
+      "sha256": "2472b1aed0eab71c3be176010b6eb9f744675c31f17e22346c1ea95ffa30c887"
+    },
+    {
+      "path": "spec/idl/resource-requirement.afidl",
+      "sha256": "75c850fa5a55ef5eb1873b865b1d9f293fffb4e276bf6ec0834b0deb1d854b08"
+    },
+    {
+      "path": "spec/idl/semantic-core.afidl",
+      "sha256": "44054abf93fb21a10eca43d9397ba2151bc3ccda96fefef562a35e288931e250"
+    },
+    {
+      "path": "spec/idl/semantic-ir.afidl",
+      "sha256": "9fb3292a0fe90b207db037575c50ef3ca50174411b3c5a461c09c37d53f616a3"
+    },
+    {
+      "path": "spec/idl/specification-registry.afidl",
+      "sha256": "b54a2ee9fc70d3e2222b31ff07766151a2acf16f3301817c0dff93eb0631f80f"
+    },
+    {
+      "path": "spec/idl/usage-signature.afidl",
+      "sha256": "6cf26c6829f9a084e54164ccea4f4734683a8acf290e946ee388a3c545b2070d"
+    },
+    {
+      "path": "spec/information-flow/information-flow.md",
+      "sha256": "5e26d3101b33c41095944a794f46108aa6a226d565f47e8b69f3b7d85ac1ed87"
+    },
+    {
+      "path": "spec/portable/portable-proof-inputs-v2.md",
+      "sha256": "751b46630198e82b99e58eb9ee31ab7c95edd373a1c938e2c1edd470f54dc8c0"
+    },
+    {
+      "path": "spec/portable/portable-proof-inputs-v3.md",
+      "sha256": "57d9ec10b5cc2ec0ef1e2ad20389b9018e03a868129482ef7ec10cc2386fb658"
+    },
+    {
+      "path": "spec/portable/portable-proof-inputs-v4.md",
+      "sha256": "8bfd73778fccb892c0f4e0712fb2a5048f7ef15a9533842caa8b341a7d53ce89"
+    },
+    {
+      "path": "spec/portable/portable-proof-inputs-v5.md",
+      "sha256": "1e2a5c6392fbf9c3df87ed481eb404879d68d1aae01d5981dfb2e582a726c49d"
+    },
+    {
+      "path": "spec/portable/portable-proof-inputs-v6.md",
+      "sha256": "546388ea20c2ec22684111a59c9dd99b01929c1271136f752839a19d5ae59370"
+    },
+    {
+      "path": "spec/portable/portable-proof-inputs-v7.md",
+      "sha256": "0845b69972b21f25acf7906e846882903fa59349c5643085b65a0c806b7614f8"
+    },
+    {
+      "path": "spec/portable/portable-proof-inputs-v8.md",
+      "sha256": "c0adb717794833f2e4fbe903acfc4214ea3cf9148cf8afee9854aa357da9303e"
+    },
+    {
+      "path": "spec/portable/portable-proof-inputs-v9.md",
+      "sha256": "6ec9798b9bb77ecb4dc0126ae15720d87c6175b2ef5a4fb99cf433a8af63b55d"
+    },
+    {
+      "path": "spec/portable/portable-proof-inputs.md",
+      "sha256": "7d6fe7ea14b472d1df95f0a02cd0f1b19d1ff560cd7ac11ca1dad8d77e1ff74a"
+    },
+    {
+      "path": "spec/recovery/recovery-contract.md",
+      "sha256": "738365753c4f404563789782fa71a3e8e5f2a5d967f5f952b3411e89f20287a8"
+    },
+    {
+      "path": "spec/registry/registry-spec.md",
+      "sha256": "a0573197172296f89810a113fc8946acdeb3ccded5cbdff2198e1682cf69a405"
+    },
+    {
+      "path": "spec/resource/resource-requirement.md",
+      "sha256": "a4c9334ba134073a53cfbf9f6335f9065855eb880904fbec834e32b3b3e8e50a"
+    },
+    {
+      "path": "spec/semantic/core-semantic-types.md",
+      "sha256": "cf389a50fe8dbc553973f98422dc5603c421bfb75cfeb6db915458b85ea1597b"
+    },
+    {
+      "path": "spec/semantic/semantic-ir.md",
+      "sha256": "8e92214da8df308a81775e1910727f4d9f0985555e0170f757777ca22949a48f"
+    },
+    {
+      "path": "spec/tables/afidl-primitives.json",
+      "sha256": "e0cd1ed7c69027dad593b0090668ad03baa97b145afe59b294d207f786ae03c5"
+    },
+    {
+      "path": "spec/tables/hash-domains.json",
+      "sha256": "b8731a3591f30becde2bf22a77c129664d718fa5fc291930c8fbc1bdd26aa3c3"
+    },
+    {
+      "path": "spec/tables/proof-report-model-v1.md",
+      "sha256": "e23ca47c05efe9f7ec22177011982ac47ca0cdc8642173de56a90e6e29a93099"
+    },
+    {
+      "path": "spec/tables/proof-report-model-v2.md",
+      "sha256": "86d97bdcbf17814f03bdab4f34090e90b53963a8a8ea8761be9d30822b3779d1"
+    },
+    {
+      "path": "spec/tables/proof-report-model-v3.md",
+      "sha256": "296402ccab8234cd32dbe758788ef0e4bdb4a724128985c4c1f935e9459d259b"
+    },
+    {
+      "path": "spec/tables/proof-report-model-v4.md",
+      "sha256": "52150b387c48b8c6e0800e80cf0c82607cd295d91fd53de5f96c499a7c655a8b"
+    },
+    {
+      "path": "spec/tables/proof-report-model-v5.md",
+      "sha256": "d56cd394bf889c4a31a9b96566db1198f31ec1dc1a2181c96ca46206a7d94824"
+    },
+    {
+      "path": "spec/tables/proof-report-model-v6.md",
+      "sha256": "2c789175457454d205a11f6b9a04ba7b8c18d65e8d266cab88a2e68baaf835b2"
+    },
+    {
+      "path": "spec/tables/proof-report-model-v7.md",
+      "sha256": "d0f2200097d4e4705e2d200125b1afd438d7d25916d75f9f07085e84b9802641"
+    },
+    {
+      "path": "spec/tables/proof-report-model-v8.md",
+      "sha256": "a2b43ebbc3aba9dcb7751c1c8605f049cdacbf2cb200069c27b1e13c9988f0ca"
+    },
+    {
+      "path": "spec/tables/rule-areas.json",
+      "sha256": "5b33545c54cc94518ca5263931a6cef527e69f3d316c2e89157efa41cbb4d942"
+    },
+    {
+      "path": "spec/usage/cost-projection.md",
+      "sha256": "0d9702482268978e43f52a3d6fe8f51db817a81a8e7aae52287a9ce318906992"
+    },
+    {
+      "path": "spec/usage/usage-signature.md",
+      "sha256": "d8fa91b7c50ff78e865357c13286d0f9584709e7337d37043e2dc6d1aa140500"
+    }
+  ],
+  "search": "Windows|MSVC|R5G2|0/8|historical.{0,30}gate",
+  "hits": []
+}

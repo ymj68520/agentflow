@@ -1,0 +1,172 @@
+{
+  "status": "Passed",
+  "checks": [
+    {
+      "id": "static-total",
+      "passed": true
+    },
+    {
+      "id": "r3-transcript-sha-and-exit",
+      "passed": true
+    },
+    {
+      "id": "r3-frozen-inputs",
+      "passed": true
+    },
+    {
+      "id": "r3-fixed-roster",
+      "passed": true
+    },
+    {
+      "id": "r3-full-denominator",
+      "passed": true
+    },
+    {
+      "id": "p0-transcript-sha-and-exit",
+      "passed": true
+    },
+    {
+      "id": "p0-frozen-inputs",
+      "passed": true
+    },
+    {
+      "id": "p0-fixed-roster",
+      "passed": true
+    },
+    {
+      "id": "p0-independent-transcript",
+      "passed": true
+    },
+    {
+      "id": "p0-full-denominator",
+      "passed": true
+    },
+    {
+      "id": "p1a-transcript-sha-and-exit",
+      "passed": true
+    },
+    {
+      "id": "p1a-frozen-inputs",
+      "passed": true
+    },
+    {
+      "id": "p1a-fixed-roster",
+      "passed": true
+    },
+    {
+      "id": "p1a-independent-transcript",
+      "passed": true
+    },
+    {
+      "id": "p1a-full-denominator",
+      "passed": true
+    },
+    {
+      "id": "normative-source-pins",
+      "passed": true
+    },
+    {
+      "id": "no-existing-product-or-expected-changes",
+      "passed": true
+    },
+    {
+      "id": "ten-raw-frozen-snapshots",
+      "passed": true
+    },
+    {
+      "id": "legacy-failure-preserved",
+      "passed": true
+    },
+    {
+      "id": "legacy-contracts-unchanged",
+      "passed": true
+    },
+    {
+      "id": "no-legacy-promotion",
+      "passed": true
+    },
+    {
+      "id": "no-resource-approval-inference",
+      "passed": true
+    },
+    {
+      "id": "no-cgroup-or-build-claims",
+      "passed": true
+    },
+    {
+      "id": "four-native-gates-unexecuted",
+      "passed": true
+    },
+    {
+      "id": "json-parse/phase-linux-primary-development-migration-dependency-closure.json",
+      "passed": true
+    },
+    {
+      "id": "json-parse/phase-linux-primary-development-migration-development-gate-plan.json",
+      "passed": true
+    },
+    {
+      "id": "json-parse/phase-linux-primary-development-migration-legacy-windows-gate-archive.json",
+      "passed": true
+    },
+    {
+      "id": "json-parse/phase-linux-primary-development-migration-linux-cargo-gate-results.json",
+      "passed": true
+    },
+    {
+      "id": "json-parse/phase-linux-primary-development-migration-linux-environment-readiness.json",
+      "passed": true
+    },
+    {
+      "id": "json-parse/phase-linux-primary-development-migration-linux-executor-qualification.json",
+      "passed": true
+    },
+    {
+      "id": "json-parse/phase-linux-primary-development-migration-normative-policy-boundary-audit.json",
+      "passed": true
+    },
+    {
+      "id": "json-parse/phase-linux-primary-development-migration-policy-routing-test-receipt.json",
+      "passed": true
+    },
+    {
+      "id": "json-parse/phase-linux-primary-development-migration-policy-routing-tests.json",
+      "passed": true
+    },
+    {
+      "id": "json-parse/phase-linux-primary-development-migration-python-dependency-approval.json",
+      "passed": true
+    },
+    {
+      "id": "json-parse/phase-linux-primary-development-migration-python-dependency-proposal.json",
+      "passed": true
+    },
+    {
+      "id": "json-parse/phase-linux-primary-development-migration-resource-policy-approval.json",
+      "passed": true
+    },
+    {
+      "id": "json-parse/phase-linux-primary-development-migration-source-migration.json",
+      "passed": true
+    },
+    {
+      "id": "json-parse/phase-linux-primary-development-migration-source-preservation-review.json",
+      "passed": true
+    },
+    {
+      "id": "json-parse/phase-linux-primary-development-migration-static-252-results.json",
+      "passed": true
+    },
+    {
+      "id": "json-parse/phase-linux-primary-development-migration-static-execution-context.json",
+      "passed": true
+    },
+    {
+      "id": "json-parse/phase-linux-primary-development-migration-windows-platform-source-audit.json",
+      "passed": true
+    }
+  ],
+  "reviewer": "Separate readback comparator executed by the same coding agent; not independent human approval",
+  "scope": "Read-only evidence/roster/identity/denial checks; not Rust runtime or executor qualification",
+  "third_party_attestation": false
+}

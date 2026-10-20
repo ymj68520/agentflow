@@ -1,0 +1,158 @@
+{
+  "os_release": "PRETTY_NAME=\"Ubuntu 24.04.4 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.4 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+  "kernel": "Linux 7.0.0-31-generic x86_64",
+  "logical_cpus": 32,
+  "physical_cores": 16,
+  "sockets": 2,
+  "memory": {
+    "MemTotal": 33590087680,
+    "MemAvailable": 20004868096,
+    "SwapTotal": 8589930496,
+    "SwapFree": 3480096768,
+    "CommitLimit": 25384972288,
+    "Committed_AS": 91394392064
+  },
+  "disk": {
+    "total": 1005867986944,
+    "used": 872845127680,
+    "free": 81852088320
+  },
+  "cgroup_v2": [
+    {
+      "path": "/sys/fs/cgroup/user.slice/user-1001.slice/session-7334.scope",
+      "fields": {
+        "memory.max": "max",
+        "memory.high": "max",
+        "memory.current": "15929344",
+        "memory.swap.max": "max",
+        "cpu.max": "max 100000",
+        "pids.max": "max",
+        "cgroup.controllers": "cpu memory pids",
+        "cgroup.subtree_control": ""
+      },
+      "writable": false
+    },
+    {
+      "path": "/sys/fs/cgroup/user.slice/user-1001.slice",
+      "fields": {
+        "memory.max": "max",
+        "memory.high": "max",
+        "memory.current": "15684562944",
+        "memory.swap.max": "max",
+        "cpu.max": "max 100000",
+        "pids.max": "76995",
+        "cgroup.controllers": "cpu memory pids",
+        "cgroup.subtree_control": "cpu memory pids"
+      },
+      "writable": false
+    },
+    {
+      "path": "/sys/fs/cgroup/user.slice",
+      "fields": {
+        "memory.max": "max",
+        "memory.high": "max",
+        "memory.current": "15827648512",
+        "memory.swap.max": "max",
+        "cpu.max": "max 100000",
+        "pids.max": "max",
+        "cgroup.controllers": "cpuset cpu io memory hugetlb pids rdma misc dmem",
+        "cgroup.subtree_control": "cpu memory pids"
+      },
+      "writable": false
+    },
+    {
+      "path": "/sys/fs/cgroup",
+      "fields": {
+        "cgroup.controllers": "cpuset cpu io memory hugetlb pids rdma misc dmem",
+        "cgroup.subtree_control": "cpuset cpu io memory hugetlb pids rdma misc dmem"
+      },
+      "writable": false
+    }
+  ],
+  "binaries": {
+    "git": {
+      "path": "/usr/bin/git",
+      "on_default_path": true,
+      "version": {
+        "argv": [
+          "/usr/bin/git",
+          "--version"
+        ],
+        "exit": 0,
+        "seconds": 0.0021750926971435547,
+        "stdout": "git version 2.43.0\n",
+        "stderr": ""
+      },
+      "entry_sha256": "2a8c18fbf43da9f692d75474c72bea9dfd796c260b0f3dfe456376abc3bbd668"
+    },
+    "python3": {
+      "path": "/usr/bin/python3",
+      "on_default_path": true,
+      "version": {
+        "argv": [
+          "/usr/bin/python3",
+          "--version"
+        ],
+        "exit": 0,
+        "seconds": 0.002299070358276367,
+        "stdout": "Python 3.12.3\n",
+        "stderr": ""
+      },
+      "entry_sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+    },
+    "rustc": {
+      "path": "/home/ymj68520/.cargo/bin/rustc",
+      "on_default_path": false,
+      "version": {
+        "argv": [
+          "/home/ymj68520/.cargo/bin/rustc",
+          "-vV"
+        ],
+        "exit": 0,
+        "seconds": 0.025335073471069336,
+        "stdout": "rustc 1.91.1 (ed61e7d7e 2025-11-07)\nbinary: rustc\ncommit-hash: ed61e7d7e242494fb7057f2657300d9e77bb4fcb\ncommit-date: 2025-11-07\nhost: x86_64-unknown-linux-gnu\nrelease: 1.91.1\nLLVM version: 21.1.2\n",
+        "stderr": ""
+      },
+      "entry_sha256": "4acc9acc76d5079515b46346a485974457b5a79893cfb01112423c89aeb5aa10",
+      "installed_binary": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustc",
+      "installed_binary_sha256": "5eadaaf4fe086d76547b17dc3c1ba880d0082b93f7d8bc65612770da8e79fe8e"
+    },
+    "cargo": {
+      "path": "/home/ymj68520/.cargo/bin/cargo",
+      "on_default_path": false,
+      "version": {
+        "argv": [
+          "/home/ymj68520/.cargo/bin/cargo",
+          "--version"
+        ],
+        "exit": 0,
+        "seconds": 0.01703929901123047,
+        "stdout": "cargo 1.91.1 (ea2d97820 2025-10-10)\n",
+        "stderr": ""
+      },
+      "entry_sha256": "4acc9acc76d5079515b46346a485974457b5a79893cfb01112423c89aeb5aa10",
+      "installed_binary": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/cargo",
+      "installed_binary_sha256": "e60b4010303c19a131c058e3f054b4b3311433c4b2ee94ba8e09e165ff2a3b3b"
+    },
+    "rustdoc": {
+      "installed_binary": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustdoc",
+      "installed_binary_sha256": "f22c571ca4f921e0ac7c2c466de30da574b9018690a3878167cb0ea72249ed7f"
+    }
+  },
+  "python_modules": {
+    "jsonschema": "4.10.3",
+    "cryptography": "41.0.7",
+    "referencing": null
+  },
+  "current_user_uid": 1001,
+  "root_owned": true,
+  "root_mode": "0o700",
+  "physical_identity": "User-declared physical server; OS indicators only, not independent hardware attestation",
+  "compiler_budget_approved": false,
+  "heavy_builds": 0,
+  "primary_workspace": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace",
+  "development_baseline_status": "Partial",
+  "python_venv": "/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1",
+  "cargo_home": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1",
+  "no_heavy_build_launched": true
+}

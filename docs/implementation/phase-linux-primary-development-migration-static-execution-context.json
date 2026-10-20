@@ -1,0 +1,23 @@
+{
+  "executing_git_head": "bf5926a25f5fc1a78fe35a0a775b712a62d27ca9",
+  "uncommitted_overlay": [
+    "tools/linux-primary-static.py"
+  ],
+  "overlay_sha256": "31cddd5b2b504c470bd8d6ce125e9865ece4cbf4f3122a4a08e1da31152819b1",
+  "explanation": "Executed before phase commits; final runtime ledger binds identical executed file bytes to committed source. No claim that tests were run at final HEAD.",
+  "python_venv": "/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1",
+  "groups": [
+    {
+      "group": "r3",
+      "exit_code": 0
+    },
+    {
+      "group": "p0",
+      "exit_code": 0
+    },
+    {
+      "group": "p1a",
+      "exit_code": 0
+    }
+  ]
+}

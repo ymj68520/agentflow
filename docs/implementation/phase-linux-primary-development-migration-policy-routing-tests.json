@@ -1,0 +1,1796 @@
+{
+  "Required": 26,
+  "Executed": 26,
+  "Passed": 26,
+  "Failed": 0,
+  "cases": [
+    {
+      "id": "archived-windows-0of8-not-a-development-prerequisite",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": true,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Ready for separately authorized executor",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Ready for separately authorized executor",
+        "reasons": [],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "legacy-is-not-promoted-or-consumed/0/8",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": true,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Ready for separately authorized executor",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Ready for separately authorized executor",
+        "reasons": [],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "legacy-is-not-promoted-or-consumed/Failed",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": true,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "Failed"
+      },
+      "expected": "Ready for separately authorized executor",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Ready for separately authorized executor",
+        "reasons": [],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "legacy-is-not-promoted-or-consumed/None",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": true,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": null
+      },
+      "expected": "Ready for separately authorized executor",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Ready for separately authorized executor",
+        "reasons": [],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/git_identity_valid/False",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": false,
+        "dependency_closure_complete": true,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "git_identity_valid"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/git_identity_valid/None",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": null,
+        "dependency_closure_complete": true,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "git_identity_valid"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/git_identity_valid/'Approved'",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": "Approved",
+        "dependency_closure_complete": true,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "git_identity_valid"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/git_identity_valid/1",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": 1,
+        "dependency_closure_complete": true,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "git_identity_valid"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/dependency_closure_complete/False",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": false,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "dependency_closure_complete"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/dependency_closure_complete/None",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": null,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "dependency_closure_complete"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/dependency_closure_complete/'Approved'",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": "Approved",
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "dependency_closure_complete"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/dependency_closure_complete/1",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": 1,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "dependency_closure_complete"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/static_252_passed/False",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": true,
+        "static_252_passed": false,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "static_252_passed"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/static_252_passed/None",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": true,
+        "static_252_passed": null,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "static_252_passed"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/static_252_passed/'Approved'",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": true,
+        "static_252_passed": "Approved",
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "static_252_passed"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/static_252_passed/1",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": true,
+        "static_252_passed": 1,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "static_252_passed"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/numeric_resource_approval_verified/False",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": true,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": false,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "numeric_resource_approval_verified"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/numeric_resource_approval_verified/None",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": true,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": null,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "numeric_resource_approval_verified"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/numeric_resource_approval_verified/'Approved'",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": true,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": "Approved",
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "numeric_resource_approval_verified"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/numeric_resource_approval_verified/1",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": true,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": 1,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "numeric_resource_approval_verified"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/dedicated_executor_qualified/False",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": true,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": false,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "dedicated_executor_qualified"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/dedicated_executor_qualified/None",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": true,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": null,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "dedicated_executor_qualified"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/dedicated_executor_qualified/'Approved'",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": true,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": "Approved",
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "dedicated_executor_qualified"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "fail-closed/dedicated_executor_qualified/1",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": true,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": 1,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "dedicated_executor_qualified"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "unknown-policy",
+      "state": {
+        "policy_id": "unknown",
+        "git_identity_valid": true,
+        "dependency_closure_complete": true,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": true,
+        "dedicated_executor_qualified": true,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "POLICY_ID"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    },
+    {
+      "id": "actual-pending-resource-and-executor",
+      "state": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "git_identity_valid": true,
+        "dependency_closure_complete": true,
+        "static_252_passed": true,
+        "numeric_resource_approval_verified": false,
+        "dedicated_executor_qualified": false,
+        "legacy_windows_history": "0/8"
+      },
+      "expected": "Blocked",
+      "actual": {
+        "policy_id": "agentflow.engineering.linux-primary-development@1",
+        "planning_status": "Blocked",
+        "reasons": [
+          "numeric_resource_approval_verified",
+          "dedicated_executor_qualified"
+        ],
+        "commands": [
+          [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          [
+            "cargo",
+            "clippy",
+            "--locked",
+            "--all-targets",
+            "--all-features",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          [
+            "cargo",
+            "test",
+            "--locked",
+            "--all",
+            "-j",
+            "1"
+          ],
+          [
+            "cargo",
+            "run",
+            "--locked",
+            "-p",
+            "af-spec",
+            "--bin",
+            "spec-check",
+            "--",
+            "check"
+          ]
+        ],
+        "env": {
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1",
+          "CARGO_NET_OFFLINE": "true"
+        },
+        "launched": false,
+        "execution_authorized": false,
+        "root_export_authorized": false,
+        "windows_release_status": "Not Executed",
+        "caller_state_is_runtime_authority": false
+      },
+      "passed": true
+    }
+  ],
+  "scope": "Engineering routing model only; synthetic state never authorizes runtime execution"
+}

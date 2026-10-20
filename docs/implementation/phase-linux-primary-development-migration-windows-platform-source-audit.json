@@ -1,0 +1,140 @@
+{
+  "scope": "Rust source and Cargo manifests under crates; lexical audit not runtime proof",
+  "hits": [
+    {
+      "path": "crates/af-computation/tests/document_occurrence_staging.rs",
+      "line": 524,
+      "text": "        let output = std::process::Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/native_capture_conformance.rs",
+      "line": 167,
+      "text": "        let inputs = Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/native_capture_conformance.rs",
+      "line": 232,
+      "text": "        let mut process = Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/native_capture_conformance.rs",
+      "line": 336,
+      "text": "        let request = Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/native_capture_conformance.rs",
+      "line": 386,
+      "text": "        let mut p = Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/native_guard_staging.rs",
+      "line": 170,
+      "text": "    let status = std::process::Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/native_seed_source_conformance.rs",
+      "line": 12,
+      "text": "        let inputs = Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/native_seed_source_conformance.rs",
+      "line": 65,
+      "text": "        let mut p = Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/native_seed_source_conformance.rs",
+      "line": 102,
+      "text": "        let input = Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/native_seed_source_conformance.rs",
+      "line": 140,
+      "text": "        let mut p = Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/production_input_graph.rs",
+      "line": 716,
+      "text": "    let generated = std::process::Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/raw_document_identity_c2.rs",
+      "line": 17,
+      "text": "        let vector = Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/raw_document_identity_c2.rs",
+      "line": 140,
+      "text": "            let mut process = Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/raw_model6_binding_boundary.rs",
+      "line": 30,
+      "text": "        let generated = std::process::Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/raw_port_capture_conformance.rs",
+      "line": 123,
+      "text": "        let generated = std::process::Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/raw_port_capture_conformance.rs",
+      "line": 219,
+      "text": "        let generated = std::process::Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/raw_port_capture_conformance.rs",
+      "line": 320,
+      "text": "        let mut child = std::process::Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/raw_port_capture_conformance.rs",
+      "line": 344,
+      "text": "        let output = std::process::Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/raw_port_capture_conformance.rs",
+      "line": 582,
+      "text": "        let mut child = std::process::Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-computation/tests/raw_port_capture_conformance.rs",
+      "line": 609,
+      "text": "            let mut command = std::process::Command::new(\"python\");"
+    },
+    {
+      "path": "crates/af-computation/tests/raw_validation_staging.rs",
+      "line": 320,
+      "text": "        let output = Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-portable/tests/root_export_revalidation.rs",
+      "line": 858,
+      "text": "    let directory = std::env::temp_dir().join(format!("
+    },
+    {
+      "path": "crates/af-portable/tests/root_export_revalidation.rs",
+      "line": 880,
+      "text": "        let mut producer_command = Command::new(&executable);"
+    },
+    {
+      "path": "crates/af-portable/tests/root_export_revalidation.rs",
+      "line": 901,
+      "text": "        let consumer = Command::new(&executable)"
+    },
+    {
+      "path": "crates/af-portable/tests/support/d9_full_conformance.rs",
+      "line": 489,
+      "text": "    let result = std::process::Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-portable/tests/support/d9_recovery_conformance.rs",
+      "line": 155,
+      "text": "    let result = std::process::Command::new(\"python\")"
+    },
+    {
+      "path": "crates/af-spec/src/tables.rs",
+      "line": 140,
+      "text": "        let dir = std::env::temp_dir().join(\"af-spec-area-test\");"
+    }
+  ]
+}

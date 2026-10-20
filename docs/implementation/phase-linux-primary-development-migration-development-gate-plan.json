@@ -1,0 +1,56 @@
+{
+  "policy_id": "agentflow.engineering.linux-primary-development@1",
+  "planning_status": "Blocked",
+  "reasons": [
+    "numeric_resource_approval_verified",
+    "dedicated_executor_qualified"
+  ],
+  "commands": [
+    [
+      "cargo",
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    [
+      "cargo",
+      "clippy",
+      "--locked",
+      "--all-targets",
+      "--all-features",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    [
+      "cargo",
+      "test",
+      "--locked",
+      "--all",
+      "-j",
+      "1"
+    ],
+    [
+      "cargo",
+      "run",
+      "--locked",
+      "-p",
+      "af-spec",
+      "--bin",
+      "spec-check",
+      "--",
+      "check"
+    ]
+  ],
+  "env": {
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_NET_OFFLINE": "true"
+  },
+  "launched": false,
+  "execution_authorized": false,
+  "root_export_authorized": false,
+  "windows_release_status": "Not Executed",
+  "caller_state_is_runtime_authority": false
+}

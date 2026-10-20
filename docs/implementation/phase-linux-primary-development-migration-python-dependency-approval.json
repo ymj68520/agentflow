@@ -1,0 +1,12 @@
+{
+  "status": "Approved",
+  "approved_by": "Human user reply in this task",
+  "scope": "Exact nine-package project-local venv only",
+  "proposal_sha256": "f4262dcea5a278b9b144725e2ffc58822989731d709644c6888c4dd8c63ebf43",
+  "not_authorized": [
+    "heavy compilation",
+    "resource increases",
+    "global installs",
+    "toolchain upgrades"
+  ]
+}

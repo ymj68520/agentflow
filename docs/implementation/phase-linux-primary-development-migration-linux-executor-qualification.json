@@ -1,0 +1,81 @@
+{
+  "status": "Not Authorized",
+  "qualification": "Not Executed",
+  "runtime_executor_implemented": false,
+  "planning_only_tool": "tools/linux-primary-plan.py",
+  "observation": [
+    {
+      "path": "/sys/fs/cgroup/user.slice/user-1001.slice/session-7334.scope",
+      "fields": {
+        "memory.max": "max",
+        "memory.high": "max",
+        "memory.current": "15929344",
+        "memory.swap.max": "max",
+        "cpu.max": "max 100000",
+        "pids.max": "max",
+        "cgroup.controllers": "cpu memory pids",
+        "cgroup.subtree_control": ""
+      },
+      "writable": false
+    },
+    {
+      "path": "/sys/fs/cgroup/user.slice/user-1001.slice",
+      "fields": {
+        "memory.max": "max",
+        "memory.high": "max",
+        "memory.current": "15684562944",
+        "memory.swap.max": "max",
+        "cpu.max": "max 100000",
+        "pids.max": "76995",
+        "cgroup.controllers": "cpu memory pids",
+        "cgroup.subtree_control": "cpu memory pids"
+      },
+      "writable": false
+    },
+    {
+      "path": "/sys/fs/cgroup/user.slice",
+      "fields": {
+        "memory.max": "max",
+        "memory.high": "max",
+        "memory.current": "15827648512",
+        "memory.swap.max": "max",
+        "cpu.max": "max 100000",
+        "pids.max": "max",
+        "cgroup.controllers": "cpuset cpu io memory hugetlb pids rdma misc dmem",
+        "cgroup.subtree_control": "cpu memory pids"
+      },
+      "writable": false
+    },
+    {
+      "path": "/sys/fs/cgroup",
+      "fields": {
+        "cgroup.controllers": "cpuset cpu io memory hugetlb pids rdma misc dmem",
+        "cgroup.subtree_control": "cpuset cpu io memory hugetlb pids rdma misc dmem"
+      },
+      "writable": false
+    }
+  ],
+  "controllers_written": false,
+  "dedicated_child_created": false,
+  "shared_service_limits_modified": false,
+  "required_real_tests": {
+    "dedicated cgroup ownership": "Not Executed",
+    "cpu.max enforcement": "Not Executed",
+    "memory.max + per-process cap": "Not Executed",
+    "complete descendant containment": "Not Executed",
+    "live MemAvailable reserve abort": "Not Executed",
+    "swap bound": "Not Executed",
+    "disk reserve + artifact bound": "Not Executed",
+    "wall timeout": "Not Executed",
+    "owned-only kill": "Not Executed",
+    "actual OOM receipt": "Not Executed",
+    "actual over-limit receipt": "Not Executed",
+    "actual cancel receipt": "Not Executed",
+    "empty child cleanup": "Not Executed"
+  },
+  "gaps": [
+    "No approved numeric heavy policy",
+    "No qualified runtime launcher; routing model is not a resource protector"
+  ],
+  "heavy_tasks_launched": 0
+}

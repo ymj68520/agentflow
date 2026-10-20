@@ -1,0 +1,139 @@
+{
+  "status": "Archived",
+  "windows_historical_result": "0/8",
+  "linux_credit_to_windows": 0,
+  "formal_superseded": false,
+  "old_r5g2_registration": "Incomplete",
+  "transition_policy": "agentflow.engineering.linux-primary-development@1",
+  "new_linux_development_prerequisite": false,
+  "original_contracts": {
+    "phase-04c1b4c4r3c2r5g2r4p0-resource-policy-analysis.json": "8983a471edf8f66a8914f9af59c7d8c8a972a937272e64cd32b3da9d570669eb",
+    "phase-04c1b4c4r3c2r5g2r4p0-local-audit-dependencies.json": "def48c6eee8dac2e05ef8d776463d79c0d43607c2ea4885c0904a989800c7f4f",
+    "phase-04c1b4c4r3c2r5g2r4p0-build-execution-mode-contract.md": "954eaf87646e124a8634b09c4d6d87b09854774092c6970bd3c9aea8851d6c93",
+    "phase-04c1b4c4r3c2r5g2r4p0-validation-contract.json": "ad4223323fb770449afe73dcd5fcaa08c42c9e06efa55906a318c89a06fb4b81",
+    "phase-04c1b4c4r3c2r5g2r4p0-environment-approval-request.json": "6a5647a2495c1254f3d28f33d4134b501cd7a1e3dce99a615c830b6e2d352347",
+    "phase-04c1b4c4r3c2r5g2r4p0-final-report.md": "3e11325783bcadb2435eb28c98b07fb099c061f114dcc3cce369e66e4fa39c6e",
+    "phase-04c1b4c4r3c2r5g2r4p0-static-test-results.json": "377acbd7e5c1fe82b52649003d351ccf47eb9e49120651f95eb721bcb81ad322",
+    "phase-04c1b4c4r3c2r5g2r4p0-offline-manifest-validator.py": "abb4ba54413f0ea273ec262154842f334221c64916b3e6533aae280c63753bad",
+    "phase-04c1b4c4r3c2r5g2r4p0-validator-contract.md": "38991ec1239c5118b62ce127085f77e4d02bcd03a585f0c472080e44a82d6589",
+    "phase-04c1b4c4r3c2r5g2r4p0-frozen-g3-gate-contract.json": "7bc2e2b8d1b15bf6fc0d0b74e25317ae1e90b20ebacf35b94ee76ad2fd7c9f04",
+    "phase-04c1b4c4r3c2r5g2r4p0-qualification-inputs.json": "23532044689fe359178b5451a4aec39d2ce6d8faa6fb3d391fe0f1233a312f0e",
+    "phase-04c1b4c4r3c2r5g2r4p0-p2-mandatory-execution-runbook.md": "1633734ca284ba67b240140609ad4520dea12357b4579ee88ee39ca6b08657d8",
+    "phase-04c1b4c4r3c2r5g2r4p0-preparation-manifest.json": "d34dee997b6173bb454875c55da02373aefc240ca3b40db53830c38a307d6ef0",
+    "phase-04c1b4c4r3c2r5g2r4p0-synthetic-manifest.json": "86cd4d3c38945608ad5557f6eaf7b3f666a78617cab7d5cd32293397897e13cc",
+    "phase-04c1b4c4r3c2r5g2r4p0-historical-gate-contracts.json": "6a1e01666fff538be337b4cdeed1da08f9914f2fc12c270be179867f03e99ca0",
+    "phase-04c1b4c4r3c2r5g2r4p0-evidence-manifest-schema.json": "cb301414ecf63f814a404ff08ae54953771a385a8d6d75f3d7aa88d6fbb2603a",
+    "phase-04c1b4c4r3c2r5g2r4p0-environment-candidate-schema.json": "fd907c7c7d83364ac94fe7e24b316d44cf52adda87655bcf55423e3891a3b1dc",
+    "phase-04c1b4c4r3c2r5g2r4p0-independent-static-oracle.py": "08380effc1779b9c0da5d40f26da19e6fcbcb229c152f631c4ad0e9ac16c7043",
+    "phase-04c1b4c4r3c2r5g2r4p0-environment-equivalence-audit.json": "25ccd315666befcc4374eb8539c1e326368c05e2918d1ef83a7729f0a1bc3600",
+    "phase-04c1b4c4r3c2r5g2r4p0-lane-b-credit-audit.json": "94375378a18b748718583f68b31482f61271cb1c037ab9c9ce7eb35d760be0c2",
+    "phase-04c1b4c4r3c2r5g2r4p0-static-test-vectors.json": "51aae74e6c3d2cb6b2142d3c89d99ebb290ab0d3694f9ba7fc1e326a70b87690",
+    "phase-04c1b4c4r3c2r5g2r4p0-p1-qualification-runbook.md": "919748273083ac8df1375604a26dfd610f22cd0f1060ace3667a99e4b69305cd",
+    "phase-04c1b4c4r3c2r5g2r4p0-environment-candidate.json": "601febe3a10dd4b157c6b8100e3b507908dce0a3edb09565d7d43b61cecdffa3"
+  },
+  "preserved_runtime_receipts": {
+    "failure-static.json": "42cc9fb774ba833ee39eff0a632584c13f629100234c23bbc3683f9e6937b6dd",
+    "linux-r3-static-diagnostics.json": "394ad82fc47e66d3c686f78f70442099ba184bd7475a53f5fd4bd421cf1615e1",
+    "source-map-current.json": "56edbef03f5b77621e3e955ca4da2f44b65f0d666859deafa76853e89b3ad30f",
+    "source-transfer-and-freeze.json": "039a93a15f97e6a5e9746409be5b214dd05615e3d11485592d5807ff2707e68f"
+  },
+  "snapshot_review": [
+    {
+      "snapshot": "frozen-g3",
+      "head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+      "checked_paths": 2326,
+      "changed_paths": [],
+      "git_status": "",
+      "source_map_sha256": "6e925b09a25879354e9c55b1f6f17a2099a17a180e813c0d0c3006ce4e86ab15",
+      "passed": true
+    },
+    {
+      "snapshot": "history-1",
+      "head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+      "checked_paths": 1732,
+      "changed_paths": [],
+      "git_status": "",
+      "source_map_sha256": "e671a827ab9c557d6cac7fc8c9b0cd5dac7c3f3263182c479015449578705595",
+      "passed": true
+    },
+    {
+      "snapshot": "history-2",
+      "head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+      "checked_paths": 1811,
+      "changed_paths": [],
+      "git_status": "",
+      "source_map_sha256": "118281828ac589cc86dbff65bd0bd3e5e4376eb746dccf4dadd904902f395449",
+      "passed": true
+    },
+    {
+      "snapshot": "history-3",
+      "head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+      "checked_paths": 1902,
+      "changed_paths": [],
+      "git_status": "",
+      "source_map_sha256": "63ff3bb1644434ccd8c4ec83d342442d282891c7bc8938ec11a58082522dcee7",
+      "passed": true
+    },
+    {
+      "snapshot": "history-4",
+      "head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+      "checked_paths": 2021,
+      "changed_paths": [],
+      "git_status": "",
+      "source_map_sha256": "847e8de203e3b04bb9211b0eeef2cc2fe06db79962fc4767262b24139a65aacc",
+      "passed": true
+    },
+    {
+      "snapshot": "history-5",
+      "head": "e623aab705c5f8269807201e112a32e67e6869bf",
+      "checked_paths": 2076,
+      "changed_paths": [],
+      "git_status": "",
+      "source_map_sha256": "f20bdbf74318be85c662839057dbce9a72ac78aa62aaef6ea5c6f357aaf07664",
+      "passed": true
+    },
+    {
+      "snapshot": "history-6",
+      "head": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+      "checked_paths": 2170,
+      "changed_paths": [],
+      "git_status": "",
+      "source_map_sha256": "31c1a684df2d5af1d14de3b0a6638eaa1f8ea1acb6e4a95049401183e3728959",
+      "passed": true
+    },
+    {
+      "snapshot": "history-7",
+      "head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+      "checked_paths": 2235,
+      "changed_paths": [],
+      "git_status": "",
+      "source_map_sha256": "184b68fa131ea99e74207b284cbecfc07d0496d40dfa8bb0848e68bd1002985a",
+      "passed": true
+    },
+    {
+      "snapshot": "history-8",
+      "head": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+      "checked_paths": 2290,
+      "changed_paths": [],
+      "git_status": "",
+      "source_map_sha256": "3f16b968a503bb8f3f51f7e34775f8c4e277536235b11316026aba0e197b5357",
+      "passed": true
+    },
+    {
+      "snapshot": "legacy-current-dc1d-l2pivot01",
+      "head": "dc1d71f30b3a7f06065f4000712e6512f288db16",
+      "checked_paths": 2469,
+      "changed_paths": [],
+      "git_status": "",
+      "source_map_sha256": "56edbef03f5b77621e3e955ca4da2f44b65f0d666859deafa76853e89b3ad30f",
+      "passed": true
+    }
+  ],
+  "windows_lane_b": {
+    "generators": 41,
+    "runs": 82,
+    "paths": 2403,
+    "drift": 0,
+    "scope": "Original Windows-only evidence; no expanded-tree/Linux promotion"
+  }
+}
