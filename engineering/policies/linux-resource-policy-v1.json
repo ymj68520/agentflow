@@ -1,0 +1,85 @@
+{
+  "policy_id": "agentflow.engineering.linux-resources@1",
+  "version": 1,
+  "status": "Proposed; qualification-only scope Approved",
+  "host": "fwq",
+  "uid": 1001,
+  "workspace": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace",
+  "source_start": "90756b046a03432f6415148fcc9116a274e84830",
+  "scopes": {
+    "qualification": {
+      "Proposed": {
+        "cpu_percent_of_online_host": 5,
+        "process_address_space_bytes": 268435456,
+        "task_memory_bytes": 100663296,
+        "swap_bytes": 0,
+        "pids": 32,
+        "host_reserve_bytes": 8589934592,
+        "disk_growth_bytes": 67108864,
+        "disk_free_reserve_bytes": 21474836480,
+        "wall_seconds": 30,
+        "suite_wall_seconds": 900,
+        "concurrent_tasks": 1,
+        "monitor_period_seconds": 0.1
+      },
+      "Approved": true,
+      "Enforced": null,
+      "Observed": null
+    },
+    "pilot": {
+      "Proposed": {
+        "cpu_percent_of_online_host": 5,
+        "process_address_space_bytes": 2147483648,
+        "task_memory_bytes": 3221225472,
+        "swap_bytes": 0,
+        "pids": 128,
+        "host_reserve_bytes": 8589934592,
+        "disk_growth_bytes": 12884901888,
+        "disk_free_reserve_bytes": 21474836480,
+        "wall_seconds": 900,
+        "concurrent_tasks": 1,
+        "cargo_jobs": 1,
+        "rust_test_threads": 1,
+        "monitor_period_seconds": 0.1
+      },
+      "Approved": false,
+      "Enforced": null,
+      "Observed": null
+    },
+    "gates": {
+      "Proposed": {
+        "build_process_address_space_bytes": 2147483648,
+        "build_task_memory_bytes": 3221225472,
+        "test_process_address_space_bytes": 805306368,
+        "test_task_memory_bytes": 1610612736,
+        "cpu_percent_of_online_host": 5,
+        "swap_bytes": 0,
+        "pids": 128,
+        "host_reserve_bytes": 8589934592,
+        "disk_growth_bytes": 12884901888,
+        "disk_free_reserve_bytes": 21474836480,
+        "wall_seconds_per_gate": 5400,
+        "concurrent_tasks": 1,
+        "cargo_jobs": 1,
+        "rust_test_threads": 1,
+        "monitor_period_seconds": 0.1
+      },
+      "Approved": false,
+      "Enforced": null,
+      "Observed": null
+    }
+  },
+  "process_metric": {
+    "name": "Hard inherited RLIMIT_AS",
+    "unit": "virtual address space bytes; NOT RSS or per-process cgroup accounting",
+    "human_binding_accepted": true,
+    "compile_authorized": false
+  },
+  "backend": "systemd user transient service within a uniquely owned project slice; direct SSH-to-delegation PID migration is not assumed",
+  "guards": {
+    "disk": "Sampled aggregate allocated-byte and host-free-space watchdog plus per-file RLIMIT_FSIZE; not a kernel filesystem quota. Overshoot must be reported, never silently credited.",
+    "host_memory": "Admission MemAvailable >= reserve+task_memory; runtime abort below reserve",
+    "controller_loss": "Independent guardian with inherited lock plus systemd unit RuntimeMaxSec and KillMode=control-group",
+    "trust": "Fixed trusted engineering commands only; not a hostile same-UID sandbox"
+  }
+}
