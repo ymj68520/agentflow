@@ -1,0 +1,124 @@
+{
+  "policy_id": "agentflow.engineering.full-linux-gates@1",
+  "phase": "L2-PIVOT-05",
+  "commands": {
+    "fmt": [
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "clippy": [
+      "clippy",
+      "--locked",
+      "--offline",
+      "-j",
+      "1",
+      "--all-targets",
+      "--all-features",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "test": [
+      "test",
+      "--locked",
+      "--offline",
+      "--all",
+      "-j",
+      "1"
+    ],
+    "spec-check": [
+      "run",
+      "--locked",
+      "--offline",
+      "-j",
+      "1",
+      "-p",
+      "af-spec",
+      "--bin",
+      "spec-check",
+      "--",
+      "check"
+    ]
+  },
+  "per_gate_limits": {
+    "fmt": {
+      "cpu_percent_of_online_host": 5,
+      "process_address_space_bytes": 2147483648,
+      "task_memory_bytes": 3221225472,
+      "swap_bytes": 0,
+      "pids": 128,
+      "host_reserve_bytes": 8589934592,
+      "wall_seconds": 5400,
+      "disk_growth_bytes": 12884901888,
+      "disk_free_reserve_bytes": 21474836480,
+      "cargo_jobs": 1,
+      "rust_test_threads": 1,
+      "concurrent_tasks": 1,
+      "monitor_period_seconds": 0.1
+    },
+    "clippy": {
+      "cpu_percent_of_online_host": 5,
+      "process_address_space_bytes": 2147483648,
+      "task_memory_bytes": 3221225472,
+      "swap_bytes": 0,
+      "pids": 128,
+      "host_reserve_bytes": 8589934592,
+      "wall_seconds": 5400,
+      "disk_growth_bytes": 12884901888,
+      "disk_free_reserve_bytes": 21474836480,
+      "cargo_jobs": 1,
+      "rust_test_threads": 1,
+      "concurrent_tasks": 1,
+      "monitor_period_seconds": 0.1
+    },
+    "test": {
+      "cpu_percent_of_online_host": 5,
+      "process_address_space_bytes": 2147483648,
+      "task_memory_bytes": 3221225472,
+      "swap_bytes": 0,
+      "pids": 128,
+      "host_reserve_bytes": 8589934592,
+      "wall_seconds": 5400,
+      "disk_growth_bytes": 12884901888,
+      "disk_free_reserve_bytes": 21474836480,
+      "cargo_jobs": 1,
+      "rust_test_threads": 1,
+      "concurrent_tasks": 1,
+      "monitor_period_seconds": 0.1
+    },
+    "spec-check": {
+      "cpu_percent_of_online_host": 5,
+      "process_address_space_bytes": 2147483648,
+      "task_memory_bytes": 3221225472,
+      "swap_bytes": 0,
+      "pids": 128,
+      "host_reserve_bytes": 8589934592,
+      "wall_seconds": 5400,
+      "disk_growth_bytes": 12884901888,
+      "disk_free_reserve_bytes": 21474836480,
+      "cargo_jobs": 1,
+      "rust_test_threads": 1,
+      "concurrent_tasks": 1,
+      "monitor_period_seconds": 0.1
+    }
+  },
+  "rounds": {
+    "fmt": 1,
+    "clippy": 1,
+    "test": 2,
+    "spec-check": 2
+  },
+  "automatic_retries": 0,
+  "approval_semantics": "External per-gate independent resource/B2/execution approval required. Round2 also needs successful Round1 and explicit mixed build/runtime + coverage contract approval.",
+  "disk_risks": [
+    "Sampling is not a hard quota",
+    "No strict maximum overshoot bytes guarantee",
+    "Ordinary file growth omits directory/filesystem metadata",
+    "No demonstrated isolation of non-project writes",
+    "Pilot peaks are NOT full-workspace capacity upper bounds"
+  ],
+  "control_plane": "Controller/guardian outside workload tree, hard128MiB AS each; qualified ownership/cleanup core unchanged",
+  "runtime_test_policy": "Proposed unified build/runtime AS2GiB/tree3GiB for Round2 only IF separately approved; no768MiB cap applied to rustc by inference"
+}
