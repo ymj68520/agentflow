@@ -1,0 +1,60 @@
+{
+  "gate": "clippy",
+  "policy_sha256": "97c941f691fed2285da3db6a0866b7d79b212a72db31ec3fb94fba842b8e4200",
+  "authorizer": "Direct human reply in current chat",
+  "approval_question_id": "call_756396936da54fa79fb004dc085306a8",
+  "phase": "L2-PIVOT-06",
+  "A": {
+    "Approved": true,
+    "human_reply": "\u6279\u51c6\u6b64\u5b8c\u6574\u6570\u503c\u653f\u7b56",
+    "limits": {
+      "cpu_percent_of_online_host": 5,
+      "process_address_space_bytes": 8589934592,
+      "task_memory_bytes": 3221225472,
+      "swap_bytes": 0,
+      "pids": 128,
+      "host_reserve_bytes": 8589934592,
+      "wall_seconds": 5400,
+      "disk_growth_bytes": 12884901888,
+      "disk_free_reserve_bytes": 21474836480,
+      "cargo_jobs": 1,
+      "rust_test_threads": 1,
+      "concurrent_tasks": 1,
+      "monitor_period_seconds": 0.1
+    }
+  },
+  "B": {
+    "Approved": true,
+    "choice": "B2",
+    "human_reply": "\u63a5\u53d7\u672c\u6b21 Clippy \u4e13\u5c5e B2",
+    "risks": [
+      "Sampling is not a hard quota",
+      "No strict maximum overshoot bytes guarantee",
+      "Ordinary file growth omits directory/filesystem metadata",
+      "No demonstrated isolation of non-project writes",
+      "Pilot peaks are NOT full-workspace capacity upper bounds"
+    ],
+    "scope": "This one Clippy only; no Round2, future commands or untrusted execution"
+  },
+  "C": {
+    "Approved": true,
+    "argv": [
+      "cargo",
+      "clippy",
+      "--locked",
+      "--offline",
+      "-j",
+      "1",
+      "--all-targets",
+      "--all-features",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "maximum_launches": 1,
+    "retries": 0,
+    "human_reply": "\u6279\u51c6\u4e0a\u8ff0\u6070\u597d\u4e00\u6b21 Clippy"
+  },
+  "round2_approved": false,
+  "prior_grants_reused": false
+}

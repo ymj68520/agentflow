@@ -1,0 +1,518 @@
+{
+  "observer": {
+    "status": "Completed",
+    "error": null,
+    "scans": 1348,
+    "rows": 37,
+    "racing_process_reads": 2,
+    "requested_period_seconds": 0.02,
+    "max_scan_gap_seconds": 0.02277355594560504,
+    "true_final_linker_lifetime_peak": "Not Observed",
+    "limitation": "Sampled /proc observations; may miss short processes or their final maxima. No cgroup-to-VmPeak inference.",
+    "stream_sha256": "bfdeb133ab902c34c8a57504371acf3eea7afcb6f3d56120e3484495aba19ebe"
+  },
+  "processes": [
+    {
+      "pid": 1934251,
+      "start_ticks": "326923105",
+      "comm": "cc",
+      "executable": "/usr/bin/x86_64-linux-gnu-gcc-13",
+      "observations": 5,
+      "serde_derive": true,
+      "sampled_max_VmSize_bytes": 3919872,
+      "sampled_max_VmPeak_bytes": 3919872,
+      "sampled_max_VmRSS_bytes": 2732032,
+      "effective_rlimit_as": "Max address space         8589934592           8589934592           bytes     ",
+      "effective_rlimit_data": "Max data size             unlimited            unlimited            bytes     ",
+      "first_observation_context": {
+        "host": {
+          "MemAvailable": "18894184 kB",
+          "CommitLimit": "24790012 kB",
+          "Committed_AS": "92834808 kB"
+        },
+        "cgroup": {
+          "memory.current": "175452160",
+          "memory.peak": "180604928",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "true_final_lifetime_peak": "Not Observed"
+    },
+    {
+      "pid": 1934252,
+      "start_ticks": "326923106",
+      "comm": "collect2",
+      "executable": "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2",
+      "observations": 5,
+      "serde_derive": true,
+      "sampled_max_VmSize_bytes": 3084288,
+      "sampled_max_VmPeak_bytes": 3084288,
+      "sampled_max_VmRSS_bytes": 2060288,
+      "effective_rlimit_as": "Max address space         8589934592           8589934592           bytes     ",
+      "effective_rlimit_data": "Max data size             unlimited            unlimited            bytes     ",
+      "first_observation_context": {
+        "host": {
+          "MemAvailable": "18894184 kB",
+          "CommitLimit": "24790012 kB",
+          "Committed_AS": "92834808 kB"
+        },
+        "cgroup": {
+          "memory.current": "175452160",
+          "memory.peak": "180604928",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "true_final_lifetime_peak": "Not Observed"
+    },
+    {
+      "pid": 1934253,
+      "start_ticks": "326923106",
+      "comm": "rust-lld",
+      "executable": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld",
+      "observations": 5,
+      "serde_derive": true,
+      "sampled_max_VmSize_bytes": 2481577984,
+      "sampled_max_VmPeak_bytes": 2534862848,
+      "sampled_max_VmRSS_bytes": 77697024,
+      "effective_rlimit_as": "Max address space         8589934592           8589934592           bytes     ",
+      "effective_rlimit_data": "Max data size             unlimited            unlimited            bytes     ",
+      "first_observation_context": {
+        "host": {
+          "MemAvailable": "18894184 kB",
+          "CommitLimit": "24790012 kB",
+          "Committed_AS": "92834808 kB"
+        },
+        "cgroup": {
+          "memory.current": "175452160",
+          "memory.peak": "180604928",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "true_final_lifetime_peak": "Not Observed"
+    },
+    {
+      "pid": 1934349,
+      "start_ticks": "326923422",
+      "comm": "cc",
+      "executable": "/usr/bin/x86_64-linux-gnu-gcc-13",
+      "observations": 2,
+      "serde_derive": false,
+      "sampled_max_VmSize_bytes": 3915776,
+      "sampled_max_VmPeak_bytes": 3915776,
+      "sampled_max_VmRSS_bytes": 2727936,
+      "effective_rlimit_as": "Max address space         8589934592           8589934592           bytes     ",
+      "effective_rlimit_data": "Max data size             unlimited            unlimited            bytes     ",
+      "first_observation_context": {
+        "host": {
+          "MemAvailable": "18905484 kB",
+          "CommitLimit": "24790012 kB",
+          "Committed_AS": "92841176 kB"
+        },
+        "cgroup": {
+          "memory.current": "132755456",
+          "memory.peak": "213192704",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "true_final_lifetime_peak": "Not Observed"
+    },
+    {
+      "pid": 1934350,
+      "start_ticks": "326923422",
+      "comm": "collect2",
+      "executable": "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2",
+      "observations": 2,
+      "serde_derive": false,
+      "sampled_max_VmSize_bytes": 3080192,
+      "sampled_max_VmPeak_bytes": 3080192,
+      "sampled_max_VmRSS_bytes": 2056192,
+      "effective_rlimit_as": "Max address space         8589934592           8589934592           bytes     ",
+      "effective_rlimit_data": "Max data size             unlimited            unlimited            bytes     ",
+      "first_observation_context": {
+        "host": {
+          "MemAvailable": "18905484 kB",
+          "CommitLimit": "24790012 kB",
+          "Committed_AS": "92841176 kB"
+        },
+        "cgroup": {
+          "memory.current": "132755456",
+          "memory.peak": "213192704",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "true_final_lifetime_peak": "Not Observed"
+    },
+    {
+      "pid": 1934351,
+      "start_ticks": "326923422",
+      "comm": "rust-lld",
+      "executable": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld",
+      "observations": 1,
+      "serde_derive": false,
+      "sampled_max_VmSize_bytes": 298467328,
+      "sampled_max_VmPeak_bytes": 298467328,
+      "sampled_max_VmRSS_bytes": 32415744,
+      "effective_rlimit_as": "Max address space         8589934592           8589934592           bytes     ",
+      "effective_rlimit_data": "Max data size             unlimited            unlimited            bytes     ",
+      "first_observation_context": {
+        "host": {
+          "MemAvailable": "18905484 kB",
+          "CommitLimit": "24790012 kB",
+          "Committed_AS": "92841176 kB"
+        },
+        "cgroup": {
+          "memory.current": "132755456",
+          "memory.peak": "213192704",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "true_final_lifetime_peak": "Not Observed"
+    },
+    {
+      "pid": 1934380,
+      "start_ticks": "326923434",
+      "comm": "cc",
+      "executable": "/usr/bin/x86_64-linux-gnu-gcc-13",
+      "observations": 1,
+      "serde_derive": false,
+      "sampled_max_VmSize_bytes": 3915776,
+      "sampled_max_VmPeak_bytes": 3915776,
+      "sampled_max_VmRSS_bytes": 2727936,
+      "effective_rlimit_as": "Max address space         8589934592           8589934592           bytes     ",
+      "effective_rlimit_data": "Max data size             unlimited            unlimited            bytes     ",
+      "first_observation_context": {
+        "host": {
+          "MemAvailable": "18902820 kB",
+          "CommitLimit": "24790012 kB",
+          "Committed_AS": "93887624 kB"
+        },
+        "cgroup": {
+          "memory.current": "134430720",
+          "memory.peak": "213192704",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "true_final_lifetime_peak": "Not Observed"
+    },
+    {
+      "pid": 1934381,
+      "start_ticks": "326923434",
+      "comm": "collect2",
+      "executable": "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2",
+      "observations": 1,
+      "serde_derive": false,
+      "sampled_max_VmSize_bytes": 3080192,
+      "sampled_max_VmPeak_bytes": 3080192,
+      "sampled_max_VmRSS_bytes": 2056192,
+      "effective_rlimit_as": "Max address space         8589934592           8589934592           bytes     ",
+      "effective_rlimit_data": "Max data size             unlimited            unlimited            bytes     ",
+      "first_observation_context": {
+        "host": {
+          "MemAvailable": "18902820 kB",
+          "CommitLimit": "24790012 kB",
+          "Committed_AS": "93887624 kB"
+        },
+        "cgroup": {
+          "memory.current": "134430720",
+          "memory.peak": "213192704",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "true_final_lifetime_peak": "Not Observed"
+    },
+    {
+      "pid": 1934382,
+      "start_ticks": "326923434",
+      "comm": "rust-lld",
+      "executable": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld",
+      "observations": 1,
+      "serde_derive": false,
+      "sampled_max_VmSize_bytes": 1848057856,
+      "sampled_max_VmPeak_bytes": 1848057856,
+      "sampled_max_VmRSS_bytes": 38244352,
+      "effective_rlimit_as": "Max address space         8589934592           8589934592           bytes     ",
+      "effective_rlimit_data": "Max data size             unlimited            unlimited            bytes     ",
+      "first_observation_context": {
+        "host": {
+          "MemAvailable": "18902820 kB",
+          "CommitLimit": "24790012 kB",
+          "Committed_AS": "93887624 kB"
+        },
+        "cgroup": {
+          "memory.current": "134430720",
+          "memory.peak": "213192704",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "true_final_lifetime_peak": "Not Observed"
+    },
+    {
+      "pid": 1934871,
+      "start_ticks": "326924943",
+      "comm": "cc",
+      "executable": "/usr/bin/x86_64-linux-gnu-gcc-13",
+      "observations": 3,
+      "serde_derive": false,
+      "sampled_max_VmSize_bytes": 3923968,
+      "sampled_max_VmPeak_bytes": 3923968,
+      "sampled_max_VmRSS_bytes": 2744320,
+      "effective_rlimit_as": "Max address space         8589934592           8589934592           bytes     ",
+      "effective_rlimit_data": "Max data size             unlimited            unlimited            bytes     ",
+      "first_observation_context": {
+        "host": {
+          "MemAvailable": "18920396 kB",
+          "CommitLimit": "24790012 kB",
+          "Committed_AS": "92838704 kB"
+        },
+        "cgroup": {
+          "memory.current": "240656384",
+          "memory.peak": "316702720",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "true_final_lifetime_peak": "Not Observed"
+    },
+    {
+      "pid": 1934872,
+      "start_ticks": "326924943",
+      "comm": "collect2",
+      "executable": "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2",
+      "observations": 2,
+      "serde_derive": false,
+      "sampled_max_VmSize_bytes": 3088384,
+      "sampled_max_VmPeak_bytes": 3088384,
+      "sampled_max_VmRSS_bytes": 2068480,
+      "effective_rlimit_as": "Max address space         8589934592           8589934592           bytes     ",
+      "effective_rlimit_data": "Max data size             unlimited            unlimited            bytes     ",
+      "first_observation_context": {
+        "host": {
+          "MemAvailable": "18916064 kB",
+          "CommitLimit": "24790012 kB",
+          "Committed_AS": "92840496 kB"
+        },
+        "cgroup": {
+          "memory.current": "247037952",
+          "memory.peak": "316702720",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "true_final_lifetime_peak": "Not Observed"
+    },
+    {
+      "pid": 1934873,
+      "start_ticks": "326924943",
+      "comm": "rust-lld",
+      "executable": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld",
+      "observations": 1,
+      "serde_derive": false,
+      "sampled_max_VmSize_bytes": 315379712,
+      "sampled_max_VmPeak_bytes": 315379712,
+      "sampled_max_VmRSS_bytes": 39907328,
+      "effective_rlimit_as": "Max address space         8589934592           8589934592           bytes     ",
+      "effective_rlimit_data": "Max data size             unlimited            unlimited            bytes     ",
+      "first_observation_context": {
+        "host": {
+          "MemAvailable": "18916064 kB",
+          "CommitLimit": "24790012 kB",
+          "Committed_AS": "92840496 kB"
+        },
+        "cgroup": {
+          "memory.current": "247037952",
+          "memory.peak": "316702720",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "true_final_lifetime_peak": "Not Observed"
+    }
+  ],
+  "host_observations": [
+    {
+      "MemAvailable": "19060016 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92786956 kB"
+    },
+    {
+      "MemAvailable": "18983712 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92827348 kB"
+    },
+    {
+      "MemAvailable": "18929372 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92829376 kB"
+    },
+    {
+      "MemAvailable": "18894184 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92834808 kB"
+    },
+    {
+      "MemAvailable": "18892856 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92834484 kB"
+    },
+    {
+      "MemAvailable": "18890800 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "93876236 kB"
+    },
+    {
+      "MemAvailable": "18889184 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "93892296 kB"
+    },
+    {
+      "MemAvailable": "18888628 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "93901860 kB"
+    },
+    {
+      "MemAvailable": "18934188 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92822568 kB"
+    },
+    {
+      "MemAvailable": "18959224 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92819300 kB"
+    },
+    {
+      "MemAvailable": "18907420 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92829096 kB"
+    },
+    {
+      "MemAvailable": "18905484 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92841176 kB"
+    },
+    {
+      "MemAvailable": "18900516 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "93902544 kB"
+    },
+    {
+      "MemAvailable": "18902820 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "93887624 kB"
+    },
+    {
+      "MemAvailable": "18824244 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92904880 kB"
+    },
+    {
+      "MemAvailable": "18878280 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92823468 kB"
+    },
+    {
+      "MemAvailable": "18809924 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92820852 kB"
+    },
+    {
+      "MemAvailable": "18802528 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92822744 kB"
+    },
+    {
+      "MemAvailable": "18819944 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92822368 kB"
+    },
+    {
+      "MemAvailable": "18856396 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92822744 kB"
+    },
+    {
+      "MemAvailable": "18828048 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92833440 kB"
+    },
+    {
+      "MemAvailable": "18807244 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92833456 kB"
+    },
+    {
+      "MemAvailable": "18772268 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92830840 kB"
+    },
+    {
+      "MemAvailable": "18914424 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92838384 kB"
+    },
+    {
+      "MemAvailable": "18917556 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92837048 kB"
+    },
+    {
+      "MemAvailable": "18932720 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92832664 kB"
+    },
+    {
+      "MemAvailable": "18904072 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92833064 kB"
+    },
+    {
+      "MemAvailable": "18863488 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92821768 kB"
+    },
+    {
+      "MemAvailable": "18920396 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92838704 kB"
+    },
+    {
+      "MemAvailable": "18916064 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92840496 kB"
+    },
+    {
+      "MemAvailable": "18916236 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "93895356 kB"
+    },
+    {
+      "MemAvailable": "18922128 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92821748 kB"
+    },
+    {
+      "MemAvailable": "18770008 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92821976 kB"
+    },
+    {
+      "MemAvailable": "18726664 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92831168 kB"
+    },
+    {
+      "MemAvailable": "18698664 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92829896 kB"
+    },
+    {
+      "MemAvailable": "18681136 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92832104 kB"
+    },
+    {
+      "MemAvailable": "18680304 kB",
+      "CommitLimit": "24790012 kB",
+      "Committed_AS": "92827400 kB"
+    }
+  ],
+  "raw_stream": "/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-clippy-recovery-8g/clippy/runs/fb745d2e-750c-4a9e-96ec-68e5d96a1339/linker-memory-samples.jsonl",
+  "stream_sha256": "bfdeb133ab902c34c8a57504371acf3eea7afcb6f3d56120e3484495aba19ebe",
+  "interpretation": "Kernel VmPeak read while alive is a lower bound on final lifetime peak. Not inferred from cgroup memory. Same-PID exec transition atomicity not established. Observer costs are included in approved workload tree; negligible overhead not claimed."
+}

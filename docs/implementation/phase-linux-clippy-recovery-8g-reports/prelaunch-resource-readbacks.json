@@ -1,0 +1,168 @@
+{
+  "readbacks": {
+    "root": {
+      "cpu.max": "160000 100000",
+      "cpu.stat": "usage_usec 198139\nuser_usec 136934\nsystem_usec 61204\nnice_usec 137000\ncore_sched.force_idle_usec 0\nnr_periods 6\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+      "memory.max": "3221225472",
+      "memory.current": "12795904",
+      "memory.peak": "14901248",
+      "memory.swap.max": "0",
+      "memory.swap.current": "0",
+      "memory.oom.group": "0",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+      "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+      "pids.max": "128",
+      "pids.current": "1",
+      "pids.events": "max 0",
+      "cgroup.events": "populated 1\nfrozen 0"
+    },
+    "service": {
+      "pid": 1934145,
+      "cgroup": "0::/user.slice/user-1001.slice/user@1001.service/afl2p06fb745d2e750c4a9e96ec68e5d96a1339.slice/afl2p06fb745d2e750c4a9e96ec68e5d96a1339.service",
+      "rlimit_as": [
+        8589934592,
+        8589934592
+      ],
+      "actual_argv": [
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/cargo",
+        "clippy",
+        "--locked",
+        "--offline",
+        "-j",
+        "1",
+        "--all-targets",
+        "--all-features",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "cwd": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace",
+      "environment": {
+        "HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-clippy-fb745d2e-750c-4a9e-96ec-68e5d96a1339/home",
+        "TMPDIR": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-clippy-fb745d2e-750c-4a9e-96ec-68e5d96a1339/tmp",
+        "TMP": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-clippy-fb745d2e-750c-4a9e-96ec-68e5d96a1339/tmp",
+        "TEMP": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-clippy-fb745d2e-750c-4a9e-96ec-68e5d96a1339/tmp",
+        "XDG_CACHE_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-clippy-fb745d2e-750c-4a9e-96ec-68e5d96a1339/cache",
+        "XDG_CONFIG_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-clippy-fb745d2e-750c-4a9e-96ec-68e5d96a1339/config",
+        "XDG_DATA_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-clippy-fb745d2e-750c-4a9e-96ec-68e5d96a1339/data",
+        "PATH": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin:/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin:/usr/bin:/bin",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "CARGO_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1",
+        "CARGO_TARGET_DIR": "/home/ymj68520/projects/agent-r5g2-linux-validation/build/linux-primary-v1",
+        "CARGO_BUILD_JOBS": "1",
+        "RUST_TEST_THREADS": "1",
+        "CARGO_NET_OFFLINE": "true",
+        "CARGO_TERM_COLOR": "never",
+        "RUSTC": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustc",
+        "RUSTDOC": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustdoc",
+        "RUSTFMT": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustfmt",
+        "RUSTUP_AUTO_INSTALL": "0",
+        "RUSTUP_NO_UPDATE_CHECK": "1"
+      },
+      "cgroup_readbacks": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 194643\nuser_usec 133755\nsystem_usec 60888\nnice_usec 134000\ncore_sched.force_idle_usec 0\nnr_periods 3\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "3221225472",
+        "memory.current": "12795904",
+        "memory.peak": "14901248",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "128",
+        "pids.current": "1",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 1\nfrozen 0"
+      },
+      "starttime": "326922734"
+    },
+    "guardian": {
+      "pid": 1934143,
+      "raw": {
+        "cpu.max": "160000 100000",
+        "cpu.stat": "usage_usec 196980\nuser_usec 135986\nsystem_usec 60993\nnice_usec 136000\ncore_sched.force_idle_usec 0\nnr_periods 3\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "3221225472",
+        "memory.current": "12795904",
+        "memory.peak": "14901248",
+        "memory.swap.max": "0",
+        "memory.swap.current": "0",
+        "memory.oom.group": "0",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "pids.max": "128",
+        "pids.current": "1",
+        "pids.events": "max 0",
+        "cgroup.events": "populated 1\nfrozen 0"
+      },
+      "first_disk_sample": {
+        "monotonic": 3269227.808786827,
+        "scan_seconds": 0.23739973036572337,
+        "allocated_bytes": 1988042752,
+        "growth_bytes": 0,
+        "free_bytes": 81486262272,
+        "free_inodes": 57112702
+      },
+      "source_head": "f3992f87a0348268c823c81456cf07b3f27de628",
+      "executor_sha256": "13641ea6245c091ad17c3d402d6f16cab7c89ab6810c3c61f1dcc7a4bdc5cb80"
+    },
+    "ancestors": [
+      {
+        "path": "/sys/fs/cgroup/user.slice/user-1001.slice/user@1001.service",
+        "limits": {
+          "cpu.max": "max 100000",
+          "memory.max": "max",
+          "memory.swap.max": "max",
+          "pids.max": "max"
+        }
+      },
+      {
+        "path": "/sys/fs/cgroup/user.slice/user-1001.slice",
+        "limits": {
+          "cpu.max": "max 100000",
+          "memory.max": "max",
+          "memory.swap.max": "max",
+          "pids.max": "76995"
+        }
+      },
+      {
+        "path": "/sys/fs/cgroup/user.slice",
+        "limits": {
+          "cpu.max": "max 100000",
+          "memory.max": "max",
+          "memory.swap.max": "max",
+          "pids.max": "max"
+        }
+      },
+      {
+        "path": "/sys/fs/cgroup",
+        "limits": {}
+      }
+    ],
+    "kernel_service_limits": "Limit                     Soft Limit           Hard Limit           Units     \nMax cpu time              unlimited            unlimited            seconds   \nMax file size             12884901888          12884901888          bytes     \nMax data size             unlimited            unlimited            bytes     \nMax stack size            8388608              unlimited            bytes     \nMax core file size        0                    0                    bytes     \nMax resident set          unlimited            unlimited            bytes     \nMax processes             116660               116660               processes \nMax open files            1024                 1048576              files     \nMax locked memory         4198760448           4198760448           bytes     \nMax address space         8589934592           8589934592           bytes     \nMax file locks            unlimited            unlimited            locks     \nMax pending signals       116660               116660               signals   \nMax msgqueue size         819200               819200               bytes     \nMax nice priority         0                    0                    \nMax realtime priority     0                    0                    \nMax realtime timeout      unlimited            unlimited            us        \n",
+    "controller_rlimit_as": [
+      134217728,
+      134217728
+    ]
+  },
+  "host_admission": {
+    "status": "ADMITTED",
+    "source_head": "f3992f87a0348268c823c81456cf07b3f27de628",
+    "git_tree": "c3bce461c1341976c3a827ff8cf6893160ca7aa7",
+    "host_mem_available": 19516846080,
+    "free_bytes": 81486249984,
+    "free_inodes": 57112701,
+    "approval_matrix_sha256": "c8e754ba55abcf24bc5c810a99337eb9639729dd77a0c140b52660af97409f05",
+    "freeze_sha256": "23a1cca7c1ea3cf539aaeea019b0b5bde06ecfddcc6fcb62e4e265475160d378",
+    "resource_readback_sha256": "76f954fd52e9a94b70323b14a0ade84d293145389bc7c8be475d3480947668b2"
+  },
+  "guardian_release": {
+    "pid": 1934143,
+    "pidfd_alive": true,
+    "checked_monotonic": 3269227.956693631,
+    "executor_sha256": "13641ea6245c091ad17c3d402d6f16cab7c89ab6810c3c61f1dcc7a4bdc5cb80"
+  },
+  "raw_readback_sha256": "76f954fd52e9a94b70323b14a0ade84d293145389bc7c8be475d3480947668b2",
+  "approval_sha256": "c8e754ba55abcf24bc5c810a99337eb9639729dd77a0c140b52660af97409f05"
+}

@@ -1,0 +1,86 @@
+{
+  "Proposed": {
+    "cpu_percent_of_online_host": 5,
+    "process_address_space_bytes": 8589934592,
+    "task_memory_bytes": 3221225472,
+    "swap_bytes": 0,
+    "pids": 128,
+    "host_reserve_bytes": 8589934592,
+    "wall_seconds": 5400,
+    "disk_growth_bytes": 12884901888,
+    "disk_free_reserve_bytes": 21474836480,
+    "cargo_jobs": 1,
+    "rust_test_threads": 1,
+    "concurrent_tasks": 1,
+    "monitor_period_seconds": 0.1
+  },
+  "Approved": {
+    "cpu_percent_of_online_host": 5,
+    "process_address_space_bytes": 8589934592,
+    "task_memory_bytes": 3221225472,
+    "swap_bytes": 0,
+    "pids": 128,
+    "host_reserve_bytes": 8589934592,
+    "wall_seconds": 5400,
+    "disk_growth_bytes": 12884901888,
+    "disk_free_reserve_bytes": 21474836480,
+    "cargo_jobs": 1,
+    "rust_test_threads": 1,
+    "concurrent_tasks": 1,
+    "monitor_period_seconds": 0.1
+  },
+  "Effective": {
+    "cgroup": {
+      "cpu.max": "160000 100000",
+      "cpu.stat": "usage_usec 198139\nuser_usec 136934\nsystem_usec 61204\nnice_usec 137000\ncore_sched.force_idle_usec 0\nnr_periods 6\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+      "memory.max": "3221225472",
+      "memory.current": "12795904",
+      "memory.peak": "14901248",
+      "memory.swap.max": "0",
+      "memory.swap.current": "0",
+      "memory.oom.group": "0",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+      "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+      "pids.max": "128",
+      "pids.current": "1",
+      "pids.events": "max 0",
+      "cgroup.events": "populated 1\nfrozen 0"
+    },
+    "service_rlimit_as": [
+      8589934592,
+      8589934592
+    ],
+    "kernel_limits": "Limit                     Soft Limit           Hard Limit           Units     \nMax cpu time              unlimited            unlimited            seconds   \nMax file size             12884901888          12884901888          bytes     \nMax data size             unlimited            unlimited            bytes     \nMax stack size            8388608              unlimited            bytes     \nMax core file size        0                    0                    bytes     \nMax resident set          unlimited            unlimited            bytes     \nMax processes             116660               116660               processes \nMax open files            1024                 1048576              files     \nMax locked memory         4198760448           4198760448           bytes     \nMax address space         8589934592           8589934592           bytes     \nMax file locks            unlimited            unlimited            locks     \nMax pending signals       116660               116660               signals   \nMax msgqueue size         819200               819200               bytes     \nMax nice priority         0                    0                    \nMax realtime priority     0                    0                    \nMax realtime timeout      unlimited            unlimited            us        \n"
+  },
+  "Observed": {
+    "cgroup_memory_peak_bytes": 582414336,
+    "cpu_stat": "usage_usec 28497445\nuser_usec 24407932\nsystem_usec 4089512\nnice_usec 24381000\ncore_sched.force_idle_usec 0\nnr_periods 285\nnr_throttled 1\nthrottled_usec 7797\nnr_bursts 0\nburst_usec 0",
+    "memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+    "swap_current": "0",
+    "pids_events": "max 0",
+    "sampled_extrema": {
+      "memory_current_peak": 581120000,
+      "pids_sampled_peak": 13,
+      "disk_growth_sampled_peak": 128983040,
+      "min_free_bytes": 81373294592,
+      "min_free_inodes": 57112460,
+      "min_mem_available": 19121274880,
+      "max_sample_gap_seconds": 0.3716872991062701,
+      "max_scan_seconds": 0.2668632189743221
+    },
+    "disk_after": {
+      "monotonic": 3269257.511480881,
+      "scan_seconds": 0.25021503679454327,
+      "allocated_bytes": 2117025792,
+      "growth_bytes": 128983040,
+      "free_bytes": 81373282304,
+      "free_inodes": 57112460
+    },
+    "sample_count": 81,
+    "process_tree_events": 36
+  },
+  "policy_sha256": "97c941f691fed2285da3db6a0866b7d79b212a72db31ec3fb94fba842b8e4200",
+  "approval_identity": "call_756396936da54fa79fb004dc085306a8",
+  "address_space_is_not_rss": true,
+  "disk_enforcement": "Accepted B2 sampled monitor, NOT hard quota"
+}

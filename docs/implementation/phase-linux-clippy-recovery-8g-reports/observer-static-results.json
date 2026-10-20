@@ -1,0 +1,38 @@
+{
+  "Required": 8,
+  "Passed": 8,
+  "cases": [
+    {
+      "id": "parse-fields",
+      "passed": true
+    },
+    {
+      "id": "host-fields",
+      "passed": true
+    },
+    {
+      "id": "unrelated-process-filter",
+      "passed": true
+    },
+    {
+      "id": "thread-finished",
+      "passed": true
+    },
+    {
+      "id": "recorded-linker",
+      "passed": true
+    },
+    {
+      "id": "rows-match",
+      "passed": true
+    },
+    {
+      "id": "peak-honesty",
+      "passed": true
+    },
+    {
+      "id": "no-observation-error",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "status": "NOT ACCEPTED",
+  "current_clippy_exit": 101,
+  "historical_fmt_exit": 0,
+  "historical_fmt_head": "cb9679ea9c4056301d594c5680094765efda2fb3",
+  "current_clippy_head": "f3992f87a0348268c823c81456cf07b3f27de628",
+  "historical_fmt_credit_preserved": true,
+  "tracked_format_inputs_equal": true,
+  "tracked_input_count": 256,
+  "delta_after_preliminary_proof": [
+    "tools/linux-clippy-recovery-8g.py",
+    "tools/test-linux-clippy-recovery-8g.py"
+  ],
+  "complete_format_input_equivalence": false,
+  "remaining_gaps": [
+    "Full Clippy failed on unused_variables",
+    "Historical external/ancestor rustfmt configuration absence was not captured; complete retrospective format equivalence not proven"
+  ],
+  "no_fmt_rerun": true,
+  "round2_approved": false,
+  "round2_started": false
+}

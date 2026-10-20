@@ -1,0 +1,21 @@
+{
+  "status": "Passed",
+  "before_sha256": "8f1896d3ee10f99cedb8d1416c6c443439d299d641a1e100118abfa04e25e953",
+  "after_sha256": "8bbaf824750e5aa54f3aa185f65e726dbc021ab7854494dd8af72aa90f08a86f",
+  "frozen_snapshots": 10,
+  "frozen_paths": 21032,
+  "protected_inputs": 1677,
+  "cargo_packages": 25,
+  "cargo_lock_sha256": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede",
+  "previous_phase_evidence_verified": 94,
+  "no_product_or_expected_or_oracle_changes": true,
+  "normative_versions_preserved": [
+    "Analysis@9",
+    "Model@8",
+    "Report@8",
+    "Obligation@8"
+  ],
+  "native_relation_some_bindings_unchanged": 3,
+  "old_windows_ledger": "0/8",
+  "old_r5g2": "Registration Incomplete"
+}

@@ -1,0 +1,14 @@
+{
+  "kind": "Compiler warning promoted by mandated -D warnings, not independent formal semantic contradiction",
+  "source_head": "f3992f87a0348268c823c81456cf07b3f27de628",
+  "path": "crates/af-computation/src/control.rs",
+  "line": 2842,
+  "column": 35,
+  "source_sha256": "262d97a73e32e501490ffc7c9189e8cc83e45882d17b74239f6687f3c4f935fa",
+  "excerpt": "        ControlOperator::Handle { clauses, .. } if child_index == 0 => {",
+  "expected": "No denied warnings for gate pass",
+  "actual": "unused variable: clauses; Cargo exit101",
+  "stderr_sha256": "d39d12590d3a91645506b5539dceb3d298b3ea429e7e1b392ecbe07d66f05a09",
+  "rule": "unused_variables",
+  "no_source_fix_or_retry": true
+}
