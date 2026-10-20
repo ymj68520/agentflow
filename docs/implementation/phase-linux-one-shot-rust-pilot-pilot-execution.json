@@ -1,0 +1,168 @@
+{
+  "status": "BOUNDED RUST PILOT PASSED",
+  "outcome": "A",
+  "source_head": "b76b42fe9b0b862a5669e1e9fa3ceb23bdd31451",
+  "git_tree": "352cbeaf81dbb4a766e6e62a4dc123d557dbfe0e",
+  "cargo_lock_sha256": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede",
+  "executor_sha256": "6d85a7ac68d89b9062bdd383f2f9b8227cfcc71ea64a80af10d42ea6de1317e6",
+  "policy_sha256": "f1875f10f33ec0cb27e29eed0b977143473a1b8d2ee88bd836a598faaaa946c3",
+  "qualified_core_sha256": "28b3ffbf05a1815f80ada6c8ffe98cee621fb7805b84ad24deefbfca2e393349",
+  "approvals": {
+    "policy_sha256": "f1875f10f33ec0cb27e29eed0b977143473a1b8d2ee88bd836a598faaaa946c3",
+    "A": {
+      "Approved": true,
+      "reply": "\u6279\u51c6\u6b64\u7cbe\u786e\u8d44\u6e90\u653f\u7b56",
+      "scope": "Exact numerical policy only"
+    },
+    "B": {
+      "Approved": true,
+      "choice": "B2",
+      "reply": "\u63a5\u53d7 B2\uff0c\u4ec5\u9650\u672c\u6b21 Pilot",
+      "scope": "All five enumerated residual risks, one Pilot only",
+      "risks": [
+        "Sampling is not a hard disk quota",
+        "Instant writes may cross before the next sample",
+        "No strictly bounded maximum overshoot bytes follows from sampling alone",
+        "No isolation guarantee for arbitrary non-project writes",
+        "Acceptance does not apply to full tests or untrusted code"
+      ]
+    },
+    "C": {
+      "Approved": true,
+      "reply": "\u6279\u51c6\u4e0a\u8ff0\u6070\u597d\u4e00\u6b21 Pilot",
+      "scope": "Exactly one cargo check --locked --offline -j 1 -p af-core; <=900s; retries0"
+    },
+    "authorizer": "Direct independent human replies in this chat; not cryptographic third-party attestation"
+  },
+  "toolchain": {
+    "cargo": {
+      "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/cargo",
+      "sha256": "e60b4010303c19a131c058e3f054b4b3311433c4b2ee94ba8e09e165ff2a3b3b",
+      "version": "cargo 1.91.1 (ea2d97820 2025-10-10)\n",
+      "exit_code": 0
+    },
+    "rustc": {
+      "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustc",
+      "sha256": "5eadaaf4fe086d76547b17dc3c1ba880d0082b93f7d8bc65612770da8e79fe8e",
+      "version": "rustc 1.91.1 (ed61e7d7e 2025-11-07)\nbinary: rustc\ncommit-hash: ed61e7d7e242494fb7057f2657300d9e77bb4fcb\ncommit-date: 2025-11-07\nhost: x86_64-unknown-linux-gnu\nrelease: 1.91.1\nLLVM version: 21.1.2\n",
+      "exit_code": 0
+    },
+    "rustdoc": {
+      "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustdoc",
+      "sha256": "f22c571ca4f921e0ac7c2c466de30da574b9018690a3878167cb0ea72249ed7f",
+      "version": "rustdoc 1.91.1 (ed61e7d7e 2025-11-07)\n",
+      "exit_code": 0
+    }
+  },
+  "venv_python_sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f",
+  "actual": {
+    "actual_exit_code": 0,
+    "start_utc": "2026-10-20T10:36:09.449582+00:00",
+    "end_utc": "2026-10-20T10:36:13.551475+00:00",
+    "seconds": 4.101903756149113,
+    "argv": [
+      "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/cargo",
+      "check",
+      "--locked",
+      "--offline",
+      "-j",
+      "1",
+      "-p",
+      "af-core"
+    ],
+    "cwd": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "2e91336b359f91979f7441cafc4168d20cbfaaa49d37920d957238c4597f3587"
+  },
+  "command_logical": [
+    "cargo",
+    "check",
+    "--locked",
+    "--offline",
+    "-j",
+    "1",
+    "-p",
+    "af-core"
+  ],
+  "actual_environment": {
+    "HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/one-shot-d2ea95d7-f900-46e3-90f4-6d9561442855/home",
+    "TMPDIR": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/one-shot-d2ea95d7-f900-46e3-90f4-6d9561442855/tmp",
+    "TMP": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/one-shot-d2ea95d7-f900-46e3-90f4-6d9561442855/tmp",
+    "TEMP": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/one-shot-d2ea95d7-f900-46e3-90f4-6d9561442855/tmp",
+    "XDG_CACHE_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/one-shot-d2ea95d7-f900-46e3-90f4-6d9561442855/cache",
+    "XDG_CONFIG_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/one-shot-d2ea95d7-f900-46e3-90f4-6d9561442855/config",
+    "XDG_DATA_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/one-shot-d2ea95d7-f900-46e3-90f4-6d9561442855/data",
+    "PATH": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin:/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin:/usr/bin:/bin",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "CARGO_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1",
+    "CARGO_TARGET_DIR": "/home/ymj68520/projects/agent-r5g2-linux-validation/build/linux-primary-v1",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_NET_OFFLINE": "true",
+    "CARGO_TERM_COLOR": "never",
+    "RUSTC": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustc",
+    "RUSTDOC": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustdoc",
+    "RUSTUP_AUTO_INSTALL": "0",
+    "RUSTUP_NO_UPDATE_CHECK": "1"
+  },
+  "launches": 1,
+  "automatic_retries": 0,
+  "packages_observed_in_diagnostics": [
+    [
+      "version_check",
+      "0.9.5"
+    ],
+    [
+      "generic-array",
+      "0.14.7"
+    ],
+    [
+      "typenum",
+      "1.20.1"
+    ],
+    [
+      "crypto-common",
+      "0.1.7"
+    ],
+    [
+      "block-buffer",
+      "0.10.4"
+    ],
+    [
+      "digest",
+      "0.10.7"
+    ],
+    [
+      "cfg-if",
+      "1.0.5"
+    ],
+    [
+      "tinyvec",
+      "1.13.3"
+    ],
+    [
+      "cpufeatures",
+      "0.2.17"
+    ],
+    [
+      "sha2",
+      "0.10.9"
+    ],
+    [
+      "unicode-normalization",
+      "0.1.25"
+    ],
+    [
+      "base64",
+      "0.22.1"
+    ],
+    [
+      "af-core",
+      "0.1.0"
+    ]
+  ],
+  "tests_run": false,
+  "full_workspace_acceptance": false,
+  "full_gates_run": false
+}

@@ -1,0 +1,28 @@
+{
+  "choice": "B2",
+  "Approved": true,
+  "authority": {
+    "Approved": true,
+    "choice": "B2",
+    "reply": "\u63a5\u53d7 B2\uff0c\u4ec5\u9650\u672c\u6b21 Pilot",
+    "scope": "All five enumerated residual risks, one Pilot only",
+    "risks": [
+      "Sampling is not a hard disk quota",
+      "Instant writes may cross before the next sample",
+      "No strictly bounded maximum overshoot bytes follows from sampling alone",
+      "No isolation guarantee for arbitrary non-project writes",
+      "Acceptance does not apply to full tests or untrusted code"
+    ]
+  },
+  "policy_sha256": "f1875f10f33ec0cb27e29eed0b977143473a1b8d2ee88bd836a598faaaa946c3",
+  "hard_quota": false,
+  "risks": [
+    "Sampling is not a hard disk quota",
+    "Instant writes may cross before the next sample",
+    "No strictly bounded maximum overshoot bytes follows from sampling alone",
+    "No isolation guarantee for arbitrary non-project writes",
+    "Acceptance does not apply to full tests or untrusted code"
+  ],
+  "scope": "This exact one Pilot only; no full tests or untrusted code",
+  "metrics_note": "Project growth uses deduplicated regular-file st_blocks. Directory/FS metadata is not included in that counter; overall filesystem free-byte and inode counters cover its capacity impact. No strict hard/instantaneous or maximum overshoot guarantee is made."
+}

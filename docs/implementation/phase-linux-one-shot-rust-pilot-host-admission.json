@@ -1,0 +1,11 @@
+{
+  "status": "ADMITTED",
+  "source_head": "b76b42fe9b0b862a5669e1e9fa3ceb23bdd31451",
+  "git_tree": "352cbeaf81dbb4a766e6e62a4dc123d557dbfe0e",
+  "host_mem_available": 19839377408,
+  "free_bytes": 81738137600,
+  "free_inodes": 57114689,
+  "approval_matrix_sha256": "33665c99c7d426f7ae1ad802cb94998b1b8b360b6f5b1870f760adb03d2e5dd1",
+  "freeze_sha256": "27dbdf0f9b6c4fae59b867ce1669be4c61a13c4d75dc36e0ffc877967488a891",
+  "resource_readback_sha256": "9714b25a481a17c18da3aab3649ed2d77001f403de65d20a50d6c72cc892ddc0"
+}

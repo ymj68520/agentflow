@@ -1,0 +1,103 @@
+{
+  "known_roots": {
+    "CARGO_TARGET_DIR": "/home/ymj68520/projects/agent-r5g2-linux-validation/build/linux-primary-v1",
+    "CARGO_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1",
+    "TMPDIR": "Per-job child of /home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector",
+    "HOME": "Per-job isolated home under same controlled tmp",
+    "workspace": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace",
+    "logs": "Per-job phase evidence directory",
+    "build_script_OUT_DIR": "Cargo target-dir/build/*/out"
+  },
+  "potential_uncovered": [
+    "Trusted build scripts could intentionally ignore environment and write arbitrary same-UID paths; no filesystem sandbox is claimed",
+    "/dev/null, pipes and system runtime IPC are not persistent project disk growth",
+    "Global filesystem free/inodes can be affected by other projects"
+  ],
+  "hard_quota": false,
+  "risk_disposition": "B2 explicitly approved only for this one attempt",
+  "minimum_inode_rule": "Positive available inodes before and during; no separately approved inode-reserve count",
+  "monitoring": "Target sleep100ms; actual sample timestamps/scan duration and detection-to-kill latency recorded",
+  "actual_roots": [
+    {
+      "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace",
+      "resolved": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace",
+      "device": 2050,
+      "allocated_bytes": 1705766912,
+      "free_bytes": 81738383360,
+      "free_inodes": 57114699,
+      "filesystem": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n"
+    },
+    {
+      "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/.git",
+      "resolved": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/.git",
+      "device": 2050,
+      "allocated_bytes": 216186880,
+      "free_bytes": 81738383360,
+      "free_inodes": 57114699,
+      "filesystem": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n"
+    },
+    {
+      "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1",
+      "resolved": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1",
+      "device": 2050,
+      "allocated_bytes": 19431424,
+      "free_bytes": 81738383360,
+      "free_inodes": 57114699,
+      "filesystem": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n"
+    },
+    {
+      "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/build/linux-primary-v1",
+      "resolved": "/home/ymj68520/projects/agent-r5g2-linux-validation/build/linux-primary-v1",
+      "device": 2050,
+      "allocated_bytes": 0,
+      "free_bytes": 81738379264,
+      "free_inodes": 57114699,
+      "filesystem": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n"
+    },
+    {
+      "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/one-shot-d2ea95d7-f900-46e3-90f4-6d9561442855",
+      "resolved": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/one-shot-d2ea95d7-f900-46e3-90f4-6d9561442855",
+      "device": 2050,
+      "allocated_bytes": 0,
+      "free_bytes": 81738379264,
+      "free_inodes": 57114699,
+      "filesystem": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n"
+    },
+    {
+      "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-one-shot-rust-pilot",
+      "resolved": "/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-one-shot-rust-pilot",
+      "device": 2050,
+      "allocated_bytes": 299008,
+      "free_bytes": 81738379264,
+      "free_inodes": 57114699,
+      "filesystem": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n"
+    }
+  ],
+  "actual_environment": {
+    "HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/one-shot-d2ea95d7-f900-46e3-90f4-6d9561442855/home",
+    "TMPDIR": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/one-shot-d2ea95d7-f900-46e3-90f4-6d9561442855/tmp",
+    "TMP": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/one-shot-d2ea95d7-f900-46e3-90f4-6d9561442855/tmp",
+    "TEMP": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/one-shot-d2ea95d7-f900-46e3-90f4-6d9561442855/tmp",
+    "XDG_CACHE_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/one-shot-d2ea95d7-f900-46e3-90f4-6d9561442855/cache",
+    "XDG_CONFIG_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/one-shot-d2ea95d7-f900-46e3-90f4-6d9561442855/config",
+    "XDG_DATA_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/one-shot-d2ea95d7-f900-46e3-90f4-6d9561442855/data",
+    "PATH": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin:/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin:/usr/bin:/bin",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "CARGO_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1",
+    "CARGO_TARGET_DIR": "/home/ymj68520/projects/agent-r5g2-linux-validation/build/linux-primary-v1",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_NET_OFFLINE": "true",
+    "CARGO_TERM_COLOR": "never",
+    "RUSTC": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustc",
+    "RUSTDOC": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustdoc",
+    "RUSTUP_AUTO_INSTALL": "0",
+    "RUSTUP_NO_UPDATE_CHECK": "1"
+  },
+  "temporary_root": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/one-shot-d2ea95d7-f900-46e3-90f4-6d9561442855",
+  "temporary_root_removed": true,
+  "control_plane_extra_writes": "Only own UUID systemd unit runtime property files; not compiler output or a claim of isolating shared manager/journal writes",
+  "measured_max_sample_gap_seconds": 0.3398993732407689,
+  "allocation_counter": "Deduplicated regular-file st_blocks; directory/FS metadata seen via whole-FS free bytes/inodes, not the project-file counter"
+}

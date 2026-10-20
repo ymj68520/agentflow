@@ -1,0 +1,105 @@
+{
+  "status": "Passed",
+  "checks": [
+    {
+      "section": "Quality & Evidence",
+      "id": "three-real-approvals",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "one-claim",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "exact-argv",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "execution-source-hashes",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "production-not-small",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "real-process-AS",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "guardian-ready-before-release",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "host-admitted",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "raw-resource-receipt",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "empty-removed-owned-group",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "all-inode-samples-present",
+      "passed": true
+    },
+    {
+      "section": "Execution Safety",
+      "id": "disk-not-hard-quota",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "real-termination-not-promoted",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "stdout-sha",
+      "passed": true
+    },
+    {
+      "section": "Quality & Evidence",
+      "id": "stderr-sha",
+      "passed": true
+    },
+    {
+      "section": "Specification",
+      "id": "unchanged-protected-inputs",
+      "passed": true
+    },
+    {
+      "section": "Specification",
+      "id": "same-frozen-snapshots",
+      "passed": true
+    },
+    {
+      "section": "Specification",
+      "id": "same-lock-dependencies",
+      "passed": true
+    },
+    {
+      "section": "Specification",
+      "id": "previous-receipts-unchanged",
+      "passed": true
+    }
+  ],
+  "pilot_success": true,
+  "actual_exit_code": 0,
+  "termination": "Completed",
+  "reviewer": "Same coding agent, separate read-only process, not third-party certification",
+  "full_linux_acceptance": false
+}

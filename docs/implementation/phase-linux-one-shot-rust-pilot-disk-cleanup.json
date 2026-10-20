@@ -1,0 +1,11 @@
+{
+  "owned_tmp_root": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/one-shot-d2ea95d7-f900-46e3-90f4-6d9561442855",
+  "allocated_before": 0,
+  "allocated_after": 0,
+  "temporary_root_removed": true,
+  "filesystem_free_before": 81722982400,
+  "filesystem_free_after": 81723006976,
+  "entries": [],
+  "target_artifacts": "Retained in original controlled CARGO_TARGET_DIR, measured separately; no blanket deletion of cache/target",
+  "logs_and_receipts": "Retained"
+}

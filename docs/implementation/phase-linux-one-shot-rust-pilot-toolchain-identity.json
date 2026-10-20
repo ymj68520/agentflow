@@ -1,0 +1,134 @@
+{
+  "binaries": {
+    "cargo": {
+      "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/cargo",
+      "sha256": "e60b4010303c19a131c058e3f054b4b3311433c4b2ee94ba8e09e165ff2a3b3b",
+      "version": "cargo 1.91.1 (ea2d97820 2025-10-10)\n",
+      "exit_code": 0
+    },
+    "rustc": {
+      "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustc",
+      "sha256": "5eadaaf4fe086d76547b17dc3c1ba880d0082b93f7d8bc65612770da8e79fe8e",
+      "version": "rustc 1.91.1 (ed61e7d7e 2025-11-07)\nbinary: rustc\ncommit-hash: ed61e7d7e242494fb7057f2657300d9e77bb4fcb\ncommit-date: 2025-11-07\nhost: x86_64-unknown-linux-gnu\nrelease: 1.91.1\nLLVM version: 21.1.2\n",
+      "exit_code": 0
+    },
+    "rustdoc": {
+      "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustdoc",
+      "sha256": "f22c571ca4f921e0ac7c2c466de30da574b9018690a3878167cb0ea72249ed7f",
+      "version": "rustdoc 1.91.1 (ed61e7d7e 2025-11-07)\n",
+      "exit_code": 0
+    }
+  },
+  "venv_python_sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f",
+  "cargo_config_files": [
+    {
+      "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/config.toml",
+      "sha256": "caa43ddf3ac24bf244c8dfa5a423446de4f4747e2ca2d5613e65fbefec6b7035"
+    }
+  ],
+  "af_core_build_closure": [
+    {
+      "name": "af-core",
+      "version": "0.1.0",
+      "manifest": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-core/Cargo.toml",
+      "build_scripts": []
+    },
+    {
+      "name": "base64",
+      "version": "0.22.1",
+      "manifest": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/base64-0.22.1/Cargo.toml",
+      "build_scripts": []
+    },
+    {
+      "name": "block-buffer",
+      "version": "0.10.4",
+      "manifest": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/block-buffer-0.10.4/Cargo.toml",
+      "build_scripts": []
+    },
+    {
+      "name": "cfg-if",
+      "version": "1.0.5",
+      "manifest": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/cfg-if-1.0.5/Cargo.toml",
+      "build_scripts": []
+    },
+    {
+      "name": "cpufeatures",
+      "version": "0.2.17",
+      "manifest": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/cpufeatures-0.2.17/Cargo.toml",
+      "build_scripts": []
+    },
+    {
+      "name": "crypto-common",
+      "version": "0.1.7",
+      "manifest": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/crypto-common-0.1.7/Cargo.toml",
+      "build_scripts": []
+    },
+    {
+      "name": "digest",
+      "version": "0.10.7",
+      "manifest": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/digest-0.10.7/Cargo.toml",
+      "build_scripts": []
+    },
+    {
+      "name": "generic-array",
+      "version": "0.14.7",
+      "manifest": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/generic-array-0.14.7/Cargo.toml",
+      "build_scripts": [
+        {
+          "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/generic-array-0.14.7/build.rs",
+          "sha256": "08fa30c4a2c1ad24fe5f987e721dfb20131f45ea5b5dc3e836dcf88a8e33248c",
+          "lines": []
+        }
+      ]
+    },
+    {
+      "name": "libc",
+      "version": "0.2.190",
+      "manifest": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/libc-0.2.190/Cargo.toml",
+      "build_scripts": [
+        {
+          "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/libc-0.2.190/build.rs",
+          "sha256": "feede9bdbbcf70c6409faef8fb2f2c065e942107eb6596677bb36dce6c5075fb",
+          "lines": [
+            "f.write_str(match self {",
+            "Some(ref wrapper) if wrapper.is_empty() => Command::new(rustc),",
+            "let mut cmd = Command::new(wrapper);",
+            "None => Command::new(rustc),",
+            "let output = Command::new(\"freebsd-version\").output().ok()?;",
+            "let output = Command::new(emcc).arg(\"-dumpversion\").output().ok()?;"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "sha2",
+      "version": "0.10.9",
+      "manifest": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/sha2-0.10.9/Cargo.toml",
+      "build_scripts": []
+    },
+    {
+      "name": "tinyvec",
+      "version": "1.13.3",
+      "manifest": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/tinyvec-1.13.3/Cargo.toml",
+      "build_scripts": []
+    },
+    {
+      "name": "typenum",
+      "version": "1.20.1",
+      "manifest": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/typenum-1.20.1/Cargo.toml",
+      "build_scripts": []
+    },
+    {
+      "name": "unicode-normalization",
+      "version": "0.1.25",
+      "manifest": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/unicode-normalization-0.1.25/Cargo.toml",
+      "build_scripts": []
+    },
+    {
+      "name": "version_check",
+      "version": "0.9.5",
+      "manifest": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/version_check-0.9.5/Cargo.toml",
+      "build_scripts": []
+    }
+  ]
+}

@@ -1,0 +1,265 @@
+{
+  "Required": 64,
+  "Executed": 64,
+  "Passed": 64,
+  "Failed": 0,
+  "cases": [
+    {
+      "id": "three-independent-approvals",
+      "passed": true
+    },
+    {
+      "id": "deny/A/False",
+      "passed": true
+    },
+    {
+      "id": "deny/A/None",
+      "passed": true
+    },
+    {
+      "id": "deny/A/'Approved'",
+      "passed": true
+    },
+    {
+      "id": "deny/A/1",
+      "passed": true
+    },
+    {
+      "id": "deny/B/False",
+      "passed": true
+    },
+    {
+      "id": "deny/B/None",
+      "passed": true
+    },
+    {
+      "id": "deny/B/'Approved'",
+      "passed": true
+    },
+    {
+      "id": "deny/B/1",
+      "passed": true
+    },
+    {
+      "id": "deny/C/False",
+      "passed": true
+    },
+    {
+      "id": "deny/C/None",
+      "passed": true
+    },
+    {
+      "id": "deny/C/'Approved'",
+      "passed": true
+    },
+    {
+      "id": "deny/C/1",
+      "passed": true
+    },
+    {
+      "id": "deny/wrong-policy",
+      "passed": true
+    },
+    {
+      "id": "deny/wrong-disk-mode",
+      "passed": true
+    },
+    {
+      "id": "deny/retry",
+      "passed": true
+    },
+    {
+      "id": "deny/full-gates",
+      "passed": true
+    },
+    {
+      "id": "deny/expanded-crate",
+      "passed": true
+    },
+    {
+      "id": "exact-budget/cpu_percent_of_online_host",
+      "passed": true
+    },
+    {
+      "id": "exact-budget/process_address_space_bytes",
+      "passed": true
+    },
+    {
+      "id": "exact-budget/task_memory_bytes",
+      "passed": true
+    },
+    {
+      "id": "exact-budget/swap_bytes",
+      "passed": true
+    },
+    {
+      "id": "exact-budget/pids",
+      "passed": true
+    },
+    {
+      "id": "exact-budget/host_reserve_bytes",
+      "passed": true
+    },
+    {
+      "id": "exact-budget/wall_seconds",
+      "passed": true
+    },
+    {
+      "id": "exact-budget/disk_growth_bytes",
+      "passed": true
+    },
+    {
+      "id": "exact-budget/disk_free_reserve_bytes",
+      "passed": true
+    },
+    {
+      "id": "exact-budget/cargo_jobs",
+      "passed": true
+    },
+    {
+      "id": "exact-budget/rust_test_threads",
+      "passed": true
+    },
+    {
+      "id": "exact-budget/concurrent_tasks",
+      "passed": true
+    },
+    {
+      "id": "exact-budget/monitor_period_seconds",
+      "passed": true
+    },
+    {
+      "id": "deny-budget-type/True",
+      "passed": true
+    },
+    {
+      "id": "deny-budget-type/1.0",
+      "passed": true
+    },
+    {
+      "id": "deny-budget-type/'1'",
+      "passed": true
+    },
+    {
+      "id": "deny-retry-float",
+      "passed": true
+    },
+    {
+      "id": "structure/pilot-launch-consumed.json",
+      "passed": true
+    },
+    {
+      "id": "structure/pilot-launch-reserved.json",
+      "passed": true
+    },
+    {
+      "id": "structure/ONE_SHOT_ALREADY_RESERVED_OR_CONSUMED",
+      "passed": true
+    },
+    {
+      "id": "structure/release.json",
+      "passed": true
+    },
+    {
+      "id": "structure/guardian-ready.json",
+      "passed": true
+    },
+    {
+      "id": "structure/service-ready.json",
+      "passed": true
+    },
+    {
+      "id": "structure/KERNEL_RLIMIT_AS_READBACK",
+      "passed": true
+    },
+    {
+      "id": "structure/PRODUCTION_LIMIT_READBACK",
+      "passed": true
+    },
+    {
+      "id": "structure/MANDATORY_RESOURCE_INTERFACE_MISSING",
+      "passed": true
+    },
+    {
+      "id": "structure/PRE_CARGO_LIMIT_DRIFT",
+      "passed": true
+    },
+    {
+      "id": "structure/FINAL_HOST_ADMISSION",
+      "passed": true
+    },
+    {
+      "id": "structure/immutable_files",
+      "passed": true
+    },
+    {
+      "id": "structure/SOURCE_NOT_FROZEN_CLEAN",
+      "passed": true
+    },
+    {
+      "id": "structure/cpu.max",
+      "passed": true
+    },
+    {
+      "id": "structure/memory.max",
+      "passed": true
+    },
+    {
+      "id": "structure/memory.swap.max",
+      "passed": true
+    },
+    {
+      "id": "structure/pids.max",
+      "passed": true
+    },
+    {
+      "id": "structure/NoAvailableInodes",
+      "passed": true
+    },
+    {
+      "id": "structure/scan_seconds",
+      "passed": true
+    },
+    {
+      "id": "structure/detection_to_cleanup_seconds",
+      "passed": true
+    },
+    {
+      "id": "structure/process_tree_events",
+      "passed": true
+    },
+    {
+      "id": "structure/GUARDIAN_FAILED_CONTROLLER_TAKEOVER",
+      "passed": true
+    },
+    {
+      "id": "structure/pidfd_send_signal",
+      "passed": true
+    },
+    {
+      "id": "structure/CARGO_TARGET_DIR",
+      "passed": true
+    },
+    {
+      "id": "no-shell/linux-one-shot-pilot.py",
+      "passed": true
+    },
+    {
+      "id": "no-shell/audit-linux-one-shot-pilot.py",
+      "passed": true
+    },
+    {
+      "id": "qualified-core-unchanged",
+      "passed": true
+    },
+    {
+      "id": "no-global-toolchain-proxy",
+      "passed": true
+    },
+    {
+      "id": "no-cargo-was-launched",
+      "passed": true
+    }
+  ],
+  "scope": "Static only; no claim of production effective limits"
+}

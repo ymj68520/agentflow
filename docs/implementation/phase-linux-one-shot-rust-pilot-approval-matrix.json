@@ -1,0 +1,27 @@
+{
+  "policy_sha256": "f1875f10f33ec0cb27e29eed0b977143473a1b8d2ee88bd836a598faaaa946c3",
+  "A": {
+    "Approved": true,
+    "reply": "批准此精确资源政策",
+    "scope": "Exact numerical policy only"
+  },
+  "B": {
+    "Approved": true,
+    "choice": "B2",
+    "reply": "接受 B2，仅限本次 Pilot",
+    "scope": "All five enumerated residual risks, one Pilot only",
+    "risks": [
+      "Sampling is not a hard disk quota",
+      "Instant writes may cross before the next sample",
+      "No strictly bounded maximum overshoot bytes follows from sampling alone",
+      "No isolation guarantee for arbitrary non-project writes",
+      "Acceptance does not apply to full tests or untrusted code"
+    ]
+  },
+  "C": {
+    "Approved": true,
+    "reply": "批准上述恰好一次 Pilot",
+    "scope": "Exactly one cargo check --locked --offline -j 1 -p af-core; <=900s; retries0"
+  },
+  "authorizer": "Direct independent human replies in this chat; not cryptographic third-party attestation"
+}

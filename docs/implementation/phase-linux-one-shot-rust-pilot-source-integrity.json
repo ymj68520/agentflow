@@ -1,0 +1,118 @@
+{
+  "status": "Passed",
+  "execution_source_head": "b76b42fe9b0b862a5669e1e9fa3ceb23bdd31451",
+  "git_tree": "352cbeaf81dbb4a766e6e62a4dc123d557dbfe0e",
+  "before_sha256": "a3afae8123518b05bb479c255affd4c49c05322ad605152170b1dab42d2d3c0b",
+  "after_sha256": "abf1b73e4d84ea55b39073ddc6cb3b4f01f512a2c94469d0da703184c078c769",
+  "frozen_snapshots": [
+    {
+      "snapshot": "frozen-g3",
+      "head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+      "paths": 2326
+    },
+    {
+      "snapshot": "history-1",
+      "head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+      "paths": 1732
+    },
+    {
+      "snapshot": "history-2",
+      "head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+      "paths": 1811
+    },
+    {
+      "snapshot": "history-3",
+      "head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+      "paths": 1902
+    },
+    {
+      "snapshot": "history-4",
+      "head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+      "paths": 2021
+    },
+    {
+      "snapshot": "history-5",
+      "head": "e623aab705c5f8269807201e112a32e67e6869bf",
+      "paths": 2076
+    },
+    {
+      "snapshot": "history-6",
+      "head": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+      "paths": 2170
+    },
+    {
+      "snapshot": "history-7",
+      "head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+      "paths": 2235
+    },
+    {
+      "snapshot": "history-8",
+      "head": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+      "paths": 2290
+    },
+    {
+      "snapshot": "legacy-current-dc1d-l2pivot01",
+      "head": "dc1d71f30b3a7f06065f4000712e6512f288db16",
+      "paths": 2469
+    }
+  ],
+  "frozen_paths": 21032,
+  "protected_files": 1677,
+  "cargo_lock_sha256": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede",
+  "cargo_archives": {
+    "quote-1.0.47.crate": "1fbf4db142a473a8d80c26bbf18454ed458bf8d26c8219c331daecfdbd079001",
+    "serde_core-1.0.229.crate": "67dca2c9c51e58a4791a4b1ed58308b39c64224d349a935ab5039aa360942a48",
+    "cfg-if-1.0.5.crate": "4e7648175b45a9a48536d676f68d918270699102aa8dab5496df06904c914600",
+    "itoa-1.0.18.crate": "8f42a60cbdf9a97f5d2305f08a87dc4e09308d1276d28c869c684d7777685682",
+    "version_check-0.9.5.crate": "0b928f33d975fc6ad9f86c8f283853ad26bdd5b10b7f1542aa2fa15e2289105a",
+    "base64-0.22.1.crate": "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6",
+    "generic-array-0.14.7.crate": "85649ca51fd72272d7821adaf274ad91c288277713d9c18820d8499a7ff69e9a",
+    "block-buffer-0.10.4.crate": "3078c7629b62d3f0439517fa394996acacc5cbc91c5a20d8c658e77abd503a71",
+    "unicode-normalization-0.1.25.crate": "5fd4f6878c9cb28d874b009da9e8d183b5abc80117c40bbd187a1fde336be6e8",
+    "serde_json-1.0.151.crate": "c841b55ecdae098c80dcae9cf767f6f8a0c2cdb3416bbef72181df4d0fe73f14",
+    "libc-0.2.190.crate": "ce5d3ddc6d3fa000eb1536d85e147bfe31aacaba692ed6a876f95cb7c855be78",
+    "cpufeatures-0.2.17.crate": "59ed5838eebb26a2bb2e58f6d5b5316989ae9d08bab10e0e6d103e656d1b0280",
+    "serde_derive-1.0.229.crate": "e7a5d71263a5a7d47b41f6b3f06ba276f10cc18b0931f1799f710578e2309348",
+    "proc-macro2-1.0.107.crate": "985e7ec9bb745e6ce6535b544d84d6cd6f7ad8bd711c398938ae983b91a766d9",
+    "hex-0.4.3.crate": "7f24254aa9a54b5c858eaee2f5bccdb46aaf0e486a595ed5fd8f86ba55232a70",
+    "zmij-1.0.23.crate": "29666d0abbfad1e3dc4dcf6144730dd3a3ab225bbbdac83319345b1b44ccfc1b",
+    "sha2-0.10.9.crate": "a7507d819769d01a365ab707794a4084392c824f54a7a6a7862f8c3d0892b283",
+    "typenum-1.20.1.crate": "b6f5e870be6c3b371b77fe0ee0bafb859fa4964b4404c27de1d380043c4dda20",
+    "crypto-common-0.1.7.crate": "78c8292055d1c1df0cce5d180393dc8cce0abec0a7102adb6c7b1eef6016d60a",
+    "unicode-ident-1.0.26.crate": "d245f478577f809a851594d02313b640fb437e0bb33866753cff937863096954",
+    "serde-1.0.229.crate": "4148590afebada386688f18773da617792bf2ef03ffc1e4cbd2b1d45b023e0ba",
+    "digest-0.10.7.crate": "9ed9a281f7bc9b7576e61468ba615a66a5c8cfdff42420a70aa82701a3b1e292",
+    "syn-3.0.6.crate": "8593e8e72159ed2257d083c7a454a85cbf854f37a0966d8d483aff8c8a3ebcee",
+    "tinyvec-1.13.3.crate": "fd3ca314f692efd6c868f8408f53fe444634a845f96c028b97d35f6a1f79f0ee",
+    "memchr-2.8.3.crate": "cf8baf1c55e62ffcace7a9f06f4bd9cd3f0c4beb022d3b367256b91b87513d98"
+  },
+  "cargo_vendor_checksums": {
+    "base64-0.22.1": "2c36b3eb4b84e6f22e50a944fa1db041e768d754df93b0053996a7a35b10f000",
+    "syn-3.0.6": "1b2870e90521eb4027d6c4b3351324b5d04fbff93fb6df1c543142d2c91cfe03",
+    "typenum-1.20.1": "2409af2c07c94085a6c6a1db1178d4a8255a8cfaa4c89c6e29b232a0c859e187",
+    "serde_derive-1.0.229": "cfbbc4b96d75d52d9fa6a9777d57fa825e610c5a48cf7436dc9ce40438927bd0",
+    "digest-0.10.7": "01e374595eefc9c909dfeb443d6b6d1c1b440f1a4547d12208e1d6eba9139853",
+    "generic-array-0.14.7": "22e689765bf42a7b42e5b1696d70c05c8bc46139810897447ac2bf03dd094332",
+    "zmij-1.0.23": "1d2f173f8de4f8a11c58107cc5f0f44d922a3a5de3f23a761785c89ad288c21c",
+    "cfg-if-1.0.5": "af9d402a10430a3f033ad4d49da7cad77886f487aa8e78ca864fe23d8c6db47f",
+    "crypto-common-0.1.7": "e6f224badf84a425d26dba42590e730146b98d84ee0f38d55134f9efaf671e66",
+    "unicode-normalization-0.1.25": "514aec60cabc0e6ae57f0629b3197fed36cbb8b0fd2e1d84d20fa2562ba3ea31",
+    "cpufeatures-0.2.17": "0276bf3c61749c66efae2c0ddaadeef108e35060a9c4621f09017db37839eb53",
+    "tinyvec-1.13.3": "6596f365d8dbb910207bf79e094ae307125100a6d0fae76e31595e37cffdb4e0",
+    "unicode-ident-1.0.26": "a70f13849cadfb4571995af924f105a1887c8de4717437a8805351b1cd8a897a",
+    "version_check-0.9.5": "be8797d22e97e608de7d23b53f253f417d51e037412464adfff596b2e98d4c68",
+    "quote-1.0.47": "56fd6d4f8ebae43abd0d1cfb291b03d4ac7cf2cc160842a420c293c49d7935ac",
+    "memchr-2.8.3": "7e103675f046adbe533586939bdcb621c5c6e4c38eaf54d82ef5ce86ccc3a81a",
+    "proc-macro2-1.0.107": "6c0d5c4ba97cf686858c60a2c35a58ed65ba037dde00341320e4b8990e19b86c",
+    "sha2-0.10.9": "3ad713b2a5049f15bb4f3a9f687da5f34d293cd979d44d7239f6a70ee4b90d14",
+    "itoa-1.0.18": "2be9fe8a94535b088ad95c52f34850d2530f22ee1e711f475c0a1b9df45fea3d",
+    "serde_core-1.0.229": "920eed6c82e8683e87e09f9033df398e568e68db74b9ab2ae59a00499c366563",
+    "serde-1.0.229": "3ed90df73525ecdf0076a8c8d54f04ee30d5c14d91f68f1020780fe4440ec9b4",
+    "block-buffer-0.10.4": "d8aa6412fc755d1ce1fe4d4ba2e8236d469ab012a626a9a755ceb338fb5471f7",
+    "hex-0.4.3": "f46bce79e4b5c64e8dcf10e542812fe19e5f6bd095bb34fdb23a0030bcfc1895",
+    "libc-0.2.190": "7a9d889e03083a05debd1d8cb1dcc4cf8336d00f2184805a800488d45038b4a2",
+    "serde_json-1.0.151": "392e0e5a25d0daa3291826d13cd5a33b0bcb87e1e8dfef3f90df0670d33f85c0"
+  },
+  "previous_phase_receipts_verified": 131,
+  "all_old_bytes_unchanged": true
+}
