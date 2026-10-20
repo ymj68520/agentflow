@@ -1,0 +1,25 @@
+{
+  "scope": "Local P0 audit runtime only; target remains unknown",
+  "python_version": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+  "python_executable": {
+    "path": "D:\\Software\\ProgramEvm\\Python3-14-2\\python.exe",
+    "raw_sha256": "fda7026477256845afab371e354c4d512896665f1761939cb5887d0a9dec257a"
+  },
+  "libraries": {
+    "jsonschema": {
+      "version": "4.26.0",
+      "entry": "D:\\Software\\ProgramEvm\\Python3-14-2\\Lib\\site-packages\\jsonschema\\__init__.py",
+      "raw_sha256": "a7e470e134bfd0e3c76482722260d6b1d5a099de823d61cc5cbabb06e4314c67"
+    },
+    "cryptography": {
+      "version": "48.0.0",
+      "entry": "D:\\Software\\ProgramEvm\\Python3-14-2\\Lib\\site-packages\\cryptography\\__init__.py",
+      "raw_sha256": "9ad86e52b4dde0544e0a9518ad322a863cfab3a4fd763019ad5ee7675a0c9b6a"
+    },
+    "referencing": {
+      "version": "0.37.0",
+      "entry": "D:\\Software\\ProgramEvm\\Python3-14-2\\Lib\\site-packages\\referencing\\__init__.py",
+      "raw_sha256": "e4864a5da007fc55b20894646939f55dca6d2df83d72f78b6fdbb99d853124ab"
+    }
+  }
+}

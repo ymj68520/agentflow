@@ -1,0 +1,104 @@
+{
+  "status": "STATIC CLASSIFICATION COMPLETE",
+  "real_environment": "NOT QUALIFIED",
+  "rows": [
+    {
+      "requirement": "OS/Windows x64 MSVC ABI",
+      "status": "Requires Qualification",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "evidence": "R3 frozen contract and raw manifests; see qualification-inputs/historical/G3 contracts",
+      "limitation": "Static source identity is not live environment equivalence; missing approvals are not PASS"
+    },
+    {
+      "requirement": "Rust/Cargo/LLVM/MSVC/SDK/Python exact identity",
+      "status": "Requires Qualification",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "evidence": "R3 frozen contract and raw manifests; see qualification-inputs/historical/G3 contracts",
+      "limitation": "Static source identity is not live environment equivalence; missing approvals are not PASS"
+    },
+    {
+      "requirement": "Historical debug 2/2/2/2/2/2/2/0 and G3 debug2",
+      "status": "Proved By Existing Contract",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "evidence": "R3 frozen contract and raw manifests; see qualification-inputs/historical/G3 contracts",
+      "limitation": "Static source identity is not live environment equivalence; missing approvals are not PASS"
+    },
+    {
+      "requirement": "Feature/target/build script/proc macro/doc test execution closure",
+      "status": "Requires Qualification",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "evidence": "R3 frozen contract and raw manifests; see qualification-inputs/historical/G3 contracts",
+      "limitation": "Static source identity is not live environment equivalence; missing approvals are not PASS"
+    },
+    {
+      "requirement": "Cargo.lock tracked bytes",
+      "status": "Proved By Static Evidence",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "evidence": "R3 frozen contract and raw manifests; see qualification-inputs/historical/G3 contracts",
+      "limitation": "Static source identity is not live environment equivalence; missing approvals are not PASS"
+    },
+    {
+      "requirement": "Dependency source/cache full closure",
+      "status": "Requires Qualification",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "evidence": "R3 frozen contract and raw manifests; see qualification-inputs/historical/G3 contracts",
+      "limitation": "Static source identity is not live environment equivalence; missing approvals are not PASS"
+    },
+    {
+      "requirement": "Working directory and path relocation",
+      "status": "Requires User Approval",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "evidence": "R3 frozen contract and raw manifests; see qualification-inputs/historical/G3 contracts",
+      "limitation": "Static source identity is not live environment equivalence; missing approvals are not PASS"
+    },
+    {
+      "requirement": "Original per-path LF/CRLF correspondence",
+      "status": "Proved By Existing Contract",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "evidence": "R3 frozen contract and raw manifests; see qualification-inputs/historical/G3 contracts",
+      "limitation": "Static source identity is not live environment equivalence; missing approvals are not PASS"
+    },
+    {
+      "requirement": "Build artifact/source/toolchain binding",
+      "status": "Requires Qualification",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "evidence": "R3 frozen contract and raw manifests; see qualification-inputs/historical/G3 contracts",
+      "limitation": "Static source identity is not live environment equivalence; missing approvals are not PASS"
+    },
+    {
+      "requirement": "Exact actual test/CaseId/Expected complete roster",
+      "status": "Requires Qualification",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "evidence": "R3 frozen contract and raw manifests; see qualification-inputs/historical/G3 contracts",
+      "limitation": "Static source identity is not live environment equivalence; missing approvals are not PASS"
+    },
+    {
+      "requirement": "Resource policies and executor identity",
+      "status": "Requires User Approval",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "evidence": "R3 frozen contract and raw manifests; see qualification-inputs/historical/G3 contracts",
+      "limitation": "Static source identity is not live environment equivalence; missing approvals are not PASS"
+    },
+    {
+      "requirement": "Frozen source GitBlob/raw identity at P0 audit",
+      "status": "Proved By Static Evidence",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "evidence": "R3 frozen contract and raw manifests; see qualification-inputs/historical/G3 contracts",
+      "limitation": "Static source identity is not live environment equivalence; missing approvals are not PASS"
+    },
+    {
+      "requirement": "Post-execution intact source and exits/Actual/independent Oracle",
+      "status": "Requires Qualification",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "evidence": "R3 frozen contract and raw manifests; see qualification-inputs/historical/G3 contracts",
+      "limitation": "Static source identity is not live environment equivalence; missing approvals are not PASS"
+    },
+    {
+      "requirement": "General EOL normalization or cross-Edition artifact sharing",
+      "status": "Unsupported",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "evidence": "R3 frozen contract and raw manifests; see qualification-inputs/historical/G3 contracts",
+      "limitation": "Static source identity is not live environment equivalence; missing approvals are not PASS"
+    }
+  ]
+}

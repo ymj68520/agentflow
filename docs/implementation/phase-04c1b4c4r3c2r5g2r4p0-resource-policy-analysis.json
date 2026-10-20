@@ -1,0 +1,42 @@
+{
+  "status": "EXPLICIT / PENDING APPROVAL",
+  "current_baseline": {
+    "P_build": null,
+    "J_build": null,
+    "P_test": 805306368,
+    "J_test": 1610612736,
+    "SystemReserve": 8589934592,
+    "cpu_percent": 5,
+    "top_level_jobs": 1,
+    "test_threads": 1,
+    "cargo_jobs": 1,
+    "priority": "BelowNormal",
+    "admission_threshold": null
+  },
+  "P_build": null,
+  "J_build": null,
+  "target_admission_threshold": null,
+  "old_host_only": {
+    "threshold_bytes": 15032385536,
+    "observed_duration_seconds": 600.0005618,
+    "samples": 121,
+    "admitted": false
+  },
+  "old_threshold_is_not_new_environment_norm": true,
+  "frozen_g3_oom": {
+    "cargo_exit": 101,
+    "debug": 2,
+    "process_peak_bytes": 805244928,
+    "process_cap_bytes": 805306368,
+    "conclusion": "Highly quota-consistent, not full causal proof or measurement of required peak",
+    "missing": "Failed allocation/OS error/Job notifications/commit details"
+  },
+  "two_budgets": [
+    "System physical/commit/reserve/host load and sustained admission",
+    "Compiler process and Job committed memory budget"
+  ],
+  "compile_policy": "P_build/J_build need evidence and separate bounded qualification-pilot approval; no arbitrary higher value proposed or applied",
+  "runtime_policy": "P_test/J_test/reserve retained baseline; compilation amendment never changes D0/D4/Native/Portable/RootExport product constraints",
+  "change_applied": false,
+  "runner_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07"
+}

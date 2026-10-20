@@ -1,0 +1,51 @@
+{
+  "status": "REQUIRED USER AUTHORIZATION",
+  "requested_values": {
+    "target_environment_identifier": null,
+    "owner": null,
+    "execution_authority": null,
+    "windows": null,
+    "architecture": null,
+    "toolchain": null,
+    "source_transport_permission": null,
+    "evidence_return_permission": null,
+    "approved_network_boundary": null,
+    "cpu_policy": null,
+    "P_build": null,
+    "J_build": null,
+    "P_test": 805306368,
+    "J_test": 1610612736,
+    "SystemReserve": 8589934592,
+    "allowed_historical_gates": null,
+    "allowed_frozen_g3_gate": null,
+    "allowed_execution_time_window": null,
+    "approved_evidence_trust_roots": null,
+    "authorized_executor": null,
+    "approval_identity": null,
+    "approval_scope": null
+  },
+  "existing_baseline_not_target_approval": {
+    "P_build": null,
+    "J_build": null,
+    "P_test": 805306368,
+    "J_test": 1610612736,
+    "SystemReserve": 8589934592,
+    "cpu_percent": 5,
+    "top_level_jobs": 1,
+    "test_threads": 1,
+    "cargo_jobs": 1,
+    "priority": "BelowNormal",
+    "admission_threshold": null
+  },
+  "permissions": {
+    "Environment Connection": "DENIED",
+    "Source Transfer": "DENIED",
+    "Remote Execution": "DENIED",
+    "Build Resource Amendment": "DENIED",
+    "Historical Build Launch": "DENIED",
+    "Frozen G3 Build Launch": "DENIED"
+  },
+  "P0": "Authorized preparation only",
+  "P1": "Not Authorized",
+  "P2": "Not Authorized"
+}

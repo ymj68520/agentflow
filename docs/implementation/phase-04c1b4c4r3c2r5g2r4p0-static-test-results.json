@@ -1,0 +1,2352 @@
+{
+  "status": "Static PASS",
+  "independent_static_oracle": "Static PASS",
+  "manifest_vectors": 105,
+  "passed": 105,
+  "cases": [
+    {
+      "id": "preparation-unknown-valid",
+      "expected_static_acceptance": true,
+      "validator_static_acceptance": true,
+      "independent_oracle_acceptance": true,
+      "expected_error": null,
+      "actual_errors": [],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "synthetic-complete",
+      "expected_static_acceptance": true,
+      "validator_static_acceptance": true,
+      "independent_oracle_acceptance": true,
+      "expected_error": null,
+      "actual_errors": [],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "raw-failed-101-preserved",
+      "expected_static_acceptance": true,
+      "validator_static_acceptance": true,
+      "independent_oracle_acceptance": true,
+      "expected_error": null,
+      "actual_errors": [],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "raw-reserve-79-preserved",
+      "expected_static_acceptance": true,
+      "validator_static_acceptance": true,
+      "independent_oracle_acceptance": true,
+      "expected_error": null,
+      "actual_errors": [],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "wrong-os",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "OS_ABI",
+      "actual_errors": [
+        "OS_ABI"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "wrong-abi",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "OS_ABI",
+      "actual_errors": [
+        "OS_ABI"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "wrong-architecture",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "OS_ABI",
+      "actual_errors": [
+        "OS_ABI"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "partial-toolchain-unqualified",
+      "expected_static_acceptance": true,
+      "validator_static_acceptance": true,
+      "independent_oracle_acceptance": true,
+      "expected_error": null,
+      "actual_errors": [],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "toolchain-field-missing",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "debug2-to-zero",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "DEBUG_PROFILE",
+      "actual_errors": [
+        "DEBUG_PROFILE"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "debug0-to-two",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "DEBUG_PROFILE",
+      "actual_errors": [
+        "DEBUG_PROFILE"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "compiler-owner-confusion",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "REFERENCE_CLOSURE",
+      "actual_errors": [
+        "REFERENCE_CLOSURE"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "missing-doc-test",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "TARGET_CLOSURE",
+      "actual_errors": [
+        "TARGET_CLOSURE"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "missing-build-script",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "TARGET_CLOSURE",
+      "actual_errors": [
+        "TARGET_CLOSURE"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "missing-proc-macro",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "TARGET_CLOSURE",
+      "actual_errors": [
+        "TARGET_CLOSURE"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "dependency-source-unknown",
+      "expected_static_acceptance": true,
+      "validator_static_acceptance": true,
+      "independent_oracle_acceptance": true,
+      "expected_error": null,
+      "actual_errors": [],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "approval-not-provided",
+      "expected_static_acceptance": true,
+      "validator_static_acceptance": true,
+      "independent_oracle_acceptance": true,
+      "expected_error": null,
+      "actual_errors": [],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "build-budget-not-approved",
+      "expected_static_acceptance": true,
+      "validator_static_acceptance": true,
+      "independent_oracle_acceptance": true,
+      "expected_error": null,
+      "actual_errors": [],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "pbuild-unauthorized",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "UNAPPROVED_RESOURCE_POLICY",
+      "actual_errors": [
+        "UNAPPROVED_RESOURCE_POLICY"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "jbuild-unauthorized",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "UNAPPROVED_RESOURCE_POLICY",
+      "actual_errors": [
+        "UNAPPROVED_RESOURCE_POLICY"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "test-limit-changed",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "UNAPPROVED_RESOURCE_POLICY",
+      "actual_errors": [
+        "UNAPPROVED_RESOURCE_POLICY"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "cpu-limit-changed",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "UNAPPROVED_RESOURCE_POLICY",
+      "actual_errors": [
+        "UNAPPROVED_RESOURCE_POLICY"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "old14gib-not-new-default",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "UNAPPROVED_RESOURCE_POLICY",
+      "actual_errors": [
+        "UNAPPROVED_RESOURCE_POLICY"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "executor-not-authenticated",
+      "expected_static_acceptance": true,
+      "validator_static_acceptance": true,
+      "independent_oracle_acceptance": true,
+      "expected_error": null,
+      "actual_errors": [],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "roots-signature-missing",
+      "expected_static_acceptance": true,
+      "validator_static_acceptance": true,
+      "independent_oracle_acceptance": true,
+      "expected_error": null,
+      "actual_errors": [],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "caller-trusted-without-roots",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "UNESTABLISHED_TRUST",
+      "actual_errors": [
+        "UNESTABLISHED_TRUST"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "fake-signature-payload",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SIGNATURE_PAYLOAD_HASH",
+      "actual_errors": [
+        "CRYPTO_ENVELOPE",
+        "SIGNATURE_PAYLOAD_HASH"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "source-hash-mismatch",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "REFERENCE_CLOSURE",
+      "actual_errors": [
+        "REFERENCE_CLOSURE"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "historical-group-omitted",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "GATE_ROSTER",
+      "actual_errors": [
+        "GATE_ROSTER"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "frozen-g3-omitted",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "GATE_ROSTER",
+      "actual_errors": [
+        "GATE_ROSTER"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-omit-field",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-shrink-case-denominator",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "CASE_FIELD_CLOSURE",
+      "actual_errors": [
+        "CASE_DENOMINATOR",
+        "CASE_FIELD_CLOSURE"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "both-sides-field-different",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "CASE_FIELD_CLOSURE",
+      "actual_errors": [
+        "CASE_FIELD_CLOSURE"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "freshness-replay",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "EXECUTION_REPLAY",
+      "actual_errors": [
+        "EXECUTION_REPLAY"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "lane-b-expanded-credit",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "LANE_B_SCOPE",
+      "actual_errors": [
+        "LANE_B_SCOPE"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "cross-edition-artifact",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "CROSS_EDITION_ARTIFACT",
+      "actual_errors": [
+        "CROSS_EDITION_ARTIFACT"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "missing-symbol-artifact",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "ARTIFACT_CLOSURE",
+      "actual_errors": [
+        "ARTIFACT_CLOSURE"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "missing-artifact-hash",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "candidate-env-mismatch",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "ENVIRONMENT_ID",
+      "actual_errors": [
+        "ENVIRONMENT_ID"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "false-pass-from-not-executed",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "STATUS_REWRITE",
+      "actual_errors": [
+        "STATUS_REWRITE"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "false-pass-from-failure",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "STATUS_REWRITE",
+      "actual_errors": [
+        "STATUS_REWRITE"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "false-real-execution-pass",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "P0_EXECUTION_CLAIM",
+      "actual_errors": [
+        "P0_EXECUTION_CLAIM"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "capability-denial-cannot-grant",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "CAPABILITY_DENIAL",
+      "actual_errors": [
+        "CAPABILITY_DENIAL"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "positive-authority-forgery",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "POSITIVE_AUTHORITY",
+      "actual_errors": [
+        "POSITIVE_AUTHORITY"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "integer-bool-alias",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "float-integer-alias",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "unknown-private-key-field",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "false-time-from-not-executed",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "EXECUTION_WINDOW",
+      "actual_errors": [
+        "EXECUTION_WINDOW"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "invalid-case-count",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "CASE_DENOMINATOR",
+      "actual_errors": [
+        "CASE_DENOMINATOR"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "wrong-frozen-head",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "FROZEN_HEAD",
+      "actual_errors": [
+        "CROSS_EDITION_ARTIFACT",
+        "FROZEN_HEAD"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "full-command-narrowed",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "COMMAND_CONTRACT",
+      "actual_errors": [
+        "COMMAND_CONTRACT"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "environment-id-reused",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "ENVIRONMENT_CONFLICT",
+      "actual_errors": [
+        "ENVIRONMENT_CONFLICT",
+        "ENVIRONMENT_ID"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "candidate-self-approved-build",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "UNAPPROVED_RESOURCE_POLICY",
+      "actual_errors": [
+        "UNAPPROVED_RESOURCE_POLICY"
+      ],
+      "qualification_blockers": [
+        "BUILD_BUDGET_PENDING_APPROVAL",
+        "CACHE_UNVERIFIED",
+        "CANDIDATE_POLICY_NOT_APPROVED",
+        "CONCRETE_ENVIRONMENT_MISSING",
+        "DEPENDENCY_LOCK_UNKNOWN",
+        "DEPENDENCY_SOURCE_UNKNOWN",
+        "ENVIRONMENT_APPROVAL_MISSING",
+        "EXECUTOR_UNAUTHENTICATED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR",
+        "P1_NOT_AUTHORIZED",
+        "SIGNATURE_MISSING",
+        "TOOLCHAIN_INCOMPLETE"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-root/schema_version",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-root/scope",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-root/candidate",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-root/environment_id",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-root/resource_policy",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-root/gates",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-root/lane_b",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-root/execution_id",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-root/execution_status",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-root/claimed_status",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-root/execution_window",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-root/actual_exit_code",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-root/cancelled",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-root/trusted_status",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-root/positive_authority",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-root/capability_denial",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-root/signature",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/candidate_id",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/environment_owner",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/approval_reference",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/execution_location",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/execution_authority",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/host_or_vm_identity",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/operating_system",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/os_build",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/architecture",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/target_abi",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/rust_toolchain",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/cargo_version",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/rustc_version",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/llvm_version",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/msvc_toolset",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/windows_sdk",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/python_runtime",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/dependency_sources",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/dependency_lockfiles",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/offline_cache_identity",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/cpu_topology",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/physical_memory",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/available_memory",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/commit_limit",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/filesystem_capacity",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/build_resource_policy",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/test_resource_policy",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/foreground_reserve_policy",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/network_access_policy",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/data_transfer_policy",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/evidence_storage_policy",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/trusted_executor_identity",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/trusted_manifest_verifier",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/approved_trust_roots",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    },
+    {
+      "id": "omit-candidate/qualification_status",
+      "expected_static_acceptance": false,
+      "validator_static_acceptance": false,
+      "independent_oracle_acceptance": false,
+      "expected_error": "SCHEMA",
+      "actual_errors": [
+        "SCHEMA"
+      ],
+      "qualification_blockers": [
+        "P1_NOT_AUTHORIZED",
+        "NO_APPROVED_TRUST_ROOTS",
+        "NO_AUTHENTICATED_EXECUTOR"
+      ],
+      "static_result": "Static PASS",
+      "real_execution": "Not Executed",
+      "authority": false
+    }
+  ],
+  "public_signature_vectors": [
+    {
+      "id": "RFC8032-public-valid",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "RFC8032-corrupted",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "RFC8032-changed-message",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "RFC8032-short-key",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "RFC8032-short-signature",
+      "expected": false,
+      "actual": false
+    }
+  ],
+  "public_key_scope": "Published public RFC test vector only; never a trusted executor/root; no private keys or key generation",
+  "strict_parser_negative_vectors": 6,
+  "local_file_identity_vectors": 7,
+  "r3_vectors": {
+    "preserved": 110,
+    "replayed_static_pass": 110,
+    "original_expected_file": "docs/implementation/phase-04c1b4c4r3c2r5g2r3-design-vector-results.json",
+    "original_expected_sha256": "6cfb48437a85cb4268c7d78f0a6f055d8de4bbb0fc559bb5918ae069b3ba9bc9"
+  },
+  "independent_expected_source": "Separately authored static-test-vectors.json and fixed frozen contracts, not validator Actual",
+  "concrete_environment": "NOT QUALIFIED",
+  "executor_authority": "Not Established",
+  "cryptographic_trust": "Not Established",
+  "P1": "Not Authorized",
+  "P2": "Not Authorized",
+  "real_environment": "Not Executed",
+  "historical_builds": "0/8",
+  "frozen_g3": "Not Executed",
+  "production_execution_credit": 0,
+  "positive_authority": false
+}

@@ -1,0 +1,1117 @@
+{
+  "schema_version": "R4P0/evidence@1",
+  "scope": "Synthetic",
+  "candidate": {
+    "candidate_id": null,
+    "environment_owner": null,
+    "approval_reference": null,
+    "execution_location": null,
+    "execution_authority": null,
+    "host_or_vm_identity": null,
+    "operating_system": null,
+    "os_build": null,
+    "architecture": null,
+    "target_abi": null,
+    "rust_toolchain": null,
+    "cargo_version": null,
+    "rustc_version": null,
+    "llvm_version": null,
+    "msvc_toolset": null,
+    "windows_sdk": null,
+    "python_runtime": null,
+    "dependency_sources": null,
+    "dependency_lockfiles": null,
+    "offline_cache_identity": null,
+    "cpu_topology": null,
+    "physical_memory": null,
+    "available_memory": null,
+    "commit_limit": null,
+    "filesystem_capacity": null,
+    "build_resource_policy": null,
+    "test_resource_policy": null,
+    "foreground_reserve_policy": null,
+    "network_access_policy": null,
+    "data_transfer_policy": null,
+    "evidence_storage_policy": null,
+    "trusted_executor_identity": null,
+    "trusted_manifest_verifier": null,
+    "approved_trust_roots": null,
+    "qualification_status": "Not Verified"
+  },
+  "environment_id": null,
+  "resource_policy": {
+    "P_build": null,
+    "J_build": null,
+    "P_test": 805306368,
+    "J_test": 1610612736,
+    "SystemReserve": 8589934592,
+    "cpu_percent": 5,
+    "top_level_jobs": 1,
+    "test_threads": 1,
+    "cargo_jobs": 1,
+    "priority": "BelowNormal",
+    "admission_threshold": null
+  },
+  "gates": [
+    {
+      "gate_id": "history-1",
+      "environment_id": null,
+      "frozen_head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+      "debug": 2,
+      "refs": {
+        "source": {
+          "owner_head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+          "sha256": "4faf6ee22cdfef9b2af0039ce41e4e58b5bd500d1c67010041462c2517c279c7"
+        },
+        "registry": {
+          "owner_head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+          "sha256": "1af4822baac27158b232448137411a1663ab443f26a76f5cdaca9d2218377304"
+        },
+        "compiler": {
+          "owner_head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+          "sha256": "7d56460fda1bc099b5e0878a90dbbd858217b62e04b3654904b71a091040b968"
+        },
+        "expected": {
+          "owner_head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+          "sha256": "67c59c03577a527b74f8e905e28e70706017a3b2dcbb543fd0fa53b9ac2edd31"
+        },
+        "oracle": {
+          "owner_head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+          "sha256": "658861b42d5dbe777965eb1fc47f46ceeafa15d2c0015c9e9f8665809bc5d265"
+        }
+      },
+      "case_count": 512,
+      "commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition1\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c3-legacy-abc91d5\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition1\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "closure": {
+        "all_targets": true,
+        "build_scripts": true,
+        "proc_macros": true,
+        "doc_tests": true
+      },
+      "case_ids": [
+        "synthetic/history-1/a",
+        "synthetic/history-1/b"
+      ],
+      "expected": [
+        {
+          "case_id": "synthetic/history-1/a",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        },
+        {
+          "case_id": "synthetic/history-1/b",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        }
+      ],
+      "actual": [
+        {
+          "case_id": "synthetic/history-1/a",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        },
+        {
+          "case_id": "synthetic/history-1/b",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "bin/history-1.exe",
+          "owner_head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "byte_length": 1
+        },
+        {
+          "path": "symbols/history-1.pdb",
+          "owner_head": "abc91d533b4d62e91226722e1d1fcaa30bd00883",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "byte_length": 1
+        }
+      ],
+      "artifact_owner": "abc91d533b4d62e91226722e1d1fcaa30bd00883"
+    },
+    {
+      "gate_id": "history-2",
+      "environment_id": null,
+      "frozen_head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+      "debug": 2,
+      "refs": {
+        "source": {
+          "owner_head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+          "sha256": "f5f03ded6e6d20746f3e4df2a9fb7d1c6b9641c701f6c53c0b505ba68643c7ec"
+        },
+        "registry": {
+          "owner_head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+          "sha256": "80e2de25f1df230e80f3a9649dddbdf46cbc51a496e8c295fad3295c2f66b77c"
+        },
+        "compiler": {
+          "owner_head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+          "sha256": "e3430b689aec7b95787115a4222e5f7096a317891d693f1101315a094ebae418"
+        },
+        "expected": {
+          "owner_head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+          "sha256": "ba5fcf1652df3e06f447142ddd57835357df1ce34b0ccbe2fad578cca0fefdbc"
+        },
+        "oracle": {
+          "owner_head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+          "sha256": "209eb8d3d18f4f98eb66865de30a499943c2b23110cc7aba1ca36216b134d4d7"
+        }
+      },
+      "case_count": 51,
+      "commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition2\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r2-edition2\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition2\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "closure": {
+        "all_targets": true,
+        "build_scripts": true,
+        "proc_macros": true,
+        "doc_tests": true
+      },
+      "case_ids": [
+        "synthetic/history-2/a",
+        "synthetic/history-2/b"
+      ],
+      "expected": [
+        {
+          "case_id": "synthetic/history-2/a",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        },
+        {
+          "case_id": "synthetic/history-2/b",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        }
+      ],
+      "actual": [
+        {
+          "case_id": "synthetic/history-2/a",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        },
+        {
+          "case_id": "synthetic/history-2/b",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "bin/history-2.exe",
+          "owner_head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "byte_length": 1
+        },
+        {
+          "path": "symbols/history-2.pdb",
+          "owner_head": "51239a0045d7a6fb274bb24cdc8130f2346bf085",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "byte_length": 1
+        }
+      ],
+      "artifact_owner": "51239a0045d7a6fb274bb24cdc8130f2346bf085"
+    },
+    {
+      "gate_id": "history-3",
+      "environment_id": null,
+      "frozen_head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+      "debug": 2,
+      "refs": {
+        "source": {
+          "owner_head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+          "sha256": "56704a30918a73638c0aec60d00cf0fe727069e175ae80a76dfee82f8156d3e4"
+        },
+        "registry": {
+          "owner_head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+          "sha256": "40518f7472c4e55587e21aa65e3cd3cf626600620df95a0adb6e7c1fce9b43c4"
+        },
+        "compiler": {
+          "owner_head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+          "sha256": "03935745d0a0f04fb205687d890ca4f791f0f33b02344ab2beafb0ee3f1aa6ac"
+        },
+        "expected": {
+          "owner_head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+          "sha256": "946a74b67e2d3fae87e88d40aa40050cfd332d32994e17adc0f575ff0c1cefeb"
+        },
+        "oracle": {
+          "owner_head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+          "sha256": "6a58b44b51cf2f845a18516eaaf7af171d60a7de7c6ac481bef339def05186a9"
+        }
+      },
+      "case_count": 173,
+      "commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition3\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition3\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3g2-edition3\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [
+          [
+            "<qualified-python>",
+            "-X",
+            "utf8",
+            "tools/audit-substitution-staging.py"
+          ]
+        ],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "closure": {
+        "all_targets": true,
+        "build_scripts": true,
+        "proc_macros": true,
+        "doc_tests": true
+      },
+      "case_ids": [
+        "synthetic/history-3/a",
+        "synthetic/history-3/b"
+      ],
+      "expected": [
+        {
+          "case_id": "synthetic/history-3/a",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        },
+        {
+          "case_id": "synthetic/history-3/b",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        }
+      ],
+      "actual": [
+        {
+          "case_id": "synthetic/history-3/a",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        },
+        {
+          "case_id": "synthetic/history-3/b",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "bin/history-3.exe",
+          "owner_head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "byte_length": 1
+        },
+        {
+          "path": "symbols/history-3.pdb",
+          "owner_head": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "byte_length": 1
+        }
+      ],
+      "artifact_owner": "4d3bb59031795d31ecfccf29e3d9f2d89a7d9ce8"
+    },
+    {
+      "gate_id": "history-4",
+      "environment_id": null,
+      "frozen_head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+      "debug": 2,
+      "refs": {
+        "source": {
+          "owner_head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+          "sha256": "c574882bb907c96336363d921142676acaa0881367c611283d6fae0d385f1f56"
+        },
+        "registry": {
+          "owner_head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+          "sha256": "bb60398b29dc40630a68a306aafcafa3654906a21be0313353b6834c1c39c9d0"
+        },
+        "compiler": {
+          "owner_head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+          "sha256": "927b364e236cd91bde9ef6d31bcd5c5bedd095ca2f47227045e32d91d3f831f4"
+        },
+        "expected": {
+          "owner_head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+          "sha256": "a5c050b6e067e882a293dcbadf481f91a70ff6ceacf9178518ff6b8f98e55f5e"
+        },
+        "oracle": {
+          "owner_head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+          "sha256": "7385b9c4fcc452a116a78360dd2d85b8d0664ced533638f7bdb756a6dd2d844a"
+        }
+      },
+      "case_count": 889,
+      "commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c1g2-edition4\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c1g2-edition4\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c1g2-edition4\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "closure": {
+        "all_targets": true,
+        "build_scripts": true,
+        "proc_macros": true,
+        "doc_tests": true
+      },
+      "case_ids": [
+        "synthetic/history-4/a",
+        "synthetic/history-4/b"
+      ],
+      "expected": [
+        {
+          "case_id": "synthetic/history-4/a",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        },
+        {
+          "case_id": "synthetic/history-4/b",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        }
+      ],
+      "actual": [
+        {
+          "case_id": "synthetic/history-4/a",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        },
+        {
+          "case_id": "synthetic/history-4/b",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "bin/history-4.exe",
+          "owner_head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "byte_length": 1
+        },
+        {
+          "path": "symbols/history-4.pdb",
+          "owner_head": "875e6e41f16845c78d4f6d31573826c547d48c07",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "byte_length": 1
+        }
+      ],
+      "artifact_owner": "875e6e41f16845c78d4f6d31573826c547d48c07"
+    },
+    {
+      "gate_id": "history-5",
+      "environment_id": null,
+      "frozen_head": "e623aab705c5f8269807201e112a32e67e6869bf",
+      "debug": 2,
+      "refs": {
+        "source": {
+          "owner_head": "e623aab705c5f8269807201e112a32e67e6869bf",
+          "sha256": "3f5e8ee0b10d3b9566d27afb537578c71759c40847322c1d4b209aeeead52874"
+        },
+        "registry": {
+          "owner_head": "e623aab705c5f8269807201e112a32e67e6869bf",
+          "sha256": "c034dc23d0df0c89caa613609ba632a23eba757e3a3e536143db14e2f451b45a"
+        },
+        "compiler": {
+          "owner_head": "e623aab705c5f8269807201e112a32e67e6869bf",
+          "sha256": "91a9c02d82cebe3f8f27c3668519d198ac042974a79ac90b519266841cff9728"
+        },
+        "expected": {
+          "owner_head": "e623aab705c5f8269807201e112a32e67e6869bf",
+          "sha256": "b03315e98f6f66f0a8e5f949173b596538d1c9ccea5174a0ea95921cf9f81304"
+        },
+        "oracle": {
+          "owner_head": "e623aab705c5f8269807201e112a32e67e6869bf",
+          "sha256": "c8ae34ef73b6ad3f93173e0fd30c6680dffdc9726a91676f1d157419f51894a6"
+        }
+      },
+      "case_count": 262,
+      "commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2g2-analysis5\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2g2-analysis5\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2g2-analysis5\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "closure": {
+        "all_targets": true,
+        "build_scripts": true,
+        "proc_macros": true,
+        "doc_tests": true
+      },
+      "case_ids": [
+        "synthetic/history-5/a",
+        "synthetic/history-5/b"
+      ],
+      "expected": [
+        {
+          "case_id": "synthetic/history-5/a",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        },
+        {
+          "case_id": "synthetic/history-5/b",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        }
+      ],
+      "actual": [
+        {
+          "case_id": "synthetic/history-5/a",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        },
+        {
+          "case_id": "synthetic/history-5/b",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "bin/history-5.exe",
+          "owner_head": "e623aab705c5f8269807201e112a32e67e6869bf",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "byte_length": 1
+        },
+        {
+          "path": "symbols/history-5.pdb",
+          "owner_head": "e623aab705c5f8269807201e112a32e67e6869bf",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "byte_length": 1
+        }
+      ],
+      "artifact_owner": "e623aab705c5f8269807201e112a32e67e6869bf"
+    },
+    {
+      "gate_id": "history-6",
+      "environment_id": null,
+      "frozen_head": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+      "debug": 2,
+      "refs": {
+        "source": {
+          "owner_head": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+          "sha256": "68cde1e0591baec0ee2c2ed1ee882a68bef538a12fc71208bccd3c3b7a75a23f"
+        },
+        "registry": {
+          "owner_head": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+          "sha256": "b1eb4ddc80d1c2b08bf6958747d6a7ba2718c76f326adba0ed083cc15bb80cf9"
+        },
+        "compiler": {
+          "owner_head": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+          "sha256": "16874b4ee1fe7ad94b5b0886d0da7bb562869eea2622b0bf2de5a172fe647f70"
+        },
+        "expected": {
+          "owner_head": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+          "sha256": "b8359552844d52ffc053cbb34ce0f474d83f0619f6ae18eaa1222f4bc21af48c"
+        },
+        "oracle": {
+          "owner_head": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+          "sha256": "6b8b21a9be695895ea5eae725250493c2741f3de04f24ad62a96383883aa248e"
+        }
+      },
+      "case_count": 254,
+      "commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r3g2-analysis6\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r3g2-analysis6\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r3g2-analysis6\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "closure": {
+        "all_targets": true,
+        "build_scripts": true,
+        "proc_macros": true,
+        "doc_tests": true
+      },
+      "case_ids": [
+        "synthetic/history-6/a",
+        "synthetic/history-6/b"
+      ],
+      "expected": [
+        {
+          "case_id": "synthetic/history-6/a",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        },
+        {
+          "case_id": "synthetic/history-6/b",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        }
+      ],
+      "actual": [
+        {
+          "case_id": "synthetic/history-6/a",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        },
+        {
+          "case_id": "synthetic/history-6/b",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "bin/history-6.exe",
+          "owner_head": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "byte_length": 1
+        },
+        {
+          "path": "symbols/history-6.pdb",
+          "owner_head": "2ad4359410c087462f8366f1ddb5c38bebfef681",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "byte_length": 1
+        }
+      ],
+      "artifact_owner": "2ad4359410c087462f8366f1ddb5c38bebfef681"
+    },
+    {
+      "gate_id": "history-7",
+      "environment_id": null,
+      "frozen_head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+      "debug": 2,
+      "refs": {
+        "source": {
+          "owner_head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+          "sha256": "d7ac4a466321139bd6dc0037f6203246b2d75c203cdb8560e1626e3339f78ab8"
+        },
+        "registry": {
+          "owner_head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+          "sha256": "6d55091314457a86e9fd2c8513e56d8159afba741a35e812754107d0531a939b"
+        },
+        "compiler": {
+          "owner_head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+          "sha256": "5e7430fc439145398221f2355f24f6bcfec5665226aaae6eb1927dd41bfa4377"
+        },
+        "expected": {
+          "owner_head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+          "sha256": "e0d42fb84b319e9a5c768dfb4cc90709d552fa1140a2b19a312a476de20dd8d8"
+        },
+        "oracle": {
+          "owner_head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+          "sha256": "f5343c3c160313058b77f41bd799d83d72e749352f7afbccc48248d185ea085d"
+        }
+      },
+      "case_count": 534,
+      "commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g2-analysis7\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g2-analysis7\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r4g2-analysis7\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [
+          [
+            "<qualified-python>",
+            "-X",
+            "utf8",
+            "tools/audit-relation-schema-staging.py",
+            "--receipts"
+          ]
+        ],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "closure": {
+        "all_targets": true,
+        "build_scripts": true,
+        "proc_macros": true,
+        "doc_tests": true
+      },
+      "case_ids": [
+        "synthetic/history-7/a",
+        "synthetic/history-7/b"
+      ],
+      "expected": [
+        {
+          "case_id": "synthetic/history-7/a",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        },
+        {
+          "case_id": "synthetic/history-7/b",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        }
+      ],
+      "actual": [
+        {
+          "case_id": "synthetic/history-7/a",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        },
+        {
+          "case_id": "synthetic/history-7/b",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "bin/history-7.exe",
+          "owner_head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "byte_length": 1
+        },
+        {
+          "path": "symbols/history-7.pdb",
+          "owner_head": "8dc4f508c2f97b431053528ab14d2bd9263b3737",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "byte_length": 1
+        }
+      ],
+      "artifact_owner": "8dc4f508c2f97b431053528ab14d2bd9263b3737"
+    },
+    {
+      "gate_id": "history-8",
+      "environment_id": null,
+      "frozen_head": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+      "debug": 0,
+      "refs": {
+        "source": {
+          "owner_head": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+          "sha256": "7ce8cad95bf876fb1f4b151c7754a7831850936e77432f5535ac0033192253ad"
+        },
+        "registry": {
+          "owner_head": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+          "sha256": "d96c3e9c4c297947dc61f58b46aa4ebc4bfa78026f64fd677f75d10d77169f80"
+        },
+        "compiler": {
+          "owner_head": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+          "sha256": "9ed43602c2db778011923bfb82a14a2c6c9151fbc7cf8b05b600d7d5afe3d855"
+        },
+        "expected": {
+          "owner_head": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+          "sha256": "f6029db9784d2eebe5bf387094e9d1b29e9832de5d3af8f82816128455e3b504"
+        },
+        "oracle": {
+          "owner_head": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+          "sha256": "dbd919cb9c504bb876c4f59b99d684dccb871a7d3ea055dbd7e736795fb5f89a"
+        }
+      },
+      "case_count": 3662,
+      "commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5-analysis8-g2\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5-analysis8-g2\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5-analysis8-g2\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "0",
+          "CARGO_PROFILE_TEST_DEBUG": "0",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [
+          [
+            "<qualified-python>",
+            "-X",
+            "utf8",
+            "tools/audit-structural-binding-staging.py",
+            "--receipts"
+          ]
+        ],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "closure": {
+        "all_targets": true,
+        "build_scripts": true,
+        "proc_macros": true,
+        "doc_tests": true
+      },
+      "case_ids": [
+        "synthetic/history-8/a",
+        "synthetic/history-8/b"
+      ],
+      "expected": [
+        {
+          "case_id": "synthetic/history-8/a",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        },
+        {
+          "case_id": "synthetic/history-8/b",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        }
+      ],
+      "actual": [
+        {
+          "case_id": "synthetic/history-8/a",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        },
+        {
+          "case_id": "synthetic/history-8/b",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "bin/history-8.exe",
+          "owner_head": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "byte_length": 1
+        },
+        {
+          "path": "symbols/history-8.pdb",
+          "owner_head": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "byte_length": 1
+        }
+      ],
+      "artifact_owner": "5ef4e56a3ad5ef9cc3fe050dcbe9b98f678476ea"
+    },
+    {
+      "gate_id": "frozen-g3",
+      "environment_id": null,
+      "frozen_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+      "debug": 2,
+      "refs": {
+        "source": {
+          "owner_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+          "sha256": "e650c1b7cf7239be21accca1c8a6f9a434ff301544019dc272ffb848323f84da"
+        },
+        "registry": {
+          "owner_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+          "sha256": "d96c3e9c4c297947dc61f58b46aa4ebc4bfa78026f64fd677f75d10d77169f80"
+        },
+        "compiler": {
+          "owner_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+          "sha256": "8c840ea97c6846b2be8bcdba26d2e04b3489b8085a3ef49dfec6111f8a2e0fb5"
+        },
+        "expected": {
+          "owner_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+          "sha256": "60bdddde2282c0ddf1d669b8ac0e29a9d1a406a3154cb320711a62c31062a6f1"
+        },
+        "oracle": {
+          "owner_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+          "sha256": "0d709c9f015b571a2ce927de5165429673a7863b8bcf7cd13e247c87dcae8434"
+        }
+      },
+      "case_count": {
+        "positive": 154,
+        "negative_and_resource_nominal_boundaries": 26,
+        "comparator_mutations": 59
+      },
+      "commands": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [
+          [
+            "<qualified-python>",
+            "-X",
+            "utf8",
+            "tools/oracle/production_input_graph.py",
+            "--all"
+          ],
+          [
+            "<qualified-python>",
+            "-X",
+            "utf8",
+            "tools/oracle/production_input_graph.py",
+            "--mutations"
+          ],
+          [
+            "<approved-frozen-evidence-checker>",
+            "A-evidence"
+          ]
+        ],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "closure": {
+        "all_targets": true,
+        "build_scripts": true,
+        "proc_macros": true,
+        "doc_tests": true
+      },
+      "case_ids": [
+        "synthetic/frozen-g3/a",
+        "synthetic/frozen-g3/b"
+      ],
+      "expected": [
+        {
+          "case_id": "synthetic/frozen-g3/a",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        },
+        {
+          "case_id": "synthetic/frozen-g3/b",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        }
+      ],
+      "actual": [
+        {
+          "case_id": "synthetic/frozen-g3/a",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        },
+        {
+          "case_id": "synthetic/frozen-g3/b",
+          "fields": {
+            "verdict": "SYNTHETIC_ONLY",
+            "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+          }
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "bin/frozen-g3.exe",
+          "owner_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "byte_length": 1
+        },
+        {
+          "path": "symbols/frozen-g3.pdb",
+          "owner_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "byte_length": 1
+        }
+      ],
+      "artifact_owner": "a9e296407c682a69f596be84ac8974eb870ebc18"
+    }
+  ],
+  "lane_b": {
+    "generators": 41,
+    "rounds": 2,
+    "executions": 82,
+    "original_paths": 2403,
+    "byte_drift": 0,
+    "expanded_tree_pass": false
+  },
+  "execution_id": null,
+  "execution_status": "Not Executed",
+  "claimed_status": "Not Executed",
+  "actual_exit_code": null,
+  "cancelled": null,
+  "trusted_status": "Not Established",
+  "positive_authority": false,
+  "capability_denial": {
+    "root_export": "NotAuthorized",
+    "portable": "NotAuthorized",
+    "complete_view": "NotIssued",
+    "obligation_identity": "NotIssued"
+  },
+  "signature": {
+    "algorithm": null,
+    "key_id": null,
+    "payload_sha256": null,
+    "signature_base64": null
+  },
+  "execution_window": {
+    "start_utc_ns": null,
+    "end_utc_ns": null,
+    "start_monotonic_ns": null,
+    "end_monotonic_ns": null
+  }
+}

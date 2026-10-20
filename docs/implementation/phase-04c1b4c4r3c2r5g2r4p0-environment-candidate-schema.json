@@ -1,0 +1,818 @@
+{
+  "type": "object",
+  "properties": {
+    "candidate_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "environment_owner": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "approval_reference": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "execution_location": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "execution_authority": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "host_or_vm_identity": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "identity": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "identity",
+        "version",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "operating_system": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "os_build": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "architecture": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "target_abi": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "rust_toolchain": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "identity": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "identity",
+        "version",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "cargo_version": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "rustc_version": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "llvm_version": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "msvc_toolset": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "identity": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "identity",
+        "version",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "windows_sdk": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "identity": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "identity",
+        "version",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "python_runtime": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "identity": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "identity",
+        "version",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "dependency_sources": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "byte_length": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "required": [
+          "path",
+          "byte_length",
+          "sha256"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 10000,
+      "uniqueItems": true
+    },
+    "dependency_lockfiles": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "byte_length": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "required": [
+          "path",
+          "byte_length",
+          "sha256"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 10000,
+      "uniqueItems": true
+    },
+    "offline_cache_identity": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "identity": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "identity",
+        "version",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "cpu_topology": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "logical_cpus": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "physical_cores": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "logical_cpus",
+        "physical_cores"
+      ],
+      "additionalProperties": false
+    },
+    "physical_memory": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 9223372036854775807
+    },
+    "available_memory": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 9223372036854775807
+    },
+    "commit_limit": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 9223372036854775807
+    },
+    "filesystem_capacity": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 9223372036854775807
+    },
+    "build_resource_policy": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "P_build": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        },
+        "J_build": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        },
+        "approval_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        }
+      },
+      "required": [
+        "P_build",
+        "J_build",
+        "approval_reference"
+      ],
+      "additionalProperties": false
+    },
+    "test_resource_policy": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "P_test": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        },
+        "J_test": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        },
+        "approval_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        }
+      },
+      "required": [
+        "P_test",
+        "J_test",
+        "approval_reference"
+      ],
+      "additionalProperties": false
+    },
+    "foreground_reserve_policy": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "SystemReserve": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        },
+        "admission_threshold": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        },
+        "approval_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        }
+      },
+      "required": [
+        "SystemReserve",
+        "admission_threshold",
+        "approval_reference"
+      ],
+      "additionalProperties": false
+    },
+    "network_access_policy": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "policy_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "approval_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "policy_id",
+        "approval_reference",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "data_transfer_policy": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "policy_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "approval_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "policy_id",
+        "approval_reference",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "evidence_storage_policy": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "policy_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "approval_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "policy_id",
+        "approval_reference",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "trusted_executor_identity": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "identity": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "identity",
+        "version",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "trusted_manifest_verifier": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "identity": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "identity",
+        "version",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "approved_trust_roots": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "properties": {
+          "key_id": {
+            "type": "string"
+          },
+          "public_key_base64": {
+            "type": "string"
+          },
+          "approval_reference": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1,
+            "maxLength": 512
+          }
+        },
+        "required": [
+          "key_id",
+          "public_key_base64",
+          "approval_reference"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "qualification_status": {
+      "enum": [
+        "Not Verified",
+        "NOT QUALIFIED"
+      ]
+    }
+  },
+  "required": [
+    "candidate_id",
+    "environment_owner",
+    "approval_reference",
+    "execution_location",
+    "execution_authority",
+    "host_or_vm_identity",
+    "operating_system",
+    "os_build",
+    "architecture",
+    "target_abi",
+    "rust_toolchain",
+    "cargo_version",
+    "rustc_version",
+    "llvm_version",
+    "msvc_toolset",
+    "windows_sdk",
+    "python_runtime",
+    "dependency_sources",
+    "dependency_lockfiles",
+    "offline_cache_identity",
+    "cpu_topology",
+    "physical_memory",
+    "available_memory",
+    "commit_limit",
+    "filesystem_capacity",
+    "build_resource_policy",
+    "test_resource_policy",
+    "foreground_reserve_policy",
+    "network_access_policy",
+    "data_transfer_policy",
+    "evidence_storage_policy",
+    "trusted_executor_identity",
+    "trusted_manifest_verifier",
+    "approved_trust_roots",
+    "qualification_status"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agentflow:verification-preparation:candidate:p0:v1",
+  "title": "VerificationEnvironmentCandidate — phase-local schema, not AFIDL/Registry registration"
+}

@@ -1,0 +1,82 @@
+{
+  "status": "Static PASS",
+  "start_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+  "inputs": {
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r3-final-report.md": {
+      "present": true,
+      "byte_length": 6830,
+      "raw_sha256": "fbbc6f5b1f249af4d7d6dd32b03ebd2ae094787acf79ab6b7138a9109cfe336c",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "origin": "R3 committed artifact"
+    },
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r3-verification-contract-inventory.json": {
+      "present": true,
+      "byte_length": 162187,
+      "raw_sha256": "e391706a0feb5e53a8a80c24cd1d388a9e4b0e59ee4d23a3947b99a1a8bc5b49",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "origin": "R3 committed artifact"
+    },
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r3-environment-equivalence-contract.md": {
+      "present": true,
+      "byte_length": 4244,
+      "raw_sha256": "52a4848a7444dbf18e0984ac1722ffc148d9816a5249f97d82f6195c34fe4445",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "origin": "R3 committed artifact"
+    },
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r3-cross-environment-evidence-manifest.json": {
+      "present": true,
+      "byte_length": 10120,
+      "raw_sha256": "f91d61bca9b0fc1b5a05c7760f2eecd9125f2221a488c801e7acbf2eb8e6ad1b",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "origin": "R3 committed artifact"
+    },
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r3-historical-execution-plan.json": {
+      "present": true,
+      "byte_length": 20025,
+      "raw_sha256": "520e10056a6c7392f21c2b9d3815299c97166bd72e1f878150cb7934172d053b",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "origin": "R3 committed artifact"
+    },
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r3-lane-b-credit-preservation.json": {
+      "present": true,
+      "byte_length": 30086,
+      "raw_sha256": "aea9277b555a61cc48f23829076487335c220ef9f53574d0d3f307e0acf0b4c8",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "origin": "R3 committed artifact"
+    },
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r3-design-vector-results.json": {
+      "present": true,
+      "byte_length": 25549,
+      "raw_sha256": "6cfb48437a85cb4268c7d78f0a6f055d8de4bbb0fc559bb5918ae069b3ba9bc9",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "origin": "R3 committed artifact"
+    },
+    "target/phase-04c1b4c4r3c2r5g2r3-final-runtime-results.json": {
+      "present": true,
+      "byte_length": 26705,
+      "raw_sha256": "4d16e88147f5cf26f333bb034d66b2d86e0c3c27faf86d17453ec5a6a674500d",
+      "source_head": "745efb585b9874f97f11473d0275b5e27ca638ee",
+      "origin": "External post-commit R3 ledger; source head, not a Git blob"
+    }
+  },
+  "r3_added_paths_exact": 18,
+  "prior_sealed_evidence_exact": 215,
+  "formal_tuple": {
+    "analysis": "agentflow.root-export-checker@9",
+    "model": "agentflow.computation.proof-report.model@8",
+    "report": "agentflow.g01.report-shape@8",
+    "obligation": "agentflow.g01.obligation@8"
+  },
+  "inherited": {
+    "cargo_records": 448,
+    "registration_cases": 2880,
+    "field_variant_paths": 1297,
+    "comparator_mutations": 16
+  },
+  "historical_builds": "0/8",
+  "frozen_g3_complete": 0,
+  "actual_environment": "Not Qualified",
+  "P1": "Not Authorized",
+  "P2": "Not Authorized",
+  "source_bytes_unchanged": true
+}

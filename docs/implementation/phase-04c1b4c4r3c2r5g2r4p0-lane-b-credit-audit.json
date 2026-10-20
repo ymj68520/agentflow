@@ -1,0 +1,69 @@
+{
+  "status": "Inherited PASS — original protected scope only",
+  "prior_protected_scope": {
+    "paths": 2403,
+    "generators": 41,
+    "rounds": 2,
+    "actual_executions": 82,
+    "raw_maps_equal": 4,
+    "byte_drift": 0
+  },
+  "original_map_hashes": [
+    {
+      "present": true,
+      "byte_length": 503138,
+      "raw_sha256": "761e59246a5a9c6e49c6790a4eb397f2da6ff9ac01b961c38543a08e6ea8b77e"
+    },
+    {
+      "present": true,
+      "byte_length": 503138,
+      "raw_sha256": "761e59246a5a9c6e49c6790a4eb397f2da6ff9ac01b961c38543a08e6ea8b77e"
+    },
+    {
+      "present": true,
+      "byte_length": 503138,
+      "raw_sha256": "761e59246a5a9c6e49c6790a4eb397f2da6ff9ac01b961c38543a08e6ea8b77e"
+    },
+    {
+      "present": true,
+      "byte_length": 503138,
+      "raw_sha256": "761e59246a5a9c6e49c6790a4eb397f2da6ff9ac01b961c38543a08e6ea8b77e"
+    }
+  ],
+  "new_p0_files": [
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-build-execution-mode-contract.md",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-environment-approval-request.json",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-environment-candidate-schema.json",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-environment-candidate.json",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-environment-equivalence-audit.json",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-evidence-manifest-schema.json",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-final-report.md",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-frozen-g3-gate-contract.json",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-historical-gate-contracts.json",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-independent-static-oracle.py",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-lane-b-credit-audit.json",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-local-audit-dependencies.json",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-offline-manifest-validator.py",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-p1-qualification-runbook.md",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-p2-mandatory-execution-runbook.md",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-preparation-manifest.json",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-qualification-inputs.json",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-resource-policy-analysis.json",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-reviews/environment.md",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-reviews/quality.md",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-reviews/specification.md",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-static-test-results.json",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-static-test-vectors.json",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-synthetic-manifest.json",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-validation-contract.json",
+    "docs/implementation/phase-04c1b4c4r3c2r5g2r4p0-validator-contract.md",
+    "tools/prepare-r5g2r4p0.py"
+  ],
+  "affected_build_inputs": [],
+  "affected_generator_inputs": [],
+  "affected_formal_source": [],
+  "scope_basis": "Old protected paths and exact historical/frozen source trees only. Expanded root is a distinct unexecuted input universe.",
+  "expanded_tree_double_round_credit": false,
+  "generators_executed_in_P0": 0,
+  "later_acceptance": "Independent extension/non-interference adjudication mandatory before total acceptance; no automatic expanded-tree credit"
+}

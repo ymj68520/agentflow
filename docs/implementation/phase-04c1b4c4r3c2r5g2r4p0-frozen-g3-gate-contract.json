@@ -1,0 +1,1291 @@
+{
+  "status": "COMPLETE",
+  "execution": "Not Executed in P0",
+  "gate": {
+    "gate_id": "frozen-g3",
+    "frozen_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+    "refs": {
+      "source": {
+        "owner_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+        "sha256": "e650c1b7cf7239be21accca1c8a6f9a434ff301544019dc272ffb848323f84da"
+      },
+      "registry": {
+        "owner_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+        "sha256": "d96c3e9c4c297947dc61f58b46aa4ebc4bfa78026f64fd677f75d10d77169f80"
+      },
+      "compiler": {
+        "owner_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+        "sha256": "8c840ea97c6846b2be8bcdba26d2e04b3489b8085a3ef49dfec6111f8a2e0fb5"
+      },
+      "expected": {
+        "owner_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+        "sha256": "60bdddde2282c0ddf1d669b8ac0e29a9d1a406a3154cb320711a62c31062a6f1"
+      },
+      "oracle": {
+        "owner_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+        "sha256": "0d709c9f015b571a2ce927de5165429673a7863b8bcf7cd13e247c87dcae8434"
+      }
+    },
+    "debug": 2,
+    "case_count": {
+      "positive": 154,
+      "negative_and_resource_nominal_boundaries": 26,
+      "comparator_mutations": 59
+    },
+    "commands": {
+      "cargo": [
+        "cargo",
+        "test",
+        "--all",
+        "-j",
+        "1",
+        "--manifest-path",
+        "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\source\\Cargo.toml",
+        "--target-dir",
+        "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\build"
+      ],
+      "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\source",
+      "env": {
+        "CARGO_PROFILE_DEV_DEBUG": "2",
+        "CARGO_PROFILE_TEST_DEBUG": "2",
+        "CARGO_BUILD_JOBS": "1",
+        "RUST_TEST_THREADS": "1"
+      },
+      "independent_checks": [
+        [
+          "<qualified-python>",
+          "-X",
+          "utf8",
+          "tools/oracle/production_input_graph.py",
+          "--all"
+        ],
+        [
+          "<qualified-python>",
+          "-X",
+          "utf8",
+          "tools/oracle/production_input_graph.py",
+          "--mutations"
+        ],
+        [
+          "<approved-frozen-evidence-checker>",
+          "A-evidence"
+        ]
+      ],
+      "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+      "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+    },
+    "synthetic_case_ids": [
+      "synthetic/frozen-g3/a",
+      "synthetic/frozen-g3/b"
+    ],
+    "synthetic_records": [
+      {
+        "case_id": "synthetic/frozen-g3/a",
+        "fields": {
+          "verdict": "SYNTHETIC_ONLY",
+          "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      },
+      {
+        "case_id": "synthetic/frozen-g3/b",
+        "fields": {
+          "verdict": "SYNTHETIC_ONLY",
+          "proof_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      }
+    ],
+    "synthetic_artifacts": [
+      {
+        "path": "bin/frozen-g3.exe",
+        "owner_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "byte_length": 1
+      },
+      {
+        "path": "symbols/frozen-g3.pdb",
+        "owner_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "byte_length": 1
+      }
+    ],
+    "frozen_source_manifest": {
+      "frozen_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+      "git_tree": "0de6dd39efe8e27527370559301bf07fbc603e52",
+      "paths": 2326,
+      "complete_raw_manifest_sha256": "e650c1b7cf7239be21accca1c8a6f9a434ff301544019dc272ffb848323f84da",
+      "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-frozen-g3.json",
+      "full_map_file_sha256": "dad18f49c47ef9da7114b162727e8f02d1c3335860c4063c3838921e69ad6e63",
+      "git_blob_and_raw_verified": true
+    },
+    "original_contract": {
+      "GateId": "frozen-g3",
+      "FrozenSourceHEAD": "a9e296407c682a69f596be84ac8974eb870ebc18",
+      "SourceIdentity": {
+        "frozen_head": "a9e296407c682a69f596be84ac8974eb870ebc18",
+        "git_tree": "0de6dd39efe8e27527370559301bf07fbc603e52",
+        "paths": 2326,
+        "complete_raw_manifest_sha256": "e650c1b7cf7239be21accca1c8a6f9a434ff301544019dc272ffb848323f84da",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-frozen-g3.json",
+        "full_map_file_sha256": "dad18f49c47ef9da7114b162727e8f02d1c3335860c4063c3838921e69ad6e63",
+        "git_blob_and_raw_verified": true
+      },
+      "RegistryIdentity": {
+        "paths": 5,
+        "manifest_sha256": "d96c3e9c4c297947dc61f58b46aa4ebc4bfa78026f64fd677f75d10d77169f80",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-frozen-g3.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "CompilerIdentity": {
+        "paths": 248,
+        "manifest_sha256": "8c840ea97c6846b2be8bcdba26d2e04b3489b8085a3ef49dfec6111f8a2e0fb5",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-frozen-g3.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ExpectedIdentity": {
+        "paths": 1288,
+        "manifest_sha256": "60bdddde2282c0ddf1d669b8ac0e29a9d1a406a3154cb320711a62c31062a6f1",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-frozen-g3.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "OracleIdentity": {
+        "paths": 115,
+        "manifest_sha256": "0d709c9f015b571a2ce927de5165429673a7863b8bcf7cd13e247c87dcae8434",
+        "full_map": "target/phase-04c1b4c4r3c2r5g2r3-source-map-frozen-g3.json",
+        "selection": "See audit-r5g2r3.py source_ids predicates"
+      },
+      "ToolchainIdentity": {
+        "status": "NOT QUALIFIED — CACHED METADATA ONLY",
+        "audited_metadata": [
+          {
+            "path": "E:\\Projects\\agent\\target\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "5a107b8eee9845bdb61d591b418fe47ea0e8c9ca43a96f909023089f863bcea6"
+          },
+          {
+            "path": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\build\\.rustc_info.json",
+            "present": true,
+            "byte_length": 1117,
+            "raw_sha256": "ce0bcc1ac69d7e059d98e61886bcb1f7b1d53c59714096fa67c0d8dec37ccd85"
+          }
+        ],
+        "cached_rustc": "1.92.0 (ded5c06cf 2025-12-08)",
+        "cached_llvm": "21.1.3",
+        "host": "x86_64-pc-windows-msvc",
+        "executed_version_queries": 0,
+        "needed": "Exact rustc, cargo, rustdoc, LLVM/linker, MSVC/SDK, Python and dependency bytes plus effective config/environment and authenticated executor",
+        "reusable_artifact": "No fully authenticated Source+Toolchain+Profile+binary chain found in the audited receipts/cache metadata; not an exhaustive disk search"
+      },
+      "BuildProfile": {
+        "dev_debug": 2,
+        "test_debug": 2,
+        "features": "Frozen defaults and manifest-selected targets; no narrowing",
+        "config_precedence": "Snapshot root profiles, Cargo config, environment, rustflags and build scripts; no hidden override"
+      },
+      "CommandAndFlags": {
+        "cargo": [
+          "cargo",
+          "test",
+          "--all",
+          "-j",
+          "1",
+          "--manifest-path",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\source\\Cargo.toml",
+          "--target-dir",
+          "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\build"
+        ],
+        "cwd": "E:\\Projects\\agent\\target\\phase-04c1b4c4r3c2r5g2r2-frozen-g3\\source",
+        "env": {
+          "CARGO_PROFILE_DEV_DEBUG": "2",
+          "CARGO_PROFILE_TEST_DEBUG": "2",
+          "CARGO_BUILD_JOBS": "1",
+          "RUST_TEST_THREADS": "1"
+        },
+        "independent_checks": [
+          [
+            "<qualified-python>",
+            "-X",
+            "utf8",
+            "tools/oracle/production_input_graph.py",
+            "--all"
+          ],
+          [
+            "<qualified-python>",
+            "-X",
+            "utf8",
+            "tools/oracle/production_input_graph.py",
+            "--mutations"
+          ],
+          [
+            "<approved-frozen-evidence-checker>",
+            "A-evidence"
+          ]
+        ],
+        "identity_checks": "Full source pre/post, historical per-path correspondence and independent frozen Registry/Expected/Oracle; no fresh reconstruction",
+        "target_relocation": "Design mapping only: source/build paths may be rebound only by approved path/fixture equivalence; no execution here"
+      },
+      "RequiredCases": {
+        "declared_case_ids": null,
+        "exact_roster_status": "Not Executed — enumerate/certify from frozen inputs before execution admission",
+        "source_of_requirement": "R1 frozen historical configuration and original frozen manifests/oracles; G3 complete --all/--mutations and original A-evidence requirements",
+        "rust_test_count": "Distinct from declared CaseIds; complete frozen Cargo target/test/doc-test roster required",
+        "denominator": "Independently approved complete roster; never infer from submitted actual/expected intersections",
+        "frozen_g3_classes": {
+          "positive": 154,
+          "negative_and_resource_nominal_boundaries": 26,
+          "comparator_mutations": 59
+        }
+      },
+      "RequiredArtifacts": [
+        "Full source raw and GitBlob manifest before/after",
+        "Per-gate Registry/Compiler/Expected/Oracle manifest",
+        "Effective toolchain/config/env/dependency/feature/target identities",
+        "Build graph/target roster including build scripts/proc macros/doc-tests",
+        "All executables, PDBs, dynamic deps, build outputs and required runtime fixtures with hashes",
+        "Exact argv/cwd/env, authentic start/end, exit, stdout/stderr and resource/cancellation series",
+        "Trusted required CaseId roster and every actual output, without duplicates/omissions",
+        "Independent frozen Oracle receipts and capability-denial receipt",
+        "Approved policy, environment/executor qualification and integrity-sealed evidence package"
+      ],
+      "ResourcePolicy": {
+        "current": {
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "reserve_bytes": 8589934592,
+          "test_scheduler_threads": 1,
+          "cargo_jobs": 1,
+          "priority": "BelowNormal"
+        },
+        "identity": {
+          "path": "E:\\Projects\\agent\\tools\\run-production-input-graph-safe.py",
+          "raw_sha256": "93672e9d71aaa7fb9a14acc66eeb10e4ef2ca424515fc9eb12fd48cef4daab07",
+          "unchanged": true,
+          "cpu_percent": 5,
+          "process_mib": 768,
+          "job_mib": 1536,
+          "foreground_reserve_bytes": 8589934592,
+          "test_threads": 1,
+          "build_jobs": 1,
+          "priority": "BelowNormal",
+          "top_level_jobs": 1
+        },
+        "authority": "Mandatory phase operational constraints; no unilateral host-protection reinterpretation",
+        "change_allowed_now": false,
+        "proposed_compile_budget": {
+          "process": "P_build — UNAPPROVED",
+          "job": "J_build — UNAPPROVED"
+        },
+        "policy_amendment": "Separate explicit approval required, even on a larger host. Semantic runtime resource contracts remain frozen."
+      },
+      "ExecutionEnvironment": {
+        "recommended": "Option B isolated Windows x64 MSVC-compatible environment",
+        "environment_id": null,
+        "qualification": "Not Executed",
+        "admission": "NOT ADMITTED",
+        "conditions": "OS/ABI/toolchain/Python/fixtures compatible; authenticated executor; system AND compile-process budgets separately approved and measured"
+      },
+      "PermittedEquivalence": {
+        "already_allowed": "Exact frozen byte identity and previously approved per-path historical correspondence only",
+        "proposed": "Host/path mapping, authenticated evidence transport, split build/execute, any changed compile protection budget require separate explicit approval",
+        "currently_granted": false
+      },
+      "ForbiddenSubstitutions": [
+        "Debug2 replaced by Debug0",
+        "Current HEAD artifacts substituted for historical artifacts",
+        "Skipped targets/doc-tests/Oracle/denials",
+        "Changed Expected/Registry/Compiler",
+        "Reduced case denominator or double-counted cases",
+        "Unapproved resource-policy change",
+        "Precompiled execution called a fresh Cargo compile pass",
+        "Transport manifest granting RootExport/Portable authority"
+      ],
+      "CurrentEvidenceStatus": {
+        "new_execution": "Not Executed",
+        "fresh_pass": false,
+        "prior_receipt": "R2 FAILED 101 / LLVM OOM retained",
+        "historical_completed": 0
+      }
+    },
+    "test_targets": {
+      "status": "Proved By Static Evidence — declaration/source census only",
+      "workspace_members": [
+        "crates/af-core",
+        "crates/af-idl",
+        "crates/af-spec",
+        "crates/af-semantic",
+        "crates/af-ir",
+        "crates/af-effect",
+        "crates/af-failure",
+        "crates/af-resource",
+        "crates/af-flow",
+        "crates/af-usage",
+        "crates/af-recovery",
+        "crates/af-execution",
+        "crates/af-contract",
+        "crates/af-computation",
+        "crates/af-portable"
+      ],
+      "packages": [
+        {
+          "package": "af-core",
+          "manifest": "crates/af-core/Cargo.toml",
+          "manifest_sha256": "8b1a838740afc03871c21b356591bad0bf1e56539ef2e94bcade6ae6eeb73c07",
+          "features": {},
+          "explicit_declarations": {
+            "bin": [],
+            "test": [],
+            "example": [],
+            "bench": []
+          },
+          "automatic_discovery": {
+            "autobins": true,
+            "autotests": true,
+            "autoexamples": true,
+            "autobenches": true
+          },
+          "tracked_rust_test_sources": [
+            "crates/af-core/tests/conformance_digest.rs",
+            "crates/af-core/tests/conformance_encoding.rs",
+            "crates/af-core/tests/distinctions.rs"
+          ],
+          "auto_discovered_tests_selected": true,
+          "lib_source": "crates/af-core/src/lib.rs",
+          "doctests_required": true,
+          "build_script": {
+            "declaration": "build.rs default if present",
+            "tracked_sources": []
+          },
+          "proc_macro": false,
+          "dependencies": {
+            "sha2": "0.10",
+            "unicode-normalization": "0.1",
+            "base64": "0.22"
+          },
+          "build_dependencies": {},
+          "target_specific_dependencies": {}
+        },
+        {
+          "package": "af-idl",
+          "manifest": "crates/af-idl/Cargo.toml",
+          "manifest_sha256": "c9a1583013e51d490880aaa5fa1c09dcb1177ad5cf54c538b06f6342bc8976cf",
+          "features": {},
+          "explicit_declarations": {
+            "bin": [],
+            "test": [],
+            "example": [],
+            "bench": []
+          },
+          "automatic_discovery": {
+            "autobins": true,
+            "autotests": true,
+            "autoexamples": true,
+            "autobenches": true
+          },
+          "tracked_rust_test_sources": [
+            "crates/af-idl/tests/conformance_afidl.rs",
+            "crates/af-idl/tests/import_surface.rs"
+          ],
+          "auto_discovered_tests_selected": true,
+          "lib_source": "crates/af-idl/src/lib.rs",
+          "doctests_required": true,
+          "build_script": {
+            "declaration": "build.rs default if present",
+            "tracked_sources": []
+          },
+          "proc_macro": false,
+          "dependencies": {
+            "af-core": {
+              "path": "../af-core"
+            }
+          },
+          "build_dependencies": {},
+          "target_specific_dependencies": {}
+        },
+        {
+          "package": "af-spec",
+          "manifest": "crates/af-spec/Cargo.toml",
+          "manifest_sha256": "16ec141d4d741e273825f0ad961f5ecfff5fbbfc8355cc9e2fe6d7a601ec94a6",
+          "features": {},
+          "explicit_declarations": {
+            "bin": [
+              {
+                "name": "spec-check",
+                "path": "src/bin/spec-check.rs"
+              }
+            ],
+            "test": [],
+            "example": [],
+            "bench": []
+          },
+          "automatic_discovery": {
+            "autobins": true,
+            "autotests": true,
+            "autoexamples": true,
+            "autobenches": true
+          },
+          "tracked_rust_test_sources": [
+            "crates/af-spec/tests/abi_check.rs",
+            "crates/af-spec/tests/conformance_spec_registry.rs",
+            "crates/af-spec/tests/repo_check.rs"
+          ],
+          "auto_discovered_tests_selected": true,
+          "lib_source": "crates/af-spec/src/lib.rs",
+          "doctests_required": true,
+          "build_script": {
+            "declaration": "build.rs default if present",
+            "tracked_sources": []
+          },
+          "proc_macro": false,
+          "dependencies": {
+            "af-core": {
+              "path": "../af-core"
+            },
+            "af-idl": {
+              "path": "../af-idl"
+            },
+            "sha2": "0.10",
+            "serde": {
+              "version": "1",
+              "features": [
+                "derive"
+              ]
+            },
+            "serde_json": "1"
+          },
+          "build_dependencies": {},
+          "target_specific_dependencies": {}
+        },
+        {
+          "package": "af-semantic",
+          "manifest": "crates/af-semantic/Cargo.toml",
+          "manifest_sha256": "dd85d75afc426860d2b2e767dd09d0a766838f793e29e75c32c5bb5100b44deb",
+          "features": {},
+          "explicit_declarations": {
+            "bin": [],
+            "test": [],
+            "example": [],
+            "bench": []
+          },
+          "automatic_discovery": {
+            "autobins": true,
+            "autotests": true,
+            "autoexamples": true,
+            "autobenches": true
+          },
+          "tracked_rust_test_sources": [
+            "crates/af-semantic/tests/conformance_semantic_core.rs",
+            "crates/af-semantic/tests/semantic_core.rs",
+            "crates/af-semantic/tests/static_surface.rs"
+          ],
+          "auto_discovered_tests_selected": true,
+          "lib_source": "crates/af-semantic/src/lib.rs",
+          "doctests_required": true,
+          "build_script": {
+            "declaration": "build.rs default if present",
+            "tracked_sources": []
+          },
+          "proc_macro": false,
+          "dependencies": {
+            "af-core": {
+              "path": "../af-core"
+            },
+            "af-idl": {
+              "path": "../af-idl"
+            },
+            "serde": {
+              "version": "1",
+              "features": [
+                "derive"
+              ]
+            },
+            "unicode-normalization": "0.1"
+          },
+          "build_dependencies": {},
+          "target_specific_dependencies": {}
+        },
+        {
+          "package": "af-ir",
+          "manifest": "crates/af-ir/Cargo.toml",
+          "manifest_sha256": "6e0cf9ae08a11cc8eb2262eb26f5e907e4e63984ab8544869e79564d135d05fe",
+          "features": {},
+          "explicit_declarations": {
+            "bin": [],
+            "test": [],
+            "example": [],
+            "bench": []
+          },
+          "automatic_discovery": {
+            "autobins": true,
+            "autotests": true,
+            "autoexamples": true,
+            "autobenches": true
+          },
+          "tracked_rust_test_sources": [
+            "crates/af-ir/tests/conformance_semantic_dataflow.rs",
+            "crates/af-ir/tests/conformance_semantic_ir.rs",
+            "crates/af-ir/tests/conformance_subflow_interface.rs",
+            "crates/af-ir/tests/static_surface.rs"
+          ],
+          "auto_discovered_tests_selected": true,
+          "lib_source": "crates/af-ir/src/lib.rs",
+          "doctests_required": true,
+          "build_script": {
+            "declaration": "build.rs default if present",
+            "tracked_sources": []
+          },
+          "proc_macro": false,
+          "dependencies": {
+            "af-core": {
+              "path": "../af-core"
+            },
+            "af-idl": {
+              "path": "../af-idl"
+            },
+            "af-semantic": {
+              "path": "../af-semantic"
+            },
+            "serde": {
+              "version": "1",
+              "features": [
+                "derive"
+              ]
+            },
+            "unicode-normalization": "0.1"
+          },
+          "build_dependencies": {},
+          "target_specific_dependencies": {}
+        },
+        {
+          "package": "af-effect",
+          "manifest": "crates/af-effect/Cargo.toml",
+          "manifest_sha256": "da9fa34b39c2b4a5679ec68b171948e965638400859944778c2badc56954ec21",
+          "features": {},
+          "explicit_declarations": {
+            "bin": [],
+            "test": [],
+            "example": [],
+            "bench": []
+          },
+          "automatic_discovery": {
+            "autobins": true,
+            "autotests": true,
+            "autoexamples": true,
+            "autobenches": true
+          },
+          "tracked_rust_test_sources": [
+            "crates/af-effect/tests/bytes_guard_lowering.rs",
+            "crates/af-effect/tests/conformance_effect_signature.rs",
+            "crates/af-effect/tests/static_surface.rs"
+          ],
+          "auto_discovered_tests_selected": true,
+          "lib_source": "crates/af-effect/src/lib.rs",
+          "doctests_required": true,
+          "build_script": {
+            "declaration": "build.rs default if present",
+            "tracked_sources": []
+          },
+          "proc_macro": false,
+          "dependencies": {
+            "af-core": {
+              "path": "../af-core"
+            },
+            "af-idl": {
+              "path": "../af-idl"
+            },
+            "af-semantic": {
+              "path": "../af-semantic"
+            },
+            "serde": {
+              "version": "1",
+              "features": [
+                "derive"
+              ]
+            },
+            "unicode-normalization": "0.1"
+          },
+          "build_dependencies": {},
+          "target_specific_dependencies": {}
+        },
+        {
+          "package": "af-failure",
+          "manifest": "crates/af-failure/Cargo.toml",
+          "manifest_sha256": "774d3c4892eaeafe9bc40a0a30656d09c698961825f2d617164a25e828129255",
+          "features": {},
+          "explicit_declarations": {
+            "bin": [],
+            "test": [],
+            "example": [],
+            "bench": []
+          },
+          "automatic_discovery": {
+            "autobins": true,
+            "autotests": true,
+            "autoexamples": true,
+            "autobenches": true
+          },
+          "tracked_rust_test_sources": [
+            "crates/af-failure/tests/conformance_failure_row.rs",
+            "crates/af-failure/tests/static_surface.rs"
+          ],
+          "auto_discovered_tests_selected": true,
+          "lib_source": "crates/af-failure/src/lib.rs",
+          "doctests_required": true,
+          "build_script": {
+            "declaration": "build.rs default if present",
+            "tracked_sources": []
+          },
+          "proc_macro": false,
+          "dependencies": {
+            "af-core": {
+              "path": "../af-core"
+            },
+            "af-idl": {
+              "path": "../af-idl"
+            },
+            "af-semantic": {
+              "path": "../af-semantic"
+            },
+            "serde": {
+              "version": "1",
+              "features": [
+                "derive"
+              ]
+            }
+          },
+          "build_dependencies": {},
+          "target_specific_dependencies": {}
+        },
+        {
+          "package": "af-resource",
+          "manifest": "crates/af-resource/Cargo.toml",
+          "manifest_sha256": "0024a4e3bbef47e11e96f3f7f69cba931e51011a1f5f5bad04370866a75d36a6",
+          "features": {},
+          "explicit_declarations": {
+            "bin": [],
+            "test": [],
+            "example": [],
+            "bench": []
+          },
+          "automatic_discovery": {
+            "autobins": true,
+            "autotests": true,
+            "autoexamples": true,
+            "autobenches": true
+          },
+          "tracked_rust_test_sources": [
+            "crates/af-resource/tests/conformance_resource_requirement.rs",
+            "crates/af-resource/tests/static_surface.rs"
+          ],
+          "auto_discovered_tests_selected": true,
+          "lib_source": "crates/af-resource/src/lib.rs",
+          "doctests_required": true,
+          "build_script": {
+            "declaration": "build.rs default if present",
+            "tracked_sources": []
+          },
+          "proc_macro": false,
+          "dependencies": {
+            "af-core": {
+              "path": "../af-core"
+            },
+            "af-idl": {
+              "path": "../af-idl"
+            },
+            "af-semantic": {
+              "path": "../af-semantic"
+            },
+            "serde": {
+              "version": "1",
+              "features": [
+                "derive"
+              ]
+            },
+            "unicode-normalization": "0.1"
+          },
+          "build_dependencies": {},
+          "target_specific_dependencies": {}
+        },
+        {
+          "package": "af-flow",
+          "manifest": "crates/af-flow/Cargo.toml",
+          "manifest_sha256": "713b6a19df20f38f5108786afe7b8faf22e69e0fea1335f9ef0cfd5cf469ab68",
+          "features": {},
+          "explicit_declarations": {
+            "bin": [],
+            "test": [],
+            "example": [],
+            "bench": []
+          },
+          "automatic_discovery": {
+            "autobins": true,
+            "autotests": true,
+            "autoexamples": true,
+            "autobenches": true
+          },
+          "tracked_rust_test_sources": [
+            "crates/af-flow/tests/conformance_information_flow.rs",
+            "crates/af-flow/tests/static_surface.rs"
+          ],
+          "auto_discovered_tests_selected": true,
+          "lib_source": "crates/af-flow/src/lib.rs",
+          "doctests_required": true,
+          "build_script": {
+            "declaration": "build.rs default if present",
+            "tracked_sources": []
+          },
+          "proc_macro": false,
+          "dependencies": {
+            "af-core": {
+              "path": "../af-core"
+            },
+            "af-idl": {
+              "path": "../af-idl"
+            },
+            "af-semantic": {
+              "path": "../af-semantic"
+            },
+            "af-effect": {
+              "path": "../af-effect"
+            },
+            "serde": {
+              "version": "1",
+              "features": [
+                "derive"
+              ]
+            },
+            "unicode-normalization": "0.1"
+          },
+          "build_dependencies": {},
+          "target_specific_dependencies": {}
+        },
+        {
+          "package": "af-usage",
+          "manifest": "crates/af-usage/Cargo.toml",
+          "manifest_sha256": "b993f9bd2e37be40e479d234cad28b2c9c634d04ed3eb58e4f1d2b9148660ebe",
+          "features": {},
+          "explicit_declarations": {
+            "bin": [],
+            "test": [],
+            "example": [],
+            "bench": []
+          },
+          "automatic_discovery": {
+            "autobins": true,
+            "autotests": true,
+            "autoexamples": true,
+            "autobenches": true
+          },
+          "tracked_rust_test_sources": [
+            "crates/af-usage/tests/conformance_cost_projection.rs",
+            "crates/af-usage/tests/conformance_usage_signature.rs",
+            "crates/af-usage/tests/static_surface.rs"
+          ],
+          "auto_discovered_tests_selected": true,
+          "lib_source": "crates/af-usage/src/lib.rs",
+          "doctests_required": true,
+          "build_script": {
+            "declaration": "build.rs default if present",
+            "tracked_sources": []
+          },
+          "proc_macro": false,
+          "dependencies": {
+            "af-core": {
+              "path": "../af-core"
+            },
+            "af-idl": {
+              "path": "../af-idl"
+            },
+            "serde": {
+              "version": "1",
+              "features": [
+                "derive"
+              ]
+            },
+            "unicode-normalization": "0.1"
+          },
+          "build_dependencies": {},
+          "target_specific_dependencies": {}
+        },
+        {
+          "package": "af-recovery",
+          "manifest": "crates/af-recovery/Cargo.toml",
+          "manifest_sha256": "a8df88cd1db5fdc25caa56a8499b8e9813af2d353083afdf0e82918b278fd6e2",
+          "features": {},
+          "explicit_declarations": {
+            "bin": [],
+            "test": [],
+            "example": [],
+            "bench": []
+          },
+          "automatic_discovery": {
+            "autobins": true,
+            "autotests": true,
+            "autoexamples": true,
+            "autobenches": true
+          },
+          "tracked_rust_test_sources": [
+            "crates/af-recovery/tests/conformance_recovery_contract.rs",
+            "crates/af-recovery/tests/static_surface.rs"
+          ],
+          "auto_discovered_tests_selected": true,
+          "lib_source": "crates/af-recovery/src/lib.rs",
+          "doctests_required": true,
+          "build_script": {
+            "declaration": "build.rs default if present",
+            "tracked_sources": []
+          },
+          "proc_macro": false,
+          "dependencies": {
+            "af-core": {
+              "path": "../af-core"
+            },
+            "af-idl": {
+              "path": "../af-idl"
+            },
+            "af-semantic": {
+              "path": "../af-semantic"
+            },
+            "af-effect": {
+              "path": "../af-effect"
+            },
+            "serde": {
+              "version": "1",
+              "features": [
+                "derive"
+              ]
+            },
+            "unicode-normalization": "0.1"
+          },
+          "build_dependencies": {},
+          "target_specific_dependencies": {}
+        },
+        {
+          "package": "af-execution",
+          "manifest": "crates/af-execution/Cargo.toml",
+          "manifest_sha256": "c2a2927a1bf8800681b8ba23879bee6d23b022a8a55ab6190edb0235e8d27e0b",
+          "features": {},
+          "explicit_declarations": {
+            "bin": [],
+            "test": [],
+            "example": [],
+            "bench": []
+          },
+          "automatic_discovery": {
+            "autobins": true,
+            "autotests": true,
+            "autoexamples": true,
+            "autobenches": true
+          },
+          "tracked_rust_test_sources": [
+            "crates/af-execution/tests/conformance_execution_requirements.rs",
+            "crates/af-execution/tests/static_surface.rs"
+          ],
+          "auto_discovered_tests_selected": true,
+          "lib_source": "crates/af-execution/src/lib.rs",
+          "doctests_required": true,
+          "build_script": {
+            "declaration": "build.rs default if present",
+            "tracked_sources": []
+          },
+          "proc_macro": false,
+          "dependencies": {
+            "af-core": {
+              "path": "../af-core"
+            },
+            "af-idl": {
+              "path": "../af-idl"
+            },
+            "af-semantic": {
+              "path": "../af-semantic"
+            },
+            "serde": {
+              "version": "1",
+              "features": [
+                "derive"
+              ]
+            },
+            "unicode-normalization": "0.1"
+          },
+          "build_dependencies": {},
+          "target_specific_dependencies": {}
+        },
+        {
+          "package": "af-contract",
+          "manifest": "crates/af-contract/Cargo.toml",
+          "manifest_sha256": "a785f1683861224a792f706291072caea92f5f70d47a9f810a38584aab5ef7dc",
+          "features": {},
+          "explicit_declarations": {
+            "bin": [],
+            "test": [],
+            "example": [],
+            "bench": []
+          },
+          "automatic_discovery": {
+            "autobins": true,
+            "autotests": true,
+            "autoexamples": true,
+            "autobenches": true
+          },
+          "tracked_rust_test_sources": [
+            "crates/af-contract/tests/component_contract_conformance.rs",
+            "crates/af-contract/tests/static_surface.rs"
+          ],
+          "auto_discovered_tests_selected": true,
+          "lib_source": "crates/af-contract/src/lib.rs",
+          "doctests_required": true,
+          "build_script": {
+            "declaration": "build.rs default if present",
+            "tracked_sources": []
+          },
+          "proc_macro": false,
+          "dependencies": {
+            "af-core": {
+              "path": "../af-core"
+            },
+            "af-idl": {
+              "path": "../af-idl"
+            },
+            "af-semantic": {
+              "path": "../af-semantic"
+            },
+            "af-effect": {
+              "path": "../af-effect"
+            },
+            "af-failure": {
+              "path": "../af-failure"
+            },
+            "af-resource": {
+              "path": "../af-resource"
+            },
+            "af-flow": {
+              "path": "../af-flow"
+            },
+            "af-usage": {
+              "path": "../af-usage"
+            },
+            "af-recovery": {
+              "path": "../af-recovery"
+            },
+            "af-execution": {
+              "path": "../af-execution"
+            },
+            "serde": {
+              "version": "1",
+              "features": [
+                "derive"
+              ]
+            },
+            "sha2": "0.10",
+            "hex": "0.4",
+            "unicode-normalization": "0.1"
+          },
+          "build_dependencies": {},
+          "target_specific_dependencies": {}
+        },
+        {
+          "package": "af-computation",
+          "manifest": "crates/af-computation/Cargo.toml",
+          "manifest_sha256": "053f1608365dbe9f3bf14051694fb35260f47311e7eea59b51aa5dedda9ac092",
+          "features": {},
+          "explicit_declarations": {
+            "bin": [],
+            "test": [
+              {
+                "name": "advanced_control_conformance",
+                "path": "tests/advanced_control_conformance.rs"
+              },
+              {
+                "name": "control_conformance",
+                "path": "tests/control_conformance.rs"
+              },
+              {
+                "name": "leaf_resolution",
+                "path": "tests/leaf_resolution.rs"
+              },
+              {
+                "name": "root_recovery_conformance",
+                "path": "tests/root_recovery_conformance.rs"
+              },
+              {
+                "name": "scope_closure_conformance",
+                "path": "tests/scope_closure_conformance.rs"
+              },
+              {
+                "name": "structural_binding_staging",
+                "path": "tests/structural_binding_staging.rs"
+              },
+              {
+                "name": "production_input_graph",
+                "path": "tests/production_input_graph.rs"
+              },
+              {
+                "name": "native_capture_conformance",
+                "path": "tests/native_capture_conformance.rs"
+              },
+              {
+                "name": "native_seed_source_conformance",
+                "path": "tests/native_seed_source_conformance.rs"
+              },
+              {
+                "name": "raw_port_capture_conformance",
+                "path": "tests/raw_port_capture_conformance.rs"
+              },
+              {
+                "name": "raw_model6_binding_boundary",
+                "path": "tests/raw_model6_binding_boundary.rs"
+              }
+            ],
+            "example": [],
+            "bench": []
+          },
+          "automatic_discovery": {
+            "autobins": true,
+            "autotests": false,
+            "autoexamples": true,
+            "autobenches": true
+          },
+          "tracked_rust_test_sources": [
+            "crates/af-computation/tests/advanced_control_conformance.rs",
+            "crates/af-computation/tests/control_conformance.rs",
+            "crates/af-computation/tests/document_occurrence_staging.rs",
+            "crates/af-computation/tests/edition2_staging.rs",
+            "crates/af-computation/tests/leaf_resolution.rs",
+            "crates/af-computation/tests/native_capture_conformance.rs",
+            "crates/af-computation/tests/native_guard_staging.rs",
+            "crates/af-computation/tests/native_seed_source_conformance.rs",
+            "crates/af-computation/tests/production_input_graph.rs",
+            "crates/af-computation/tests/raw_document_identity_c2.rs",
+            "crates/af-computation/tests/raw_model6_binding_boundary.rs",
+            "crates/af-computation/tests/raw_port_capture_conformance.rs",
+            "crates/af-computation/tests/raw_validation_staging.rs",
+            "crates/af-computation/tests/relation_schema_staging.rs",
+            "crates/af-computation/tests/root_export_conformance.rs",
+            "crates/af-computation/tests/root_export_soundness_repro.rs",
+            "crates/af-computation/tests/root_recovery_conformance.rs",
+            "crates/af-computation/tests/scope_closure_conformance.rs",
+            "crates/af-computation/tests/structural_binding_staging.rs",
+            "crates/af-computation/tests/successor_staging.rs",
+            "crates/af-computation/tests/support/bytes_guard_repair.rs",
+            "crates/af-computation/tests/support/control_fixture.rs",
+            "crates/af-computation/tests/support/mod.rs",
+            "crates/af-computation/tests/support/native_capture_projection.rs"
+          ],
+          "auto_discovered_tests_selected": false,
+          "lib_source": "crates/af-computation/src/lib.rs",
+          "doctests_required": true,
+          "build_script": {
+            "declaration": "build.rs default if present",
+            "tracked_sources": [
+              "crates/af-computation/build.rs"
+            ]
+          },
+          "proc_macro": false,
+          "dependencies": {
+            "af-core": {
+              "path": "../af-core"
+            },
+            "af-semantic": {
+              "path": "../af-semantic"
+            },
+            "af-ir": {
+              "path": "../af-ir"
+            },
+            "af-idl": {
+              "path": "../af-idl"
+            },
+            "af-contract": {
+              "path": "../af-contract"
+            },
+            "af-effect": {
+              "path": "../af-effect"
+            },
+            "af-failure": {
+              "path": "../af-failure"
+            },
+            "af-flow": {
+              "path": "../af-flow"
+            },
+            "af-resource": {
+              "path": "../af-resource"
+            },
+            "af-usage": {
+              "path": "../af-usage"
+            },
+            "af-recovery": {
+              "path": "../af-recovery"
+            },
+            "af-execution": {
+              "path": "../af-execution"
+            },
+            "sha2": "0.10",
+            "hex": "0.4",
+            "serde_json": "1",
+            "serde": {
+              "version": "1",
+              "features": [
+                "derive"
+              ]
+            },
+            "unicode-normalization": "0.1"
+          },
+          "build_dependencies": {
+            "serde_json": "1"
+          },
+          "target_specific_dependencies": {}
+        },
+        {
+          "package": "af-portable",
+          "manifest": "crates/af-portable/Cargo.toml",
+          "manifest_sha256": "d44dd68986dd299dc5d740f6930c05306f0649d298fc1ef86cd9d8b36f45e626",
+          "features": {},
+          "explicit_declarations": {
+            "bin": [],
+            "test": [
+              {
+                "name": "static_surface",
+                "path": "tests/static_surface.rs"
+              },
+              {
+                "name": "structural_binding_staging",
+                "path": "tests/structural_binding_staging.rs"
+              }
+            ],
+            "example": [],
+            "bench": []
+          },
+          "automatic_discovery": {
+            "autobins": true,
+            "autotests": false,
+            "autoexamples": true,
+            "autobenches": true
+          },
+          "tracked_rust_test_sources": [
+            "crates/af-portable/tests/conformance.rs",
+            "crates/af-portable/tests/document_occurrence_staging.rs",
+            "crates/af-portable/tests/edition2_staging.rs",
+            "crates/af-portable/tests/native_guard_staging.rs",
+            "crates/af-portable/tests/raw_validation_staging.rs",
+            "crates/af-portable/tests/reconstruction.rs",
+            "crates/af-portable/tests/relation_schema_staging.rs",
+            "crates/af-portable/tests/root_export_revalidation.rs",
+            "crates/af-portable/tests/static_reconstruction_conformance.rs",
+            "crates/af-portable/tests/static_surface.rs",
+            "crates/af-portable/tests/structural_binding_staging.rs",
+            "crates/af-portable/tests/successor_staging.rs",
+            "crates/af-portable/tests/support/d10_gap_conformance.rs",
+            "crates/af-portable/tests/support/d9_full_conformance.rs",
+            "crates/af-portable/tests/support/d9_recovery_conformance.rs"
+          ],
+          "auto_discovered_tests_selected": false,
+          "lib_source": "crates/af-portable/src/lib.rs",
+          "doctests_required": true,
+          "build_script": {
+            "declaration": "build.rs default if present",
+            "tracked_sources": [
+              "crates/af-portable/build.rs"
+            ]
+          },
+          "proc_macro": false,
+          "dependencies": {
+            "af-core": {
+              "path": "../af-core"
+            },
+            "af-idl": {
+              "path": "../af-idl"
+            },
+            "af-spec": {
+              "path": "../af-spec"
+            },
+            "af-semantic": {
+              "path": "../af-semantic"
+            },
+            "af-computation": {
+              "path": "../af-computation"
+            },
+            "af-contract": {
+              "path": "../af-contract"
+            },
+            "af-effect": {
+              "path": "../af-effect"
+            },
+            "af-failure": {
+              "path": "../af-failure"
+            },
+            "af-execution": {
+              "path": "../af-execution"
+            },
+            "af-flow": {
+              "path": "../af-flow"
+            },
+            "af-ir": {
+              "path": "../af-ir"
+            },
+            "af-recovery": {
+              "path": "../af-recovery"
+            },
+            "af-resource": {
+              "path": "../af-resource"
+            },
+            "af-usage": {
+              "path": "../af-usage"
+            },
+            "serde": {
+              "version": "1",
+              "features": [
+                "derive"
+              ]
+            },
+            "serde_json": "1",
+            "sha2": "0.10",
+            "hex": "0.4",
+            "base64": "0.22",
+            "unicode-normalization": "0.1"
+          },
+          "build_dependencies": {
+            "serde": {
+              "version": "1",
+              "features": [
+                "derive"
+              ]
+            },
+            "serde_json": "1"
+          },
+          "target_specific_dependencies": {}
+        }
+      ],
+      "lockfile_identity": {
+        "git_blob": "999bc88274c8028ff92ab9b937ec363d8fe7f41e",
+        "raw_sha256": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede",
+        "byte_length": 8387,
+        "present": true
+      },
+      "root_manifest_identity": {
+        "git_blob": "469a1972ca7f9659f406110ce46697ad8a48cce5",
+        "raw_sha256": "a358116be184afa181159dfcd3c646205dc989be48328a720d7357c81c70f766",
+        "byte_length": 1058,
+        "present": true
+      },
+      "runtime_roster": "Requires Qualification: cfg/feature-expanded Rust test IDs and doc snippets; no --list or build run in P0",
+      "required_selection": "Unchanged original complete Cargo command; explicit tests/autotests flags preserved. Census does not assert every bench/example is executed."
+    },
+    "doctest_coverage": {
+      "required": true,
+      "execution": "Not Executed in P0",
+      "separation_approved": false
+    },
+    "required_artifacts": [
+      "Full source raw and GitBlob manifest before/after",
+      "Per-gate Registry/Compiler/Expected/Oracle manifest",
+      "Effective toolchain/config/env/dependency/feature/target identities",
+      "Build graph/target roster including build scripts/proc macros/doc-tests",
+      "All executables, PDBs, dynamic deps, build outputs and required runtime fixtures with hashes",
+      "Exact argv/cwd/env, authentic start/end, exit, stdout/stderr and resource/cancellation series",
+      "Trusted required CaseId roster and every actual output, without duplicates/omissions",
+      "Independent frozen Oracle receipts and capability-denial receipt",
+      "Approved policy, environment/executor qualification and integrity-sealed evidence package"
+    ],
+    "real_case_roster": "Requires Qualification — full trusted roster, not these two synthetic cases",
+    "execution": "Not Executed in P0"
+  }
+}
