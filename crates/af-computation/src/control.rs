@@ -2839,7 +2839,7 @@ fn control_path_step(
             max_attempts: *max_attempts,
         },
         ControlOperator::Timeout { .. } => ControlPathKind::TimeoutChild,
-        ControlOperator::Handle { clauses, .. } if child_index == 0 => {
+        ControlOperator::Handle { .. } if child_index == 0 => {
             ControlPathKind::HandleProtected
         }
         ControlOperator::Handle { clauses, .. } => ControlPathKind::HandleClause {
