@@ -25,3 +25,11 @@ too_many_lines = "allow"        # canonical codec match arms are intentionally o
 
 [profile.release]
 lto = "thin"
+
+# Large conformance graphs are prohibitively slow at opt-level 0. Keep the
+# complete test suite and development safety checks, but optimize test code.
+[profile.test]
+opt-level = 1
+debug = 1
+debug-assertions = true
+overflow-checks = true

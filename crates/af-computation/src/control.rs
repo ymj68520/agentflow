@@ -2839,9 +2839,7 @@ fn control_path_step(
             max_attempts: *max_attempts,
         },
         ControlOperator::Timeout { .. } => ControlPathKind::TimeoutChild,
-        ControlOperator::Handle { .. } if child_index == 0 => {
-            ControlPathKind::HandleProtected
-        }
+        ControlOperator::Handle { .. } if child_index == 0 => ControlPathKind::HandleProtected,
         ControlOperator::Handle { clauses, .. } => ControlPathKind::HandleClause {
             ordinal: clauses.get(child_index - 1).map_or_else(
                 || u32::try_from(child_index).unwrap_or(u32::MAX),
