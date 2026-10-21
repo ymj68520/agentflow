@@ -7,6 +7,22 @@ target/
 /coverage/
 Cargo.lock.bak
 
-# Python bytecode.
+# Python bytecode, local environments and tool caches.
 __pycache__/
-*.pyc
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.tox/
+.nox/
+.ipynb_checkpoints/
+.venv/
+/venv/
+/venvs/
+.coverage
+.coverage.*
+/htmlcov/
+/build/
+/dist/
+*.egg-info/
