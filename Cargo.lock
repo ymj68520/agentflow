@@ -59,6 +59,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "af-demo"
+version = "0.1.0"
+dependencies = [
+ "af-core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "af-effect"
 version = "0.1.0"
 dependencies = [

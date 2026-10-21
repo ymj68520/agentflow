@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AgentFlow Studio · 本地工作流演示</title><link rel="stylesheet" href="/app.css"><script src="/app.js" defer></script></head>
+<body>
+<aside class="library">
+  <div class="brand"><span class="brandmark">aƒ</span><div>AgentFlow<span>STUDIO / LOCAL DEMO</span></div></div>
+  <div class="section-label">构建你的工作流</div><h2>从想法，到执行。</h2><p class="muted">将组件拖到画布，连接文本端口，再点击运行。</p>
+  <div id="palette" aria-label="组件列表"></div>
+  <div class="side-note"><span class="live-dot"></span>无需 API Key<p>仅本地文本工具与确定性离线策略。不是实时 LLM 推理。</p></div>
+  <div class="side-footer">VISUAL AUTHORING → DEMO EXECUTOR<br>非生产原型 · 无正式 Runtime / RootExport</div>
+</aside>
+<main>
+  <header><div><div class="eyebrow">WORKSPACE / 毕业设计演示</div><h1>工作流实验室 <span class="badge">离线 · 本地</span></h1></div><div class="actions"><button id="save">保存草稿</button><button id="restore">恢复草稿</button><button id="export">导出 JSON</button><button id="import">导入</button><input id="file" type="file" accept="application/json,.json" hidden></div></header>
+  <div class="toolbar"><div class="examples"><label for="example">演示案例</label><select id="example"><option value="0">A / 文本顺序处理</option><option value="1">B / 条件分支</option><option value="2">C / 有界 Agent Loop</option></select><button id="load">加载案例</button><button id="new">空白画布</button></div><div class="actions"><button id="validate">验证连接</button><button id="cancel" disabled>取消运行</button><button id="run" class="primary">▶ 运行工作流</button></div></div>
+  <div class="workspace">
+    <section class="canvas-panel"><div class="canvas-heading"><span><span class="live-dot"></span>工作流画布</span><span id="counts"></span></div><div id="viewport"><div id="canvas" tabindex="0" aria-label="工作流画布"><svg id="edges" width="4300" height="3200" aria-label="节点连接"></svg><div id="nodes"></div></div></div><div class="canvas-help">拖动节点标题移动 · 从输出端口拖到输入端口，或依次点击两个端口 · 点击连线可删除</div></section>
+    <aside class="inspector"><div class="section-label">INSPECTOR</div><h2>节点配置</h2><div id="properties"><p class="muted">选择一个节点，查看它的参数与文本端口。</p></div></aside>
+  </div>
+  <section class="execution"><div class="execution-head"><div><span class="section-label">EXECUTION TRACE</span><h2>执行过程 <span id="status" class="status">尚未运行</span></h2></div><span id="run-meta">真实步骤 · 不执行任意 shell / 网络请求</span></div><div id="notice" role="status" aria-live="polite">已就绪。加载一个案例，或从左侧拖入组件。</div><div class="execution-body"><div id="trace" aria-label="执行日志"><div class="empty">每一步的输入、输出与分支选择会显示在这里。</div></div><div class="result"><div class="section-label">FINAL OUTPUT</div><pre id="result">等待执行…</pre><div id="result-note">只显示本次执行的真实结果</div></div></div></section>
+  <footer>AgentFlow Studio <span>布局与语义分离 · 32 节点上限 · 单个活动运行 · Agent Loop 最多 32 轮</span></footer>
+</main>
+<dialog id="json-dialog"><div class="dialog-head"><h2 id="json-title">工作流 JSON</h2><button id="json-close">关闭</button></div><p class="muted">workflow 保存节点与连接；layout 单独保存画布位置。也可复制、粘贴 JSON，无需浏览器文件权限。</p><textarea id="json-text" aria-label="工作流 JSON" spellcheck="false"></textarea><div id="json-error" role="status"></div><div class="actions"><button id="choose-file">选择 JSON 文件</button><button id="json-download">下载 JSON</button><button id="json-apply" class="primary">应用 JSON</button></div></dialog>
+</body></html>

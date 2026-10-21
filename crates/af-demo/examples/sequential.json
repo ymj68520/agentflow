@@ -1,0 +1,57 @@
+{
+  "layout": {
+    "input": {
+      "x": 65.0,
+      "y": 130.0
+    },
+    "output": {
+      "x": 645.0,
+      "y": 130.0
+    },
+    "text": {
+      "x": 355.0,
+      "y": 130.0
+    }
+  },
+  "version": 1,
+  "workflow": {
+    "edges": [
+      {
+        "from": "input",
+        "port": "next",
+        "to": "text"
+      },
+      {
+        "from": "text",
+        "port": "next",
+        "to": "output"
+      }
+    ],
+    "nodes": [
+      {
+        "config": {
+          "kind": "input",
+          "text": "Hello AgentFlow"
+        },
+        "id": "input",
+        "label": "Input"
+      },
+      {
+        "config": {
+          "argument": "",
+          "kind": "task",
+          "operation": "uppercase"
+        },
+        "id": "text",
+        "label": "Uppercase text"
+      },
+      {
+        "config": {
+          "kind": "output"
+        },
+        "id": "output",
+        "label": "Output"
+      }
+    ]
+  }
+}

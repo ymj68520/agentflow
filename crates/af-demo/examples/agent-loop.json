@@ -1,0 +1,56 @@
+{
+  "layout": {
+    "agent": {
+      "x": 355.0,
+      "y": 130.0
+    },
+    "input": {
+      "x": 65.0,
+      "y": 130.0
+    },
+    "output": {
+      "x": 645.0,
+      "y": 130.0
+    }
+  },
+  "version": 1,
+  "workflow": {
+    "edges": [
+      {
+        "from": "input",
+        "port": "next",
+        "to": "agent"
+      },
+      {
+        "from": "agent",
+        "port": "next",
+        "to": "output"
+      }
+    ],
+    "nodes": [
+      {
+        "config": {
+          "kind": "input",
+          "text": "agent"
+        },
+        "id": "input",
+        "label": "Goal text"
+      },
+      {
+        "config": {
+          "kind": "agent_loop",
+          "max_iterations": "8"
+        },
+        "id": "agent",
+        "label": "Offline Agent Loop"
+      },
+      {
+        "config": {
+          "kind": "output"
+        },
+        "id": "output",
+        "label": "Output"
+      }
+    ]
+  }
+}

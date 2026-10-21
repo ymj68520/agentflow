@@ -1,0 +1,97 @@
+{
+  "layout": {
+    "condition": {
+      "x": 285.0,
+      "y": 175.0
+    },
+    "input": {
+      "x": 35.0,
+      "y": 175.0
+    },
+    "no": {
+      "x": 545.0,
+      "y": 295.0
+    },
+    "output": {
+      "x": 815.0,
+      "y": 175.0
+    },
+    "yes": {
+      "x": 545.0,
+      "y": 55.0
+    }
+  },
+  "version": 1,
+  "workflow": {
+    "edges": [
+      {
+        "from": "input",
+        "port": "next",
+        "to": "condition"
+      },
+      {
+        "from": "condition",
+        "port": "true",
+        "to": "yes"
+      },
+      {
+        "from": "condition",
+        "port": "false",
+        "to": "no"
+      },
+      {
+        "from": "yes",
+        "port": "next",
+        "to": "output"
+      },
+      {
+        "from": "no",
+        "port": "next",
+        "to": "output"
+      }
+    ],
+    "nodes": [
+      {
+        "config": {
+          "kind": "input",
+          "text": "Hello AgentFlow"
+        },
+        "id": "input",
+        "label": "Input"
+      },
+      {
+        "config": {
+          "contains": "Agent",
+          "kind": "condition"
+        },
+        "id": "condition",
+        "label": "Contains Agent?"
+      },
+      {
+        "config": {
+          "argument": "Matched: ",
+          "kind": "task",
+          "operation": "prefix"
+        },
+        "id": "yes",
+        "label": "Task A"
+      },
+      {
+        "config": {
+          "argument": "Not matched: ",
+          "kind": "task",
+          "operation": "prefix"
+        },
+        "id": "no",
+        "label": "Task B"
+      },
+      {
+        "config": {
+          "kind": "output"
+        },
+        "id": "output",
+        "label": "Output"
+      }
+    ]
+  }
+}
