@@ -1,0 +1,148 @@
+{
+  "error": null,
+  "events": [
+    {
+      "duration_ms": null,
+      "elapsed_ms": 180,
+      "message": "Text input received",
+      "node": "input",
+      "phase": "start",
+      "sequence": 1,
+      "value": "",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 180,
+      "message": "Node completed",
+      "node": "input",
+      "phase": "complete",
+      "sequence": 2,
+      "value": "请实际调用 text.find 工具，查找文本「猫a猫」中的「猫」，并根据工具结果用中文回答字符索引和 UTF-8 字节偏移。",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 360,
+      "message": "Text input received",
+      "node": "agent",
+      "phase": "start",
+      "sequence": 3,
+      "value": "请实际调用 text.find 工具，查找文本「猫a猫」中的「猫」，并根据工具结果用中文回答字符索引和 UTF-8 字节偏移。",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 360,
+      "message": "Model Request · deepseek-flash · iteration 1/6",
+      "node": "agent",
+      "phase": "model_request",
+      "sequence": 4,
+      "value": "Server credential attached privately; headers are never traced",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": 3071,
+      "elapsed_ms": 3431,
+      "message": "Model Response · 1 tool call(s)",
+      "node": "agent",
+      "phase": "model_response",
+      "sequence": 5,
+      "value": "",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 3431,
+      "message": "Tool Requested · text.find",
+      "node": "agent",
+      "phase": "tool_requested",
+      "sequence": 6,
+      "value": "{\"query\":\"猫\",\"text\":\"猫a猫\"}",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 3431,
+      "message": "Tool Started · text.find",
+      "node": "agent",
+      "phase": "tool_started",
+      "sequence": 7,
+      "value": "{\"query\":\"猫\",\"text\":\"猫a猫\"}",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": 0,
+      "elapsed_ms": 3431,
+      "message": "Tool Completed · text.find",
+      "node": "agent",
+      "phase": "tool_completed",
+      "sequence": 8,
+      "value": "{\"found\":true,\"match_count\":2,\"positions\":[{\"byte_index\":0,\"character_index\":0},{\"byte_index\":4,\"character_index\":2}],\"positions_truncated\":false}",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 3431,
+      "message": "Model Request · deepseek-flash · iteration 2/6",
+      "node": "agent",
+      "phase": "model_request",
+      "sequence": 9,
+      "value": "Server credential attached privately; headers are never traced",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": 3333,
+      "elapsed_ms": 6765,
+      "message": "Model Response · 0 tool call(s)",
+      "node": "agent",
+      "phase": "model_response",
+      "sequence": 10,
+      "value": "已实际调用 text.find 工具，文本「猫a猫」中「猫」的查找结果如下：\n\n共找到 **2** 处匹配：\n\n| 匹配 | 字符索引 | UTF-8 字节偏移 |\n|---|---|---|\n| 第 1 个「猫」 | 0 | 0 |\n| 第 2 个「猫」 | 2 | 4 |\n\n说明：字符索引按 Unicode 码点计数（「猫」=0，「a」=1，「猫」=2）；字节偏移按 UTF-8 编码计算，汉字「猫」占 3 字节、ASCII 字符「a」占 1 字节，因此第二个「猫」的起始字节偏移为 3+1=4。结果未被截断（positions_truncated 为 false）。",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": 6404,
+      "elapsed_ms": 6765,
+      "message": "Model Final Answer",
+      "node": "agent",
+      "phase": "model_final_answer",
+      "sequence": 11,
+      "value": "已实际调用 text.find 工具，文本「猫a猫」中「猫」的查找结果如下：\n\n共找到 **2** 处匹配：\n\n| 匹配 | 字符索引 | UTF-8 字节偏移 |\n|---|---|---|\n| 第 1 个「猫」 | 0 | 0 |\n| 第 2 个「猫」 | 2 | 4 |\n\n说明：字符索引按 Unicode 码点计数（「猫」=0，「a」=1，「猫」=2）；字节偏移按 UTF-8 编码计算，汉字「猫」占 3 字节、ASCII 字符「a」占 1 字节，因此第二个「猫」的起始字节偏移为 3+1=4。结果未被截断（positions_truncated 为 false）。",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 6765,
+      "message": "Node completed",
+      "node": "agent",
+      "phase": "complete",
+      "sequence": 12,
+      "value": "已实际调用 text.find 工具，文本「猫a猫」中「猫」的查找结果如下：\n\n共找到 **2** 处匹配：\n\n| 匹配 | 字符索引 | UTF-8 字节偏移 |\n|---|---|---|\n| 第 1 个「猫」 | 0 | 0 |\n| 第 2 个「猫」 | 2 | 4 |\n\n说明：字符索引按 Unicode 码点计数（「猫」=0，「a」=1，「猫」=2）；字节偏移按 UTF-8 编码计算，汉字「猫」占 3 字节、ASCII 字符「a」占 1 字节，因此第二个「猫」的起始字节偏移为 3+1=4。结果未被截断（positions_truncated 为 false）。",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 6945,
+      "message": "Text input received",
+      "node": "output",
+      "phase": "start",
+      "sequence": 13,
+      "value": "已实际调用 text.find 工具，文本「猫a猫」中「猫」的查找结果如下：\n\n共找到 **2** 处匹配：\n\n| 匹配 | 字符索引 | UTF-8 字节偏移 |\n|---|---|---|\n| 第 1 个「猫」 | 0 | 0 |\n| 第 2 个「猫」 | 2 | 4 |\n\n说明：字符索引按 Unicode 码点计数（「猫」=0，「a」=1，「猫」=2）；字节偏移按 UTF-8 编码计算，汉字「猫」占 3 字节、ASCII 字符「a」占 1 字节，因此第二个「猫」的起始字节偏移为 3+1=4。结果未被截断（positions_truncated 为 false）。",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 6945,
+      "message": "Final text output",
+      "node": "output",
+      "phase": "complete",
+      "sequence": 14,
+      "value": "已实际调用 text.find 工具，文本「猫a猫」中「猫」的查找结果如下：\n\n共找到 **2** 处匹配：\n\n| 匹配 | 字符索引 | UTF-8 字节偏移 |\n|---|---|---|\n| 第 1 个「猫」 | 0 | 0 |\n| 第 2 个「猫」 | 2 | 4 |\n\n说明：字符索引按 Unicode 码点计数（「猫」=0，「a」=1，「猫」=2）；字节偏移按 UTF-8 编码计算，汉字「猫」占 3 字节、ASCII 字符「a」占 1 字节，因此第二个「猫」的起始字节偏移为 3+1=4。结果未被截断（positions_truncated 为 false）。",
+      "value_truncated": false
+    }
+  ],
+  "id": 10,
+  "output": "已实际调用 text.find 工具，文本「猫a猫」中「猫」的查找结果如下：\n\n共找到 **2** 处匹配：\n\n| 匹配 | 字符索引 | UTF-8 字节偏移 |\n|---|---|---|\n| 第 1 个「猫」 | 0 | 0 |\n| 第 2 个「猫」 | 2 | 4 |\n\n说明：字符索引按 Unicode 码点计数（「猫」=0，「a」=1，「猫」=2）；字节偏移按 UTF-8 编码计算，汉字「猫」占 3 字节、ASCII 字符「a」占 1 字节，因此第二个「猫」的起始字节偏移为 3+1=4。结果未被截断（positions_truncated 为 false）。",
+  "status": "completed"
+}

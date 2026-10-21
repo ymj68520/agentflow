@@ -1,0 +1,125 @@
+{
+  "head": "b892fd93ead9008712e3c4639a7d776846b05481",
+  "cases": [
+    {
+      "name": "A-sequential",
+      "observed": {
+        "meta": "RUN #1 · 6 条真实事件",
+        "output": "HELLO AGENTFLOW",
+        "status": "已完成",
+        "trace": "01inputText input received · +180msstart02inputNode completed · +180mscompleteHello AgentFlow03textText input received · +360msstartHello AgentFlow04textNode completed · +360mscompleteHELLO AGENTFLOW05outputText input received · +540msstartHELLO AGENTFLOW06outputFinal text output · +540mscompleteHELLO AGENTFLOW"
+      }
+    },
+    {
+      "name": "B-true",
+      "observed": {
+        "output": "Matched: Hello AgentFlow",
+        "status": "已完成",
+        "trace": "01inputText input received · +180msstart02inputNode completed · +180mscompleteHello AgentFlow03conditionText input received · +360msstartHello AgentFlow04conditionSelected True branch (case-sensitive contains) · +360msbranchHello AgentFlow05conditionNode completed · +360mscompleteHello AgentFlow06yesText input received · +540msstartHello AgentFlow07yesNode completed · +540mscompleteMatched: Hello AgentFlow08outputText input received · +720msstartMatched: Hello AgentFlow09outputFinal text output · +720mscompleteMatched: Hello AgentFlow"
+      }
+    },
+    {
+      "name": "B-false",
+      "observed": {
+        "output": "Not matched: offline",
+        "status": "已完成",
+        "trace": "01inputText input received · +180msstart02inputNode completed · +180mscompleteoffline03conditionText input received · +360msstartoffline04conditionSelected False branch (case-sensitive contains) · +360msbranchoffline05conditionNode completed · +360mscompleteoffline06noText input received · +540msstartoffline07noNode completed · +540mscompleteNot matched: offline08outputText input received · +720msstartNot matched: offline09outputFinal text output · +720mscompleteNot matched: offline"
+      }
+    },
+    {
+      "name": "draft-save-clear-restore",
+      "observed": {
+        "counts": "5 节点 / 5 连接 · Text",
+        "nodes": "↳InputINPUTofflinesourcetext◇Contains Agent?CONDITION包含 “Agent” ?texttruefalse⚙Task ATASK / TOOLText → prefixtexttext⚙Task BTASK / TOOLText → prefixtexttext↗OutputOUTPUTText → 最终结果text",
+        "notice": "草稿已恢复；运行时会重新验证完整连接。"
+      }
+    },
+    {
+      "name": "native-json-download-file-import",
+      "passed": true,
+      "path": "C:\\Users\\Administrator\\Downloads\\agentflow-workflow.json"
+    },
+    {
+      "name": "C-offline-loop",
+      "observed": {
+        "output": "AGENT",
+        "status": "已完成",
+        "trace": "01inputText input received · +180msstart02inputNode completed · +180mscompleteagent03agentText input received · +360msstartagent04agentOffline deterministic policy · iteration 0/8: uppercase next character · +360msdecisionagent05agentLocal tool: uppercase one Unicode character · +540mstool_calla06agentTool result passed back to offline policy · +540mstool_resultAgent07agentOffline deterministic policy · iteration 1/8: uppercase next character · +540msdecisionAgent08agentLocal tool: uppercase one Unicode character · +720mstool_callg09agentTool result passed back to offline policy · +720mstool_resultAGent10agentOffline deterministic policy · iteration 2/8: uppercase next character · +720msdecisionAGent11agentLocal tool: uppercase one Unicode character · +900mstool_calle12agentTool result passed back to offline policy · +900mstool_resultAGEnt13agentOffline deterministic policy · iteration 3/8: uppercase next character · +900msdecisionAGEnt14agentLocal tool: uppercase one Unicode character · +1080mstool_calln15agentTool result passed back to offline policy · +1080mstool_resultAGENt16agentOffline deterministic policy · iteration 4/8: uppercase next character · +1080msdecisionAGENt17agentLocal tool: uppercase one Unicode character · +1260mstool_callt18agentTool result passed back to offline policy · +1260mstool_resultAGENT19agentOffline deterministic policy · iteration 5/8: goal reached; stop · +1260msdecisionAGENT20agentNode completed · +1260mscompleteAGENT21outputText input received · +1441msstartAGENT22outputFinal text output · +1441mscompleteAGENT"
+      }
+    },
+    {
+      "name": "C-iteration-bound",
+      "observed": {
+        "note": "未产生成功的最终输出",
+        "output": "agent: maximum iterations reached before goal",
+        "status": "失败"
+      }
+    },
+    {
+      "name": "cancel-running-workflow",
+      "observed": {
+        "output": "Cancelled by user",
+        "status": "已取消",
+        "trace": "01inputText input received · +180msstart02inputNode completed · +180mscompleteabcdefghijklmnopqrstuvwxyzabcdef"
+      }
+    },
+    {
+      "name": "D-real-qa",
+      "observed": {
+        "meta": "RUN #7 · 9 条真实事件",
+        "output": "Agent 工作流是指把大模型（Agent）与工具调用、判断分支、记忆等步骤编排成一条可执行流程：模型先理解任务，再按预设或自主决定调用外部工具、处理中间结果，并根据反馈循环推进，直到完成任务。它强调多步骤协作与自动化，而非一次性问答。",
+        "status": "已完成",
+        "trace": "01inputText input received · +180msstart02inputNode completed · +180mscomplete请用简短中文解释什么是 Agent 工作流。03agentText input received · +360msstart请用简短中文解释什么是 Agent 工作流。04agentModel Request · deepseek-flash · iteration 1/6 · +360msmodel_requestServer credential attached privately; headers are never traced05agentModel Response · 0 tool call(s) · +9219ms / 耗时 8859msmodel_responseAgent 工作流是指把大模型（Agent）与工具调用、判断分支、记忆等步骤编排成一条可执行流程：模型先理解任务，再按预设或自主决定调用外部工具、处理中间结果，并根据反馈循环推进，直到完成任务。它强调多步骤协作与自动化，而非一次性问答。06agentModel Final Answer · +9219ms / 耗时 8859msmodel_final_answerAgent 工作流是指把大模型（Agent）与工具调用、判断分支、记忆等步骤编排成一条可执行流程：模型先理解任务，再按预设或自主决定调用外部工具、处理中间结果，并根据反馈循环推进，直到完成任务。它强调多步骤协作与自动化，而非一次性问答。07agentNode completed · +9219mscompleteAgent 工作流是指把大模型（Agent）与工具调用、判断分支、记忆等步骤编排成一条可执行流程：模型先理解任务，再按预设或自主决定调用外部工具、处理中间结果，并根据反馈循环推进，直到完成任务。它强调多步骤协作与自动化，而非一次性问答。08outputText input received · +9399msstartAgent 工作流是指把大模型（Agent）与工具调用、判断分支、记忆等步骤编排成一条可执行流程：模型先理解任务，再按预设或自主决定调用外部工具、处理中间结果，并根据反馈循环推进，直到完成任务。它强调多步骤协作与自动化，而非一次性问答。09outputFinal text output · +9399mscompleteAgent 工作流是指把大模型（Agent）与工具调用、判断分支、记忆等步骤编排成一条可执行流程：模型先理解任务，再按预设或自主决定调用外部工具、处理中间结果，并根据反馈循环推进，直到完成任务。它强调多步骤协作与自动化，而非一次性问答。"
+      }
+    },
+    {
+      "name": "E-real-tool-calling",
+      "observed": {
+        "meta": "RUN #8 · 17 条真实事件",
+        "output": "我已实际调用工具，结果如下：\n\n- **单词数统计**（text_word_count）：该文本「AgentFlow makes tools useful」共 **4 个单词**（同时包含 28 个字符，UTF-8 编码下占 28 字节）。\n- **转为大写**（text_transform，uppercase）：结果为 **「AGENTFLOW MAKES TOOLS USEFUL」**",
+        "status": "已完成",
+        "trace": "01inputText input received · +180msstart02inputNode completed · +180mscomplete请实际使用工具，统计文本「AgentFlow makes tools useful」的单词数，并将同一文本转为大写。请根据真实工具结果用中文回答。03agentText input received · +360msstart请实际使用工具，统计文本「AgentFlow makes tools useful」的单词数，并将同一文本转为大写。请根据真实工具结果用中文回答。04agentModel Request · deepseek-flash · iteration 1/6 · +362msmodel_requestServer credential attached privately; headers are never traced05agentModel Response · 2 tool call(s) · +3222ms / 耗时 2860msmodel_response06agentTool Requested · text.word_count · +3222mstool_requested{\"text\":\"AgentFlow makes tools useful\"}07agentTool Requested · text.transform · +3222mstool_requested{\"operation\":\"uppercase\",\"text\":\"AgentFlow makes tools useful\"}08agentTool Started · text.word_count · +3222mstool_started{\"text\":\"AgentFlow makes tools useful\"}09agentTool Completed · text.word_count · +3222ms / 耗时 0mstool_completed{\"character_count\":28,\"utf8_bytes\":28,\"word_count\":4}10agentTool Started · text.transform · +3222mstool_started{\"operation\":\"uppercase\",\"text\":\"AgentFlow makes tools useful\"}11agentTool Completed · text.transform · +3223ms / 耗时 0mstool_completed{\"operation\":\"uppercase\",\"text\":\"AGENTFLOW MAKES TOOLS USEFUL\"}12agentModel Request · deepseek-flash · iteration 2/6 · +3223msmodel_requestServer credential attached privately; headers are never traced13agentModel Response · 0 tool call(s) · +7261ms / 耗时 4038msmodel_response我已实际调用工具，结果如下：\n\n- **单词数统计**（text_word_count）：该文本「AgentFlow makes tools useful」共 **4 个单词**（同时包含 28 个字符，UTF-8 编码下占 28 字节）。\n- **转为大写**（text_transform，uppercase）：结果为 **「AGENTFLOW MAKES TOOLS USEFUL」**14agentModel Final Answer · +7261ms / 耗时 6901msmodel_final_answer我已实际调用工具，结果如下：\n\n- **单词数统计**（text_word_count）：该文本「AgentFlow makes tools useful」共 **4 个单词**（同时包含 28 个字符，UTF-8 编码下占 28 字节）。\n- **转为大写**（text_transform，uppercase）：结果为 **「AGENTFLOW MAKES TOOLS USEFUL」**15agentNode completed · +7261mscomplete我已实际调用工具，结果如下：\n\n- **单词数统计**（text_word_count）：该文本「AgentFlow makes tools useful」共 **4 个单词**（同时包含 28 个字符，UTF-8 编码下占 28 字节）。\n- **转为大写**（text_transform，uppercase）：结果为 **「AGENTFLOW MAKES TOOLS USEFUL」**16outputText input received · +7441msstart我已实际调用工具，结果如下：\n\n- **单词数统计**（text_word_count）：该文本「AgentFlow makes tools useful」共 **4 个单词**（同时包含 28 个字符，UTF-8 编码下占 28 字节）。\n- **转为大写**（text_transform，uppercase）：结果为 **「AGENTFLOW MAKES TOOLS USEFUL」**17outputFinal text output · +7441mscomplete我已实际调用工具，结果如下：\n\n- **单词数统计**（text_word_count）：该文本「AgentFlow makes tools useful」共 **4 个单词**（同时包含 28 个字符，UTF-8 编码下占 28 字节）。\n- **转为大写**（text_transform，uppercase）：结果为 **「AGENTFLOW MAKES TOOLS USEFUL」**"
+      }
+    },
+    {
+      "name": "invalid-unconnected-graph",
+      "observed": {
+        "counts": "3 节点 / 0 连接 · Text",
+        "notice": "验证失败：n_0c866fcb7fb3: invalid text port wiring (only Output may merge branches)"
+      }
+    },
+    {
+      "name": "author-blank-graph-drag-connect-run",
+      "observed": {
+        "counts": "3 节点 / 2 连接 · Text",
+        "output": "HELLO AGENTFLOW",
+        "status": "已完成"
+      }
+    },
+    {
+      "name": "reject-workflow-credential-field",
+      "observed": {
+        "error": "导入失败：未知字段：凭据和服务地址不能放入工作流"
+      }
+    },
+    {
+      "name": "real-find-only-allowlist-unicode",
+      "observed": {
+        "meta": "RUN #10 · 14 条真实事件",
+        "output": "已实际调用 text.find 工具，文本「猫a猫」中「猫」的查找结果如下：\n\n共找到 **2** 处匹配：\n\n| 匹配 | 字符索引 | UTF-8 字节偏移 |\n|---|---|---|\n| 第 1 个「猫」 | 0 | 0 |\n| 第 2 个「猫」 | 2 | 4 |\n\n说明：字符索引按 Unicode 码点计数（「猫」=0，「a」=1，「猫」=2）；字节偏移按 UTF-8 编码计算，汉字「猫」占 3 字节、ASCII 字符「a」占 1 字节，因此第二个「猫」的起始字节偏移为 3+1=4。结果未被截断（positions_truncated 为 false）。",
+        "status": "已完成",
+        "trace": "01inputText input received · +180msstart02inputNode completed · +180mscomplete请实际调用 text.find 工具，查找文本「猫a猫」中的「猫」，并根据工具结果用中文回答字符索引和 UTF-8 字节偏移。03agentText input received · +360msstart请实际调用 text.find 工具，查找文本「猫a猫」中的「猫」，并根据工具结果用中文回答字符索引和 UTF-8 字节偏移。04agentModel Request · deepseek-flash · iteration 1/6 · +360msmodel_requestServer credential attached privately; headers are never traced05agentModel Response · 1 tool call(s) · +3431ms / 耗时 3071msmodel_response06agentTool Requested · text.find · +3431mstool_requested{\"query\":\"猫\",\"text\":\"猫a猫\"}07agentTool Started · text.find · +3431mstool_started{\"query\":\"猫\",\"text\":\"猫a猫\"}08agentTool Completed · text.find · +3431ms / 耗时 0mstool_completed{\"found\":true,\"match_count\":2,\"positions\":[{\"byte_index\":0,\"character_index\":0},{\"byte_index\":4,\"character_index\":2}],\"positions_truncated\":false}09agentModel Request · deepseek-flash · iteration 2/6 · +3431msmodel_requestServer credential attached privately; headers are never traced10agentModel Response · 0 tool call(s) · +6765ms / 耗时 3333msmodel_response已实际调用 text.find 工具，文本「猫a猫」中「猫」的查找结果如下：\n\n共找到 **2** 处匹配：\n\n| 匹配 | 字符索引 | UTF-8 字节偏移 |\n|---|---|---|\n| 第 1 个「猫」 | 0 | 0 |\n| 第 2 个「猫」 | 2 | 4 |\n\n说明：字符索引按 Unicode 码点计数（「猫」=0，「a」=1，「猫」=2）；字节偏移按 UTF-8 编码计算，汉字「猫」占 3 字节、ASCII 字符「a」占 1 字节，因此第二个「猫」的起始字节偏移为 3+1=4。结果未被截断（positions_truncated 为 false）。11agentModel Final Answer · +6765ms / 耗时 6404msmodel_final_answer已实际调用 text.find 工具，文本「猫a猫」中「猫」的查找结果如下：\n\n共找到 **2** 处匹配：\n\n| 匹配 | 字符索引 | UTF-8 字节偏移 |\n|---|---|---|\n| 第 1 个「猫」 | 0 | 0 |\n| 第 2 个「猫」 | 2 | 4 |\n\n说明：字符索引按 Unicode 码点计数（「猫」=0，「a」=1，「猫」=2）；字节偏移按 UTF-8 编码计算，汉字「猫」占 3 字节、ASCII 字符「a」占 1 字节，因此第二个「猫」的起始字节偏移为 3+1=4。结果未被截断（positions_truncated 为 false）。12agentNode completed · +6765mscomplete已实际调用 text.find 工具，文本「猫a猫」中「猫」的查找结果如下：\n\n共找到 **2** 处匹配：\n\n| 匹配 | 字符索引 | UTF-8 字节偏移 |\n|---|---|---|\n| 第 1 个「猫」 | 0 | 0 |\n| 第 2 个「猫」 | 2 | 4 |\n\n说明：字符索引按 Unicode 码点计数（「猫」=0，「a」=1，「猫」=2）；字节偏移按 UTF-8 编码计算，汉字「猫」占 3 字节、ASCII 字符「a」占 1 字节，因此第二个「猫」的起始字节偏移为 3+1=4。结果未被截断（positions_truncated 为 false）。13outputText input received · +6945msstart已实际调用 text.find 工具，文本「猫a猫」中「猫」的查找结果如下：\n\n共找到 **2** 处匹配：\n\n| 匹配 | 字符索引 | UTF-8 字节偏移 |\n|---|---|---|\n| 第 1 个「猫」 | 0 | 0 |\n| 第 2 个「猫」 | 2 | 4 |\n\n说明：字符索引按 Unicode 码点计数（「猫」=0，「a」=1，「猫」=2）；字节偏移按 UTF-8 编码计算，汉字「猫」占 3 字节、ASCII 字符「a」占 1 字节，因此第二个「猫」的起始字节偏移为 3+1=4。结果未被截断（positions_truncated 为 false）。14outputFinal text output · +6945mscomplete已实际调用 text.find 工具，文本「猫a猫」中「猫」的查找结果如下：\n\n共找到 **2** 处匹配：\n\n| 匹配 | 字符索引 | UTF-8 字节偏移 |\n|---|---|---|\n| 第 1 个「猫」 | 0 | 0 |\n| 第 2 个「猫」 | 2 | 4 |\n\n说明：字符索引按 Unicode 码点计数（「猫」=0，「a」=1，「猫」=2）；字节偏移按 UTF-8 编码计算，汉字「猫」占 3 字节、ASCII 字符「a」占 1 字节，因此第二个「猫」的起始字节偏移为 3+1=4。结果未被截断（positions_truncated 为 false）。"
+      }
+    },
+    {
+      "name": "cancel-real-model-request",
+      "observed": {
+        "meta": "RUN #11 · 5 条真实事件",
+        "output": "Cancelled by user",
+        "status": "已取消",
+        "trace": "01inputText input received · +180msstart02inputNode completed · +180mscomplete请用简短中文解释什么是 Agent 工作流。03agentText input received · +360msstart请用简短中文解释什么是 Agent 工作流。04agentModel Request · deepseek-flash · iteration 1/6 · +360msmodel_requestServer credential attached privately; headers are never traced05agentModel request cancelled; transport was reaped · +523mscancelled"
+      }
+    }
+  ],
+  "console": []
+}

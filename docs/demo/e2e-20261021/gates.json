@@ -1,0 +1,92 @@
+{
+  "fmt": {
+    "run_id": "5ff82469-67df-4986-a435-af98f1f1d8e6",
+    "source_head": "b892fd93ead9008712e3c4639a7d776846b05481",
+    "argv": [
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "exit_code": 0,
+    "seconds": 2.274570932146162,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "guardian_reason": "Completed",
+    "cleanup_empty": true,
+    "cgroup_removed": true
+  },
+  "clippy": {
+    "run_id": "f5bc3762-a32c-4461-b6e8-76c52290e52d",
+    "source_head": "b892fd93ead9008712e3c4639a7d776846b05481",
+    "argv": [
+      "clippy",
+      "--locked",
+      "--offline",
+      "-j",
+      "1",
+      "--all-targets",
+      "--all-features",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit_code": 0,
+    "seconds": 16.468644361011684,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "f92ef3cdff79b1b9ae699778c50879382e8634edf4d15e514464ddff0f7bb5d0",
+    "guardian_reason": "Completed",
+    "cleanup_empty": true,
+    "cgroup_removed": true
+  },
+  "test": {
+    "run_id": "0a82d6f6-8c64-482a-9ba7-6368d380f42f",
+    "source_head": "b892fd93ead9008712e3c4639a7d776846b05481",
+    "argv": [
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace",
+      "-j",
+      "1"
+    ],
+    "exit_code": 0,
+    "seconds": 432.26386154815555,
+    "stdout_sha256": "defd8c46e84241d731a9724458c8f3ab8b8877361007e513d06185ca44d908b4",
+    "stderr_sha256": "3fbbbb17d1a39c05964946f81b33858b53b01e73e9e2c7aa0b5019593c76e526",
+    "guardian_reason": "Completed",
+    "cleanup_empty": true,
+    "cgroup_removed": true,
+    "counts": {
+      "passed": 496,
+      "failed": 0,
+      "ignored": 0,
+      "filtered": 0
+    }
+  },
+  "spec": {
+    "run_id": "3bfc12c8-96aa-477d-a88a-eca180cdc333",
+    "source_head": "b892fd93ead9008712e3c4639a7d776846b05481",
+    "argv": [
+      "run",
+      "--locked",
+      "--offline",
+      "-j",
+      "1",
+      "-p",
+      "af-spec",
+      "--bin",
+      "spec-check",
+      "--",
+      "check"
+    ],
+    "exit_code": 0,
+    "seconds": 12.678714320994914,
+    "stdout_sha256": "7dcf8fc70f67c05a59652f2f0ecf8eb7a2f070d319378e0d9522d48187e2aae4",
+    "stderr_sha256": "c9dfe9bad5372c858945889e89b4392e974cc31b224809d0708e6e2e10163567",
+    "guardian_reason": "Completed",
+    "cleanup_empty": true,
+    "cgroup_removed": true
+  },
+  "source_input_sha256": "350fa7dc2c0d2bcf27d5e86ede24721adc974315baeb36607bf7a40c699b43fe"
+}

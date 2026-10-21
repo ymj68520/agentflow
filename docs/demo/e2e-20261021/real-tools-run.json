@@ -1,0 +1,178 @@
+{
+  "error": null,
+  "events": [
+    {
+      "duration_ms": null,
+      "elapsed_ms": 180,
+      "message": "Text input received",
+      "node": "input",
+      "phase": "start",
+      "sequence": 1,
+      "value": "",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 180,
+      "message": "Node completed",
+      "node": "input",
+      "phase": "complete",
+      "sequence": 2,
+      "value": "请实际使用工具，统计文本「AgentFlow makes tools useful」的单词数，并将同一文本转为大写。请根据真实工具结果用中文回答。",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 360,
+      "message": "Text input received",
+      "node": "agent",
+      "phase": "start",
+      "sequence": 3,
+      "value": "请实际使用工具，统计文本「AgentFlow makes tools useful」的单词数，并将同一文本转为大写。请根据真实工具结果用中文回答。",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 362,
+      "message": "Model Request · deepseek-flash · iteration 1/6",
+      "node": "agent",
+      "phase": "model_request",
+      "sequence": 4,
+      "value": "Server credential attached privately; headers are never traced",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": 2860,
+      "elapsed_ms": 3222,
+      "message": "Model Response · 2 tool call(s)",
+      "node": "agent",
+      "phase": "model_response",
+      "sequence": 5,
+      "value": "",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 3222,
+      "message": "Tool Requested · text.word_count",
+      "node": "agent",
+      "phase": "tool_requested",
+      "sequence": 6,
+      "value": "{\"text\":\"AgentFlow makes tools useful\"}",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 3222,
+      "message": "Tool Requested · text.transform",
+      "node": "agent",
+      "phase": "tool_requested",
+      "sequence": 7,
+      "value": "{\"operation\":\"uppercase\",\"text\":\"AgentFlow makes tools useful\"}",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 3222,
+      "message": "Tool Started · text.word_count",
+      "node": "agent",
+      "phase": "tool_started",
+      "sequence": 8,
+      "value": "{\"text\":\"AgentFlow makes tools useful\"}",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": 0,
+      "elapsed_ms": 3222,
+      "message": "Tool Completed · text.word_count",
+      "node": "agent",
+      "phase": "tool_completed",
+      "sequence": 9,
+      "value": "{\"character_count\":28,\"utf8_bytes\":28,\"word_count\":4}",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 3222,
+      "message": "Tool Started · text.transform",
+      "node": "agent",
+      "phase": "tool_started",
+      "sequence": 10,
+      "value": "{\"operation\":\"uppercase\",\"text\":\"AgentFlow makes tools useful\"}",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": 0,
+      "elapsed_ms": 3223,
+      "message": "Tool Completed · text.transform",
+      "node": "agent",
+      "phase": "tool_completed",
+      "sequence": 11,
+      "value": "{\"operation\":\"uppercase\",\"text\":\"AGENTFLOW MAKES TOOLS USEFUL\"}",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 3223,
+      "message": "Model Request · deepseek-flash · iteration 2/6",
+      "node": "agent",
+      "phase": "model_request",
+      "sequence": 12,
+      "value": "Server credential attached privately; headers are never traced",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": 4038,
+      "elapsed_ms": 7261,
+      "message": "Model Response · 0 tool call(s)",
+      "node": "agent",
+      "phase": "model_response",
+      "sequence": 13,
+      "value": "我已实际调用工具，结果如下：\n\n- **单词数统计**（text_word_count）：该文本「AgentFlow makes tools useful」共 **4 个单词**（同时包含 28 个字符，UTF-8 编码下占 28 字节）。\n- **转为大写**（text_transform，uppercase）：结果为 **「AGENTFLOW MAKES TOOLS USEFUL」**",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": 6901,
+      "elapsed_ms": 7261,
+      "message": "Model Final Answer",
+      "node": "agent",
+      "phase": "model_final_answer",
+      "sequence": 14,
+      "value": "我已实际调用工具，结果如下：\n\n- **单词数统计**（text_word_count）：该文本「AgentFlow makes tools useful」共 **4 个单词**（同时包含 28 个字符，UTF-8 编码下占 28 字节）。\n- **转为大写**（text_transform，uppercase）：结果为 **「AGENTFLOW MAKES TOOLS USEFUL」**",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 7261,
+      "message": "Node completed",
+      "node": "agent",
+      "phase": "complete",
+      "sequence": 15,
+      "value": "我已实际调用工具，结果如下：\n\n- **单词数统计**（text_word_count）：该文本「AgentFlow makes tools useful」共 **4 个单词**（同时包含 28 个字符，UTF-8 编码下占 28 字节）。\n- **转为大写**（text_transform，uppercase）：结果为 **「AGENTFLOW MAKES TOOLS USEFUL」**",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 7441,
+      "message": "Text input received",
+      "node": "output",
+      "phase": "start",
+      "sequence": 16,
+      "value": "我已实际调用工具，结果如下：\n\n- **单词数统计**（text_word_count）：该文本「AgentFlow makes tools useful」共 **4 个单词**（同时包含 28 个字符，UTF-8 编码下占 28 字节）。\n- **转为大写**（text_transform，uppercase）：结果为 **「AGENTFLOW MAKES TOOLS USEFUL」**",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 7441,
+      "message": "Final text output",
+      "node": "output",
+      "phase": "complete",
+      "sequence": 17,
+      "value": "我已实际调用工具，结果如下：\n\n- **单词数统计**（text_word_count）：该文本「AgentFlow makes tools useful」共 **4 个单词**（同时包含 28 个字符，UTF-8 编码下占 28 字节）。\n- **转为大写**（text_transform，uppercase）：结果为 **「AGENTFLOW MAKES TOOLS USEFUL」**",
+      "value_truncated": false
+    }
+  ],
+  "id": 8,
+  "output": "我已实际调用工具，结果如下：\n\n- **单词数统计**（text_word_count）：该文本「AgentFlow makes tools useful」共 **4 个单词**（同时包含 28 个字符，UTF-8 编码下占 28 字节）。\n- **转为大写**（text_transform，uppercase）：结果为 **「AGENTFLOW MAKES TOOLS USEFUL」**",
+  "status": "completed"
+}

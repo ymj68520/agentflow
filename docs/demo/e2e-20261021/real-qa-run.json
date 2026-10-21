@@ -1,0 +1,98 @@
+{
+  "error": null,
+  "events": [
+    {
+      "duration_ms": null,
+      "elapsed_ms": 180,
+      "message": "Text input received",
+      "node": "input",
+      "phase": "start",
+      "sequence": 1,
+      "value": "",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 180,
+      "message": "Node completed",
+      "node": "input",
+      "phase": "complete",
+      "sequence": 2,
+      "value": "请用简短中文解释什么是 Agent 工作流。",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 360,
+      "message": "Text input received",
+      "node": "agent",
+      "phase": "start",
+      "sequence": 3,
+      "value": "请用简短中文解释什么是 Agent 工作流。",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 360,
+      "message": "Model Request · deepseek-flash · iteration 1/6",
+      "node": "agent",
+      "phase": "model_request",
+      "sequence": 4,
+      "value": "Server credential attached privately; headers are never traced",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": 8859,
+      "elapsed_ms": 9219,
+      "message": "Model Response · 0 tool call(s)",
+      "node": "agent",
+      "phase": "model_response",
+      "sequence": 5,
+      "value": "Agent 工作流是指把大模型（Agent）与工具调用、判断分支、记忆等步骤编排成一条可执行流程：模型先理解任务，再按预设或自主决定调用外部工具、处理中间结果，并根据反馈循环推进，直到完成任务。它强调多步骤协作与自动化，而非一次性问答。",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": 8859,
+      "elapsed_ms": 9219,
+      "message": "Model Final Answer",
+      "node": "agent",
+      "phase": "model_final_answer",
+      "sequence": 6,
+      "value": "Agent 工作流是指把大模型（Agent）与工具调用、判断分支、记忆等步骤编排成一条可执行流程：模型先理解任务，再按预设或自主决定调用外部工具、处理中间结果，并根据反馈循环推进，直到完成任务。它强调多步骤协作与自动化，而非一次性问答。",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 9219,
+      "message": "Node completed",
+      "node": "agent",
+      "phase": "complete",
+      "sequence": 7,
+      "value": "Agent 工作流是指把大模型（Agent）与工具调用、判断分支、记忆等步骤编排成一条可执行流程：模型先理解任务，再按预设或自主决定调用外部工具、处理中间结果，并根据反馈循环推进，直到完成任务。它强调多步骤协作与自动化，而非一次性问答。",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 9399,
+      "message": "Text input received",
+      "node": "output",
+      "phase": "start",
+      "sequence": 8,
+      "value": "Agent 工作流是指把大模型（Agent）与工具调用、判断分支、记忆等步骤编排成一条可执行流程：模型先理解任务，再按预设或自主决定调用外部工具、处理中间结果，并根据反馈循环推进，直到完成任务。它强调多步骤协作与自动化，而非一次性问答。",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 9399,
+      "message": "Final text output",
+      "node": "output",
+      "phase": "complete",
+      "sequence": 9,
+      "value": "Agent 工作流是指把大模型（Agent）与工具调用、判断分支、记忆等步骤编排成一条可执行流程：模型先理解任务，再按预设或自主决定调用外部工具、处理中间结果，并根据反馈循环推进，直到完成任务。它强调多步骤协作与自动化，而非一次性问答。",
+      "value_truncated": false
+    }
+  ],
+  "id": 7,
+  "output": "Agent 工作流是指把大模型（Agent）与工具调用、判断分支、记忆等步骤编排成一条可执行流程：模型先理解任务，再按预设或自主决定调用外部工具、处理中间结果，并根据反馈循环推进，直到完成任务。它强调多步骤协作与自动化，而非一次性问答。",
+  "status": "completed"
+}

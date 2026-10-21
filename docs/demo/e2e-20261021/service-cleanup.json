@@ -1,0 +1,7 @@
+{
+  "reason": "UserCancelled",
+  "cleanup_empty": true,
+  "cgroup_removed": true,
+  "peak_memory_bytes": 19832832,
+  "oom_kill_count": 0
+}

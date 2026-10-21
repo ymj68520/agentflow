@@ -1,0 +1,58 @@
+{
+  "error": "Cancelled by user",
+  "events": [
+    {
+      "duration_ms": null,
+      "elapsed_ms": 180,
+      "message": "Text input received",
+      "node": "input",
+      "phase": "start",
+      "sequence": 1,
+      "value": "",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 180,
+      "message": "Node completed",
+      "node": "input",
+      "phase": "complete",
+      "sequence": 2,
+      "value": "请用简短中文解释什么是 Agent 工作流。",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 360,
+      "message": "Text input received",
+      "node": "agent",
+      "phase": "start",
+      "sequence": 3,
+      "value": "请用简短中文解释什么是 Agent 工作流。",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 360,
+      "message": "Model Request · deepseek-flash · iteration 1/6",
+      "node": "agent",
+      "phase": "model_request",
+      "sequence": 4,
+      "value": "Server credential attached privately; headers are never traced",
+      "value_truncated": false
+    },
+    {
+      "duration_ms": null,
+      "elapsed_ms": 523,
+      "message": "Model request cancelled; transport was reaped",
+      "node": "agent",
+      "phase": "cancelled",
+      "sequence": 5,
+      "value": "",
+      "value_truncated": false
+    }
+  ],
+  "id": 11,
+  "output": null,
+  "status": "cancelled"
+}
