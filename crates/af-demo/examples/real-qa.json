@@ -1,0 +1,63 @@
+{
+  "layout": {
+    "agent": {
+      "x": 355.0,
+      "y": 130.0
+    },
+    "input": {
+      "x": 65.0,
+      "y": 130.0
+    },
+    "output": {
+      "x": 645.0,
+      "y": 130.0
+    }
+  },
+  "version": 1,
+  "workflow": {
+    "edges": [
+      {
+        "from": "input",
+        "port": "next",
+        "to": "agent"
+      },
+      {
+        "from": "agent",
+        "port": "next",
+        "to": "output"
+      }
+    ],
+    "nodes": [
+      {
+        "config": {
+          "kind": "input",
+          "text": "请用简短中文解释什么是 Agent 工作流。"
+        },
+        "id": "input",
+        "label": "User Input"
+      },
+      {
+        "config": {
+          "kind": "agent_loop",
+          "max_iterations": "6",
+          "model": {
+            "allowed_tools": [],
+            "model": "",
+            "system_prompt": "You are a helpful assistant. Use the provided local tools for requested exact text operations. Never pretend to execute tools. Use their actual results in your final answer. Answer in Chinese.",
+            "timeout_seconds": 120,
+            "tool_budget": 0
+          }
+        },
+        "id": "agent",
+        "label": "Real LLM · 问答"
+      },
+      {
+        "config": {
+          "kind": "output"
+        },
+        "id": "output",
+        "label": "Output"
+      }
+    ]
+  }
+}

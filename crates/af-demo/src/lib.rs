@@ -5,6 +5,8 @@ use std::sync::atomic::{AtomicBool, Ordering};
 use std::time::Duration;
 
 pub const MAX_TEXT: usize = 16_384;
+pub mod model;
+pub mod tools;
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -36,6 +38,8 @@ pub enum Config {
     },
     AgentLoop {
         max_iterations: String,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        model: Option<model::AgentSettings>,
     },
     Output,
 }
@@ -48,6 +52,7 @@ pub enum Operation {
     Trim,
     Prefix,
     WordCount,
+    Find,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -135,12 +140,19 @@ impl Workflow {
                 Config::Input { text } => limit(text),
                 Config::Task { argument, .. } => limit(argument),
                 Config::Condition { contains } => limit(contains),
-                Config::AgentLoop { max_iterations } => {
+                Config::AgentLoop {
+                    max_iterations,
+                    model,
+                } => {
+                    if let Some(settings) = model {
+                        settings.validate().map_err(|e| format!("{}: {e}", n.id))?;
+                    }
                     af_core::primitive::parse_uint32_text(max_iterations)
                         .map_err(|e| e.to_string())
                         .and_then(|v| {
                             if (1..=32).contains(&v) {
-                                total_iterations += v;
+                                total_iterations +=
+                                    model.as_ref().map_or(v, |m| v.max(m.tool_budget));
                                 Ok(())
                             } else {
                                 Err("max iterations must be 1–32".into())
@@ -240,6 +252,8 @@ pub struct Event {
     pub message: String,
     pub value: String,
     pub value_truncated: bool,
+    pub elapsed_ms: u128,
+    pub duration_ms: Option<u128>,
 }
 
 #[derive(Debug, PartialEq, Eq)]
@@ -258,14 +272,15 @@ fn emit(
     value: &str,
 ) {
     *seq += 1;
-    let preview: String = value.chars().take(512).collect();
     trace(Event {
         sequence: *seq,
         node: node.id.clone(),
         phase: phase.into(),
         message: message.into(),
-        value_truncated: preview.len() < value.len(),
-        value: preview,
+        value_truncated: false,
+        value: value.to_owned(),
+        elapsed_ms: 0,
+        duration_ms: None,
     });
 }
 
@@ -285,6 +300,41 @@ pub fn execute(
     validated: &ValidatedWorkflow,
     cancel: &AtomicBool,
     delay: Duration,
+    trace: impl FnMut(Event),
+) -> End {
+    execute_with_adapter(validated, cancel, delay, &model::Unconfigured, trace)
+}
+
+pub fn execute_with_adapter(
+    validated: &ValidatedWorkflow,
+    cancel: &AtomicBool,
+    delay: Duration,
+    adapter: &dyn model::ModelAdapter,
+    mut trace: impl FnMut(Event),
+) -> End {
+    let began = std::time::Instant::now();
+    let end = execute_inner(validated, cancel, delay, adapter, began, |mut event| {
+        event.elapsed_ms = began.elapsed().as_millis();
+        event.message = adapter.redact(&event.message);
+        let clean = adapter.redact(&event.value);
+        let preview: String = clean.chars().take(512).collect();
+        event.value_truncated = preview.len() < clean.len();
+        event.value = preview;
+        trace(event);
+    });
+    match end {
+        End::Completed(s) => End::Completed(adapter.redact(&s)),
+        End::Failed(s) => End::Failed(adapter.redact(&s)),
+        End::Cancelled => End::Cancelled,
+    }
+}
+
+fn execute_inner(
+    validated: &ValidatedWorkflow,
+    cancel: &AtomicBool,
+    delay: Duration,
+    adapter: &dyn model::ModelAdapter,
+    began: std::time::Instant,
     mut trace: impl FnMut(Event),
 ) -> End {
     let w = &validated.0;
@@ -298,6 +348,15 @@ pub fn execute(
     loop {
         if !pause(cancel, delay) {
             return End::Cancelled;
+        }
+        if began.elapsed() > Duration::from_secs(300) {
+            return fail(
+                &mut trace,
+                &mut seq,
+                current,
+                "workflow exceeded 300 second timeout",
+                "",
+            );
         }
         emit(
             &mut trace,
@@ -313,15 +372,10 @@ pub fn execute(
             Config::Task {
                 operation,
                 argument,
-            } => {
-                value = match operation {
-                    Operation::Uppercase => value.to_uppercase(),
-                    Operation::Lowercase => value.to_lowercase(),
-                    Operation::Trim => value.trim().to_owned(),
-                    Operation::Prefix => format!("{argument}{value}"),
-                    Operation::WordCount => value.split_whitespace().count().to_string(),
-                }
-            }
+            } => match run_task(*operation, argument, &value) {
+                Ok(result) => value = result,
+                Err(e) => return fail(&mut trace, &mut seq, current, &e, ""),
+            },
             Config::Condition { contains } => {
                 port = if value.contains(contains) {
                     Port::True
@@ -337,7 +391,57 @@ pub fn execute(
                     &value,
                 );
             }
-            Config::AgentLoop { max_iterations } => {
+            Config::AgentLoop {
+                max_iterations,
+                model: Some(settings),
+            } => {
+                let max = max_iterations.parse().expect("validated iteration limit");
+                let result = model::run_agent(
+                    adapter,
+                    settings,
+                    max,
+                    &value,
+                    cancel,
+                    began + Duration::from_secs(300),
+                    |phase, message, value, duration| {
+                        emit(
+                            &mut |mut event: Event| {
+                                event.duration_ms = duration;
+                                trace(event);
+                            },
+                            &mut seq,
+                            current,
+                            phase,
+                            message,
+                            value,
+                        );
+                    },
+                );
+                match result {
+                    Ok(answer) => value = answer,
+                    Err(model::ModelError::Cancelled) => {
+                        emit(
+                            &mut trace,
+                            &mut seq,
+                            current,
+                            "cancelled",
+                            "Model request cancelled; transport was reaped",
+                            "",
+                        );
+                        return End::Cancelled;
+                    }
+                    Err(model::ModelError::Timeout) => {
+                        return fail(&mut trace, &mut seq, current, "model/Agent timeout", "");
+                    }
+                    Err(model::ModelError::Failed(e)) => {
+                        return fail(&mut trace, &mut seq, current, &e, "");
+                    }
+                }
+            }
+            Config::AgentLoop {
+                max_iterations,
+                model: None,
+            } => {
                 let max: u32 = max_iterations.parse().expect("validated bound");
                 let mut done = false;
                 for iteration in 0..=max {
@@ -380,9 +484,14 @@ pub fn execute(
                         "Local tool: uppercase one Unicode character",
                         &character.to_string(),
                     );
+                    let result = tools::execute(
+                        "text_transform",
+                        &serde_json::json!({"text":character.to_string(),"operation":"uppercase"}),
+                    )
+                    .expect("bounded character tool");
                     value.replace_range(
                         offset..offset + character.len_utf8(),
-                        &character.to_uppercase().to_string(),
+                        result["text"].as_str().expect("transform returns text"),
                     );
                     if let Err(e) = limit(&value) {
                         return fail(&mut trace, &mut seq, current, &e, "");
@@ -447,6 +556,32 @@ fn fail(trace: &mut impl FnMut(Event), seq: &mut usize, n: &Node, error: &str, v
     End::Failed(format!("{}: {error}", n.id))
 }
 
+fn run_task(operation: Operation, argument: &str, value: &str) -> Result<String, String> {
+    use serde_json::json;
+    match operation {
+        Operation::Prefix => Ok(format!("{argument}{value}")),
+        Operation::WordCount => Ok(
+            tools::execute("text_word_count", &json!({"text":value}))?["word_count"].to_string(),
+        ),
+        Operation::Find => {
+            Ok(tools::execute("text_find", &json!({"text":value,"query":argument}))?.to_string())
+        }
+        Operation::Uppercase | Operation::Lowercase | Operation::Trim => {
+            let op = match operation {
+                Operation::Uppercase => "uppercase",
+                Operation::Lowercase => "lowercase",
+                _ => "trim",
+            };
+            Ok(
+                tools::execute("text_transform", &json!({"text":value,"operation":op}))?["text"]
+                    .as_str()
+                    .ok_or("transform did not return text")?
+                    .to_owned(),
+            )
+        }
+    }
+}
+
 pub fn examples() -> Vec<Document> {
     let input = || Node {
         id: "input".into(),
@@ -482,7 +617,7 @@ pub fn examples() -> Vec<Document> {
             .collect(),
         workflow: Workflow { nodes, edges },
     };
-    vec![
+    let mut documents = vec![
         doc(
             vec![
                 input(),
@@ -538,6 +673,7 @@ pub fn examples() -> Vec<Document> {
                     label: "Offline Agent Loop".into(),
                     config: Config::AgentLoop {
                         max_iterations: "8".into(),
+                        model: None,
                     },
                 },
                 output(),
@@ -548,5 +684,21 @@ pub fn examples() -> Vec<Document> {
             ],
             vec![(65.0, 130.0), (355.0, 130.0), (645.0, 130.0)],
         ),
-    ]
+    ];
+    for (text, label, allowed) in [
+        (
+            "请用简短中文解释什么是 Agent 工作流。",
+            "Real LLM · 问答",
+            Vec::new(),
+        ),
+        (
+            "请实际使用工具，统计文本「AgentFlow makes tools useful」的单词数，并将同一文本转为大写。请根据真实工具结果用中文回答。",
+            "Real LLM · 自主工具",
+            tools::NAMES.iter().map(|n| (*n).to_owned()).collect(),
+        ),
+    ] {
+        let budget = if allowed.is_empty() { 0 } else { 8 };
+        documents.push(doc(vec![Node{id:"input".into(),label:"User Input".into(),config:Config::Input{text:text.into()}},Node{id:"agent".into(),label:label.into(),config:Config::AgentLoop{max_iterations:"6".into(),model:Some(model::AgentSettings{model:String::new(),system_prompt:"You are a helpful assistant. Use the provided local tools for requested exact text operations. Never pretend to execute tools. Use their actual results in your final answer. Answer in Chinese.".into(),allowed_tools:allowed,tool_budget:budget,timeout_seconds:120})}},output()],vec![edge("input","agent",Port::Next),edge("agent","output",Port::Next)],vec![(65.0,130.0),(355.0,130.0),(645.0,130.0)]));
+    }
+    documents
 }

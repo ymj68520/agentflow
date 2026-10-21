@@ -1,5 +1,7 @@
 # AgentFlow Studio — 可视化工作流演示
 
+> 当前阶段 3 已支持可选真实 LLM 与 Tool Calling，启动和配置请看 [README-models.md](README-models.md)。下文保留阶段 2 的离线说明；旧 `run-demo-gate.py` 入口只用于离线模式，不会注入模型配置。
+
 本地、离线、非生产原型。没有正式 Runtime、Canonical Semantic IR 转换、RootExport、Publication、Durable Execution 或 Effect Authority。
 
 ## 在现有 Linux 工作区启动

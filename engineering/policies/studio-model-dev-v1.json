@@ -1,0 +1,94 @@
+{
+  "scope": "Graduation project Stage 3 real LLM and closed local tool calling",
+  "limits": {
+    "cpu_percent_of_online_host": 10,
+    "process_address_space_bytes": 8589934592,
+    "task_memory_bytes": 6442450944,
+    "swap_bytes": 0,
+    "pids": 128,
+    "host_reserve_bytes": 8589934592,
+    "wall_seconds": 5400,
+    "disk_growth_bytes": 12884901888,
+    "disk_free_reserve_bytes": 21474836480,
+    "cargo_jobs": 1,
+    "rust_test_threads": 2,
+    "concurrent_tasks": 1,
+    "monitor_period_seconds": 0.1
+  },
+  "commands": {
+    "format": [
+      "fmt",
+      "--all"
+    ],
+    "fmt": [
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "clippy": [
+      "clippy",
+      "--locked",
+      "--offline",
+      "-j",
+      "1",
+      "--all-targets",
+      "--all-features",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "test": [
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace",
+      "-j",
+      "1"
+    ],
+    "spec": [
+      "run",
+      "--locked",
+      "--offline",
+      "-j",
+      "1",
+      "-p",
+      "af-spec",
+      "--bin",
+      "spec-check",
+      "--",
+      "check"
+    ],
+    "lock": [
+      "generate-lockfile",
+      "--offline"
+    ],
+    "demo-test": [
+      "test",
+      "--locked",
+      "--offline",
+      "-j",
+      "1",
+      "-p",
+      "af-demo"
+    ],
+    "serve": [
+      "run",
+      "--locked",
+      "--offline",
+      "-j",
+      "1",
+      "-p",
+      "af-demo"
+    ]
+  },
+  "user_maximum": {
+    "cpu_percent": 20,
+    "tree_memory_bytes": 6442450944,
+    "jobs": 2,
+    "test_threads": 2
+  },
+  "B2": "Sampling is not hard quota; no strict overshoot bound; regular-file blocks omit some metadata; no isolation from other writers",
+  "no_push": true,
+  "no_formal_asset_changes": true
+}

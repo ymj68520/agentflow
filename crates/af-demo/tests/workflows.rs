@@ -48,6 +48,7 @@ fn loop_bound_is_enforced() {
     let mut doc = examples().remove(2);
     doc.workflow.nodes[1].config = Config::AgentLoop {
         max_iterations: "1".into(),
+        model: None,
     };
     let mut trace = Vec::new();
     assert!(matches!(
@@ -131,6 +132,7 @@ fn reject_invalid_bound() {
         let mut d = examples().remove(2);
         d.workflow.nodes[1].config = Config::AgentLoop {
             max_iterations: bound.into(),
+            model: None,
         };
         assert!(d.validate().is_err());
     }
@@ -184,6 +186,7 @@ fn combined_loop_budget_is_bounded() {
         n.id = format!("loop{i}");
         n.config = Config::AgentLoop {
             max_iterations: "32".into(),
+            model: None,
         };
         d.workflow.nodes.push(n);
     }
@@ -195,6 +198,8 @@ fn shipped_json_examples_match_builtin_workflows() {
         include_str!("../examples/sequential.json"),
         include_str!("../examples/condition.json"),
         include_str!("../examples/agent-loop.json"),
+        include_str!("../examples/real-qa.json"),
+        include_str!("../examples/real-tools.json"),
     ]
     .into_iter()
     .zip(examples())

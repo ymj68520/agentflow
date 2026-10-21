@@ -20,6 +20,7 @@ struct State {
     next: u64,
     run: Option<Run>,
     cancel: Arc<AtomicBool>,
+    model: Arc<dyn af_demo::model::ModelAdapter>,
 }
 
 fn respond(stream: &mut TcpStream, code: u16, mime: &str, body: &[u8]) -> std::io::Result<()> {
@@ -62,7 +63,20 @@ fn request(stream: &mut TcpStream, port: u16) -> Result<Request, String> {
             return Err("headers too large".into());
         }
         let mut chunk = [0_u8; 1024];
-        let count = stream.read(&mut chunk).map_err(|e| e.to_string())?;
+        let count = match stream.read(&mut chunk) {
+            Ok(0) if bytes.is_empty() => return Err("EMPTY_IDLE_CONNECTION".into()),
+            Err(error)
+                if bytes.is_empty()
+                    && matches!(
+                        error.kind(),
+                        std::io::ErrorKind::WouldBlock | std::io::ErrorKind::TimedOut
+                    ) =>
+            {
+                return Err("EMPTY_IDLE_CONNECTION".into());
+            }
+            Ok(count) => count,
+            Err(error) => return Err(format!("HTTP header read failed: {error}")),
+        };
         if count == 0 {
             return Err("incomplete headers".into());
         }
@@ -151,18 +165,24 @@ fn start(state: &Arc<Mutex<State>>, doc: &Document) -> Result<u64, String> {
         error: None,
     });
     let shared = Arc::clone(state);
+    let model = Arc::clone(&locked.model);
     // One active worker only; bounded nodes/text/iterations bound retained trace.
     std::thread::Builder::new()
         .name("demo-workflow".into())
         .spawn(move || {
-            let result =
-                af_demo::execute(&validated, &cancel, Duration::from_millis(180), |event| {
+            let result = af_demo::execute_with_adapter(
+                &validated,
+                &cancel,
+                Duration::from_millis(180),
+                model.as_ref(),
+                |event| {
                     if let Ok(mut s) = shared.lock() {
                         if let Some(r) = &mut s.run {
                             r.events.push(event);
                         }
                     }
-                });
+                },
+            );
             if let Ok(mut s) = shared.lock() {
                 if let Some(r) = &mut s.run {
                     match result {
@@ -192,6 +212,7 @@ fn start(state: &Arc<Mutex<State>>, doc: &Document) -> Result<u64, String> {
 fn handle(stream: &mut TcpStream, port: u16, state: &Arc<Mutex<State>>) -> std::io::Result<()> {
     let req = match request(stream, port) {
         Ok(r) => r,
+        Err(error) if error == "EMPTY_IDLE_CONNECTION" => return Ok(()),
         Err(e) => return json_response(stream, 400, &json!({"error":e})),
     };
     match (req.method.as_str(), req.path.as_str()) {
@@ -214,6 +235,16 @@ fn handle(stream: &mut TcpStream, port: u16, state: &Arc<Mutex<State>>) -> std::
             include_bytes!("../web/app.js"),
         ),
         ("GET", "/api/examples") => json_response(stream, 200, &json!(af_demo::examples())),
+        ("GET", "/api/model") => {
+            let s = state
+                .lock()
+                .map_err(|_| std::io::Error::other("state poisoned"))?;
+            json_response(
+                stream,
+                200,
+                &json!({"model":s.model.info(),"tools":af_demo::tools::NAMES}),
+            )
+        }
         ("POST", "/api/validate" | "/api/run") => {
             let doc = match serde_json::from_slice::<Document>(&req.body) {
                 Ok(d) => d,
@@ -277,14 +308,22 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         return Err("port must be nonzero".into());
     }
     let listener = TcpListener::bind((std::net::Ipv4Addr::LOCALHOST, port))?;
+    let model: Arc<dyn af_demo::model::ModelAdapter> =
+        match std::env::var_os("AF_DEMO_MODEL_CONFIG") {
+            Some(path) => Arc::new(af_demo::model::OpenAiCompatible::from_file(
+                std::path::Path::new(&path),
+            )?),
+            None => Arc::new(af_demo::model::Unconfigured),
+        };
     let state = Arc::new(Mutex::new(State {
         next: 1,
         run: None,
         cancel: Arc::new(AtomicBool::new(false)),
+        model,
     }));
     println!("AgentFlow Studio · LOCAL NON-PRODUCTION DEMO · http://127.0.0.1:{port}");
     println!(
-        "Offline deterministic policy, not a real LLM. No shell/network tools, formal IR, RootExport or durable execution."
+        "Offline deterministic and optional real LLM modes. Only configured model endpoint and closed local text tools. No formal Runtime, RootExport or durable execution."
     );
     for stream in listener.incoming() {
         match stream {

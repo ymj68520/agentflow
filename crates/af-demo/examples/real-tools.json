@@ -1,0 +1,67 @@
+{
+  "layout": {
+    "agent": {
+      "x": 355.0,
+      "y": 130.0
+    },
+    "input": {
+      "x": 65.0,
+      "y": 130.0
+    },
+    "output": {
+      "x": 645.0,
+      "y": 130.0
+    }
+  },
+  "version": 1,
+  "workflow": {
+    "edges": [
+      {
+        "from": "input",
+        "port": "next",
+        "to": "agent"
+      },
+      {
+        "from": "agent",
+        "port": "next",
+        "to": "output"
+      }
+    ],
+    "nodes": [
+      {
+        "config": {
+          "kind": "input",
+          "text": "请实际使用工具，统计文本「AgentFlow makes tools useful」的单词数，并将同一文本转为大写。请根据真实工具结果用中文回答。"
+        },
+        "id": "input",
+        "label": "User Input"
+      },
+      {
+        "config": {
+          "kind": "agent_loop",
+          "max_iterations": "6",
+          "model": {
+            "allowed_tools": [
+              "text.word_count",
+              "text.transform",
+              "text.find"
+            ],
+            "model": "",
+            "system_prompt": "You are a helpful assistant. Use the provided local tools for requested exact text operations. Never pretend to execute tools. Use their actual results in your final answer. Answer in Chinese.",
+            "timeout_seconds": 120,
+            "tool_budget": 8
+          }
+        },
+        "id": "agent",
+        "label": "Real LLM · 自主工具"
+      },
+      {
+        "config": {
+          "kind": "output"
+        },
+        "id": "output",
+        "label": "Output"
+      }
+    ]
+  }
+}

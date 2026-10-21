@@ -166,3 +166,18 @@ fn invalid_graph_and_json_fail_closed() {
     assert_eq!(s.api("POST", "/api/run", Some(&example)).0, 422);
     assert_eq!(s.raw(&format!("POST /api/cancel HTTP/1.1\r\nHost: 127.0.0.1:{}\r\nX-AgentFlow-Demo: 1\r\nContent-Type: application/json\r\nContent-Length: 1\r\n\r\n{{",s.port)).0,422);
 }
+#[test]
+fn idle_preconnection_is_closed_without_a_spurious_http_error() {
+    let server = Server::new();
+    let mut idle = TcpStream::connect(("127.0.0.1", server.port)).unwrap();
+    idle.set_read_timeout(Some(Duration::from_secs(4))).unwrap();
+    std::thread::sleep(Duration::from_millis(2200));
+    let mut byte = [0];
+    assert_eq!(
+        idle.read(&mut byte).unwrap(),
+        0,
+        "idle connection must not receive an HTTP error body"
+    );
+    let (code, _) = server.api("GET", "/api/examples", None);
+    assert_eq!(code, 200);
+}
