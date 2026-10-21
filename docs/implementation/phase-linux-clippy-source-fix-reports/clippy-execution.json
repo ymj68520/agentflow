@@ -1,0 +1,30 @@
+{
+  "status": "NOT EXECUTED",
+  "source_head": "1a5a7c22bf5956d5c96df829e77738b2ea935c8a",
+  "git_tree": "90f994e4c2552b1fb26884fe325cfdb4ab2bd822",
+  "argv": [
+    "cargo",
+    "clippy",
+    "--locked",
+    "--offline",
+    "-j",
+    "1",
+    "--all-targets",
+    "--all-features",
+    "--",
+    "-D",
+    "warnings"
+  ],
+  "reason": "fmt exited1; explicit stop-on-first-failure contract",
+  "actual_exit_code": null,
+  "wall_seconds": null,
+  "resource_peaks": null,
+  "stdout_sha256": null,
+  "stderr_sha256": null,
+  "launches": 0,
+  "claim_consumed": false,
+  "authorization_not_carried_to_future_stage": true,
+  "requested_coverage": "Full --all-targets --all-features -D warnings",
+  "actual_coverage": "None in this phase",
+  "no_old_pass_substitution": true
+}

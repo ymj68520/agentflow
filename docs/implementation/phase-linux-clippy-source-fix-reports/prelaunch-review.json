@@ -1,0 +1,75 @@
+{
+  "status": "Passed",
+  "checks": [
+    {
+      "id": "fix-commit-is-executed-head",
+      "passed": true
+    },
+    {
+      "id": "fix-tree",
+      "passed": true
+    },
+    {
+      "id": "clean",
+      "passed": true
+    },
+    {
+      "id": "only-one-product-path",
+      "passed": true
+    },
+    {
+      "id": "exact-no-other-bytes",
+      "passed": true
+    },
+    {
+      "id": "other-Handle-arm-keeps-clauses",
+      "passed": true
+    },
+    {
+      "id": "fmt/shared-identity",
+      "passed": true
+    },
+    {
+      "id": "fmt/freeze-hash",
+      "passed": true
+    },
+    {
+      "id": "fmt/immutable-files",
+      "passed": true
+    },
+    {
+      "id": "fmt/not-consumed",
+      "passed": true
+    },
+    {
+      "id": "clippy/shared-identity",
+      "passed": true
+    },
+    {
+      "id": "clippy/freeze-hash",
+      "passed": true
+    },
+    {
+      "id": "clippy/immutable-files",
+      "passed": true
+    },
+    {
+      "id": "clippy/not-consumed",
+      "passed": true
+    },
+    {
+      "id": "old-06-exit101",
+      "passed": true
+    },
+    {
+      "id": "old-05-clippy101",
+      "passed": true
+    },
+    {
+      "id": "new-no-round2-dispatch",
+      "passed": true
+    }
+  ],
+  "reviewer": "Same coding agent, separate readback process; not third-party certification",
+  "cargo_launched": false
+}

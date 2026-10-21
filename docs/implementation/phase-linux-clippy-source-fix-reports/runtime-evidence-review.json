@@ -1,0 +1,135 @@
+{
+  "status": "Passed",
+  "checks": [
+    {
+      "id": "fix-executed-head",
+      "passed": true
+    },
+    {
+      "id": "fmt-failure-recorded",
+      "passed": true
+    },
+    {
+      "id": "controller-not-pass",
+      "passed": true
+    },
+    {
+      "id": "guardian-completed-not-gate-pass",
+      "passed": true
+    },
+    {
+      "id": "cleanup-empty",
+      "passed": true
+    },
+    {
+      "id": "cleanup-cgroup-removed",
+      "passed": true
+    },
+    {
+      "id": "AS8GiB",
+      "passed": true
+    },
+    {
+      "id": "tree3GiB",
+      "passed": true
+    },
+    {
+      "id": "cpu-online-quota",
+      "passed": true
+    },
+    {
+      "id": "Swap0",
+      "passed": true
+    },
+    {
+      "id": "PIDs128",
+      "passed": true
+    },
+    {
+      "id": "independent-kernel-AS-readback",
+      "passed": true
+    },
+    {
+      "id": "guardian-live-release",
+      "passed": true
+    },
+    {
+      "id": "cargo.stdout.log/hash",
+      "passed": true
+    },
+    {
+      "id": "cargo.stderr.log/hash",
+      "passed": true
+    },
+    {
+      "id": "resource-samples.jsonl/hash",
+      "passed": true
+    },
+    {
+      "id": "resource-samples.jsonl/count",
+      "passed": true
+    },
+    {
+      "id": "process-trees.jsonl/hash",
+      "passed": true
+    },
+    {
+      "id": "process-trees.jsonl/count",
+      "passed": true
+    },
+    {
+      "id": "observer-complete",
+      "passed": true
+    },
+    {
+      "id": "observer-stream-hash",
+      "passed": true
+    },
+    {
+      "id": "fmt/fresh-approval",
+      "passed": true
+    },
+    {
+      "id": "clippy/fresh-approval",
+      "passed": true
+    },
+    {
+      "id": "exact-one-fmt-claim",
+      "passed": true
+    },
+    {
+      "id": "exact-one-fmt-run",
+      "passed": true
+    },
+    {
+      "id": "clippy-no-claim",
+      "passed": true
+    },
+    {
+      "id": "clippy-no-run",
+      "passed": true
+    },
+    {
+      "id": "actual-clippy-admission-denied-after-fmt1",
+      "passed": true
+    },
+    {
+      "id": "protected-exact-authorized-delta",
+      "passed": true
+    },
+    {
+      "id": "Cargo-lock-unchanged",
+      "passed": true
+    },
+    {
+      "id": "deps-unchanged",
+      "passed": true
+    },
+    {
+      "id": "frozen-ten-unchanged",
+      "passed": true
+    }
+  ],
+  "scope": "Evidence accuracy, admission denial and cleanup only; not native gate success",
+  "reviewer": "Same coding agent; separate verification process, not third-party certification"
+}

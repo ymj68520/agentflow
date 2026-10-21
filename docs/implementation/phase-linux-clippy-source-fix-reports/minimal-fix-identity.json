@@ -1,0 +1,14 @@
+{
+  "path": "crates/af-computation/src/control.rs",
+  "before_sha256": "262d97a73e32e501490ffc7c9189e8cc83e45882d17b74239f6687f3c4f935fa",
+  "after_sha256": "d7d93ce6bf6559241d9d6436f4ade5399b3364c3a7c7132107c6d624e39f0cc6",
+  "before_head": "27e8130724562526f732dac754988b38d5c5d166",
+  "before_git_tree": "9d8a3dcb1f9702ff8a964e2c110a0f3d06a1c533",
+  "after_git_tree": "90f994e4c2552b1fb26884fe325cfdb4ab2bd822",
+  "fix_commit": "1a5a7c22bf5956d5c96df829e77738b2ea935c8a",
+  "product_changes": [
+    "crates/af-computation/src/control.rs"
+  ],
+  "replacement_count": 1,
+  "only_exact_binding_removed": true
+}

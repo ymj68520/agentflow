@@ -1,0 +1,473 @@
+{
+  "Required": 116,
+  "Executed": 116,
+  "Passed": 116,
+  "Failed": 0,
+  "cases": [
+    {
+      "id": "fmt/approved",
+      "passed": true
+    },
+    {
+      "id": "fmt/deny-A/False",
+      "passed": true
+    },
+    {
+      "id": "fmt/deny-A/None",
+      "passed": true
+    },
+    {
+      "id": "fmt/deny-A/'Approved'",
+      "passed": true
+    },
+    {
+      "id": "fmt/deny-A/1",
+      "passed": true
+    },
+    {
+      "id": "fmt/deny-B/False",
+      "passed": true
+    },
+    {
+      "id": "fmt/deny-B/None",
+      "passed": true
+    },
+    {
+      "id": "fmt/deny-B/'Approved'",
+      "passed": true
+    },
+    {
+      "id": "fmt/deny-B/1",
+      "passed": true
+    },
+    {
+      "id": "fmt/deny-C/False",
+      "passed": true
+    },
+    {
+      "id": "fmt/deny-C/None",
+      "passed": true
+    },
+    {
+      "id": "fmt/deny-C/'Approved'",
+      "passed": true
+    },
+    {
+      "id": "fmt/deny-C/1",
+      "passed": true
+    },
+    {
+      "id": "fmt/budget-cpu_percent_of_online_host",
+      "passed": true
+    },
+    {
+      "id": "fmt/budget-process_address_space_bytes",
+      "passed": true
+    },
+    {
+      "id": "fmt/budget-task_memory_bytes",
+      "passed": true
+    },
+    {
+      "id": "fmt/budget-swap_bytes",
+      "passed": true
+    },
+    {
+      "id": "fmt/budget-pids",
+      "passed": true
+    },
+    {
+      "id": "fmt/budget-host_reserve_bytes",
+      "passed": true
+    },
+    {
+      "id": "fmt/budget-wall_seconds",
+      "passed": true
+    },
+    {
+      "id": "fmt/budget-disk_growth_bytes",
+      "passed": true
+    },
+    {
+      "id": "fmt/budget-disk_free_reserve_bytes",
+      "passed": true
+    },
+    {
+      "id": "fmt/budget-cargo_jobs",
+      "passed": true
+    },
+    {
+      "id": "fmt/budget-rust_test_threads",
+      "passed": true
+    },
+    {
+      "id": "fmt/budget-concurrent_tasks",
+      "passed": true
+    },
+    {
+      "id": "fmt/budget-monitor_period_seconds",
+      "passed": true
+    },
+    {
+      "id": "fmt/deny-other-gate",
+      "passed": true
+    },
+    {
+      "id": "fmt/deny-missing-B2",
+      "passed": true
+    },
+    {
+      "id": "fmt/deny-expanded-command",
+      "passed": true
+    },
+    {
+      "id": "fmt/deny-retry",
+      "passed": true
+    },
+    {
+      "id": "fmt/deny-float-claim",
+      "passed": true
+    },
+    {
+      "id": "clippy/approved",
+      "passed": true
+    },
+    {
+      "id": "clippy/deny-A/False",
+      "passed": true
+    },
+    {
+      "id": "clippy/deny-A/None",
+      "passed": true
+    },
+    {
+      "id": "clippy/deny-A/'Approved'",
+      "passed": true
+    },
+    {
+      "id": "clippy/deny-A/1",
+      "passed": true
+    },
+    {
+      "id": "clippy/deny-B/False",
+      "passed": true
+    },
+    {
+      "id": "clippy/deny-B/None",
+      "passed": true
+    },
+    {
+      "id": "clippy/deny-B/'Approved'",
+      "passed": true
+    },
+    {
+      "id": "clippy/deny-B/1",
+      "passed": true
+    },
+    {
+      "id": "clippy/deny-C/False",
+      "passed": true
+    },
+    {
+      "id": "clippy/deny-C/None",
+      "passed": true
+    },
+    {
+      "id": "clippy/deny-C/'Approved'",
+      "passed": true
+    },
+    {
+      "id": "clippy/deny-C/1",
+      "passed": true
+    },
+    {
+      "id": "clippy/budget-cpu_percent_of_online_host",
+      "passed": true
+    },
+    {
+      "id": "clippy/budget-process_address_space_bytes",
+      "passed": true
+    },
+    {
+      "id": "clippy/budget-task_memory_bytes",
+      "passed": true
+    },
+    {
+      "id": "clippy/budget-swap_bytes",
+      "passed": true
+    },
+    {
+      "id": "clippy/budget-pids",
+      "passed": true
+    },
+    {
+      "id": "clippy/budget-host_reserve_bytes",
+      "passed": true
+    },
+    {
+      "id": "clippy/budget-wall_seconds",
+      "passed": true
+    },
+    {
+      "id": "clippy/budget-disk_growth_bytes",
+      "passed": true
+    },
+    {
+      "id": "clippy/budget-disk_free_reserve_bytes",
+      "passed": true
+    },
+    {
+      "id": "clippy/budget-cargo_jobs",
+      "passed": true
+    },
+    {
+      "id": "clippy/budget-rust_test_threads",
+      "passed": true
+    },
+    {
+      "id": "clippy/budget-concurrent_tasks",
+      "passed": true
+    },
+    {
+      "id": "clippy/budget-monitor_period_seconds",
+      "passed": true
+    },
+    {
+      "id": "clippy/deny-other-gate",
+      "passed": true
+    },
+    {
+      "id": "clippy/deny-missing-B2",
+      "passed": true
+    },
+    {
+      "id": "clippy/deny-expanded-command",
+      "passed": true
+    },
+    {
+      "id": "clippy/deny-retry",
+      "passed": true
+    },
+    {
+      "id": "clippy/deny-float-claim",
+      "passed": true
+    },
+    {
+      "id": "test/not-whitelisted",
+      "passed": true
+    },
+    {
+      "id": "spec-check/not-whitelisted",
+      "passed": true
+    },
+    {
+      "id": "structure/gate-launch-consumed.json",
+      "passed": true
+    },
+    {
+      "id": "structure/gate-launch-reserved.json",
+      "passed": true
+    },
+    {
+      "id": "structure/RECOVERY_SOURCE_BINDING",
+      "passed": true
+    },
+    {
+      "id": "structure/resource-samples.jsonl",
+      "passed": true
+    },
+    {
+      "id": "structure/process-trees.jsonl",
+      "passed": true
+    },
+    {
+      "id": "structure/samples_sha256",
+      "passed": true
+    },
+    {
+      "id": "structure/kernel_service_limits",
+      "passed": true
+    },
+    {
+      "id": "structure/MANDATORY_RESOURCE_INTERFACE_MISSING",
+      "passed": true
+    },
+    {
+      "id": "structure/Guardian",
+      "passed": true
+    },
+    {
+      "id": "structure/GUARDIAN_FAILED_CONTROLLER_TAKEOVER",
+      "passed": true
+    },
+    {
+      "id": "structure/pidfd_send_signal",
+      "passed": true
+    },
+    {
+      "id": "structure/RuntimeMaxSec=5400s",
+      "passed": true
+    },
+    {
+      "id": "long-gates-no-10000-sample-abort",
+      "passed": true
+    },
+    {
+      "id": "only-one-cargo-spawn-site",
+      "passed": true
+    },
+    {
+      "id": "no-shell",
+      "passed": true
+    },
+    {
+      "id": "stream-is-real-jsonl",
+      "passed": true
+    },
+    {
+      "id": "5400-seconds",
+      "passed": true
+    },
+    {
+      "id": "no-lib-or-filters",
+      "passed": true
+    },
+    {
+      "id": "qualified-core-exact",
+      "passed": true
+    },
+    {
+      "id": "no-round1-consumed",
+      "passed": true
+    },
+    {
+      "id": "8GiB-AS",
+      "passed": true
+    },
+    {
+      "id": "3GiB-tree-unchanged",
+      "passed": true
+    },
+    {
+      "id": "no-old-2GiB-in-runner",
+      "passed": true
+    },
+    {
+      "id": "observer-in-service",
+      "passed": true
+    },
+    {
+      "id": "observer-thread-no-child-spawn",
+      "passed": true
+    },
+    {
+      "id": "fresh-approval/approval_question_id",
+      "passed": true
+    },
+    {
+      "id": "fresh-approval/phase",
+      "passed": true
+    },
+    {
+      "id": "fresh-approval/prior_grants_reused",
+      "passed": true
+    },
+    {
+      "id": "fresh-approval/round2_approved",
+      "passed": true
+    },
+    {
+      "id": "fresh-approval/A-limits",
+      "passed": true
+    },
+    {
+      "id": "fresh-approval/B-risks",
+      "passed": true
+    },
+    {
+      "id": "fresh-approval/B-scope",
+      "passed": true
+    },
+    {
+      "id": "cleanup/(True, True)",
+      "passed": true
+    },
+    {
+      "id": "cleanup/(False, True)",
+      "passed": true
+    },
+    {
+      "id": "cleanup/(True, False)",
+      "passed": true
+    },
+    {
+      "id": "cleanup/(False, False)",
+      "passed": true
+    },
+    {
+      "id": "cleanup/(1, True)",
+      "passed": true
+    },
+    {
+      "id": "cleanup/(True, 1)",
+      "passed": true
+    },
+    {
+      "id": "cleanup/(None, True)",
+      "passed": true
+    },
+    {
+      "id": "dead-guardian-denied-before-release",
+      "passed": true
+    },
+    {
+      "id": "live-guardian-bound",
+      "passed": true
+    },
+    {
+      "id": "wrong-guardian-denied-before-release",
+      "passed": true
+    },
+    {
+      "id": "cleanup-failure-enters-controller-takeover",
+      "passed": true
+    },
+    {
+      "id": "fmt-prerequisite/valid",
+      "passed": true
+    },
+    {
+      "id": "fmt-prerequisite/deny-fmt-failed",
+      "passed": true
+    },
+    {
+      "id": "fmt-prerequisite/deny-other-head",
+      "passed": true
+    },
+    {
+      "id": "fmt-prerequisite/deny-other-tree",
+      "passed": true
+    },
+    {
+      "id": "fmt-prerequisite/deny-guardian",
+      "passed": true
+    },
+    {
+      "id": "fmt-prerequisite/deny-cleanup",
+      "passed": true
+    },
+    {
+      "id": "fmt-prerequisite/deny-controller",
+      "passed": true
+    },
+    {
+      "id": "same-head-prerequisite-actually-called",
+      "passed": true
+    },
+    {
+      "id": "no-second-command-options",
+      "passed": true
+    }
+  ],
+  "scope": "Static admission/streaming only"
+}

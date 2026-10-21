@@ -1,0 +1,529 @@
+{
+  "shared": {
+    "source_head": "1a5a7c22bf5956d5c96df829e77738b2ea935c8a",
+    "git_tree": "90f994e4c2552b1fb26884fe325cfdb4ab2bd822",
+    "gates": {
+      "fmt": {
+        "run_id": "ca567e1b-a6dc-4b7b-8889-51fa5145a171",
+        "freeze_sha256": "e8398ad96c8f0bfabaf8ef100e285987bc12d775fdf8bc81c87bbddcecb02156"
+      },
+      "clippy": {
+        "run_id": "350f7645-e1be-4f3e-b039-4439ed897397",
+        "freeze_sha256": "6bc36a241679807772a2407e63e68cf44e85eecd6ecc0896b1476d8d50e4bde6"
+      }
+    },
+    "round2_frozen": false
+  },
+  "minimal_fix": {
+    "path": "crates/af-computation/src/control.rs",
+    "before_sha256": "262d97a73e32e501490ffc7c9189e8cc83e45882d17b74239f6687f3c4f935fa",
+    "after_sha256": "d7d93ce6bf6559241d9d6436f4ade5399b3364c3a7c7132107c6d624e39f0cc6",
+    "before_head": "27e8130724562526f732dac754988b38d5c5d166",
+    "before_git_tree": "9d8a3dcb1f9702ff8a964e2c110a0f3d06a1c533",
+    "after_git_tree": "90f994e4c2552b1fb26884fe325cfdb4ab2bd822",
+    "fix_commit": "1a5a7c22bf5956d5c96df829e77738b2ea935c8a",
+    "product_changes": [
+      "crates/af-computation/src/control.rs"
+    ],
+    "replacement_count": 1,
+    "only_exact_binding_removed": true
+  },
+  "per_gate_freezes": {
+    "fmt": {
+      "gate": "fmt",
+      "run_id": "ca567e1b-a6dc-4b7b-8889-51fa5145a171",
+      "source_head": "1a5a7c22bf5956d5c96df829e77738b2ea935c8a",
+      "git_tree": "90f994e4c2552b1fb26884fe325cfdb4ab2bd822",
+      "executor_sha256": "7ba9c9bb85fda436410a4d6a16bcbe51943094c76d65e8342d5b9c27b3fe725d",
+      "policy_sha256": "7192cd58fa6eb466cf71f86586480e6ce362d657e39997e744f848063c17b4fe",
+      "cargo_lock_sha256": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede",
+      "toolchain": {
+        "cargo": {
+          "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/cargo",
+          "sha256": "e60b4010303c19a131c058e3f054b4b3311433c4b2ee94ba8e09e165ff2a3b3b",
+          "version": "cargo 1.91.1 (ea2d97820 2025-10-10)\n",
+          "exit_code": 0
+        },
+        "rustc": {
+          "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustc",
+          "sha256": "5eadaaf4fe086d76547b17dc3c1ba880d0082b93f7d8bc65612770da8e79fe8e",
+          "version": "rustc 1.91.1 (ed61e7d7e 2025-11-07)\nbinary: rustc\ncommit-hash: ed61e7d7e242494fb7057f2657300d9e77bb4fcb\ncommit-date: 2025-11-07\nhost: x86_64-unknown-linux-gnu\nrelease: 1.91.1\nLLVM version: 21.1.2\n",
+          "exit_code": 0
+        },
+        "rustdoc": {
+          "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustdoc",
+          "sha256": "f22c571ca4f921e0ac7c2c466de30da574b9018690a3878167cb0ea72249ed7f",
+          "version": "rustdoc 1.91.1 (ed61e7d7e 2025-11-07)\n",
+          "exit_code": 0
+        },
+        "cargo-fmt": {
+          "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/cargo-fmt",
+          "sha256": "c2ff85ac4c4ce90cb96c984a95931cfbd91adabf396bc271c213f510eb30f050",
+          "version": "rustfmt 1.8.0-stable (ed61e7d7e2 2025-11-07)\n",
+          "exit_code": 0
+        },
+        "rustfmt": {
+          "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustfmt",
+          "sha256": "7f25f6db19ff2ae54f5e3fb452625a798dfd32ffccd6cc96c8428500d7ab7fbc",
+          "version": "rustfmt 1.8.0-stable (ed61e7d7e2 2025-11-07)\n",
+          "exit_code": 0
+        },
+        "cargo-clippy": {
+          "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/cargo-clippy",
+          "sha256": "33ed620c44189e461fa88571ce754e01738f3664cf9ec175c6c69e9c9b2e20fc",
+          "version": "clippy 0.1.91 (ed61e7d7e2 2025-11-07)\n",
+          "exit_code": 0
+        },
+        "clippy-driver": {
+          "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/clippy-driver",
+          "sha256": "c9c037ce2eb0743a74d25939ec7718b9c0b5c8523a0bd968743fd8a680e3a00b",
+          "version": "clippy 0.1.91 (ed61e7d7e2 2025-11-07)\n",
+          "exit_code": 0
+        }
+      },
+      "immutable_files": {
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/src/control.rs": "d7d93ce6bf6559241d9d6436f4ade5399b3364c3a7c7132107c6d624e39f0cc6",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-clippy-source-fix/minimal-fix-identity.json": "5310306fde236d0308cf46325fcd2e5eda04099321140c41fe1ff8bb9289aeca",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linker_memory_observer.py": "84dd0a1b76135ff8b422ba377c21b9b6f53bf3253c774d2bb1e055708b3b3ec9",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/audit-linux-clippy-source-fix.py": "6175374e81b95e11cb668f91620d6f4c49c5020c16643b6669c87ede197cf18b",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-clippy-source-fix.py": "7ba9c9bb85fda436410a4d6a16bcbe51943094c76d65e8342d5b9c27b3fe725d",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/engineering/policies/linux-clippy-source-fix-v1.json": "7192cd58fa6eb466cf71f86586480e6ce362d657e39997e744f848063c17b4fe",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-production-protector.py": "28b3ffbf05a1815f80ada6c8ffe98cee621fb7805b84ad24deefbfca2e393349",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/Cargo.lock": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/Cargo.toml": "a358116be184afa181159dfcd3c646205dc989be48328a720d7357c81c70f766",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/config.toml": "caa43ddf3ac24bf244c8dfa5a423446de4f4747e2ca2d5613e65fbefec6b7035",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-clippy-source-fix/toolchain-identity.json": "9559fab7c497f7dc79c78dab61a7a1f6a425656b60ee18b4df25ad5929aa3fc5",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-clippy-source-fix/fmt/approval-matrix.json": "502e204b848f3b019146e26fabf355b06962e49a7d6eb1699e44028a7d8e0efc",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin/python": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-clippy-source-fix/current-toolchain-verification.json": "9083acad37bb47a8c29601c18b418d1edb88386a1878734a9806cdce4fba6399",
+        "/usr/bin/cc": "1b99826121ae6682a634e5efe09bd3e3df58ce58e0b28f849114ab5b89139c26",
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld/ld.lld": "21a45393b9a99e325e5cd6632e19b9020fb6daf631a93e035f0c159428bc96dc",
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld": "a2aef2573bc0409403747456072c373523ebfea0d03a832520331a17e8ec65a5",
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/cargo": "e60b4010303c19a131c058e3f054b4b3311433c4b2ee94ba8e09e165ff2a3b3b",
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustc": "5eadaaf4fe086d76547b17dc3c1ba880d0082b93f7d8bc65612770da8e79fe8e",
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustdoc": "f22c571ca4f921e0ac7c2c466de30da574b9018690a3878167cb0ea72249ed7f",
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/cargo-fmt": "c2ff85ac4c4ce90cb96c984a95931cfbd91adabf396bc271c213f510eb30f050",
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustfmt": "7f25f6db19ff2ae54f5e3fb452625a798dfd32ffccd6cc96c8428500d7ab7fbc",
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/cargo-clippy": "33ed620c44189e461fa88571ce754e01738f3664cf9ec175c6c69e9c9b2e20fc",
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/clippy-driver": "c9c037ce2eb0743a74d25939ec7718b9c0b5c8523a0bd968743fd8a680e3a00b",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-failure/Cargo.toml": "774d3c4892eaeafe9bc40a0a30656d09c698961825f2d617164a25e828129255",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-flow/Cargo.toml": "713b6a19df20f38f5108786afe7b8faf22e69e0fea1335f9ef0cfd5cf469ab68",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-portable/Cargo.toml": "d44dd68986dd299dc5d740f6930c05306f0649d298fc1ef86cd9d8b36f45e626",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-execution/Cargo.toml": "c2a2927a1bf8800681b8ba23879bee6d23b022a8a55ab6190edb0235e8d27e0b",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-idl/Cargo.toml": "c9a1583013e51d490880aaa5fa1c09dcb1177ad5cf54c538b06f6342bc8976cf",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-usage/Cargo.toml": "b993f9bd2e37be40e479d234cad28b2c9c634d04ed3eb58e4f1d2b9148660ebe",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/Cargo.toml": "acd76c4bcb6c67f6315cfac2deb5c2116e12d368bb8ad23085f7bd2888c5f89d",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-ir/Cargo.toml": "6e0cf9ae08a11cc8eb2262eb26f5e907e4e63984ab8544869e79564d135d05fe",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-semantic/Cargo.toml": "dd85d75afc426860d2b2e767dd09d0a766838f793e29e75c32c5bb5100b44deb",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-contract/Cargo.toml": "a785f1683861224a792f706291072caea92f5f70d47a9f810a38584aab5ef7dc",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-resource/Cargo.toml": "0024a4e3bbef47e11e96f3f7f69cba931e51011a1f5f5bad04370866a75d36a6",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-core/Cargo.toml": "8b1a838740afc03871c21b356591bad0bf1e56539ef2e94bcade6ae6eeb73c07",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-recovery/Cargo.toml": "a8df88cd1db5fdc25caa56a8499b8e9813af2d353083afdf0e82918b278fd6e2",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-spec/Cargo.toml": "16ec141d4d741e273825f0ad961f5ecfff5fbbfc8355cc9e2fe6d7a601ec94a6",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-effect/Cargo.toml": "da9fa34b39c2b4a5679ec68b171948e965638400859944778c2badc56954ec21",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/base64-0.22.1/.cargo-checksum.json": "2c36b3eb4b84e6f22e50a944fa1db041e768d754df93b0053996a7a35b10f000",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/syn-3.0.6/.cargo-checksum.json": "1b2870e90521eb4027d6c4b3351324b5d04fbff93fb6df1c543142d2c91cfe03",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/typenum-1.20.1/.cargo-checksum.json": "2409af2c07c94085a6c6a1db1178d4a8255a8cfaa4c89c6e29b232a0c859e187",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/serde_derive-1.0.229/.cargo-checksum.json": "cfbbc4b96d75d52d9fa6a9777d57fa825e610c5a48cf7436dc9ce40438927bd0",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/digest-0.10.7/.cargo-checksum.json": "01e374595eefc9c909dfeb443d6b6d1c1b440f1a4547d12208e1d6eba9139853",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/generic-array-0.14.7/.cargo-checksum.json": "22e689765bf42a7b42e5b1696d70c05c8bc46139810897447ac2bf03dd094332",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/zmij-1.0.23/.cargo-checksum.json": "1d2f173f8de4f8a11c58107cc5f0f44d922a3a5de3f23a761785c89ad288c21c",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/cfg-if-1.0.5/.cargo-checksum.json": "af9d402a10430a3f033ad4d49da7cad77886f487aa8e78ca864fe23d8c6db47f",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/crypto-common-0.1.7/.cargo-checksum.json": "e6f224badf84a425d26dba42590e730146b98d84ee0f38d55134f9efaf671e66",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/unicode-normalization-0.1.25/.cargo-checksum.json": "514aec60cabc0e6ae57f0629b3197fed36cbb8b0fd2e1d84d20fa2562ba3ea31",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/cpufeatures-0.2.17/.cargo-checksum.json": "0276bf3c61749c66efae2c0ddaadeef108e35060a9c4621f09017db37839eb53",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/tinyvec-1.13.3/.cargo-checksum.json": "6596f365d8dbb910207bf79e094ae307125100a6d0fae76e31595e37cffdb4e0",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/unicode-ident-1.0.26/.cargo-checksum.json": "a70f13849cadfb4571995af924f105a1887c8de4717437a8805351b1cd8a897a",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/version_check-0.9.5/.cargo-checksum.json": "be8797d22e97e608de7d23b53f253f417d51e037412464adfff596b2e98d4c68",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/quote-1.0.47/.cargo-checksum.json": "56fd6d4f8ebae43abd0d1cfb291b03d4ac7cf2cc160842a420c293c49d7935ac",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/memchr-2.8.3/.cargo-checksum.json": "7e103675f046adbe533586939bdcb621c5c6e4c38eaf54d82ef5ce86ccc3a81a",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/proc-macro2-1.0.107/.cargo-checksum.json": "6c0d5c4ba97cf686858c60a2c35a58ed65ba037dde00341320e4b8990e19b86c",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/sha2-0.10.9/.cargo-checksum.json": "3ad713b2a5049f15bb4f3a9f687da5f34d293cd979d44d7239f6a70ee4b90d14",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/itoa-1.0.18/.cargo-checksum.json": "2be9fe8a94535b088ad95c52f34850d2530f22ee1e711f475c0a1b9df45fea3d",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/serde_core-1.0.229/.cargo-checksum.json": "920eed6c82e8683e87e09f9033df398e568e68db74b9ab2ae59a00499c366563",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/serde-1.0.229/.cargo-checksum.json": "3ed90df73525ecdf0076a8c8d54f04ee30d5c14d91f68f1020780fe4440ec9b4",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/block-buffer-0.10.4/.cargo-checksum.json": "d8aa6412fc755d1ce1fe4d4ba2e8236d469ab012a626a9a755ceb338fb5471f7",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/hex-0.4.3/.cargo-checksum.json": "f46bce79e4b5c64e8dcf10e542812fe19e5f6bd095bb34fdb23a0030bcfc1895",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/libc-0.2.190/.cargo-checksum.json": "7a9d889e03083a05debd1d8cb1dcc4cf8336d00f2184805a800488d45038b4a2",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/serde_json-1.0.151/.cargo-checksum.json": "392e0e5a25d0daa3291826d13cd5a33b0bcb87e1e8dfef3f90df0670d33f85c0"
+      },
+      "effective_env": {
+        "HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-fmt-ca567e1b-a6dc-4b7b-8889-51fa5145a171/home",
+        "TMPDIR": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-fmt-ca567e1b-a6dc-4b7b-8889-51fa5145a171/tmp",
+        "TMP": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-fmt-ca567e1b-a6dc-4b7b-8889-51fa5145a171/tmp",
+        "TEMP": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-fmt-ca567e1b-a6dc-4b7b-8889-51fa5145a171/tmp",
+        "XDG_CACHE_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-fmt-ca567e1b-a6dc-4b7b-8889-51fa5145a171/cache",
+        "XDG_CONFIG_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-fmt-ca567e1b-a6dc-4b7b-8889-51fa5145a171/config",
+        "XDG_DATA_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-fmt-ca567e1b-a6dc-4b7b-8889-51fa5145a171/data",
+        "PATH": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin:/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin:/usr/bin:/bin",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "CARGO_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1",
+        "CARGO_TARGET_DIR": "/home/ymj68520/projects/agent-r5g2-linux-validation/build/linux-primary-v1",
+        "CARGO_BUILD_JOBS": "1",
+        "RUST_TEST_THREADS": "1",
+        "CARGO_NET_OFFLINE": "true",
+        "CARGO_TERM_COLOR": "never",
+        "RUSTC": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustc",
+        "RUSTDOC": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustdoc",
+        "RUSTFMT": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustfmt",
+        "RUSTUP_AUTO_INSTALL": "0",
+        "RUSTUP_NO_UPDATE_CHECK": "1"
+      },
+      "write_roots": [
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/.git",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/build/linux-primary-v1",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-fmt-ca567e1b-a6dc-4b7b-8889-51fa5145a171",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-clippy-source-fix"
+      ],
+      "job_tmp_root": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-fmt-ca567e1b-a6dc-4b7b-8889-51fa5145a171",
+      "write_root_audits": [
+        {
+          "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace",
+          "resolved": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace",
+          "device": 2050,
+          "allocated_regular_bytes": 1706401792,
+          "free_bytes": 81210118144,
+          "free_inodes": 57112811,
+          "filesystem": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n"
+        },
+        {
+          "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/.git",
+          "resolved": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/.git",
+          "device": 2050,
+          "allocated_regular_bytes": 216821760,
+          "free_bytes": 81210114048,
+          "free_inodes": 57112811,
+          "filesystem": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n"
+        },
+        {
+          "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1",
+          "resolved": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1",
+          "device": 2050,
+          "allocated_regular_bytes": 19431424,
+          "free_bytes": 81210114048,
+          "free_inodes": 57112811,
+          "filesystem": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n"
+        },
+        {
+          "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/build/linux-primary-v1",
+          "resolved": "/home/ymj68520/projects/agent-r5g2-linux-validation/build/linux-primary-v1",
+          "device": 2050,
+          "allocated_regular_bytes": 173993984,
+          "free_bytes": 81210114048,
+          "free_inodes": 57112811,
+          "filesystem": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n"
+        },
+        {
+          "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-fmt-ca567e1b-a6dc-4b7b-8889-51fa5145a171",
+          "resolved": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-fmt-ca567e1b-a6dc-4b7b-8889-51fa5145a171",
+          "device": 2050,
+          "allocated_regular_bytes": 0,
+          "free_bytes": 81210114048,
+          "free_inodes": 57112811,
+          "filesystem": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n"
+        },
+        {
+          "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-clippy-source-fix",
+          "resolved": "/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-clippy-source-fix",
+          "device": 2050,
+          "allocated_regular_bytes": 315392,
+          "free_bytes": 81210114048,
+          "free_inodes": 57112811,
+          "filesystem": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n"
+        }
+      ],
+      "ancestor_limits": [
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1001.slice/user@1001.service",
+          "limits": {
+            "cpu.max": "max 100000",
+            "memory.max": "max",
+            "memory.swap.max": "max",
+            "pids.max": "max"
+          }
+        },
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1001.slice",
+          "limits": {
+            "cpu.max": "max 100000",
+            "memory.max": "max",
+            "memory.swap.max": "max",
+            "pids.max": "76995"
+          }
+        },
+        {
+          "path": "/sys/fs/cgroup/user.slice",
+          "limits": {
+            "cpu.max": "max 100000",
+            "memory.max": "max",
+            "memory.swap.max": "max",
+            "pids.max": "max"
+          }
+        },
+        {
+          "path": "/sys/fs/cgroup",
+          "limits": {}
+        }
+      ],
+      "profile_overrides": [],
+      "host_preflight": {
+        "MemAvailable": 19903844352,
+        "free_bytes": 81210114048,
+        "free_inodes": 57112811,
+        "active_processes": []
+      }
+    },
+    "clippy": {
+      "gate": "clippy",
+      "run_id": "350f7645-e1be-4f3e-b039-4439ed897397",
+      "source_head": "1a5a7c22bf5956d5c96df829e77738b2ea935c8a",
+      "git_tree": "90f994e4c2552b1fb26884fe325cfdb4ab2bd822",
+      "executor_sha256": "7ba9c9bb85fda436410a4d6a16bcbe51943094c76d65e8342d5b9c27b3fe725d",
+      "policy_sha256": "7192cd58fa6eb466cf71f86586480e6ce362d657e39997e744f848063c17b4fe",
+      "cargo_lock_sha256": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede",
+      "toolchain": {
+        "cargo": {
+          "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/cargo",
+          "sha256": "e60b4010303c19a131c058e3f054b4b3311433c4b2ee94ba8e09e165ff2a3b3b",
+          "version": "cargo 1.91.1 (ea2d97820 2025-10-10)\n",
+          "exit_code": 0
+        },
+        "rustc": {
+          "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustc",
+          "sha256": "5eadaaf4fe086d76547b17dc3c1ba880d0082b93f7d8bc65612770da8e79fe8e",
+          "version": "rustc 1.91.1 (ed61e7d7e 2025-11-07)\nbinary: rustc\ncommit-hash: ed61e7d7e242494fb7057f2657300d9e77bb4fcb\ncommit-date: 2025-11-07\nhost: x86_64-unknown-linux-gnu\nrelease: 1.91.1\nLLVM version: 21.1.2\n",
+          "exit_code": 0
+        },
+        "rustdoc": {
+          "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustdoc",
+          "sha256": "f22c571ca4f921e0ac7c2c466de30da574b9018690a3878167cb0ea72249ed7f",
+          "version": "rustdoc 1.91.1 (ed61e7d7e 2025-11-07)\n",
+          "exit_code": 0
+        },
+        "cargo-fmt": {
+          "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/cargo-fmt",
+          "sha256": "c2ff85ac4c4ce90cb96c984a95931cfbd91adabf396bc271c213f510eb30f050",
+          "version": "rustfmt 1.8.0-stable (ed61e7d7e2 2025-11-07)\n",
+          "exit_code": 0
+        },
+        "rustfmt": {
+          "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustfmt",
+          "sha256": "7f25f6db19ff2ae54f5e3fb452625a798dfd32ffccd6cc96c8428500d7ab7fbc",
+          "version": "rustfmt 1.8.0-stable (ed61e7d7e2 2025-11-07)\n",
+          "exit_code": 0
+        },
+        "cargo-clippy": {
+          "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/cargo-clippy",
+          "sha256": "33ed620c44189e461fa88571ce754e01738f3664cf9ec175c6c69e9c9b2e20fc",
+          "version": "clippy 0.1.91 (ed61e7d7e2 2025-11-07)\n",
+          "exit_code": 0
+        },
+        "clippy-driver": {
+          "path": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/clippy-driver",
+          "sha256": "c9c037ce2eb0743a74d25939ec7718b9c0b5c8523a0bd968743fd8a680e3a00b",
+          "version": "clippy 0.1.91 (ed61e7d7e2 2025-11-07)\n",
+          "exit_code": 0
+        }
+      },
+      "immutable_files": {
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/src/control.rs": "d7d93ce6bf6559241d9d6436f4ade5399b3364c3a7c7132107c6d624e39f0cc6",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-clippy-source-fix/minimal-fix-identity.json": "5310306fde236d0308cf46325fcd2e5eda04099321140c41fe1ff8bb9289aeca",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linker_memory_observer.py": "84dd0a1b76135ff8b422ba377c21b9b6f53bf3253c774d2bb1e055708b3b3ec9",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/audit-linux-clippy-source-fix.py": "6175374e81b95e11cb668f91620d6f4c49c5020c16643b6669c87ede197cf18b",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-clippy-source-fix.py": "7ba9c9bb85fda436410a4d6a16bcbe51943094c76d65e8342d5b9c27b3fe725d",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/engineering/policies/linux-clippy-source-fix-v1.json": "7192cd58fa6eb466cf71f86586480e6ce362d657e39997e744f848063c17b4fe",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/tools/linux-production-protector.py": "28b3ffbf05a1815f80ada6c8ffe98cee621fb7805b84ad24deefbfca2e393349",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/Cargo.lock": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/Cargo.toml": "a358116be184afa181159dfcd3c646205dc989be48328a720d7357c81c70f766",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/config.toml": "caa43ddf3ac24bf244c8dfa5a423446de4f4747e2ca2d5613e65fbefec6b7035",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-clippy-source-fix/toolchain-identity.json": "9559fab7c497f7dc79c78dab61a7a1f6a425656b60ee18b4df25ad5929aa3fc5",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-clippy-source-fix/clippy/approval-matrix.json": "454306e5b286e2c44afff0dd4864177612814129855892788cc42b0b5e36e9fe",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin/python": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-clippy-source-fix/current-toolchain-verification.json": "9083acad37bb47a8c29601c18b418d1edb88386a1878734a9806cdce4fba6399",
+        "/usr/bin/cc": "1b99826121ae6682a634e5efe09bd3e3df58ce58e0b28f849114ab5b89139c26",
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld/ld.lld": "21a45393b9a99e325e5cd6632e19b9020fb6daf631a93e035f0c159428bc96dc",
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld": "a2aef2573bc0409403747456072c373523ebfea0d03a832520331a17e8ec65a5",
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/cargo": "e60b4010303c19a131c058e3f054b4b3311433c4b2ee94ba8e09e165ff2a3b3b",
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustc": "5eadaaf4fe086d76547b17dc3c1ba880d0082b93f7d8bc65612770da8e79fe8e",
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustdoc": "f22c571ca4f921e0ac7c2c466de30da574b9018690a3878167cb0ea72249ed7f",
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/cargo-fmt": "c2ff85ac4c4ce90cb96c984a95931cfbd91adabf396bc271c213f510eb30f050",
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustfmt": "7f25f6db19ff2ae54f5e3fb452625a798dfd32ffccd6cc96c8428500d7ab7fbc",
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/cargo-clippy": "33ed620c44189e461fa88571ce754e01738f3664cf9ec175c6c69e9c9b2e20fc",
+        "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/clippy-driver": "c9c037ce2eb0743a74d25939ec7718b9c0b5c8523a0bd968743fd8a680e3a00b",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-failure/Cargo.toml": "774d3c4892eaeafe9bc40a0a30656d09c698961825f2d617164a25e828129255",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-flow/Cargo.toml": "713b6a19df20f38f5108786afe7b8faf22e69e0fea1335f9ef0cfd5cf469ab68",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-portable/Cargo.toml": "d44dd68986dd299dc5d740f6930c05306f0649d298fc1ef86cd9d8b36f45e626",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-execution/Cargo.toml": "c2a2927a1bf8800681b8ba23879bee6d23b022a8a55ab6190edb0235e8d27e0b",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-idl/Cargo.toml": "c9a1583013e51d490880aaa5fa1c09dcb1177ad5cf54c538b06f6342bc8976cf",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-usage/Cargo.toml": "b993f9bd2e37be40e479d234cad28b2c9c634d04ed3eb58e4f1d2b9148660ebe",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-computation/Cargo.toml": "acd76c4bcb6c67f6315cfac2deb5c2116e12d368bb8ad23085f7bd2888c5f89d",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-ir/Cargo.toml": "6e0cf9ae08a11cc8eb2262eb26f5e907e4e63984ab8544869e79564d135d05fe",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-semantic/Cargo.toml": "dd85d75afc426860d2b2e767dd09d0a766838f793e29e75c32c5bb5100b44deb",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-contract/Cargo.toml": "a785f1683861224a792f706291072caea92f5f70d47a9f810a38584aab5ef7dc",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-resource/Cargo.toml": "0024a4e3bbef47e11e96f3f7f69cba931e51011a1f5f5bad04370866a75d36a6",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-core/Cargo.toml": "8b1a838740afc03871c21b356591bad0bf1e56539ef2e94bcade6ae6eeb73c07",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-recovery/Cargo.toml": "a8df88cd1db5fdc25caa56a8499b8e9813af2d353083afdf0e82918b278fd6e2",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-spec/Cargo.toml": "16ec141d4d741e273825f0ad961f5ecfff5fbbfc8355cc9e2fe6d7a601ec94a6",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/crates/af-effect/Cargo.toml": "da9fa34b39c2b4a5679ec68b171948e965638400859944778c2badc56954ec21",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/base64-0.22.1/.cargo-checksum.json": "2c36b3eb4b84e6f22e50a944fa1db041e768d754df93b0053996a7a35b10f000",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/syn-3.0.6/.cargo-checksum.json": "1b2870e90521eb4027d6c4b3351324b5d04fbff93fb6df1c543142d2c91cfe03",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/typenum-1.20.1/.cargo-checksum.json": "2409af2c07c94085a6c6a1db1178d4a8255a8cfaa4c89c6e29b232a0c859e187",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/serde_derive-1.0.229/.cargo-checksum.json": "cfbbc4b96d75d52d9fa6a9777d57fa825e610c5a48cf7436dc9ce40438927bd0",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/digest-0.10.7/.cargo-checksum.json": "01e374595eefc9c909dfeb443d6b6d1c1b440f1a4547d12208e1d6eba9139853",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/generic-array-0.14.7/.cargo-checksum.json": "22e689765bf42a7b42e5b1696d70c05c8bc46139810897447ac2bf03dd094332",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/zmij-1.0.23/.cargo-checksum.json": "1d2f173f8de4f8a11c58107cc5f0f44d922a3a5de3f23a761785c89ad288c21c",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/cfg-if-1.0.5/.cargo-checksum.json": "af9d402a10430a3f033ad4d49da7cad77886f487aa8e78ca864fe23d8c6db47f",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/crypto-common-0.1.7/.cargo-checksum.json": "e6f224badf84a425d26dba42590e730146b98d84ee0f38d55134f9efaf671e66",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/unicode-normalization-0.1.25/.cargo-checksum.json": "514aec60cabc0e6ae57f0629b3197fed36cbb8b0fd2e1d84d20fa2562ba3ea31",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/cpufeatures-0.2.17/.cargo-checksum.json": "0276bf3c61749c66efae2c0ddaadeef108e35060a9c4621f09017db37839eb53",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/tinyvec-1.13.3/.cargo-checksum.json": "6596f365d8dbb910207bf79e094ae307125100a6d0fae76e31595e37cffdb4e0",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/unicode-ident-1.0.26/.cargo-checksum.json": "a70f13849cadfb4571995af924f105a1887c8de4717437a8805351b1cd8a897a",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/version_check-0.9.5/.cargo-checksum.json": "be8797d22e97e608de7d23b53f253f417d51e037412464adfff596b2e98d4c68",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/quote-1.0.47/.cargo-checksum.json": "56fd6d4f8ebae43abd0d1cfb291b03d4ac7cf2cc160842a420c293c49d7935ac",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/memchr-2.8.3/.cargo-checksum.json": "7e103675f046adbe533586939bdcb621c5c6e4c38eaf54d82ef5ce86ccc3a81a",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/proc-macro2-1.0.107/.cargo-checksum.json": "6c0d5c4ba97cf686858c60a2c35a58ed65ba037dde00341320e4b8990e19b86c",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/sha2-0.10.9/.cargo-checksum.json": "3ad713b2a5049f15bb4f3a9f687da5f34d293cd979d44d7239f6a70ee4b90d14",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/itoa-1.0.18/.cargo-checksum.json": "2be9fe8a94535b088ad95c52f34850d2530f22ee1e711f475c0a1b9df45fea3d",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/serde_core-1.0.229/.cargo-checksum.json": "920eed6c82e8683e87e09f9033df398e568e68db74b9ab2ae59a00499c366563",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/serde-1.0.229/.cargo-checksum.json": "3ed90df73525ecdf0076a8c8d54f04ee30d5c14d91f68f1020780fe4440ec9b4",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/block-buffer-0.10.4/.cargo-checksum.json": "d8aa6412fc755d1ce1fe4d4ba2e8236d469ab012a626a9a755ceb338fb5471f7",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/hex-0.4.3/.cargo-checksum.json": "f46bce79e4b5c64e8dcf10e542812fe19e5f6bd095bb34fdb23a0030bcfc1895",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/libc-0.2.190/.cargo-checksum.json": "7a9d889e03083a05debd1d8cb1dcc4cf8336d00f2184805a800488d45038b4a2",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1/vendor/serde_json-1.0.151/.cargo-checksum.json": "392e0e5a25d0daa3291826d13cd5a33b0bcb87e1e8dfef3f90df0670d33f85c0"
+      },
+      "effective_env": {
+        "HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-clippy-350f7645-e1be-4f3e-b039-4439ed897397/home",
+        "TMPDIR": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-clippy-350f7645-e1be-4f3e-b039-4439ed897397/tmp",
+        "TMP": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-clippy-350f7645-e1be-4f3e-b039-4439ed897397/tmp",
+        "TEMP": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-clippy-350f7645-e1be-4f3e-b039-4439ed897397/tmp",
+        "XDG_CACHE_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-clippy-350f7645-e1be-4f3e-b039-4439ed897397/cache",
+        "XDG_CONFIG_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-clippy-350f7645-e1be-4f3e-b039-4439ed897397/config",
+        "XDG_DATA_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-clippy-350f7645-e1be-4f3e-b039-4439ed897397/data",
+        "PATH": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin:/home/ymj68520/projects/agent-r5g2-linux-validation/venvs/linux-primary-v1/bin:/usr/bin:/bin",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "CARGO_HOME": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1",
+        "CARGO_TARGET_DIR": "/home/ymj68520/projects/agent-r5g2-linux-validation/build/linux-primary-v1",
+        "CARGO_BUILD_JOBS": "1",
+        "RUST_TEST_THREADS": "1",
+        "CARGO_NET_OFFLINE": "true",
+        "CARGO_TERM_COLOR": "never",
+        "RUSTC": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustc",
+        "RUSTDOC": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustdoc",
+        "RUSTFMT": "/home/ymj68520/.rustup/toolchains/1.91.1-x86_64-unknown-linux-gnu/bin/rustfmt",
+        "RUSTUP_AUTO_INSTALL": "0",
+        "RUSTUP_NO_UPDATE_CHECK": "1"
+      },
+      "write_roots": [
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/.git",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/build/linux-primary-v1",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-clippy-350f7645-e1be-4f3e-b039-4439ed897397",
+        "/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-clippy-source-fix"
+      ],
+      "job_tmp_root": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-clippy-350f7645-e1be-4f3e-b039-4439ed897397",
+      "write_root_audits": [
+        {
+          "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace",
+          "resolved": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace",
+          "device": 2050,
+          "allocated_regular_bytes": 1706401792,
+          "free_bytes": 81210064896,
+          "free_inodes": 57112804,
+          "filesystem": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n"
+        },
+        {
+          "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/.git",
+          "resolved": "/home/ymj68520/projects/agent-r5g2-linux-validation/workspace/.git",
+          "device": 2050,
+          "allocated_regular_bytes": 216821760,
+          "free_bytes": 81210064896,
+          "free_inodes": 57112804,
+          "filesystem": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n"
+        },
+        {
+          "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1",
+          "resolved": "/home/ymj68520/projects/agent-r5g2-linux-validation/cache/cargo-linux-primary-v1",
+          "device": 2050,
+          "allocated_regular_bytes": 19431424,
+          "free_bytes": 81210064896,
+          "free_inodes": 57112804,
+          "filesystem": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n"
+        },
+        {
+          "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/build/linux-primary-v1",
+          "resolved": "/home/ymj68520/projects/agent-r5g2-linux-validation/build/linux-primary-v1",
+          "device": 2050,
+          "allocated_regular_bytes": 173993984,
+          "free_bytes": 81210064896,
+          "free_inodes": 57112804,
+          "filesystem": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n"
+        },
+        {
+          "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-clippy-350f7645-e1be-4f3e-b039-4439ed897397",
+          "resolved": "/home/ymj68520/projects/agent-r5g2-linux-validation/tmp/production-protector/quality-clippy-350f7645-e1be-4f3e-b039-4439ed897397",
+          "device": 2050,
+          "allocated_regular_bytes": 0,
+          "free_bytes": 81210064896,
+          "free_inodes": 57112804,
+          "filesystem": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n"
+        },
+        {
+          "path": "/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-clippy-source-fix",
+          "resolved": "/home/ymj68520/projects/agent-r5g2-linux-validation/evidence/phase-linux-clippy-source-fix",
+          "device": 2050,
+          "allocated_regular_bytes": 339968,
+          "free_bytes": 81210064896,
+          "free_inodes": 57112804,
+          "filesystem": "{\n   \"filesystems\": [\n      {\n         \"source\": \"/dev/sda2\",\n         \"fstype\": \"ext4\",\n         \"target\": \"/\",\n         \"options\": \"rw,relatime\"\n      }\n   ]\n}\n"
+        }
+      ],
+      "ancestor_limits": [
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1001.slice/user@1001.service",
+          "limits": {
+            "cpu.max": "max 100000",
+            "memory.max": "max",
+            "memory.swap.max": "max",
+            "pids.max": "max"
+          }
+        },
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1001.slice",
+          "limits": {
+            "cpu.max": "max 100000",
+            "memory.max": "max",
+            "memory.swap.max": "max",
+            "pids.max": "76995"
+          }
+        },
+        {
+          "path": "/sys/fs/cgroup/user.slice",
+          "limits": {
+            "cpu.max": "max 100000",
+            "memory.max": "max",
+            "memory.swap.max": "max",
+            "pids.max": "max"
+          }
+        },
+        {
+          "path": "/sys/fs/cgroup",
+          "limits": {}
+        }
+      ],
+      "profile_overrides": [],
+      "host_preflight": {
+        "MemAvailable": 19903774720,
+        "free_bytes": 81210064896,
+        "free_inodes": 57112804,
+        "active_processes": []
+      }
+    }
+  },
+  "old_fmt_credit_reused": false,
+  "round2_frozen": false
+}

@@ -1,0 +1,20 @@
+{
+  "status": "NOT ACCEPTED",
+  "outcome": "D - Partial",
+  "execution_head": "1a5a7c22bf5956d5c96df829e77738b2ea935c8a",
+  "git_tree": "90f994e4c2552b1fb26884fe325cfdb4ab2bd822",
+  "fmt": {
+    "exit_code": 1,
+    "status": "FAILED"
+  },
+  "clippy": {
+    "exit_code": null,
+    "status": "NOT EXECUTED"
+  },
+  "cause": "Removing unused binding makes rustfmt request a single-line match arm; no automatic second edit or retry allowed",
+  "no_old_fmt_or_clippy_credit_reused": true,
+  "full_clippy_coverage": false,
+  "round2_authorized": false,
+  "round2_started": false,
+  "required_next_authority": "Any further source formatting repair and new gate executions require a new user instruction/approval; unused Clippy approval is not automatically reused"
+}

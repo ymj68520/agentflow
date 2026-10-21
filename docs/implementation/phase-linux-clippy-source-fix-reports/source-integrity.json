@@ -1,0 +1,44 @@
+{
+  "status": "Passed - exactly one authorized source delta",
+  "before_head": "1e44ba4a21cfed3f1522063dfeff6dccbfe18412",
+  "after_head": "1a5a7c22bf5956d5c96df829e77738b2ea935c8a",
+  "minimal_fix": {
+    "path": "crates/af-computation/src/control.rs",
+    "before_sha256": "262d97a73e32e501490ffc7c9189e8cc83e45882d17b74239f6687f3c4f935fa",
+    "after_sha256": "d7d93ce6bf6559241d9d6436f4ade5399b3364c3a7c7132107c6d624e39f0cc6",
+    "before_head": "27e8130724562526f732dac754988b38d5c5d166",
+    "before_git_tree": "9d8a3dcb1f9702ff8a964e2c110a0f3d06a1c533",
+    "after_git_tree": "90f994e4c2552b1fb26884fe325cfdb4ab2bd822",
+    "fix_commit": "1a5a7c22bf5956d5c96df829e77738b2ea935c8a",
+    "product_changes": [
+      "crates/af-computation/src/control.rs"
+    ],
+    "replacement_count": 1,
+    "only_exact_binding_removed": true
+  },
+  "before_receipt_sha256": "efbceea12bfc6f3d23665cf43a5ed497e730958618775f45c0d2d332b6fa7b4f",
+  "after_receipt_sha256": "b38986c9d3a4a5ffc661286d4304b32283e5ead75c59d884720b97d5c4fed1a4",
+  "protected_input_count": 1677,
+  "protected_unchanged_count": 1676,
+  "authorized_changed_count": 1,
+  "frozen_snapshots": 10,
+  "frozen_paths": 21032,
+  "cargo_packages": 25,
+  "cargo_lock_sha256": "a9f3488898cb4f8f5dc5b450845bc3e62a1c4e3f6c73a66691a22f12d4ee3ede",
+  "previous_phase06_evidence_verified": 80,
+  "previous_phase05_evidence_verified": 94,
+  "Expected_Oracle_Registry_unchanged": true,
+  "abi_and_proof_rules_not_changed": true,
+  "formal_versions": [
+    "Analysis@9",
+    "Model@8",
+    "Report@8",
+    "Obligation@8"
+  ],
+  "three_native_some_bindings_unchanged": true,
+  "windows": "Archived 0/8",
+  "old_r5g2": "Registration Incomplete",
+  "raw_full_field_and_total_t3": "Incomplete",
+  "t4": "Not Eligible",
+  "positive_root_export": "Not Authorized"
+}
