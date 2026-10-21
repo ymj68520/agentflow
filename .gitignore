@@ -1,4 +1,12 @@
-/target
+# Rust build and coverage artifacts (including standalone crates).
+target/
+.llvm-cov-target/
+*.rs.bk
+*.profraw
+*.profdata
+/coverage/
 Cargo.lock.bak
+
+# Python bytecode.
 __pycache__/
 *.pyc
