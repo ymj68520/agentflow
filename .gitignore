@@ -4,7 +4,11 @@ target/
 *.rs.bk
 *.profraw
 *.profdata
+.rustc_info.json
 /coverage/
+/lcov.info
+/cobertura.xml
+/tarpaulin-report.html
 Cargo.lock.bak
 
 # Python bytecode, local environments and tool caches.
@@ -12,6 +16,10 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .mypy_cache/
+.pyre/
+.pytype/
+.dmypy.json
+dmypy.json
 .ruff_cache/
 .hypothesis/
 .tox/
@@ -23,6 +31,7 @@ __pycache__/
 .coverage
 .coverage.*
 /htmlcov/
+/coverage.xml
 /build/
 /dist/
 *.egg-info/
@@ -55,10 +64,14 @@ __pycache__/
 # OS/editor state. Shared VS Code project configuration stays versionable.
 .DS_Store
 Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
 Desktop.ini
 *.swp
 *.swo
 *~
+.#*
+\#*#
 /.idea/
 /.vs/
 /.history/
