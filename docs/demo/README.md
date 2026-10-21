@@ -2,7 +2,7 @@
 
 已实现可操作的本地 Web 原型：五种节点、拖放画布、受约束 Text 端口连接、属性配置、节点/连线删除、浏览器草稿保存恢复、JSON 文本/文件导入导出、顺序/条件/有界离线 Agent 执行、取消与真实步骤日志。
 
-实现提交：`0c876454b66ef97b3b2fe0976bea778d9baee993`。后续报告提交不改变该实现的 Rust、前端、Cargo 或资源策略输入。未 Push。
+主要实现提交：`0c876454b66ef97b3b2fe0976bea778d9baee993`；最后的 UI 提示重置修正为 `f343671bb146c3772e0d990083d14061a3841d4a`，只改一行 JS，不改 Rust、Cargo 或资源策略。报告提交仅修改本文档。未 Push。
 
 ## 启动与使用
 
@@ -37,9 +37,9 @@ ssh -N -o ExitOnForwardFailure=yes -L 127.0.0.1:8787:127.0.0.1:8787 fwq
 
 [案例 A 截图](screenshots/case-a.jpg) · [案例 B 截图](screenshots/case-b.jpg)
 
-## 最终验证
+## 验证结果及源码范围
 
-四项均在同一干净实现 HEAD `0c876454b66ef97b3b2fe0976bea778d9baee993` 上实际执行并退出 0：
+完整集成验证在同一干净实现 HEAD `0c876454b66ef97b3b2fe0976bea778d9baee993` 上实际执行，四项均退出 0：
 
 | 门禁 | 结果 | 耗时 |
 | --- | --- | --- |
@@ -52,9 +52,13 @@ ssh -N -o ExitOnForwardFailure=yes -L 127.0.0.1:8787:127.0.0.1:8787 fwq
 
 四项实际生效的选用限制为 CPU 在线容量 10%、AS 8 GiB、任务树 6 GiB、Swap 0、PIDs 128，其他阈值与批准范围一致；主机准入及清理均正常。最大观测 cgroup 内存 4,490,387,456 字节（约 4.18 GiB，包含缓存，不是单进程 RSS）；无 OOM、Swap 或 PIDs 耗尽事件。未额外安装依赖、提额或运行破坏性资格测试。
 
-简洁机器汇总：`target/visual-workflow-demo/final-validation-summary.json`。四次执行冻结的 Rust/前端/Cargo 输入哈希全部一致，并与交付代码核对相同。
+简洁机器汇总：`target/visual-workflow-demo/final-validation-summary.json`，对应上述完整集成验证。四次执行冻结的 Rust/前端/Cargo 输入哈希全部一致。
 
-原始命令、退出码、日志哈希和必要资源回执保留在 `target/visual-workflow-demo`，不覆盖旧任务证据。两个浏览器测试服务通过正常受控取消停止，回收为空且删除所属 cgroup；该停止不是产品失败，也不伪造 Cargo 退出码。
+随后手工配置 Word Count 得到 `2`；删除 Tool 后节点变为 2、边变为 0，完整连接验证拒绝该未连接草稿。该检查发现旧结果提示未随日志清空重置，已在 `f343671` 修正。此提交上重新执行 fmt、完整 Clippy、演示局部 24 项 Rust 测试和 spec-check，全部退出 0；Rust/Cargo/其它前端文件与全量验证保持原字节，仅 `app.js` 这一处文案复位变化。没有重复全量 472 项，也不把旧 HEAD 的全量执行冒充新 HEAD 执行。补充回执在 `target/visual-workflow-demo/post-ui-fix-validation.json`。
+
+补充验证首次准入因旧演示服务仍在回收而锁忙被拒绝，Cargo 没有启动；未清除或绕开任务锁，确认原 Guardian 回收完成后再正常执行。拒绝回执保留。
+
+原始命令、退出码、日志哈希和必要资源回执保留在 `target/visual-workflow-demo`，不覆盖旧任务证据。已结束的浏览器测试服务均通过正常受控取消停止，回收为空且删除所属 cgroup；该停止不是产品失败，也不伪造 Cargo 退出码。交付时另有一个有意保留的受控本地演示会话，最多 90 分钟，实时入口见 `target/visual-workflow-demo/delivery-session.json`。
 
 ## 架构与限制
 
